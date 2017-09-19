@@ -17,6 +17,7 @@ jobs:
     - script: &script
         - bin/xmllint --pattern "*.xlf*,svg" Resources
         - bin/parallel-lint --exclude bin --exclude vendor .
+        - bin/phpunit
     - php: 5.6
       script: *script
 
