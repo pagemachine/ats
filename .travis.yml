@@ -20,7 +20,13 @@ jobs:
         - bin/phpcs
         - bin/phpunit
     - php: 5.6
-      script: *script
+      before_script:
+        - composer remove --dev slevomat/coding-standard
+        - composer install
+      script:
+        - bin/xmllint --pattern "*.xlf*,svg" Resources
+        - bin/parallel-lint --exclude bin --exclude vendor .
+        - bin/phpunit
 
     - stage: deploy
       script: |
