@@ -15,6 +15,7 @@
 
   <rule ref="PSR2">
     <exclude name="Generic.Files.LineLength"/>
+    <exclude name="Generic.NamingConventions.UpperCaseConstantName" />
   </rule>
 
   <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
