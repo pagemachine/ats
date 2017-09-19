@@ -11,6 +11,7 @@
   <file>ext_tables.php</file>
   <file>ext_emconf.php</file>
   <file>Classes/</file>
+  <file>Tests/Unit/</file>
 
   <rule ref="PSR2">
     <exclude name="Generic.Files.LineLength"/>
