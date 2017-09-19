@@ -2,7 +2,7 @@
   "name": "pagemachine/ats",
   "description": "Extension for Job Application Management",
   "type": "typo3-cms-extension",
-  "license": "proprietary",
+  "license": "GPL-3.0",
   "repositories": {
     "typo3": {
       "type": "composer",
