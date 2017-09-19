@@ -1,0 +1,15 @@
+<f:form.validationResults for="application.{fieldName}">
+<div class="form-group {f:if(condition:validationResults.errors, then:'has-error')}">
+	<div class="col-sm-2">
+		<label><f:translate key="{translationKey}" /></label>
+	</div>
+	<div class="col-sm-10">
+		<f:form.textfield
+			type="{fieldType}"
+			property="{fieldName}"
+			value="{fieldValue}"
+			class="form-control" />
+		<f:render partial="Application/Field/ValidationError" arguments="{fieldName : fieldName}" />
+	</div>
+</div>
+</f:form.validationResults>

@@ -1,0 +1,7 @@
+{namespace ats=PAGEmachine\Ats\ViewHelpers}
+
+<f:if condition="{applications -> f:count()}">
+	<h2>In Progress</h2>
+
+	<f:render partial="Backend/Application/Table" arguments="{applications : applications}" />
+</f:if>

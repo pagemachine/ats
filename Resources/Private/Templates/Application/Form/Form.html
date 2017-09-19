@@ -1,0 +1,56 @@
+
+<f:layout name="Default" />
+
+<f:section name="main">
+
+  <h1>New Application for job "{job.title}"</h1>
+
+  <f:form object="{application}" name="application"  class="form-horizontal">
+
+	<f:render partial="Application/ValidationResults" />
+
+
+  	<f:form.hidden property="user" value="{user}" />
+  	<f:form.hidden property="job" value="{job}" />
+
+	<f:translate key="tx_ats.intro.text1" /> <br> <br>
+	<f:translate key="tx_ats.intro.text2" /> <br> <br>
+	<f:translate key="tx_ats.intro.text3" /> <br> <br>
+	<f:translate key="tx_ats.intro.text4" /> <br> <br>
+	<f:translate key="tx_ats.intro.text5" /> <br> <br>
+
+	<label>
+	  <f:form.checkbox
+	    property="privacyPolicy"
+	    value="1"
+	    checked="{f:if(condition:'{application.privacyPolicy} == 1', then:'checked')}" />
+
+	  <f:translate key="tx_ats.label.privacy_policy.before" />
+	  <f:link.page pageUid="{settings.policyPage}">
+	  	<f:translate key="tx_ats.label.privacy_policy.linktitle" />
+	  </f:link.page>
+	  <f:translate key="tx_ats.label.privacy_policy.after" />
+	</label>
+	<br>
+
+	<f:form.validationResults for="application.privacyPolicy">
+		<f:if condition="{validationResults.flattenedErrors}">
+			<f:for each="{validationResults.errors}" as="error">
+				<f:render partial="Application/Field/ValidationError" arguments="{
+					formErrorCode: '{error.code}',
+					formErrorFieldname: 'privacyPolicy'
+				}"/>
+			</f:for>
+		</f:if>
+	</f:form.validationResults>
+
+	<f:render partial="Application/Field/SubmitButton" arguments="{
+	  translationKey: 'tx_ats.button.next',
+	  action: 'updateForm'
+	}"/>
+
+
+
+  </f:form>
+
+</f:section>

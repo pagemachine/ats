@@ -1,0 +1,10 @@
+<p><f:translate key="tx_ats.history.clone.details">Application was cloned</f:translate>
+
+<f:if condition="{history.details.source}">
+	<p>(Original ID: <f:link.action action="show" arguments="{application : history.details.source}">{history.details.source}</f:link.action>)</p>
+</f:if>
+
+
+<f:if condition="{history.details.note}">
+	<p>Note: {history.details.note}</p>
+</f:if>

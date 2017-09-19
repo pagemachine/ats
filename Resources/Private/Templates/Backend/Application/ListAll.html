@@ -1,0 +1,15 @@
+
+{namespace ats=PAGEmachine\Ats\ViewHelpers}
+<f:layout name="Backend/Backend" />
+
+<f:section name="main">
+	<h1><f:translate key="be.label.AllApplications"/></h1>
+
+	<f:render partial="Backend/Application/FilterBar" arguments="{action : 'listMine', jobs : jobs, filter : filter}" />
+
+	<f:render partial="Backend/Application/ListDeadlineExceeded" arguments="{applications : exceededApplications}" />
+	<f:render partial="Backend/Application/ListNew" arguments="{applications : newApplications}" />
+	<f:render partial="Backend/Application/ListInProgress" arguments="{applications : progressApplications}" />
+
+
+</f:section>

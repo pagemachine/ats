@@ -1,0 +1,8 @@
+<label>
+  <f:translate key="{translationKey}" />
+</label>
+<ul>
+	<f:for each="{application.files}" as="file">
+		<li><a href="{file.backendUrl}" target="_blank">{file.originalResource.name}</a></li>
+	</f:for>
+</ul>

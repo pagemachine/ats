@@ -1,0 +1,1320 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2016-04-27T15:35:26Z" product-name="ats">
+		<header/>
+		<body>
+	  <trans-unit id="tx_ats_domain_model_job">
+		<source>Job</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.loginHeader">
+		<source>Log in to proceed to job</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.registrationHeader">
+		<source>Register</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.registrationText">
+		<source>Not registered yet? Create a new account.</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.registrationLinkText">
+		<source>Register here</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.returnToJob">
+		<source>Return to job</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.intro.text1">
+		<source>We are delighted that you want to apply to us and that you are using our online application form. With the following information, we would like to make the application process a little clearer.</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.intro.text2">
+		<source>After agreeing to our data protection regulations, the online application form starts with the section "Personal information".</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.intro.text3">
+		<source>We recommend that you keep the documents relating to your career, such as your curriculum vitae (CV), references, etc. on hand. The fields marked with an asterisk "*" are mandatory, that is, they must be filled in to access the next section of the application form. You can correct the information you have entered until you are ready to submit your application. At the end of the application form you have the chance to complete the application by uploading a cover letter, your curriculum vitae, references and other relevant documentation, preferably as PDF files.</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.intro.text4">
+		<source>Please read our data protection regulations now and then decide whether you want to accept them.</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.intro.text5">
+		<source>Your application data is, of course, stored and processed only by our company. After 6 months at the latest, the electronically stored personal data will be automatically deleted. Automatic deletion does not occur if you answer the following question in the application form with a "yes": "May we forward your application to other interested departments at out company?"</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.upload.text1">
+		<source>In this field, we ask you to upload your documents, such as a cover letter, your CV, references, photo, etc.</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.upload.text2">
+		<source>First, click on "Browse...", select a file and upload it. You can then upload more files in the same way. The maximum file size is 20 MB.</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.button.next">
+		<source>Next</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.button.prev">
+		<source>Back</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.button.upload">
+		<source>Upload</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.button.submit">
+		<source>Submit</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.privacy_policy.before">
+		<source>I have read and accepted the </source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.privacy_policy.linktitle">
+		<source>data protection regulations</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.privacy_policy.after">
+		<source>. If minors are applying, we assume that a parent or guardian has made this agreement.</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.uid">
+		<source>ID</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.title">
+		<source>Academic title</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.salutation">
+		<source>Form of address</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.salutation.1">
+		<source>Mr</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.salutation.2">
+		<source>Ms</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.firstname">
+		<source>First name</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.surname">
+		<source>Surname</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.surname">
+		<source>Surname</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.birthday">
+		<source>Date of birth (YYYY-MM-DD)</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.disability">
+		<source>Severe disability/Equal opportunities (Please only fill out and attach proof if your application is to be considered in accordance with § 82 SGB IX, German legislation on employing the severely disabled)</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.disability.2">
+		<source>Yes</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.disability.1">
+		<source>No</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.nationality">
+		<source>Nationality</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.street">
+		<source>Street and house no.</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.zipcode">
+		<source>Post code</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.city">
+		<source>Town/City</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.country">
+		<source>Country</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.email">
+		<source>E-mail</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.phone">
+		<source>Tel. no. landline</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.mobile">
+		<source>Tel. no. mobile</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.employed">
+		<source>Are you currently employed at our company?</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.employed.2">
+		<source>Yes</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.employed.1">
+		<source>No</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.school_qualification">
+		<source>Highest school-leaving qualification</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.school_qualification.1">
+		<source>General qualification for university entrance</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.school_qualification.2">
+		<source>Advanced technical college certificate</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.school_qualification.3">
+		<source>General Certificate of Secondary Education</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.school_qualification.4">
+		<source>Non-academic secondary school</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.school_qualification.5">
+		<source>Others</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.school_qualification.6">
+		<source>N/A</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.professional_qualification">
+		<source>Professional qualification/Specialised area</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.professional_qualification_final_grade">
+		<source>Final grade</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.academic_degree">
+		<source>Academic degree/Specialised subject(s)</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.academic_degree_final_grade">
+		<source>Final grade</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.doctoral_degree">
+		<source>Doctoral degree/PhD degree</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.doctoral_degree_final_grade">
+		<source>Final grade</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.previous_knowledge">
+		<source>Previous knowledge relevant to vacancy - use key words only (max. 255 characters)</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.it_knowledge">
+		<source>Previous knowledge of IT relevant to vacancy - use key words only (max. 255 characters)</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.comment">
+		<source>Note (max. 255 characters)</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.referrer">
+		<source>How did you hear about us</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.referrer.1">
+		<source>Internet</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.forward_to_departments">
+		<source>May we forward your application to other interested departments of our company?</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.forward_to_departments.2">
+		<source>Yes</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.forward_to_departments.1">
+		<source>No</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.file">
+		<source>File(s)</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.submission_thankyou">
+		<source>Thank you for your submission</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.referrer.1">
+		<source>Homepage</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.referrer.2">
+		<source>Newspaper</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.referrer.3">
+		<source>Magazine</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.referrer.4">
+		<source>Jobportal</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.referrer.5">
+		<source>Employment Agency</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.referrer.6">
+		<source>Recommendation</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.referrer.7">
+		<source>Others</source>
+	  </trans-unit>
+
+	  <!-- Frontend errors -->
+
+	  <trans-unit id="tx_ats.error.intro">
+		<source>Please check your entries.</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats_domain_model_application.privacyPolicy">
+		<source>Privacy Policy:</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats_domain_model_application.firstname">
+		<source>First name:</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats_domain_model_application.surname">
+		<source>Surname:</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats_domain_model_application.birthday">
+		<source>Date of birth:</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats_domain_model_application.street">
+		<source>Street and house no.:</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats_domain_model_application.zipcode">
+		<source>Post code:</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats_domain_model_application.city">
+		<source>Town/City:</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats_domain_model_application.email">
+		<source>E-mail:</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats_domain_model_application.employed">
+		<source>Are you currently employed at our company:</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats_domain_model_application.forwardToDepartments">
+		<source>May we forward your application to other interested departments of our company:</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.error.1361959228">
+		<source>Please confirm privacy policy</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.error.1221560718">
+		<source>Please fill out this field</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.error.1221560910">
+		<source>Please fill out this field</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.error.1221561046">
+		<source>Please confirm</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.error.1221559976">
+		<source>This is not a valid email address</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.error.1307719788">
+		<source>The date was not recognized (for format "YYYY-MM-DD")</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.error.1399312430">
+		<source>File upload is not possible</source>
+	  </trans-unit>
+
+	  <!-- Backend errors -->
+
+	  <trans-unit id="tx_ats.error.note.details.1221560718">
+		<source>Please enter a note text.</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.error.mail.subject.1221560718">
+		<source>Please enter a subject.</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.error.mail.body.1221560718">
+		<source>Please enter a message.</source>
+	  </trans-unit>
+
+
+	  <!-- Application (internal) labels -->
+
+	  <trans-unit id="tx_ats.application.status">
+		<source>Status</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.application.rating">
+		<source>Rating</source>
+	  </trans-unit>
+
+	<trans-unit id="tx_ats.application.rating.0">
+		<source>None</source>
+	</trans-unit>
+
+	<trans-unit id="tx_ats.application.rating.10">
+		<source>Unsuited</source>
+	</trans-unit>
+
+	<trans-unit id="tx_ats.application.rating.20">
+		<source>Suited</source>
+	</trans-unit>
+
+	<trans-unit id="tx_ats.application.rating.30">
+		<source>Shortlisted</source>
+	</trans-unit>
+
+	<trans-unit id="tx_ats.application.rating.40">
+		<source>Selected</source>
+	</trans-unit>
+
+	<trans-unit id="tx_ats.application.rating.50">
+		<source>Cancelled by candidate</source>
+	</trans-unit>
+
+	  <trans-unit id="tx_ats.application.ratingPerso">
+		<source>Rating Perso</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.application.receiptDate">
+		<source>Receipt date</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.application.application_type">
+		<source>Application type</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.application.application_type.0">
+		<source>Undefined</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.application.application_type.1">
+		<source>Website</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.application.application_type.2">
+		<source>Letter</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.application.application_type.3">
+		<source>Email</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.application.languageskills">
+		<source>Language Skills</source>
+	  </trans-unit>
+
+	  <!-- LanguageSkill labels -->
+
+	  <trans-unit id="tx_ats.languageskill">
+		<source>Language Skill</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.languageskill.language">
+		<source>Language</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.languageskill.textLanguage">
+		<source>Other</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.languageskill.level">
+		<source>Level</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.languageskill.level.1">
+		<source>Mother tounge</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.languageskill.level.2">
+		<source>Fluent at business level</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.languageskill.level.3">
+		<source>Advanced knowledge</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.languageskill.level.4">
+		<source>Basic knowledge</source>
+	  </trans-unit>
+
+	  <!-- Message labels -->
+
+		<trans-unit id="tx_ats.message.subject">
+			<source>Subject</source>
+		</trans-unit>
+
+		<trans-unit id="tx_ats.message.body">
+			<source>Message</source>
+		</trans-unit>
+
+		<trans-unit id="tx_ats.message.cc">
+			<source>Cc</source>
+		</trans-unit>
+
+		<trans-unit id="tx_ats.message.bcc">
+			<source>Bcc</source>
+		</trans-unit>
+
+		<trans-unit id="tx_ats.message.send_type.pdf">
+			<source>PDF</source>
+		</trans-unit>
+
+		<trans-unit id="tx_ats.message.send_type.mail">
+			<source>Email</source>
+		</trans-unit>
+	  <!-- Job labels -->
+
+	   <trans-unit id="tx_ats.job.jobNumber">
+		<source>Job Nr.</source>
+	  </trans-unit>
+
+	   <trans-unit id="tx_ats.job.uid">
+		<source>ID</source>
+	  </trans-unit>
+
+	   <trans-unit id="tx_ats.job.title">
+    <source>Jobtitle</source>
+    </trans-unit>
+
+	  <!-- backend labels -->
+	  <trans-unit id="tx_ats.be.label.privacy_policy">
+		<source>Accepts privacy policy</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.be.label.disability">
+		<source>Disability</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.be.label.disability.2">
+		<source>Yes</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.be.label.disability.1">
+		<source>No</source>
+	  </trans-unit>
+
+	   <trans-unit id="tx_ats.be.actions.application.show">
+		<source>Overview</source>
+	  </trans-unit>
+
+	   <trans-unit id="tx_ats.be.actions.application.edit">
+		<source>Edit</source>
+	  </trans-unit>
+
+	   <trans-unit id="tx_ats.be.actions.application.editStatus">
+		<source>Workflow</source>
+	  </trans-unit>
+
+	   <trans-unit id="tx_ats.be.actions.application.notes">
+		<source>Notes</source>
+	  </trans-unit>
+
+	   <trans-unit id="tx_ats.be.actions.application.rating">
+		<source>Rating</source>
+	  </trans-unit>
+
+	   <trans-unit id="tx_ats.be.actions.application.ratingPerso">
+		<source>Rating (Perso)</source>
+		</trans-unit>
+
+	   <trans-unit id="tx_ats.be.actions.application.backToPerso">
+		<source>Send back to personnel department</source>
+	  </trans-unit>
+
+	   <trans-unit id="tx_ats.be.actions.application.close">
+		<source>Close Application</source>
+	  </trans-unit>
+
+	   <trans-unit id="tx_ats.be.actions.application.reply">
+		<source>Mail</source>
+	  </trans-unit>
+
+	   <trans-unit id="tx_ats.be.actions.application.invite">
+		<source>Invite</source>
+	  </trans-unit>
+
+	   <trans-unit id="tx_ats.be.actions.application.reject">
+		<source>Reject</source>
+	  </trans-unit>
+
+	   <trans-unit id="tx_ats.be.actions.application.history">
+		<source>History</source>
+	  </trans-unit>
+
+	   <trans-unit id="tx_ats.be.actions.application.clone">
+		<source>Clone</source>
+	  </trans-unit>
+
+	   <trans-unit id="tx_ats.be.actions.application.moveToPool">
+		<source>Move to pool</source>
+	  </trans-unit>
+
+			<trans-unit id="tx_ats.history.workflow.subject">
+				<source>Workflow</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.workflow.details">
+				<source>Changed status to</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.edit.subject">
+				<source>Edit (Backend)</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.edit.details">
+				<source>Application edited via backend form</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.reply.subject">
+				<source>Reply mail/pdf</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.reply.details">
+				<source>Reply was sent</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.invite.subject">
+				<source>Invitation</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.invite.details">
+				<source>Invitation was sent</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.acknowledge.subject">
+				<source>Acknowledgement</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.acknowledge.details">
+				<source>Acknowledgement was sent</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.reject.subject">
+				<source>Rejection</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.reject.details">
+				<source>Rejection was sent</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.rating.subject">
+				<source>Rating</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.rating.details">
+				<source>Changed rating to</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.ratingPerso.subject">
+				<source>Personell Rating</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.ratingPerso.details">
+				<source>Changed personell rating to</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.note.subject">
+				<source>Note</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.note.details">
+				<source>A new note was added</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.close.subject">
+				<source>Close</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.close.details">
+				<source>Application was closed</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.backToPerso.subject">
+				<source>Returned to Perso</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.backToPerso.details">
+				<source>Application was sent back to personell department.</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.new.subject">
+				<source>New Application</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.new.details">
+				<source>A new application was submitted.</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.clone.subject">
+				<source>New Application (cloned)</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.clone.details">
+				<source>A new application was submitted (Clone).</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.cloned.subject">
+				<source>Cloned</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.cloned.details">
+				<source>This application was cloned.</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.moveToPool.subject">
+				<source>Move to Pool</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.moveToPool.details.add">
+				<source>Application was added to pool</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.moveToPool.details.remove">
+				<source>Application was remove from pool</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.removeUpload.subject">
+				<source>Upload deleted</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.removeUpload.details">
+				<source>The following file was removed:</source>
+			</trans-unit>
+
+			<!-- Application rating -->
+
+			<trans-unit id="tx_ats.application_rating.0">
+				<source>None</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.application_rating.10">
+				<source>Unsuited</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.application_rating.20">
+				<source>Suited</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.application_rating.30">
+				<source>Shortlisted</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.application_rating.40">
+				<source>Selected</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.application_rating.50">
+				<source>Cancelled by candidate</source>
+			</trans-unit>
+
+      <!-- ATS Statistics -->
+      <trans-unit id="tx_ats.stat.datef">
+        <source>From:</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.stat.datet">
+        <source>Till:</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.stat.title">
+        <source>Number of applications for a single job offer</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.stat.title.2">
+        <source>Number of applications for a single provenance</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.stat.title.3">
+        <source>Age distribution of applicants</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.stat.title.4">
+        <source>Number of tendering procedures</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.stat.title.5">
+        <source>Number of applications, men and women</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.stat.title.6">
+        <source>Number of job interviews, men and women</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.stat.title.7">
+        <source>Number of occupied positions, men and women</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.stat.position">
+        <source>Position</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.stat.number">
+        <source>Number</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.stat.percentage">
+        <source>Percentage</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.stat.table2.thl">
+        <source>How did you find out about us?</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.stat.table3.thl">
+        <source>Age</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.stat.table456.thl">
+        <source>Male</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.stat.table456.thr">
+        <source>Female</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.stat.job">
+        <source>Job:</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.stat.location">
+        <source>Location:</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.stat.export">
+        <source>Export</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.stat.export.simple">
+        <source>Simple Export</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.stat.export.custom">
+        <source>Custom Export</source>
+      </trans-unit>
+
+      <!-- Age distribution -->
+      <trans-unit id="tx_ats.stat.age.0">
+        <source>under 20</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.stat.age.1">
+        <source>under 29</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.stat.age.2">
+        <source>under 39</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.stat.age.3">
+        <source>under 49</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.stat.age.4">
+        <source>under 59</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.stat.age.5">
+        <source>60 and older</source>
+      </trans-unit>
+
+      <!-- Age distribution proc -->
+      <trans-unit id="tx_ats.stat.age.proc.1">
+        <source></source>
+      </trans-unit>
+
+      <!-- Application status -->
+      <trans-unit id="tx_ats.application.status.0">
+      	<source>Incomplete</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.10">
+      	<source>New Application</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.20">
+      	<source>Requested Attestation</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.30">
+      	<source>Bschwb</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.40">
+      	<source>Gleib</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.50">
+      	<source>Department</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.60">
+      	<source>Perso</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.70">
+      	<source>Gleib2</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.80">
+      	<source>OPR</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.90">
+      	<source>Perso (final)</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.100">
+      	<source>Employed</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.110">
+      	<source>Cancelled (by employer)</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.120">
+      	<source>Cancelled (by Candidate)</source>
+      </trans-unit>
+
+
+      <!-- Backend -->
+      <trans-unit id="be.label.MyApplications">
+				<source>My Applications</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.MyApplications.NewApplications">
+				<source>New Applications</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.MyApplications.Table.Created">
+				<source>Created</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.MyApplications.Table.JobNumber">
+				<source>Job Number</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.MyApplications.Table.Rating">
+				<source>Rating</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.application.Rating.0">
+				<source>None</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.application.Rating.10">
+				<source>Unsuited</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.application.Rating.20">
+				<source>Suited</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.application.Rating.30">
+				<source>Shortlisted</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.application.Rating.40">
+				<source>Selected</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.application.Rating.50">
+				<source>Cancelled by candidate</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.MyApplications.Table.Disability">
+				<source>Disability</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.MyApplications.Table.Employed">
+				<source>Employed</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.MyApplications.Table.LatestNote">
+				<source>Latest note</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.AllApplications">
+				<source>All Applications</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.Statistics">
+				<source>Statistics</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.Statistics.dateFrom">
+        <source>From:</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.Statistics.dateTill">
+        <source>Till:</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.Statistics.Table.1">
+        <source>Number of applications for a single job offer</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.Statistics.Table.2">
+        <source>Number of applications for a single provenance</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.Statistics.Table.3">
+        <source>Age distribution of applicants</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.Statistics.Table.4">
+        <source>Number of tendering procedures</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.Statistics.Table.5">
+        <source>Number of applications, men and women</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.Statistics.Table.6">
+        <source>Number of job interviews, men and women</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.Statistics.Table.7">
+        <source>Number of occupied positions, men and women</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.Statistics.Table.Number">
+        <source>Number</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.Statistics.Table.Percentage">
+        <source>Percentage</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.Statistics.Table.Provenance">
+        <source>How did you find out about us?</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.Statistics.Table.Age">
+        <source>Age</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.Statistics.Table.Total">
+        <source>Total:</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.Statistics.Table.Male">
+        <source>Male</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.Statistics.Table.Female">
+        <source>Female</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.Export.Location">
+        <source>Location:</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.Export.Simple">
+        <source>Simple Export</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.Export.CustomExport">
+        <source>Custom Export</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.Archive">
+        <source>Archive</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.FilterBar.All">
+      	<source>All</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.FilterBar.Placeholder.Search">
+        <source>Searchword</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.FilterBar.Filter">
+        <source>Filter</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.FilterBar.Reset">
+      	<source>Reset</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.FilterBar.Job">
+      	<source>Job:</source>
+      </trans-unit>
+      <trans-unit id="be.label.ApplicationSingle.1">
+      	<source>Application from </source>
+      </trans-unit>
+      <trans-unit id="be.label.ApplicationSingle.2">
+      	<source>for </source>
+      </trans-unit>
+      <trans-unit id="be.label.ApplicationSingle.Table.GeneralInformation">
+      	<source>General Information</source>
+      </trans-unit>
+      <trans-unit id="be.label.ApplicationSingle.Table.JobTitle">
+      	<source>Jobtitle</source>
+      </trans-unit>
+      <trans-unit id="be.label.ApplicationSingle.Table.ReceiptDate">
+      	<source>Receipt date</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.ApplicationSingle.Table.ApplicationType">
+        <source>Application type</source>
+      </trans-unit>
+      <trans-unit id="be.label.ApplicationSingle.Table.Rating">
+        <source>Rating</source>
+      </trans-unit>
+      <trans-unit id="be.label.ApplicationSingle.Table.RatingPerson">
+        <source>Rating Person</source>
+      </trans-unit>
+      <trans-unit id="be.label.ApplicationSingle.Notes">
+        <source>Notes</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.be.actions.application.show">
+				<source>Overview</source>
+	  	</trans-unit>
+
+	  	<trans-unit id="tx_ats.be.actions.application.edit">
+				<source>Edit</source>
+	  	</trans-unit>
+
+	  	<trans-unit id="tx_ats.be.actions.application.editStatus">
+				<source>Workflow</source>
+	  	</trans-unit>
+
+	  	<trans-unit id="tx_ats.be.actions.application.notes">
+				<source>Notes</source>
+	  	</trans-unit>
+
+	  	<trans-unit id="tx_ats.be.actions.application.reply">
+				<source>Mail</source>
+	  	</trans-unit>
+
+	  	<trans-unit id="tx_ats.be.actions.application.invite">
+				<source>Invite</source>
+	  	</trans-unit>
+
+	  	<trans-unit id="tx_ats.be.actions.application.reject">
+				<source>Reject</source>
+	  	</trans-unit>
+
+	  	<trans-unit id="tx_ats.be.actions.application.rating">
+				<source>Rating</source>
+	  	</trans-unit>
+
+	  	<trans-unit id="tx_ats.be.actions.application.ratingPerso">
+				<source>Rating (Perso)</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.be.actions.application.history">
+				<source>History</source>
+	  	</trans-unit>
+
+	  	<trans-unit id="tx_ats.be.actions.application.clone">
+				<source>Clone</source>
+	  	</trans-unit>
+
+      <trans-unit id="be.label.ApplicationSingle.Overview.FormData">
+        <source>Form data</source>
+      </trans-unit>
+      <trans-unit id="be.label.ApplicationSingle.Overview.PersonalData">
+        <source>Personal Data</source>
+      </trans-unit>
+      <trans-unit id="be.label.ApplicationSingle.Overview.Disability">
+        <source>Disability</source>
+      </trans-unit>
+      <trans-unit id="be.label.ApplicationSingle.Edit.FormData">
+        <source>Edit form data</source>
+      </trans-unit>
+      <trans-unit id="be.label.ApplicationSingle.Edit.Introduction">
+        <source>Introduction</source>
+      </trans-unit>
+      <trans-unit id="be.label.ApplicationSingle.Edit.PrivacyPolicy">
+        <source>Accepts privacy policy</source>
+      </trans-unit>
+      <trans-unit id="be.label.ApplicationSingle.Edit.ApplicationType">
+        <source>Application type</source>
+      </trans-unit>
+      <trans-unit id="be.label.ApplicationSingle.Edit.PersonalData">
+        <source>Personal Data</source>
+      </trans-unit>
+      <trans-unit id="be.label.ApplicationSingle.Edit.Disability">
+        <source>Disability</source>
+      </trans-unit>
+      <trans-unit id="be.label.ApplicationSingle.Edit.Disability.1">
+				<source>No</source>
+			</trans-unit>
+      <trans-unit id="be.label.ApplicationSingle.Edit.Disability.2">
+				<source>Yes</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Edit.Qualifications">
+				<source>Qualifications</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Edit.AdditionalInformation">
+				<source>Additional Information</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Edit.Submit">
+				<source>Submit</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Edit.1">
+				<source>Website</source>
+	  	</trans-unit>
+
+	  	<trans-unit id="be.label.ApplicationSingle.Edit.2">
+				<source>Letter</source>
+	  	</trans-unit>
+
+	  	<trans-unit id="be.label.ApplicationSingle.Edit.3">
+				<source>Email</source>
+	  	</trans-unit>
+
+	  	<trans-unit id="be.label.ApplicationSingle.Workflow">
+				<source>Change workflow</source>
+	  	</trans-unit>
+
+	  	<trans-unit id="be.label.ApplicationSingle.Workflow.Note">
+      	<source>Note</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.ApplicationSingle.Workflow.Submit">
+				<source>Submit</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Acknowledge">
+				<source>Acknowledge application</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Acknowledge.SendMailTo">
+				<source>Send mail to:</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Acknowledge.CreatePdf">
+				<source>Create PDF</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Acknowledge.Preview">
+				<source>Preview</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Acknowledge.Send">
+				<source>Send</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Notes.add">
+				<source>Add a new note</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Notes.Internal">
+				<source>Internal</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Notes.Submit">
+				<source>Submit</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Notes.AllNotes">
+				<source>All notes</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Mail">
+				<source>Send Mail</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Invite">
+				<source>Send Invitation</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Reject">
+				<source>Reject application</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Rating">
+				<source>Rating</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Rating.AllNotes">
+				<source>All notes</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Rating.Submit">
+				<source>Submit</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.RatingPerso">
+				<source>Rating (Perso)</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.History">
+				<source>Application History</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.History.Date">
+				<source>Date</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.History.User">
+				<source>User</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.History.Subject">
+				<source>Subject</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.new.subject">
+				<source>New Application</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.new.details">
+				<source>A new application was submitted.</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.History.Difference">
+				<source>Difference</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Clone">
+				<source>Clone Application</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Clone.Note">
+				<source>Note</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Clone.Submit">
+				<source>Submit</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

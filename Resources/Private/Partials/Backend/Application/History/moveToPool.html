@@ -1,0 +1,12 @@
+<p>
+	<f:if condition="{history.historyData.newRecord.pool} == 1">
+		<f:translate key="tx_ats.history.moveToPool.details.add">Application was added to pool</f:translate>
+	</f:if>
+	<f:if condition="{history.historyData.newRecord.pool} == 'NULL'">
+		<f:translate key="tx_ats.history.moveToPool.details.remove">Application was remove from pool</f:translate>
+	</f:if>
+</p>
+
+<f:if condition="{history.details.note}">
+	<p>Note: {history.details.note}</p>
+</f:if>

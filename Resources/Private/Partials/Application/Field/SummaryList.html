@@ -1,0 +1,16 @@
+<div class="row">
+	<div class="col-sm-6">
+		<label>
+		  <f:translate key="{translationKey}" />
+		</label>
+	</div>
+	<div class="col-sm-6">
+		{text}
+		<f:translate key="{translationKey}.{select}" />
+		{date -> f:format.date(format: 'Y-m-d')}
+	</div>
+
+</div>
+
+
+

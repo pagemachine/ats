@@ -1,0 +1,9 @@
+{namespace core = TYPO3\CMS\Core\ViewHelpers}
+
+<h2><f:translate id="be.label.ApplicationSingle.Workflow" /></h2>
+
+<f:form action="updateStatus" object="{application}" name="application">
+
+	<f:render partial="Backend/Application/Form/StatusChange" arguments="{statusOptions : statusOptions, beUser : beUser}" />
+
+</f:form>

@@ -1,0 +1,24 @@
+
+<f:layout name="Default" />
+
+<f:section name="main">
+
+	<ul class="jobs-list">
+		<f:for each="{jobs}" as="job">
+			<li>
+				<f:if condition="{settings.applicationPage}">
+					<f:then>
+						<f:link.action pageUid="{settings.applicationPage}" action="show" arguments="{job : job}">{job.title} [{job.jobNumber}]</f:link.action>
+					</f:then>
+					<f:else>
+						<f:link.action action="show" arguments="{job : job}">{job.title} [{job.jobNumber}]</f:link.action>
+					</f:else>
+
+				</f:if>
+
+			</li>
+
+		</f:for>
+	</ul>
+
+</f:section>

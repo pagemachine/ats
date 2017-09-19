@@ -1,0 +1,18 @@
+
+<f:layout name="Default" />
+
+<f:section name="main">
+<h1>{job.title}</h1>
+<p>
+	<f:format.raw>{job.description}</f:format.raw>
+</p>
+<p>
+	<f:link.action action="form" controller="Application\\Form" arguments="{job: job}">Start Application</f:link.action>
+</p>
+<p>
+	<f:format.raw>{job.descriptionAfterLink}</f:format.raw>
+</p>
+
+
+
+</f:section>

@@ -1,0 +1,24 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+
+  <h1>Upload</h1>
+
+  <f:form object="{application}" name="application" enctype="multipart/form-data"  class="form-horizontal">
+    <f:render partial="Application/ValidationResults" />
+
+    <f:render partial="Application/Field/Upload" arguments="{
+      translationKey: 'tx_ats.label.file',
+      fieldName: 'files',
+      application: application
+    }"/>
+
+    <f:link.action action="editAdditionalData" controller="Application\\AdditionalData" arguments="{application: application}">Back</f:link.action>
+
+    <f:render partial="Application/Field/SubmitButton" arguments="{
+      translationKey: 'tx_ats.button.next',
+      action: 'updateUpload'
+    }"/>
+
+  </f:form>
+</f:section>

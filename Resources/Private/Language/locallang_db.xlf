@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2016-04-27T15:35:26Z" product-name="ats">
+		<header/>
+		<body>
+			<trans-unit id="plugin.jobs">
+				<source>Jobs </source>
+			</trans-unit>
+
+			<trans-unit id="plugin.jobs.description">
+				<source>Handles joblist, single view and job application</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job">
+				<source>Job</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.job_number">
+				<source>Job Number</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.title">
+				<source>Job Title</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.description">
+				<source>Description</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.description_after_link">
+				<source>Description after link to form</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.contact">
+				<source>Contact</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.deactivated">
+				<source>Deactivated</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.career">
+				<source>Career</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.career.I.1">
+				<source>h. D.</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.career.I.2">
+				<source>g. D.</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.career.I.3">
+				<source>m. D.</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.career.I.4">
+				<source>[EN] Ausbildung</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.career.I.5">
+				<source>[EN] Berufung</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.internal">
+				<source>Internal</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.internal.I.0">
+				<source>Yes</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.internal.I.1">
+				<source>No</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.location">
+				<source>Location</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.location.I.0">
+				<source>[EN] Zentrale</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.location.I.1">
+				<source>[EN] Niederlassung</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.user_pa">
+				<source>[EN] Sachbearbeitung</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.department">
+				<source>Department</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.officials">
+				<source>Officials</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.contributors">
+				<source>Contributors</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.deadline_email_disabled">
+				<source>Send no emails after deadline has expired</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.deadline_email">
+				<source>Email was sent after deadline has expired</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.organization_unit">
+				<source>Organization Unit</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.enable_form_link">
+				<source>Show link to form</source>
+			</trans-unit>
+
+			<trans-unit id="be_groups.tx_ats">
+				<source>ATS</source>
+			</trans-unit>
+
+			<trans-unit id="be_groups.tx_ats_location">
+				<source>Location</source>
+			</trans-unit>
+
+			<trans-unit id="be_groups.tx_ats_location.I.0">
+				<source>[EN] Zentrale</source>
+			</trans-unit>
+
+			<trans-unit id="be_groups.role.I.0">
+				<source>Personalreferat</source>
+			</trans-unit>
+
+			<trans-unit id="be_groups.role.I.1">
+				<source>Abteilung</source>
+			</trans-unit>
+
+			<trans-unit id="be_groups.role.I.2">
+				<source>BSchwb</source>
+			</trans-unit>
+
+			<trans-unit id="be_groups.role.I.3">
+				<source>GleiB</source>
+			</trans-unit>
+
+			<trans-unit id="be_groups.role.I.4">
+				<source>ÖPR</source>
+			</trans-unit>
+
+			<trans-unit id="be_groups.role.I.5">
+				<source>Berufung Sachbearbeiter</source>
+			</trans-unit>
+
+			<trans-unit id="be_groups.role.I.6">
+				<source>Berufung Mitwirkender</source>
+			</trans-unit>
+
+			<trans-unit id="be_groups.role.I.7">
+				<source>Berufung Vollzugriff (Kanzlerbuero)</source>
+			</trans-unit>
+
+			<trans-unit id="be_users.tx_ats_email_signature">
+				<source>Email Signature</source>
+			</trans-unit>
+
+			<trans-unit id="be_users.tx_ats_pdf_signature">
+				<source>Pdf Signature</source>
+			</trans-unit>
+
+			<trans-unit id="be_users.tx_ats_contact_print">
+				<source>Contact for print</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application">
+				<source>Application</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_languageskill">
+				<source>Language Skill</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_languageskill.text_language">
+				<source>Other Languages</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_note">
+				<source>Note</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_texttemplate">
+				<source>Text Template</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_texttemplate.title">
+				<source>Title</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_texttemplate.type">
+				<source>Type</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_texttemplate.type.1">
+				<source>Invitation</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_texttemplate.type.2">
+				<source>Acknowledgement</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_texttemplate.type.3">
+				<source>Reply</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_texttemplate.type.4">
+				<source>Request for Attestation</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_texttemplate.type.5">
+				<source>Rejection</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_texttemplate.subject">
+				<source>Subject</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_texttemplate.cc">
+				<source>CC</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_texttemplate.bcc">
+				<source>BCC</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_texttemplate.texttemplate">
+				<source>Text Template</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_history">
+				<source>Application History</source>
+			</trans-unit>
+
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,55 @@
+{namespace be=TYPO3\CMS\Backend\ViewHelpers}
+
+<h2><f:translate id="be.label.ApplicationSingle.History"/></h2>
+
+<table class="table table-striped table-hover table-vertical-top">
+	<thead>
+		<tr>
+			<th><f:translate id="be.label.ApplicationSingle.History.Date"/></th>
+			<th><f:translate id="be.label.ApplicationSingle.History.User"/></th>
+			<th><f:translate id="be.label.ApplicationSingle.History.Subject"/></th>
+			<th>Details</th>
+			<th><f:translate id="be.label.ApplicationSingle.History.Difference"/></th>
+		</tr>
+	</thead>
+	<tbody>
+
+		<f:for each="{application.history}" as="history">
+			<tr>
+				<td style="min-width: 130px;">
+					{history.creationDate -> f:format.date(format:'Y-m-d H:i')}
+				</td>
+				<td style="min-width: 160px;">
+					<f:if condition="{history.user}">
+						<be:avatar backendUser="{history.user.uid}" /> 
+						{history.user.userName}
+					</f:if>
+
+				</td>
+				<td style="min-width: 160px;">
+					<f:translate key="tx_ats.history.{history.subject}.subject">{history.subject}</f:translate>
+				<td>
+					<f:render partial="Backend/Application/History/{history.subject}" arguments="{history : history}" />
+
+				</td>
+				<td>
+					<f:if condition="{history.diff}">
+						<div class="diff">
+							<f:for each="{history.diff}" as="fieldDiff" key="field">
+								<div class="diff-item">
+									<div class="diff-item-title">
+										{field}:
+									</div>
+									<div class="diff-item-result" style="white-space: normal;">
+										<f:format.raw>{fieldDiff}</f:format.raw>
+									</div>
+								</div>
+							</f:for>
+						</div>
+					</f:if>
+				</td>
+			</tr>
+		</f:for>
+	</tbody>
+
+</table>

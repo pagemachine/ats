@@ -1,0 +1,83 @@
+{namespace core = TYPO3\CMS\Core\ViewHelpers}
+<div class="panel panel-space panel-default recordlist">
+	<div class="panel-heading">
+		<f:translate key="be.label.ApplicationSingle.Table.GeneralInformation" />
+		<a href="#" title="Collapse table" class="pull-right t3js-toggle-recordlist" data-toggle="collapse" data-target="#application-summary" aria-expanded="true">
+			<span class="collapseIcon">
+				<core:icon identifier="actions-view-list-collapse" size="small" />
+			</span>
+		</a>
+	</div>
+	<div class="collapse in" data-state="expanded" id="application-summary">
+		<div class="table-fit">
+			<table class="table">
+				<thead>
+					<tr>
+						<th><f:translate key="tx_ats.job.jobNumber" /></th>
+						<th><f:translate key="tx_ats.job.uid" /></th>
+						<th><f:translate key="be.label.ApplicationSingle.Table.JobTitle" /></th>
+						<th><f:translate key="be.label.ApplicationSingle.Table.ReceiptDate" /></th>
+						<th><f:translate key="tx_ats.label.firstname" /></th>
+						<th><f:translate key="tx_ats.label.surname" /></th>
+						<th><f:translate key="be.label.ApplicationSingle.Table.ApplicationType" /></th>
+						<th><f:translate key="tx_ats.application.status" /></th>
+						<th><f:translate key="be.label.ApplicationSingle.Table.Rating" /></th>
+						<th><f:translate key="be.label.ApplicationSingle.Table.RatingPerson" /></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<f:format.raw>{application.job.jobNumber}</f:format.raw>
+						</td>
+						<td>
+							<f:format.raw>{application.uid}</f:format.raw>
+						</td>
+						<td>
+							<f:format.raw>{application.job.title}</f:format.raw>
+						</td>
+						<td>
+							<f:format.date format="Y-m-d H:i:s">{application.receiptDate}</f:format.date>
+						</td>
+						<td>
+							<f:format.raw>{application.firstname}</f:format.raw>
+						</td>
+						<td>
+							<f:format.raw>{application.surname}</f:format.raw>
+						</td>
+						<td>
+							<f:format.raw><f:translate key="tx_ats.application.application_type.{application.applicationType}" /></f:format.raw>
+						</td>
+						<td>
+							<f:translate key="tx_ats.application.status.{application.status}">{application.status}</f:translate>
+						</td>
+						<td>
+							<f:format.raw><f:translate key="tx_ats.application.rating.{application.rating}" /></f:format.raw>
+						</td>
+						<td>
+							<f:format.raw><f:translate key="tx_ats.application.rating.{application.ratingPerso}" /></f:format.raw>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div>
+
+<div class="panel panel-space panel-default">
+	<div class="panel-heading">
+		<f:translate key="be.label.ApplicationSingle.Notes" /> (<f:count>{application.notes}</f:count>)
+		<a href="#" title="Collapse table" class="pull-right t3js-toggle-recordlist" data-toggle="collapse" data-target="#application-notes" aria-expanded="true">
+			<span class="collapseIcon">
+				<core:icon identifier="actions-view-list-expand" size="small" />
+			</span>
+		</a>
+	</div>
+	<div class="collapse" data-state="collapsed" id="application-notes">
+		<div class="panel-body">
+			<f:render partial="Backend/Application/NoteList" arguments="{notes : application.notes, crop : 1}" />
+
+		</div>
+	</div>
+</div>

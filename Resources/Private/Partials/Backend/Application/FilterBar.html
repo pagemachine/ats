@@ -1,0 +1,32 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+		<f:form action="{action}" class="form-inline" name="filter" object="{filter}">
+
+			<div class="form-group">
+				<label for="job"><f:translate key="be.label.FilterBar.Job"/></label>
+				<f:form.select options="{jobs}" property="job" optionLabelField="jobNumber" prependOptionValue="" prependOptionLabel="<f:translate key='be.label.FilterBar.All'/>" class="form-control" />
+			</div>
+
+			<div class="form-group">
+				<label for="searchword" class="sr-only">Search:</label>
+				<f:form.textfield property="searchword" class="form-control" placeholder="<f:translate key='be.label.FilterBar.Placeholder.Search'/>" />
+			</div>
+
+			<div class="form-group">
+				<f:for each="{filter.possibleSearchfields}" as="searchfield">
+						<label class="checkbox-inline">
+						<f:form.checkbox property="searchfields" multiple="true" value="{searchfield}" />
+							<f:translate key="tx_ats.label.{searchfield}">{searchfield}</f:translate>
+						</label>
+				</f:for>
+			</div>
+
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary"><f:translate key="be.label.FilterBar.Filter"/></button>
+				<button type="submit" class="btn btn-default" name="tx_ats[resetFilter]" value="1"><f:translate key="be.label.FilterBar.Reset"/></button>
+			</div>
+
+
+		</f:form>
+	</div>
+</div>

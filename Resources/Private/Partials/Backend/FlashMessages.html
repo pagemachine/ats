@@ -1,0 +1,23 @@
+<f:flashMessages as="flashMessages">
+	<div class="typo3-messages">
+		<f:for each="{flashMessages}" as="message">
+			<div class="alert {message.class}">
+				<div class="media">
+					<div class="media-left">
+						<span class="fa-stack fa-lg">
+							<i class="fa fa-circle fa-stack-2x"></i>
+							<i class="fa fa-{message.iconName} fa-stack-1x"></i>
+						</span>
+					</div>
+					<div class="media-body">
+						<f:if condition="{message.title}"><h4 class="alert-title">{message.title}</h4></f:if>
+						<div class="alert-message">{message.message}</div>
+					</div>
+				</div>
+			</div>
+
+		</f:for>
+
+	</div>
+
+</f:flashMessages>

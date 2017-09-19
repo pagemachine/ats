@@ -1,0 +1,25 @@
+<f:for each="{notes}" as="note" iteration="i">
+	<div class="row">
+		<div class="col-sm-2">
+			<f:format.date format="d.m.Y H:i">{note.creationDate}</f:format.date>
+		</div>
+		<div class="col-sm-2">
+			{note.user.userName}
+		</div>
+		<div class="col-sm-2">
+			<f:format.html>{note.subject}</f:format.html>
+		</div>
+		<div class="col-sm-6">
+			<f:if condition="{crop}">
+				<f:then>
+					<f:format.crop maxCharacters="100"><f:format.html>{note.details}</f:format.html></f:format.crop>
+				</f:then>
+				<f:else>
+					<f:format.html>{note.details}</f:format.html>
+				</f:else>
+			</f:if>
+
+		</div>
+	</div>
+
+</f:for>

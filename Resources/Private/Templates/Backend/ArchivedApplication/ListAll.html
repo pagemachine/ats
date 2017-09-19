@@ -1,0 +1,12 @@
+
+{namespace ats=PAGEmachine\Ats\ViewHelpers}
+<f:layout name="Backend/Backend" />
+
+<f:section name="main">
+	<h1><f:translate key="be.label.Archive"/></h1>
+
+	<f:render partial="Backend/Application/FilterBar" arguments="{action : 'listAll', jobs : jobs, filter : filter}" />
+
+	<f:render partial="Backend/Application/ListArchived" arguments="{applications : applications}" />
+
+</f:section>

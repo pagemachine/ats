@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2016-04-27T15:35:26Z" product-name="ats">
+		<header/>
+		<body>
+			<trans-unit id="tx_ats_domain_model_job">
+				<source>Job</source>
+				<target>Job</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.job_number">
+				<source>Job Number</source>
+				<target>Ausschreibungs-Nr.</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.title">
+				<source>Job Title</source>
+				<target>Stellenbezeichnung</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.description">
+				<source>Description</source>
+				<target>Stellenbeschreibung</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.description_after_link">
+				<source>Description after link to form</source>
+				<target>Stellenbeschreibung nach Link zum Formular</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.deactivated">
+				<source>Deactivated</source>
+				<target>Online-Bewerbung deaktivieren</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.department">
+				<source>Department</source>
+				<target>Fachbereich, Abteilung, Referat</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.officials">
+				<source>Officials</source>
+				<target>Sachbearbeitung</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.internal">
+				<source>Internal</source>
+				<target>Interne Ausschreibung</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.internal.I.0">
+				<source>Ja</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.internal.I.1">
+				<source>Nein</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.contributors">
+				<source>Contributors</source>
+				<target>Mitwirkende</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.deadline_email_disabled">
+				<source>Send no emails after deadline has expired</source>
+				<target>Keine E-Mails an Abt/FB/Ref nach Ablauf der Bearbeitungsfrist senden</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.deadline_email">
+				<source>Email was sent after deadline has expired</source>
+				<target>E-Mail an Abt/FB/Ref nach Ablauf der Bearbeitungsfrist gesendet</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.organization_unit">
+				<source>Organization Unit</source>
+				<target>Organisationseinheit (bei Ausbildungsberufen)</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.enable_form_link">
+				<source>Show link to form</source>
+				<target>Link zum Formular anzeigen</target>
+			</trans-unit>
+
+			<trans-unit id="be_groups.tx_ats_location">
+				<source>Location</source>
+				<target>BMS: Ort</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

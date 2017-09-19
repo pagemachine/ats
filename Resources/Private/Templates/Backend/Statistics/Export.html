@@ -1,0 +1,53 @@
+<f:layout name="Backend/Backend" />
+
+<f:section name="main">
+	<h1>CSV Export</h1>
+	<div class="panel panel-space panel-default">
+		<div class="panel-footer">
+			<f:form action="getCsv">
+				<div class="form-group">
+					<label class="control-label"><f:translate key="tx_ats.stat.job" /></label>
+					<f:form.select class="form-control" options="{jobOptions}" name="filter[job]" />
+				</div>
+				<div class="form-group">
+					<label class="control-label"><f:translate key="be.label.Export.Location" /></label>
+					<f:form.textfield class="form-control" name="filter[location]" />
+				</div>
+				<div class="form-group row">
+					<div class="col-sm-6">
+						<label class="control-label"><f:translate key="be.label.Statistics.dateFrom" /></label>
+						<f:form.textfield type="date" class="form-control" name="filter[start]" />
+					</div>
+					<div class="col-sm-6">
+						<label class="control-label"><f:translate key="be.label.Statistics.dateTill" /></label>
+						<f:form.textfield type="date" class="form-control" name="filter[finish]" />
+					</div>
+				</div>
+				<div class="form-group">
+					<f:form.button type="submit" value="export" name="exportType" class="btn btn-primary" ><f:translate key="tx_ats.stat.export" /></f:form.button>
+					<f:form.button type="submit" value="simple" name="exportType" class="btn btn-primary" ><f:translate key="be.label.Export.Simple" /></f:form.button>
+				</div>
+				<h3><f:translate key="be.label.Export.CustomExport" /></h3>
+				<div class="form-group row">
+					<div class="col-sm-6">
+						<table class="table table-striped table-sm">
+							<f:for each="{exportOptions}" as="option">
+								<tr>
+									<th width="20">
+										<f:form.checkbox name="selectedOptions[]" value="{option}" />
+									</th>
+									<td>
+										<f:translate key="tx_ats.application.{option}" default="{option}"/>
+									</td>
+								</tr>
+							</f:for>
+						</table>
+					</div>
+				</div>
+				<div class="form-group">
+					<f:form.button type="submit" value="custom" name="exportType" class="btn btn-primary" ><f:translate key="be.label.Export.CustomExport" /></f:form.button>
+				</div>
+			</f:form>
+		</div>
+	</div>
+</f:section>

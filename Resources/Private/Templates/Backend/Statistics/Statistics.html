@@ -1,0 +1,270 @@
+<f:layout name="Backend/Backend" />
+
+<f:section name="main">
+	<h1><f:translate key="be.label.Statistics"/></h1>
+
+<!-- Input -->
+
+<div class="panel-space">
+  <f:form action="statistics" class="form-inline">
+      <label class="control-label"><f:translate key="be.label.Statistics.dateFrom" /></label>
+      <f:form.textfield type="date" class="input-mini" value="{start}" name="dates[start]" required="TRUE" />
+      <label class="control-label"><f:translate key="be.label.Statistics.dateTill" /></label>
+      <f:form.textfield type="date" class="input-mini" value="{finish}" name="dates[finish]" required="TRUE" />
+      <f:form.submit value="OK" class="btn btn-primary" />
+  </f:form>
+</div>
+
+<!-- First table -->
+
+<div class="panel-space">
+  <div class="panel panel-default recordlist">
+    <div class="panel-heading">
+      <f:translate key="be.label.Statistics.Table.1"/>
+    </div>
+  
+		<table class="table table-bordered table-striped">
+		  <thead>
+		    <tr>
+		      <th class="col-xs-6"><f:translate key="tx_ats.stat.position" /></th>
+		      <th class="col-xs-2"><f:translate key="be.label.Statistics.Table.Number" /></th>
+		      <th class="col-xs-4"><f:translate key="be.label.Statistics.Table.Percentage" /></th>
+		    </tr>
+		  </thead>
+		    <tbody>
+		      <f:for each="{totalApplications}" as="app">
+		            <tr>
+		              <td>
+		                  {app.title}
+		              </td>
+		              <td>
+		                  {app.counter}
+		              </td>
+		              <td>
+		                  <span class="progress-bar" role="progressbar" aria-valuenow="66.7"
+		                    aria-valuemin="0" aria-valuemax="100" style="width:{app.perc}%">
+		                    {app.perc}%
+		              </td>
+		            </tr>
+		      </f:for>
+		      </tbody>
+		</table>
+  </div>
+</div>
+
+<!-- Second table -->
+<div class="panel-space">
+  <div class="panel panel-default recordlist">
+    <div class="panel-heading">
+      <f:translate key="be.label.Statistics.Table.2"/>
+    </div>
+
+  	<table class="table table-bordered table-striped">
+  	  <thead>
+  	    <tr>
+  	      <th class="col-xs-6"><f:translate key="be.label.Statistics.Table.Provenance" /></th>
+  	      <th class="col-xs-2"><f:translate key="be.label.Statistics.Table.Number" /></th>
+  	      <th class="col-xs-4"><f:translate key="be.label.Statistics.Table.Percentage" /></th>
+  	    </tr>
+  	  </thead>
+  	    <tbody>
+  	      <f:for each="{provenances}" as="pr">
+  	            <tr>
+  	              <td>
+  	                  <f:translate key="tx_ats.label.referrer.{pr.ref}">{pr.ref}</f:translate>
+  	              </td>
+  	              <td>
+  	                  {pr.total}
+  	              </td>
+  	              <td>
+  	                  <span class="progress-bar" role="progressbar" aria-valuenow="66.7"
+  	                    aria-valuemin="0" aria-valuemax="100" style="width:{pr.perc}%">
+  	                    {pr.perc}%
+  	              </td>
+  	            </tr>
+  	      </f:for>
+  	    </tbody>
+  	</table>
+  </div>
+</div>
+
+<!-- Third table -->
+<div class="panel-space">
+  <div class="panel panel-default recordlist">
+    <div class="panel-heading">
+      <f:translate key="be.label.Statistics.Table.3"/>
+    </div>
+
+  	<table class="table table-bordered table-striped">
+  	  <thead>
+  	    <tr>
+  	      <th class="col-xs-6"><f:translate key="be.label.Statistics.Table.Age" /></th>
+  	      <th class="col-xs-2"><f:translate key="be.label.Statistics.Table.Number" /></th>
+  	      <th class="col-xs-4"><f:translate key="be.label.Statistics.Table.Percentage" /></th>
+  	    </tr>
+  	  </thead>
+  	    <tbody>
+  	      <f:for each="{ageDistribution}" as="count" key="ageDis">
+  	            <tr>
+  	              <td>
+  	                  <f:translate key="tx_ats.stat.age.{ageDis}">{age.ageDis}</f:translate>
+  	              </td>
+  	              <td>
+  	                  {count.single}
+  	              </td>
+  	              <td>
+  	                  <span class="progress-bar" role="progressbar" aria-valuenow="66.7"
+  	                  aria-valuemin="0" aria-valuemax="100" style="width:{count.ratio}%">
+  	                  {count.ratio}%
+  	              </td>
+  	            </tr>
+  	      </f:for>
+  	      </tbody>
+  	</table>
+  </div>
+</div>
+
+<!-- Fourth table -->
+
+<div>
+  <div class="panel panel-default recordlist">
+    <div class="panel-heading">
+      <f:translate key="be.label.Statistics.Table.4"/>
+    </div>
+
+  	<table class="table table-bordered table-striped">
+  	  <tbody>
+  	    <tr>
+  	      <td>
+  	          <f:translate key="be.label.Statistics.Table.Total"/> {tenderingProcedures}
+  	      </td>
+  	    </tr>
+  	  </tbody>
+  	</table>
+  </div>
+</div>
+
+<!-- Fifth table -->
+
+<div class="panel-space">
+  <div class="panel panel-default recordlist">
+    <div class="panel-heading">
+      <f:translate key="be.label.Statistics.Table.5"/>
+    </div>
+
+  	<table class="table table-bordered table-striped">
+  	  <thead>
+  	    <tr>
+  	      <th class="col-xs-6"><f:translate key="be.label.Statistics.Table.Male"/></th>
+  	      <th class="col-xs-6"><f:translate key="be.label.Statistics.Table.Female"/></th>
+  	    </tr>
+  	  </thead>
+  	    <tbody>
+  	            <tr>
+  	              <td>
+  	                  {applications.men}
+  	              </td>
+  	              <td>
+  	                  {applications.women}
+  	              </td>
+  	            </tr>
+  	            <tr>
+  	              <td>
+  	                  <span class="progress-bar" role="progressbar" aria-valuenow="66.7"
+  	                  aria-valuemin="0" aria-valuemax="100" style="width:{applications.menPerc}%">
+  	                  {applications.menPerc}%
+  	              </td>
+  	              <td>
+  	                  <span class="progress-bar" role="progressbar" aria-valuenow="66.7"
+  	                  aria-valuemin="0" aria-valuemax="100" style="width:{applications.womenPerc}%">
+  	                  {applications.womenPerc}%
+  	              </td>
+  	            </tr>
+  	      </tbody>
+  	</table>
+  </div>
+</div>
+
+<!-- Sixth table -->
+
+<div class="panel-space">
+  <div class="panel panel-default recordlist">
+    <div class="panel-heading">
+      <f:translate key="be.label.Statistics.Table.6"/>
+    </div>
+
+  	<table class="table table-bordered table-striped">
+  	  <thead>
+  	    <tr>
+  	      <th class="col-xs-6"><f:translate key="be.label.Statistics.Table.Male"/></th>
+  	      <th class="col-xs-6"><f:translate key="be.label.Statistics.Table.Female"/></th>
+  	    </tr>
+  	  </thead>
+  	    <tbody>
+  	      <tr>
+  	        <td>
+  	            {interviews.men}
+  	        </td>
+  	        <td>
+  	            {interviews.women}
+  	        </td>
+  	      </tr>
+  	      <tr>
+  	        <td>
+  	            <span class="progress-bar" role="progressbar" aria-valuenow="70"
+  	              aria-valuemin="0" aria-valuemax="100" style="width:{interviews.menPerc}%">
+  	              {interviews.menPerc}%
+  	        </td>
+  	        <td>
+  	            <span class="progress-bar" role="progressbar" aria-valuenow="70"
+  	              aria-valuemin="0" aria-valuemax="100" style="width:{interviews.womenPerc}%">
+  	              {interviews.womenPerc}%
+  	        </td>
+  	      </tr>
+  	      </tbody>
+  	</table>
+  </div>
+</div>
+
+<!-- Seventh table -->
+
+<div class="panel-space">
+  <div class="panel panel-default recordlist">
+    <div class="panel-heading">
+      <f:translate key="be.label.Statistics.Table.7"/>
+    </div>
+
+  	<table class="table table-bordered table-striped">
+  	  <thead>
+  	    <tr>
+  	      <th class="col-xs-6"><f:translate key="be.label.Statistics.Table.Male"/></th>
+  	      <th class="col-xs-6"><f:translate key="be.label.Statistics.Table.Female"/></th>
+  	    </tr>
+  	  </thead>
+  	    <tbody>
+  	      <tr>
+  	        <td>
+  	            {positions.men}
+  	        </td>
+  	        <td>
+  	            {positions.women}
+  	        </td>
+  	      </tr>
+  	      <tr>
+  	        <td>
+  	            <span class="progress-bar" role="progressbar" aria-valuenow="70"
+  	              aria-valuemin="0" aria-valuemax="100" style="width:{positions.menPerc}%">
+  	              {positions.menPerc}%
+  	        </td>
+  	        <td>
+  	            <span class="progress-bar" role="progressbar" aria-valuenow="70"
+  	              aria-valuemin="0" aria-valuemax="100" style="width:{positions.womenPerc}%">
+  	              {positions.womenPerc}%
+  	        </td>
+  	      </tr>
+  	      </tbody>
+  	</table>
+  </div>
+</div>
+
+</f:section>

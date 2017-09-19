@@ -1,0 +1,46 @@
+dist: trusty
+sudo: false
+language: php
+
+php:
+  - 7.0
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_script:
+  - composer install
+
+jobs:
+  include:
+    - script: &script
+        - bin/typoscript-lint
+        - bin/xmllint --pattern "*.xlf*,svg" Resources
+        - bin/parallel-lint --exclude bin --exclude vendor .
+        - bin/phpcs
+    - php: 5.6
+      script: *script
+
+    - stage: deploy
+      script: >
+        if [ -n "$TRAVIS_TAG" ]; then
+          echo -e "Preparing upload of release ${TRAVIS_TAG} to TER\n"
+
+          if [ $? -eq 0 ]; then
+            TAG_ANNOTATION="$(git tag -n -l $TRAVIS_TAG)"
+            TAG_MESSAGE="${TAG_ANNOTATION#* }"
+
+            git reset --hard
+            git clean -xfd
+
+            composer global require namelesscoder/typo3-repository-client:^1.1.1
+
+            echo "Uploading release ${TRAVIS_TAG} to TER"
+            $HOME/.composer/vendor/bin/upload . $TYPO3_ORG_USERNAME $TYPO3_ORG_PASSWORD "$TAG_MESSAGE"
+          fi;
+        fi;
+
+notifications:
+  slack:
+    secure: TPgLYBAyIa6V6RT3YqndCnpkiifnY01ehmPrhVHU3G3yC4e4PtnqftgCrg8D4IBbmlVTxncNbsDqNbFfBEaJ1dMv6tv0yMpYlllfN5Syl3nBcjh43rHN4DWEffgJ59dAhJJtWjHvPfYR1/80EdKzsmepQl1i1+CXH1ryxtS6jEU=
