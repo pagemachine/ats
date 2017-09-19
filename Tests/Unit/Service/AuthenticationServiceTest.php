@@ -14,8 +14,8 @@ use TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository;
 /**
  * Testcase for PAGEmachine\Ats\Service\AuthenticationService
  */
-class AuthenticationServiceTest extends UnitTestCase {
-
+class AuthenticationServiceTest extends UnitTestCase
+{
     /**
      * @var AuthenticationService
      */
@@ -35,7 +35,8 @@ class AuthenticationServiceTest extends UnitTestCase {
     /**
      * Set up this testcase
      */
-    protected function setUp() {
+    protected function setUp()
+    {
         $this->authenticationService = new AuthenticationService;
 
         $this->frontendUser = $this->prophesize(FrontendUser::class);
@@ -52,7 +53,6 @@ class AuthenticationServiceTest extends UnitTestCase {
 
         $GLOBALS['TSFE'] = new \stdClass();
         $GLOBALS['TSFE']->fe_user = new \stdClass();
-
     }
 
     /**
@@ -62,18 +62,19 @@ class AuthenticationServiceTest extends UnitTestCase {
      * @dataProvider successfulAuthentication
      * @param int $userGroup
      */
-    public function detectsUserIsAuthenticated($userGroup) {
+    public function detectsUserIsAuthenticated($userGroup)
+    {
         $GLOBALS['TSFE']->loginUser = true;
         $GLOBALS['TSFE']->fe_user->user = ['uid' => 1];
 
         $this->assertTrue($this->authenticationService->isUserAuthenticatedAndHasGroup($userGroup));
-
     }
 
     /**
      * @return array
      */
-    public function successfulAuthentication() {
+    public function successfulAuthentication()
+    {
         return [
             'no group' => [null],
             'correct group' => [1],
@@ -88,16 +89,17 @@ class AuthenticationServiceTest extends UnitTestCase {
      * @param bool $isUserAuthenticated
      * @param int $userGroup
      */
-    public function detectsUserIsNotAuthenticated($isUserAuthenticated, $userGroup) {
+    public function detectsUserIsNotAuthenticated($isUserAuthenticated, $userGroup)
+    {
 
         $this->assertFalse($this->authenticationService->isUserAuthenticatedAndHasGroup($userGroup));
-
     }
 
     /**
      * @return array
      */
-    public function failingAuthentication() {
+    public function failingAuthentication()
+    {
 
         return [
             'authenticated, wrong group' => [true, 15],
@@ -110,11 +112,11 @@ class AuthenticationServiceTest extends UnitTestCase {
     /**
      * @test
      */
-    public function returnsAuthenticatedUser() {
+    public function returnsAuthenticatedUser()
+    {
         $GLOBALS['TSFE']->loginUser = true;
         $GLOBALS['TSFE']->fe_user->user = ['uid' => 1];
 
         $this->assertEquals($this->frontendUser->reveal(), $this->authenticationService->getAuthenticatedUser());
     }
-
 }

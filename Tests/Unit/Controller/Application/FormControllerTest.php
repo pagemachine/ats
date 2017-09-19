@@ -6,23 +6,21 @@ namespace PAGEmachine\Ats\Tests\Unit\Controller\Application;
  */
 
 use PAGEmachine\Ats\Application\ApplicationStatus;
-use PAGEmachine\Ats\Controller\Application\AbstractApplicationController;
 use PAGEmachine\Ats\Controller\Application\FormController;
 use PAGEmachine\Ats\Domain\Model\ApplicationA;
 use PAGEmachine\Ats\Domain\Model\Job;
 use PAGEmachine\Ats\Domain\Repository\ApplicationARepository;
 use PAGEmachine\Ats\Service\AuthenticationService;
-use Prophecy\Argument;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
 use TYPO3\CMS\Extbase\Domain\Model\FrontendUser;
-use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
+use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 
 /**
  * Testcase for PAGEmachine\Ats\Controller\AbstractApplicationController
  */
-class FormControllerTest extends UnitTestCase {
-
+class FormControllerTest extends UnitTestCase
+{
     /**
      * @var AbstractApplicationController
      */
@@ -53,10 +51,11 @@ class FormControllerTest extends UnitTestCase {
     /**
      * Set up this testcase
      */
-    protected function setUp() {
+    protected function setUp()
+    {
 
         $this->controller = $this->getMockBuilder(FormController::class)->setMethods([
-            'forward'
+            'forward',
         ])->getMock();
 
         $this->application = $this->prophesize(ApplicationA::class);
@@ -71,51 +70,44 @@ class FormControllerTest extends UnitTestCase {
         $this->inject($this->controller, 'authenticationService', $authenticationService->reveal());
 
         $this->applicationARepository = $this->prophesize(ApplicationARepository::class);
-        $this->applicationARepository->findByUserAndJob(new FrontendUser, $this->job->reveal(), NULL, ApplicationStatus::INCOMPLETE)->willReturn($this->application->reveal());
+        $this->applicationARepository->findByUserAndJob(new FrontendUser, $this->job->reveal(), null, ApplicationStatus::INCOMPLETE)->willReturn($this->application->reveal());
         $this->inject($this->controller, 'applicationARepository', $this->applicationARepository->reveal());
-
     }
 
     /**
      * @test
      */
-    public function showsForm() {
+    public function showsForm()
+    {
 
-    	$this->view->assignMultiple(['job' => $this->job->reveal(), 'application' => $this->application->reveal(), 'user' => new FrontendUser])->shouldBeCalled();
+        $this->view->assignMultiple(['job' => $this->job->reveal(), 'application' => $this->application->reveal(), 'user' => new FrontendUser])->shouldBeCalled();
 
-    	$this->controller->formAction($this->job->reveal(), $this->application->reveal());
-
+        $this->controller->formAction($this->job->reveal(), $this->application->reveal());
     }
 
     /**
      * @test
      */
-    public function showsFormForPersistedApplication() {
+    public function showsFormForPersistedApplication()
+    {
 
-    	$this->view->assignMultiple(['job' => $this->job->reveal(), 'application' => $this->application->reveal(), 'user' => new FrontendUser])->shouldBeCalled();
-    	$this->controller->formAction($this->job->reveal(), NULL);
-
+        $this->view->assignMultiple(['job' => $this->job->reveal(), 'application' => $this->application->reveal(), 'user' => new FrontendUser])->shouldBeCalled();
+        $this->controller->formAction($this->job->reveal(), null);
     }
 
     /**
      * @test
      */
-    public function updatesAndForwardsToNextStep() {
+    public function updatesAndForwardsToNextStep()
+    {
 
-    	$request = $this->prophesize(RequestInterface::class);
-    	$request->getArgument('application')->willReturn([]);
-    	$this->inject($this->controller, 'request', $request->reveal());
+        $request = $this->prophesize(RequestInterface::class);
+        $request->getArgument('application')->willReturn([]);
+        $this->inject($this->controller, 'request', $request->reveal());
 
-    	$this->applicationARepository->addOrUpdate($this->application->reveal())->shouldBeCalled();
+        $this->applicationARepository->addOrUpdate($this->application->reveal())->shouldBeCalled();
 
         $this->controller->expects($this->once())->method('forward');
-    	$this->controller->updateFormAction($this->application->reveal());
-
-
-
+        $this->controller->updateFormAction($this->application->reveal());
     }
-
-
-
-
 }

@@ -55,8 +55,5 @@ class TextTemplateRepositoryTest extends UnitTestCase
         $expectedResult = [1 => 'Title', 2 => 'Title2'];
 
         $this->assertEquals($expectedResult, $this->textTemplateRepository->getDropdownOptionsForType(1));
-        
     }
-
-    
 }

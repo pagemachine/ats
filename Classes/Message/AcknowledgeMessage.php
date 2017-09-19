@@ -6,8 +6,8 @@ namespace PAGEmachine\Ats\Message;
  */
 
 
-class AcknowledgeMessage extends AbstractMessage {
-
+class AcknowledgeMessage extends AbstractMessage
+{
     /**
      * @var int
      */
@@ -17,7 +17,8 @@ class AcknowledgeMessage extends AbstractMessage {
      * @return string
      * @codeCoverageIgnore
      */
-    public function getName() {
+    public function getName()
+    {
 
         return "AcknowledgeMessage";
     }

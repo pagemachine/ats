@@ -6,12 +6,11 @@ use PAGEmachine\Ats\Message\AbstractMessage;
 use PAGEmachine\Ats\Message\InviteMessage;
 use PAGEmachine\Ats\Service\MailService;
 use PAGEmachine\Ats\Service\MarkerService;
-use TYPO3\CMS\Fluid\View\StandaloneView;
-use Prophecy\Argument;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -23,7 +22,6 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
  */
 class InviteMessageTest extends UnitTestCase
 {
-
     /**
      *
      * @var InviteMessage
@@ -70,8 +68,8 @@ class InviteMessageTest extends UnitTestCase
     /**
       * @test
       */
-     public function returnsCustomProperties()
-     {
+    public function returnsCustomProperties()
+    {
 
         $mailService = $this->prophesize(MailService::class);
         GeneralUtility::setSingletonInstance(MailService::class, $mailService->reveal());
@@ -87,15 +85,15 @@ class InviteMessageTest extends UnitTestCase
         $this->inviteMessage->setRoom("A room");
 
         $this->standaloneView->assignMultiple([
-            "application" => $this->application,
-            "backenduser" => ['username' => 'Harry'],
-            "fields" => [
-                'date' => $date->format("Y-m-d"),
-                'time' => $date->format("H:i"),
-                'confirmDate' => $confirmDate->format("Y-m-d"),
-                'building' => 'A building',
-                'room' => 'A room'
-            ]
+           "application" => $this->application,
+           "backenduser" => ['username' => 'Harry'],
+           "fields" => [
+               'date' => $date->format("Y-m-d"),
+               'time' => $date->format("H:i"),
+               'confirmDate' => $confirmDate->format("Y-m-d"),
+               'building' => 'A building',
+               'room' => 'A room',
+           ],
         ])->shouldBeCalled();
 
         $this->markerService->replaceMarkers("someText", MarkerService::CONTEXT_MAIL)->shouldBeCalled()->willReturn("someText");
@@ -106,28 +104,26 @@ class InviteMessageTest extends UnitTestCase
         $this->standaloneView->render()->willReturn("<p>SomeText</p>");
 
         $this->inviteMessage->send();
+    }
 
-     }
 
-
-     public function dateProvider()
-     {
+    public function dateProvider()
+    {
         $exampleDatetime = \DateTime::createFromFormat('Y-m-d H:i', '2017-01-01 12:30');
         $exampleDatetime2 = \DateTime::createFromFormat('Y-m-d', '2016-02-02');
 
         return [
-            'Datetimes set' => [$exampleDatetime, $exampleDatetime2, '2017-01-01', '12:30', '2016-02-02'],
-            'Datetimes null' => [null, null, null, null, null]
+           'Datetimes set' => [$exampleDatetime, $exampleDatetime2, '2017-01-01', '12:30', '2016-02-02'],
+           'Datetimes null' => [null, null, null, null, null],
         ];
-
-     }
+    }
 
      /**
        * @test
        * @dataProvider dateProvider
        */
-      public function returnsDatesCorrectly($inputDate, $inputConfirmDate, $outputDate, $outputTime, $outputConfirmDate)
-      {
+    public function returnsDatesCorrectly($inputDate, $inputConfirmDate, $outputDate, $outputTime, $outputConfirmDate)
+    {
         $this->inviteMessage = new InviteMessage();
         $this->inviteMessage->setDateTime($inputDate);
         $this->inviteMessage->setConfirmDate($inputConfirmDate);
@@ -135,7 +131,5 @@ class InviteMessageTest extends UnitTestCase
         $this->assertEquals($outputDate, $this->inviteMessage->getDate());
         $this->assertEquals($outputTime, $this->inviteMessage->getTime());
         $this->assertEquals($outputConfirmDate, $this->inviteMessage->getConfirmDateString());
-      }
-
-
+    }
 }

@@ -12,24 +12,18 @@ use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Domain\Model\FileReference;
 use PAGEmachine\Ats\Domain\Model\Job;
 use PAGEmachine\Ats\Domain\Model\Note;
-use PAGEmachine\Ats\Domain\Model\TextTemplate;
 use PAGEmachine\Ats\Message\AcknowledgeMessage;
 use PAGEmachine\Ats\Message\InviteMessage;
 use PAGEmachine\Ats\Message\RejectMessage;
 use PAGEmachine\Ats\Message\ReplyMessage;
 use PAGEmachine\Ats\Service\DuplicationService;
 use PAGEmachine\Ats\Workflow\WorkflowManager;
-use TYPO3\CMS\Backend\Template\Components\MenuRegistry;
-use TYPO3\CMS\Backend\View\BackendTemplateView;
-use TYPO3\CMS\Core\Messaging\AbstractMessage;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /**
  * ApplicationController
  */
 class ApplicationController extends AbstractBackendController
 {
-
     /**
      * @var PAGEmachine\Ats\Domain\Repository\ApplicationRepository
      * @inject
@@ -57,7 +51,7 @@ class ApplicationController extends AbstractBackendController
      */
     protected $menuUrls = [
         ["action" => "listAll", "label" => "List All"],
-        ["action" => "listMine", "label" => "List Mine"]
+        ["action" => "listMine", "label" => "List Mine"],
     ];
 
     /**
@@ -65,7 +59,8 @@ class ApplicationController extends AbstractBackendController
      *
      * @return void
      */
-    public function buildMenu() {
+    public function buildMenu()
+    {
 
         $menuRegistry = $this->getMenuRegistry();
 
@@ -78,7 +73,7 @@ class ApplicationController extends AbstractBackendController
                 $isActive = $this->request->getControllerActionName() === $url['action'] ? true : false;
                 $uri = $uriBuilder
                     ->reset()
-                    ->uriFor($url['action'], [], $this->request->getControllerName(), NULL, NULL);
+                    ->uriFor($url['action'], [], $this->request->getControllerName(), null, null);
                 $menuItem = $menu->makeMenuItem()
                     ->setHref($uri)
                     ->setTitle($url['label'])
@@ -87,7 +82,6 @@ class ApplicationController extends AbstractBackendController
         }
 
         $menuRegistry->addMenu($menu);
-
     }
 
     /**
@@ -106,10 +100,10 @@ class ApplicationController extends AbstractBackendController
      *
      * @return void
      */
-    public function initializeIndexAction() {
+    public function initializeIndexAction()
+    {
 
         $this->forward("listMine");
-
     }
 
     /**
@@ -117,8 +111,8 @@ class ApplicationController extends AbstractBackendController
      * @codeCoverageIgnore
      * @return void
      */
-    public function indexAction() {
-
+    public function indexAction()
+    {
     }
 
     /**
@@ -126,10 +120,10 @@ class ApplicationController extends AbstractBackendController
      *
      * @return void
      */
-    public function initializeAction() {
+    public function initializeAction()
+    {
 
         if ($this->request->hasArgument('message')) {
-
             $this->arguments->getArgument('message')
                 ->getPropertyMappingConfiguration()
                 ->forProperty('dateTime')
@@ -155,10 +149,10 @@ class ApplicationController extends AbstractBackendController
      * @param  bool $resetFilter
      * @return void
      */
-    public function listAllAction(ApplicationFilter $filter = null, $resetFilter = false) {
+    public function listAllAction(ApplicationFilter $filter = null, $resetFilter = false)
+    {
 
         if ($filter == null | $resetFilter === true) {
-
             $filter = new ApplicationFilter();
         }
 
@@ -167,7 +161,7 @@ class ApplicationController extends AbstractBackendController
             'newApplications' => $this->applicationRepository->findNew($this->settings['deadlineTime'], null, $filter),
             'progressApplications' => $this->applicationRepository->findInProgress($this->settings['deadlineTime'], null, $filter),
             'jobs' => $this->jobRepository->findAll(),
-            'filter' => $filter
+            'filter' => $filter,
         ]);
     }
 
@@ -178,10 +172,10 @@ class ApplicationController extends AbstractBackendController
      * @param  bool $resetFilter
      * @return void
      */
-    public function listMineAction(ApplicationFilter $filter = null, $resetFilter = false) {
+    public function listMineAction(ApplicationFilter $filter = null, $resetFilter = false)
+    {
 
         if ($filter == null | $resetFilter === true) {
-
             $filter = new ApplicationFilter();
         }
 
@@ -190,7 +184,7 @@ class ApplicationController extends AbstractBackendController
             'newApplications' => $this->applicationRepository->findNew($this->settings['deadlineTime'], $GLOBALS['BE_USER'], $filter),
             'progressApplications' => $this->applicationRepository->findInProgress($this->settings['deadlineTime'], $GLOBALS['BE_USER'], $filter),
             'jobs' => $this->jobRepository->findAll(),
-            'filter' => $filter
+            'filter' => $filter,
         ]);
     }
 
@@ -200,17 +194,18 @@ class ApplicationController extends AbstractBackendController
      * @ignorevalidation $application
      * @return void
      */
-    public function showAction(Application $application) {
+    public function showAction(Application $application)
+    {
 
         $this->view->assign('application', $application);
-
     }
 
     /**
      *
      * @return void
      */
-    public function initializeEditAction() {
+    public function initializeEditAction()
+    {
 
         $this->fixDynamicFieldPropertyMapping();
     }
@@ -222,17 +217,18 @@ class ApplicationController extends AbstractBackendController
      * @ignorevalidation $application
      * @return void
      */
-    public function editAction(Application $application) {
+    public function editAction(Application $application)
+    {
 
         $this->view->assign('application', $application);
-
     }
 
     /**
      *
      * @return void
      */
-    public function initializeUpdateAction() {
+    public function initializeUpdateAction()
+    {
 
         $this->fixDynamicFieldPropertyMapping();
     }
@@ -244,12 +240,12 @@ class ApplicationController extends AbstractBackendController
      * @ignorevalidation $application
      * @return void
      */
-    public function updateAction(Application $application) {
+    public function updateAction(Application $application)
+    {
 
         $this->applicationRepository->updateAndLog($application, 'edit');
         $this->addFlashMessage("Application was updated.");
         $this->redirect("edit", null, null, ["application" => $application]);
-
     }
 
 
@@ -260,7 +256,8 @@ class ApplicationController extends AbstractBackendController
      * @ignorevalidation $application
      * @return void
      */
-    public function editStatusAction(Application $application) {
+    public function editStatusAction(Application $application)
+    {
 
         $constants = WorkflowManager::getInstance()->getPlaces();
 
@@ -278,7 +275,8 @@ class ApplicationController extends AbstractBackendController
      * @ignorevalidation $note
      * @return void
      */
-    public function updateStatusAction(Application $application, Note $note) {
+    public function updateStatusAction(Application $application, Note $note)
+    {
 
         if (!empty($note->getDetails())) {
             $application->addNote($note);
@@ -289,12 +287,11 @@ class ApplicationController extends AbstractBackendController
             'workflow',
             [
                 'status' => $application->getStatus()->__toString(),
-                'note' => $note->getDetails()
+                'note' => $note->getDetails(),
             ]
         );
         $this->addFlashMessage("Workflow was changed successfully.");
         $this->redirect("editStatus", null, null, ["application" => $application]);
-
     }
 
     /**
@@ -304,12 +301,12 @@ class ApplicationController extends AbstractBackendController
      * @ignorevalidation $application
      * @return void
      */
-    public function ratingPersoAction(Application $application) {
+    public function ratingPersoAction(Application $application)
+    {
 
         $this->view->assign('application', $application);
         $this->view->assign('beUser', $GLOBALS['BE_USER']->user);
         $this->view->assign('ratingOptions', ApplicationRating::getFlippedConstants());
-
     }
 
     /**
@@ -319,12 +316,12 @@ class ApplicationController extends AbstractBackendController
      * @ignorevalidation $application
      * @return void
      */
-    public function ratingAction(Application $application) {
+    public function ratingAction(Application $application)
+    {
 
         $this->view->assign('application', $application);
         $this->view->assign('beUser', $GLOBALS['BE_USER']->user);
         $this->view->assign('ratingOptions', ApplicationRating::getFlippedConstants());
-
     }
 
     /**
@@ -337,38 +334,35 @@ class ApplicationController extends AbstractBackendController
      * @ignorevalidation $note
      * @return void
      */
-    public function addRatingAction(Note $note, Application $application, $forwardAction) {
+    public function addRatingAction(Note $note, Application $application, $forwardAction)
+    {
 
         if (!empty($note->getDetails())) {
             $application->addNote($note);
         }
 
         if ($forwardAction == "rating") {
-
             $this->applicationRepository->updateAndLog(
                 $application,
                 "rating",
                 [
                     "rating" => $application->getRating()->__toString(),
-                    "note" => $note->getDetails()
+                    "note" => $note->getDetails(),
                 ]
             );
-        }
-        else {
-
+        } else {
             $this->applicationRepository->updateAndLog(
                 $application,
                 "ratingPerso",
                 [
                     "ratingPerso" => $application->getRatingPerso()->__toString(),
-                    "note" => $note->getDetails()
+                    "note" => $note->getDetails(),
                 ]
             );
         }
 
         $this->addFlashMessage("Rating was updated" . (!empty($note->getDetails()) ?  " and new note was added." : "."));
         $this->redirect($forwardAction, null, null, ["application" => $application]);
-
     }
 
     /**
@@ -378,11 +372,11 @@ class ApplicationController extends AbstractBackendController
      * @ignorevalidation $application
      * @return void
      */
-    public function notesAction(Application $application) {
+    public function notesAction(Application $application)
+    {
 
         $this->view->assign('application', $application);
         $this->view->assign('beUser', $GLOBALS['BE_USER']->user);
-
     }
 
     /**
@@ -393,7 +387,8 @@ class ApplicationController extends AbstractBackendController
      * @ignorevalidation $application
      * @return void
      */
-    public function addNoteAction(Note $note, Application $application) {
+    public function addNoteAction(Note $note, Application $application)
+    {
 
         $application->addNote($note);
 
@@ -401,13 +396,12 @@ class ApplicationController extends AbstractBackendController
             $application,
             "note",
             [
-                "note" => ($note->getIsInternal() ? "(internal)" : $note->getDetails())
+                "note" => ($note->getIsInternal() ? "(internal)" : $note->getDetails()),
             ]
         );
 
         $this->addFlashMessage("A new note was added.");
         $this->redirect("notes", null, null, ["application" => $application]);
-
     }
 
     /**
@@ -417,7 +411,8 @@ class ApplicationController extends AbstractBackendController
      * @ignorevalidation $application
      * @return void
      */
-    public function closeAction(Application $application) {
+    public function closeAction(Application $application)
+    {
 
         $constants = ApplicationStatus::getConstantsForCompletion();
 
@@ -425,7 +420,6 @@ class ApplicationController extends AbstractBackendController
 
         $this->view->assign('application', $application);
         $this->view->assign('beUser', $GLOBALS['BE_USER']->user);
-
     }
 
     /**
@@ -437,7 +431,8 @@ class ApplicationController extends AbstractBackendController
      * @param  Note        $note
      * @return void
      */
-    public function confirmCloseAction(Application $application, Note $note) {
+    public function confirmCloseAction(Application $application, Note $note)
+    {
 
         if (!empty($note->getDetails())) {
             $application->addNote($note);
@@ -447,7 +442,7 @@ class ApplicationController extends AbstractBackendController
             $application,
             "close",
             [
-                "status" => $application->getStatus()
+                "status" => $application->getStatus(),
             ]
         );
         $this->addFlashMessage("Application was closed successfully.");
@@ -463,10 +458,10 @@ class ApplicationController extends AbstractBackendController
      * @ignorevalidation $message
      * @return void
      */
-    public function replyAction(ReplyMessage $message = null, Application $application = null) {
+    public function replyAction(ReplyMessage $message = null, Application $application = null)
+    {
 
         if ($message == null) {
-
             $message = $this->messageFactory->createMessage("reply", $application);
         }
 
@@ -474,9 +469,8 @@ class ApplicationController extends AbstractBackendController
 
         $this->view->assignMultiple([
             'message' => $message,
-            'application' => $message->getApplication()
+            'application' => $message->getApplication(),
         ]);
-
     }
 
     /**
@@ -486,7 +480,8 @@ class ApplicationController extends AbstractBackendController
      *
      * @return void
      */
-    public function sendReplyAction(ReplyMessage $message) {
+    public function sendReplyAction(ReplyMessage $message)
+    {
 
         $this->applicationRepository->updateAndLog(
             $message->getApplication(),
@@ -496,7 +491,7 @@ class ApplicationController extends AbstractBackendController
                 'sendType' => $message->getSendType(),
                 'cc' => $message->getCc(),
                 'bcc' => $message->getBcc(),
-                'message' => $message->getRenderedBody()
+                'message' => $message->getRenderedBody(),
             ]
         );
 
@@ -515,10 +510,10 @@ class ApplicationController extends AbstractBackendController
      * @ignorevalidation $message
      * @return void
      */
-    public function inviteAction(InviteMessage $message = null, Application $application = null) {
+    public function inviteAction(InviteMessage $message = null, Application $application = null)
+    {
 
         if ($message == null) {
-
             $message = $this->messageFactory->createMessage("invite", $application);
         }
 
@@ -526,7 +521,7 @@ class ApplicationController extends AbstractBackendController
 
         $this->view->assignMultiple([
             'message' => $message,
-            'application' => $message->getApplication()
+            'application' => $message->getApplication(),
         ]);
     }
 
@@ -537,7 +532,8 @@ class ApplicationController extends AbstractBackendController
      *
      * @return void
      */
-    public function sendInvitationAction(InviteMessage $message) {
+    public function sendInvitationAction(InviteMessage $message)
+    {
 
         $this->applicationRepository->updateAndLog(
             $message->getApplication(),
@@ -547,7 +543,7 @@ class ApplicationController extends AbstractBackendController
                 'sendType' => $message->getSendType(),
                 'cc' => $message->getCc(),
                 'bcc' => $message->getBcc(),
-                'message' => $message->getRenderedBody()
+                'message' => $message->getRenderedBody(),
             ]
         );
 
@@ -566,10 +562,10 @@ class ApplicationController extends AbstractBackendController
      * @ignorevalidation $message
      * @return void
      */
-    public function acknowledgeAction(AcknowledgeMessage $message = null, Application $application = null) {
+    public function acknowledgeAction(AcknowledgeMessage $message = null, Application $application = null)
+    {
 
         if ($message == null) {
-
             $message = $this->messageFactory->createMessage("acknowledge", $application);
         }
 
@@ -577,7 +573,7 @@ class ApplicationController extends AbstractBackendController
 
         $this->view->assignMultiple([
             'message' => $message,
-            'application' => $message->getApplication()
+            'application' => $message->getApplication(),
         ]);
     }
 
@@ -588,7 +584,8 @@ class ApplicationController extends AbstractBackendController
      *
      * @return void
      */
-    public function sendAcknowledgementAction(AcknowledgeMessage $message) {
+    public function sendAcknowledgementAction(AcknowledgeMessage $message)
+    {
 
         $this->applicationRepository->updateAndLog(
             $message->getApplication(),
@@ -598,7 +595,7 @@ class ApplicationController extends AbstractBackendController
                 'sendType' => $message->getSendType(),
                 'cc' => $message->getCc(),
                 'bcc' => $message->getBcc(),
-                'message' => $message->getRenderedBody()
+                'message' => $message->getRenderedBody(),
             ]
         );
 
@@ -617,10 +614,10 @@ class ApplicationController extends AbstractBackendController
      * @ignorevalidation $message
      * @return void
      */
-    public function rejectAction(RejectMessage $message = null, Application $application = null) {
+    public function rejectAction(RejectMessage $message = null, Application $application = null)
+    {
 
         if ($message == null) {
-
             $message = $this->messageFactory->createMessage("reject", $application);
         }
 
@@ -628,7 +625,7 @@ class ApplicationController extends AbstractBackendController
 
         $this->view->assignMultiple([
             'message' => $message,
-            'application' => $message->getApplication()
+            'application' => $message->getApplication(),
         ]);
     }
 
@@ -639,7 +636,8 @@ class ApplicationController extends AbstractBackendController
      *
      * @return void
      */
-    public function sendRejectionAction(RejectMessage $message) {
+    public function sendRejectionAction(RejectMessage $message)
+    {
 
         $this->applicationRepository->updateAndLog(
             $message->getApplication(),
@@ -649,7 +647,7 @@ class ApplicationController extends AbstractBackendController
                 'sendType' => $message->getSendType(),
                 'cc' => $message->getCc(),
                 'bcc' => $message->getBcc(),
-                'message' => $message->getRenderedBody()
+                'message' => $message->getRenderedBody(),
             ]
         );
 
@@ -666,7 +664,8 @@ class ApplicationController extends AbstractBackendController
      * @ignorevalidation $application
      * @return void
      */
-    public function backToPersoAction(Application $application){
+    public function backToPersoAction(Application $application)
+    {
         $this->view->assign('application', $application);
         $this->view->assign('beUser', $GLOBALS['BE_USER']->user);
     }
@@ -680,7 +679,8 @@ class ApplicationController extends AbstractBackendController
      * @ignorevalidation $note
      * @return void
      */
-    public function sendBackToPersoAction(Application $application, Note $note) {
+    public function sendBackToPersoAction(Application $application, Note $note)
+    {
 
         if (!empty($note->getDetails())) {
             $application->addNote($note);
@@ -690,7 +690,7 @@ class ApplicationController extends AbstractBackendController
             $application,
             "backToPerso",
             [
-                "note" => $note->getDetails()
+                "note" => $note->getDetails(),
             ]
         );
 
@@ -705,7 +705,8 @@ class ApplicationController extends AbstractBackendController
      * @ignorevalidation $application
      * @return void
      */
-    public function historyAction(Application $application) {
+    public function historyAction(Application $application)
+    {
 
         $this->view->assign('application', $application);
     }
@@ -723,7 +724,6 @@ class ApplicationController extends AbstractBackendController
         $this->view->assign('application', $application);
         $this->view->assign('jobs', $this->jobRepository->findAll());
         $this->view->assign('beUser', $GLOBALS['BE_USER']->user);
-
     }
 
     /**
@@ -745,7 +745,6 @@ class ApplicationController extends AbstractBackendController
         $clone->setStatus(ApplicationStatus::cast(ApplicationStatus::NEW_APPLICATION));
 
         if (!empty($note->getDetails())) {
-
             $clone->addNote($note);
         }
 
@@ -756,7 +755,7 @@ class ApplicationController extends AbstractBackendController
             "cloned",
             [
                 "note" => $note->getDetails(),
-                "clone" => $clone->getUid()
+                "clone" => $clone->getUid(),
             ]
         );
 
@@ -765,7 +764,7 @@ class ApplicationController extends AbstractBackendController
             "clone",
             [
                 "note" => $note->getDetails(),
-                "source" => $application->getUid()
+                "source" => $application->getUid(),
             ]
         );
 
@@ -778,7 +777,8 @@ class ApplicationController extends AbstractBackendController
      * @param  Application $application
      * @return void
      */
-    public function removeUploadAction(Application $application, FileReference $file) {
+    public function removeUploadAction(Application $application, FileReference $file)
+    {
 
         $application->removeFile($file);
 
@@ -786,13 +786,13 @@ class ApplicationController extends AbstractBackendController
             $application,
             "removeUpload",
             [
-                "file" => $file->getOriginalResource()->getName()
+                "file" => $file->getOriginalResource()->getName(),
             ]
         );
 
         $this->addFlashMessage("File " . $file->getOriginalResource()->getName() . " was removed.");
 
-        $this->forward("edit", NULL, NULL, ["application" => $application->getUid()]);
+        $this->forward("edit", null, null, ["application" => $application->getUid()]);
     }
 
     /**
@@ -800,7 +800,8 @@ class ApplicationController extends AbstractBackendController
      *
      * @return void
      */
-    protected function fixDynamicFieldPropertyMapping() {
+    protected function fixDynamicFieldPropertyMapping()
+    {
         $propertyMappingConfiguration = $this->arguments->getArgument("application")->getPropertyMappingConfiguration();
 
         $propertyMappingConfiguration->forProperty("languageSkills")->allowAllProperties();
@@ -808,6 +809,4 @@ class ApplicationController extends AbstractBackendController
         $propertyMappingConfiguration->forProperty("languageSkills.*")->allowProperties("level");
         $propertyMappingConfiguration->allowCreationForSubProperty("languageSkills.*");
     }
-
-
 }

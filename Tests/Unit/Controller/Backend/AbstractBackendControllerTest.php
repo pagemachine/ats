@@ -1,7 +1,6 @@
 <?php
 namespace PAGEmachine\Ats\Tests\Unit\Controller\Backend;
 
-
 /*
  * This file is part of the PAGEmachine ATS project.
  */
@@ -48,7 +47,7 @@ class AbstractBackendControllerTest extends UnitTestCase
     {
         $this->abstractBackendController = $this->getMockBuilder(AbstractBackendController::class)
             ->setMethods([
-                'buildMenu'
+                'buildMenu',
             ])->getMock();
 
         $this->view = $this->prophesize(BackendTemplateView::class);
@@ -79,8 +78,6 @@ class AbstractBackendControllerTest extends UnitTestCase
         $this->pageRenderer->loadRequireJsModule(Argument::type("string"))->shouldBeCalled();
 
         $this->abstractBackendController->initializeView($this->view->reveal());
-
-        
     }
 
     /**
@@ -91,7 +88,5 @@ class AbstractBackendControllerTest extends UnitTestCase
         $this->abstractBackendController->expects($this->never())->method("buildMenu");
 
         $this->abstractBackendController->initializeView(new NotFoundView());
-        
     }
-    
 }

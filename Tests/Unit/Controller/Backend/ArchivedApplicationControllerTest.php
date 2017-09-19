@@ -1,19 +1,16 @@
 <?php
 namespace PAGEmachine\Ats\Tests\Unit\Controller\Backend;
 
-use PAGEmachine\Ats\Application\ApplicationStatus;
 use PAGEmachine\Ats\Controller\Backend\ArchivedApplicationController;
 use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Domain\Model\Note;
 use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
 use Prophecy\Argument;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ControllerContext;
 use TYPO3\CMS\Extbase\Mvc\Request;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
-
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -22,8 +19,8 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
  /**
  * Testcase for ArchivedApplicationController
  */
- class ArchivedApplicationControllerTest extends UnitTestCase {
-
+class ArchivedApplicationControllerTest extends UnitTestCase
+{
     /**
      * @var ArchivedApplicationController
      */
@@ -53,12 +50,13 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
     /**
      * Set up this testcase
      */
-    protected function setUp() {
+    protected function setUp()
+    {
         $this->archivedApplicationController = $this->getMockBuilder(ArchivedApplicationController::class)->setMethods([
             'redirect',
             'forward',
             'addFlashMessage',
-            'getMenuRegistry'
+            'getMenuRegistry',
             ])->getMock();
 
         $this->application = new Application();
@@ -96,7 +94,6 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
         );
 
         $this->archivedApplicationController->initializeIndexAction();
-
     }
 
     /**
@@ -115,7 +112,8 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
     /**
      * @test
      */
-    public function updateMoveToPool(){
+    public function updateMoveToPool()
+    {
         $note = $this->prophesize(Note::class);
         $note->getDetails()->willReturn("Hello");
 
@@ -129,5 +127,4 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
 
         $this->archivedApplicationController->updateMoveToPoolAction($application->reveal(), $note->reveal());
     }
-
- }
+}

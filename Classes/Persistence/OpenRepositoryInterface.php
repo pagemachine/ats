@@ -1,8 +1,8 @@
 <?php
 namespace PAGEmachine\Ats\Persistence;
 
-interface OpenRepositoryInterface {
-
+interface OpenRepositoryInterface
+{
     /**
      * Gets the default orderings of this repository
      *

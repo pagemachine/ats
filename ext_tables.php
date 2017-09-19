@@ -1,30 +1,29 @@
 <?php
 if (!defined('TYPO3_MODE')) {
-	die('Access denied.');
+    die('Access denied.');
 }
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-	'PAGEmachine.Ats',
-	'Jobs',
-	'Jobs'
+    'PAGEmachine.Ats',
+    'Jobs',
+    'Jobs'
 );
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('ats', 'Configuration/TypoScript', 'ATS');
 
 // PageTS extensions
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-  '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:ats/Configuration/PageTS/main.ts">'
+    '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:ats/Configuration/PageTS/main.ts">'
 );
 
 //Main module in backend (expandable section "ATS")
 $GLOBALS['TBE_MODULES']['_configuration']['AtsAts'] = [
-	'name' => 'ats',
-	'labels' => ['ll_ref' => 'LLL:EXT:ats/Resources/Private/Language/locallang_mod.xlf'],
+    'name' => 'ats',
+    'labels' => ['ll_ref' => 'LLL:EXT:ats/Resources/Private/Language/locallang_mod.xlf'],
 ];
 
 
 if (TYPO3_MODE === 'BE') {
-
     //First module, application listing
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(

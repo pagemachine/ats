@@ -16,7 +16,6 @@ use TYPO3\CMS\Extbase\Domain\Model\FrontendUser;
 use TYPO3\CMS\Extbase\Mvc\Exception\InvalidArgumentTypeException;
 use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
-use TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface;
 use TYPO3\CMS\Extbase\Persistence\Generic\Query;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Service\EnvironmentService;
@@ -24,8 +23,8 @@ use TYPO3\CMS\Extbase\Service\EnvironmentService;
 /**
  * Testcase for ApplicationRepository
  */
-class AbstractApplicationRepositoryTest extends UnitTestCase {
-
+class AbstractApplicationRepositoryTest extends UnitTestCase
+{
     /**
      * @var AbstractApplicationRepository
      */
@@ -51,7 +50,8 @@ class AbstractApplicationRepositoryTest extends UnitTestCase {
     /**
      * Set up this testcase
      */
-    public function setUp() {
+    public function setUp()
+    {
         $this->query = $this->prophesize(Query::class);
 
         $this->applicationRepository = $this->getMockBuilder(AbstractApplicationRepository::class)
@@ -63,7 +63,6 @@ class AbstractApplicationRepositoryTest extends UnitTestCase {
 
         $this->persistenceManager = $this->prophesize(PersistenceManager::class);
         $this->inject($this->applicationRepository, "persistenceManager", $this->persistenceManager->reveal());
-
     }
 
     /**
@@ -72,7 +71,8 @@ class AbstractApplicationRepositoryTest extends UnitTestCase {
      * @param  bool $isNew
      * @param  string $saveMethod The method to call
      */
-    public function addsOrUpdatesApplicationAndPersists($isNew, $saveMethod) {
+    public function addsOrUpdatesApplicationAndPersists($isNew, $saveMethod)
+    {
         $application = $this->prophesize(Application::class);
 
         $this->persistenceManager->persistAll()->shouldBeCalled();
@@ -85,25 +85,26 @@ class AbstractApplicationRepositoryTest extends UnitTestCase {
             ->with($application->reveal());
 
         $this->applicationRepository->addOrUpdate($application->reveal());
-
     }
 
 
     /**
      * @return array
      */
-    public function possibleApplications() {
+    public function possibleApplications()
+    {
 
         return [
             'new application' => [true, 'add'],
-            'existing application' => [false, 'update']
+            'existing application' => [false, 'update'],
         ];
     }
 
     /**
      * @test
     */
-    public function findsByUserAndJob() {
+    public function findsByUserAndJob()
+    {
 
         $job = $this->prophesize(Job::class);
         $user = $this->prophesize(FrontendUser::class);
@@ -125,7 +126,6 @@ class AbstractApplicationRepositoryTest extends UnitTestCase {
         $application = $this->applicationRepository->findByUserAndJob($user->reveal(), $job->reveal(), 10, 50);
 
         $this->assertInstanceOf(Application::class, $application);
-
     }
 
     /**
@@ -134,7 +134,8 @@ class AbstractApplicationRepositoryTest extends UnitTestCase {
      * @param mixed $minStatus
      * @param mixed $maxStatus
      */
-    public function throwsErrorIfStatusRangeIsInvalid($minStatus, $maxStatus) {
+    public function throwsErrorIfStatusRangeIsInvalid($minStatus, $maxStatus)
+    {
 
         $job = $this->prophesize(Job::class);
         $user = $this->prophesize(FrontendUser::class);
@@ -142,33 +143,34 @@ class AbstractApplicationRepositoryTest extends UnitTestCase {
         $this->expectException(InvalidArgumentTypeException::class);
 
         $this->applicationRepository->findByUserAndJob($user->reveal(), $job->reveal(), $minStatus, $maxStatus);
-
     }
 
     /**
      * @return array
      */
-    public function invalidStatusArguments() {
+    public function invalidStatusArguments()
+    {
 
         return [
             'invalidMinStatus' => ["invalid", 10],
-            'invalidMaxStatus' => [10, "invalid"]
+            'invalidMaxStatus' => [10, "invalid"],
         ];
     }
 
     /**
      * @test
      */
-    public function findsByBackendUser() {
+    public function findsByBackendUser()
+    {
 
         $backendUser = new BackendUserAuthentication();
         $backendUser->user = [
-            'uid' => 1
+            'uid' => 1,
         ];
 
         $backendUser->userGroups = [
             ['uid' => 2],
-            ['uid' => 3]
+            ['uid' => 3],
         ];
 
         $this->query->contains("job.userPa", 1)->shouldBeCalled()->willReturn("userPaComparison");
@@ -189,7 +191,6 @@ class AbstractApplicationRepositoryTest extends UnitTestCase {
         $this->query->execute()->willReturn("something");
 
         $this->applicationRepository->findByBackendUser($backendUser);
-
     }
 
     /**
@@ -210,7 +211,7 @@ class AbstractApplicationRepositoryTest extends UnitTestCase {
                 [
                 '_getProperties',
                 '_isDirty',
-                '_getCleanProperty'
+                '_getCleanProperty',
                 ]
             )->getMock();
 
@@ -228,24 +229,23 @@ class AbstractApplicationRepositoryTest extends UnitTestCase {
 
         $GLOBALS['BE_USER'] = new \StdClass();
         $GLOBALS['BE_USER']->user = [
-            'uid' => 1
+            'uid' => 1,
         ];
 
         $dataMapper->map(BackendUser::class, [['uid' => 1]])->willReturn([0 => new BackendUser()]);
 
         $expectedArray = [
             'oldRecord' => [
-                'dirty_property' => 'plainOldValue'
+                'dirty_property' => 'plainOldValue',
             ],
             'newRecord' => [
-                'dirty_property' => 'plainDirtyValue'
+                'dirty_property' => 'plainDirtyValue',
             ],
         ];
 
         $history = $this->applicationRepository->createHistory($application, 'updateaction', ['foo' => 'bar']);
 
         $this->assertEquals($expectedArray, $history->getHistoryData());
-
     }
 
     /**
@@ -258,7 +258,7 @@ class AbstractApplicationRepositoryTest extends UnitTestCase {
                 [
                 '_getProperties',
                 '_isDirty',
-                '_getCleanProperty'
+                '_getCleanProperty',
                 ]
             )->getMock();
 
@@ -301,8 +301,5 @@ class AbstractApplicationRepositoryTest extends UnitTestCase {
         $this->applicationRepository->expects($this->once())->method("update");
 
         $this->applicationRepository->updateAndLog($application->reveal(), "foo");
-
-
     }
-
 }

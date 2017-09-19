@@ -7,7 +7,6 @@ namespace PAGEmachine\Ats\Tests\Unit\Service;
 
 use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Service\MailService;
-use Prophecy\Argument;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
@@ -16,8 +15,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Testcase for PAGEmachine\Ats\Service\MailService
  */
-class MailServiceTest extends UnitTestCase {
-
+class MailServiceTest extends UnitTestCase
+{
     /**
      * @var MailService
      */
@@ -44,12 +43,13 @@ class MailServiceTest extends UnitTestCase {
     /**
      * Set up this testcase
      */
-    protected function setUp() {
+    protected function setUp()
+    {
 
         $this->backendUser = new BackendUserAuthentication();
         $this->backendUser->user = [
             'email' => 'username@domain.com',
-            'realName' => 'Username'
+            'realName' => 'Username',
         ];
 
         $this->application = new Application();
@@ -77,18 +77,19 @@ class MailServiceTest extends UnitTestCase {
     /**
      * @test
      */
-    public function setsAllFieldsWithUserData() {
+    public function setsAllFieldsWithUserData()
+    {
 
         $this->mailMessage->setFrom(['username@domain.com' => 'Username'])->willReturn($this->mailMessage->reveal())->shouldBeCalled();
 
         $this->mailService->sendReplyMail($this->application, "Foo", "Bar");
-
     }
 
     /**
      * @test
      */
-    public function setsAllFieldsWithSystemData() {
+    public function setsAllFieldsWithSystemData()
+    {
         
 
         //Unset user and expect system settings
@@ -98,13 +99,13 @@ class MailServiceTest extends UnitTestCase {
         $this->mailMessage->setFrom(['system@domain.com' => 'System Name'])->willReturn($this->mailMessage->reveal())->shouldBeCalled();
 
         $this->mailService->sendReplyMail($this->application, "Foo", "Bar");
-
     }
 
     /**
      * @test
      */
-    public function setsCc() {
+    public function setsCc()
+    {
 
         $this->mailMessage->setFrom(['username@domain.com' => 'Username'])->willReturn($this->mailMessage->reveal())->shouldBeCalled();
         $this->mailMessage->setCc('cc@domain.com')->shouldBeCalled();
@@ -115,12 +116,12 @@ class MailServiceTest extends UnitTestCase {
     /**
      * @test
      */
-    public function setsBcc() {
+    public function setsBcc()
+    {
 
         $this->mailMessage->setFrom(['username@domain.com' => 'Username'])->willReturn($this->mailMessage->reveal())->shouldBeCalled();
         $this->mailMessage->setBcc('bcc@domain.com')->shouldBeCalled();
 
         $this->mailService->sendReplyMail($this->application, "Foo", "Bar", "", "bcc@domain.com");
     }
-
 }

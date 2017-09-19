@@ -14,8 +14,8 @@ use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 /**
  * Testcase for PAGEmachine\Ats\Controller\JobController
  */
-class JobControllerTest extends UnitTestCase {
-
+class JobControllerTest extends UnitTestCase
+{
     /**
      * @var JobController
      */
@@ -29,7 +29,8 @@ class JobControllerTest extends UnitTestCase {
     /**
      * Set up this testcase
      */
-    protected function setUp() {
+    protected function setUp()
+    {
 
         $this->controller = new JobController();
 
@@ -40,7 +41,8 @@ class JobControllerTest extends UnitTestCase {
     /**
      * @test
      */
-    public function listsJobs() {
+    public function listsJobs()
+    {
 
         $jobs = [];
 
@@ -56,7 +58,8 @@ class JobControllerTest extends UnitTestCase {
     /**
      * @test
      */
-    public function showsSingleJob() {
+    public function showsSingleJob()
+    {
 
         $job = $this->prophesize(Job::class);
 

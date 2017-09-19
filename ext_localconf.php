@@ -1,26 +1,26 @@
 <?php
 
 if (!defined('TYPO3_MODE')) {
-	die('Access denied.');
+    die('Access denied.');
 }
 
 // Load vendors via phar if environment is not in composer mode
 if (!class_exists(\Symfony\Component\Workflow\Workflow::class)) {
-    @include 'phar://' . __DIR__ . '/vendors.phar/vendor/autoload.php';
+    include 'phar://' . __DIR__ . '/vendors.phar/vendor/autoload.php';
 }
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	'PAGEmachine.Ats',
-	'Jobs',
-	[
-		'Job' => 'list, show',
+    'PAGEmachine.Ats',
+    'Jobs',
+    [
+        'Job' => 'list, show',
         'Application\\Form' => 'form, updateForm',
         'Application\\PersonalData' => 'editPersonalData, updatePersonalData',
         'Application\\Qualifications' => 'editQualifications, updateQualifications',
         'Application\\AdditionalData' => 'editAdditionalData, updateAdditionalData',
         'Application\\Upload' => 'editUpload, saveUpload, updateUpload, removeUpload',
         'Application\\Submit' => 'showSummary, submit',
-	],
+    ],
     [
         'Application\\Form' => 'form, updateForm',
         'Application\\PersonalData' => 'editPersonalData, updatePersonalData',
@@ -36,12 +36,12 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['replacemarkers']['default'] = [];
 
 //Only used for mails
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['replacemarkers']['mail'] = [
-    'backenduser.signature' => 'backenduser.tx_ats_email_signature'
+    'backenduser.signature' => 'backenduser.tx_ats_email_signature',
 ];
 
 //Only used for pdfs
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['replacemarkers']['pdf'] = [
-    'backenduser.signature' => 'backenduser.tx_ats_pdf_signature'
+    'backenduser.signature' => 'backenduser.tx_ats_pdf_signature',
 ];
 
 // Add ckeditor template preset
@@ -72,7 +72,6 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['activeWorkflow'] = 'defaultworkfl
 // Access configuration, if EXT:extbase_acl is available
 
 if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('extbase_acl')) {
-
     // Add all backend controller actions to this array.
     // This is a temporary solution to make them accessible by the role configuration API.
     // The API runs its preparations before ext_tables.php is loaded, so no module configuration is available
@@ -114,15 +113,13 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('extbase_acl'))
     $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['extbase_acl']['protectedControllerActions'][\PAGEmachine\Ats\Controller\Backend\StatisticsController::class] = [
         'statistics',
         'export',
-        'getCsv'
+        'getCsv',
     ];
 
     $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['extbase_acl']['protectedPartials']['ats'] = [
         'Backend\\Application\\ListNew',
         'Backend\\Application\\ListInProgress',
         'Backend\\Application\\ListDeadlineExceeded',
-        'Backend\\Application\\ListArchived'
+        'Backend\\Application\\ListArchived',
     ];
-
 }
-

@@ -28,13 +28,13 @@ class MessageFactoryTest extends UnitTestCase
     protected function setUp()
     {
         $this->messageFactory = new MessageFactory();
-
     }
 
     /**
      * @test
      */
-    public function createsMessageForType() {
+    public function createsMessageForType()
+    {
 
         $message = $this->prophesize(ReplyMessage::class);
         $objectManager = $this->prophesize(ObjectManager::class);
@@ -51,12 +51,12 @@ class MessageFactoryTest extends UnitTestCase
     /**
      * @test
      */
-    public function throwsErrorIfInvalidMessageTypeisGiven() {
+    public function throwsErrorIfInvalidMessageTypeisGiven()
+    {
 
         $this->expectException(UndefinedMessageException::class);
         $this->expectExceptionCode(1489678614);
 
         $this->messageFactory->createMessage("foobar", new Application());
     }
-    
 }

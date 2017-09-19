@@ -5,8 +5,8 @@ namespace PAGEmachine\Ats\Service;
  * This file is part of the PAGEmachine ATS project.
  */
 
-class AuthenticationService {
-
+class AuthenticationService
+{
     /**
      * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
      * @inject
@@ -41,44 +41,40 @@ class AuthenticationService {
         return $GLOBALS['TSFE'];
     }
 
-	/**
-	 * Checks if a user belongs to a given group (via id)
-	 * @param integer $groupId
-	 * @return boolean
-	 */
-	protected function userHasGroup($groupId) {
+    /**
+     * Checks if a user belongs to a given group (via id)
+     * @param int $groupId
+     * @return bool
+     */
+    protected function userHasGroup($groupId)
+    {
 
-		if ($this->isUserAuthenticated()) {
+        if ($this->isUserAuthenticated()) {
+            $feUser = $this->getAuthenticatedUser();
 
-	        $feUser = $this->getAuthenticatedUser();
+            foreach ($feUser->getUsergroup() as $usergroup) {
+                if ($usergroup->getUid() == $groupId) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
-	        foreach($feUser->getUsergroup() as $usergroup) {
-	            if ($usergroup->getUid() == $groupId) {
-	                return true;
-	            }
-	        }
-		}
-		return false;
-
-	}
-
-	/**
-	 * Checks if a user belongs to a given group (via id)
-	 * @param integer $groupId
-	 * @return boolean
-	 */
-	public function isUserAuthenticatedAndHasGroup($groupId = null) {
-		if ($this->isUserAuthenticated()) {
-			if ($groupId === null) {
-				return true;
-			} else if ($this->userHasGroup($groupId)) {
-				return true;
-			}
-
-		}
-		return false;
-
-	}
-
-
+    /**
+     * Checks if a user belongs to a given group (via id)
+     * @param int $groupId
+     * @return bool
+     */
+    public function isUserAuthenticatedAndHasGroup($groupId = null)
+    {
+        if ($this->isUserAuthenticated()) {
+            if ($groupId === null) {
+                return true;
+            } elseif ($this->userHasGroup($groupId)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

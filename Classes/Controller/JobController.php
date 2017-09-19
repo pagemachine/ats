@@ -13,14 +13,13 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
  */
 class JobController extends ActionController
 {
-
     /**
      * jobRepository
      *
      * @var \PAGEmachine\Ats\Domain\Repository\JobRepository
      * @inject
      */
-    protected $jobRepository = NULL;
+    protected $jobRepository = null;
     
     /**
      * action list
@@ -43,5 +42,4 @@ class JobController extends ActionController
     {
         $this->view->assign('job', $job);
     }
-
 }

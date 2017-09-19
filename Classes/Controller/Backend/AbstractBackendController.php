@@ -23,7 +23,8 @@ class AbstractBackendController extends ActionController
     protected $defaultViewObjectName = BackendTemplateView::class;
 
 
-    public function initializeView(ViewInterface $view) {
+    public function initializeView(ViewInterface $view)
+    {
         //Do not build anything if there is no view (no template)
         if ($view instanceof NotFoundView) {
             return;
@@ -44,7 +45,6 @@ class AbstractBackendController extends ActionController
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/Ats/ApplicationsModule');
 
         $this->buildMenu();
-
     }
 
     /**
@@ -53,9 +53,7 @@ class AbstractBackendController extends ActionController
      * @codeCoverageIgnore
      * @return void
      */
-    public function buildMenu() {
-
+    public function buildMenu()
+    {
     }
-
-
 }

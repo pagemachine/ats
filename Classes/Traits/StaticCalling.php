@@ -11,8 +11,8 @@ namespace PAGEmachine\Ats\Traits;
  * This is useful to make static method calls mockable in tests.
  * @author Mathias Brodala
  */
-trait StaticCalling {
-
+trait StaticCalling
+{
   /**
    * Performs a static method call
    *
@@ -21,8 +21,9 @@ trait StaticCalling {
    * @param mixed $parameter,... Parameters to the method
    * @return mixed
    */
-  protected function callStatic($className, $methodName, ...$parameters) {
+    protected function callStatic($className, $methodName, ...$parameters)
+    {
 
-    return call_user_func_array($className . '::' . $methodName, $parameters);
-  }
+        return call_user_func_array($className . '::' . $methodName, $parameters);
+    }
 }

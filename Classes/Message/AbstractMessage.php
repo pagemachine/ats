@@ -2,19 +2,17 @@
 namespace PAGEmachine\Ats\Message;
 
 use PAGEmachine\Ats\Domain\Model\Application;
-use PAGEmachine\Ats\Domain\Model\TextTemplate;
 use PAGEmachine\Ats\Service\MailService;
 use PAGEmachine\Ats\Service\PdfService;
 use TYPO3\CMS\Fluid\View\StandaloneView;
-use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 
 /*
  * This file is part of the PAGEmachine ATS project.
  */
 
 
-abstract class AbstractMessage {
-
+abstract class AbstractMessage
+{
     const SENDTYPE_DEFAULT = 'default';
     const SENDTYPE_MAIL = 'mail';
     const SENDTYPE_PDF = 'pdf';
@@ -99,7 +97,7 @@ abstract class AbstractMessage {
      */
     public function applyTextTemplate()
     {
-        if($this->getTextTemplate() != null){
+        if ($this->getTextTemplate() != null) {
             $template = $this->textTemplateRepository->findByUid($this->getTextTemplate());
             $this->setSubject($template->getSubject());
             $this->setBody($template->getTextTemplate());
@@ -119,7 +117,6 @@ abstract class AbstractMessage {
     public function getTextTemplateDropdownOptions()
     {
         if ($this->textTemplateDropdownOptions == null) {
-
             $this->textTemplateDropdownOptions = $this->textTemplateRepository->getDropdownOptionsForType($this->type);
         }
 
@@ -250,7 +247,8 @@ abstract class AbstractMessage {
      *
      * @param string
      */
-    public function setRenderedBody($renderedBody = null) {
+    public function setRenderedBody($renderedBody = null)
+    {
 
         $this->renderedBody = $renderedBody;
     }
@@ -261,19 +259,13 @@ abstract class AbstractMessage {
     public function getRenderedBody()
     {
         if ($this->renderedBody != null) {
-
             return $this->renderedBody;
-        }
-        else if ($this->body != null) {
-
+        } elseif ($this->body != null) {
             $this->renderedBody = $this->renderBody();
             return $this->renderedBody;
-        }
-        else {
-
+        } else {
             return null;
         }
-
     }
 
 
@@ -331,7 +323,8 @@ abstract class AbstractMessage {
      *
      * @return string
      */
-    public function renderBody() {
+    public function renderBody()
+    {
 
         $standaloneView = $this->objectManager->get(StandaloneView::class);
 
@@ -345,7 +338,7 @@ abstract class AbstractMessage {
         $standaloneView->assignMultiple([
             "application" => $this->application,
             "backenduser" => $this->getBackendUser(),
-            "fields" => $this->getCustomFields()
+            "fields" => $this->getCustomFields(),
         ]);
 
         $renderedBody = $standaloneView->render();
@@ -369,16 +362,13 @@ abstract class AbstractMessage {
      *
      * @return void
      */
-    public function send() {
+    public function send()
+    {
 
         if ($this->sendType == AbstractMessage::SENDTYPE_MAIL) {
-
             MailService::getInstance()->sendReplyMail($this->application, $this->subject, $this->getRenderedBody(), $this->cc, $this->bcc);
-        }
-        else if ($this->sendType == AbstractMessage::SENDTYPE_PDF) {
-
+        } elseif ($this->sendType == AbstractMessage::SENDTYPE_PDF) {
             PdfService::getInstance()->generateAndDownloadPdf($this->subject, $this->application, $this->getRenderedBody());
         }
     }
-
 }

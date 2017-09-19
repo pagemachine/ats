@@ -5,8 +5,8 @@ namespace PAGEmachine\Ats\Domain\Repository;
  * This file is part of the PAGEmachine ATS project.
  */
 
-use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use PAGEmachine\Ats\Persistence\Repository;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
  * The repository for history entries
@@ -15,6 +15,6 @@ use PAGEmachine\Ats\Persistence\Repository;
 class HistoryRepository extends Repository
 {
     protected $defaultOrderings = [
-        'creationDate' => QueryInterface::ORDER_DESCENDING
+        'creationDate' => QueryInterface::ORDER_DESCENDING,
     ];
 }

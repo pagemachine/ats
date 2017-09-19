@@ -11,8 +11,8 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
  * TextTemplate
  * @codeCoverageIgnore
  */
-class TextTemplate extends AbstractEntity {
-
+class TextTemplate extends AbstractEntity
+{
     /**
      * @var string $type
      */
@@ -36,61 +36,68 @@ class TextTemplate extends AbstractEntity {
     /**
      * @return string
      */
-    public function getTexttemplate() {
-      return $this->texttemplate;
+    public function getTexttemplate()
+    {
+        return $this->texttemplate;
     }
 
     /**
      * @param string $textTemplate
      * @return void
      */
-    public function setTexttemplate($texttemplate) {
-      $this->texttemplate = $texttemplate;
+    public function setTexttemplate($texttemplate)
+    {
+        $this->texttemplate = $texttemplate;
     }
 
     /**
      * @return int
      */
-    public function getType() {
-      return $this->type;
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**
      * @param int $type
      * @return void
      */
-    public function setType($type) {
-      $this->type = $type;
+    public function setType($type)
+    {
+        $this->type = $type;
     }
 
     /**
      * @return string
      */
-    public function getTitle() {
-      return $this->title;
+    public function getTitle()
+    {
+        return $this->title;
     }
 
     /**
      * @param string $title
      * @return void
      */
-    public function setTitle($title) {
-      $this->title = $title;
+    public function setTitle($title)
+    {
+        $this->title = $title;
     }
 
     /**
      * @return string
      */
-    public function getSubject() {
-      return $this->subject;
+    public function getSubject()
+    {
+        return $this->subject;
     }
 
     /**
      * @param string $subject
      * @return void
      */
-    public function setSubject($subject) {
-      $this->subject = $subject;
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
     }
-
 }

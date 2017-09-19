@@ -3,7 +3,6 @@ namespace PAGEmachine\Ats\Workflow;
 
 use PAGEmachine\Ats\Application\ApplicationStatus;
 
-
 /*
  * This file is part of the PAGEmachine ATS project.
  */
@@ -15,8 +14,8 @@ use PAGEmachine\Ats\Application\ApplicationStatus;
  *
  * @codeCoverageIgnore
  */
-class DefaultWorkflowConfiguration {
-
+class DefaultWorkflowConfiguration
+{
     protected static $transitions = [
         'submit' => ['from' => ApplicationStatus::INCOMPLETE, 'to' => ApplicationStatus::NEW_APPLICATION],
         'show' => ['from' => [], 'to' => []],

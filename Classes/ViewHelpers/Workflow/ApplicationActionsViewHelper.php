@@ -2,10 +2,8 @@
 namespace PAGEmachine\Ats\ViewHelpers\Workflow;
 
 use PAGEmachine\Ats\Domain\Model\Application;
-use Symfony\Component\Workflow\Transition;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
-
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -14,8 +12,8 @@ use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 /**
  * ViewHelper to get allowed Application actions
  */
-class ApplicationActionsViewHelper extends AbstractViewHelper {
-
+class ApplicationActionsViewHelper extends AbstractViewHelper
+{
     /**
      * @var \PAGEmachine\Ats\Workflow\WorkflowManager
      * @inject
@@ -39,11 +37,8 @@ class ApplicationActionsViewHelper extends AbstractViewHelper {
     {
         $actions = [];
         foreach ($this->workflowManager->getWorkflow()->getEnabledTransitions($this->arguments['application']) as $transition) {
-
             if ($this->isAccessible($transition)) {
-
                 if (!in_array($transition->getName(), $actions)) {
-
                     $actions[] = $transition->getName();
                 }
             }
@@ -55,15 +50,15 @@ class ApplicationActionsViewHelper extends AbstractViewHelper {
      * Checks if a action is accessible. This is a compatibility feature with EXT:extbase_acl, if present
      *
      * @param  Transition  $transition
-     * @return boolean
+     * @return bool
      */
     protected function isAccessible($transition)
     {
         if (ExtensionManagementUtility::isLoaded('extbase_acl')) {
-
             if (!\Pagemachine\ExtbaseAcl\Manager\ActionAccessManager::getInstance()->isActionAllowed(
                 $this->getControllerClass($this->arguments['controller']),
-                $transition->getName())
+                $transition->getName()
+            )
             ) {
                 return false;
             }

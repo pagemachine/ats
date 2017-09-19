@@ -16,36 +16,37 @@ use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 /**
  * Testcase for UploadController
  */
-class UploadControllerTest extends UnitTestCase {
+class UploadControllerTest extends UnitTestCase
+{
+    /**
+     * @var UploadController
+    */
+    protected $controller;
 
-	/**
-	 * @var UploadController
-	*/
-	protected $controller;
-
-	/**
-	 * @var ViewInterface|Prophecy\Prophecy\ObjectProphecy
-	 */
-	protected $view;
+    /**
+     * @var ViewInterface|Prophecy\Prophecy\ObjectProphecy
+     */
+    protected $view;
 
 
-	/**
-	 * @var ApplicationE|Prophecy\Prophecy\ObjectProphecy
-	 */
-	protected $application;
+    /**
+     * @var ApplicationE|Prophecy\Prophecy\ObjectProphecy
+     */
+    protected $application;
 
-	/**
-	 * @var ApplicationERepository
-	 */
-	protected $repository;
+    /**
+     * @var ApplicationERepository
+     */
+    protected $repository;
 
-	/**
-	 * Set up this testcase
-	*/
-	public function setUp() {
+    /**
+     * Set up this testcase
+    */
+    public function setUp()
+    {
 
         $this->controller = $this->getMockBuilder(UploadController::class)->setMethods([
-            'forward'
+            'forward',
         ])->getMock();
 
         $this->application = $this->prophesize(ApplicationE::class);
@@ -54,68 +55,62 @@ class UploadControllerTest extends UnitTestCase {
         $this->view = $this->prophesize(ViewInterface::class);
         $this->inject($this->controller, 'view', $this->view->reveal());
 
-    	$this->repository = $this->prophesize(ApplicationERepository::class);
-    	$this->inject($this->controller, "repository", $this->repository->reveal());
+        $this->repository = $this->prophesize(ApplicationERepository::class);
+        $this->inject($this->controller, "repository", $this->repository->reveal());
 
-    	$request = $this->prophesize(RequestInterface::class);
-    	$request->getArgument('application')->willReturn([]);
-    	$this->inject($this->controller, 'request', $request->reveal());
-
-	}
-
-	/**
-	 * @test
-	 */
-	public function showsUploadForm() {
-
-		$this->view->assign('application', $this->application->reveal())->shouldBeCalled();
-
-		$this->controller->editUploadAction($this->application->reveal());
-
-	}
-
-	/**
-	 * @test
-	 */
-	public function savesUpload() {
-
-    	$this->repository->addOrUpdate($this->application->reveal())->shouldBeCalled();
-
-        $this->controller->expects($this->once())->method('forward')->with('editUpload', null, null, ['application' => 1]);
-    	$this->controller->saveUploadAction($this->application->reveal());
-
-
-	}
-
-	/**
-	 * @test
-	 */
-	public function removesUpload() {
-
-		$file = new FileReference();
-
-		$this->application->removeFile($file)->shouldBeCalled();
-
-    	$this->repository->addOrUpdate($this->application->reveal())->shouldBeCalled();
-
-        $this->controller->expects($this->once())->method('forward')->with('editUpload', null, null, ['application' => 1]);
-    	$this->controller->removeUploadAction($this->application->reveal(), $file);
-
-
-	}
+        $request = $this->prophesize(RequestInterface::class);
+        $request->getArgument('application')->willReturn([]);
+        $this->inject($this->controller, 'request', $request->reveal());
+    }
 
     /**
      * @test
      */
-    public function updatesAndForwardsToNextStep() {
+    public function showsUploadForm()
+    {
 
-    	$this->repository->addOrUpdate($this->application->reveal())->shouldBeCalled();
+        $this->view->assign('application', $this->application->reveal())->shouldBeCalled();
+
+        $this->controller->editUploadAction($this->application->reveal());
+    }
+
+    /**
+     * @test
+     */
+    public function savesUpload()
+    {
+
+        $this->repository->addOrUpdate($this->application->reveal())->shouldBeCalled();
+
+        $this->controller->expects($this->once())->method('forward')->with('editUpload', null, null, ['application' => 1]);
+        $this->controller->saveUploadAction($this->application->reveal());
+    }
+
+    /**
+     * @test
+     */
+    public function removesUpload()
+    {
+
+        $file = new FileReference();
+
+        $this->application->removeFile($file)->shouldBeCalled();
+
+        $this->repository->addOrUpdate($this->application->reveal())->shouldBeCalled();
+
+        $this->controller->expects($this->once())->method('forward')->with('editUpload', null, null, ['application' => 1]);
+        $this->controller->removeUploadAction($this->application->reveal(), $file);
+    }
+
+    /**
+     * @test
+     */
+    public function updatesAndForwardsToNextStep()
+    {
+
+        $this->repository->addOrUpdate($this->application->reveal())->shouldBeCalled();
 
         $this->controller->expects($this->once())->method('forward')->with('showSummary', "Application\\Submit", null, ['application' => 1]);
-    	$this->controller->updateUploadAction($this->application->reveal());
-
-
-
+        $this->controller->updateUploadAction($this->application->reveal());
     }
-  
 }

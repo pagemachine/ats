@@ -16,9 +16,8 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
  * History
  * @codeCoverageIgnore
  */
-class History extends AbstractEntity implements CloneableInterface {
-
-
+class History extends AbstractEntity implements CloneableInterface
+{
     /**
      * @var \PAGEmachine\Ats\Domain\Model\AbstractApplication $application
      */
@@ -27,16 +26,18 @@ class History extends AbstractEntity implements CloneableInterface {
     /**
      * @return AbstractApplication
      */
-    public function getApplication() {
-      return $this->application;
+    public function getApplication()
+    {
+        return $this->application;
     }
     
     /**
      * @param AbstractApplication $application
      * @return void
      */
-    public function setApplication(AbstractApplication $application) {
-      $this->application = $application;
+    public function setApplication(AbstractApplication $application)
+    {
+        $this->application = $application;
     }
 
 
@@ -48,16 +49,18 @@ class History extends AbstractEntity implements CloneableInterface {
     /**
      * @return BackendUser
      */
-    public function getUser() {
-      return $this->user;
+    public function getUser()
+    {
+        return $this->user;
     }
     
     /**
      * @param BackendUser $user
      * @return void
      */
-    public function setUser(BackendUser $user) {
-      $this->user = $user;
+    public function setUser(BackendUser $user)
+    {
+        $this->user = $user;
     }
 
 
@@ -69,8 +72,9 @@ class History extends AbstractEntity implements CloneableInterface {
     /**
      * @return \DateTime
      */
-    public function getCreationDate() {
-      return $this->creationDate;
+    public function getCreationDate()
+    {
+        return $this->creationDate;
     }
 
     /**
@@ -81,16 +85,18 @@ class History extends AbstractEntity implements CloneableInterface {
     /**
      * @return string
      */
-    public function getSubject() {
-      return $this->subject;
+    public function getSubject()
+    {
+        return $this->subject;
     }
     
     /**
      * @param string $subject
      * @return void
      */
-    public function setSubject($subject) {
-      $this->subject = $subject;
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
     }
 
     /**
@@ -101,18 +107,18 @@ class History extends AbstractEntity implements CloneableInterface {
     /**
      * @return string
      */
-    public function getDetails() 
+    public function getDetails()
     {
-      return unserialize($this->details);
+        return unserialize($this->details);
     }
     
     /**
      * @param string $details
      * @return void
      */
-    public function setDetails($details) 
+    public function setDetails($details)
     {
-      $this->details = serialize($details);
+        $this->details = serialize($details);
     }
 
     /**
@@ -152,7 +158,6 @@ class History extends AbstractEntity implements CloneableInterface {
     public function getDiff()
     {
         if ($this->diff == null) {
-
             $historyData = $this->getHistoryData();
 
             $diffData = [];
@@ -161,21 +166,16 @@ class History extends AbstractEntity implements CloneableInterface {
                 $diffUtility = GeneralUtility::makeInstance(DiffUtility::class);
 
                 foreach ($historyData['newRecord'] as $key => $newRecord) {
-
                     $diffData[$key] = $diffUtility->makeDiffDisplay(
                         BackendUtility::getProcessedValue("tx_ats_domain_model_application", $key, $historyData['oldRecord'][$key], 0, true),
                         BackendUtility::getProcessedValue("tx_ats_domain_model_application", $key, $newRecord, 0, true)
                     );
                 }
-
             }
 
             $this->diff = $diffData;
         }
 
         return $this->diff;
-
-
     }
-
 }

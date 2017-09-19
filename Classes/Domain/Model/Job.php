@@ -12,12 +12,11 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
  * Job
- * 
+ *
  * @codeCoverageIgnore
  */
 class Job extends AbstractEntity
 {
-
     /**
      * @var string $jobNumber
      */
@@ -50,17 +49,17 @@ class Job extends AbstractEntity
     protected $career;
 
     /**
-     * @var boolean $internal
+     * @var bool $internal
      */
-    protected $internal; 
-    
+    protected $internal;
+
     /**
      * @var string $location
      */
     protected $location;
 
     /**
-     * @var boolean $deadlineEmailDisabled
+     * @var bool $deadlineEmailDisabled
      */
     protected $deadlineEmailDisabled;
 
@@ -75,7 +74,7 @@ class Job extends AbstractEntity
     protected $organizationUnit;
 
     /**
-     * @var boolean $enableFormLink
+     * @var bool $enableFormLink
      */
     protected $enableFormLink;
 
@@ -96,8 +95,8 @@ class Job extends AbstractEntity
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\BackendUserGroup>
      * @lazy
      */
-    protected $officials; 
-    
+    protected $officials;
+
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\BackendUserGroup>
      * @lazy
@@ -109,335 +108,377 @@ class Job extends AbstractEntity
      * @var \DateTime $endtime
      */
     protected $endtime;
-    
+
     /**
      * @return \DateTime
      */
-    public function getEndtime() {
-      return $this->endtime;
+    public function getEndtime()
+    {
+        return $this->endtime;
     }
-    
+
     /**
      * @param \DateTime $endtime
      * @return void
      */
-    public function setEndtime(\DateTime $endtime) {
-      $this->endtime = $endtime;
+    public function setEndtime(\DateTime $endtime)
+    {
+        $this->endtime = $endtime;
     }
 
     /**
     * @return void
     */
-    public function initializeObject() {
+    public function initializeObject()
+    {
 
         $this->userPa = new ObjectStorage();
         $this->department = new ObjectStorage();
         $this->officials = new ObjectStorage();
         $this->contributors = new ObjectStorage();
     }
-    
+
     /**
      * @return string
      */
-    public function getJobNumber() {
-      return $this->jobNumber;
+    public function getJobNumber()
+    {
+        return $this->jobNumber;
     }
-    
+
     /**
      * @param string $jobNumber
      * @return void
      */
-    public function setJobNumber($jobNumber) {
-      $this->jobNumber = $jobNumber;
+    public function setJobNumber($jobNumber)
+    {
+        $this->jobNumber = $jobNumber;
     }
-    
+
     /**
      * @return string
      */
-    public function getTitle() {
-      return $this->title;
+    public function getTitle()
+    {
+        return $this->title;
     }
-    
+
     /**
      * @param string $title
      * @return void
      */
-    public function setTitle($title) {
-      $this->title = $title;
+    public function setTitle($title)
+    {
+        $this->title = $title;
     }
 
     /**
      * @return string
      */
-    public function getDescription() {
-      return $this->description;
+    public function getDescription()
+    {
+        return $this->description;
     }
-    
+
     /**
      * @param string $description
      * @return void
      */
-    public function setDescription($description) {
-      $this->description = $description;
+    public function setDescription($description)
+    {
+        $this->description = $description;
     }
 
     /**
      * @return string
      */
-    public function getDescriptionAfterLink() {
-      return $this->descriptionAfterLink;
+    public function getDescriptionAfterLink()
+    {
+        return $this->descriptionAfterLink;
     }
-    
+
     /**
      * @param string $descriptionAfterLink
      * @return void
      */
-    public function setDescriptionAfterLink($descriptionAfterLink) {
-      $this->descriptionAfterLink = $descriptionAfterLink;
+    public function setDescriptionAfterLink($descriptionAfterLink)
+    {
+        $this->descriptionAfterLink = $descriptionAfterLink;
     }
-   
+
     /**
      * @return string
      */
-    public function getContact() {
-      return $this->contact;
+    public function getContact()
+    {
+        return $this->contact;
     }
-    
+
     /**
      * @param string $contact
      * @return void
      */
-    public function setContact($contact) {
-      $this->contact = $contact;
+    public function setContact($contact)
+    {
+        $this->contact = $contact;
     }
 
     /**
      * @return string
      */
-    public function getCareer() {
-      return $this->career;
+    public function getCareer()
+    {
+        return $this->career;
     }
-    
+
     /**
      * @param string $career
      * @return void
      */
-    public function setCareer($career) {
-      $this->career = $career;
+    public function setCareer($career)
+    {
+        $this->career = $career;
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
-    public function getInternal() {
-      return $this->internal;
+    public function getInternal()
+    {
+        return $this->internal;
     }
 
     /**
-     * @param boolean $internal
+     * @param bool $internal
      * @return void
      */
-    public function setInternal($internal) {
-      $this->internal = $internal;
+    public function setInternal($internal)
+    {
+        $this->internal = $internal;
     }
 
     /**
      * @return string
      */
-    public function getLocation() {
-      return $this->location;
+    public function getLocation()
+    {
+        return $this->location;
     }
-    
+
     /**
      * @param string $location
      * @return void
      */
-    public function setLocation($location) {
-      $this->location = $location;
+    public function setLocation($location)
+    {
+        $this->location = $location;
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
-    public function getDeadlineEmailDisabled() {
-      return $this->deadlineEmailDisabled;
+    public function getDeadlineEmailDisabled()
+    {
+        return $this->deadlineEmailDisabled;
     }
-    
+
     /**
-     * @param boolean $deadlineEmailDisabled
+     * @param bool $deadlineEmailDisabled
      * @return void
      */
-    public function setDeadlineEmailDisabled($deadlineEmailDisabled) {
-      $this->deadlineEmailDisabled = $deadlineEmailDisabled;
+    public function setDeadlineEmailDisabled($deadlineEmailDisabled)
+    {
+        $this->deadlineEmailDisabled = $deadlineEmailDisabled;
     }
 
     /**
      * @return \DateTime
      */
-    public function getDeadlineEmail() {
-      return $this->deadlineEmail;
+    public function getDeadlineEmail()
+    {
+        return $this->deadlineEmail;
     }
-    
+
     /**
      * @param \DateTime $deadlineEmail
      * @return void
      */
-    public function setDeadlineEmail($deadlineEmail) {
-      $this->deadlineEmail = $deadlineEmail;
+    public function setDeadlineEmail($deadlineEmail)
+    {
+        $this->deadlineEmail = $deadlineEmail;
     }
 
     /**
      * @return string
      */
-    public function getOrganizationUnit() {
-      return $this->organizationUnit;
+    public function getOrganizationUnit()
+    {
+        return $this->organizationUnit;
     }
-    
+
     /**
      * @param string $organizationUnit
      * @return void
      */
-    public function setOrganizationUnit($organizationUnit) {
-      $this->organizationUnit = $organizationUnit;
+    public function setOrganizationUnit($organizationUnit)
+    {
+        $this->organizationUnit = $organizationUnit;
     }
 
     /**
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
      */
-    public function getUserPa() {
+    public function getUserPa()
+    {
         return $this->userPa;
     }
-    
+
     /**
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $userPa
      * @return void
      */
-    public function setUserPa(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $userPa) {
+    public function setUserPa(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $userPa)
+    {
         $this->userPa = $userPa;
     }
-    
+
     /**
      * @param \TYPO3\CMS\Extbase\Domain\Model\BackendUser $userPa
      * @return void
      */
-    public function addUserPa(BackendUser $userPa) {
+    public function addUserPa(BackendUser $userPa)
+    {
         $this->userPa->attach($userPa);
     }
-    
+
     /**
      * @param \TYPO3\CMS\Extbase\Domain\Model\BackendUser $userPa
      * @return void
      */
-    public function removeUserPa(BackendUser $userPa) {
+    public function removeUserPa(BackendUser $userPa)
+    {
         $this->userPa->detach($userPa);
     }
-    
+
     /**
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
      */
-    public function getDepartment() {
+    public function getDepartment()
+    {
         return $this->department;
     }
-    
+
     /**
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $department
      * @return void
      */
-    public function setDepartment(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $department) {
+    public function setDepartment(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $department)
+    {
         $this->department = $department;
     }
-    
+
     /**
      * @param \TYPO3\CMS\Extbase\Domain\Model\BackendUserGroup $department
      * @return void
      */
-    public function addDepartment(BackendUserGroup $department) {
+    public function addDepartment(BackendUserGroup $department)
+    {
         $this->department->attach($department);
     }
-    
+
     /**
      * @param \TYPO3\CMS\Extbase\Domain\Model\BackendUserGroup $department
      * @return void
      */
-    public function removeDepartment(BackendUserGroup $department) {
+    public function removeDepartment(BackendUserGroup $department)
+    {
         $this->department->detach($department);
     }
 
     /**
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
      */
-    public function getOfficials() {
+    public function getOfficials()
+    {
         return $this->officials;
     }
-    
+
     /**
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $officials
      * @return void
      */
-    public function setOfficials(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $officials) {
+    public function setOfficials(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $officials)
+    {
         $this->officials = $officials;
     }
-    
+
     /**
      * @param \TYPO3\CMS\Extbase\Domain\Model\BackendUserGroup $official
      * @return void
      */
-    public function addOfficial(BackendUserGroup $official) {
+    public function addOfficial(BackendUserGroup $official)
+    {
         $this->officials->attach($official);
     }
-    
+
     /**
      * @param \TYPO3\CMS\Extbase\Domain\Model\BackendUserGroup $official
      * @return void
      */
-    public function removeOfficial(BackendUserGroup $official) {
+    public function removeOfficial(BackendUserGroup $official)
+    {
         $this->officials->detach($official);
     }
-    
+
     /**
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
      */
-    public function getContributors() {
+    public function getContributors()
+    {
         return $this->contributors;
     }
-    
+
     /**
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $contributors
      * @return void
      */
-    public function setContributors(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $contributors) {
+    public function setContributors(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $contributors)
+    {
         $this->contributors = $contributors;
     }
-    
+
     /**
      * @param \TYPO3\CMS\Extbase\Domain\Model\BackendUserGroup $contributor
      * @return void
      */
-    public function addContributor(BackendUserGroup $contributor) {
+    public function addContributor(BackendUserGroup $contributor)
+    {
         $this->contributors->attach($contributor);
     }
-    
+
     /**
      * @param \TYPO3\CMS\Extbase\Domain\Model\BackendUserGroup $contributor
      * @return void
      */
-    public function removeContributor(BackendUserGroup $contributor) {
+    public function removeContributor(BackendUserGroup $contributor)
+    {
         $this->contributors->detach($contributor);
     }
-    
+
     /**
-     * @return boolean
+     * @return bool
      */
-    public function getEnableFormLink() {
-      return $this->enableFormLink;
-    }
-    
-    /**
-     * @param boolean $enableFormLink
-     * @return void
-     */
-    public function setEnableFormLink($enableFormLink) {
-      $this->enableFormLink = $enableFormLink;
+    public function getEnableFormLink()
+    {
+        return $this->enableFormLink;
     }
 
+    /**
+     * @param bool $enableFormLink
+     * @return void
+     */
+    public function setEnableFormLink($enableFormLink)
+    {
+        $this->enableFormLink = $enableFormLink;
+    }
 }

@@ -9,14 +9,14 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
+
 /*
  * This file is part of the PAGEmachine ATS project.
  */
 
 
-class DuplicationService implements SingletonInterface {
-
-
+class DuplicationService implements SingletonInterface
+{
     /**
      * @var ObjectManager $objectManager
      */
@@ -33,7 +33,8 @@ class DuplicationService implements SingletonInterface {
      * @codeCoverageIgnore
      * @return DuplicationService
      */
-    public static function getInstance() {
+    public static function getInstance()
+    {
 
         return GeneralUtility::makeInstance(self::class);
     }
@@ -43,7 +44,8 @@ class DuplicationService implements SingletonInterface {
      * @param ObjectManager|null $objectManager
      * @param DataMapper|null    $dataMapper
      */
-    public function __construct(ObjectManager $objectManager = null, DataMapper $dataMapper = null) {
+    public function __construct(ObjectManager $objectManager = null, DataMapper $dataMapper = null)
+    {
 
         $this->objectManager = $objectManager ?: GeneralUtility::makeInstance(ObjectManager::class);
         $this->dataMapper = $dataMapper ?: $this->objectManager->get(DataMapper::class);
@@ -60,31 +62,26 @@ class DuplicationService implements SingletonInterface {
         $clone = $this->objectManager->get(get_class($object));
 
         foreach ($object->_getProperties() as $propertyName => $value) {
-
             if ($propertyName == "uid") {
                 continue;
             }
 
             if (ObjectAccess::isPropertyGettable($object, $propertyName)) {
-
                 // Clone ObjectStorages
                 if ($value instanceof ObjectStorage && $value->current() instanceof CloneableInterface) {
-
                     $clone->_setProperty($propertyName, $this->duplicateStorage($value, $propertyName, $clone));
                     continue;
                 }
 
                 // Clone File ObjectStorages
                 if ($value instanceof ObjectStorage && $value->current() instanceof FileReference) {
-
-
                     $clone->_setProperty($propertyName, $this->duplicateFileStorage($value));
                     continue;
                 }
 
                 // Copy all plain properties
                 $clone->_setProperty($propertyName, $value);
-            }   
+            }
         }
 
         return $clone;
@@ -130,7 +127,6 @@ class DuplicationService implements SingletonInterface {
         $value->rewind();
 
         foreach ($value as $reference) {
-
             $originalFile = $reference->getOriginalResource()->getOriginalFile();
             $fileCopy = $originalFile->copyTo($originalFile->getParentFolder());
 
@@ -139,9 +135,7 @@ class DuplicationService implements SingletonInterface {
 
             $storage->attach($newReference);
 
-            return $storage;        
-        }        
+            return $storage;
+        }
     }
-    
-
 }

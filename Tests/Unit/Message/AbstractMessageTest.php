@@ -7,11 +7,11 @@ use PAGEmachine\Ats\Message\AbstractMessage;
 use PAGEmachine\Ats\Service\MailService;
 use PAGEmachine\Ats\Service\MarkerService;
 use PAGEmachine\Ats\Service\PdfService;
-use TYPO3\CMS\Fluid\View\StandaloneView;
 use Prophecy\Argument;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -70,8 +70,6 @@ class AbstractMessageTest extends UnitTestCase
 
         $this->markerService = $this->prophesize(MarkerService::class);
         $this->inject($this->abstractMessage, "markerService", $this->markerService->reveal());
-
-
     }
 
     /**
@@ -130,7 +128,6 @@ class AbstractMessageTest extends UnitTestCase
         $textTemplateRepository->getDropdownOptionsForType(0)->shouldBeCalled()->willReturn($templateContainerDummy);
 
         $this->assertEquals($templateContainerDummy, $this->abstractMessage->getTextTemplateDropdownOptions());
-
     }
 
     /**
@@ -148,29 +145,27 @@ class AbstractMessageTest extends UnitTestCase
         $textTemplateRepository->getDropdownOptionsForType(0)->shouldNotBeCalled();
 
         $this->assertEquals($templateContainerDummy, $this->abstractMessage->getTextTemplateDropdownOptions());
-
     }
 
-     public function bodyProvider()
-     {
+    public function bodyProvider()
+    {
 
         return [
-            'Body is filled and rendered' => ['body', 'cachedRenderedBody', 'cachedRenderedBody'],
-            'Body is filled but not rendered' => ['body', null, 'newRenderedBody'],
-            'Body is null' => [null, null, null]
+           'Body is filled and rendered' => ['body', 'cachedRenderedBody', 'cachedRenderedBody'],
+           'Body is filled but not rendered' => ['body', null, 'newRenderedBody'],
+           'Body is null' => [null, null, null],
         ];
-
-     }
+    }
 
      /**
        * @test
        * @dataProvider bodyProvider
        */
-      public function returnsBodyCorrectly($body, $renderedBody, $output)
-      {
+    public function returnsBodyCorrectly($body, $renderedBody, $output)
+    {
         $this->abstractMessage = $this->getMockBuilder(AbstractMessage::class)
-            ->setMethods(['renderBody'])
-            ->getMock();
+          ->setMethods(['renderBody'])
+          ->getMock();
 
         $this->abstractMessage->setBody($body);
         $this->abstractMessage->setRenderedBody($renderedBody);
@@ -178,7 +173,5 @@ class AbstractMessageTest extends UnitTestCase
         $this->abstractMessage->method("renderBody")->willReturn("newRenderedBody");
 
         $this->assertEquals($output, $this->abstractMessage->getRenderedBody());
-
-      }
-
+    }
 }

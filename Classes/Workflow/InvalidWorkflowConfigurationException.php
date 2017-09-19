@@ -8,6 +8,6 @@ namespace PAGEmachine\Ats\Workflow;
 /**
  * Invalid workflow configuration exception, thrown by workflow manager if something is wrong with the workflows.
  */
-class InvalidWorkflowConfigurationException extends \PAGEmachine\Ats\Exception {
-
+class InvalidWorkflowConfigurationException extends \PAGEmachine\Ats\Exception
+{
 }

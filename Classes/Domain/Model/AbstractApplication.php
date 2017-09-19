@@ -14,14 +14,15 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  * Application
  * @codeCoverageIgnore
  */
-class AbstractApplication extends AbstractEntity {
-
+class AbstractApplication extends AbstractEntity
+{
     /**
      * Just prepare function so each child model can create its object storages
      *
      * @return void
      */
-    public function initializeObject() {
+    public function initializeObject()
+    {
 
         $this->notes = new ObjectStorage();
     }
@@ -34,16 +35,18 @@ class AbstractApplication extends AbstractEntity {
     /**
      * @return PAGEmachine\Ats\Application\ApplicationStatus
      */
-    public function getStatus() {
-      return $this->status;
+    public function getStatus()
+    {
+        return $this->status;
     }
 
     /**
      * @param PAGEmachine\Ats\Application\ApplicationStatus $status
      * @return void
      */
-    public function setStatus(ApplicationStatus $status) {
-      $this->status = $status;
+    public function setStatus(ApplicationStatus $status)
+    {
+        $this->status = $status;
     }
 
     /**
@@ -51,7 +54,8 @@ class AbstractApplication extends AbstractEntity {
      *
      * @param string $status
      */
-    public function setStatusPlain($status) {
+    public function setStatusPlain($status)
+    {
 
         $this->status = ApplicationStatus::cast($status);
     }
@@ -61,7 +65,8 @@ class AbstractApplication extends AbstractEntity {
      *
      * @return string
      */
-    public function getStatusPlain() {
+    public function getStatusPlain()
+    {
 
         return $this->status->__toString();
     }
@@ -76,7 +81,8 @@ class AbstractApplication extends AbstractEntity {
     /**
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
      */
-    public function getNotes() {
+    public function getNotes()
+    {
         return $this->notes;
     }
 
@@ -84,7 +90,8 @@ class AbstractApplication extends AbstractEntity {
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $notes
      * @return void
      */
-    public function setNotes(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $notes) {
+    public function setNotes(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $notes)
+    {
         $this->notes = $notes;
     }
 
@@ -92,7 +99,8 @@ class AbstractApplication extends AbstractEntity {
      * @param \PAGEmachine\Ats\Domain\Model\Note $note
      * @return void
      */
-    public function addNote(Note $note) {
+    public function addNote(Note $note)
+    {
         $this->notes->attach($note);
     }
 
@@ -100,7 +108,8 @@ class AbstractApplication extends AbstractEntity {
      * @param \PAGEmachine\Ats\Domain\Model\Note $note
      * @return void
      */
-    public function removeNote(Note $note) {
+    public function removeNote(Note $note)
+    {
         $this->notes->detach($note);
     }
 
@@ -109,7 +118,8 @@ class AbstractApplication extends AbstractEntity {
      *
      * @return \PAGEmachine\Ats\Domain\Model\Note
      */
-    public function getLatestNote() {
+    public function getLatestNote()
+    {
 
         $this->notes->rewind();
         return $this->notes->current();
@@ -156,7 +166,4 @@ class AbstractApplication extends AbstractEntity {
     {
         $this->history->detach($historyEntry);
     }
-
-
-
 }

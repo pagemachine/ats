@@ -12,21 +12,21 @@ use PAGEmachine\Ats\Domain\Model\ApplicationB;
  */
 class PersonalDataController extends AbstractApplicationController
 {
-
     /**
      * applicationBRepository
      *
      * @var \PAGEmachine\Ats\Domain\Repository\ApplicationBRepository
      * @inject
      */
-    protected $repository = NULL;
+    protected $repository = null;
 
     /**
      * @param  ApplicationB $application
      * @ignorevalidation $application
      * @return void
      */
-    public function editPersonalDataAction(ApplicationB $application) {
+    public function editPersonalDataAction(ApplicationB $application)
+    {
 
         $this->view->assign("application", $application);
     }
@@ -37,13 +37,10 @@ class PersonalDataController extends AbstractApplicationController
      * @param  ApplicationB $application
      * @return void
      */
-    public function updatePersonalDataAction(ApplicationB $application) {
+    public function updatePersonalDataAction(ApplicationB $application)
+    {
 
-    	$this->repository->addOrUpdate($application);
+        $this->repository->addOrUpdate($application);
         $this->forward("editQualifications", "Application\\Qualifications", null, ['application' => $application->getUid()]);
-
     }
-
-
-
 }

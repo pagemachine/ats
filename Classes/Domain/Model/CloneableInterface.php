@@ -8,7 +8,6 @@ namespace PAGEmachine\Ats\Domain\Model;
 /**
  * CloneableInterface
  */
-interface CloneableInterface {
-
-
+interface CloneableInterface
+{
 }

@@ -6,19 +6,13 @@ namespace PAGEmachine\Ats\Domain\Model;
  */
 
 use PAGEmachine\Ats\Application\ApplicationStatus;
-use PAGEmachine\Ats\Domain\Model\Job;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Domain\Model\FrontendUser;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
-use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
-use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 
 /**
  * Application
  * @codeCoverageIgnore
  */
-class Application extends ApplicationE implements CloneableInterface {
-
+class Application extends ApplicationE implements CloneableInterface
+{
     /**
      * @var \DateTime $creationDate
      */
@@ -27,16 +21,18 @@ class Application extends ApplicationE implements CloneableInterface {
     /**
      * @return \DateTime
      */
-    public function getCreationDate() {
-      return $this->creationDate;
+    public function getCreationDate()
+    {
+        return $this->creationDate;
     }
 
     /**
      * @param \DateTime $creationDate
      * @return void
      */
-    public function setCreationDate(\DateTime $creationDate) {
-      $this->creationDate = $creationDate;
+    public function setCreationDate(\DateTime $creationDate)
+    {
+        $this->creationDate = $creationDate;
     }
 
 
@@ -44,82 +40,90 @@ class Application extends ApplicationE implements CloneableInterface {
      * @var \DateTime $receiptdate
      */
     protected $receiptdate;
-    
+
     /**
      * @return \DateTime
      */
-    public function getReceiptdate() {
-      return $this->receiptdate;
+    public function getReceiptdate()
+    {
+        return $this->receiptdate;
     }
-    
+
     /**
      * @param \DateTime $receiptdate
      * @return void
      */
-    public function setReceiptdate(\DateTime $receiptdate) {
-      $this->receiptdate = $receiptdate;
+    public function setReceiptdate(\DateTime $receiptdate)
+    {
+        $this->receiptdate = $receiptdate;
     }
 
 
     /**
-     * @var integer $pool
+     * @var int $pool
      */
     protected $pool;
-    
+
     /**
-     * @return integer
+     * @return int
      */
-    public function getPool() {
-      return $this->pool;
+    public function getPool()
+    {
+        return $this->pool;
     }
-    
+
     /**
-     * @param integer $pool
+     * @param int $pool
      * @return void
      */
-    public function setPool($pool) {
-      $this->pool = $pool;
+    public function setPool($pool)
+    {
+        $this->pool = $pool;
     }
 
 
     /**
-     * @var integer $applicationType
+     * @var int $applicationType
      */
     protected $applicationType;
-    
+
     /**
-     * @return integer
+     * @return int
      */
-    public function getApplicationType() {
-      return $this->applicationType;
-    }
-    
-    /**
-     * @param integer $applicationType
-     * @return void
-     */
-    public function setApplicationType($applicationType) {
-      $this->applicationType = $applicationType;
+    public function getApplicationType()
+    {
+        return $this->applicationType;
     }
 
     /**
-     * @var integer $statusChange
-     */
-    protected $statusChange;
-    
-    /**
-     * @return integer
-     */
-    public function getStatusChange() {
-      return $this->statusChange;
-    }
-    
-    /**
-     * @param integer $statusChange
+     * @param int $applicationType
      * @return void
      */
-    public function setStatusChange($statusChange) {
-      $this->statusChange = $statusChange;
+    public function setApplicationType($applicationType)
+    {
+        $this->applicationType = $applicationType;
+    }
+
+    /**
+     * @var int $statusChange
+     */
+    protected $statusChange;
+
+    /**
+     * @return int
+     */
+    public function getStatusChange()
+    {
+        return $this->statusChange;
+    }
+
+    /**
+     * @param int $statusChange
+     * @return void
+     */
+    public function setStatusChange($statusChange)
+    {
+        $this->statusChange = $statusChange;
     }
 
 
@@ -127,20 +131,22 @@ class Application extends ApplicationE implements CloneableInterface {
      * @var PAGEmachine\Ats\Application\ApplicationRating $rating
      */
     protected $rating;
-    
+
     /**
      * @return PAGEmachine\Ats\Application\ApplicationRating
      */
-    public function getRating() {
-      return $this->rating;
+    public function getRating()
+    {
+        return $this->rating;
     }
-    
+
     /**
      * @param PAGEmachine\Ats\Application\ApplicationRating $rating
      * @return void
      */
-    public function setRating($rating) {
-      $this->rating = $rating;
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
     }
 
 
@@ -148,133 +154,145 @@ class Application extends ApplicationE implements CloneableInterface {
      * @var PAGEmachine\Ats\Application\ApplicationRating $ratingPerso
      */
     protected $ratingPerso;
-    
+
     /**
      * @return PAGEmachine\Ats\Application\ApplicationRating
      */
-    public function getRatingPerso() {
-      return $this->ratingPerso;
+    public function getRatingPerso()
+    {
+        return $this->ratingPerso;
     }
-    
+
     /**
      * @param PAGEmachine\Ats\Application\ApplicationRating $ratingPerso
      * @return void
      */
-    public function setRatingPerso($ratingPerso) {
-      $this->ratingPerso = $ratingPerso;
+    public function setRatingPerso($ratingPerso)
+    {
+        $this->ratingPerso = $ratingPerso;
     }
 
 
     /**
-     * @var integer $aip
+     * @var int $aip
      */
     protected $aip;
-    
+
     /**
-     * @return integer
+     * @return int
      */
-    public function getAip() {
-      return $this->aip;
+    public function getAip()
+    {
+        return $this->aip;
     }
-    
+
     /**
-     * @param integer $aip
+     * @param int $aip
      * @return void
      */
-    public function setAip($aip) {
-      $this->aip = $aip;
+    public function setAip($aip)
+    {
+        $this->aip = $aip;
     }
 
 
     /**
-     * @var boolean $invited
+     * @var bool $invited
      */
     protected $invited;
-    
+
     /**
-     * @return boolean
+     * @return bool
      */
-    public function getInvited() {
-      return $this->invited;
+    public function getInvited()
+    {
+        return $this->invited;
     }
-    
+
     /**
-     * @param boolean $invited
+     * @param bool $invited
      * @return void
      */
-    public function setInvited($invited) {
-      $this->invited = $invited;
+    public function setInvited($invited)
+    {
+        $this->invited = $invited;
     }
 
 
     /**
-     * @var integer $opr
+     * @var int $opr
      */
     protected $opr;
-    
+
     /**
-     * @return integer
+     * @return int
      */
-    public function getOpr() {
-      return $this->opr;
+    public function getOpr()
+    {
+        return $this->opr;
     }
-    
+
     /**
-     * @param integer $opr
+     * @param int $opr
      * @return void
      */
-    public function setOpr($opr) {
-      $this->opr = $opr;
+    public function setOpr($opr)
+    {
+        $this->opr = $opr;
     }
 
 
     /**
-     * @var boolean $anonym
+     * @var bool $anonym
      */
     protected $anonym;
-    
+
     /**
-     * @return boolean
+     * @return bool
      */
-    public function getAnonym() {
-      return $this->anonym;
+    public function getAnonym()
+    {
+        return $this->anonym;
     }
-    
+
     /**
-     * @param boolean $anonym
+     * @param bool $anonym
      * @return void
      */
-    public function setAnonym($anonym) {
-      $this->anonym = $anonym;
+    public function setAnonym($anonym)
+    {
+        $this->anonym = $anonym;
     }
 
 
     /**
-     * @var boolean $vocationalTrainingCompleted
+     * @var bool $vocationalTrainingCompleted
      */
     protected $vocationalTrainingCompleted;
-    
+
     /**
-     * @return boolean
+     * @return bool
      */
-    public function getVocationalTrainingCompleted() {
-      return $this->vocationalTrainingCompleted;
+    public function getVocationalTrainingCompleted()
+    {
+        return $this->vocationalTrainingCompleted;
     }
-    
+
     /**
-     * @param boolean $vocationalTrainingCompleted
+     * @param bool $vocationalTrainingCompleted
      * @return void
      */
-    public function setVocationalTrainingCompleted($vocationalTrainingCompleted) {
-      $this->vocationalTrainingCompleted = $vocationalTrainingCompleted;
+    public function setVocationalTrainingCompleted($vocationalTrainingCompleted)
+    {
+        $this->vocationalTrainingCompleted = $vocationalTrainingCompleted;
     }
 
 
-    public function submit() {
+    public function submit()
+    {
         $this->setCreationDate(new \DateTime);
         $this->setReceiptdate(new \DateTime);
 
         $this->setStatus(ApplicationStatus::cast(ApplicationStatus::NEW_APPLICATION));
     }
-    
 }

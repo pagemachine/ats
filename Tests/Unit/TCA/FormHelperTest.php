@@ -13,8 +13,8 @@ use TYPO3\CMS\Core\Tests\UnitTestCase;
 /**
  * Testcase for PAGEmachine\Ats\Controller\ApplicationController
  */
-class FormHelperTest extends UnitTestCase {
-
+class FormHelperTest extends UnitTestCase
+{
     /**
      * @var FormHelper
      */
@@ -36,27 +36,28 @@ class FormHelperTest extends UnitTestCase {
     /**
      * @test
      */
-    public function findsUserPa() {
+    public function findsUserPa()
+    {
 
         $this->formHelper->findUserPa($this->params);
         $this->runAsserts();
-
     }
 
     /**
      * @test
      */
-    public function findsOfficials() {
+    public function findsOfficials()
+    {
 
         $this->formHelper->findOfficials($this->params);
         $this->runAsserts();
-
     }
 
     /**
      * @test
      */
-    public function findsContributors() {
+    public function findsContributors()
+    {
 
         $this->formHelper->findContributors($this->params);
         $this->runAsserts();
@@ -66,11 +67,12 @@ class FormHelperTest extends UnitTestCase {
     /**
      * Set up this testcase
      */
-    protected function setUp() {
+    protected function setUp()
+    {
 
-        $this->formHelper = $this->getMockBuilder(Formhelper::class)->setMethods([
+        $this->formHelper = $this->getMockBuilder(FormHelper::class)->setMethods([
             'getDeleteClause',
-            'getBackendEnableFields'
+            'getBackendEnableFields',
         ])->getMock();
 
         $result = new \stdClass();
@@ -78,48 +80,47 @@ class FormHelperTest extends UnitTestCase {
         $this->databaseConnection = $this->prophesize(DatabaseConnection::class);
         $this->databaseConnection->exec_SELECTquery("uid", "be_groups", Argument::any())->willReturn($result);
         $this->databaseConnection->sql_fetch_assoc($result)->willReturn(
-              [
-                'uid' => 5
+            [
+                'uid' => 5,
               ],
-              FALSE
-            );
+            false
+        );
 
         $userResult = new \stdClass();
         $result->foo = 'BAR';
         $this->databaseConnection->exec_SELECTquery("*", "be_users", Argument::any(), '', Argument::any())->willReturn($userResult);
         $this->databaseConnection->sql_fetch_assoc($userResult)->willReturn(
-              [
+            [
                 'uid' => 1,
                 'realName' => 'Max Mueller',
-                'username' => 'mueller'
+                'username' => 'mueller',
               ],
-              FALSE
-            );
+            false
+        );
 
         $GLOBALS['TYPO3_DB'] = $this->databaseConnection->reveal();
 
         $this->params = [
             'row' => [
-                'location' => 'Zentrale'
-            ]
+                'location' => 'Zentrale',
+            ],
         ];
-
     }
 
     /**
      *
      * @return void
      */
-    protected function runAsserts() {
+    protected function runAsserts()
+    {
         $this->assertArrayHasKey('items', $this->params);
         $this->assertArraySubset(
             ["items" =>
                 [
-                    0 => [0 => 'Max Mueller (mueller)', 1 => '1']
-                ]
-            ]
-            , $this->params);
+                    0 => [0 => 'Max Mueller (mueller)', 1 => '1'],
+                ],
+            ],
+            $this->params
+        );
     }
-
-
 }

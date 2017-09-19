@@ -15,69 +15,67 @@ use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 /**
  * Testcase for PersonalDataController
  */
-class PersonalDataControllerTest extends UnitTestCase {
+class PersonalDataControllerTest extends UnitTestCase
+{
+    /**
+     * @var PersonalDataController
+    */
+    protected $controller;
 
-	/**
-	 * @var PersonalDataController
-	*/
-	protected $controller;
-
-	/**
-	 * @var ViewInterface|Prophecy\Prophecy\ObjectProphecy
-	 */
-	protected $view;
+    /**
+     * @var ViewInterface|Prophecy\Prophecy\ObjectProphecy
+     */
+    protected $view;
 
 
-	/**
-	 * @var ApplicationB|Prophecy\Prophecy\ObjectProphecy
-	 */
-	protected $application;
+    /**
+     * @var ApplicationB|Prophecy\Prophecy\ObjectProphecy
+     */
+    protected $application;
 
-	/**
-	 * Set up this testcase
-	*/
-	public function setUp() {
+    /**
+     * Set up this testcase
+    */
+    public function setUp()
+    {
 
         $this->controller = $this->getMockBuilder(PersonalDataController::class)->setMethods([
-            'forward'
+            'forward',
         ])->getMock();
 
         $this->application = $this->prophesize(ApplicationB::class);
 
         $this->view = $this->prophesize(ViewInterface::class);
         $this->inject($this->controller, 'view', $this->view->reveal());
-	}
-
-	/**
-	 * @test
-	 */
-	public function showsPersonalDataForm() {
-
-		$this->view->assign('application', $this->application->reveal())->shouldBeCalled();
-
-		$this->controller->editPersonalDataAction($this->application->reveal());
-
-	}
+    }
 
     /**
      * @test
      */
-    public function updatesAndForwardsToNextStep() {
+    public function showsPersonalDataForm()
+    {
 
-    	$repository = $this->prophesize(ApplicationBRepository::class);
-    	$this->inject($this->controller, "repository", $repository->reveal());
+        $this->view->assign('application', $this->application->reveal())->shouldBeCalled();
 
-    	$request = $this->prophesize(RequestInterface::class);
-    	$request->getArgument('application')->willReturn([]);
-    	$this->inject($this->controller, 'request', $request->reveal());
+        $this->controller->editPersonalDataAction($this->application->reveal());
+    }
 
-    	$repository->addOrUpdate($this->application->reveal())->shouldBeCalled();
+    /**
+     * @test
+     */
+    public function updatesAndForwardsToNextStep()
+    {
+
+        $repository = $this->prophesize(ApplicationBRepository::class);
+        $this->inject($this->controller, "repository", $repository->reveal());
+
+        $request = $this->prophesize(RequestInterface::class);
+        $request->getArgument('application')->willReturn([]);
+        $this->inject($this->controller, 'request', $request->reveal());
+
+        $repository->addOrUpdate($this->application->reveal())->shouldBeCalled();
 
         $this->controller->expects($this->once())->method('forward');
-    	$this->controller->updatePersonalDataAction($this->application->reveal());
-
-
-
+        $this->controller->updatePersonalDataAction($this->application->reveal());
     }
-  
 }

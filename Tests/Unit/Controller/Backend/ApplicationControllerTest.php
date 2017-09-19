@@ -12,14 +12,10 @@ use PAGEmachine\Ats\Domain\Repository\JobRepository;
 use PAGEmachine\Ats\Message\AcknowledgeMessage;
 use PAGEmachine\Ats\Message\InviteMessage;
 use PAGEmachine\Ats\Message\MessageFactory;
-use PAGEmachine\Ats\Message\MessageInterface;
 use PAGEmachine\Ats\Message\RejectMessage;
 use PAGEmachine\Ats\Message\ReplyMessage;
 use PAGEmachine\Ats\Workflow\WorkflowManager;
 use Prophecy\Argument;
-use TYPO3\CMS\Backend\Template\Components\MenuRegistry;
-use TYPO3\CMS\Backend\Template\Components\Menu\Menu;
-use TYPO3\CMS\Backend\Template\Components\Menu\MenuItem;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -29,7 +25,6 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ControllerContext;
 use TYPO3\CMS\Extbase\Mvc\Controller\MvcPropertyMappingConfiguration;
 use TYPO3\CMS\Extbase\Mvc\Request;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
-use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Property\PropertyMappingConfiguration;
 
@@ -41,8 +36,8 @@ use TYPO3\CMS\Extbase\Property\PropertyMappingConfiguration;
 /**
 * Testcase for ApplicationController
 */
-class ApplicationControllerTest extends UnitTestCase {
-
+class ApplicationControllerTest extends UnitTestCase
+{
     /**
      * @var ApplicationController
      */
@@ -85,13 +80,14 @@ class ApplicationControllerTest extends UnitTestCase {
     /**
      * Set up this testcase
      */
-    protected function setUp() {
+    protected function setUp()
+    {
 
         $this->applicationController = $this->getMockBuilder(ApplicationController::class)->setMethods([
             'redirect',
             'forward',
             'addFlashMessage',
-            'getMenuRegistry'
+            'getMenuRegistry',
             ])->getMock();
 
         $this->application = new Application();
@@ -136,7 +132,6 @@ class ApplicationControllerTest extends UnitTestCase {
         );
 
         $this->applicationController->initializeIndexAction();
-
     }
 
     /**
@@ -148,13 +143,12 @@ class ApplicationControllerTest extends UnitTestCase {
 
         $this->jobRepository->findAll()->shouldBeCalled();
 
-        $this->applicationRepository->findDeadlineExceeded(argument::any(), null, $filter)->shouldBeCalled()->willReturn(['foo']);
-        $this->applicationRepository->findNew(argument::any(), null, $filter)->shouldBeCalled()->willReturn(['bar']);
-        $this->applicationRepository->findInProgress(argument::any(), null, $filter)->shouldBeCalled()->willReturn(['baz']);
+        $this->applicationRepository->findDeadlineExceeded(Argument::any(), null, $filter)->shouldBeCalled()->willReturn(['foo']);
+        $this->applicationRepository->findNew(Argument::any(), null, $filter)->shouldBeCalled()->willReturn(['bar']);
+        $this->applicationRepository->findInProgress(Argument::any(), null, $filter)->shouldBeCalled()->willReturn(['baz']);
         $this->view->assignMultiple(Argument::size(5))->shouldBeCalled();
 
         $this->applicationController->listAllAction();
-
     }
 
     /**
@@ -166,7 +160,7 @@ class ApplicationControllerTest extends UnitTestCase {
 
         $user = $this->prophesize(BackendUserAuthentication::class);
         $user->user = [
-            'uid' => 4
+            'uid' => 4,
         ];
         $GLOBALS['BE_USER'] = $user->reveal();
 
@@ -178,7 +172,6 @@ class ApplicationControllerTest extends UnitTestCase {
         $this->view->assignMultiple(Argument::size(5))->shouldBeCalled();
 
         $this->applicationController->listMineAction();
-
     }
 
     /**
@@ -191,7 +184,8 @@ class ApplicationControllerTest extends UnitTestCase {
         $this->applicationController->showAction($this->application);
     }
 
-    public function propertyFixActions() {
+    public function propertyFixActions()
+    {
 
         return [['initializeEditAction'], ['initializeUpdateAction']];
     }
@@ -225,7 +219,6 @@ class ApplicationControllerTest extends UnitTestCase {
         $mappingConfiguration->allowCreationForSubProperty("languageSkills.*")->shouldBeCalled();
 
         $this->applicationController->$action();
-
     }
 
 
@@ -271,7 +264,7 @@ class ApplicationControllerTest extends UnitTestCase {
 
         $places = [
             10 => 10,
-            20 => 20
+            20 => 20,
         ];
         $workflowManager->getPlaces()->shouldBeCalled()->willReturn($places);
 
@@ -281,7 +274,6 @@ class ApplicationControllerTest extends UnitTestCase {
         $this->view->assign('beUser', $user)->shouldBeCalled();
 
         $this->applicationController->editStatusAction($this->application);
-
     }
 
     /**
@@ -346,7 +338,6 @@ class ApplicationControllerTest extends UnitTestCase {
         );
 
         $this->applicationController->addNoteAction($note->reveal(), $application->reveal());
-
     }
 
     /**
@@ -387,13 +378,14 @@ class ApplicationControllerTest extends UnitTestCase {
     }
 
 
-    public function messageActions() {
+    public function messageActions()
+    {
 
         return [
             'Reply' => ['replyAction', 'reply', ReplyMessage::class],
             'Invite' => ['inviteAction', 'invite', InviteMessage::class],
             'Acknowledge' => ['acknowledgeAction', 'acknowledge', AcknowledgeMessage::class],
-            'Reject' => ['rejectAction', 'reject', RejectMessage::class]
+            'Reject' => ['rejectAction', 'reject', RejectMessage::class],
         ];
     }
 
@@ -412,11 +404,10 @@ class ApplicationControllerTest extends UnitTestCase {
 
         $this->view->assignMultiple([
             'message' => $message->reveal(),
-            'application' => $this->application
+            'application' => $this->application,
         ])->shouldBeCalled();
 
         $this->applicationController->$action(null, $this->application);
-
     }
 
     /**
@@ -434,20 +425,20 @@ class ApplicationControllerTest extends UnitTestCase {
 
         $this->view->assignMultiple([
             'message' => $message->reveal(),
-            'application' => $this->application
+            'application' => $this->application,
         ])->shouldBeCalled();
 
         $this->applicationController->$action($message->reveal(), null);
-
     }
 
-    public function messageSendActions() {
+    public function messageSendActions()
+    {
 
         return [
             'Reply' => ['sendReplyAction', ReplyMessage::class],
             'Invite' => ['sendInvitationAction', InviteMessage::class],
             'Acknowledge' => ['sendAcknowledgementAction', AcknowledgeMessage::class],
-            'Reject' => ['sendRejectionAction', RejectMessage::class]
+            'Reject' => ['sendRejectionAction', RejectMessage::class],
         ];
     }
 
@@ -537,7 +528,8 @@ class ApplicationControllerTest extends UnitTestCase {
     /**
      * @test
      */
-    public function runsRatingAction(){
+    public function runsRatingAction()
+    {
         $GLOBALS['BE_USER'] = new \stdClass();
         $GLOBALS['BE_USER']->user = ['foo'];
         $this->view->assign("application", $this->application)->shouldBeCalled();
@@ -550,7 +542,8 @@ class ApplicationControllerTest extends UnitTestCase {
     /**
      * @test
      */
-    public function runsRatingPersoAction(){
+    public function runsRatingPersoAction()
+    {
         $GLOBALS['BE_USER'] = new \stdClass();
         $GLOBALS['BE_USER']->user = ['foo'];
         $this->view->assign("application", $this->application)->shouldBeCalled();
@@ -563,7 +556,8 @@ class ApplicationControllerTest extends UnitTestCase {
     /**
      * @test
      */
-    public function addsRating(){
+    public function addsRating()
+    {
         $note = new Note();
         $application = $this->prophesize(Application::class);
 
@@ -588,7 +582,8 @@ class ApplicationControllerTest extends UnitTestCase {
     /**
      * @test
      */
-    public function runsBackToPersoAction(){
+    public function runsBackToPersoAction()
+    {
         $GLOBALS['BE_USER'] = new \stdClass();
         $GLOBALS['BE_USER']->user = ['foo'];
         $this->view->assign("application", $this->application)->shouldBeCalled();
@@ -600,7 +595,8 @@ class ApplicationControllerTest extends UnitTestCase {
     /**
      * @test
      */
-    public function sendBackToPerso(){
+    public function sendBackToPerso()
+    {
         $note = $this->prophesize(Note::class);
         $note->getDetails()->willReturn("Hello");
 
@@ -614,5 +610,4 @@ class ApplicationControllerTest extends UnitTestCase {
 
         $this->applicationController->sendBackToPersoAction($application->reveal(), $note->reveal());
     }
-
 }

@@ -27,32 +27,34 @@ namespace PAGEmachine\Ats\Domain\Model;
 
 /**
  * Class FileReference
- * @codeCoverageIgnore 
+ * @codeCoverageIgnore
  */
-class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference {
+class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
+{
+    /**
+     * Uid of a sys_file
+     *
+     * @var int
+     */
+    protected $originalFileIdentifier;
 
-	/**
-	 * Uid of a sys_file
-	 *
-	 * @var integer
-	 */
-	protected $originalFileIdentifier;
+    /**
+     * @param \TYPO3\CMS\Core\Resource\FileReference $originalResource
+     */
+    public function setOriginalResource(\TYPO3\CMS\Core\Resource\ResourceInterface $originalResource)
+    {
+        $this->originalResource = $originalResource;
+        $this->originalFileIdentifier = (int)$originalResource->getOriginalFile()->getUid();
+    }
 
-	/**
-	 * @param \TYPO3\CMS\Core\Resource\FileReference $originalResource
-	 */
-	public function setOriginalResource(\TYPO3\CMS\Core\Resource\ResourceInterface $originalResource) {
-		$this->originalResource = $originalResource;
-		$this->originalFileIdentifier = (int)$originalResource->getOriginalFile()->getUid();
-	}
-
-	/**
-	 *
-	 * @return String
-	 */
-	public function getBackendUrl() {
-		return $this->getOriginalResource()->getOriginalFile()->getPublicUrl(true);
-	}
+    /**
+     *
+     * @return String
+     */
+    public function getBackendUrl()
+    {
+        return $this->getOriginalResource()->getOriginalFile()->getPublicUrl(true);
+    }
 
     /**
      * setFile
@@ -60,7 +62,8 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference {
      * @param \TYPO3\CMS\Core\Resource\File $falFile
      * @return void
      */
-    public function setFile(\TYPO3\CMS\Core\Resource\File $falFile) {
+    public function setFile(\TYPO3\CMS\Core\Resource\File $falFile)
+    {
         $this->originalFileIdentifier = (int)$falFile->getUid();
     }
 }

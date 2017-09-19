@@ -3,20 +3,15 @@ namespace PAGEmachine\Ats\Service;
 
 use PAGEmachine\Ats\Application\ApplicationRating;
 use PAGEmachine\Ats\Application\ApplicationStatus;
-use PAGEmachine\Ats\Domain\Model\Application;
-use PAGEmachine\Ats\Domain\Model\Job;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Core\Database\DatabaseConnection;
 use TYPO3\CMS\Core\SingletonInterface;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /*
  * This file is part of the PAGEmachine ATS project.
  */
 
 
-class ExportService implements SingletonInterface {
-
+class ExportService implements SingletonInterface
+{
     /**
      * @var PAGEmachine\Ats\Domain\Repository\ApplicationRepository
      * @inject
@@ -29,7 +24,8 @@ class ExportService implements SingletonInterface {
      */
     protected $jobRepository;
 
-    public function __construct() {
+    public function __construct()
+    {
         $GLOBALS['LANG']->includeLLFile('EXT:ats/Resources/Private/Language/locallang.xlf');
     }
 
@@ -38,7 +34,8 @@ class ExportService implements SingletonInterface {
      *
      * @return array
      */
-    function getJobOptions(){
+    public function getJobOptions()
+    {
         $options[''] = '';
         $jobs = $this->jobRepository->findAll();
         foreach ($jobs as $job) {
@@ -52,7 +49,8 @@ class ExportService implements SingletonInterface {
      *
      * @return array
      */
-    function getExportOptions(){
+    public function getExportOptions()
+    {
         $options = [
             'uid',
             'crdate',
@@ -119,7 +117,8 @@ class ExportService implements SingletonInterface {
      *
      * @return array
      */
-    function getSimpleOptions(){
+    public function getSimpleOptions()
+    {
         $options = [
             'uid',
             'crdate',
@@ -156,7 +155,8 @@ class ExportService implements SingletonInterface {
      *
      * @return array
      */
-    function getDefaultOptions(){
+    public function getDefaultOptions()
+    {
         return $this->getExportOptions();
     }
 
@@ -166,11 +166,12 @@ class ExportService implements SingletonInterface {
      * @param  array $options
      * @return array
      */
-    function checkExportOptions($options){
+    public function checkExportOptions($options)
+    {
         $newOptions = "";
         foreach ($options as $key => $option) {
-            if(in_array($option, $this->getExportOptions())){
-               $newOptions[] = $option;
+            if (in_array($option, $this->getExportOptions())) {
+                $newOptions[] = $option;
             }
         }
         return $newOptions;
@@ -182,12 +183,13 @@ class ExportService implements SingletonInterface {
      * @param  array $options
      * @return string
      */
-    protected function getExportHeader($options){
+    protected function getExportHeader($options)
+    {
         $exportHeader = '';
         foreach ($options as $option) {
-            if($GLOBALS['LANG']->getLL('tx_ats.application.'.$option)){
+            if ($GLOBALS['LANG']->getLL('tx_ats.application.'.$option)) {
                 $exportHeader .= '"'.utf8_decode($GLOBALS['LANG']->getLL('tx_ats.application.'.$option)).'";';
-            }else{
+            } else {
                 $exportHeader .= '"'.$option.'";';
             }
         }
@@ -202,14 +204,15 @@ class ExportService implements SingletonInterface {
      * @param  array $filter
      * @return string
      */
-    protected function getExportBody($options, $filter){
+    protected function getExportBody($options, $filter)
+    {
         $where = '1=1'.$this->getExportFilterWhere($filter);
-        $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery($fields = 't1.uid', $table = 'tx_ats_domain_model_application t1 LEFT JOIN tx_ats_domain_model_job t10 ON t1.job = t10.uid', $where, $groupBy='', $orderBy='t1.crdate ASC', $limit='');
+        $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery($fields = 't1.uid', $table = 'tx_ats_domain_model_application t1 LEFT JOIN tx_ats_domain_model_job t10 ON t1.job = t10.uid', $where, $groupBy = '', $orderBy = 't1.crdate ASC', $limit = '');
         if ($res) {
             while ($uid = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)[uid]) {
                 $row = '';
                 $application = $this->applicationRepository->findByUid($uid);
-                if($application != null){
+                if ($application != null) {
                     foreach ($options as $option) {
                         switch ($option) {
                             case 'uid':
@@ -233,7 +236,7 @@ class ExportService implements SingletonInterface {
                             case 'comment_rating':
                                 $comments = [];
                                 foreach ($application->getnotes() as $key => $note) {
-                                    if( !$note->getIsInternal() ){
+                                    if (!$note->getIsInternal()) {
                                         $string = $note->getCreationDate()->format('Y-m-d').' - ';
                                         $string .= $note->getUser()->getRealName() ? $note->getUser()->getRealName().' ('.$note->getUser()->getUserName().')':$note->getUser()->getUserName();
                                         $string .= ': '.$note->getDetails();
@@ -248,7 +251,7 @@ class ExportService implements SingletonInterface {
                             case 'comment_rating_perso':
                                 $comments = [];
                                 foreach ($application->getnotes() as $key => $note) {
-                                    if( $note->getIsInternal() ){
+                                    if ($note->getIsInternal()) {
                                         $string = $note->getCreationDate()->format('Y-m-d').' - ';
                                         $string .= $note->getUser()->getRealName() ? $note->getUser()->getRealName().' ('.$note->getUser()->getUserName().')':$note->getUser()->getUserName();
                                         $string .= ': '.$note->getDetails();
@@ -376,7 +379,7 @@ class ExportService implements SingletonInterface {
                                 $row[] = 'art_grade';
                                 break;
                             case 'comment':
-                                $row[] = str_replace("\r\n", ' ',$application->getComment());
+                                $row[] = str_replace("\r\n", ' ', $application->getComment());
                                 break;
                             case 'referrer':
                                 $row[] = $GLOBALS['LANG']->getLL('tx_ats.label.referrer.'.$application->getReferrer());
@@ -406,7 +409,6 @@ class ExportService implements SingletonInterface {
                                 $row[] = '';
                                 break;
                         }
-
                     }
                     foreach ($row as $key => $value) {
                         $exportBody .= utf8_decode('"'.( empty($value) ? '-' : str_replace('"', '""', $value)).'";');
@@ -425,7 +427,8 @@ class ExportService implements SingletonInterface {
      * @param  array $filter
      * @return array
      */
-    function getExportData($options, $filter = null){
+    public function getExportData($options, $filter = null)
+    {
         if (!($options == null || $options == '')) {
             $options = $this->checkExportOptions($options);
             if (!($options == null || $options == '')) {
@@ -442,7 +445,8 @@ class ExportService implements SingletonInterface {
      * @param   array $filter
      * @return  void
      */
-    function getCsv($options, $filter = null) {
+    public function getCsv($options, $filter = null)
+    {
         header('Content-Type: text/x-csv');
         header('Content-Disposition: attachment; filename=export.csv');
         echo $this->getExportData($options, $filter);
@@ -455,20 +459,20 @@ class ExportService implements SingletonInterface {
      * @param  array $filter
      * @return string
      */
-    function getExportFilterWhere($filter){
-        if($filter['job']){
+    public function getExportFilterWhere($filter)
+    {
+        if ($filter['job']) {
             $whereClause .= ' AND t1.job = '.$filter['job'];
         }
-        if($filter['location']){
+        if ($filter['location']) {
             $whereClause .= " AND t10.location = '".$filter['location']."'";
         }
-        if($filter['start']){
+        if ($filter['start']) {
             $whereClause .= " AND t1.crdate >= UNIX_TIMESTAMP('".$filter['start']."')";
         }
-        if($filter['finish']){
+        if ($filter['finish']) {
             $whereClause .= " AND t1.crdate <= UNIX_TIMESTAMP('".$filter['finish']."')";
         }
         return $whereClause;
     }
-
 }

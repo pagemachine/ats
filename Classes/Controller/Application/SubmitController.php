@@ -12,21 +12,21 @@ use PAGEmachine\Ats\Domain\Model\Application;
  */
 class SubmitController extends AbstractApplicationController
 {
-
     /**
      * applicationRepository
      *
      * @var \PAGEmachine\Ats\Domain\Repository\ApplicationRepository
      * @inject
      */
-    protected $repository = NULL;
+    protected $repository = null;
 
     /**
      * @param  Application $application
      * @ignorevalidation $application
      * @return void
      */
-    public function showSummaryAction(Application $application) {
+    public function showSummaryAction(Application $application)
+    {
 
         $this->view->assign("application", $application);
     }
@@ -35,7 +35,8 @@ class SubmitController extends AbstractApplicationController
      * @param  Application $application
      * @return void
      */
-    public function submitAction(Application $application) {
+    public function submitAction(Application $application)
+    {
         
         $application->submit();
 
@@ -44,7 +45,4 @@ class SubmitController extends AbstractApplicationController
             'new'
         );
     }
-
-
-
 }

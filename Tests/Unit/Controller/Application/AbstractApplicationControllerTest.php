@@ -7,7 +7,6 @@ namespace PAGEmachine\Ats\Tests\Unit\Controller\Application;
 
 use PAGEmachine\Ats\Controller\Application\AbstractApplicationController;
 use PAGEmachine\Ats\Domain\Model\Application;
-use PAGEmachine\Ats\Domain\Model\Job;
 use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
 use PAGEmachine\Ats\Service\AuthenticationService;
 use Prophecy\Argument;
@@ -24,8 +23,8 @@ use TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter;
 /**
  * Testcase for PAGEmachine\Ats\Controller\AbstractApplicationController
  */
-class AbstractApplicationControllerTest extends UnitTestCase {
-
+class AbstractApplicationControllerTest extends UnitTestCase
+{
     /**
      * @var AbstractApplicationController
      */
@@ -39,11 +38,12 @@ class AbstractApplicationControllerTest extends UnitTestCase {
     /**
      * Set up this testcase
      */
-    protected function setUp() {
+    protected function setUp()
+    {
 
         $this->controller = $this->getMockBuilder(AbstractApplicationController::class)->setMethods([
             'redirectToUri',
-            'setPropertyMappingConfigurationForApplication'
+            'setPropertyMappingConfigurationForApplication',
         ])->getMock();
 
         $this->view = $this->prophesize(ViewInterface::class);
@@ -58,14 +58,15 @@ class AbstractApplicationControllerTest extends UnitTestCase {
      * @param bool $hasApplication
      * @param mixed $application
      */
-    public function redirectsToLoginUriIfNotAuthenticated($hasJob, $job, $hasApplication, $application) {
+    public function redirectsToLoginUriIfNotAuthenticated($hasJob, $job, $hasApplication, $application)
+    {
 
         $this->inject($this->controller, 'settings', [
             'loginPage' => 2,
         ]);
 
         $authenticationService = $this->prophesize(AuthenticationService::class);
-        $authenticationService->isUserAuthenticatedAndHasGroup(NULL)->willReturn(FALSE);
+        $authenticationService->isUserAuthenticatedAndHasGroup(null)->willReturn(false);
         $this->inject($this->controller, 'authenticationService', $authenticationService->reveal());
 
         $request = $this->prophesize(Request::class);
@@ -84,7 +85,7 @@ class AbstractApplicationControllerTest extends UnitTestCase {
         $this->inject($this->controller, 'applicationRepository', $applicationRepository->reveal());
 
         $uriBuilder = $this->prophesize(UriBuilder::class);
-        $uriBuilder->setCreateAbsoluteUri(TRUE)->willReturn($uriBuilder->reveal());
+        $uriBuilder->setCreateAbsoluteUri(true)->willReturn($uriBuilder->reveal());
 
         $uriBuilder->uriFor('show', ['job' => 123], 'Job')->willReturn('test/uri/');
         $uriBuilder->uriFor('form', ['job' => 123], 'Application\\Form')->willReturn('http://example.org/application/foo');
@@ -105,16 +106,17 @@ class AbstractApplicationControllerTest extends UnitTestCase {
     /**
      * @test
      */
-    public function throwsErrorIfJobArgumentIsMissing() {
+    public function throwsErrorIfJobArgumentIsMissing()
+    {
 
         $authenticationService = $this->prophesize(AuthenticationService::class);
-        $authenticationService->isUserAuthenticatedAndHasGroup(Argument::any())->willReturn(FALSE);
+        $authenticationService->isUserAuthenticatedAndHasGroup(Argument::any())->willReturn(false);
         $this->inject($this->controller, 'authenticationService', $authenticationService->reveal());
 
 
         $request = $this->prophesize(Request::class);
-        $request->hasArgument('job')->willReturn(FALSE);
-        $request->hasArgument('application')->willReturn(FALSE);
+        $request->hasArgument('job')->willReturn(false);
+        $request->hasArgument('application')->willReturn(false);
         $request->getControllerObjectName()->willReturn("PAGEmachine\Ats\Controller\ApplicationController");
         $request->getControllerActionName()->willReturn("form");
 
@@ -125,28 +127,28 @@ class AbstractApplicationControllerTest extends UnitTestCase {
         $this->expectExceptionCode(1298012500);
 
         $this->controller->initializeAction();
-
     }
 
     /**
      * @return array
      */
-    public function validRequestArguments() {
+    public function validRequestArguments()
+    {
         return [
             'job present' => [true, '123', false, null],
             'no job, but application id' => [false, null, true, '234'],
-            'no job, but application array with job id' => [false, null, true, ['job' => '123']]
+            'no job, but application array with job id' => [false, null, true, ['job' => '123']],
         ];
-
     }
 
     /**
      * @test
      */
-    public function setsTypeConverterOptionForDateTime() {
+    public function setsTypeConverterOptionForDateTime()
+    {
 
         $this->controller = $this->getMockBuilder(AbstractApplicationController::class)->setMethods([
-            'redirectToUri'
+            'redirectToUri',
         ])->getMock();
         $this->inject($this->controller, 'view', $this->view->reveal());
 
@@ -173,7 +175,5 @@ class AbstractApplicationControllerTest extends UnitTestCase {
         $configuration->setTypeConverterOption(DateTimeConverter::class, DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'Y-m-d')->shouldBeCalled();
 
         $this->controller->initializeAction();
-
-
     }
 }

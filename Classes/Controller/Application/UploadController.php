@@ -13,14 +13,13 @@ use PAGEmachine\Ats\Domain\Model\FileReference;
  */
 class UploadController extends AbstractApplicationController
 {
-
     /**
      * applicationERepository
      *
      * @var \PAGEmachine\Ats\Domain\Repository\ApplicationERepository
      * @inject
      */
-    protected $repository = NULL;
+    protected $repository = null;
 
     /**
      * @param  Job $job
@@ -28,7 +27,8 @@ class UploadController extends AbstractApplicationController
      * @ignorevalidation $application
      * @return void
      */
-    public function editUploadAction(ApplicationE $application) {
+    public function editUploadAction(ApplicationE $application)
+    {
 
         $this->view->assign("application", $application);
     }
@@ -39,7 +39,8 @@ class UploadController extends AbstractApplicationController
      * @param  ApplicationE $application
      * @return void
      */
-    public function saveUploadAction(ApplicationE $application) {
+    public function saveUploadAction(ApplicationE $application)
+    {
 
         $this->repository->addOrUpdate($application);
         $this->forward("editUpload", null, null, ['application' => $application->getUid()]);
@@ -49,13 +50,14 @@ class UploadController extends AbstractApplicationController
      * @param  ApplicationE $application
      * @return void
      */
-    public function removeUploadAction(ApplicationE $application, FileReference $file) {
+    public function removeUploadAction(ApplicationE $application, FileReference $file)
+    {
 
         $application->removeFile($file);
 
         $this->repository->addOrUpdate($application);
 
-        $this->forward("editUpload", NULL, NULL, ["application" => $application->getUid()]);
+        $this->forward("editUpload", null, null, ["application" => $application->getUid()]);
     }
 
     /**
@@ -63,13 +65,10 @@ class UploadController extends AbstractApplicationController
      * @param  ApplicationE $application
      * @return void
      */
-    public function updateUploadAction(ApplicationE $application) {
+    public function updateUploadAction(ApplicationE $application)
+    {
 
         $this->repository->addOrUpdate($application);
         $this->forward("showSummary", "Application\\Submit", null, ['application' => $application->getUid()]);
-
     }
-
-
-
 }

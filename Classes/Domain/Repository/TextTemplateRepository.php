@@ -18,14 +18,14 @@ class TextTemplateRepository extends Repository
      * @param  int $type
      * @return array
      */
-    public function getDropdownOptionsForType($type){
+    public function getDropdownOptionsForType($type)
+    {
 
         $textTemplates = $this->findByType($type);
 
         $dropdown = [];
 
         if ($textTemplates->count() > 0) {
-
             foreach ($textTemplates as $template) {
                 $dropdown[$template->getUid()] = $template->getTitle();
             }

@@ -12,21 +12,21 @@ use PAGEmachine\Ats\Domain\Model\ApplicationD;
  */
 class AdditionalDataController extends AbstractApplicationController
 {
-
     /**
      * applicationDRepository
      *
      * @var \PAGEmachine\Ats\Domain\Repository\ApplicationDRepository
      * @inject
      */
-    protected $repository = NULL;
+    protected $repository = null;
 
     /**
      * @param  ApplicationD $application
      * @ignorevalidation $application
      * @return void
      */
-    public function editAdditionalDataAction(ApplicationD $application) {
+    public function editAdditionalDataAction(ApplicationD $application)
+    {
 
         $this->view->assign("application", $application);
     }
@@ -36,12 +36,10 @@ class AdditionalDataController extends AbstractApplicationController
      * @param  ApplicationD $application
      * @return void
      */
-    public function updateAdditionalDataAction(ApplicationD $application) {
+    public function updateAdditionalDataAction(ApplicationD $application)
+    {
 
-    	$this->repository->addOrUpdate($application);
-    	$this->forward("editUpload", "Application\\Upload", null, ['application' => $application->getUid()]);
-
+        $this->repository->addOrUpdate($application);
+        $this->forward("editUpload", "Application\\Upload", null, ['application' => $application->getUid()]);
     }
-
-
 }

@@ -8,12 +8,13 @@ namespace PAGEmachine\Ats\Tests\Unit;
 use PAGEmachine\Ats\Tests\Unit\Traits\Fixtures\DerivedClass;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
 
-class StaticCallingTest extends UnitTestCase {
-
+class StaticCallingTest extends UnitTestCase
+{
     /**
      * @test
     */
-    public function callStaticPassesParametersAndReturnsValue() {
+    public function callStaticPassesParametersAndReturnsValue()
+    {
 
         $object = new DerivedClass();
 

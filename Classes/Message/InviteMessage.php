@@ -6,8 +6,8 @@ namespace PAGEmachine\Ats\Message;
  */
 
 
-class InviteMessage extends AbstractMessage {
-
+class InviteMessage extends AbstractMessage
+{
     /**
      * @var int
      */
@@ -17,7 +17,8 @@ class InviteMessage extends AbstractMessage {
      * @return string
      * @codeCoverageIgnore
      */
-    public function getName() {
+    public function getName()
+    {
 
         return "InviteMessage";
     }
@@ -46,20 +47,20 @@ class InviteMessage extends AbstractMessage {
         $this->dateTime = $dateTime;
     }
 
-    public function getDate() {
+    public function getDate()
+    {
 
         if ($this->dateTime) {
-
             return $this->dateTime->format("Y-m-d");
         }
 
         return null;
     }
 
-    public function getTime() {
+    public function getTime()
+    {
 
         if ($this->dateTime) {
-
             return $this->dateTime->format("H:i");
         }
 
@@ -89,7 +90,6 @@ class InviteMessage extends AbstractMessage {
     public function getConfirmDateString()
     {
         if ($this->confirmDate) {
-
             return $this->confirmDate->format("Y-m-d");
         }
         return null;
@@ -166,8 +166,7 @@ class InviteMessage extends AbstractMessage {
             'time' => $this->getTime(),
             'confirmDate' => $this->getConfirmDateString(),
             'building' => $this->getBuilding(),
-            'room' => $this->getRoom()
+            'room' => $this->getRoom(),
         ];
     }
-
 }

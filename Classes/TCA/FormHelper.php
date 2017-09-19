@@ -12,9 +12,8 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
  * FormHelper class, provides TCA functions for fields related to be_users/groups.
  * Former class.tx_jobmodul_TCAform.php
  */
-class FormHelper {
-
-
+class FormHelper
+{
     /**
      * populates array params[] with all Users who belong to a group that has role 'Z' (Perso)
      * required for creation of a new job in the sysfolder
@@ -22,7 +21,8 @@ class FormHelper {
      *
      * @param array $params
      */
-    public function findUserPa(&$params) {
+    public function findUserPa(&$params)
+    {
 
          $params['items'] = $this->findUserByGroupRoleAndLocation($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['job']['roles']['user_pa'], $params['row']['location']);
     }
@@ -34,7 +34,8 @@ class FormHelper {
      *
      * @param array $params
      */
-    public function findOfficials(&$params) {
+    public function findOfficials(&$params)
+    {
 
          $params['items'] = $this->findUserByGroupRoleAndLocation($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['job']['roles']['officials'], $params['row']['location']);
     }
@@ -46,7 +47,8 @@ class FormHelper {
      *
      * @param array $params
      */
-    public function findContributors(&$params) {
+    public function findContributors(&$params)
+    {
 
          $params['items'] = $this->findUserByGroupRoleAndLocation($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['job']['roles']['contributors'], $params['row']['location']);
     }
@@ -57,29 +59,26 @@ class FormHelper {
      * @param  array &$params
      * @return void
      */
-    public function findDepartment(&$params) {
+    public function findDepartment(&$params)
+    {
 
         $where = implode('', [
             'be_groups.tx_ats_location = "' . $params['row']['location'] . '"',
             $this->getDeleteClause("be_groups"),
-            $this->getBackendEnableFields("be_groups")
+            $this->getBackendEnableFields("be_groups"),
         ]);
 
         if (ExtensionManagementUtility::isLoaded('extbase_acl') && !empty($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['job']['roles']['department'])) {
-
             $where .= ' AND be_groups.tx_extbaseacl_role IN(' . $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['job']['roles']['department'] . ')';
         }
         $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery("uid, title", "be_groups", $where);
 
-        while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc ($res)) {
-
+        while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
             $params['items'][] = [
                 $row['title'],
-                $row['uid']
+                $row['uid'],
             ];
         }
-
-
     }
 
     /**
@@ -89,7 +88,8 @@ class FormHelper {
      * @param  string $location See field tx_ats_location in be_groups
      * @return array
      */
-    protected function findUserByGroupRoleAndLocation($role, $location) {
+    protected function findUserByGroupRoleAndLocation($role, $location)
+    {
 
         $groupsArray = [];
 
@@ -97,20 +97,19 @@ class FormHelper {
 
         // Include extbase acl roles if available
         if (ExtensionManagementUtility::isLoaded('extbase_acl') && !empty($role)) {
-
             $where .= ' AND be_groups.tx_extbaseacl_role = "' . $role . '"';
         }
 
         $where .= $this->getDeleteClause("be_groups") . $this->getBackendEnableFields("be_groups");
 
 
-        $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery ("uid", "be_groups", $where);
-        while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc ($res)) {
+        $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery("uid", "be_groups", $where);
+        while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
             $groupsArray[] = $row['uid'];
         }
 
         $where = ' ( 1=0 ';
-        foreach($groupsArray as $val) {
+        foreach ($groupsArray as $val) {
             $where .= " OR FIND_IN_SET($val, `usergroup`)";
         }
         $where .= ')';
@@ -118,16 +117,15 @@ class FormHelper {
         $where .= $this->getDeleteClause("be_users") . $this->getBackendEnableFields("be_users");
 
         $orderBy = 'realName';
-        $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery ("*", "be_users", $where, '', $orderBy);
+        $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery("*", "be_users", $where, '', $orderBy);
 
         $items = [];
 
-        while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc ($res)) {
+        while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
             $items[] = array($row['realName'].' ('.$row['username'].')', $row['uid']);
         }
 
         return $items;
-
     }
 
     /**
@@ -153,5 +151,4 @@ class FormHelper {
     {
         return BackendUtility::BEenableFields($table);
     }
-
 }

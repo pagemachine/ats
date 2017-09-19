@@ -11,11 +11,10 @@ use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
-use TYPO3\CMS\Fluid\View\StandaloneView;
 
-
-class PdfService implements SingletonInterface {
-	 /**
+class PdfService implements SingletonInterface
+{
+     /**
      * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
      */
     protected $objectManager;
@@ -30,7 +29,7 @@ class PdfService implements SingletonInterface {
      */
     protected $backendUser;
 
-    public function __construct(BackenduserAuthentication $backendUser = null, ObjectManager $objectManager = null)
+    public function __construct(BackendUserAuthentication $backendUser = null, ObjectManager $objectManager = null)
     {
         $this->objectManager = $objectManager ? $objectManager : GeneralUtility::makeInstance(ObjectManager::class);
         $this->configurationManager = $this->objectManager->get(ConfigurationManager::class);
@@ -41,23 +40,26 @@ class PdfService implements SingletonInterface {
      * @codeCoverageIgnore
      * @return     PdfService
      */
-	public static function getInstance() {
-		return GeneralUtility::makeInstance(self::class);
-	}
+    public static function getInstance()
+    {
+        return GeneralUtility::makeInstance(self::class);
+    }
 
     /**
      * @codeCoverageIgnore
      * @param      string  $string
      */
-    protected function setHeader($string){
+    protected function setHeader($string)
+    {
         header($string);
     }
 
     /**
      * @codeCoverageIgnore
      */
-    protected function setexit(){
-       exit;
+    protected function setexit()
+    {
+        exit;
     }
 
     /**
@@ -66,7 +68,8 @@ class PdfService implements SingletonInterface {
      * @param  string $rawFilename (without ".pdf")
      * @return string
      */
-    public function createCleanedFilename($rawFilename) {
+    public function createCleanedFilename($rawFilename)
+    {
 
         return mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $rawFilename.'.pdf');
     }
@@ -81,7 +84,8 @@ class PdfService implements SingletonInterface {
      * @param  string      $body
      * @return void
      */
-    public function generateAndDownloadPdf($subject, Application $application, $body) {
+    public function generateAndDownloadPdf($subject, Application $application, $body)
+    {
 
         $filename = $this->createCleanedFilename($subject);
         $filePath = $this->generatePdf($application, $body, $filename);
@@ -97,11 +101,12 @@ class PdfService implements SingletonInterface {
      *
      * @return     string  ( Absolute path of the pdf file )
      */
-	public function generatePdf(Application $application, $body, $fileName = 'download.pdf') {
-		$filePath = GeneralUtility::getFileAbsFileName('typo3temp/' . $fileName);
+    public function generatePdf(Application $application, $body, $fileName = 'download.pdf')
+    {
+        $filePath = GeneralUtility::getFileAbsFileName('typo3temp/' . $fileName);
 
-		/* @var $pdf \mPDF */
-        $pdf = $this->objectManager->get('mPDF','c','A4','','' , 0 , 0 , 0 , 0 , 0 , 0);
+        /* @var $pdf \mPDF */
+        $pdf = $this->objectManager->get('mPDF', 'c', 'A4', '', '', 0, 0, 0, 0, 0, 0);
 
         $pdf->setAutoTopMargin = true;
         $pdf->SetHTMLHeader($this->getTemplate('Pdf/Header', $application));
@@ -111,9 +116,9 @@ class PdfService implements SingletonInterface {
 
         $body = "<div style='margin-left: 20mm; margin-right: 20mm;'>".$body."<div>";
         $pdf->WriteHTML($body);
-		$pdf->Output($filePath, 'F');
+        $pdf->Output($filePath, 'F');
         return $filePath;
-	}
+    }
 
     /**
      * Downloads the pdf file.
@@ -121,7 +126,8 @@ class PdfService implements SingletonInterface {
      * @param      string  $filePath  The absolute file path
      * @param      string  $fileName  The download file name
      */
-    public function downloadPdf($filePath, $fileName = 'download.pdf'){
+    public function downloadPdf($filePath, $fileName = 'download.pdf')
+    {
         $this->setHeader('Content-Description: File Transfer');
         $this->setHeader('Content-Transfer-Encoding: binary');
         $this->setHeader('Cache-Control: public, must-revalidate, max-age=0');
@@ -130,7 +136,7 @@ class PdfService implements SingletonInterface {
         $this->setHeader('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
         $this->setHeader('Content-Type: application/pdf', false);
         $this->setHeader('Content-Disposition: ' .'attachment' . '; filename="' . $fileName . '"');
-        if(file_exists($filePath)){
+        if (file_exists($filePath)) {
             readfile($filePath);
             unlink($filePath);
             $this->setexit();
@@ -146,13 +152,14 @@ class PdfService implements SingletonInterface {
      *
      * @return     string  html
      */
-    protected function getTemplate($templateName, Application $application){
+    protected function getTemplate($templateName, Application $application)
+    {
         $configuration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
         $view = $this->objectManager->get(\TYPO3\CMS\Fluid\View\StandaloneView::class);
         $view->setFormat('html');
         $view->setLayoutRootPaths($configuration['view']['layoutRootPaths']);
         $view->setPartialRootPaths($configuration['view']['partialRootPaths']);
-        $view->setTemplatePathAndFilename($this->getTemplateRootPath($configuration['view']['templateRootPaths'] , $templateName));
+        $view->setTemplatePathAndFilename($this->getTemplateRootPath($configuration['view']['templateRootPaths'], $templateName));
         $view->assign('application', $application);
         $view->assign('backenduser', $this->backendUser->user);
         return $view->render();
@@ -167,15 +174,15 @@ class PdfService implements SingletonInterface {
      *
      * @return     string  The template root paths.
      */
-    protected function getTemplateRootPath($pathArray, $templateName){
+    protected function getTemplateRootPath($pathArray, $templateName)
+    {
         $path = GeneralUtility::getFileAbsFileName($pathArray[0]) . $templateName . '.html';
         foreach ($pathArray as $key => $value) {
             $template = GeneralUtility::getFileAbsFileName($value) . $templateName . '.html';
-            if(file_exists($template)){
+            if (file_exists($template)) {
                 $path = $template;
             }
         }
         return $path;
     }
-
 }

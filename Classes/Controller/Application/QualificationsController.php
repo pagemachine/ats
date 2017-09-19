@@ -2,7 +2,6 @@
 namespace PAGEmachine\Ats\Controller\Application;
 
 use PAGEmachine\Ats\Domain\Model\ApplicationC;
-use TYPO3\CMS\Extbase\Mvc\Controller\Arguments;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -13,21 +12,21 @@ use TYPO3\CMS\Extbase\Mvc\Controller\Arguments;
  */
 class QualificationsController extends AbstractApplicationController
 {
-
     /**
      * applicationCRepository
      *
      * @var \PAGEmachine\Ats\Domain\Repository\ApplicationCRepository
      * @inject
      */
-    protected $repository = NULL;
+    protected $repository = null;
 
     /**
      * @param  ApplicationC $application
      * @ignorevalidation $application
      * @return void
      */
-    public function editQualificationsAction(ApplicationC $application) {
+    public function editQualificationsAction(ApplicationC $application)
+    {
 
         $this->view->assign("application", $application);
     }
@@ -36,14 +35,14 @@ class QualificationsController extends AbstractApplicationController
      *
      * @return void
      */
-    public function initializeAction() {
+    public function initializeAction()
+    {
 
         $propertyMappingConfiguration = $this->arguments->getArgument("application")->getPropertyMappingConfiguration();
 
         $propertyMappingConfiguration->forProperty("languageSkills")->allowAllProperties();
         $propertyMappingConfiguration->forProperty("languageSkills.*")->allowProperties("language", "level", "textLanguage");
         $propertyMappingConfiguration->allowCreationForSubProperty("languageSkills.*");
-
     }
 
 
@@ -52,13 +51,10 @@ class QualificationsController extends AbstractApplicationController
      * @param  ApplicationC $application
      * @return void
      */
-    public function updateQualificationsAction(ApplicationC $application) {
+    public function updateQualificationsAction(ApplicationC $application)
+    {
 
-    	$this->repository->addOrUpdate($application);
+        $this->repository->addOrUpdate($application);
         $this->forward("editAdditionalData", "Application\\AdditionalData", null, ['application' => $application->getUid()]);
-
     }
-
-
-
 }

@@ -7,37 +7,36 @@ use TYPO3\CMS\Core\Type\Enumeration;
  * This file is part of the PAGEmachine ATS project.
  */
 
-class ApplicationRating extends Enumeration {
-
-   const __default = self::NONE;
+class ApplicationRating extends Enumeration
+{
+    const __default = self::NONE;
 
    /** @var Int */
-   const NONE = 0;
+    const NONE = 0;
 
    /** @var Int former UNGEEIGNET*/
-   const UNSUITED = 10;
+    const UNSUITED = 10;
 
    /** @var Int former GEEIGNET*/
-   const SUITED = 20;
+    const SUITED = 20;
 
    /** @var Int former ENGERE_AUSWAHL*/
-   const SHORTLISTED= 30;
+    const SHORTLISTED= 30;
 
    /** @var Int former AUSGEWAELT*/
-   const SELECTED = 40;
+    const SELECTED = 40;
 
    /** @var Int former ABSAGE_DURCH_BEWERBER*/
-   const CANCELLED_BY_CANDIDATE = 50;
+    const CANCELLED_BY_CANDIDATE = 50;
 
    /**
     * Flips getConstants() so the returned array is value => constant (for fluid forms)
     *
     * @return array
     */
-   public static function getFlippedConstants() {
+    public static function getFlippedConstants()
+    {
 
-      return array_flip(static::getConstants());
-   }
-
-
+        return array_flip(static::getConstants());
+    }
 }

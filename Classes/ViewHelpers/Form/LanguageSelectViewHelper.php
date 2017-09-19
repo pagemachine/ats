@@ -1,7 +1,6 @@
 <?php
 namespace PAGEmachine\Ats\ViewHelpers\Form;
 
-
 /*
  * This file is part of the PAGEmachine ATS project.
  */
@@ -9,8 +8,8 @@ namespace PAGEmachine\Ats\ViewHelpers\Form;
 /**
  * Custom Language SelectViewHelper for static_languages
  */
-class LanguageSelectViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\SelectViewHelper {
-
+class LanguageSelectViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\SelectViewHelper
+{
     /**
      * Initialize arguments.
      *
@@ -23,11 +22,7 @@ class LanguageSelectViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\SelectV
         $this->registerArgument('multiple', 'boolean', 'If set multiple options may be selected.', false, false);
     }
 
-    protected function getOptions() {
-
-
+    protected function getOptions()
+    {
     }
-
-
-
 }

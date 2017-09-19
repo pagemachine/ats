@@ -7,9 +7,8 @@ use PAGEmachine\Ats\Domain\Model\Job;
  * This file is part of the PAGEmachine ATS project.
  */
 
-class ApplicationFilter {
-
-
+class ApplicationFilter
+{
     /**
      * @var Job $job
      */
@@ -62,7 +61,7 @@ class ApplicationFilter {
     protected $possibleSearchfields = [
         'uid',
         'firstname',
-        'surname'
+        'surname',
     ];
 
     /**
@@ -113,7 +112,5 @@ class ApplicationFilter {
         $this->setSearchfields(
             $this->getPossibleSearchfields()
         );
-
     }
-
 }

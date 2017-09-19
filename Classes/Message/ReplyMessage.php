@@ -6,8 +6,8 @@ namespace PAGEmachine\Ats\Message;
  */
 
 
-class ReplyMessage extends AbstractMessage {
-
+class ReplyMessage extends AbstractMessage
+{
     /**
      * @var int
      */
@@ -17,7 +17,8 @@ class ReplyMessage extends AbstractMessage {
      * @return string
      * @codeCoverageIgnore
      */
-    public function getName() {
+    public function getName()
+    {
 
         return "ReplyMessage";
     }

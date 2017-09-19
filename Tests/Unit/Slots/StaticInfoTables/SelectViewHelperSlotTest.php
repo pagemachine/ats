@@ -11,8 +11,8 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
 /**
  * Testcase for SelectViewHelperSlot
  */
-class SelectViewHelperSlotTest extends UnitTestCase {
-
+class SelectViewHelperSlotTest extends UnitTestCase
+{
     /**
      * @var SelectViewHelperSlot
      */
@@ -21,7 +21,8 @@ class SelectViewHelperSlotTest extends UnitTestCase {
     /**
     * Set up this testcase
     */
-    public function setUp() {
+    public function setUp()
+    {
 
         $this->selectViewHelperSlot = new SelectViewHelperSlot();
     }
@@ -29,13 +30,14 @@ class SelectViewHelperSlotTest extends UnitTestCase {
     /**
      * @test
      */
-    public function limitsItemsBasedOnSettings() {
+    public function limitsItemsBasedOnSettings()
+    {
 
         $configurationManager = $this->prophesize(ConfigurationManagerInterface::class);
         $configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS)
         ->willReturn([
 
-            'allowedStaticLanguages' => '1,2,3'
+            'allowedStaticLanguages' => '1,2,3',
             ]);
 
         $objectManager = $this->prophesize(ObjectManager::class);
@@ -55,19 +57,18 @@ class SelectViewHelperSlotTest extends UnitTestCase {
         $result = $this->selectViewHelperSlot->filterLanguageItems($arguments, $items);
 
         $this->assertEquals($result['items'], [$allowedLanguage->reveal()]);
-
-
     }
 
     /**
      * @test
      */
-    public function onlyHandlesLanguageSelects() {
+    public function onlyHandlesLanguageSelects()
+    {
 
         $objectManager = $this->prophesize(ObjectManager::class);
         $objectManager->get(ConfigurationManagerInterface::class)->shouldNotBeCalled();
 
-        GeneralUtility::setSingletonInstance(ObjectManager::class, $objectManager->reveal());       
+        GeneralUtility::setSingletonInstance(ObjectManager::class, $objectManager->reveal());
 
         $arguments = ['staticInfoTable' => 'somethingelse'];
         $items = ['item', 'item2', 'item3'];
@@ -75,19 +76,19 @@ class SelectViewHelperSlotTest extends UnitTestCase {
         $result = $this->selectViewHelperSlot->filterLanguageItems($arguments, $items);
 
         $this->assertEquals($result['items'], $items);
-
     }
 
     /**
      * @test
      */
-    public function keepsItemsIfSettingIsEmpty() {
+    public function keepsItemsIfSettingIsEmpty()
+    {
 
         $configurationManager = $this->prophesize(ConfigurationManagerInterface::class);
         $configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS)
         ->willReturn([
 
-            'allowedStaticLanguages' => ''
+            'allowedStaticLanguages' => '',
             ]);
 
         $objectManager = $this->prophesize(ObjectManager::class);
@@ -108,6 +109,4 @@ class SelectViewHelperSlotTest extends UnitTestCase {
 
         $this->assertEquals($result['items'], $items);
     }
-
-
 }

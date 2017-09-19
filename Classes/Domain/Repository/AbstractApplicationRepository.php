@@ -14,7 +14,6 @@ use TYPO3\CMS\Beuser\Domain\Model\BackendUser;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Extbase\Domain\Model\FrontendUser;
 use TYPO3\CMS\Extbase\Mvc\Exception\InvalidArgumentTypeException;
-use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
@@ -59,87 +58,82 @@ class AbstractApplicationRepository extends Repository
     }
 
 
-	/**
-	 * Checks if an application is persisted and adds or updates accordingly.
-	 *
-	 * @param AbstractApplication $application
-	 */
-	public function addOrUpdate(AbstractApplication $application) {
+    /**
+     * Checks if an application is persisted and adds or updates accordingly.
+     *
+     * @param AbstractApplication $application
+     */
+    public function addOrUpdate(AbstractApplication $application)
+    {
 
-		if ($this->persistenceManager->isNewObject($application)) {
+        if ($this->persistenceManager->isNewObject($application)) {
+            $this->add($application);
+        } else {
+            $this->update($application);
+        }
 
-			$this->add($application);
-		}
-		else {
+        $this->persistenceManager->persistAll();
+    }
 
-			$this->update($application);
-		}
+    /**
+     * Finds an existing application by user and job
+     * @param  FrontendUser $user
+     * @param  Job          $job
+     * @param  Int          $minStatus The minimal status value to fetch. Standard is NEW, so no unfinished applications show up
+     * @param  Int          $maxStatus The max status value to fetch. Standard is NULL which means no restriction
+     * @return AbstractApplication
+     */
+    public function findByUserAndJob(FrontendUser $user, Job $job, $minStatus = ApplicationStatus::NEW_APPLICATION, $maxStatus = null)
+    {
 
-		$this->persistenceManager->persistAll();
+        $query = $this->createQuery();
 
-	}
-
-	/**
-	 * Finds an existing application by user and job
-	 * @param  FrontendUser $user
-	 * @param  Job          $job
-	 * @param  Int          $minStatus The minimal status value to fetch. Standard is NEW, so no unfinished applications show up
-	 * @param  Int          $maxStatus The max status value to fetch. Standard is NULL which means no restriction
-	 * @return AbstractApplication
-	 */
-	public function findByUserAndJob(FrontendUser $user, Job $job, $minStatus = ApplicationStatus::NEW_APPLICATION, $maxStatus = NULL) {
-
-		$query = $this->createQuery();
-
-		$constraints = array_merge(
-			[
-				$query->equals("user", $user),
-				$query->equals("job", $job)
-			],
-			$this->buildConstraintsForStatusRange($query, $minStatus, $maxStatus)
-		);
+        $constraints = array_merge(
+            [
+                $query->equals("user", $user),
+                $query->equals("job", $job),
+            ],
+            $this->buildConstraintsForStatusRange($query, $minStatus, $maxStatus)
+        );
 
 
 
-		$query->matching(
-			$query->logicalAnd(
-				$constraints
-			)
-		);
+        $query->matching(
+            $query->logicalAnd(
+                $constraints
+            )
+        );
 
 
-		$result = $query->execute()->getFirst();
-		return $result;
-	}
+        $result = $query->execute()->getFirst();
+        return $result;
+    }
 
-	/**
-	 * @param  QueryInterface $query
-	 * @param  Int        $minStatus
-	 * @param  Int        $maxStatus
-	 * @return array
-	 */
-	protected function buildConstraintsForStatusRange(QueryInterface $query, $minStatus, $maxStatus) {
+    /**
+     * @param  QueryInterface $query
+     * @param  Int        $minStatus
+     * @param  Int        $maxStatus
+     * @return array
+     */
+    protected function buildConstraintsForStatusRange(QueryInterface $query, $minStatus, $maxStatus)
+    {
 
-		$constraints = [];
+        $constraints = [];
 
-		if (is_int($minStatus)) {
+        if (is_int($minStatus)) {
+            $constraints[] = $query->greaterThanOrEqual("status", $minStatus);
+        } elseif ($minStatus !== null) {
+            throw new InvalidArgumentTypeException('Argument "minStatus" was expected with type int or NULL, ' . gettype($minStatus) . ' given.');
+        }
 
-			$constraints[] = $query->greaterThanOrEqual("status", $minStatus);
+        if (is_int($maxStatus)) {
+            $constraints[] = $query->lessThanOrEqual("status", $maxStatus);
+        } elseif ($maxStatus !== null) {
+            throw new InvalidArgumentTypeException('Argument "maxStatus" was expected with type int or NULL, ' . gettype($maxStatus) . ' given.');
+        }
 
-		} else if ($minStatus !== NULL) {
-			throw new InvalidArgumentTypeException('Argument "minStatus" was expected with type int or NULL, ' . gettype($minStatus) . ' given.');
-		}
-
-		if (is_int($maxStatus)) {
-			$constraints[] = $query->lessThanOrEqual("status", $maxStatus);
-
-		} else if ($maxStatus !== NULL) {
-			throw new InvalidArgumentTypeException('Argument "maxStatus" was expected with type int or NULL, ' . gettype($maxStatus) . ' given.');
-		}
-
-		return $constraints;
-
-	}
+        return $constraints;
+    }
 
     protected function buildBackendUserRestriction(QueryInterface $query, BackendUserAuthentication $backendUser)
     {
@@ -147,7 +141,7 @@ class AbstractApplicationRepository extends Repository
 
         $constraints[] = $query->contains("job.userPa", $backendUser->user['uid']);
 
-        foreach($backendUser->userGroups as $group) {
+        foreach ($backendUser->userGroups as $group) {
             $constraints[] = $query->contains("job.department", $group['uid']);
             $constraints[] = $query->contains("job.officials", $group['uid']);
             $constraints[] = $query->contains("job.contributors", $group['uid']);
@@ -161,25 +155,25 @@ class AbstractApplicationRepository extends Repository
         return $constraint;
     }
 
-	/**
-	 * Finds all applications assigned to a specific backend user (searches fields defined in extconf)
-	 *
-	 * @param  BackendUserAuthentication $user
-	 * @return QueryResult
-	 */
-	public function findByBackendUser(BackendUserAuthentication $backendUser) {
+    /**
+     * Finds all applications assigned to a specific backend user (searches fields defined in extconf)
+     *
+     * @param  BackendUserAuthentication $user
+     * @return QueryResult
+     */
+    public function findByBackendUser(BackendUserAuthentication $backendUser)
+    {
 
-		$query = $this->createQuery();
+        $query = $this->createQuery();
 
-		$constraints = $this->buildBackendUserRestriction($query, $backendUser);
+        $constraints = $this->buildBackendUserRestriction($query, $backendUser);
 
-		$query->matching(
+        $query->matching(
             $constraints
         );
 
-		return $query->execute();
-
-	}
+        return $query->execute();
+    }
 
     /**
      * Finds all archived applications
@@ -187,7 +181,8 @@ class AbstractApplicationRepository extends Repository
      * @param  BackendUserAuthentication $user
      * @return QueryResult
      */
-    public function findNonArchived() {
+    public function findNonArchived()
+    {
 
         $query = $this->createQuery();
 
@@ -210,14 +205,12 @@ class AbstractApplicationRepository extends Repository
     {
         //Apply workflow transition
         if ($this->workflow->can($application, $subject)) {
-
             $this->workflow->apply($application, $subject);
         }
 
         $history = $this->createHistory($application, $subject, $details);
 
         if ($history != null) {
-
             $application->addHistoryEntry($history);
         }
 
@@ -237,7 +230,6 @@ class AbstractApplicationRepository extends Repository
         $changes = $this->collectChangedProperties($application);
 
         if (!empty($changes) || !empty($details)) {
-
             $history = new History();
             $history->setApplication($application);
             $history->setSubject($subject);
@@ -247,7 +239,6 @@ class AbstractApplicationRepository extends Repository
 
 
             if ($this->environmentService->isEnvironmentInBackendMode()) {
-
                 $user = $this->dataMapper->map(BackendUser::class, [$GLOBALS['BE_USER']->user])[0];
                 $history->setUser($user);
             }
@@ -267,10 +258,8 @@ class AbstractApplicationRepository extends Repository
     {
         $changedProperties = [];
 
-        foreach ($application->_getProperties() as $property => $value){
-
+        foreach ($application->_getProperties() as $property => $value) {
             if ($application->_isDirty($property)) {
-
                 $column = $this->dataMapper->convertPropertyNameToColumnName($property);
 
                 $oldValue = $this->dataMapper->getPlainValue($application->_getCleanProperty($property));
@@ -279,16 +268,12 @@ class AbstractApplicationRepository extends Repository
                 //Sort out properties marked as dirty, but without a real value change
                 //f.ex. custom relation fields
                 if ($oldValue != $newValue) {
-
                     $changedProperties['oldRecord'][$column] = $oldValue;
                     $changedProperties['newRecord'][$column] = $newValue;
                 }
-
-
             }
         }
 
         return $changedProperties;
     }
-
 }

@@ -2,14 +2,13 @@
 namespace PAGEmachine\Ats\Message;
 
 use PAGEmachine\Ats\Domain\Model\Application;
-use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 
 /*
  * This file is part of the PAGEmachine ATS project.
  */
 
-interface MessageInterface {
-
+interface MessageInterface
+{
     /**
      * @return string
      */

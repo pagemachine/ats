@@ -2,7 +2,6 @@
 namespace PAGEmachine\Ats\Controller\Backend;
 
 use PAGEmachine\Ats\Application\ApplicationFilter;
-use PAGEmachine\Ats\Application\ApplicationStatus;
 use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Domain\Model\Note;
 
@@ -17,7 +16,6 @@ use PAGEmachine\Ats\Domain\Model\Note;
  */
 class ArchivedApplicationController extends ApplicationController
 {
-
     /**
      * Action URLs for the action menu
      *
@@ -25,7 +23,7 @@ class ArchivedApplicationController extends ApplicationController
      */
     protected $menuUrls = [
         ["action" => "listAll", "label" => "Archive"],
-        ["action" => "listPool", "label" => "Pool"]
+        ["action" => "listPool", "label" => "Pool"],
     ];
 
     /**
@@ -33,10 +31,10 @@ class ArchivedApplicationController extends ApplicationController
      *
      * @return void
      */
-    public function initializeIndexAction() {
+    public function initializeIndexAction()
+    {
 
         $this->forward("listAll");
-
     }
 
     /**
@@ -46,17 +44,17 @@ class ArchivedApplicationController extends ApplicationController
      * @param  bool $resetFilter
      * @return void
      */
-    public function listAllAction(ApplicationFilter $filter = null, $resetFilter = false) {
+    public function listAllAction(ApplicationFilter $filter = null, $resetFilter = false)
+    {
 
         if ($filter == null | $resetFilter === true) {
-
             $filter = new ApplicationFilter();
         }
 
         $this->view->assignMultiple([
             'applications' => $this->applicationRepository->findArchived($filter),
             'jobs' => $this->jobRepository->findAll(),
-            'filter' => $filter
+            'filter' => $filter,
         ]);
     }
 
@@ -67,17 +65,17 @@ class ArchivedApplicationController extends ApplicationController
      * @param  bool $resetFilter
      * @return void
      */
-    public function listPoolAction(ApplicationFilter $filter = null, $resetFilter = false) {
+    public function listPoolAction(ApplicationFilter $filter = null, $resetFilter = false)
+    {
 
         if ($filter == null | $resetFilter === true) {
-
             $filter = new ApplicationFilter();
         }
 
         $this->view->assignMultiple([
             'applications' => $this->applicationRepository->findPooled($filter),
             'jobs' => $this->jobRepository->findAll(),
-            'filter' => $filter
+            'filter' => $filter,
         ]);
     }
 
@@ -88,7 +86,8 @@ class ArchivedApplicationController extends ApplicationController
      * @ignorevalidation $application
      * @return void
      */
-    public function moveToPoolAction(Application $application){
+    public function moveToPoolAction(Application $application)
+    {
         $this->view->assign('application', $application);
         $this->view->assign('beUser', $GLOBALS['BE_USER']->user);
     }
@@ -102,7 +101,8 @@ class ArchivedApplicationController extends ApplicationController
      * @ignorevalidation $note
      * @return   void
      */
-    public function  updateMoveToPoolAction(Application $application, Note $note){
+    public function updateMoveToPoolAction(Application $application, Note $note)
+    {
         if (!empty($note->getDetails())) {
             $application->addNote($note);
         }
@@ -111,11 +111,10 @@ class ArchivedApplicationController extends ApplicationController
             $application,
             "moveToPool",
             [
-                "note" => $note->getDetails()
+                "note" => $note->getDetails(),
             ]
         );
         $this->addFlashMessage("Pool status successfully updated.");
         $this->redirect("moveToPool", null, null, ['application' => $application]);
     }
-
 }

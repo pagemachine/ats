@@ -52,7 +52,7 @@ class WorkflowManagerTest extends UnitTestCase
         //Set some standard values
         $this->workflowManager->setAvailableTransitions([
             'onetotwo',
-            'twotothree'
+            'twotothree',
         ]);
 
         $this->workflowManager->setMarkingProperty("property");
@@ -60,7 +60,9 @@ class WorkflowManagerTest extends UnitTestCase
         $this->definitionBuilder->addPlaces(Argument::type("array"))->willReturn(null);
 
         $this->definitionBuilder->build()->willReturn(new Definition(
-            ['place'], [], 'place'
+            ['place'],
+            [],
+            'place'
         ));
     }
 
@@ -73,11 +75,11 @@ class WorkflowManagerTest extends UnitTestCase
         $this->extconfService->getWorkflowConfiguration()->willReturn([
             'places' => [
                 'one',
-                'two'
+                'two',
             ],
             'transitions' => [
-                'onetotwo' => ['from' => 'one', 'to' => 'two']
-            ]
+                'onetotwo' => ['from' => 'one', 'to' => 'two'],
+            ],
         ]);
 
         $this->definitionBuilder->addPlaces(['one', 'two'])->shouldBeCalled();
@@ -100,11 +102,11 @@ class WorkflowManagerTest extends UnitTestCase
         $this->extconfService->getWorkflowConfiguration()->willReturn([
             'places' => [
                 'one',
-                'two'
+                'two',
             ],
             'transitions' => [
-                'specialTransition' => ['name' => 'onetotwo', 'from' => 'one', 'to' => 'two']
-            ]
+                'specialTransition' => ['name' => 'onetotwo', 'from' => 'one', 'to' => 'two'],
+            ],
         ]);
 
         $this->definitionBuilder->addPlaces(['one', 'two'])->shouldBeCalled();
@@ -126,16 +128,15 @@ class WorkflowManagerTest extends UnitTestCase
         $this->extconfService->getWorkflowConfiguration()->willReturn([
             'places' => [
                 'one',
-                'two'
+                'two',
             ],
             'transitions' => [
-                'forbiddenTransition' => ['name' => 'thisisnotallowed', 'from' => 'one', 'to' => 'two']
-            ]
+                'forbiddenTransition' => ['name' => 'thisisnotallowed', 'from' => 'one', 'to' => 'two'],
+            ],
         ]);
 
         $this->expectException(InvalidWorkflowConfigurationException::class);
 
         $this->workflowManager->getWorkflow();
-
     }
 }

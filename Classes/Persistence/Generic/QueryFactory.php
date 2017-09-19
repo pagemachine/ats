@@ -13,8 +13,8 @@ use TYPO3\CMS\Extbase\Object\Container\Exception\UnknownObjectException;
 /**
  * Override class for the extbase QueryFactory which considers default orderings and querysettings from the repository (if it exists)
  */
-class QueryFactory extends \TYPO3\CMS\Extbase\Persistence\Generic\QueryFactory {
-
+class QueryFactory extends \TYPO3\CMS\Extbase\Persistence\Generic\QueryFactory
+{
     use StaticCalling;
 
 
@@ -40,8 +40,7 @@ class QueryFactory extends \TYPO3\CMS\Extbase\Persistence\Generic\QueryFactory {
         }
 
         // If there is an existing repository, check if it provides the necessary getters for settings and orderings (via interface)
-        if ($repository !== NULL && ($repository instanceof OpenRepositoryInterface)) {
-
+        if ($repository !== null && ($repository instanceof OpenRepositoryInterface)) {
             //Set default query settings
             if ($repository->getDefaultQuerySettings() != null) {
                 $query->setQuerySettings($repository->getDefaultQuerySettings());
@@ -54,7 +53,5 @@ class QueryFactory extends \TYPO3\CMS\Extbase\Persistence\Generic\QueryFactory {
         }
 
         return $query;
-
     }
-
 }

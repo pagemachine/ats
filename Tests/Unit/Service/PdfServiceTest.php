@@ -11,15 +11,15 @@ use Prophecy\Argument;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
  * Testcase for PAGEmachine\Ats\Service\PdfService
  */
-class PdfServiceTest extends UnitTestCase {
-
+class PdfServiceTest extends UnitTestCase
+{
     /**
      *
      * @var PdfService
@@ -41,18 +41,19 @@ class PdfServiceTest extends UnitTestCase {
     /**
      * Set up this testcase
      */
-    protected function setUp() {
+    protected function setUp()
+    {
         if (!file_exists(GeneralUtility::getFileAbsFileName('typo3temp/'))) {
             mkdir(GeneralUtility::getFileAbsFileName('typo3temp/'), 0777);
         }
         if (!file_exists(GeneralUtility::getFileAbsFileName('typo3temp/Pdf'))) {
             mkdir(GeneralUtility::getFileAbsFileName('typo3temp/Pdf'), 0777);
         }
-        register_shutdown_function(function() {
-            if(file_exists(GeneralUtility::getFileAbsFileName('typo3temp/unitTest.pdf'))) {
+        register_shutdown_function(function () {
+            if (file_exists(GeneralUtility::getFileAbsFileName('typo3temp/unitTest.pdf'))) {
                 unlink(GeneralUtility::getFileAbsFileName('typo3temp/unitTest.pdf'));
             }
-            if(file_exists(GeneralUtility::getFileAbsFileName('typo3temp/Pdf/Header.html'))) {
+            if (file_exists(GeneralUtility::getFileAbsFileName('typo3temp/Pdf/Header.html'))) {
                 unlink(GeneralUtility::getFileAbsFileName('typo3temp/Pdf/Header.html'));
             }
         });
@@ -68,20 +69,20 @@ class PdfServiceTest extends UnitTestCase {
 
         $configurationManager = $this->prophesize(ConfigurationManager::class);
         $configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK)->willReturn(
-            [ 'view' => 
+            [ 'view' =>
                 ['layoutRootPaths' => [0 => GeneralUtility::getFileAbsFileName('typo3temp/')],
                 'partialRootPaths' => [0 => GeneralUtility::getFileAbsFileName('typo3temp/')],
                 'templateRootPaths' => [
                     0 => 'typo3temp/base/',
-                    10 => 'typo3temp/'
-                ]]
+                    10 => 'typo3temp/',
+                ]],
             ]
         );
 
         $objectManager = $this->prophesize(ObjectManager::class);
         $objectManager->get(ConfigurationManager::class)->willReturn($configurationManager->reveal());
         $objectManager->get(StandaloneView::class)->willReturn($this->standaloneView->reveal());
-        $objectManager->get('mPDF',Argument::type('string'),Argument::type('string'),Argument::type('string'),Argument::type('string') , 0 , 0 , 0 , 0 , 0 , 0)->willReturn(new \mPDF("c", "A4", "", "", 0, 0, 0, 0, 0, 0));
+        $objectManager->get('mPDF', Argument::type('string'), Argument::type('string'), Argument::type('string'), Argument::type('string'), 0, 0, 0, 0, 0, 0)->willReturn(new \mPDF("c", "A4", "", "", 0, 0, 0, 0, 0, 0));
 
         $this->pdfService = $this->getMockBuilder(PdfService::class)
         ->setConstructorArgs(['backendUser' => $backendUser, 'objectManager' => $objectManager->reveal()])
@@ -92,7 +93,8 @@ class PdfServiceTest extends UnitTestCase {
     /**
      * @test
      */
-    public function generatePdf() {
+    public function generatePdf()
+    {
         $this->standaloneView->setFormat(Argument::type('string'))->willReturn();
         $this->standaloneView->setLayoutRootPaths(Argument::type('array'))->willReturn(void);
         $this->standaloneView->setPartialRootPaths(Argument::type('array'))->willReturn(void);
@@ -109,7 +111,7 @@ class PdfServiceTest extends UnitTestCase {
         $path = $this->pdfService->generatePdf($this->application, '<p>Hello World!</p>', 'unitTest.pdf');
         $pdfexists = false;
         define('PDF', "\x25\x50\x44\x46\x2D");
-        if(file_exists($path)){
+        if (file_exists($path)) {
             $pdfexists = true;
             //validate pdf header
             $this->assertTrue(file_get_contents($path, false, null, 0, strlen(PDF)) === PDF) ? true : false;
@@ -121,11 +123,12 @@ class PdfServiceTest extends UnitTestCase {
     /**
      * @test
      */
-    public function downloadPdf() {
+    public function downloadPdf()
+    {
         $file = GeneralUtility::getFileAbsFileName('typo3temp/unitTest.pdf');
 
         $this->pdfService->expects($this->any())->method('setHeader')
-        ->will($this->returnCallback(function($string) {
+        ->will($this->returnCallback(function ($string) {
             $this->header[] = $string;
         }));
 
@@ -135,7 +138,7 @@ class PdfServiceTest extends UnitTestCase {
 
         $fieleHeader = false;
         foreach ($this->header as $key => $value) {
-            if($value == 'Content-Disposition: ' .'attachment' . '; filename="' . 'unitTest.pdf' . '"'){
+            if ($value == 'Content-Disposition: ' .'attachment' . '; filename="' . 'unitTest.pdf' . '"') {
                 $fieleHeader = true;
             }
         }
@@ -151,13 +154,13 @@ class PdfServiceTest extends UnitTestCase {
         $expectedFilename = "filename-fooöäü.pdf";
 
         $this->assertEquals($expectedFilename, $this->pdfService->createCleanedFilename($dirtySubject));
-        
     }
 
     /**
      * @test
      */
-    public function generateAndDownloadPdf(){
+    public function generateAndDownloadPdf()
+    {
         $pdfServiceStub = $this->getMockBuilder(PdfService::class)
         ->setConstructorArgs(['backendUser' => null, 'objectManager' => $this->prophesize(ObjectManager::class)->reveal()])
         ->setMethods(array('createCleanedFilename','generatePdf','downloadPdf'))

@@ -6,8 +6,8 @@ namespace PAGEmachine\Ats\Persistence;
  */
 
 
-class Repository extends \TYPO3\CMS\Extbase\Persistence\Repository implements OpenRepositoryInterface {
-
+class Repository extends \TYPO3\CMS\Extbase\Persistence\Repository implements OpenRepositoryInterface
+{
     /**
      * Gets the default orderings of this repository
      *
@@ -28,5 +28,5 @@ class Repository extends \TYPO3\CMS\Extbase\Persistence\Repository implements Op
     public function getDefaultQuerySettings()
     {
         return $this->defaultQuerySettings;
-    }	
+    }
 }

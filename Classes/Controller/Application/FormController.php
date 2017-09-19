@@ -14,14 +14,13 @@ use PAGEmachine\Ats\Domain\Model\Job;
  */
 class FormController extends AbstractApplicationController
 {
-
-	/**
+    /**
      * applicationARepository
      *
      * @var \PAGEmachine\Ats\Domain\Repository\ApplicationARepository
      * @inject
      */
-    protected $applicationARepository = NULL;
+    protected $applicationARepository = null;
 
     /**
      * starts a new application form
@@ -31,20 +30,18 @@ class FormController extends AbstractApplicationController
      * @ignorevalidation $application
      * @return void
      */
-    public function formAction(Job $job, ApplicationA $application = NULL) {
+    public function formAction(Job $job, ApplicationA $application = null)
+    {
 
-        if ($application == NULL) {
-
-            $application = $this->applicationARepository->findByUserAndJob($this->authenticationService->getAuthenticatedUser(), $job, NULL, ApplicationStatus::INCOMPLETE);
-
+        if ($application == null) {
+            $application = $this->applicationARepository->findByUserAndJob($this->authenticationService->getAuthenticatedUser(), $job, null, ApplicationStatus::INCOMPLETE);
         }
 
         $this->view->assignMultiple([
             "job" => $job,
             "application" => $application,
-            "user" => $this->authenticationService->getAuthenticatedUser()
+            "user" => $this->authenticationService->getAuthenticatedUser(),
             ]);
-
     }
 
     /**
@@ -52,14 +49,11 @@ class FormController extends AbstractApplicationController
      * @param  ApplicationA $application
      * @return void
      */
-    public function updateFormAction(ApplicationA $application) {
+    public function updateFormAction(ApplicationA $application)
+    {
 
-    	$this->applicationARepository->addOrUpdate($application);
+        $this->applicationARepository->addOrUpdate($application);
 
-    	$this->forward("editPersonalData", "Application\\PersonalData", null, ['application' => $application->getUid()]);
-
+        $this->forward("editPersonalData", "Application\\PersonalData", null, ['application' => $application->getUid()]);
     }
-
-
-
 }

@@ -11,99 +11,82 @@ use TYPO3\CMS\Core\Tests\UnitTestCase;
 /**
  * Testcase for PAGEmachine\Ats\Application\ApplicationStatus
  */
-class ApplicationStatusTest extends UnitTestCase {
+class ApplicationStatusTest extends UnitTestCase
+{
+    /**
+     * @test
+     */
+    public function returnsIsSubmitted()
+    {
+        $submittedStatus = new ApplicationStatus(ApplicationStatus::NEW_APPLICATION);
+        $this->assertEquals(true, $submittedStatus->isSubmitted());
 
-	/**
-	 * 
-	 */
-	protected function setUp() {
+        $unfinishedStatus = new ApplicationStatus(ApplicationStatus::INCOMPLETE);
+        $this->assertEquals(false, $unfinishedStatus->isSubmitted());
+    }
 
-	}
+    /**
+     * @test
+     */
+    public function returnsIsInProgress()
+    {
+        $ongoingStatus = new ApplicationStatus(ApplicationStatus::PERSO);
+        $this->assertEquals(true, $ongoingStatus->isInProgress());
 
-	/**
-	 * @test
-	 */
-	public function returnsIsSubmitted() {
+        // New applications are not in progress
+        $newStatus = new ApplicationStatus(ApplicationStatus::NEW_APPLICATION);
+        $this->assertEquals(false, $newStatus->isInProgress());
 
-		$submittedStatus = new ApplicationStatus(ApplicationStatus::NEW_APPLICATION);
-		$this->assertEquals(true, $submittedStatus->isSubmitted());
+        //Employed oder dismissed applications are not in progress as well
+        $employedStatus = new ApplicationStatus(ApplicationStatus::EMPLOYED);
+        $this->assertEquals(false, $employedStatus->isInProgress());
+    }
 
-		$unfinishedStatus = new ApplicationStatus(ApplicationStatus::INCOMPLETE);
-		$this->assertEquals(false, $unfinishedStatus->isSubmitted());
+    /**
+     * @test
+     */
+    public function returnsIsNew()
+    {
+        $newStatus = new ApplicationStatus(ApplicationStatus::NEW_APPLICATION);
+        $this->assertEquals(true, $newStatus->isNew());
 
-	}
+        $unfinishedStatus = new ApplicationStatus(ApplicationStatus::INCOMPLETE);
+        $this->assertEquals(false, $unfinishedStatus->isNew());
 
-	/**
-	 * @test
-	 */
-	public function returnsIsInProgress() {
+        $ongoingStatus = new ApplicationStatus(ApplicationStatus::PERSO);
+        $this->assertEquals(false, $ongoingStatus->isNew());
+    }
 
-		$ongoingStatus = new ApplicationStatus(ApplicationStatus::PERSO);
-		$this->assertEquals(true, $ongoingStatus->isInProgress());
+    /**
+     * @test
+     */
+    public function returnsFlippedConstants()
+    {
+        $constants = ApplicationStatus::getFlippedConstants();
 
-		// New applications are not in progress
-		$newStatus = new ApplicationStatus(ApplicationStatus::NEW_APPLICATION);
-		$this->assertEquals(false, $newStatus->isInProgress());
+        $this->assertContainsOnly('string', $constants);
+        $this->assertContainsOnly('integer', array_keys($constants));
+    }
 
-		//Employed oder dismissed applications are not in progress as well
-		$employedStatus = new ApplicationStatus(ApplicationStatus::EMPLOYED);
-		$this->assertEquals(false, $employedStatus->isInProgress());
+    /**
+     * @test
+     */
+    public function neverReturnsIncompleteConstantForWorkflow()
+    {
+        $constants = ApplicationStatus::getConstantsForWorkflow();
 
-	}
+        $this->assertArrayNotHasKey(ApplicationStatus::INCOMPLETE, $constants);
+    }
 
-	/**
-	 * @test
-	 */
-	public function returnsIsNew() {
+    /**
+     * @test
+     */
+    public function returnsCompletionConstants()
+    {
+        $constants = ApplicationStatus::getConstantsForCompletion();
 
-		$newStatus = new ApplicationStatus(ApplicationStatus::NEW_APPLICATION);
-		$this->assertEquals(true, $newStatus->isNew());
-
-		$unfinishedStatus = new ApplicationStatus(ApplicationStatus::INCOMPLETE);
-		$this->assertEquals(false, $unfinishedStatus->isNew());
-
-		$ongoingStatus = new ApplicationStatus(ApplicationStatus::PERSO);
-		$this->assertEquals(false, $ongoingStatus->isNew());
-
-
-	}
-
-	/**
-	 * @test
-	 */
-	public function returnsFlippedConstants() {
-
-		$constants = ApplicationStatus::getFlippedConstants();
-
-		$this->assertContainsOnly('string', $constants);
-		$this->assertContainsOnly('integer', array_keys($constants));
-
-	}
-
-	/**
-	 * @test
-	 */
-	public function neverReturnsIncompleteConstantForWorkflow() {
-
-		$constants = ApplicationStatus::getConstantsForWorkflow();
-
-		$this->assertArrayNotHasKey(ApplicationStatus::INCOMPLETE, $constants);
-
-	}
-
-	/**
-	 * @test
-	 */
-	public function returnsCompletionConstants() {
-
-		$constants = ApplicationStatus::getConstantsForCompletion();
-
-		$this->assertArrayHasKey(ApplicationStatus::CANCELLED_BY_EMPLOYER, $constants);
-		$this->assertArrayHasKey(ApplicationStatus::EMPLOYED, $constants);
-		$this->assertArrayNotHasKey(ApplicationStatus::PERSO_FINAL, $constants);
-
-	}
-
-
-
+        $this->assertArrayHasKey(ApplicationStatus::CANCELLED_BY_EMPLOYER, $constants);
+        $this->assertArrayHasKey(ApplicationStatus::EMPLOYED, $constants);
+        $this->assertArrayNotHasKey(ApplicationStatus::PERSO_FINAL, $constants);
+    }
 }

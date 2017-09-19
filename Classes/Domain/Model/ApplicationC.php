@@ -12,31 +12,34 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  * Application
  * @codeCoverageIgnore
  */
-class ApplicationC extends ApplicationB {
-
-    public function initializeObject() {
+class ApplicationC extends ApplicationB
+{
+    public function initializeObject()
+    {
         parent::initializeObject();
         $this->languageSkills = new ObjectStorage;
     }
 
     /**
-     * @var integer $schoolQualification
+     * @var int $schoolQualification
      */
     protected $schoolQualification;
 
     /**
-     * @return integer
+     * @return int
      */
-    public function getSchoolQualification() {
-      return $this->schoolQualification;
+    public function getSchoolQualification()
+    {
+        return $this->schoolQualification;
     }
-    
+
     /**
-     * @param integer $schoolQualification
+     * @param int $schoolQualification
      * @return void
      */
-    public function setSchoolQualification($schoolQualification) {
-      $this->schoolQualification = $schoolQualification;
+    public function setSchoolQualification($schoolQualification)
+    {
+        $this->schoolQualification = $schoolQualification;
     }
 
 
@@ -44,20 +47,22 @@ class ApplicationC extends ApplicationB {
      * @var string $professionalQualification
      */
     protected $professionalQualification;
-    
+
     /**
      * @return string
      */
-    public function getProfessionalQualification() {
-      return $this->professionalQualification;
+    public function getProfessionalQualification()
+    {
+        return $this->professionalQualification;
     }
-    
+
     /**
      * @param string $professionalQualification
      * @return void
      */
-    public function setProfessionalQualification($professionalQualification) {
-      $this->professionalQualification = $professionalQualification;
+    public function setProfessionalQualification($professionalQualification)
+    {
+        $this->professionalQualification = $professionalQualification;
     }
 
 
@@ -65,20 +70,22 @@ class ApplicationC extends ApplicationB {
      * @var string $professionalQualificationFinalGrade
      */
     protected $professionalQualificationFinalGrade;
-    
+
     /**
      * @return string
      */
-    public function getProfessionalQualificationFinalGrade() {
-      return $this->professionalQualificationFinalGrade;
+    public function getProfessionalQualificationFinalGrade()
+    {
+        return $this->professionalQualificationFinalGrade;
     }
-    
+
     /**
      * @param string $professionalQualificationFinalGrade
      * @return void
      */
-    public function setProfessionalQualificationFinalGrade($professionalQualificationFinalGrade) {
-      $this->professionalQualificationFinalGrade = $professionalQualificationFinalGrade;
+    public function setProfessionalQualificationFinalGrade($professionalQualificationFinalGrade)
+    {
+        $this->professionalQualificationFinalGrade = $professionalQualificationFinalGrade;
     }
 
 
@@ -86,42 +93,46 @@ class ApplicationC extends ApplicationB {
      * @var string $academicDegree
      */
     protected $academicDegree;
-    
+
     /**
      * @return string
      */
-    public function getAcademicDegree() {
-      return $this->academicDegree;
+    public function getAcademicDegree()
+    {
+        return $this->academicDegree;
     }
-    
+
     /**
      * @param string $academicDegree
      * @return void
      */
-    public function setAcademicDegree($academicDegree) {
-      $this->academicDegree = $academicDegree;
+    public function setAcademicDegree($academicDegree)
+    {
+        $this->academicDegree = $academicDegree;
     }
 
 
-    
+
     /**
      * @var string $academicDegreeFinalGrade
      */
     protected $academicDegreeFinalGrade;
-    
+
     /**
      * @return string
      */
-    public function getAcademicDegreeFinalGrade() {
-      return $this->academicDegreeFinalGrade;
+    public function getAcademicDegreeFinalGrade()
+    {
+        return $this->academicDegreeFinalGrade;
     }
-    
+
     /**
      * @param string $academicDegreeFinalGrade
      * @return void
      */
-    public function setAcademicDegreeFinalGrade($academicDegreeFinalGrade) {
-      $this->academicDegreeFinalGrade = $academicDegreeFinalGrade;
+    public function setAcademicDegreeFinalGrade($academicDegreeFinalGrade)
+    {
+        $this->academicDegreeFinalGrade = $academicDegreeFinalGrade;
     }
 
 
@@ -129,20 +140,22 @@ class ApplicationC extends ApplicationB {
      * @var string $doctoralDegree
      */
     protected $doctoralDegree;
-    
+
     /**
      * @return string
      */
-    public function getDoctoralDegree() {
-      return $this->doctoralDegree;
+    public function getDoctoralDegree()
+    {
+        return $this->doctoralDegree;
     }
-    
+
     /**
      * @param string $doctoralDegree
      * @return void
      */
-    public function setDoctoralDegree($doctoralDegree) {
-      $this->doctoralDegree = $doctoralDegree;
+    public function setDoctoralDegree($doctoralDegree)
+    {
+        $this->doctoralDegree = $doctoralDegree;
     }
 
 
@@ -150,20 +163,22 @@ class ApplicationC extends ApplicationB {
      * @var string $doctoralDegreeFinalGrade
      */
     protected $doctoralDegreeFinalGrade;
-    
+
     /**
      * @return string
      */
-    public function getDoctoralDegreeFinalGrade() {
-      return $this->doctoralDegreeFinalGrade;
+    public function getDoctoralDegreeFinalGrade()
+    {
+        return $this->doctoralDegreeFinalGrade;
     }
-    
+
     /**
      * @param string $doctoralDegreeFinalGrade
      * @return void
      */
-    public function setDoctoralDegreeFinalGrade($doctoralDegreeFinalGrade) {
-      $this->doctoralDegreeFinalGrade = $doctoralDegreeFinalGrade;
+    public function setDoctoralDegreeFinalGrade($doctoralDegreeFinalGrade)
+    {
+        $this->doctoralDegreeFinalGrade = $doctoralDegreeFinalGrade;
     }
 
 
@@ -171,20 +186,22 @@ class ApplicationC extends ApplicationB {
      * @var string $previousKnowledge
      */
     protected $previousKnowledge;
-    
+
     /**
      * @return string
      */
-    public function getPreviousKnowledge() {
-      return $this->previousKnowledge;
+    public function getPreviousKnowledge()
+    {
+        return $this->previousKnowledge;
     }
-    
+
     /**
      * @param string $previousKnowledge
      * @return void
      */
-    public function setPreviousKnowledge($previousKnowledge) {
-      $this->previousKnowledge = $previousKnowledge;
+    public function setPreviousKnowledge($previousKnowledge)
+    {
+        $this->previousKnowledge = $previousKnowledge;
     }
 
 
@@ -192,20 +209,22 @@ class ApplicationC extends ApplicationB {
      * @var string $itKnowledge
      */
     protected $itKnowledge;
-    
+
     /**
      * @return string
      */
-    public function getItKnowledge() {
-      return $this->itKnowledge;
+    public function getItKnowledge()
+    {
+        return $this->itKnowledge;
     }
-    
+
     /**
      * @param string $itKnowledge
      * @return void
      */
-    public function setItKnowledge($itKnowledge) {
-      $this->itKnowledge = $itKnowledge;
+    public function setItKnowledge($itKnowledge)
+    {
+        $this->itKnowledge = $itKnowledge;
     }
 
     /**
@@ -213,38 +232,39 @@ class ApplicationC extends ApplicationB {
      * @lazy
      */
     protected $languageSkills;
-    
+
     /**
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
      */
-    public function getLanguageSkills() {
+    public function getLanguageSkills()
+    {
         return $this->languageSkills;
     }
-    
+
     /**
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $languageSkills
      * @return void
      */
-    public function setLanguageSkills(ObjectStorage $languageSkills) {
+    public function setLanguageSkills(ObjectStorage $languageSkills)
+    {
         $this->languageSkills = $languageSkills;
     }
-    
+
     /**
      * @param PAGEmachine\Ats\Domain\Model\LanguageSkill $languageSkill
      * @return void
      */
-    public function addLanguageSkill(PAGEmachine\Ats\Domain\Model\LanguageSkill $languageSkill) {
+    public function addLanguageSkill(PAGEmachine\Ats\Domain\Model\LanguageSkill $languageSkill)
+    {
         $this->languageSkills->attach($languageSkill);
     }
-    
+
     /**
      * @param PAGEmachine\Ats\Domain\Model\LanguageSkill $languageSkill
      * @return void
      */
-    public function removeLanguageSkill(PAGEmachine\Ats\Domain\Model\LanguageSkill $languageSkill) {
+    public function removeLanguageSkill(PAGEmachine\Ats\Domain\Model\LanguageSkill $languageSkill)
+    {
         $this->languageSkills->detach($languageSkill);
     }
-
-
-
 }

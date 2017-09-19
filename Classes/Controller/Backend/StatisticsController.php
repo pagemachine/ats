@@ -5,7 +5,6 @@ namespace PAGEmachine\Ats\Controller\Backend;
  * This file is part of the PAGEmachine ATS project.
  */
 
-use PAGEmachine\Ats\Access\Manager\ActionAccessManager;
 
 /**
  * StatisticsController
@@ -33,7 +32,7 @@ class StatisticsController extends AbstractBackendController
      */
     protected $menuUrls = [
         ["action" => "statistics", "label" => "Statistics"],
-        ["action" => "export", "label" => "Export"]
+        ["action" => "export", "label" => "Export"],
     ];
 
     /**
@@ -41,7 +40,8 @@ class StatisticsController extends AbstractBackendController
      *
      * @return void
      */
-    public function buildMenu() {
+    public function buildMenu()
+    {
 
         $menuRegistry = $this->getMenuRegistry();
 
@@ -54,17 +54,15 @@ class StatisticsController extends AbstractBackendController
                 $isActive = $this->request->getControllerActionName() === $url['action'] ? true : false;
                 $uri = $uriBuilder
                     ->reset()
-                    ->uriFor($url['action'], [], $this->request->getControllerName(), NULL, NULL);
+                    ->uriFor($url['action'], [], $this->request->getControllerName(), null, null);
                 $menuItem = $menu->makeMenuItem()
                     ->setHref($uri)
                     ->setTitle($url['label'])
                     ->setActive($isActive);
                 $menu->addMenuItem($menuItem);
-
         }
 
         $menuRegistry->addMenu($menu);
-
     }
 
     /**
@@ -86,20 +84,20 @@ class StatisticsController extends AbstractBackendController
      */
     public function statisticsAction(array $dates = null)
     {
-        if($dates != null){
+        if ($dates != null) {
             $this->view->assignMultiple([
                 'start' => $dates['start'],
-                'finish' => $dates['finish']
+                'finish' => $dates['finish'],
             ]);
         }
-        $totalApplications = $this->statisticsService->getTotalApplications( $dates );
-        $totalApplicationsProvenance = $this->statisticsService->getTotalApplicationsProvenance( $dates );
-        $ageDistribution = $this->statisticsService->getAgeDistributionUnder( $dates );
-        $tenderingProcedures = $this->statisticsService->getTenderingProcedures( $dates );
-        $interviews = $this->statisticsService->getInterviews( $dates );
-        $provenances = $this->statisticsService->getProvenances( $dates );
-        $applications = $this->statisticsService->getApplications( $dates );
-        $positions = $this->statisticsService->getOccupiedPositions( $dates );
+        $totalApplications = $this->statisticsService->getTotalApplications($dates);
+        $totalApplicationsProvenance = $this->statisticsService->getTotalApplicationsProvenance($dates);
+        $ageDistribution = $this->statisticsService->getAgeDistributionUnder($dates);
+        $tenderingProcedures = $this->statisticsService->getTenderingProcedures($dates);
+        $interviews = $this->statisticsService->getInterviews($dates);
+        $provenances = $this->statisticsService->getProvenances($dates);
+        $applications = $this->statisticsService->getApplications($dates);
+        $positions = $this->statisticsService->getOccupiedPositions($dates);
 
         $this->view->assignMultiple([
             'totalApplications' => $totalApplications,
@@ -109,7 +107,7 @@ class StatisticsController extends AbstractBackendController
             'provenances' => $provenances,
             'applications' => $applications,
             'interviews' => $interviews,
-            'positions' => $positions
+            'positions' => $positions,
             ]);
     }
 
@@ -122,7 +120,7 @@ class StatisticsController extends AbstractBackendController
     {
         $this->view->assignMultiple([
             'exportOptions' => $this->exportService->getExportOptions(),
-            'jobOptions' => $this->exportService->getJobOptions()
+            'jobOptions' => $this->exportService->getJobOptions(),
             ]);
     }
 
@@ -134,7 +132,7 @@ class StatisticsController extends AbstractBackendController
      * @param   string $exportType 'export' = normal export. 'simple' = simple export. 'custom' = Custom export
      * @return void
      */
-    public function getCsvAction( array $selectedOptions = null, array $filter = null, $exportType)
+    public function getCsvAction(array $selectedOptions = null, array $filter = null, $exportType)
     {
         switch ($exportType) {
             case 'export':
@@ -149,8 +147,3 @@ class StatisticsController extends AbstractBackendController
         $this->redirect("export");
     }
 }
-
-
-
-
-

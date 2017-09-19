@@ -5,9 +5,7 @@ namespace PAGEmachine\Ats\Controller\Application;
  * This file is part of the PAGEmachine ATS project.
  */
 
-use PAGEmachine\Ats\Domain\Model\Application;
 
-use PAGEmachine\Ats\Domain\Model\Job;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Controller\Exception\RequiredArgumentMissingException;
 
@@ -16,14 +14,13 @@ use TYPO3\CMS\Extbase\Mvc\Controller\Exception\RequiredArgumentMissingException;
  */
 class AbstractApplicationController extends ActionController
 {
-
     /**
      * applicationRepository
      *
      * @var \PAGEmachine\Ats\Domain\Repository\ApplicationRepository
      * @inject
      */
-    protected $applicationRepository = NULL;
+    protected $applicationRepository = null;
 
 
     /**
@@ -37,7 +34,8 @@ class AbstractApplicationController extends ActionController
      *
      * @return void
      */
-    public function initializeAction() {
+    public function initializeAction()
+    {
 
         if ($this->request->hasArgument('application')) {
             $this->setPropertyMappingConfigurationForApplication();
@@ -46,8 +44,7 @@ class AbstractApplicationController extends ActionController
         $groupid = !empty($this->settings['feUserGroup']) ? $this->settings['feUserGroup'] : null;
 
         if (!$this->authenticationService->isUserAuthenticatedAndHasGroup($groupid)) {
-
-           $arguments = $this->buildArgumentsForLoginHandling();
+            $arguments = $this->buildArgumentsForLoginHandling();
 
             //Create url to login page and send arguments
             $loginUri = $this->uriBuilder->reset()
@@ -65,25 +62,23 @@ class AbstractApplicationController extends ActionController
      *
      * @return array $arguments
      */
-    protected function buildArgumentsForLoginHandling() {
+    protected function buildArgumentsForLoginHandling()
+    {
 
         $job = null;
 
         if ($this->request->hasArgument("job")) {
             $job = $this->request->getArgument("job");
-
-        } else if ($this->request->hasArgument("application")) {
+        } elseif ($this->request->hasArgument("application")) {
             $application = $this->request->getArgument("application");
 
             if (is_array($application) && array_key_exists("job", $application)) {
                 $job = $application["job"];
-
-            } else if (is_numeric($application)) {
+            } elseif (is_numeric($application)) {
                 $applicationObject = $this->applicationRepository->findByUid($application);
 
                 $job = $applicationObject->getJob();
             }
-
         }
         if ($job == null) {
             throw new RequiredArgumentMissingException('Required argument "job" is not set for ' . $this->request->getControllerObjectName() . '->' . $this->request->getControllerActionName() . '.', 1298012500);
@@ -92,23 +87,21 @@ class AbstractApplicationController extends ActionController
         //Build forward and return url for login
         $arguments = [
             "return_url" => $this->uriBuilder->setCreateAbsoluteUri(true)->uriFor("form", ["job" => $job], "Application\\Form"),
-            "referrer" => $this->uriBuilder->reset()->setCreateAbsoluteUri(true)->uriFor("show", ["job" => $job], "Job")
+            "referrer" => $this->uriBuilder->reset()->setCreateAbsoluteUri(true)->uriFor("show", ["job" => $job], "Job"),
         ];
 
         return $arguments;
-
     }
 
     /**
      * @return void
      */
-    protected function setPropertyMappingConfigurationForApplication() {
+    protected function setPropertyMappingConfigurationForApplication()
+    {
 
         $this->arguments->getArgument('application')
             ->getPropertyMappingConfiguration()
             ->forProperty('birthday')
             ->setTypeConverterOption(\TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::class, \TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'Y-m-d');
-
     }
-
 }

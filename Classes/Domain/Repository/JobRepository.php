@@ -6,7 +6,6 @@ namespace PAGEmachine\Ats\Domain\Repository;
  */
 
 use PAGEmachine\Ats\Persistence\Repository;
-use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 
 /**
  * The repository for Jobs
@@ -26,6 +25,4 @@ class JobRepository extends Repository
             $query->equals('hidden', 0)
         )->execute();
     }
-
-
 }

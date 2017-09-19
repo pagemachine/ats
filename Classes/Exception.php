@@ -8,6 +8,6 @@ namespace PAGEmachine\Ats;
 /**
  * ATS Generic Exception
  */
-class Exception extends \Exception {
-
+class Exception extends \Exception
+{
 }

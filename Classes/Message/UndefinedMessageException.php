@@ -8,6 +8,6 @@ namespace PAGEmachine\Ats\Message;
 /**
  * Undefined Message Exception
  */
-class UndefinedMessageException extends \PAGEmachine\Ats\Exception {
-
+class UndefinedMessageException extends \PAGEmachine\Ats\Exception
+{
 }

@@ -9,13 +9,13 @@ use TYPO3\CMS\Core\SingletonInterface;
  */
 
 
-class MessageFactory implements SingletonInterface {
-
+class MessageFactory implements SingletonInterface
+{
     protected $messageTypes = [
         'reply' => ReplyMessage::class,
         'invite' => InviteMessage::class,
         'acknowledge' => AcknowledgeMessage::class,
-        'reject' => RejectMessage::class
+        'reject' => RejectMessage::class,
     ];
 
     /**
@@ -32,10 +32,10 @@ class MessageFactory implements SingletonInterface {
      * @param  array $backendUser
      * @return MessageInterface
      */
-    public function createMessage($type, Application $application) {
+    public function createMessage($type, Application $application)
+    {
 
         if (empty($this->messageTypes[$type])) {
-
             throw new UndefinedMessageException('There is no MessageInterface implementation for type "' . $type . '".', 1489678614);
         }
 
@@ -45,5 +45,4 @@ class MessageFactory implements SingletonInterface {
 
         return $message;
     }
-
 }

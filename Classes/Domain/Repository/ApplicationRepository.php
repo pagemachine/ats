@@ -3,10 +3,8 @@ namespace PAGEmachine\Ats\Domain\Repository;
 
 use PAGEmachine\Ats\Application\ApplicationFilter;
 use PAGEmachine\Ats\Application\ApplicationStatus;
-use PAGEmachine\Ats\Domain\Model\Job;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
-use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -17,12 +15,11 @@ use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
  */
 class ApplicationRepository extends AbstractApplicationRepository
 {
-
     /**
      * Adds the constraint for exceeded deadline
      *
      * @param  QueryInterface $query
-     * @param  integer        $deadlineTime
+     * @param  int        $deadlineTime
      * @return array
      */
     protected function getDeadlineExceededConstraint(QueryInterface $query, $deadlineTime = 0)
@@ -42,18 +39,16 @@ class ApplicationRepository extends AbstractApplicationRepository
      * @param  ApplicationFilter $filter
      * @return array
      */
-    protected function getFilterConstraints(QueryInterface $query, $constraints = [], ApplicationFilter $filter)
+    protected function getFilterConstraints(QueryInterface $query, $constraints = [], ApplicationFilter $filter = null)
     {
         if ($filter != null) {
             if ($filter->getJob() != null) {
                 $constraints[] = $query->equals("job", $filter->getJob());
             }
             if (!empty($filter->getSearchword()) && !empty($filter->getSearchfields())) {
-
                 $searchConstraint = [];
 
                 foreach ($filter->getSearchfields() as $field) {
-
                     $searchConstraint[] = $query->like($field, "%" . $filter->getSearchword() . "%");
                 }
                 $constraints[] = $query->logicalOr($searchConstraint);
@@ -78,7 +73,7 @@ class ApplicationRepository extends AbstractApplicationRepository
         $constraints = [
             $this->getDeadlineExceededConstraint($query, $deadlineTime),
             $query->greaterThan("status", ApplicationStatus::INCOMPLETE),
-            $query->lessThan("status", ApplicationStatus::EMPLOYED)
+            $query->lessThan("status", ApplicationStatus::EMPLOYED),
         ];
 
         if ($backendUser != null) {
@@ -108,7 +103,7 @@ class ApplicationRepository extends AbstractApplicationRepository
             $query->logicalNot(
                 $this->getDeadlineExceededConstraint($query, $deadlineTime)
             ),
-            $query->equals("status", ApplicationStatus::NEW_APPLICATION)
+            $query->equals("status", ApplicationStatus::NEW_APPLICATION),
         ];
 
         if ($backendUser != null) {
@@ -139,7 +134,7 @@ class ApplicationRepository extends AbstractApplicationRepository
                 $this->getDeadlineExceededConstraint($query, $deadlineTime)
             ),
             $query->greaterThan("status", ApplicationStatus::NEW_APPLICATION),
-            $query->lessThan("status", ApplicationStatus::EMPLOYED)
+            $query->lessThan("status", ApplicationStatus::EMPLOYED),
         ];
 
         if ($backendUser != null) {
@@ -158,12 +153,13 @@ class ApplicationRepository extends AbstractApplicationRepository
      * @param  ApplicationFilter $filter
      * @return QueryResult
      */
-    public function findArchived(ApplicationFilter $filter = null) {
+    public function findArchived(ApplicationFilter $filter = null)
+    {
 
         $query = $this->createQuery();
 
         $constraints = [
-            $query->greaterThanOrEqual("status", ApplicationStatus::EMPLOYED)
+            $query->greaterThanOrEqual("status", ApplicationStatus::EMPLOYED),
         ];
         $constraints = $this->getFilterConstraints($query, $constraints, $filter);
 
@@ -180,13 +176,14 @@ class ApplicationRepository extends AbstractApplicationRepository
      * @param  ApplicationFilter $filter
      * @return QueryResult
      */
-    public function findPooled(ApplicationFilter $filter = null) {
+    public function findPooled(ApplicationFilter $filter = null)
+    {
 
         $query = $this->createQuery();
 
         $constraints = [
             $query->greaterThanOrEqual("status", ApplicationStatus::EMPLOYED),
-            $query->equals("pool", true)
+            $query->equals("pool", true),
         ];
 
         $constraints = $this->getFilterConstraints($query, $constraints, $filter);

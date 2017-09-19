@@ -3,7 +3,6 @@ namespace PAGEmachine\Ats\Workflow;
 
 use PAGEmachine\Ats\Application\ApplicationStatus;
 
-
 /*
  * This file is part of the PAGEmachine ATS project.
  */
@@ -15,8 +14,8 @@ use PAGEmachine\Ats\Application\ApplicationStatus;
  *
  * @codeCoverageIgnore
  */
-class SimpleWorkflowConfiguration {
-
+class SimpleWorkflowConfiguration
+{
     protected static $places = [
         ApplicationStatus::INCOMPLETE,
         ApplicationStatus::NEW_APPLICATION,

@@ -1,7 +1,6 @@
 <?php
 namespace PAGEmachine\Ats\Workflow;
 
-use PAGEmachine\Ats\Application\ApplicationStatus;
 use PAGEmachine\Ats\Service\ExtconfService;
 use Symfony\Component\Workflow\DefinitionBuilder;
 use Symfony\Component\Workflow\MarkingStore\SingleStateMarkingStore;
@@ -10,13 +9,12 @@ use Symfony\Component\Workflow\Workflow;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-
 /*
  * This file is part of the PAGEmachine ATS project.
  */
 
-class WorkflowManager implements SingletonInterface {
-
+class WorkflowManager implements SingletonInterface
+{
     /**
      *
      * @return WorkflowManager
@@ -110,8 +108,7 @@ class WorkflowManager implements SingletonInterface {
      */
     public function getWorkflow()
     {
-        if ($this->workflow == null){
-
+        if ($this->workflow == null) {
             $this->buildWorkflow();
         }
 
@@ -143,11 +140,9 @@ class WorkflowManager implements SingletonInterface {
         $definitionBuilder->addPlaces($workflowConfiguration['places']);
 
         foreach ($workflowConfiguration['transitions'] as $transitionName => $transition) {
-
             $name = $transition['name'] ?: $transitionName;
 
             if (!in_array($name, $this->availableTransitions)) {
-
                 throw new InvalidWorkflowConfigurationException(sprintf('Workflow transition "%s" is not defined, please check your workflow configuration.', $name), 1499161275);
                 continue;
             }
