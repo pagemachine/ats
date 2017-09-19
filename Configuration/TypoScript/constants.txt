@@ -25,9 +25,3 @@ plugin.tx_ats {
 		policyPage =
 	}
 }
-
-plugin.tx_hairu.settings {
-		# cat=plugin.tx_hairu//a; type=string; label=Registration page
-		registrationPage =
-}
-

@@ -14,8 +14,8 @@ use PAGEmachine\Ats\Domain\Repository\ApplicationARepository;
 use PAGEmachine\Ats\Service\AuthenticationService;
 use Prophecy\Argument;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
+use TYPO3\CMS\Extbase\Domain\Model\FrontendUser;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
-use PAGEmachine\Hairu\Domain\Model\FrontendUser;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 
 /**
@@ -48,7 +48,7 @@ class FormControllerTest extends UnitTestCase {
      * @var ApplicationARepository|Prophecy\Prophecy\ObjectProphecy
      */
     protected $applicationARepository;
-    
+
 
     /**
      * Set up this testcase

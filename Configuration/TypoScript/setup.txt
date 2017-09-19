@@ -83,15 +83,6 @@ plugin.tx_ats {
 
 plugin.tx_ats_jobs < plugin.tx_ats
 
-plugin.tx_hairu {
-	view {
-		templateRootPaths.1 = {$plugin.tx_ats.view.templateRootPath}/Hairu/
-	}
-	settings {
-		registrationPage = {$plugin.tx_hairu.settings.registrationPage}
-	}
-}
-
 module.tx_ats {
     settings < plugin.tx_ats.settings
     persistence < plugin.tx_ats.persistence

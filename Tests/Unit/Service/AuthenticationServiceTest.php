@@ -6,10 +6,10 @@ namespace PAGEmachine\Ats\Tests\Unit\Service;
  */
 
 use PAGEmachine\Ats\Service\AuthenticationService;
-use PAGEmachine\Hairu\Domain\Service\AuthenticationService as HairuAuthenticationService;
-use PAGEmachine\Hairu\Domain\Model\FrontendUser;
-use TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
+use TYPO3\CMS\Extbase\Domain\Model\FrontendUser;
+use TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup;
+use TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository;
 
 /**
  * Testcase for PAGEmachine\Ats\Service\AuthenticationService
@@ -22,9 +22,9 @@ class AuthenticationServiceTest extends UnitTestCase {
     protected $authenticationService;
 
     /**
-     * @var HairuAuthenticationService|Prophecy\Prophecy\ObjectProphecy
+     * @var FrontendUserRepository|Prophecy\Prophecy\ObjectProphecy
      */
-    protected $hairuAuthenticationService;
+    protected $frontendUserRepository;
 
     /**
      * @var FrontendUser|Prophecy\Prophecy\ObjectProphecy
@@ -38,31 +38,33 @@ class AuthenticationServiceTest extends UnitTestCase {
     protected function setUp() {
         $this->authenticationService = new AuthenticationService;
 
-        $this->hairuAuthenticationService = $this->prophesize(HairuAuthenticationService::class);
-
         $this->frontendUser = $this->prophesize(FrontendUser::class);
+
+        $this->frontendUserRepository = $this->prophesize(FrontendUserRepository::class);
+        $this->frontendUserRepository->findByIdentifier(1)->willReturn($this->frontendUser->reveal());
 
         $userGroup = $this->prophesize(FrontendUserGroup::class);
         $userGroup->getUid()->willReturn(1);
 
         $this->frontendUser->getUsergroup()->willReturn([0 => $userGroup->reveal()]);
 
-        $this->hairuAuthenticationService->getAuthenticatedUser()->willReturn($this->frontendUser->reveal());
+        $this->inject($this->authenticationService, 'frontendUserRepository', $this->frontendUserRepository->reveal());
 
+        $GLOBALS['TSFE'] = new \stdClass();
+        $GLOBALS['TSFE']->fe_user = new \stdClass();
 
     }
 
     /**
      * Checks function isUserAuthenticatedAndHasGroup()
-     * 
+     *
      * @test
      * @dataProvider successfulAuthentication
      * @param int $userGroup
      */
     public function detectsUserIsAuthenticated($userGroup) {
-        $this->hairuAuthenticationService->isUserAuthenticated()->willReturn(true);
-
-        $this->inject($this->authenticationService, 'hairuAuthenticationService', $this->hairuAuthenticationService->reveal());
+        $GLOBALS['TSFE']->loginUser = true;
+        $GLOBALS['TSFE']->fe_user->user = ['uid' => 1];
 
         $this->assertTrue($this->authenticationService->isUserAuthenticatedAndHasGroup($userGroup));
 
@@ -80,16 +82,13 @@ class AuthenticationServiceTest extends UnitTestCase {
 
     /**
      * Checks function isUserAuthenticatedAndHasGroup()
-     * 
+     *
      * @test
      * @dataProvider failingAuthentication
      * @param bool $isUserAuthenticated
      * @param int $userGroup
      */
     public function detectsUserIsNotAuthenticated($isUserAuthenticated, $userGroup) {
-        $this->hairuAuthenticationService->isUserAuthenticated()->willReturn($isUserAuthenticated);
-
-        $this->inject($this->authenticationService, 'hairuAuthenticationService', $this->hairuAuthenticationService->reveal());
 
         $this->assertFalse($this->authenticationService->isUserAuthenticatedAndHasGroup($userGroup));
 
@@ -112,7 +111,9 @@ class AuthenticationServiceTest extends UnitTestCase {
      * @test
      */
     public function returnsAuthenticatedUser() {
-        $this->inject($this->authenticationService, 'hairuAuthenticationService', $this->hairuAuthenticationService->reveal());
+        $GLOBALS['TSFE']->loginUser = true;
+        $GLOBALS['TSFE']->fe_user->user = ['uid' => 1];
+
         $this->assertEquals($this->frontendUser->reveal(), $this->authenticationService->getAuthenticatedUser());
     }
 

@@ -21,7 +21,6 @@
   ],
   "require": {
     "php": "^5.6 || ^7.0",
-    "pagemachine/hairu": "^2.0.0",
     "mpdf/mpdf": "^6.1",
     "symfony/workflow": "^3.3",
     "typo3/cms": "^7.6 || ^8.7",
@@ -35,7 +34,8 @@
     "nimut/testing-framework": "^1.1"
   },
   "suggest": {
-    "typo3-ter/femanager": "for user registration and account management"
+    "typo3-ter/femanager": "for user registration and account management",
+    "pagemachine/hairu": "Frontend logins with extbase and fluid"
   },
   "config": {
     "bin-dir": "bin"
