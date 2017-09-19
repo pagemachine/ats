@@ -1,7 +1,7 @@
 <f:form.validationResults for="application.{fieldName}">
 	<f:if condition="{validationResults.flattenedErrors}">
 		<f:for each="{validationResults.errors}" as="error">
-			<span class="help-block"><f:translate key="tx_ats.error.application.{error.code}">{error.message}</f:translate></span>
+			<span class="help-block"><f:translate key="tx_ats.error.{error.code}">{error.message}</f:translate></span>
 		</f:for>
 	</f:if>
 </f:form.validationResults>
