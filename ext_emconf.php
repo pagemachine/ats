@@ -14,6 +14,9 @@ $EM_CONF['ats'] = [
             'typo3' => '7.6.0-8.7.99',
             'static_info_tables' => '6.3.0-6.99.99',
         ],
+        'suggests' => [
+            'hairu' => '2.0.0-0.0.0',
+        ],
     ],
     'createDirs' => 'fileadmin/tx_ats',
 ];
