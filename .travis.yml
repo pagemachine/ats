@@ -22,7 +22,7 @@ jobs:
       script: *script
 
     - stage: deploy
-      script: >
+      script: |
         composer global require clue/phar-composer
         export PATH=$PATH:$(composer global config bin-dir --absolute 2>/dev/null)
 
