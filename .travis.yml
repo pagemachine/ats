@@ -20,9 +20,10 @@ jobs:
         - bin/phpunit
     - php: 5.6
       script: *script
-    
+
     - stage: codestyle
       script:
+        - composer require --dev slevomat/coding-standard:^3.0
         - bin/phpcs
 
     - stage: deploy
