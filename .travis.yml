@@ -17,16 +17,16 @@ jobs:
     - script: &script
         - bin/xmllint --pattern "*.xlf*,svg" Resources
         - bin/parallel-lint --exclude bin --exclude vendor .
-        - bin/phpcs
         - bin/phpunit
     - php: 5.6
       before_script:
+        # Not compatible to PHP 5.6
         - composer remove --dev slevomat/coding-standard
-        - composer install
+      script: *script
+    
+    - stage: codestyle
       script:
-        - bin/xmllint --pattern "*.xlf*,svg" Resources
-        - bin/parallel-lint --exclude bin --exclude vendor .
-        - bin/phpunit
+        - bin/phpcs
 
     - stage: deploy
       script: |
