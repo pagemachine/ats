@@ -23,7 +23,7 @@ jobs:
         # Not compatible to PHP 5.6
         - composer remove --dev slevomat/coding-standard
       script: *script
-    
+
     - stage: codestyle
       script:
         - bin/phpcs
@@ -50,6 +50,7 @@ jobs:
             mkdir -p /tmp/vendors
             pushd /tmp/vendors
             composer require symfony/workflow:^3.3 mpdf/mpdf:^6.1
+            rm -rf vendor/mpdf/mpdf/ttfonts
             phar-composer build .
             popd
             cp /tmp/vendors/vendors.phar .
