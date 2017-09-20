@@ -1,7 +1,7 @@
 <?php
 
 $EM_CONF[$_EXTKEY] = [
-    'title' => 'ATS',
+    'title' => 'ATS: Applicant Tracking System',
     'description' => 'Extension for Job Application Management',
     'category' => 'plugin',
     'author' => 'Saskia Schreiber, Stefan Schütt',
