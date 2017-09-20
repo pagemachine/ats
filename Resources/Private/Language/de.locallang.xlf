@@ -821,9 +821,9 @@
       		  <target>Bewertung</target>
       		</trans-unit>
 
-      		<trans-unit id="be.label.ApplicationSingle.Table.RatingPerson">
-      		  <source>Rating Person</source>
-      		  <target>Bewertung Person</target>
+      		<trans-unit id="be.label.ApplicationSingle.Table.RatingPerso">
+      		  <source>Rating Pers. Dep.</source>
+      		  <target>Bewertung Personalabteilung</target>
       		</trans-unit>
 
       		<trans-unit id="be.label.ApplicationSingle.Notes">

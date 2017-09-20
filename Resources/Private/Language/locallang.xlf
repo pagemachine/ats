@@ -1092,8 +1092,8 @@
       <trans-unit id="be.label.ApplicationSingle.Table.Rating">
         <source>Rating</source>
       </trans-unit>
-      <trans-unit id="be.label.ApplicationSingle.Table.RatingPerson">
-        <source>Rating Person</source>
+      <trans-unit id="be.label.ApplicationSingle.Table.RatingPerso">
+        <source>Rating Pers. Dep.</source>
       </trans-unit>
       <trans-unit id="be.label.ApplicationSingle.Notes">
         <source>Notes</source>
