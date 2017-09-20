@@ -1,6 +1,6 @@
 <?php
 
-$EM_CONF['ats'] = [
+$EM_CONF[$_EXTKEY] = [
     'title' => 'ATS',
     'description' => 'Extension for Job Application Management',
     'category' => 'plugin',
