@@ -3,6 +3,7 @@ namespace PAGEmachine\Ats\ViewHelpers\Workflow;
 
 use PAGEmachine\Ats\Domain\Model\Application;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /*
@@ -21,12 +22,37 @@ class ApplicationActionsViewHelper extends AbstractViewHelper
     protected $workflowManager;
 
     /**
+     *
+     * @var TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
+     * @inject
+     */
+    protected $configurationManager;
+
+    /**
+     * Defined actions via pluginConfiguration
+     *
+     * @var array
+     */
+    protected $actions;
+
+    /**
      * @return void
      */
     public function initializeArguments()
     {
         $this->registerArgument('application', Application::class, 'Application to get actions for', true);
         $this->registerArgument('controller', 'string', 'Controller to get actions for', true);
+    }
+
+    /**
+     * Fetch allowed methods from pluginConfiguration
+     *
+     * @return void
+     */
+    public function initialize()
+    {
+        $configuration = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+        $this->actions = $configuration['controllerConfiguration'][$this->arguments['controller']]['actions'];
     }
 
     /**
@@ -37,7 +63,7 @@ class ApplicationActionsViewHelper extends AbstractViewHelper
     {
         $actions = [];
         foreach ($this->workflowManager->getWorkflow()->getEnabledTransitions($this->arguments['application']) as $transition) {
-            if ($this->isAccessible($transition)) {
+            if (in_array($transition->getName(), $this->actions) && $this->isAccessible($transition)) {
                 if (!in_array($transition->getName(), $actions)) {
                     $actions[] = $transition->getName();
                 }
