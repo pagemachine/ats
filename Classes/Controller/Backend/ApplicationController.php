@@ -122,13 +122,13 @@ class ApplicationController extends AbstractBackendController
      * @param \TYPO3\CMS\Extbase\Mvc\ResponseInterface $response
      * @throws \Exception|\TYPO3\CMS\Extbase\Property\Exception
     */
-    public function processRequest(\TYPO3\CMS\Extbase\Mvc\RequestInterface $request, \TYPO3\CMS\Extbase\Mvc\ResponseInterface $response) {
+    public function processRequest(\TYPO3\CMS\Extbase\Mvc\RequestInterface $request, \TYPO3\CMS\Extbase\Mvc\ResponseInterface $response)
+    {
         try {
             parent::processRequest($request, $response);
-        }
-        catch(\TYPO3\CMS\Extbase\Property\Exception $e) {
+        } catch (\TYPO3\CMS\Extbase\Property\Exception $e) {
             if ($e instanceof \TYPO3\CMS\Extbase\Property\Exception\TargetNotFoundException) {
-               $this->redirect('index');
+                $this->redirect('index');
             } else {
                 throw $e;
             }
