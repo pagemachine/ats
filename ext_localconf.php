@@ -107,8 +107,23 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('extbase_acl'))
     ];
 
     //Copy array for archived application controller
-    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['extbase_acl']['protectedControllerActions'][\PAGEmachine\Ats\Controller\Backend\ArchivedApplicationController::class] =
-        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['extbase_acl']['protectedControllerActions'][\PAGEmachine\Ats\Controller\Backend\ApplicationController::class];
+    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['extbase_acl']['protectedControllerActions'][\PAGEmachine\Ats\Controller\Backend\ArchivedApplicationController::class] = [
+        'listAll',
+        'show',
+        'edit',
+        'removeUpload',
+        'update',
+        'editStatus',
+        'updateStatus',
+        'notes',
+        'addNote',
+        'history',
+        'clone',
+        'confirmClone',
+        'listPool',
+        'moveToPool',
+        'updateMoveToPool',
+    ];
 
     $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['extbase_acl']['protectedControllerActions'][\PAGEmachine\Ats\Controller\Backend\StatisticsController::class] = [
         'statistics',
