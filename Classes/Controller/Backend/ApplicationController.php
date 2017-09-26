@@ -116,6 +116,26 @@ class ApplicationController extends AbstractBackendController
     }
 
     /**
+     * Redirect if a object is no longer available.
+     * This is important if this extension is used in combination with pagemachine/extbase-acl
+     * @param \TYPO3\CMS\Extbase\Mvc\RequestInterface $request
+     * @param \TYPO3\CMS\Extbase\Mvc\ResponseInterface $response
+     * @throws \Exception|\TYPO3\CMS\Extbase\Property\Exception
+    */
+    public function processRequest(\TYPO3\CMS\Extbase\Mvc\RequestInterface $request, \TYPO3\CMS\Extbase\Mvc\ResponseInterface $response) {
+        try {
+            parent::processRequest($request, $response);
+        }
+        catch(\TYPO3\CMS\Extbase\Property\Exception $e) {
+            if ($e instanceof \TYPO3\CMS\Extbase\Property\Exception\TargetNotFoundException) {
+               $this->redirect('index');
+            } else {
+                throw $e;
+            }
+        }
+    }
+
+    /**
      * Sets the proper type converter options for message objects
      *
      * @return void
