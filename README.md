@@ -1,6 +1,6 @@
 # Applicant Tracking System (ATS)
 
-This extension provides a platform for job application management.
+Highly customizable enterprise application tracking system based on Extbase & Fluid. Provides management of job offers and job applications, allowing for complex job application workflows involving numerous roles as they are required in environments of universities as well as private and public companies.
 
 Make sure to read the [documentation](Documentation/Index.md) for details.
 
