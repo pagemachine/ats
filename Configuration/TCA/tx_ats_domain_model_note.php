@@ -27,9 +27,11 @@ return [
 	],
 	'columns' => [
         'application' => [
-        	'config' => [
-				'type' => 'passthrough'
-        	]
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectMultipleSideBySide',
+                'foreign_table' => 'tx_ats_domain_model_application'
+            ]
         ],
         'user' => [
         	'config' => [
