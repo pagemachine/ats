@@ -6,7 +6,7 @@ if (!defined('TYPO3_MODE')) {
 
 // Load vendors via phar if environment is not in composer mode
 if (!class_exists(\Symfony\Component\Workflow\Workflow::class)) {
-    include 'phar://' . __DIR__ . '/vendors.phar/vendor/autoload.php';
+    include 'phar://' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('ats') . '/vendors.phar/vendor/autoload.php';
 }
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
