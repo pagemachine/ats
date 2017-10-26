@@ -1,12 +1,12 @@
 <?php
 namespace PAGEmachine\Ats\Domain\Model;
 
-use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
-
 /*
  * This file is part of the PAGEmachine ATS project.
  */
 
+use PAGEmachine\Ats\Domain\Model\LanguageSkill;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
  * Application
@@ -228,7 +228,7 @@ class ApplicationC extends ApplicationB
     }
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<PAGEmachine\Ats\Domain\Model\LanguageSkill>
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\PAGEmachine\Ats\Domain\Model\LanguageSkill>
      * @lazy
      */
     protected $languageSkills;
@@ -251,19 +251,19 @@ class ApplicationC extends ApplicationB
     }
 
     /**
-     * @param PAGEmachine\Ats\Domain\Model\LanguageSkill $languageSkill
+     * @param LanguageSkill $languageSkill
      * @return void
      */
-    public function addLanguageSkill(PAGEmachine\Ats\Domain\Model\LanguageSkill $languageSkill)
+    public function addLanguageSkill(LanguageSkill $languageSkill)
     {
         $this->languageSkills->attach($languageSkill);
     }
 
     /**
-     * @param PAGEmachine\Ats\Domain\Model\LanguageSkill $languageSkill
+     * @param LanguageSkill $languageSkill
      * @return void
      */
-    public function removeLanguageSkill(PAGEmachine\Ats\Domain\Model\LanguageSkill $languageSkill)
+    public function removeLanguageSkill(LanguageSkill $languageSkill)
     {
         $this->languageSkills->detach($languageSkill);
     }
