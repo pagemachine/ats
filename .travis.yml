@@ -29,38 +29,37 @@ jobs:
         - bin/phpcs
 
     - stage: deploy
+      if: tag IS present
       php: 7.1
       before_install: skip
       install: skip
       before_script: skip
       script: |
-        if [ -n "$TRAVIS_TAG" ]; then
-          echo -e "Preparing upload of release ${TRAVIS_TAG} to TER\n"
+        echo -e "Preparing upload of release ${TRAVIS_TAG} to TER\n"
 
-          TAG_ANNOTATION="$(git tag -n -l $TRAVIS_TAG)"
-          TAG_MESSAGE="${TAG_ANNOTATION#* }"
+        TAG_ANNOTATION="$(git tag -n -l $TRAVIS_TAG)"
+        TAG_MESSAGE="${TAG_ANNOTATION#* }"
 
-          git reset --hard
-          git clean -xfd
+        git reset --hard
+        git clean -xfd
 
-          echo "Creating phar files for vendors"
+        echo "Creating phar files for vendors"
 
-          composer global require clue/phar-composer
+        composer global require clue/phar-composer
 
-          mkdir -p /tmp/vendors
-          pushd /tmp/vendors
-          composer require symfony/workflow:^3.3 mpdf/mpdf:^6.1
-          rm -rf vendor/mpdf/mpdf/ttfonts
-          phar-composer build .
-          popd
-          cp /tmp/vendors/vendors.phar .
+        mkdir -p /tmp/vendors
+        pushd /tmp/vendors
+        composer require symfony/workflow:^3.3 mpdf/mpdf:^6.1
+        rm -rf vendor/mpdf/mpdf/ttfonts
+        phar-composer build .
+        popd
+        cp /tmp/vendors/vendors.phar .
 
-          export PATH=$PATH:$(composer global config bin-dir --absolute 2>/dev/null)
-          composer global require helhum/ter-client dev-master
+        export PATH=$PATH:$(composer global config bin-dir --absolute 2>/dev/null)
+        composer global require helhum/ter-client dev-master
 
-          echo "Uploading release ${TRAVIS_TAG} to TER"
-          ter-client upload $(composer config extra.typo3/cms.extension-key) . -u "$TYPO3_ORG_USERNAME" -p "$TYPO3_ORG_PASSWORD" -m "$TAG_MESSAGE"
-        fi;
+        echo "Uploading release ${TRAVIS_TAG} to TER"
+        ter-client upload $(composer config extra.typo3/cms.extension-key) . -u "$TYPO3_ORG_USERNAME" -p "$TYPO3_ORG_PASSWORD" -m "$TAG_MESSAGE"
 
 notifications:
   slack:
