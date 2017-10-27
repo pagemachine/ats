@@ -2,33 +2,37 @@ dist: trusty
 sudo: false
 language: php
 
-php:
-  - 7.0
-
 cache:
   directories:
     - $HOME/.composer/cache
 
-before_script:
+install:
   - composer install
+
+script:
+  - bin/parallel-lint --exclude bin --exclude vendor --exclude web .
 
 jobs:
   include:
-    - script: &script
-        - bin/xmllint --pattern "*.xlf*,svg" Resources
-        - bin/parallel-lint --exclude bin --exclude vendor .
-        - bin/phpunit
+    - php: 7.0
     - php: 5.6
-      before_script:
+      before_install:
         # Not compatible to PHP 5.6
         - composer remove --dev slevomat/coding-standard
-      script: *script
-
-    - stage: codestyle
+    - php: 7.1
+      env: Other lints
+      script:
+        - bin/xmllint --pattern "*.xlf*,svg" Resources
+    - php: 7.1
+      env: Codestyle
       script:
         - bin/phpcs
 
     - stage: deploy
+      php: 7.1
+      before_install: skip
+      install: skip
+      before_script: skip
       script: |
         if [ -n "$TRAVIS_TAG" ]; then
           echo -e "Preparing upload of release ${TRAVIS_TAG} to TER\n"
@@ -45,7 +49,6 @@ jobs:
             echo "Creating phar files for vendors"
 
             composer global require clue/phar-composer
-
 
             mkdir -p /tmp/vendors
             pushd /tmp/vendors
