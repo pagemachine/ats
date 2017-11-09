@@ -131,10 +131,26 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('extbase_acl'))
         'getCsv',
     ];
 
+    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['extbase_acl']['protectedControllerActions'][\PAGEmachine\Ats\Controller\Backend\NotificationApplicationController::class] = [
+        'listAll',
+        'show',
+        'edit',
+        'removeUpload',
+        'update',
+        'editStatus',
+        'updateStatus',
+        'notes',
+        'addNote',
+        'history',
+        'clone',
+        'confirmClone',
+    ];
+
     $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['extbase_acl']['protectedPartials']['ats'] = [
         'Backend\\Application\\ListNew',
         'Backend\\Application\\ListInProgress',
         'Backend\\Application\\ListDeadlineExceeded',
         'Backend\\Application\\ListArchived',
+        'Backend\\Application\\ListNotification',
     ];
 }

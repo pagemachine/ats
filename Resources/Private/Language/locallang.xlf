@@ -1051,6 +1051,10 @@
         <source>Archive</source>
       </trans-unit>
 
+      <trans-unit id="be.label.Notification">
+        <source>Mass Notification</source>
+      </trans-unit>
+
       <trans-unit id="be.label.FilterBar.All">
       	<source>All</source>
       </trans-unit>
