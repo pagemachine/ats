@@ -761,6 +761,11 @@
       		  <target>Archiv</target>
       		</trans-unit>
 
+      		<trans-unit id="be.label.Notification">
+      		  <source>Mass Notification</source>
+      		  <target>Massenbescheide</target>
+      		</trans-unit>
+
       		<trans-unit id="be.label.FilterBar.All">
       			<source>All</source>
       			<target>Alle</target>
