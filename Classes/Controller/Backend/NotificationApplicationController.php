@@ -39,11 +39,11 @@ class NotificationApplicationController extends ApplicationController
      *
      * @param  ApplicationFilter $filter
      * @param  bool $resetFilter
+     * @param  array $selected
      * @return void
      */
-    public function listAllAction(ApplicationFilter $filter = null, $resetFilter = false)
+    public function listAllAction(ApplicationFilter $filter = null, $resetFilter = false, $selected = [])
     {
-
         if ($filter == null | $resetFilter === true) {
             $filter = new ApplicationFilter();
         }
@@ -52,6 +52,7 @@ class NotificationApplicationController extends ApplicationController
             'applications' => $this->applicationRepository->findNotification($filter),
             'jobs' => $this->jobRepository->findAll(),
             'filter' => $filter,
+            'selected' => $selected
         ]);
     }
 }
