@@ -1,5 +1,5 @@
 {namespace ats=PAGEmachine\Ats\ViewHelpers}
-<f:form action="listAll" class="form-inline" method="post">
+<f:form action="listAll" object="{message}" name="{messageType}Message">
 
 	<table class="applications-list table">
 		<thead>
@@ -42,5 +42,50 @@
 		</tbody>
 	</table>
 
-	<f:form.button type="submit">Send Mail</f:form.button>
+	<div class="panel panel-default">
+
+		<div class="panel-heading">
+			<div class="form-inline">
+				<f:form.select name="messageType" class="form-control messageType" value="{messageType}" options="{null:'', reject: 'Reject', reply: 'Reply'}" />
+			</div>
+		</div>
+
+		<f:if condition="{message}">
+
+			<div class="panel-body">
+				<div class="row">
+					<f:if condition="{message.renderedBody}">
+						<f:then>
+
+							<div class="col-sm-6">
+								<f:render partial="Backend/Message/CommonFields" arguments="{message : message, previewAction: 'listAll', sendAction: 'sendInvitation', placeholders: messageType}" />
+							</div>
+
+							<div class="col-sm-6">
+								<div class="panel panel-info">
+									<div class="panel-heading">
+										<h3 class="panel-title">Preview</h3>
+									</div>
+									<div class="panel-body">
+										<f:format.raw>{message.renderedBody}</f:format.raw>
+									</div>
+								</div>
+							</div>
+
+						</f:then>
+						<f:else>
+
+							<div class="col-sm-12">
+								<f:render partial="Backend/Message/CommonFields" arguments="{message : message, previewAction: 'listAll', sendAction: 'sendInvitation', placeholders: messageType}" />
+							</div>
+
+						</f:else>
+
+					</f:if>
+				</div>
+			</div>
+		</f:if>
+
+	</div>
 </f:form>
+
