@@ -53,6 +53,12 @@ require(
         if ($("#ats-ck-body").length) {
             CKEDITOR.replace("ats-ck-body");
         }
+
+        //Mass Notification module
+        $('.messageType').change( function(){
+			this.form.submit();
+        });
+
      });
 
 });
