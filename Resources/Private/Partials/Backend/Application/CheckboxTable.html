@@ -58,7 +58,7 @@
 						<f:then>
 
 							<div class="col-sm-6">
-								<f:render partial="Backend/Message/CommonFields" arguments="{message : message, previewAction: 'listAll', sendAction: 'sendInvitation', placeholders: messageType}" />
+								<f:render partial="Backend/Message/CommonFields" arguments="{message : message, previewAction: 'listAll', sendAction: 'sendMassNotification', placeholders: messageType}" />
 							</div>
 
 							<div class="col-sm-6">
@@ -76,7 +76,7 @@
 						<f:else>
 
 							<div class="col-sm-12">
-								<f:render partial="Backend/Message/CommonFields" arguments="{message : message, previewAction: 'listAll', sendAction: 'sendInvitation', placeholders: messageType}" />
+								<f:render partial="Backend/Message/CommonFields" arguments="{message : message, previewAction: 'listAll', sendAction: 'sendMassNotification', placeholders: messageType}" />
 							</div>
 
 						</f:else>
