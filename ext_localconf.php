@@ -144,6 +144,8 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('extbase_acl'))
         'history',
         'clone',
         'confirmClone',
+        'sendMassNotification',
+        'downloadPdf',
     ];
 
     $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['extbase_acl']['protectedPartials']['ats'] = [

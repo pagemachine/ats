@@ -1,0 +1,7 @@
+<f:for each="{messages}" as="message">
+	{message.message.application.uid} {message.message.application.firstname} {message.message.application.surname}
+	<f:if condition="{message.fileName}">
+		<f:link.action action="downloadPdf" arguments="{filePath: message.filePath, fileName: message.fileName}">[Download]</f:link.action>
+	</f:if>
+	</br>
+</f:for>

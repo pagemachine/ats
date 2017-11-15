@@ -6,6 +6,7 @@ use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Domain\Model\Note;
 use PAGEmachine\Ats\Message\RejectMessage;
 use PAGEmachine\Ats\Message\ReplyMessage;
+use PAGEmachine\Ats\Service\PdfService;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -80,5 +81,76 @@ class NotificationApplicationController extends ApplicationController
             'messageType' => $messageType,
             'selected' => $selected
         ]);
+    }
+
+    /**
+     * Sends the Notifications in the desired way (mail or pdf)
+     *
+     * @param  RejectMessage $rejectMessage
+     * @param  ReplyMessage $ReplyMessage
+     * @param  string $messageType
+     * @param  array $selected
+     * @ignorevalidation $rejectMessage
+     * @ignorevalidation $replyMessage
+     * @return void
+     */
+    public function sendMassNotificationAction(RejectMessage $rejectMessage = null, ReplyMessage $replyMessage = null, $messageType = null, $selected = [])
+    {
+        $uids = array_keys($selected, 1);
+        $messages = [];
+
+        if($messageType == 'reject'){
+            $message = $rejectMessage;
+        }
+
+        if($messageType == 'reply'){
+            $message = $replyMessage;
+        }
+
+        foreach ($uids as $uid) {
+            $path = '';
+            $fileName = '';
+
+            $application = $this->applicationRepository->findByUid( $uid );
+            $message->setApplication( $application );
+            $message->setRenderedBody( null );
+
+            $this->applicationRepository->updateAndLog(
+                $message->getApplication(),
+                $messageType,
+                [
+                    'subject' => $message->getSubject(),
+                    'sendType' => $message->getSendType(),
+                    'cc' => $message->getCc(),
+                    'bcc' => $message->getBcc(),
+                    'message' => $message->getRenderedBody(),
+                ]
+            );
+
+            if( $message->getSendType() == 'mail'){
+                $message->send();
+                usleep('100');
+            }else{
+                $fileName = rand().'.pdf';
+                $filePath = $message->generatePdf( $fileName );
+            }
+
+            $messages[] = ['filePath' => $filePath, 'fileName' => $fileName, 'message' => clone $message];
+        }
+        $this->view->assignMultiple([
+            'messages' => $messages,
+        ]);
+    }
+
+    /**
+     * Downloads the pdf in the filePath
+     *
+     * @param  string $filePath
+     * @param  string $filename
+     * @return void
+     */
+    public function downloadPdfAction($filePath, $fileName)
+    {
+        PdfService::getInstance()->downloadPdf($filePath, $fileName);
     }
 }
