@@ -10,8 +10,8 @@ install:
   - composer install
 
 script:
-  - bin/parallel-lint --exclude bin --exclude vendor --exclude web .
-  - bin/phpunit
+  - composer lint:php
+  - composer test
 
 jobs:
   include:
@@ -23,11 +23,11 @@ jobs:
     - php: 7.1
       env: Other lints
       script:
-        - bin/xmllint --pattern "*.xlf*,svg" Resources
+        - composer lint:xml
     - php: 7.1
       env: Codestyle
       script:
-        - bin/phpcs
+        - composer lint:style
 
     - stage: deploy
       if: tag IS present
