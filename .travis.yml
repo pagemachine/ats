@@ -18,7 +18,7 @@ jobs:
       env: TYPO3_VERSION=^7.6
       before_install:
         # Not compatible to PHP 5.6
-        - composer remove --dev slevomat/coding-standard
+        - composer remove --no-update --dev slevomat/coding-standard
     - php: 7.0
       env: TYPO3_VERSION=^7.6
     - php: 7.0
@@ -35,7 +35,7 @@ jobs:
       php: 5.6
       before_install:
         # Not compatible to PHP 5.6
-        - composer remove --dev slevomat/coding-standard
+        - composer remove --no-update --dev slevomat/coding-standard
     - <<: *lint
       env: XML lint
       script:
