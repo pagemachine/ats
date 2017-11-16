@@ -14,11 +14,15 @@ script:
 
 jobs:
   include:
-    - php: 7.0
     - php: 5.6
+      env: TYPO3_VERSION=^7.6
       before_install:
         # Not compatible to PHP 5.6
         - composer remove --dev slevomat/coding-standard
+    - php: 7.0
+      env: TYPO3_VERSION=^7.6
+    - php: 7.0
+      env: TYPO3_VERSION=^8.7
 
     - &lint
       php: 7.0
