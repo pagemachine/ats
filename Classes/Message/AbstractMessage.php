@@ -363,7 +363,8 @@ abstract class AbstractMessage
      *
      * @return string filepath
      */
-    public function generatePdf( $fileName = 'download.pdf' ){
+    public function generatePdf($fileName = 'download.pdf')
+    {
         if ($this->sendType == AbstractMessage::SENDTYPE_PDF) {
             return PdfService::getInstance()->generatePdf($this->application, $this->getRenderedBody(), $fileName);
         }

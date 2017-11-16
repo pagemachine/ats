@@ -12,7 +12,6 @@ use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class ArrayKeyToValueViewHelper extends AbstractViewHelper
 {
-
   /**
    *  @param array  $array
    *  @param string $key
