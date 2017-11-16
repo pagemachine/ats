@@ -7,7 +7,7 @@ cache:
     - $HOME/.composer/cache
 
 install:
-  - composer install
+  - composer require typo3/cms="$TYPO3_VERSION"
 
 script:
   - composer test
