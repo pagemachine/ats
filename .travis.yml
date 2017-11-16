@@ -21,21 +21,22 @@ jobs:
         - composer remove --dev slevomat/coding-standard
 
     - &lint
-      php: 5.6
+      php: 7.0
       env: PHP lint
       install:
         - composer install
       script:
         - composer lint:php
     - <<: *lint
-      php: 7.0
+      php: 5.6
+      before_install:
+        # Not compatible to PHP 5.6
+        - composer remove --dev slevomat/coding-standard
     - <<: *lint
-      php: 7.0
       env: XML lint
       script:
         - composer lint:xml
     - <<: *lint
-      php: 7.0
       env: Codestyle
       script:
         - composer lint:style
