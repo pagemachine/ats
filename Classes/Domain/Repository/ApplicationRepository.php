@@ -210,7 +210,7 @@ class ApplicationRepository extends AbstractApplicationRepository
 
         $constraints = [
             $query->lessThan("status", ApplicationStatus::EMPLOYED),
-            $query->logicalNot( $query->equals("status", ApplicationStatus::INCOMPLETE) ),
+            $query->logicalNot($query->equals("status", ApplicationStatus::INCOMPLETE)),
         ];
         $constraints = $this->getFilterConstraints($query, $constraints, $filter);
 

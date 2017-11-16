@@ -2,8 +2,6 @@
 namespace PAGEmachine\Ats\Controller\Backend;
 
 use PAGEmachine\Ats\Application\ApplicationFilter;
-use PAGEmachine\Ats\Domain\Model\Application;
-use PAGEmachine\Ats\Domain\Model\Note;
 use PAGEmachine\Ats\Message\RejectMessage;
 use PAGEmachine\Ats\Message\ReplyMessage;
 use PAGEmachine\Ats\Service\PdfService;
@@ -56,18 +54,18 @@ class NotificationApplicationController extends ApplicationController
             $filter = new ApplicationFilter();
         }
 
-        if($messageType == 'reject'){
+        if ($messageType == 'reject') {
             $message = $rejectMessage;
         }
 
-        if($messageType == 'reply'){
+        if ($messageType == 'reply') {
             $message = $replyMessage;
         }
 
-        if($messageType != null && $messageType != 'null') {
+        if ($messageType != null && $messageType != 'null') {
             if ($message == null) {
                 $application = $this->applicationRepository->findNotification($filter)[0];
-                $message = $this->messageFactory->createMessage( $messageType , $application);
+                $message = $this->messageFactory->createMessage($messageType, $application);
             }
 
             $message->applyTextTemplate();
@@ -79,7 +77,7 @@ class NotificationApplicationController extends ApplicationController
             'filter' => $filter,
             'message' => $message,
             'messageType' => $messageType,
-            'selected' => $selected
+            'selected' => $selected,
         ]);
     }
 
@@ -99,11 +97,11 @@ class NotificationApplicationController extends ApplicationController
         $uids = array_keys($selected, 1);
         $messages = [];
 
-        if($messageType == 'reject'){
+        if ($messageType == 'reject') {
             $message = $rejectMessage;
         }
 
-        if($messageType == 'reply'){
+        if ($messageType == 'reply') {
             $message = $replyMessage;
         }
 
@@ -111,9 +109,9 @@ class NotificationApplicationController extends ApplicationController
             $path = '';
             $fileName = '';
 
-            $application = $this->applicationRepository->findByUid( $uid );
-            $message->setApplication( $application );
-            $message->setRenderedBody( null );
+            $application = $this->applicationRepository->findByUid($uid);
+            $message->setApplication($application);
+            $message->setRenderedBody(null);
 
             $this->applicationRepository->updateAndLog(
                 $message->getApplication(),
@@ -127,12 +125,12 @@ class NotificationApplicationController extends ApplicationController
                 ]
             );
 
-            if( $message->getSendType() == 'mail'){
+            if ($message->getSendType() == 'mail') {
                 $message->send();
                 usleep('100');
-            }else{
+            } else {
                 $fileName = rand().'.pdf';
-                $filePath = $message->generatePdf( $fileName );
+                $filePath = $message->generatePdf($fileName);
             }
 
             $messages[] = ['filePath' => $filePath, 'fileName' => $fileName, 'message' => clone $message];
