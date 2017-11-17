@@ -4,6 +4,7 @@
 	<table class="applications-list table">
 		<thead>
 			<tr>
+				<th><input type="checkbox" class="selectAll"></th>
 				<th>#</th>
 				<th><f:translate key="be.label.MyApplications.Table.Created"/></th>
 				<th>Name</th>
@@ -20,7 +21,8 @@
 			<f:for each="{applications}" as="application" iteration="i">
 
 				<tr>
-					<td><f:form.checkbox name="selected[{application.uid}]" value="1" checked="{ats:tool.arrayKeyToValue( array: selected, key: application.uid)}"/> {i.index}</td>
+					<td><f:form.checkbox class="checkbox" name="selected[{application.uid}]" value="1" checked="{ats:tool.arrayKeyToValue( array: selected, key: application.uid)}"/></td>
+					<td> {i.index}</td>
 					<td><f:format.date format="d.m.Y H:i">{application.creationDate}</f:format.date></td>
 					<td>
 						<f:link.action action="show" arguments="{application : application}">{application.surname}, {application.firstname}</f:link.action>
