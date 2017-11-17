@@ -59,6 +59,10 @@ require(
 			this.form.submit();
         });
 
+        $('.pdfDownload').click( function(){
+			$(this).remove();
+        })
+
      });
 
 });
