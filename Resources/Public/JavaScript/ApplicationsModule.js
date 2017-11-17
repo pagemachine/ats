@@ -63,6 +63,18 @@ require(
 			$(this).remove();
         })
 
+		$('#downloadAll').click( function(){
+			$('.pdfDownload').each(function(){
+				var win = window.open($(this).attr('href'), '_blank');
+				if (win) {
+					$(this).click();
+				} else {
+				    alert('Please allow popups for this website');
+				    return false;
+				}
+			});
+		})
+
      });
 
 });
