@@ -61,7 +61,7 @@ require(
 
         $('.pdfDownload').click( function(){
 			$(this).remove();
-        })
+        });
 
 		$('#downloadAll').click( function(){
 			$('.pdfDownload').each(function(){
@@ -73,7 +73,15 @@ require(
 				    return false;
 				}
 			});
-		})
+		});
+
+		$('.selectAll').click(function(){
+			if($(this).is(":checked")){
+				$('.checkbox').prop('checked', true);
+			}else{
+				$('.checkbox').prop('checked', false);
+			}
+		});
 
      });
 
