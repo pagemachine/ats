@@ -24,7 +24,11 @@
     "php": "^5.6 || ^7.0",
     "mpdf/mpdf": "^6.1",
     "symfony/workflow": "^3.3",
-    "typo3/cms": "^7.6 || ^8.7",
+    "typo3/cms-backend": "^7.6 || ^8.7",
+    "typo3/cms-beuser": "^7.6 || ^8.7",
+    "typo3/cms-core": "^7.6 || ^8.7",
+    "typo3/cms-extbase": "^7.6 || ^8.7",
+    "typo3/cms-fluid": "^7.6 || ^8.7",
     "typo3-ter/static-info-tables": "^6.4"
   },
   "require-dev": {
@@ -49,6 +53,20 @@
       "cms-package-dir": "{$vendor-dir}/typo3/cms",
       "web-dir": "web"
     }
+  },
+  "scripts": {
+    "lint:php": "parallel-lint --exclude bin --exclude vendor --exclude web .",
+    "lint:xml": "xmllint --pattern '*.xlf,*.svg' Resources",
+    "lint:style": "phpcs",
+    "lint": [
+      "@lint:php",
+      "@lint:style",
+      "@lint:xml"
+    ],
+    "test:unit": "phpunit",
+    "test": [
+      "@test:unit"
+    ]
   },
   "autoload": {
     "psr-4": {

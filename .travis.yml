@@ -7,26 +7,42 @@ cache:
     - $HOME/.composer/cache
 
 install:
-  - composer install
+  - composer require typo3/cms="$TYPO3_VERSION"
 
 script:
-  - bin/parallel-lint --exclude bin --exclude vendor --exclude web .
+  - composer test
 
 jobs:
+  fast_finish: true
   include:
-    - php: 7.0
     - php: 5.6
+      env: TYPO3_VERSION=^7.6
       before_install:
         # Not compatible to PHP 5.6
-        - composer remove --dev slevomat/coding-standard
-    - php: 7.1
-      env: Other lints
+        - composer remove --no-update --dev slevomat/coding-standard
       script:
-        - bin/xmllint --pattern "*.xlf*,svg" Resources
-    - php: 7.1
+        - composer lint:php
+        - composer test
+    - php: 7.0
+      env: TYPO3_VERSION=^7.6
+    - php: 7.0
+      env: TYPO3_VERSION=^8.7
+
+    - &lint
+      php: 7.0
+      env: PHP lint
+      install:
+        - composer install
+      script:
+        - composer lint:php
+    - <<: *lint
+      env: XML lint
+      script:
+        - composer lint:xml
+    - <<: *lint
       env: Codestyle
       script:
-        - bin/phpcs
+        - composer lint:style
 
     - stage: deploy
       if: tag IS present
