@@ -1,7 +1,24 @@
-<f:for each="{messages}" as="message">
-	{message.message.application.uid} {message.message.application.firstname} {message.message.application.surname}
-	<f:if condition="{message.fileName}">
-		<f:link.action action="downloadPdf" class="pdfDownload" target="_blank" arguments="{filePath: message.filePath, fileName: message.fileName}">[Download]</f:link.action>
-	</f:if>
-	</br>
-</f:for>
+<div class="col-sm-6">
+	<table class="applications-list table">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Name</th>
+				<f:if condition="{messages.0.fileName}">
+					<th class="text-right" ><a id="downloadAll" onclick="return false;">[Download All]</a></th>
+				</f:if>
+			</tr>
+		</thead>
+		<tbody>
+			<f:for each="{messages}" as="message">
+				<tr>
+					<td>{message.message.application.uid}</td>
+					<td>{message.message.application.surname}, {message.message.application.firstname}</td>
+					<f:if condition="{message.fileName}">
+						<td class="text-right" ><f:link.action action="downloadPdf" class="pdfDownload" target="_blank" arguments="{filePath: message.filePath, fileName: message.fileName}">[Download]</f:link.action></td>
+					</f:if>
+				</tr>
+			</f:for>
+		</tbody>
+	</table>
+</div>
