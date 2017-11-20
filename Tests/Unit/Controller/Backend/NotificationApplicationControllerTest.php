@@ -3,7 +3,6 @@ namespace PAGEmachine\Ats\Tests\Unit\Controller\Backend;
 
 use PAGEmachine\Ats\Controller\Backend\NotificationApplicationController;
 use PAGEmachine\Ats\Domain\Model\Application;
-use PAGEmachine\Ats\Domain\Model\Note;
 use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
 use PAGEmachine\Ats\Message\RejectMessage;
 use PAGEmachine\Ats\Message\ReplyMessage;
@@ -12,7 +11,6 @@ use Prophecy\Argument;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ControllerContext;
-use TYPO3\CMS\Extbase\Mvc\Request;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 
@@ -147,6 +145,17 @@ class NotificationApplicationControllerTest extends UnitTestCase
         ])->shouldBeCalled();
 
         $this->notificationApplicationController->sendMassNotificationAction(null, $message->reveal(), 'reply', ['22' => '1', '23' => '0']);
+    }
 
+    /**
+     * @test
+     */
+    public function downloadPdfAction()
+    {
+        $pdfService = $this->prophesize(PdfService::class);
+        $pdfService->downloadPdf('temp/Foo.pdf', 'Foo.pdf')->shouldBeCalled()->willReturn(true);
+        GeneralUtility::setSingletonInstance(PdfService::class, $pdfService->reveal());
+
+        $this->notificationApplicationController->downloadPdfAction('temp/Foo.pdf', 'Foo.pdf');
     }
 }
