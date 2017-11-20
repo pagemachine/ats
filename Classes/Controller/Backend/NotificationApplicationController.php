@@ -106,7 +106,7 @@ class NotificationApplicationController extends ApplicationController
         }
 
         foreach ($uids as $uid) {
-            $path = '';
+            $filepath = '';
             $fileName = '';
 
             $application = $this->applicationRepository->findByUid($uid);
@@ -129,7 +129,7 @@ class NotificationApplicationController extends ApplicationController
                 $message->send();
                 usleep('100');
             } else {
-                $fileName = rand().'.pdf';
+                $fileName = PdfService::getInstance()->generateRandomFilename();
                 $filePath = $message->generatePdf($fileName);
             }
 

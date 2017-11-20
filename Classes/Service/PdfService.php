@@ -75,6 +75,17 @@ class PdfService implements SingletonInterface
     }
 
     /**
+     * Generates a random filename
+     *
+     * @return string
+     */
+    public function generateRandomFilename()
+    {
+
+        return $this->createCleanedFilename(rand());
+    }
+
+    /**
      * Generates a pdf and sends it to the browser as a download
      *
      * @todo what if something goes wrong here? Needs to check if there is actually a pdf to send
