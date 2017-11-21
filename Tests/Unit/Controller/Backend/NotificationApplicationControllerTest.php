@@ -1,9 +1,12 @@
 <?php
 namespace PAGEmachine\Ats\Tests\Unit\Controller\Backend;
 
+use PAGEmachine\Ats\Application\ApplicationFilter;
 use PAGEmachine\Ats\Controller\Backend\NotificationApplicationController;
 use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
+use PAGEmachine\Ats\Domain\Repository\JobRepository;
+use PAGEmachine\Ats\Message\MessageFactory;
 use PAGEmachine\Ats\Message\RejectMessage;
 use PAGEmachine\Ats\Message\ReplyMessage;
 use PAGEmachine\Ats\Service\PdfService;
@@ -11,6 +14,7 @@ use Prophecy\Argument;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ControllerContext;
+use TYPO3\CMS\Extbase\Mvc\Request;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 
@@ -50,6 +54,16 @@ class NotificationApplicationControllerTest extends UnitTestCase
     protected $view;
 
     /**
+     * @var MessageFactory
+     */
+    protected $messageFactory;
+
+    /**
+     * @var JobRepository $jobRepository
+     */
+    protected $jobRepository;
+
+    /**
      * Set up this testcase
      */
     protected function setUp()
@@ -70,14 +84,38 @@ class NotificationApplicationControllerTest extends UnitTestCase
 
         $this->notificationApplicationController->injectObjectManager($objectManager->reveal());
 
+        $this->messageFactory = $this->prophesize(MessageFactory::class);
+        $this->inject($this->notificationApplicationController, "messageFactory", $this->messageFactory->reveal());
+
         $this->view = $this->prophesize(ViewInterface::class);
         $this->inject($this->notificationApplicationController, "view", $this->view->reveal());
 
         $this->applicationRepository = $this->prophesize(ApplicationRepository::class);
         $this->inject($this->notificationApplicationController, "applicationRepository", $this->applicationRepository->reveal());
 
+        $this->jobRepository = $this->prophesize(JobRepository::class);
+        $this->inject($this->notificationApplicationController, "jobRepository", $this->jobRepository->reveal());
+
         $this->controllerContext = $this->prophesize(ControllerContext::class);
         $this->inject($this->notificationApplicationController, "controllerContext", $this->controllerContext->reveal());
+    }
+
+    /**
+     * @test
+     */
+    public function redirectsToCorrectListFunction()
+    {
+
+        $request = $this->prophesize(Request::class);
+        $request->getControllerName()->willReturn("ControllerName");
+
+        $this->inject($this->notificationApplicationController, "request", $request->reveal());
+
+        $this->notificationApplicationController->expects($this->once())->method("forward")->with(
+            "listAll"
+        );
+
+        $this->notificationApplicationController->initializeIndexAction();
     }
 
     /**
@@ -157,5 +195,33 @@ class NotificationApplicationControllerTest extends UnitTestCase
         GeneralUtility::setSingletonInstance(PdfService::class, $pdfService->reveal());
 
         $this->notificationApplicationController->downloadPdfAction('temp/Foo.pdf', 'Foo.pdf');
+    }
+
+    /**
+     * @test
+     */
+    public function listAllAction()
+    {
+        $filter = new ApplicationFilter();
+
+        $this->jobRepository->findAll()->shouldBeCalled();
+
+        $this->applicationRepository->findNotification($filter)->shouldBeCalled();
+
+        $this->view->assignMultiple(Argument::size(6))->shouldBeCalled();
+
+        //initial
+        $this->notificationApplicationController->listAllAction(null, false, null, null, null, []);
+
+        //Message exists
+        $message = $this->prophesize(RejectMessage::class);
+        $this->notificationApplicationController->listAllAction($filter, false, $message->reveal(), null, 'reject', []);
+
+
+        //Create message
+        $this->applicationRepository->findNotification($filter)->willReturn([0 => $this->application]);
+        $message = $this->prophesize(ReplyMessage::class);
+        $this->messageFactory->createMessage('reply', $this->application)->shouldBeCalled()->willReturn($message->reveal());
+        $this->notificationApplicationController->listAllAction($filter, false, null, null, 'reply', []);
     }
 }
