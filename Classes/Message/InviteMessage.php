@@ -76,6 +76,7 @@ class InviteMessage extends AbstractMessage
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnore
      */
     public function getConfirmDate()
     {
