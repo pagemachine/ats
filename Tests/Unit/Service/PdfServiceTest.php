@@ -61,7 +61,7 @@ class PdfServiceTest extends UnitTestCase
         $this->application = new Application();
 
         $this->standaloneView = $this->prophesize(StandaloneView::class);
-        
+
         $backendUser = new BackendUserAuthentication();
         $backendUser->user = [
             'tx_ats_pdf_signature' => 'Hello World!',
@@ -171,5 +171,13 @@ class PdfServiceTest extends UnitTestCase
         $pdfServiceStub->expects($this->once())->method('downloadPdf');
 
         $pdfServiceStub->generateAndDownloadPdf('unitTest.pdf', $this->application, 'Text');
+    }
+
+    /**
+     * @test
+     */
+    public function generateRandomFilename()
+    {
+        $this->assertRegExp('/.+\.pdf$/i', $this->pdfService->generateRandomFilename());
     }
 }
