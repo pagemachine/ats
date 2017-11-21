@@ -1,3 +1,121 @@
 {namespace ats=PAGEmachine\Ats\ViewHelpers}
+<f:form action="listAll" object="{message}" name="{messageType}Message">
 
-<f:render partial="Backend/Application/CheckboxTable" arguments="{applications : applications, selected : selected, message: message, messageType : messageType, filter: filter, jobs: jobs}" />
+	<div class="panel panel-default form-inline">
+	  <div class="panel-body">
+				<div class="form-group">
+					<label for="job"><f:translate key="be.label.FilterBar.Job"/></label>
+					<f:form.select options="{jobs}" name="filter[job]" value="{filter.job}" optionLabelField="jobNumber" prependOptionValue="" prependOptionLabel="<f:translate key='be.label.FilterBar.All'/>" class="form-control" />
+				</div>
+
+				<div class="form-group">
+					<label for="searchword" class="sr-only">Search:</label>
+					<f:form.textfield name="filter[searchword]" value="{filter.searchword}" class="form-control" placeholder="<f:translate key='be.label.FilterBar.Placeholder.Search'/>" />
+				</div>
+
+				<div class="form-group">
+					<f:for each="{filter.possibleSearchfields}" as="searchfield">
+							<label class="checkbox-inline">
+							<f:form.checkbox name="filter[searchfields]" multiple="true" value="{searchfield}" checked="{ats:tool.arrayKeyToValue( array: filter.searchfields, key: searchfield, flipArray: 'true')} > -1"/>
+								<f:translate key="tx_ats.label.{searchfield}">{searchfield}</f:translate>
+							</label>
+					</f:for>
+				</div>
+
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary"><f:translate key="be.label.FilterBar.Filter"/></button>
+					<button type="submit" class="btn btn-default" name="tx_ats[resetFilter]" value="1"><f:translate key="be.label.FilterBar.Reset"/></button>
+				</div>
+		</div>
+	</div>
+
+	<table class="applications-list table">
+		<thead>
+			<tr>
+				<th><input type="checkbox" class="selectAll"></th>
+				<th>#</th>
+				<th><f:translate key="be.label.MyApplications.Table.Created"/></th>
+				<th>Name</th>
+				<th>ID</th>
+				<th><f:translate key="be.label.MyApplications.Table.JobNumber"/></th>
+				<th>Status</th>
+				<th><f:translate key="be.label.MyApplications.Table.Rating"/></th>
+				<th><f:translate key="be.label.MyApplications.Table.Disability"/></th>
+				<th><f:translate key="be.label.MyApplications.Table.Employed"/></th>
+				<th><f:translate key="be.label.MyApplications.Table.LatestNote"/></th>
+			</tr>
+		</thead>
+		<tbody>
+			<f:for each="{applications}" as="application" iteration="i">
+
+				<tr>
+					<td><f:form.checkbox class="checkbox" name="selected[{application.uid}]" value="1" checked="{ats:tool.arrayKeyToValue( array: selected, key: application.uid)}"/></td>
+					<td> {i.index}</td>
+					<td><f:format.date format="d.m.Y H:i">{application.creationDate}</f:format.date></td>
+					<td>
+						<f:link.action action="show" arguments="{application : application}">{application.surname}, {application.firstname}</f:link.action>
+					</td>
+					<td>{application.uid}</td>
+					<td>{application.job.jobNumber}</td>
+					<td><f:translate key="tx_ats.application.status.{application.status}">{application.status}</f:translate></td>
+					<td><f:translate key="tx_ats.application.Rating.{application.Rating}" /></td>
+					<td><f:translate key="tx_ats.label.disability.{application.disability}" /></td>
+					<td><f:translate key="tx_ats.label.employed.{application.employed}" /></td>
+					<td>
+						<f:format.crop maxCharacters="100"><f:format.raw>{application.latestNote.details}</f:format.raw></f:format.crop>
+						<f:if condition="{f:count(subject:application.notes)} > 1">
+								(<f:link.action action="notes" arguments="{application : application}">+{application.notes -> f:count()} more</f:link.action>)
+						</f:if>
+					</td>
+				</tr>
+			</f:for>
+		</tbody>
+	</table>
+
+	<div class="panel panel-default">
+
+		<div class="panel-heading">
+			<div class="form-inline">
+				<f:form.select name="messageType" class="form-control messageType" value="{messageType}" options="{null:'', reject: 'Reject', reply: 'Reply'}" />
+			</div>
+		</div>
+
+		<f:if condition="{message}">
+
+			<div class="panel-body">
+				<div class="row">
+					<f:if condition="{message.renderedBody}">
+						<f:then>
+
+							<div class="col-sm-6">
+								<f:render partial="Backend/Message/CommonFields" arguments="{message : message, previewAction: 'listAll', sendAction: 'sendMassNotification', placeholders: messageType}" />
+							</div>
+
+							<div class="col-sm-6">
+								<div class="panel panel-info">
+									<div class="panel-heading">
+										<h3 class="panel-title">Preview</h3>
+									</div>
+									<div class="panel-body">
+										<f:format.raw>{message.renderedBody}</f:format.raw>
+									</div>
+								</div>
+							</div>
+
+						</f:then>
+						<f:else>
+
+							<div class="col-sm-12">
+								<f:render partial="Backend/Message/CommonFields" arguments="{message : message, previewAction: 'listAll', sendAction: 'sendMassNotification', placeholders: messageType}" />
+							</div>
+
+						</f:else>
+
+					</f:if>
+				</div>
+			</div>
+		</f:if>
+
+	</div>
+</f:form>
+
