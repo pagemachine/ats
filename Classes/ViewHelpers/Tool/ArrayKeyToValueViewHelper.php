@@ -19,7 +19,9 @@ class ArrayKeyToValueViewHelper extends AbstractViewHelper
    */
     protected function render($array, $key, $flipArray = false)
     {
-        if($flipArray) $array = array_flip( $array );
+        if ($flipArray) {
+            $array = array_flip($array);
+        }
         return $array[$key];
     }
 }
