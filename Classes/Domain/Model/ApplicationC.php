@@ -251,19 +251,19 @@ class ApplicationC extends ApplicationB
     }
 
     /**
-     * @param PAGEmachine\Ats\Domain\Model\LanguageSkill $languageSkill
+     * @param \PAGEmachine\Ats\Domain\Model\LanguageSkill $languageSkill
      * @return void
      */
-    public function addLanguageSkill(PAGEmachine\Ats\Domain\Model\LanguageSkill $languageSkill)
+    public function addLanguageSkill(\PAGEmachine\Ats\Domain\Model\LanguageSkill $languageSkill)
     {
         $this->languageSkills->attach($languageSkill);
     }
 
     /**
-     * @param PAGEmachine\Ats\Domain\Model\LanguageSkill $languageSkill
+     * @param \PAGEmachine\Ats\Domain\Model\LanguageSkill $languageSkill
      * @return void
      */
-    public function removeLanguageSkill(PAGEmachine\Ats\Domain\Model\LanguageSkill $languageSkill)
+    public function removeLanguageSkill(\PAGEmachine\Ats\Domain\Model\LanguageSkill $languageSkill)
     {
         $this->languageSkills->detach($languageSkill);
     }
