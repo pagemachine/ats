@@ -207,7 +207,14 @@ class ExportService implements SingletonInterface
     protected function getExportBody($options, $filter)
     {
         $where = '1=1'.$this->getExportFilterWhere($filter);
-        $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery($fields = 't1.uid', $table = 'tx_ats_domain_model_application t1 LEFT JOIN tx_ats_domain_model_job t10 ON t1.job = t10.uid', $where, $groupBy = '', $orderBy = 't1.crdate ASC', $limit = '');
+        $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+            't1.uid',
+            'tx_ats_domain_model_application t1 LEFT JOIN tx_ats_domain_model_job t10 ON t1.job = t10.uid',
+            $where,
+            '',
+            't1.crdate ASC',
+            ''
+        );
         if ($res) {
             while ($uid = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)[uid]) {
                 $row = '';
