@@ -144,7 +144,6 @@ class WorkflowManager implements SingletonInterface
 
             if (!in_array($name, $this->availableTransitions)) {
                 throw new InvalidWorkflowConfigurationException(sprintf('Workflow transition "%s" is not defined, please check your workflow configuration.', $name), 1499161275);
-                continue;
             }
             $definitionBuilder->addTransition(new Transition(
                 $name,
