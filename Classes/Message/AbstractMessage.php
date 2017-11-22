@@ -209,6 +209,49 @@ abstract class AbstractMessage
         $this->subject = $subject;
     }
 
+    /**
+     * Rendered subject with replaced markers
+     *
+     * @var string
+     */
+    protected $renderedSubject = null;
+
+    /**
+     *
+     * @return string|null
+     */
+    public function getRenderedSubject()
+    {
+        if ($this->renderedSubject != null) {
+            return $this->renderedSubject;
+        } else if ($this->subject != null) {
+            $this->renderedSubject = $this->renderSubject();
+            return $this->renderedSubject;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * For testing only
+     *
+     * @param string
+     */
+    public function setRenderedSubject($renderedSubject = null)
+    {
+        $this->renderedSubject = $renderedSubject;
+    }
+
+    /**
+     * Renders the body
+     *
+     * @return string
+     */
+    public function renderSubject()
+    {
+        return $this->renderField($this->getSubject());
+    }
+
 
     /**
      * @var string $body
@@ -248,7 +291,6 @@ abstract class AbstractMessage
      */
     public function setRenderedBody($renderedBody = null)
     {
-
         $this->renderedBody = $renderedBody;
     }
 
@@ -357,12 +399,22 @@ abstract class AbstractMessage
      */
     public function renderBody()
     {
+        return $this->renderField($this->getBody());
+    }
 
+    /**
+     * Renders field content
+     *
+     * @param  string $rawText
+     * @return string $renderedText
+     */
+    protected function renderField($rawText)
+    {
         $standaloneView = $this->objectManager->get(StandaloneView::class);
 
         $standaloneView->setTemplateSource(
             $this->markerService->replaceMarkers(
-                $this->body,
+                $rawText,
                 $this->sendType
             )
         );
@@ -373,9 +425,9 @@ abstract class AbstractMessage
             "fields" => $this->getCustomFields(),
         ]);
 
-        $renderedBody = $standaloneView->render();
+        $renderedText = $standaloneView->render();
 
-        return $renderedBody;
+        return $renderedText;
     }
 
     /**
@@ -414,9 +466,9 @@ abstract class AbstractMessage
     {
 
         if ($this->sendType == AbstractMessage::SENDTYPE_MAIL) {
-            MailService::getInstance()->sendReplyMail($this->application, $this->subject, $this->getRenderedBody(), $this->cc, $this->bcc);
+            MailService::getInstance()->sendReplyMail($this->application, $this->getRenderedSubject(), $this->getRenderedBody(), $this->cc, $this->bcc);
         } elseif ($this->sendType == AbstractMessage::SENDTYPE_PDF) {
-            PdfService::getInstance()->generateAndDownloadPdf($this->subject, $this->application, $this->getRenderedBody());
+            PdfService::getInstance()->generateAndDownloadPdf($this->getRenderedSubject(), $this->application, $this->getRenderedBody());
         }
     }
 }
