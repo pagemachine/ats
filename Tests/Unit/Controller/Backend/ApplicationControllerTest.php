@@ -10,6 +10,7 @@ use PAGEmachine\Ats\Domain\Model\Note;
 use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
 use PAGEmachine\Ats\Domain\Repository\JobRepository;
 use PAGEmachine\Ats\Message\AcknowledgeMessage;
+use PAGEmachine\Ats\Message\AttestationMessage;
 use PAGEmachine\Ats\Message\InviteMessage;
 use PAGEmachine\Ats\Message\MessageFactory;
 use PAGEmachine\Ats\Message\RejectMessage;
@@ -386,6 +387,7 @@ class ApplicationControllerTest extends UnitTestCase
             'Invite' => ['inviteAction', 'invite', InviteMessage::class],
             'Acknowledge' => ['acknowledgeAction', 'acknowledge', AcknowledgeMessage::class],
             'Reject' => ['rejectAction', 'reject', RejectMessage::class],
+            'Attestation' => ['attestationAction', 'attestation', AttestationMessage::class],
         ];
     }
 
@@ -439,6 +441,7 @@ class ApplicationControllerTest extends UnitTestCase
             'Invite' => ['sendInvitationAction', InviteMessage::class],
             'Acknowledge' => ['sendAcknowledgementAction', AcknowledgeMessage::class],
             'Reject' => ['sendRejectionAction', RejectMessage::class],
+            'Attestation' => ['sendAttestationAction', AttestationMessage::class],
         ];
     }
 
