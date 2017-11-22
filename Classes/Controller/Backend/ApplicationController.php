@@ -13,6 +13,7 @@ use PAGEmachine\Ats\Domain\Model\FileReference;
 use PAGEmachine\Ats\Domain\Model\Job;
 use PAGEmachine\Ats\Domain\Model\Note;
 use PAGEmachine\Ats\Message\AcknowledgeMessage;
+use PAGEmachine\Ats\Message\AttestationMessage;
 use PAGEmachine\Ats\Message\InviteMessage;
 use PAGEmachine\Ats\Message\RejectMessage;
 use PAGEmachine\Ats\Message\ReplyMessage;
@@ -610,6 +611,58 @@ class ApplicationController extends AbstractBackendController
         $this->applicationRepository->updateAndLog(
             $message->getApplication(),
             'acknowledge',
+            [
+                'subject' => $message->getSubject(),
+                'sendType' => $message->getSendType(),
+                'cc' => $message->getCc(),
+                'bcc' => $message->getBcc(),
+                'message' => $message->getRenderedBody(),
+            ]
+        );
+
+        $message->send();
+
+        $this->addFlashMessage("Message was successfully sent.");
+        $this->redirect("show", null, null, ['application' => $message->getApplication()]);
+    }
+
+    /**
+     * Form for mail/pdf invite text creation
+
+     * @param  AttestationMessage $message
+     * @param  Application $application
+     * @ignorevalidation $application
+     * @ignorevalidation $message
+     * @return void
+     */
+    public function attestationAction(AttestationMessage $message = null, Application $application = null)
+    {
+
+        if ($message == null) {
+            $message = $this->messageFactory->createMessage("attestation", $application);
+        }
+
+        $message->applyTextTemplate();
+
+        $this->view->assignMultiple([
+            'message' => $message,
+            'application' => $message->getApplication(),
+        ]);
+    }
+
+    /**
+     * Sends the Attestation in the desired way (mail or pdf)
+     *
+     * @param AttestationMessage $message
+     *
+     * @return void
+     */
+    public function sendAttestationAction(AttestationMessage $message)
+    {
+
+        $this->applicationRepository->updateAndLog(
+            $message->getApplication(),
+            'attestation',
             [
                 'subject' => $message->getSubject(),
                 'sendType' => $message->getSendType(),

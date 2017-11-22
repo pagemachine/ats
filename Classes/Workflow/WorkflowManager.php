@@ -45,6 +45,7 @@ class WorkflowManager implements SingletonInterface
         'history',
         'clone',
         'reject',
+        'attestation',
         'rating',
         'ratingPerso',
         'moveToPool',

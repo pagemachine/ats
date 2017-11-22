@@ -16,6 +16,7 @@ class MessageFactory implements SingletonInterface
         'invite' => InviteMessage::class,
         'acknowledge' => AcknowledgeMessage::class,
         'reject' => RejectMessage::class,
+        'attestation' => AttestationMessage::class,
     ];
 
     /**

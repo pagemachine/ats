@@ -23,6 +23,7 @@ abstract class AbstractMessage
     const MESSAGE_REPLY = 3;
     const MESSAGE_REQUEST = 4;
     const MESSAGE_REJECT = 4;
+    const MESSAGE_ATTESTATION = 5;
 
     /**
      * @var \TYPO3\CMS\Extbase\Object\ObjectManager

@@ -94,6 +94,8 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('extbase_acl'))
         'sendInvitation',
         'acknowledge',
         'sendAcknowledgement',
+        'attestation',
+        'sendAttestation',
         'reject',
         'sendRejection',
         'rating',

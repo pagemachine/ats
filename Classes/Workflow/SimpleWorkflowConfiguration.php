@@ -37,6 +37,7 @@ class SimpleWorkflowConfiguration
         'reply' => ['from' => [], 'to' => []],
         'invite' => ['from' => [], 'to' => []],
         'reject' => ['from' => [], 'to' => []],
+        'attestation' => ['from' => [], 'to' => []],
         'rating'=> ['from' => [], 'to' => []],
         'history' => ['from' => [], 'to' => []],
         'clone' => ['from' => [], 'to' => []],

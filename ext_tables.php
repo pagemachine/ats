@@ -32,7 +32,7 @@ if (TYPO3_MODE === 'BE') {
         'applications',
         '',
         array(
-            'Backend\\Application' => 'index, listAll, listMine, show, edit, removeUpload, update, editStatus, updateStatus, notes, addNote, close, confirmClose, reply, sendReply, invite, sendInvitation, acknowledge, sendAcknowledgement, ratingPerso, rating, addRating, backToPerso, sendBackToPerso, reject, sendRejection, history, clone, confirmClone'
+            'Backend\\Application' => 'index, listAll, listMine, show, edit, removeUpload, update, editStatus, updateStatus, notes, addNote, close, confirmClose, reply, sendReply, invite, sendInvitation, acknowledge, sendAcknowledgement, attestation, sendAttestation, ratingPerso, rating, addRating, backToPerso, sendBackToPerso, reject, sendRejection, history, clone, confirmClone'
         ),
         array(
             'access'    => 'user,group',

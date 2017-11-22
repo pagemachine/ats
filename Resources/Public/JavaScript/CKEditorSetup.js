@@ -30,6 +30,12 @@ require(['jquery', 'TYPO3/CMS/Ats/ckeditor/ckeditor'], function($) {
                 ['Applicant Surname', 'application.surname'],
                 ['Signature', 'backenduser.signature']
             ],
+            'attestation': [
+                ['Applicant Title', 'application.title'],
+                ['Applicant Firstname', 'application.firstname'],
+                ['Applicant Surname', 'application.surname'],
+                ['Signature', 'backenduser.signature']
+            ],
             'reject': [
                 ['Applicant Title', 'application.title'],
                 ['Applicant Firstname', 'application.firstname'],

@@ -216,11 +216,11 @@
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_texttemplate.type.4">
-				<source>Request for Attestation</source>
+				<source>Rejection</source>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_texttemplate.type.5">
-				<source>Rejection</source>
+				<source>Attestation Request</source>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_texttemplate.subject">

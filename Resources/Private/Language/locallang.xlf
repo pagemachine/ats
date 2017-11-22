@@ -584,6 +584,14 @@
 		<source>Reject</source>
 	  </trans-unit>
 
+	     <trans-unit id="tx_ats.be.actions.application.acknowledge">
+	  	<source>Acknowledge</source>
+	    </trans-unit>
+
+	     <trans-unit id="tx_ats.be.actions.application.attestation">
+	  	<source>Attestation</source>
+	    </trans-unit>
+
 	   <trans-unit id="tx_ats.be.actions.application.history">
 		<source>History</source>
 	  </trans-unit>
