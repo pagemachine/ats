@@ -4,12 +4,13 @@ namespace PAGEmachine\Ats\Tests\Unit\Message;
 use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Message\AbstractMessage;
 use PAGEmachine\Ats\Message\InviteMessage;
+use PAGEmachine\Ats\Service\FluidRenderingService;
 use PAGEmachine\Ats\Service\MailService;
 use PAGEmachine\Ats\Service\MarkerService;
+use Prophecy\Argument;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /*
@@ -38,6 +39,11 @@ class InviteMessageTest extends UnitTestCase
     protected $markerService;
 
     /**
+     * @var FluidRenderingService
+     */
+    protected $fluidRenderingService;
+
+    /**
      * Set up this testcase
      */
     protected function setUp()
@@ -55,14 +61,12 @@ class InviteMessageTest extends UnitTestCase
         $this->inviteMessage->setApplication($this->application);
 
         $this->standaloneView = $this->prophesize(StandaloneView::class);
-        $objectManager = $this->prophesize(ObjectManager::class);
-
-        $objectManager->get(StandaloneView::class)->willReturn($this->standaloneView->reveal());
-
-        $this->inject($this->inviteMessage, "objectManager", $objectManager->reveal());
 
         $this->markerService = $this->prophesize(MarkerService::class);
         $this->inject($this->inviteMessage, "markerService", $this->markerService->reveal());
+
+        $this->fluidRenderingService = $this->prophesize(FluidRenderingService::class);
+        $this->inject($this->inviteMessage, "fluidRenderingService", $this->fluidRenderingService->reveal());
     }
 
     /**
@@ -84,25 +88,13 @@ class InviteMessageTest extends UnitTestCase
         $this->inviteMessage->setBuilding("A building");
         $this->inviteMessage->setRoom("A room");
 
-        $this->standaloneView->assignMultiple([
-           "application" => $this->application,
-           "backenduser" => ['username' => 'Harry'],
-           "fields" => [
-               'date' => $date->format("Y-m-d"),
-               'time' => $date->format("H:i"),
-               'confirmDate' => $confirmDate->format("Y-m-d"),
-               'building' => 'A building',
-               'room' => 'A room',
-           ],
-        ])->shouldBeCalled();
+        $this->markerService->replaceMarkers("subject", MarkerService::CONTEXT_MAIL)->willReturn("subject");
+        $this->markerService->replaceMarkers("someText", MarkerService::CONTEXT_MAIL)->willReturn("someText");
 
-        $this->markerService->replaceMarkers("someText", MarkerService::CONTEXT_MAIL)->shouldBeCalled()->willReturn("someText");
+        $this->fluidRenderingService->render("subject", Argument::type("array"))->willReturn("subject");
+        $this->fluidRenderingService->render("someText", Argument::type("array"))->willReturn("<p>SomeText</p>");
 
         $mailService->sendReplyMail($this->application, "subject", "<p>SomeText</p>", "cc@foobar.de", "bcc@foobar.de")->shouldBeCalled();
-
-        $this->standaloneView->setTemplateSource("someText")->shouldBeCalled();
-        $this->standaloneView->render()->willReturn("<p>SomeText</p>");
-
         $this->inviteMessage->send();
     }
 

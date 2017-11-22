@@ -4,7 +4,6 @@ namespace PAGEmachine\Ats\Message;
 use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Service\MailService;
 use PAGEmachine\Ats\Service\PdfService;
-use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -24,12 +23,6 @@ abstract class AbstractMessage
     const MESSAGE_REJECT = 4;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Object\ObjectManager
-     * @inject
-     */
-    protected $objectManager;
-
-    /**
      * @var PAGEmachine\Ats\Domain\Repository\TextTemplateRepository
      * @inject
      */
@@ -40,6 +33,12 @@ abstract class AbstractMessage
      * @inject
      */
     protected $markerService;
+
+     /**
+     * @var \PAGEmachine\Ats\Service\FluidRenderingService
+     * @inject
+     */
+    protected $fluidRenderingService;
 
 
     /**
@@ -224,34 +223,23 @@ abstract class AbstractMessage
     {
         if ($this->renderedSubject != null) {
             return $this->renderedSubject;
-        } else if ($this->subject != null) {
-            $this->renderedSubject = $this->renderSubject();
+        } elseif ($this->subject != null) {
+            $this->renderedSubject = $this->fluidRenderingService->render(
+                $this->markerService->replaceMarkers(
+                    $this->subject,
+                    $this->sendType
+                ),
+                [
+                    "application" => $this->application,
+                    "backenduser" => $this->getBackendUser(),
+                    "fields" => $this->getCustomFields(),
+                ]
+            );
             return $this->renderedSubject;
         } else {
             return null;
         }
     }
-
-    /**
-     * For testing only
-     *
-     * @param string
-     */
-    public function setRenderedSubject($renderedSubject = null)
-    {
-        $this->renderedSubject = $renderedSubject;
-    }
-
-    /**
-     * Renders the body
-     *
-     * @return string
-     */
-    public function renderSubject()
-    {
-        return $this->renderField($this->getSubject());
-    }
-
 
     /**
      * @var string $body
@@ -285,16 +273,6 @@ abstract class AbstractMessage
     protected $renderedBody = null;
 
     /**
-     * For testing only
-     *
-     * @param string
-     */
-    public function setRenderedBody($renderedBody = null)
-    {
-        $this->renderedBody = $renderedBody;
-    }
-
-    /**
      * @return string|null
      */
     public function getRenderedBody()
@@ -302,11 +280,31 @@ abstract class AbstractMessage
         if ($this->renderedBody != null) {
             return $this->renderedBody;
         } elseif ($this->body != null) {
-            $this->renderedBody = $this->renderBody();
+            $this->renderedBody = $this->fluidRenderingService->render(
+                $this->markerService->replaceMarkers(
+                    $this->body,
+                    $this->sendType
+                ),
+                [
+                    "application" => $this->application,
+                    "backenduser" => $this->getBackendUser(),
+                    "fields" => $this->getCustomFields(),
+                ]
+            );
             return $this->renderedBody;
         } else {
             return null;
         }
+    }
+
+    /**
+     * Testing function
+     *
+     * @param string $renderedBody
+     */
+    public function setRenderedBody($renderedBody)
+    {
+        $this->renderedBody = $renderedBody;
     }
 
 
@@ -359,7 +357,6 @@ abstract class AbstractMessage
         $this->bcc = $bcc;
     }
 
-
     /**
      * @var string
      */
@@ -392,43 +389,6 @@ abstract class AbstractMessage
         return PdfService::getInstance()->createCleanedFilename($this->getSubject() . '_' . $this->application->getSurname() . '_' . date('Y-m-d'));
     }
 
-    /**
-     * Renders the body
-     *
-     * @return string
-     */
-    public function renderBody()
-    {
-        return $this->renderField($this->getBody());
-    }
-
-    /**
-     * Renders field content
-     *
-     * @param  string $rawText
-     * @return string $renderedText
-     */
-    protected function renderField($rawText)
-    {
-        $standaloneView = $this->objectManager->get(StandaloneView::class);
-
-        $standaloneView->setTemplateSource(
-            $this->markerService->replaceMarkers(
-                $rawText,
-                $this->sendType
-            )
-        );
-
-        $standaloneView->assignMultiple([
-            "application" => $this->application,
-            "backenduser" => $this->getBackendUser(),
-            "fields" => $this->getCustomFields(),
-        ]);
-
-        $renderedText = $standaloneView->render();
-
-        return $renderedText;
-    }
 
     /**
      * Return empty array by default

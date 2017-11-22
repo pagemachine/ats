@@ -451,7 +451,7 @@ class ApplicationControllerTest extends UnitTestCase
         $message = $this->prophesize($messageClass);
         $message->send()->shouldBeCalled();
         $message->getApplication()->willReturn($this->application);
-        $message->getSubject()->willReturn("foo");
+        $message->getRenderedSubject()->willReturn("foo");
         $message->getCc()->willReturn("cc");
         $message->getBcc()->willReturn("bcc");
         $message->getRenderedBody()->willReturn("Body");
