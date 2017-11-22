@@ -11,12 +11,14 @@ require(['jquery', 'TYPO3/CMS/Ats/ckeditor/ckeditor'], function($) {
                 ['Applicant Title', 'application.title'],
                 ['Applicant Firstname', 'application.firstname'],
                 ['Applicant Surname', 'application.surname'],
+                ['Job title', 'application.job.title'],
                 ['Signature', 'backenduser.signature']
             ],
             'invite': [
                 ['Applicant Title', 'application.title'],
                 ['Applicant Firstname', 'application.firstname'],
                 ['Applicant Surname', 'application.surname'],
+                ['Job title', 'application.job.title'],
                 ['Date', 'fields.date'],
                 ['Time', 'fields.time'],
                 ['Confirmation Date', 'fields.confirmDate'],
@@ -28,12 +30,14 @@ require(['jquery', 'TYPO3/CMS/Ats/ckeditor/ckeditor'], function($) {
                 ['Applicant Title', 'application.title'],
                 ['Applicant Firstname', 'application.firstname'],
                 ['Applicant Surname', 'application.surname'],
+                ['Job title', 'application.job.title'],
                 ['Signature', 'backenduser.signature']
             ],
             'reject': [
                 ['Applicant Title', 'application.title'],
                 ['Applicant Firstname', 'application.firstname'],
                 ['Applicant Surname', 'application.surname'],
+                ['Job title', 'application.job.title'],
                 ['Signature', 'backenduser.signature']
             ]
         }
