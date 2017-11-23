@@ -4,6 +4,7 @@ namespace PAGEmachine\Ats\Controller\Backend;
 use PAGEmachine\Ats\Application\ApplicationFilter;
 use PAGEmachine\Ats\Message\RejectMessage;
 use PAGEmachine\Ats\Message\ReplyMessage;
+use PAGEmachine\Ats\Message\MessageInterface;
 use PAGEmachine\Ats\Service\PdfService;
 
 /*
@@ -75,6 +76,32 @@ class NotificationApplicationController extends ApplicationController
             'applications' => $this->applicationRepository->findNotification($filter),
             'jobs' => $this->jobRepository->findAll(),
             'filter' => $filter,
+            'message' => $message,
+            'messageType' => $messageType,
+            'selected' => $selected,
+        ]);
+    }
+
+    /**
+     *
+     *
+     * @param  string $messageType
+     * @param  array $selected
+     * @param  \PAGEmachine\Ats\Message\MessageInterface $message
+     * @ignorevalidation $message
+     * @return void
+     */
+    public function newMassNotificationAction($messageType, $selected = [], MessageInterface $message = null){
+
+        $filter = new ApplicationFilter();//remove;
+        $selected = array_keys($selected, 1);
+        if($message == null){
+            $application = $this->applicationRepository->findNotification($filter)[0];//replace
+            $message = $this->messageFactory->createMessage($messageType, $application);
+        }
+
+        $this->view->assignMultiple([
+            'applications' => $this->applicationRepository->findNotification($filter),//replace
             'message' => $message,
             'messageType' => $messageType,
             'selected' => $selected,

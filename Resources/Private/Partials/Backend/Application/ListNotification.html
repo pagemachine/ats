@@ -1,5 +1,5 @@
 {namespace ats=PAGEmachine\Ats\ViewHelpers}
-<f:form action="listAll" object="{message}" name="{messageType}Message">
+<f:form action="listAll">
 
 	<div class="panel panel-default form-inline">
 	  <div class="panel-body">
@@ -71,51 +71,8 @@
 			</f:for>
 		</tbody>
 	</table>
+	<f:form.select name="messageType" class="form-control messageType" value="{messageType}" options="{null:'', reject: 'Reject', reply: 'Reply'}" />
+	<f:form.button name="action" value="newMassNotification" class="btn btn-primary"><f:translate id="be.label.ApplicationSingle.Acknowledge.Send"/></f:form.button>
 
-	<div class="panel panel-default">
-
-		<div class="panel-heading">
-			<div class="form-inline">
-				<f:form.select name="messageType" class="form-control messageType" value="{messageType}" options="{null:'', reject: 'Reject', reply: 'Reply'}" />
-			</div>
-		</div>
-
-		<f:if condition="{message}">
-
-			<div class="panel-body">
-				<div class="row">
-					<f:if condition="{message.renderedBody}">
-						<f:then>
-
-							<div class="col-sm-6">
-								<f:render partial="Backend/Message/CommonFields" arguments="{message : message, previewAction: 'listAll', sendAction: 'sendMassNotification', placeholders: messageType}" />
-							</div>
-
-							<div class="col-sm-6">
-								<div class="panel panel-info">
-									<div class="panel-heading">
-										<h3 class="panel-title">Preview</h3>
-									</div>
-									<div class="panel-body">
-										<f:format.raw>{message.renderedBody}</f:format.raw>
-									</div>
-								</div>
-							</div>
-
-						</f:then>
-						<f:else>
-
-							<div class="col-sm-12">
-								<f:render partial="Backend/Message/CommonFields" arguments="{message : message, previewAction: 'listAll', sendAction: 'sendMassNotification', placeholders: messageType}" />
-							</div>
-
-						</f:else>
-
-					</f:if>
-				</div>
-			</div>
-		</f:if>
-
-	</div>
 </f:form>
 
