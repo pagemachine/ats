@@ -1,0 +1,52 @@
+<f:form action="listAll" object="{message}" name="message">
+	<f:form.hidden name="messageType" value="{messageType}"/>
+	<f:for each="{selected}" as="uid">
+		<f:form.hidden name="selected[{uid}]" value="1"/>
+	</f:for>
+	<div class="panel panel-default">
+
+		<div class="panel-heading">
+			<div class="form-inline">
+
+			</div>
+		</div>
+
+		<f:if condition="{message}">
+
+			<div class="panel-body">
+				<div class="row">
+					<f:if condition="{message.renderedBody}">
+						<f:then>
+
+							<div class="col-sm-6">
+								<f:render partial="Backend/Message/CommonFields" arguments="{message : message, previewAction: 'newMassNotification', sendAction: 'sendMassNotification', placeholders: messageType}" />
+							</div>
+
+							<div class="col-sm-6">
+								<div class="panel panel-info">
+									<div class="panel-heading">
+										<h3 class="panel-title">Preview</h3>
+									</div>
+									<div class="panel-body">
+										<f:format.raw>{message.renderedBody}</f:format.raw>
+									</div>
+								</div>
+							</div>
+
+						</f:then>
+						<f:else>
+
+							<div class="col-sm-12">
+								<f:render partial="Backend/Message/CommonFields" arguments="{message : message, previewAction: 'newMassNotification', sendAction: 'sendMassNotification', placeholders: messageType}" />
+							</div>
+
+						</f:else>
+
+					</f:if>
+				</div>
+			</div>
+		</f:if>
+
+	</div>
+
+</f:form>

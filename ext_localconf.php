@@ -144,6 +144,7 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('extbase_acl'))
         'history',
         'clone',
         'confirmClone',
+        'newMassNotification',
         'sendMassNotification',
         'downloadPdf',
     ];
