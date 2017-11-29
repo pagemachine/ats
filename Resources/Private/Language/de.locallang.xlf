@@ -380,7 +380,7 @@
 
 			<trans-unit id="tx_ats.label.referrer.2">
 				<source>Newspaper</source>
-				<target>zeitung</target>
+				<target>Zeitung</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.label.referrer.3">
@@ -390,7 +390,7 @@
 
 			<trans-unit id="tx_ats.label.referrer.4">
 				<source>Jobportal</source>
-				<target>Jobportal</target>
+				<target>Job-Portal</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.label.referrer.5">
@@ -437,7 +437,7 @@
 
 			<trans-unit id="tx_ats_domain_model_application.street">
 				<source>Street and house no.:</source>
-				<target>Strasse und Hausnummer:</target>
+				<target>Straße und Hausnummer:</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_application.zipcode">
@@ -452,7 +452,7 @@
 
 			<trans-unit id="tx_ats_domain_model_application.email">
 				<source>E-mail:</source>
-				<target>E-mail:</target>
+				<target>E-Mail:</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_application.employed">
@@ -487,7 +487,7 @@
 
 			<trans-unit id="tx_ats.error.1221559976">
 				<source>This is not a valid email address</source>
-				<target> Dies ist keine gültige E-Mail-Adresse</target>
+				<target>Dies ist keine gültige E-Mail-Adresse</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.error.1307719788">
@@ -508,12 +508,12 @@
 
 			<trans-unit id="tx_ats.application.languageskills">
 				<source>Language Skills</source>
-				<target>Sprachkentnisse</target>
+				<target>Sprachkenntnisse</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.language_skill">
 				<source>Language Skill</source>
-				<target>Sprachkentnisse</target>
+				<target>Sprachkenntnisse</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.languageskill.language">
@@ -598,7 +598,7 @@
 
 			<trans-unit id="be.label.MyApplications.Table.JobNumber">
 				<source>Job Number</source>
-				<target>Job Nummer</target>
+				<target>Job-Nummer</target>
 			</trans-unit>
 
 			<trans-unit id="be.label.MyApplications.Table.Rating">
@@ -633,7 +633,7 @@
 
 			<trans-unit id="tx_ats.application.Rating.50">
 				<source>Cancelled by candidate</source>
-				<target>Vom Bewerber abgebrochen</target>
+				<target>Vom Bewerber abgesagt</target>
 			</trans-unit>
 
 			<trans-unit id="be.label.MyApplications.Table.Disability">
@@ -658,7 +658,7 @@
 
 			<trans-unit id="be.label.Statistics">
 				<source>Statistics</source>
-				<target>Statistiken</target>
+				<target>Statistik</target>
 			</trans-unit>
 
 			<trans-unit id="be.label.Statistics.dateFrom">
@@ -677,13 +677,13 @@
       		</trans-unit>
 
       		<trans-unit id="be.label.Statistics.Table.2">
-      		  <source>Number of applications for a single provenance</source>
-      		  <target>Anzahl der Bewerber aus einer Herkunft</target>
+      		  <source>Number of applications from a single referer</source>
+      		  <target>Anzahl der Bewerber von einer Quelle</target>
       		</trans-unit>
 
       		<trans-unit id="be.label.Statistics.Table.3">
-      		  <source>Age distribution of applicants</source>
-      		  <target>Altersgliederung</target>
+      		  <source>Distribution of age of applicants</source>
+      		  <target>Altersverteilung</target>
       		</trans-unit>
 
       		<trans-unit id="be.label.Statistics.Table.4">
@@ -878,7 +878,7 @@
 
 			<trans-unit id="tx_ats.be.actions.application.history">
 				<source>History</source>
-				<target>Bewerbungen</target>
+				<target>Verlauf</target>
 	  		</trans-unit>
 
 	  		 <trans-unit id="tx_ats.be.actions.application.clone">
@@ -889,7 +889,7 @@
 
       		<trans-unit id="be.label.ApplicationSingle.Overview.FormData">
       		  <source>Form data</source>
-      		  <target>Formular Daten</target>
+      		  <target>Formulardaten</target>
       		</trans-unit>
 
       		<trans-unit id="be.label.ApplicationSingle.Overview.PersonalData">
@@ -904,7 +904,7 @@
 
       		<trans-unit id="be.label.ApplicationSingle.Edit.FormData">
       		  <source>Edit form data</source>
-      		  <target>Formular Daten bearbeiten</target>
+      		  <target>Formulardaten bearbeiten</target>
       		</trans-unit>
 
       		<trans-unit id="be.label.ApplicationSingle.Edit.Introduction">
@@ -959,7 +959,7 @@
 
 			<trans-unit id="be.label.ApplicationSingle.Edit.1">
 				<source>Website</source>
-				<target>Webseite</target>
+				<target>Website</target>
 	  		</trans-unit>
 
 	  		<trans-unit id="be.label.ApplicationSingle.Edit.2">
@@ -969,7 +969,7 @@
 
 	  		<trans-unit id="be.label.ApplicationSingle.Edit.3">
 				<source>Email</source>
-				<target>Email</target>
+				<target>E-Mail</target>
 	  		</trans-unit>
 
 	  		<trans-unit id="be.label.ApplicationSingle.Workflow">
@@ -994,7 +994,7 @@
 
 			<trans-unit id="be.label.ApplicationSingle.Acknowledge.SendMailTo">
 				<source>Send mail to:</source>
-				<target>Sende mail an:</target>
+				<target>Sende E-Mail an:</target>
 			</trans-unit>
 
 			<trans-unit id="be.label.ApplicationSingle.Acknowledge.CreatePdf">
@@ -1069,7 +1069,7 @@
 
 			<trans-unit id="be.label.ApplicationSingle.History">
 				<source>Application History</source>
-				<target>Bewerbungen</target>
+				<target>Bewerbungsverlauf</target>
 			</trans-unit>
 
 			<trans-unit id="be.label.ApplicationSingle.History.Date">
@@ -1104,7 +1104,7 @@
 
 			<trans-unit id="be.label.ApplicationSingle.Clone">
 				<source>Clone Application</source>
-				<target>Bewerbung Klonen</target>
+				<target>Bewerbung klonen</target>
 			</trans-unit>
 
 			<trans-unit id="be.label.ApplicationSingle.Clone.Note">
