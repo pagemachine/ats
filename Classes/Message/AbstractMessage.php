@@ -21,7 +21,6 @@ abstract class AbstractMessage
     const MESSAGE_INVITE = 1;
     const MESSAGE_ACKNOWLEDGE = 2;
     const MESSAGE_REPLY = 3;
-    const MESSAGE_REQUEST = 4;
     const MESSAGE_REJECT = 4;
 
     /**
@@ -149,7 +148,7 @@ abstract class AbstractMessage
     protected $type = AbstractMessage::MESSAGE_UNDEFINED;
 
     /**
-     * @return string
+     * @return int
      * @codeCoverageIgnore
      */
     public function getType()
@@ -318,6 +317,29 @@ abstract class AbstractMessage
         $this->bcc = $bcc;
     }
 
+
+    /**
+     * @var string
+     */
+    protected $pdfFilePath = null;
+
+    /**
+     * @return string
+     */
+    public function getPdfFilePath()
+    {
+        return $this->pdfFilePath;
+    }
+
+    /**
+     * @param string $pdfFilePath
+     * @return void
+     */
+    public function setPdfFilePath($pdfFilePath)
+    {
+        $this->pdfFilePath = $pdfFilePath;
+    }
+
     /**
      * Renders the body
      *
@@ -366,7 +388,9 @@ abstract class AbstractMessage
     public function generatePdf($fileName = 'download.pdf')
     {
         if ($this->sendType == AbstractMessage::SENDTYPE_PDF) {
-            return PdfService::getInstance()->generatePdf($this->application, $this->getRenderedBody(), $fileName);
+            $filePath = PdfService::getInstance()->generatePdf($this->application, $this->getRenderedBody(), $fileName);
+            $this->setPdfFilePath($filePath);
+            return $filePath;
         }
         return false;
     }

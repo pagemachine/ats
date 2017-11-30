@@ -1,7 +1,10 @@
-<f:form action="listAll" object="{message}" name="message">
-	<f:form.hidden name="messageType" value="{messageType}"/>
-	<f:for each="{selected}" as="uid">
-		<f:form.hidden name="selected[{uid}]" value="1"/>
+<f:form object="{messageContainer}" name="messageContainer">
+	<f:form.hidden name="messageType" value="{messageContainer.type}" />
+	<f:form.hidden property="type" value="{messageContainer.type}" />
+	<f:form.hidden name="action" value="newMassNotification" />
+	<f:for each="{applications}" as="application">
+		<f:form.hidden property="applications.{application.uid}" value="{application}" />
+		<f:form.hidden name="applications[{application.uid}]" value="{application.uid}" />
 	</f:for>
 	<div class="panel panel-default">
 
@@ -11,7 +14,8 @@
 			</div>
 		</div>
 
-		<f:if condition="{message}">
+		<f:if condition="{messageContainer}">
+		<f:alias map="{message : messageContainer}">
 
 			<div class="panel-body">
 				<div class="row">
@@ -19,7 +23,7 @@
 						<f:then>
 
 							<div class="col-sm-6">
-								<f:render partial="Backend/Message/CommonFields" arguments="{message : message, previewAction: 'newMassNotification', sendAction: 'sendMassNotification', placeholders: messageType}" />
+								<f:render partial="Backend/Message/CommonFields" arguments="{message : message, previewAction: 'newMassNotification', sendAction: 'sendMassNotification', placeholders: message.name}" />
 							</div>
 
 							<div class="col-sm-6">
@@ -37,7 +41,7 @@
 						<f:else>
 
 							<div class="col-sm-12">
-								<f:render partial="Backend/Message/CommonFields" arguments="{message : message, previewAction: 'newMassNotification', sendAction: 'sendMassNotification', placeholders: messageType}" />
+								<f:render partial="Backend/Message/CommonFields" arguments="{message : message, previewAction: 'newMassNotification', sendAction: 'sendMassNotification', placeholders: message.name}" />
 							</div>
 
 						</f:else>
@@ -45,6 +49,7 @@
 					</f:if>
 				</div>
 			</div>
+			</f:alias>
 		</f:if>
 
 	</div>

@@ -2,9 +2,7 @@
 namespace PAGEmachine\Ats\Controller\Backend;
 
 use PAGEmachine\Ats\Application\ApplicationFilter;
-use PAGEmachine\Ats\Message\RejectMessage;
-use PAGEmachine\Ats\Message\ReplyMessage;
-use PAGEmachine\Ats\Message\MessageInterface;
+use PAGEmachine\Ats\Message\MassMessageContainer;
 use PAGEmachine\Ats\Service\PdfService;
 
 /*
@@ -41,105 +39,57 @@ class NotificationApplicationController extends ApplicationController
      *
      * @param  ApplicationFilter $filter
      * @param  bool $resetFilter
-     * @param  RejectMessage $rejectMessage
-     * @param  ReplyMessage $ReplyMessage
-     * @param  string $messageType
-     * @param  array $selected
-     * @ignorevalidation $rejectMessage
-     * @ignorevalidation $replyMessage
      * @return void
      */
-    public function listAllAction(ApplicationFilter $filter = null, $resetFilter = false, RejectMessage $rejectMessage = null, ReplyMessage $replyMessage = null, $messageType = null, $selected = [])
+    public function listAllAction(ApplicationFilter $filter = null, $resetFilter = false)
     {
         if ($filter == null | $resetFilter === true) {
             $filter = new ApplicationFilter();
-        }
-
-        if ($messageType == 'reject') {
-            $message = $rejectMessage;
-        }
-
-        if ($messageType == 'reply') {
-            $message = $replyMessage;
-        }
-
-        if ($messageType != null && $messageType != 'null') {
-            if ($message == null) {
-                $application = $this->applicationRepository->findNotification($filter)[0];
-                $message = $this->messageFactory->createMessage($messageType, $application);
-            }
-
-            $message->applyTextTemplate();
         }
 
         $this->view->assignMultiple([
             'applications' => $this->applicationRepository->findNotification($filter),
             'jobs' => $this->jobRepository->findAll(),
             'filter' => $filter,
-            'message' => $message,
-            'messageType' => $messageType,
-            'selected' => $selected,
+            'messageTypes' => $this->messageFactory->getMessageTypes(),
         ]);
     }
 
+
     /**
-     *
-     *
-     * @param  string $messageType
-     * @param  array $selected
-     * @param  \PAGEmachine\Ats\Message\MessageInterface $message
-     * @ignorevalidation $message
+     * @param  \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\PAGEmachine\Ats\Domain\Model\Application>  $applications
+     * @param  \PAGEmachine\Ats\Message\MassMessageContainer $messageContainer
+     * @param  int $messageType
+     * @validate $applications NotEmpty
+     * @ignorevalidation $messageContainer
      * @return void
      */
-    public function newMassNotificationAction($messageType, $selected = [], MessageInterface $message = null){
-
-        $filter = new ApplicationFilter();//remove;
-        $selected = array_keys($selected, 1);
-        if($message == null){
-            $application = $this->applicationRepository->findNotification($filter)[0];//replace
-            $message = $this->messageFactory->createMessage($messageType, $application);
+    public function newMassNotificationAction($applications, MassMessageContainer $messageContainer = null, $messageType = null)
+    {
+        if ($messageContainer === null) {
+            $messageContainer = $this->messageFactory->createMassMessageContainer($messageType, $applications);
         }
 
         $this->view->assignMultiple([
-            'applications' => $this->applicationRepository->findNotification($filter),//replace
-            'message' => $message,
+            'applications' => $applications,
+            'messageContainer' => $messageContainer,
             'messageType' => $messageType,
-            'selected' => $selected,
         ]);
     }
 
     /**
      * Sends the Notifications in the desired way (mail or pdf)
      *
-     * @param  RejectMessage $rejectMessage
-     * @param  ReplyMessage $ReplyMessage
-     * @param  string $messageType
-     * @param  array $selected
-     * @ignorevalidation $rejectMessage
-     * @ignorevalidation $replyMessage
+     * @param  \PAGEmachine\Ats\Message\MassMessageContainer $messageContainer
+     * @ignorevalidation $messageContainer
      * @return void
      */
-    public function sendMassNotificationAction(RejectMessage $rejectMessage = null, ReplyMessage $replyMessage = null, $messageType = null, $selected = [])
+    public function sendMassNotificationAction(MassMessageContainer $messageContainer)
     {
-        $uids = array_keys($selected, 1);
-        $messages = [];
 
-        if ($messageType == 'reject') {
-            $message = $rejectMessage;
-        }
+        $messageContainer->send();
 
-        if ($messageType == 'reply') {
-            $message = $replyMessage;
-        }
-
-        foreach ($uids as $uid) {
-            $filepath = '';
-            $fileName = '';
-
-            $application = $this->applicationRepository->findByUid($uid);
-            $message->setApplication($application);
-            $message->setRenderedBody(null);
-
+        foreach ($messageContainer->getMessages() as $message) {
             $this->applicationRepository->updateAndLog(
                 $message->getApplication(),
                 $messageType,
@@ -151,19 +101,10 @@ class NotificationApplicationController extends ApplicationController
                     'message' => $message->getRenderedBody(),
                 ]
             );
-
-            if ($message->getSendType() == 'mail') {
-                $message->send();
-                usleep('100');
-            } else {
-                $fileName = PdfService::getInstance()->generateRandomFilename();
-                $filePath = $message->generatePdf($fileName);
-            }
-
-            $messages[] = ['filePath' => $filePath, 'fileName' => $fileName, 'message' => clone $message];
         }
+
         $this->view->assignMultiple([
-            'messages' => $messages,
+            'messageContainer' => $messageContainer,
         ]);
     }
 
@@ -177,5 +118,16 @@ class NotificationApplicationController extends ApplicationController
     public function downloadPdfAction($filePath, $fileName)
     {
         PdfService::getInstance()->downloadPdf($filePath, $fileName);
+    }
+
+    /**
+     *
+     * @return void
+     */
+    protected function fixMessageContainerMapping()
+    {
+        $propertyMappingConfiguration = $this->arguments->getArgument("messageContainer")->getPropertyMappingConfiguration();
+        $propertyMappingConfiguration->forProperty("applications")->allowAllProperties();
+        $propertyMappingConfiguration->forProperty("applications.*")->allowAllProperties();
     }
 }

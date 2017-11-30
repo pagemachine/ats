@@ -55,9 +55,6 @@ require(
         }
 
         //Mass Notification module
-        $('.messageType').change( function(){
-			this.form.submit();
-        });
 
         $('.pdfDownload').click( function(){
 			$(this).remove();

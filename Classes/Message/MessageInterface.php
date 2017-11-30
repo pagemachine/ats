@@ -71,4 +71,32 @@ interface MessageInterface
      * @return void
      */
     public function applyTextTemplate();
+
+
+    /**
+     * @return string
+     */
+    public function getSubject();
+
+    /**
+     * @param string $subject
+     * @return void
+     */
+    public function setSubject($subject);
+
+    /**
+     * @return string
+     */
+    public function getBody();
+
+    /**
+     * @param string $body
+     * @return void
+     */
+    public function setBody($body);
+
+    /**
+     * @return string
+     */
+    public function getPdfFilePath();
 }
