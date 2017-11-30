@@ -29,6 +29,9 @@
 		</div>
 	</div>
 
+</f:form>
+<f:form action="newMassNotification">
+
 	<table class="applications-list table">
 		<thead>
 			<tr>
@@ -49,7 +52,7 @@
 			<f:for each="{applications}" as="application" iteration="i">
 
 				<tr>
-					<td><f:form.checkbox class="checkbox" name="selected[{application.uid}]" value="1" checked="{ats:tool.arrayKeyToValue( array: selected, key: application.uid)}"/></td>
+					<td><f:form.checkbox class="checkbox" multiple="1" name="applications" value="{application.uid}"/></td>
 					<td> {i.index}</td>
 					<td><f:format.date format="d.m.Y H:i">{application.creationDate}</f:format.date></td>
 					<td>
@@ -71,8 +74,8 @@
 			</f:for>
 		</tbody>
 	</table>
-	<f:form.select name="messageType" class="form-control messageType" value="{messageType}" options="{null:'', reject: 'Reject', reply: 'Reply'}" />
+	<f:form.select name="messageType" class="form-control messageType" options="{messageTypes}" />
 	<f:form.button name="action" value="newMassNotification" class="btn btn-primary"><f:translate id="be.label.ApplicationSingle.Acknowledge.Send"/></f:form.button>
-
 </f:form>
+
 
