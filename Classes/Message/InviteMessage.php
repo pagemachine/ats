@@ -6,7 +6,7 @@ namespace PAGEmachine\Ats\Message;
  */
 
 
-class InviteMessage extends AbstractMessage
+class InviteMessage extends AbstractMessage implements MessageInterface
 {
     /**
      * @var int

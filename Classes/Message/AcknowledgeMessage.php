@@ -6,7 +6,7 @@ namespace PAGEmachine\Ats\Message;
  */
 
 
-class AcknowledgeMessage extends AbstractMessage
+class AcknowledgeMessage extends AbstractMessage implements MessageInterface
 {
     /**
      * @var int
