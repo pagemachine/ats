@@ -18,13 +18,13 @@ interface MessageInterface
      * @return Application
      */
     public function getApplication();
-    
+
     /**
      * @param Application $Application
      * @return void
      */
     public function setApplication(Application $Application);
-    
+
     /**
      * @return array
      */
@@ -41,18 +41,12 @@ interface MessageInterface
      * @return string
      */
     public function getType();
-    
-    /**
-     * @param string $type
-     * @return void
-     */
-    public function setType($type);
 
     /**
      * @return string
      */
     public function getSendType();
-    
+
     /**
      * @param string $sendType
      * @return void

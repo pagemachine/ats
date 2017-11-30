@@ -196,4 +196,28 @@ class ApplicationRepository extends AbstractApplicationRepository
 
         return $query->execute();
     }
+
+    /**
+     * Finds all applications for mass notification view
+     *
+     * @param  ApplicationFilter $filter
+     * @return QueryResult
+     */
+    public function findNotification(ApplicationFilter $filter = null)
+    {
+
+        $query = $this->createQuery();
+
+        $constraints = [
+            $query->lessThan("status", ApplicationStatus::EMPLOYED),
+            $query->logicalNot($query->equals("status", ApplicationStatus::INCOMPLETE)),
+        ];
+        $constraints = $this->getFilterConstraints($query, $constraints, $filter);
+
+        $query->matching(
+            $query->logicalAnd($constraints)
+        );
+
+        return $query->execute();
+    }
 }

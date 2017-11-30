@@ -53,6 +53,36 @@ require(
         if ($("#ats-ck-body").length) {
             CKEDITOR.replace("ats-ck-body");
         }
+
+        //Mass Notification module
+        $('.messageType').change( function(){
+			this.form.submit();
+        });
+
+        $('.pdfDownload').click( function(){
+			$(this).remove();
+        });
+
+		$('#downloadAll').click( function(){
+			$('.pdfDownload').each(function(){
+				var win = window.open($(this).attr('href'), '_blank');
+				if (win) {
+					$(this).click();
+				} else {
+				    alert('Please allow popups for this website');
+				    return false;
+				}
+			});
+		});
+
+		$('.selectAll').click(function(){
+			if($(this).is(":checked")){
+				$('.checkbox').prop('checked', true);
+			}else{
+				$('.checkbox').prop('checked', false);
+			}
+		});
+
      });
 
 });

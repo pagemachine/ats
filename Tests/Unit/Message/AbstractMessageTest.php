@@ -118,6 +118,32 @@ class AbstractMessageTest extends UnitTestCase
     /**
      * @test
      */
+    public function generatePdfAction()
+    {
+        // mail
+        $this->abstractMessage->generatePdf('Foo.pdf');
+
+        // pdf
+        $this->abstractMessage->setSendType(AbstractMessage::SENDTYPE_PDF);
+
+        $pdfService = $this->prophesize(PdfService::class);
+        GeneralUtility::setSingletonInstance(PdfService::class, $pdfService->reveal());
+
+        $this->standaloneView->assignMultiple(Argument::type("array"))->shouldBeCalled();
+
+        $this->markerService->replaceMarkers("someText", MarkerService::CONTEXT_PDF)->shouldBeCalled()->willReturn("someText");
+
+        $this->standaloneView->setTemplateSource("someText")->shouldBeCalled();
+        $this->standaloneView->render()->willReturn("<p>SomeText</p>");
+
+        $pdfService->generatePdf($this->application, "<p>SomeText</p>", 'Foo.pdf')->shouldBeCalled();
+
+        $this->abstractMessage->generatePdf('Foo.pdf');
+    }
+
+    /**
+     * @test
+     */
     public function returnsTemplateDropdownOptions()
     {
         $textTemplateRepository = $this->prophesize(TextTemplateRepository::class);

@@ -1,56 +1,5 @@
 <f:form object="{message}" name="message">
-	
-	<f:form.hidden property="application" value="{message.application.uid}" />
-	<f:form.hidden name="action" value="{previewAction}" />
 
-  <div class="radio">
-    <label>
-      <f:form.radio property="sendType" id="sendTypeMail" value="mail" />
-      <f:translate id="be.label.ApplicationSingle.Acknowledge.SendMailTo"/> {message.application.email}
-    </label>
-  </div>
-  <div class="radio">
-    <label>
-      <f:form.radio property="sendType" id="sendTypePdf" value="pdf" />
-      <f:translate id="be.label.ApplicationSingle.Acknowledge.CreatePdf"/>
-    </label>
-  </div>
-	<f:if condition="{message.textTemplateDropdownOptions -> f:count()} > 0">
-		<div class="form-group">
-			<label for="textTemplate">Template</label>
-					<f:form.select class="form-control" property="textTemplate" id="textTemplate" options="{message.textTemplateDropdownOptions}" additionalAttributes="{onchange: 'this.form.submit()'}" prependOptionLabel="---" prependOptionValue="" />
-		</div>
- 	</f:if>
-  
-  <f:render partial="Backend/Message/Fields/Textfield" arguments="{
-  	field : 'subject',
-  	languagePath : 'mail'
-  }"/>
-
-  <f:render partial="Backend/Message/Fields/Textfield" arguments="{
-  	field : 'cc',
-  	languagePath : 'mail'
-  }"/>  
-
-  <f:render partial="Backend/Message/Fields/Textfield" arguments="{
-  	field : 'bcc',
-  	languagePath : 'mail'
-  }"/> 
-
-  <f:render partial="Backend/Message/Fields/Textarea" arguments="{
-  	field : 'body',
-  	languagePath : 'mail',
-  	placeholders : '{placeholders}'
-  }"/> 
-
-  <f:render partial="Backend/Message/{message.name}" arguments="{
-  	message : message
-  }" />
-
-
-  <div class="form-group">
-    <f:form.button name="action" value="{previewAction}" class="btn btn-primary"><f:translate id="be.label.ApplicationSingle.Acknowledge.Preview"/></f:form.button>
-    <f:form.button name="action" value="{sendAction}" class="btn btn-primary"><f:translate id="be.label.ApplicationSingle.Acknowledge.Send"/></f:form.button>
-  </div>
+	<f:render partial="Backend/Message/CommonFields" arguments="{_all}" />
 
 </f:form>

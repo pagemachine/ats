@@ -839,6 +839,23 @@
         <source>Custom Export</source>
       </trans-unit>
 
+      <!-- ATS Mass Notification -->
+      <trans-unit id="tx_ats.mass.pdf">
+        <source>PDFs</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.mass.emailSent">
+        <source>E-mails sent</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.mass.download">
+        <source>[Download]</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.mass.downloadAll">
+        <source>[Download All]</source>
+      </trans-unit>
+
       <!-- Age distribution -->
       <trans-unit id="tx_ats.stat.age.0">
         <source>under 20</source>
@@ -1049,6 +1066,10 @@
 
       <trans-unit id="be.label.Archive">
         <source>Archive</source>
+      </trans-unit>
+
+      <trans-unit id="be.label.Notification">
+        <source>Mass Notification</source>
       </trans-unit>
 
       <trans-unit id="be.label.FilterBar.All">

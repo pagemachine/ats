@@ -1,0 +1,47 @@
+<div class="col-sm-6">
+
+	<f:if condition="{messages.0.fileName}">
+		<f:then>
+			<h1><f:translate key="tx_ats.mass.pdf"/></h1>
+		</f:then>
+		<f:else>
+			<h1><f:translate key="tx_ats.mass.emailSent"/></h1>
+		</f:else>
+	</f:if>
+
+	<table class="applications-list table">
+
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Name</th>
+				<f:if condition="{messages.0.fileName}">
+					<f:then>
+						<th class="text-right" ><a id="downloadAll" onclick="return false;"><f:translate key="tx_ats.mass.downloadAll"/></a></th>
+					</f:then>
+					<f:else>
+						<th><f:translate key="tx_ats.label.email"/></th>
+					</f:else>
+				</f:if>
+			</tr>
+		</thead>
+
+		<tbody>
+			<f:for each="{messages}" as="message">
+				<tr>
+					<td>{message.message.application.uid}</td>
+					<td>{message.message.application.surname}, {message.message.application.firstname}</td>
+					<f:if condition="{message.fileName}">
+						<f:then>
+							<td class="text-right" ><f:link.action action="downloadPdf" class="pdfDownload" target="_blank" arguments="{filePath: message.filePath, fileName: message.fileName}"><f:translate key="tx_ats.mass.download"/></f:link.action></td>
+						</f:then>
+						<f:else>
+							<td>{message.message.application.email}</td>
+						</f:else>
+					</f:if>
+				</tr>
+			</f:for>
+		</tbody>
+
+	</table>
+</div>

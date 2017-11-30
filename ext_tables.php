@@ -77,4 +77,22 @@ if (TYPO3_MODE === 'BE') {
             'navigationComponentId' => 'typo3-pagetree'
         )
     );
+
+    //Fourth module, mass notification
+
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
+        'PAGEmachine.Ats',
+        'ats',
+        'notification',
+        '',
+        array(
+            'Backend\\NotificationApplication' => 'index, listAll, show, edit, removeUpload, update, editStatus, updateStatus, notes, addNote, history, clone, confirmClone, newMassNotification, sendMassNotification, downloadPdf'
+        ),
+        array(
+            'access'    => 'user,group',
+            'icon'      => 'EXT:ats/Resources/Public/Icons/module_massnotifications.svg',
+            'labels'    => 'LLL:EXT:ats/Resources/Private/Language/locallang_mod_notification.xlf',
+            'navigationComponentId' => 'typo3-pagetree'
+        )
+    );
 }
