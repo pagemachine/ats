@@ -74,6 +74,7 @@ class NotificationApplicationController extends ApplicationController
             'applications' => $applications,
             'messageContainer' => $messageContainer,
             'messageType' => $messageType,
+            'placeholders' => $this->messageFactory->getMessageTypes()[$messageType],
         ]);
     }
 
@@ -99,6 +100,7 @@ class NotificationApplicationController extends ApplicationController
                     'cc' => $message->getCc(),
                     'bcc' => $message->getBcc(),
                     'message' => $message->getRenderedBody(),
+                    'placeholders' => $this->messageFactory->getMessageTypes()[$messageType],
                 ]
             );
         }
