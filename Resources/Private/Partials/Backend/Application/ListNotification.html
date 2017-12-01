@@ -1,35 +1,7 @@
 {namespace ats=PAGEmachine\Ats\ViewHelpers}
-<f:form action="listAll">
 
-	<div class="panel panel-default form-inline">
-	  <div class="panel-body">
-				<div class="form-group">
-					<label for="job"><f:translate key="be.label.FilterBar.Job"/></label>
-					<f:form.select options="{jobs}" name="filter[job]" value="{filter.job}" optionLabelField="jobNumber" prependOptionValue="" prependOptionLabel="<f:translate key='be.label.FilterBar.All'/>" class="form-control" />
-				</div>
+<f:render partial="Backend/Application/FilterBar" arguments="{action : 'listAll', jobs : jobs, filter : filter}" />
 
-				<div class="form-group">
-					<label for="searchword" class="sr-only">Search:</label>
-					<f:form.textfield name="filter[searchword]" value="{filter.searchword}" class="form-control" placeholder="<f:translate key='be.label.FilterBar.Placeholder.Search'/>" />
-				</div>
-
-				<div class="form-group">
-					<f:for each="{filter.possibleSearchfields}" as="searchfield">
-							<label class="checkbox-inline">
-							<f:form.checkbox name="filter[searchfields]" multiple="true" value="{searchfield}" checked="{ats:tool.arrayKeyToValue( array: filter.searchfields, key: searchfield, flipArray: 'true')} > -1"/>
-								<f:translate key="tx_ats.label.{searchfield}">{searchfield}</f:translate>
-							</label>
-					</f:for>
-				</div>
-
-				<div class="form-group">
-					<button type="submit" class="btn btn-primary"><f:translate key="be.label.FilterBar.Filter"/></button>
-					<button type="submit" class="btn btn-default" name="tx_ats[resetFilter]" value="1"><f:translate key="be.label.FilterBar.Reset"/></button>
-				</div>
-		</div>
-	</div>
-
-</f:form>
 <f:form action="newMassNotification">
 
 	<table class="applications-list table">
