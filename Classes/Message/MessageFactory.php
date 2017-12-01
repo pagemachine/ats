@@ -32,6 +32,16 @@ class MessageFactory implements SingletonInterface
     ];
 
     /**
+     * @var array
+     */
+    protected $messageNames = [
+        AbstractMessage::MESSAGE_REPLY => 'ReplyMessage',
+        AbstractMessage::MESSAGE_INVITE => 'InviteMessage',
+        AbstractMessage::MESSAGE_ACKNOWLEDGE => 'AcknowledgeMessage',
+        AbstractMessage::MESSAGE_REJECT => 'RejectMessage',
+    ];
+
+    /**
      * @var \TYPO3\CMS\Extbase\Object\ObjectManager
      * @inject
      */
@@ -45,6 +55,16 @@ class MessageFactory implements SingletonInterface
     public function getMessageTypes()
     {
         return $this->messageTypeConstants;
+    }
+
+    /**
+     * Returns message names
+     *
+     * @return array
+     */
+    public function getMessageNames()
+    {
+        return $this->messageNames;
     }
 
     /**
