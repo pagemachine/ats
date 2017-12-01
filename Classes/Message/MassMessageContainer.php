@@ -28,7 +28,7 @@ class MassMessageContainer extends AbstractMessage implements MessageInterface
     public function getName()
     {
 
-        return "AcknowledgeMessage";
+        return $this->messageFactory->getMessageNames()[$this->type];
     }
 
     /**
