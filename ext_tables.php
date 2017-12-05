@@ -83,7 +83,7 @@ if (TYPO3_MODE === 'BE') {
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
         'PAGEmachine.Ats',
         'ats',
-        'notification',
+        'multiSend',
         '',
         array(
             'Backend\\NotificationApplication' => 'index, listAll, show, edit, removeUpload, update, editStatus, updateStatus, notes, addNote, history, clone, confirmClone, newMassNotification, sendMassNotification, downloadPdf, result'
