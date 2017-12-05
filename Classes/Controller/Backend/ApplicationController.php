@@ -507,7 +507,7 @@ class ApplicationController extends AbstractBackendController
             $message->getApplication(),
             'reply',
             [
-                'subject' => $message->getSubject(),
+                'subject' => $message->getRenderedSubject(),
                 'sendType' => $message->getSendType(),
                 'cc' => $message->getCc(),
                 'bcc' => $message->getBcc(),
@@ -559,7 +559,7 @@ class ApplicationController extends AbstractBackendController
             $message->getApplication(),
             'invite',
             [
-                'subject' => $message->getSubject(),
+                'subject' => $message->getRenderedSubject(),
                 'sendType' => $message->getSendType(),
                 'cc' => $message->getCc(),
                 'bcc' => $message->getBcc(),
@@ -611,7 +611,7 @@ class ApplicationController extends AbstractBackendController
             $message->getApplication(),
             'acknowledge',
             [
-                'subject' => $message->getSubject(),
+                'subject' => $message->getRenderedSubject(),
                 'sendType' => $message->getSendType(),
                 'cc' => $message->getCc(),
                 'bcc' => $message->getBcc(),
@@ -663,7 +663,7 @@ class ApplicationController extends AbstractBackendController
             $message->getApplication(),
             'reject',
             [
-                'subject' => $message->getSubject(),
+                'subject' => $message->getRenderedSubject(),
                 'sendType' => $message->getSendType(),
                 'cc' => $message->getCc(),
                 'bcc' => $message->getBcc(),
