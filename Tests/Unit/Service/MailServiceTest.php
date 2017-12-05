@@ -6,7 +6,9 @@ namespace PAGEmachine\Ats\Tests\Unit\Service;
  */
 
 use PAGEmachine\Ats\Domain\Model\Application;
+use PAGEmachine\Ats\Service\FluidRenderingService;
 use PAGEmachine\Ats\Service\MailService;
+use Prophecy\Argument;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
@@ -57,8 +59,10 @@ class MailServiceTest extends UnitTestCase
         $this->application->setSurname("Holmes");
         $this->application->setEmail("sherlock@holmes.com");
 
+        $this->fluidRenderingService = $this->prophesize(FluidRenderingService::class);
+
         $this->mailService = $this->getMockBuilder(MailService::class)
-            ->setConstructorArgs(['backenduser' => $this->backendUser])
+            ->setConstructorArgs(['backenduser' => $this->backendUser, 'fluidRenderingService' => $this->fluidRenderingService->reveal()])
             ->setMethods(['callStatic', 'fetchSystemFrom'])
             ->getMock();
 
@@ -81,6 +85,7 @@ class MailServiceTest extends UnitTestCase
     {
 
         $this->mailMessage->setFrom(['username@domain.com' => 'Username'])->willReturn($this->mailMessage->reveal())->shouldBeCalled();
+        $this->fluidRenderingService->renderTemplate('Mail/Html', Argument::type('array'))->shouldBeCalled()->willReturn('Bar');
 
         $this->mailService->sendReplyMail($this->application, "Foo", "Bar");
     }
@@ -90,13 +95,14 @@ class MailServiceTest extends UnitTestCase
      */
     public function setsAllFieldsWithSystemData()
     {
-        
+
 
         //Unset user and expect system settings
         $this->backendUser->user = [];
         $this->mailService->expects($this->once())->method('fetchSystemFrom')->willReturn(['system@domain.com' => 'System Name']);
 
         $this->mailMessage->setFrom(['system@domain.com' => 'System Name'])->willReturn($this->mailMessage->reveal())->shouldBeCalled();
+        $this->fluidRenderingService->renderTemplate('Mail/Html', Argument::type('array'))->shouldBeCalled()->willReturn('Bar');
 
         $this->mailService->sendReplyMail($this->application, "Foo", "Bar");
     }
@@ -110,6 +116,8 @@ class MailServiceTest extends UnitTestCase
         $this->mailMessage->setFrom(['username@domain.com' => 'Username'])->willReturn($this->mailMessage->reveal())->shouldBeCalled();
         $this->mailMessage->setCc('cc@domain.com')->shouldBeCalled();
 
+        $this->fluidRenderingService->renderTemplate('Mail/Html', Argument::type('array'))->shouldBeCalled()->willReturn('Bar');
+
         $this->mailService->sendReplyMail($this->application, "Foo", "Bar", "cc@domain.com");
     }
 
@@ -121,6 +129,8 @@ class MailServiceTest extends UnitTestCase
 
         $this->mailMessage->setFrom(['username@domain.com' => 'Username'])->willReturn($this->mailMessage->reveal())->shouldBeCalled();
         $this->mailMessage->setBcc('bcc@domain.com')->shouldBeCalled();
+
+        $this->fluidRenderingService->renderTemplate('Mail/Html', Argument::type('array'))->shouldBeCalled()->willReturn('Bar');
 
         $this->mailService->sendReplyMail($this->application, "Foo", "Bar", "", "bcc@domain.com");
     }
