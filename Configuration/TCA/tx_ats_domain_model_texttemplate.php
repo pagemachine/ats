@@ -15,7 +15,7 @@ return [
             'disabled' => 'hidden',
         ],
         'searchFields' => '',
-        'iconfile' => 'EXT:ats/Resources/Public/Icons/tx_ats_domain_model_texttemplate.gif',
+        'iconfile' => 'EXT:ats/Resources/Public/Icons/tx_ats_domain_model_texttemplate.svg',
     ],
     'interface' => [
         'showRecordFieldList' => 'hidden, title, type'

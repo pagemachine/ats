@@ -20,7 +20,7 @@ return [
 			'endtime' => 'endtime',
 		],
 		'searchFields' => 'job_number, title',
-		'iconfile' => 'EXT:ats/Resources/Public/Icons/tx_ats_domain_model_job.gif',
+		'iconfile' => 'EXT:ats/Resources/Public/Icons/tx_ats_domain_model_job.svg',
         'requestUpdate' => 'career, location'
 	],
 	'interface' => [
