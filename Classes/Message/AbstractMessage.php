@@ -341,6 +341,16 @@ abstract class AbstractMessage
     }
 
     /**
+     * Returns a download filename for the generated pdf file
+     *
+     * @return string
+     */
+    public function getFileName()
+    {
+        return PdfService::getInstance()->createCleanedFilename($this->getSubject() . '_' . $this->application->getSurname() . '_' . date('Y-m-d'));
+    }
+
+    /**
      * Renders the body
      *
      * @return string
