@@ -31,8 +31,12 @@ if (!class_exists(\Symfony\Component\Workflow\Workflow::class)) {
     ]
 );
 
-//Add custom marker replacements here
-$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['replacemarkers']['default'] = [];
+// Marker replacements (CKEDITOR --> Fluid) in both mail and pdf context.
+// Useful for defining shortcuts for ViewHelpers or translations.
+// You can add your own markers here, however they need to be added in Resources/Public/JavaScript/CKEditorSetup.js as well
+$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['replacemarkers']['default'] = [
+    'application.salutation' => 'f:translate(key:"tx_ats.message.salutation.{application.salutation}",extensionName:"ats")',
+];
 
 //Only used for mails
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['replacemarkers']['mail'] = [

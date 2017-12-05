@@ -55,7 +55,6 @@ class ExtconfService implements SingletonInterface
             );
         }
         return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['replacemarkers'][MarkerService::CONTEXT_DEFAULT];
-
     }
 
     /**

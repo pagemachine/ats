@@ -1122,6 +1122,17 @@
 				<target>Senden</target>
 			</trans-unit>
 
+
+			<trans-unit id="tx_ats.message.salutation.1">
+				<source>Dear Mr.</source>
+				<target>Sehr geehrter Herr</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.message.salutation.2">
+				<source>Dear Ms.</source>
+				<target>Sehr geehrte Frau</target>
+			</trans-unit>
+
 		</body>
 	</file>
 </xliff>
