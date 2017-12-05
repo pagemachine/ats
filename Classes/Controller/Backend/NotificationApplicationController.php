@@ -97,6 +97,7 @@ class NotificationApplicationController extends ApplicationController
      */
     public function sendMassNotificationAction($applications, MessageInterface $message)
     {
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($this->request, __METHOD__, 8, defined('TYPO3_cliMode') || defined('TYPO3_REQUESTTYPE') && (TYPO3_REQUESTTYPE & TYPO3_REQUESTTYPE_CLI));
         $messageContainer = $this->messageFactory->createContainerFromMessage($message, $applications);
 
         $messageContainer->send();
@@ -111,13 +112,26 @@ class NotificationApplicationController extends ApplicationController
                     'cc' => $message->getCc(),
                     'bcc' => $message->getBcc(),
                     'message' => $message->getRenderedBody(),
-                    'placeholders' => $this->messageFactory->getMessageTypes()[$messageType],
+                    'placeholders' => $this->messageFactory->getMessageTypes()[$message->getType()],
                 ]
             );
         }
 
+        $this->redirect('result', null, null, ['sendType' => $message->getSendType(), 'results' => $messageContainer->getResults()]);
+    }
+
+    /**
+     * Shows the results of the sending action
+     *
+     * @param  string $sendType
+     * @param  array $results
+     * @return void
+     */
+    public function resultAction($sendType, $results)
+    {
         $this->view->assignMultiple([
-            'messageContainer' => $messageContainer,
+            'sendType' => $sendType,
+            'results' => $results,
         ]);
     }
 
