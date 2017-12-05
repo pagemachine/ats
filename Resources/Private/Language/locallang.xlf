@@ -1336,6 +1336,10 @@
 			<trans-unit id="be.label.ApplicationSingle.Clone.Submit">
 				<source>Submit</source>
 			</trans-unit>
+
+			<trans-unit id="be.label.notification.back">
+				<source>Back to list</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

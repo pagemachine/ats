@@ -86,7 +86,7 @@ if (TYPO3_MODE === 'BE') {
         'notification',
         '',
         array(
-            'Backend\\NotificationApplication' => 'index, listAll, show, edit, removeUpload, update, editStatus, updateStatus, notes, addNote, history, clone, confirmClone, newMassNotification, sendMassNotification, downloadPdf'
+            'Backend\\NotificationApplication' => 'index, listAll, show, edit, removeUpload, update, editStatus, updateStatus, notes, addNote, history, clone, confirmClone, newMassNotification, sendMassNotification, downloadPdf, result'
         ),
         array(
             'access'    => 'user,group',

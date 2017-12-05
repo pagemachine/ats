@@ -1,0 +1,57 @@
+<div class="col-sm-6">
+
+	<f:if condition="{0 : sendType} == {0 : 'mail'}">
+		<f:then>
+			<h1><f:translate key="tx_ats.mass.emailSent"/></h1>
+
+
+			<table class="applications-list table">
+
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th><f:translate key="tx_ats.label.email"/></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<f:for each="{results}" as="result">
+						<tr>
+							<td>{result.name}</td>
+							<td>{result.mail}</td>
+						</tr>
+					</f:for>
+				</tbody>
+
+			</table>
+		</f:then>
+		<f:else>
+
+			<h1><f:translate key="tx_ats.mass.pdf"/></h1>
+
+			<table class="applications-list table">
+
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th class="text-right" ><a id="downloadAll" onclick="return false;"><f:translate key="tx_ats.mass.downloadAll"/></a></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<f:for each="{results}" as="result">
+						<tr>
+							<td>{result.name}</td>
+							<td class="text-right" ><f:link.action action="downloadPdf" class="pdfDownload" target="_blank" arguments="{filePath : result.filepath, fileName: result.filename}"><f:translate key="tx_ats.mass.download"/></f:link.action></td>
+						</tr>
+					</f:for>
+				</tbody>
+
+			</table>
+		</f:else>
+
+	</f:if>
+
+	<f:link.action action="listAll"><f:translate key="be.label.notification.back">Back</f:translate></f:link.action>
+
+</div>

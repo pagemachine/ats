@@ -120,4 +120,25 @@ class MassMessageContainer
             }
         }
     }
+
+    public function getResults()
+    {
+        $results = [];
+        foreach ($this->messages as $message) {
+            if ($message->getSendType() == 'mail') {
+                $results[] = [
+                    'mail' => $message->getApplication()->getEmail(),
+                    'name' => $message->getApplication()->getSurname(),
+                ];
+            } else {
+                $results[] = [
+                    'name' => $message->getApplication()->getSurname(),
+                    'filepath' => $message->getPdfFilePath(),
+                    'filename' => $message->getFilename(),
+                ];
+            }
+        }
+
+        return $results;
+    }
 }
