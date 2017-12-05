@@ -48,8 +48,13 @@ class ExtconfService implements SingletonInterface
      */
     public function getMarkerReplacements($context = MarkerService::CONTEXT_DEFAULT)
     {
-
-        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['replacemarkers'][$context];
+        if ($context != MarkerService::CONTEXT_DEFAULT) {
+            return array_merge(
+                $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['replacemarkers'][MarkerService::CONTEXT_DEFAULT],
+                $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['replacemarkers'][$context]
+            );
+        }
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['replacemarkers'][MarkerService::CONTEXT_DEFAULT];
     }
 
     /**

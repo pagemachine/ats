@@ -509,6 +509,19 @@
 		<trans-unit id="tx_ats.message.send_type.mail">
 			<source>Email</source>
 		</trans-unit>
+
+
+		<!-- Message template labels, used in the actual mail/pdf messages -->
+
+		<trans-unit id="tx_ats.message.salutation.1">
+			<source>Dear Mr.</source>
+		</trans-unit>
+
+		<trans-unit id="tx_ats.message.salutation.2">
+			<source>Dear Ms.</source>
+		</trans-unit>
+
+
 	  <!-- Job labels -->
 
 	   <trans-unit id="tx_ats.job.jobNumber">

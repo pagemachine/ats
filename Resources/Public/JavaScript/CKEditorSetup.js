@@ -8,6 +8,7 @@ require(['jquery', 'TYPO3/CMS/Ats/ckeditor/ckeditor'], function($) {
     CKEditorSetup.editorSettings = {
         'placeholders': {
             'reply': [
+                ['Applicant Salutation', 'application.salutation'],
                 ['Applicant Title', 'application.title'],
                 ['Applicant Firstname', 'application.firstname'],
                 ['Applicant Surname', 'application.surname'],
@@ -15,6 +16,7 @@ require(['jquery', 'TYPO3/CMS/Ats/ckeditor/ckeditor'], function($) {
                 ['Signature', 'backenduser.signature']
             ],
             'invite': [
+                ['Applicant Salutation', 'application.salutation'],
                 ['Applicant Title', 'application.title'],
                 ['Applicant Firstname', 'application.firstname'],
                 ['Applicant Surname', 'application.surname'],
@@ -27,6 +29,7 @@ require(['jquery', 'TYPO3/CMS/Ats/ckeditor/ckeditor'], function($) {
                 ['Signature', 'backenduser.signature']
             ],
             'acknowledge': [
+                ['Applicant Salutation', 'application.salutation'],
                 ['Applicant Title', 'application.title'],
                 ['Applicant Firstname', 'application.firstname'],
                 ['Applicant Surname', 'application.surname'],
@@ -34,6 +37,7 @@ require(['jquery', 'TYPO3/CMS/Ats/ckeditor/ckeditor'], function($) {
                 ['Signature', 'backenduser.signature']
             ],
             'reject': [
+                ['Applicant Salutation', 'application.salutation'],
                 ['Applicant Title', 'application.title'],
                 ['Applicant Firstname', 'application.firstname'],
                 ['Applicant Surname', 'application.surname'],
