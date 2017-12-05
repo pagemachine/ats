@@ -1,6 +1,6 @@
 <div class="col-sm-6">
 
-	<f:if condition="{0 : messageContainer.sendType} == {0 : 'mail'}">
+	<f:if condition="{0 : messageContainer.messages.0.sendType} == {0 : 'mail'}">
 		<f:then>
 			<h1><f:translate key="tx_ats.mass.emailSent"/></h1>
 

@@ -2,8 +2,9 @@
 namespace PAGEmachine\Ats\Controller\Backend;
 
 use PAGEmachine\Ats\Application\ApplicationFilter;
-use PAGEmachine\Ats\Message\MassMessageContainer;
+use PAGEmachine\Ats\Message\MessageInterface;
 use PAGEmachine\Ats\Service\PdfService;
+use TYPO3\CMS\Extbase\Property\TypeConverter\ObjectConverter;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -55,38 +56,48 @@ class NotificationApplicationController extends ApplicationController
         ]);
     }
 
+    public function initializeNewMassNotificationAction()
+    {
+        $this->fixMessageContainerMapping();
+    }
+
 
     /**
      * @param  \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\PAGEmachine\Ats\Domain\Model\Application>  $applications
-     * @param  \PAGEmachine\Ats\Message\MassMessageContainer $messageContainer
+     * @param  \PAGEmachine\Ats\Message\MessageInterface $message
      * @param  int $messageType
      * @validate $applications NotEmpty
-     * @ignorevalidation $messageContainer
      * @return void
      */
-    public function newMassNotificationAction($applications, MassMessageContainer $messageContainer = null, $messageType = null)
+    public function newMassNotificationAction($applications, MessageInterface $message = null, $messageType = null)
     {
-        if ($messageContainer === null) {
-            $messageContainer = $this->messageFactory->createMassMessageContainer($messageType, $applications);
+        if ($message == null) {
+            $message = $this->messageFactory->createMessageFromConstantType($messageType, $applications->current());
         }
 
         $this->view->assignMultiple([
             'applications' => $applications,
-            'messageContainer' => $messageContainer,
-            'messageType' => $messageType,
-            'placeholders' => $this->messageFactory->getMessageTypes()[$messageType],
+            'message' => $message,
+            'type' => get_class($message),
+            'placeholders' => $this->messageFactory->getMessageTypes()[$message->getType()],
         ]);
+    }
+
+    public function initializeSendMassNotificationAction()
+    {
+        $this->fixMessageContainerMapping();
     }
 
     /**
      * Sends the Notifications in the desired way (mail or pdf)
      *
-     * @param  \PAGEmachine\Ats\Message\MassMessageContainer $messageContainer
-     * @ignorevalidation $messageContainer
+     * @param  \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\PAGEmachine\Ats\Domain\Model\Application>  $applications
+     * @param  \PAGEmachine\Ats\Message\MessageInterface $message
      * @return void
      */
-    public function sendMassNotificationAction(MassMessageContainer $messageContainer)
+    public function sendMassNotificationAction($applications, MessageInterface $message)
     {
+        $messageContainer = $this->messageFactory->createContainerFromMessage($message, $applications);
 
         $messageContainer->send();
 
@@ -128,8 +139,10 @@ class NotificationApplicationController extends ApplicationController
      */
     protected function fixMessageContainerMapping()
     {
-        $propertyMappingConfiguration = $this->arguments->getArgument("messageContainer")->getPropertyMappingConfiguration();
-        $propertyMappingConfiguration->forProperty("applications")->allowAllProperties();
-        $propertyMappingConfiguration->forProperty("applications.*")->allowAllProperties();
+
+        if ($this->request->hasArgument('message')) {
+            $propertyMappingConfiguration = $this->arguments->getArgument("message")->getPropertyMappingConfiguration();
+            $propertyMappingConfiguration->setTypeConverterOption(ObjectConverter::class, ObjectConverter::CONFIGURATION_OVERRIDE_TARGET_TYPE_ALLOWED, true);
+        }
     }
 }
