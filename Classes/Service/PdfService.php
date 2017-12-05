@@ -6,6 +6,7 @@ namespace PAGEmachine\Ats\Service;
  */
 
 use PAGEmachine\Ats\Domain\Model\Application;
+use PAGEmachine\Ats\Service\FluidRenderingService;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -25,15 +26,21 @@ class PdfService implements SingletonInterface
     protected $configurationManager;
 
     /**
+     * @var \PAGEmachine\Ats\Service\FluidRenderingService
+     */
+    protected $fluidRenderingService;
+
+    /**
      * @var BackendUserAuthentication $backendUser
      */
     protected $backendUser;
 
-    public function __construct(BackendUserAuthentication $backendUser = null, ObjectManager $objectManager = null)
+    public function __construct(BackendUserAuthentication $backendUser = null, ObjectManager $objectManager = null, FluidRenderingService $fluidRenderingService = null)
     {
         $this->objectManager = $objectManager ? $objectManager : GeneralUtility::makeInstance(ObjectManager::class);
         $this->configurationManager = $this->objectManager->get(ConfigurationManager::class);
         $this->backendUser = $backendUser ?: $GLOBALS['BE_USER'];
+        $this->fluidRenderingService = $fluidRenderingService ?: GeneralUtility::makeInstance(FluidRenderingService::class);
     }
 
     /**
@@ -120,12 +127,38 @@ class PdfService implements SingletonInterface
         $pdf = $this->objectManager->get('mPDF', 'c', 'A4', '', '', 0, 0, 0, 0, 0, 0);
 
         $pdf->setAutoTopMargin = true;
-        $pdf->SetHTMLHeader($this->getTemplate('Pdf/Header', $application));
+
+        $pdf->setHTMLHeader(
+            $this->fluidRenderingService->renderTemplate(
+                'Pdf/Header',
+                [
+                    'application' => $application,
+                    'backenduser' => $this->backendUser->user,
+                ]
+            )
+        );
 
         $pdf->setAutoBottomMargin = true;
-        $pdf->SetHTMLFooter($this->getTemplate('Pdf/Footer', $application));
 
-        $body = "<div style='margin-left: 20mm; margin-right: 20mm;'>".$body."<div>";
+        $pdf->setHTMLFooter(
+            $this->fluidRenderingService->renderTemplate(
+                'Pdf/Footer',
+                [
+                    'application' => $application,
+                    'backenduser' => $this->backendUser->user,
+                ]
+            )
+        );
+
+        $body = $this->fluidRenderingService->renderTemplate(
+            'Pdf/Body',
+            [
+                'application' => $application,
+                'backenduser' => $this->backendUser->user,
+                'body' => $body,
+            ]
+        );
+
         $pdf->WriteHTML($body);
         $pdf->Output($filePath, 'F');
         return $filePath;
@@ -153,47 +186,5 @@ class PdfService implements SingletonInterface
             $this->setexit();
         }
         return false;
-    }
-
-    /**
-     * Gets the template html.
-     *
-     * @param      string  $templateName  The template name
-     * @param      Application $application
-     *
-     * @return     string  html
-     */
-    protected function getTemplate($templateName, Application $application)
-    {
-        $configuration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
-        $view = $this->objectManager->get(\TYPO3\CMS\Fluid\View\StandaloneView::class);
-        $view->setFormat('html');
-        $view->setLayoutRootPaths($configuration['view']['layoutRootPaths']);
-        $view->setPartialRootPaths($configuration['view']['partialRootPaths']);
-        $view->setTemplatePathAndFilename($this->getTemplateRootPath($configuration['view']['templateRootPaths'], $templateName));
-        $view->assign('application', $application);
-        $view->assign('backenduser', $this->backendUser->user);
-        return $view->render();
-    }
-
-    /**
-     * Legacy Typo3 6.2 Workaround For setTemplateRootPaths
-     * TODO: Replace when 6.2 Support expires
-     *
-     * @param      array  $pathArray     templateRootPaths array
-     * @param      string  $templateName  The template name
-     *
-     * @return     string  The template root paths.
-     */
-    protected function getTemplateRootPath($pathArray, $templateName)
-    {
-        $path = GeneralUtility::getFileAbsFileName($pathArray[0]) . $templateName . '.html';
-        foreach ($pathArray as $key => $value) {
-            $template = GeneralUtility::getFileAbsFileName($value) . $templateName . '.html';
-            if (file_exists($template)) {
-                $path = $template;
-            }
-        }
-        return $path;
     }
 }

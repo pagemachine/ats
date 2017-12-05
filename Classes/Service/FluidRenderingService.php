@@ -5,6 +5,7 @@ use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3\CMS\Form\Mvc\Configuration\ConfigurationManagerInterface;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -19,6 +20,11 @@ class FluidRenderingService implements SingletonInterface
     protected $view;
 
     /**
+     * @var StandaloneView
+     */
+    protected $sourceView;
+
+    /**
      * @codeCoverageIgnore
      * @return FluidRenderingService
      */
@@ -30,14 +36,31 @@ class FluidRenderingService implements SingletonInterface
     /**
      *
      * @param StandaloneView|null $view
+     * @param StandaloneView|null $sourceView
      */
-    public function __construct(StandaloneView $view = null)
+    public function __construct(StandaloneView $view = null, StandaloneView $sourceView = null)
     {
-        if (!$view) {
-            $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-            $view = $objectManager->get(StandaloneView::class);
-        }
-        $this->view = $view;
+        $this->view = $view ?: $this->generateView();
+        $this->sourceView = $sourceView ?: $this->generateView();
+    }
+
+    /**
+     * Generates a fresh view and sets all necessary config options
+     *
+     * @return StandaloneView
+     */
+    protected function generateView()
+    {
+        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+        $view = $objectManager->get(StandaloneView::class);
+
+        $configurationManager = $objectManager->get(ConfigurationManagerInterface::class);
+        $configuration = $configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+        $view->setTemplateRootPaths($configuration['view']['templateRootPaths']);
+        $view->setLayoutRootPaths($configuration['view']['layoutRootPaths']);
+        $view->setPartialRootPaths($configuration['view']['partialRootPaths']);
+
+        return $view;
     }
 
     /**
@@ -49,14 +72,29 @@ class FluidRenderingService implements SingletonInterface
      */
     public function render($rawText, $assignVariables)
     {
-        $this->view->setTemplateSource(
+        $this->sourceView->setTemplateSource(
             $rawText
         );
 
-        $this->view->assignMultiple($assignVariables);
+        $this->sourceView->assignMultiple($assignVariables);
 
-        $renderedText = $this->view->render();
+        $renderedText = $this->sourceView->render();
 
         return $renderedText;
+    }
+
+    /**
+     * Renders field content
+     *
+     * @param  string $rawText
+     * @param  array  $assignVariables
+     * @return string $renderedText
+     */
+    public function renderTemplate($templateName, $assignVariables = [])
+    {
+        $this->view->setTemplate($templateName);
+        $this->view->assignMultiple($assignVariables);
+
+        return $this->view->render();
     }
 }
