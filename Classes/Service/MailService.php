@@ -2,6 +2,7 @@
 namespace PAGEmachine\Ats\Service;
 
 use PAGEmachine\Ats\Domain\Model\Application;
+use PAGEmachine\Ats\Service\FluidRenderingService;
 use PAGEmachine\Ats\Traits\StaticCalling;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Mail\MailMessage;
@@ -23,6 +24,12 @@ class MailService implements SingletonInterface
      */
     protected $backendUser;
 
+
+    /**
+     * @var \PAGEmachine\Ats\Service\FluidRenderingService
+     */
+    protected $fluidRenderingService;
+
     /**
      * @codeCoverageIgnore
      * @return MailService
@@ -33,10 +40,11 @@ class MailService implements SingletonInterface
         return GeneralUtility::makeInstance(self::class);
     }
 
-    public function __construct(BackendUserAuthentication $backendUser = null)
+    public function __construct(BackendUserAuthentication $backendUser = null, FluidRenderingService $fluidRenderingService = null)
     {
 
         $this->backendUser = $backendUser ?: $GLOBALS['BE_USER'];
+        $this->fluidRenderingService = $fluidRenderingService ?: GeneralUtility::makeInstance(FluidRenderingService::class);
     }
 
     /**
@@ -54,11 +62,21 @@ class MailService implements SingletonInterface
 
         $mail = $this->callStatic(GeneralUtility::class, 'makeInstance', MailMessage::class);
 
+        $renderedBody = $this->fluidRenderingService->renderTemplate(
+            'Mail/Html',
+            [
+                'subject' => $subject,
+                'application' => $application,
+                'backenduser' => $GLOBALS['BE_USER'],
+                'body' => $body,
+            ]
+        );
+
         $mail
             ->setSubject($subject)
             ->setFrom($this->fetchFrom())
             ->setTo([$application->getEmail() => $application->getFirstname() . ' ' . $application->getSurname()])
-            ->setBody($body, 'text/html');
+            ->setBody($renderedBody, 'text/html');
 
         if ($cc != "") {
             $mail->setCc($cc);

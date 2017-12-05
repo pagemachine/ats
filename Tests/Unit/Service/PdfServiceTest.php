@@ -6,6 +6,7 @@ namespace PAGEmachine\Ats\Tests\Unit\Service;
  */
 
 use PAGEmachine\Ats\Domain\Model\Application;
+use PAGEmachine\Ats\Service\FluidRenderingService;
 use PAGEmachine\Ats\Service\PdfService;
 use Prophecy\Argument;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
@@ -13,7 +14,6 @@ use TYPO3\CMS\Core\Tests\UnitTestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
-use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
  * Testcase for PAGEmachine\Ats\Service\PdfService
@@ -32,11 +32,6 @@ class PdfServiceTest extends UnitTestCase
      */
     protected $application;
 
-    /**
-     *
-     * @var StandaloneView
-     */
-    protected $standaloneView;
 
     /**
      * Set up this testcase
@@ -60,8 +55,6 @@ class PdfServiceTest extends UnitTestCase
 
         $this->application = new Application();
 
-        $this->standaloneView = $this->prophesize(StandaloneView::class);
-
         $backendUser = new BackendUserAuthentication();
         $backendUser->user = [
             'tx_ats_pdf_signature' => 'Hello World!',
@@ -81,11 +74,17 @@ class PdfServiceTest extends UnitTestCase
 
         $objectManager = $this->prophesize(ObjectManager::class);
         $objectManager->get(ConfigurationManager::class)->willReturn($configurationManager->reveal());
-        $objectManager->get(StandaloneView::class)->willReturn($this->standaloneView->reveal());
         $objectManager->get('mPDF', Argument::type('string'), Argument::type('string'), Argument::type('string'), Argument::type('string'), 0, 0, 0, 0, 0, 0)->willReturn(new \mPDF("c", "A4", "", "", 0, 0, 0, 0, 0, 0));
 
+        $this->fluidRenderingService = $this->prophesize(FluidRenderingService::class);
+
+        $this->fluidRenderingService->renderTemplate('Pdf/Header', Argument::type('array'))->willReturn('Header');
+        $this->fluidRenderingService->renderTemplate('Pdf/Footer', Argument::type('array'))->willReturn('Footer');
+        $this->fluidRenderingService->renderTemplate('Pdf/Body', Argument::type('array'))->willReturn('<p>Hello World!</p>');
+
+
         $this->pdfService = $this->getMockBuilder(PdfService::class)
-        ->setConstructorArgs(['backendUser' => $backendUser, 'objectManager' => $objectManager->reveal()])
+        ->setConstructorArgs(['backendUser' => $backendUser, 'objectManager' => $objectManager->reveal(), $this->fluidRenderingService->reveal()])
         ->setMethods(array("setHeader","setexit"))
         ->getMock();
     }
@@ -95,18 +94,9 @@ class PdfServiceTest extends UnitTestCase
      */
     public function generatePdf()
     {
-        $this->standaloneView->setFormat(Argument::type('string'))->willReturn();
-        $this->standaloneView->setLayoutRootPaths(Argument::type('array'))->willReturn(void);
-        $this->standaloneView->setPartialRootPaths(Argument::type('array'))->willReturn(void);
-        $this->standaloneView->assign(Argument::type('string'), Argument::type(Application::class))->willReturn(void);
-        $this->standaloneView->assign(Argument::type('string'), Argument::type('array'))->willReturn(void);
-        $this->standaloneView->assign(Argument::type('string'), Argument::type('string'))->willReturn(void);
-        $this->standaloneView->render()->willReturn("<p>header/footer</p>")->shouldBeCalled();
 
         //Legacy Test
         file_put_contents(GeneralUtility::getFileAbsFileName('typo3temp/Pdf/Header.html'), '');
-        $this->standaloneView->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('typo3temp/Pdf/Header.html'))->willReturn(void)->shouldBeCalled();
-        $this->standaloneView->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('typo3temp/base/Pdf/Footer.html'))->willReturn(void)->shouldBeCalled();
 
         $path = $this->pdfService->generatePdf($this->application, '<p>Hello World!</p>', 'unitTest.pdf');
         $pdfexists = false;
@@ -162,7 +152,7 @@ class PdfServiceTest extends UnitTestCase
     public function generateAndDownloadPdf()
     {
         $pdfServiceStub = $this->getMockBuilder(PdfService::class)
-        ->setConstructorArgs(['backendUser' => null, 'objectManager' => $this->prophesize(ObjectManager::class)->reveal()])
+        ->setConstructorArgs(['backendUser' => null, 'objectManager' => $this->prophesize(ObjectManager::class)->reveal(), 'fluidRenderingService' => $this->fluidRenderingService->reveal()])
         ->setMethods(array('createCleanedFilename','generatePdf','downloadPdf'))
         ->getMock();
 
