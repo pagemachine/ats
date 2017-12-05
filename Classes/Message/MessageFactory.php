@@ -102,30 +102,20 @@ class MessageFactory implements SingletonInterface
         return $this->createMessage($type, $application);
     }
 
+
     /**
-     * Constructs a new messagecontainer
+     * Creates a container from given message
      *
-     * @param string $messageType
-     * @param array<\PAGEmachine\Ats\Domain\Model\Application> $applications
+     * @param  MessageInterface $message
+     * @param  array            $applications
+     * @return MassMessageContainer $messageContainer
      */
-    public function createMassMessageContainer($messageType, $applications = [])
+    public function createContainerFromMessage(MessageInterface $message, $applications = [])
     {
         $messageContainer = $this->objectManager->get(MassMessageContainer::class);
 
-        $messageContainer->setType($messageType);
-
-        $messageContainer->setApplication($applications->current());
+        $messageContainer->setTemplateMessage($message);
         $messageContainer->setApplications($applications);
-
-        // $applications->rewind();
-        // if (!empty($applications)) {
-        //     foreach ($applications as $application) {
-        //         $message = $this->objectManager->get($this->messageTypes[$messageType]);
-        //         $message->setApplication($application);
-
-        //         $messageContainer->addMessage($message);
-        //     }
-        // }
 
         return $messageContainer;
     }

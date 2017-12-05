@@ -1,9 +1,6 @@
-<f:form object="{messageContainer}" name="messageContainer">
-	<f:form.hidden name="messageType" value="{messageContainer.type}" />
-	<f:form.hidden property="type" value="{messageContainer.type}" />
-	<f:form.hidden name="action" value="newMassNotification" />
+<f:form object="{message}" name="message">
+	<f:form.hidden property="__type" value="{type}" />
 	<f:for each="{applications}" as="application">
-		<f:form.hidden property="applications.{application.uid}" value="{application}" />
 		<f:form.hidden name="applications[{application.uid}]" value="{application.uid}" />
 	</f:for>
 	<div class="panel panel-default">
@@ -14,8 +11,7 @@
 			</div>
 		</div>
 
-		<f:if condition="{messageContainer}">
-		<f:alias map="{message : messageContainer}">
+		<f:if condition="{message}">
 
 			<div class="panel-body">
 				<div class="row">
@@ -23,7 +19,7 @@
 						<f:then>
 
 							<div class="col-sm-6">
-								<f:render partial="Backend/Message/CommonFields" arguments="{message : message, previewAction: 'newMassNotification', sendAction: 'sendMassNotification', placeholders: message.name, placeholders : placeholders}" />
+								<f:render partial="Backend/Message/CommonFields" arguments="{message : message, previewAction: 'newMassNotification', sendAction: 'sendMassNotification', placeholders : placeholders}" />
 							</div>
 
 							<div class="col-sm-6">
@@ -41,7 +37,7 @@
 						<f:else>
 
 							<div class="col-sm-12">
-								<f:render partial="Backend/Message/CommonFields" arguments="{message : message, previewAction: 'newMassNotification', sendAction: 'sendMassNotification', placeholders: message.name, placeholders : placeholders}" />
+								<f:render partial="Backend/Message/CommonFields" arguments="{message : message, previewAction: 'newMassNotification', sendAction: 'sendMassNotification', placeholders : placeholders}" />
 							</div>
 
 						</f:else>
@@ -49,7 +45,6 @@
 					</f:if>
 				</div>
 			</div>
-			</f:alias>
 		</f:if>
 
 	</div>

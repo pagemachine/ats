@@ -1,7 +1,6 @@
 <?php
 namespace PAGEmachine\Ats\Message;
 
-use PAGEmachine\Ats\Message\MessageInterface;
 use PAGEmachine\Ats\Service\PdfService;
 
 /*
@@ -12,32 +11,28 @@ use PAGEmachine\Ats\Service\PdfService;
  * MassMessageContainer
  * For mass sendings. Holds multiple messages
  */
-class MassMessageContainer extends AbstractMessage implements MessageInterface
+class MassMessageContainer
 {
     /**
-     *
-     * @var \PAGEmachine\Ats\Message\MessageFactory
-     * @inject
+     * @var MessageInterface
      */
-    protected $messageFactory;
+    protected $templateMessage;
 
     /**
-     * @return string
-     * @codeCoverageIgnore
+     * @return MessageInterface
      */
-    public function getName()
+    public function getTemplateMessage()
     {
-
-        return $this->messageFactory->getMessageNames()[$this->type];
+        return $this->templateMessage;
     }
 
     /**
-     *
-     * @param int $type
+     * @param MessageInterface $templateMessage
+     * @return void
      */
-    public function setType($type)
+    public function setTemplateMessage($templateMessage)
     {
-        $this->type = $type;
+        $this->templateMessage = $templateMessage;
     }
 
 
@@ -86,17 +81,18 @@ class MassMessageContainer extends AbstractMessage implements MessageInterface
         $this->messages = $messages;
     }
 
+    /**
+     * Builds the actual messages from the dummy
+     *
+     * @return void
+     */
     public function buildMessages()
     {
         $this->messages = [];
         foreach ($this->applications as $application) {
-            $message = $this->messageFactory->createMessageFromConstantType($this->type, $application);
+            $message = clone $this->templateMessage;
 
-            $message->setSubject($this->getSubject());
-            $message->setSendType($this->getSendType());
-            $message->setBody($this->getBody());
-            $message->setCc($this->getCc());
-            $message->setBcc($this->getBcc());
+            $message->setApplication($application);
 
             $this->messages[] = $message;
         }
