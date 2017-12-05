@@ -9,7 +9,8 @@ return [
         'dividers2tabs' => TRUE,
         'delete' => 'deleted',
         'searchFields' => '',
-        'iconfile' => 'EXT:ats/Resources/Public/Icons/tx_ats_domain_model_history.gif'
+        'iconfile' => 'EXT:ats/Resources/Public/Icons/tx_ats_domain_model_history.gif',
+        'hideTable' => 1,
     ],
     'interface' => [
         'showRecordFieldList' => ''

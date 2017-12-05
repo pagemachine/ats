@@ -9,7 +9,7 @@ return [
         'dividers2tabs' => TRUE,
         'versioningWS' => 2,
         'versioning_followPages' => TRUE,
-
+        'hideTable' => 1,
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
@@ -69,7 +69,7 @@ return [
                 'max' => 255,
             ]
         ],
-    
+
         'hidden' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',

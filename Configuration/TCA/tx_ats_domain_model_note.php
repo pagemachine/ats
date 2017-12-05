@@ -8,7 +8,7 @@ return [
 		'cruser_id' => 'cruser_id',
 		'dividers2tabs' => TRUE,
 		'versioningWS' => 0,
-
+        'hideTable' => 1,
 		'delete' => 'deleted',
 		'enablecolumns' => [
 			'disabled' => 'hidden'
