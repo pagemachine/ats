@@ -106,7 +106,7 @@ class PdfService implements SingletonInterface
     {
 
         $filename = $this->createCleanedFilename($subject);
-        $filePath = $this->generatePdf($application, $body, $filename);
+        $filePath = $this->generatePdf($application, $subject, $body, $filename);
         $this->downloadPdf($filePath, $filename);
     }
 
@@ -114,12 +114,13 @@ class PdfService implements SingletonInterface
      * Generates Pdf with footer and header.
      *
      * @param      Application  $application    The application to pull information from
+     * @param      string       $subject        The subject html
      * @param      string       $body           The body html.
      * @param      string       $fileName       The file name
      *
      * @return     string  ( Absolute path of the pdf file )
      */
-    public function generatePdf(Application $application, $body, $fileName = 'download.pdf')
+    public function generatePdf(Application $application, $subject, $body, $fileName = 'download.pdf')
     {
         $filePath = GeneralUtility::getFileAbsFileName('typo3temp/' . $fileName);
 
@@ -155,6 +156,7 @@ class PdfService implements SingletonInterface
             [
                 'application' => $application,
                 'backenduser' => $this->backendUser->user,
+                'subject' => $subject,
                 'body' => $body,
             ]
         );

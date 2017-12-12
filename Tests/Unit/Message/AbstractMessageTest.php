@@ -128,9 +128,13 @@ class AbstractMessageTest extends UnitTestCase
         GeneralUtility::setSingletonInstance(PdfService::class, $pdfService->reveal());
 
         $this->markerService->replaceMarkers("someText", MarkerService::CONTEXT_PDF)->shouldBeCalled()->willReturn("someText");
+        $this->markerService->replaceMarkers("subject with [[marker]]", MarkerService::CONTEXT_PDF)->shouldBeCalled()->willReturn("subject with replacedmarker");
+
+        $this->fluidRenderingService->render("subject with replacedmarker", Argument::type("array"))->shouldBeCalled()->willReturn("rendered subject");
+
         $this->fluidRenderingService->render("someText", Argument::type("array"))->shouldBeCalled()->willReturn("<p>SomeText</p>");
 
-        $pdfService->generatePdf($this->application, "<p>SomeText</p>", 'Foo.pdf')->shouldBeCalled();
+        $pdfService->generatePdf($this->application, "rendered subject", "<p>SomeText</p>", 'Foo.pdf')->shouldBeCalled();
 
         $this->abstractMessage->generatePdf('Foo.pdf');
     }
