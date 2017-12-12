@@ -1,6 +1,6 @@
 page.includeJSFooter {
 	ats_languages = EXT:ats/Resources/Public/JavaScript/LanguageFields.js
-	main = EXT:ats/Resources/Public/JavaScript/main.js
+	ats_main = EXT:ats/Resources/Public/JavaScript/main.js
 }
 
 # Include JQuery if activated
