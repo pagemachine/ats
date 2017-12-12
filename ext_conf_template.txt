@@ -1,0 +1,2 @@
+# cat=basic/enable; type=boolean; label=Enable legacy backend TS (configure everything in plugin.tx_ats instead of separate settings in module.tx_ats)
+enableLegacyBackendTS = 1
