@@ -3,6 +3,20 @@ if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 
+$extensionConfiguration = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['ats']);
+
+// If legacy TS mode is enabled, load legacy files
+// This means ALL TS, plugin and module, is loaded in backend and module settings are inherited from plugin settings
+// This option is not recommended and will be removed in V2
+if ($extensionConfiguration['enableLegacyBackendTS'] == true) {
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScript('ats', 'constants', '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:ats/Configuration/TypoScript/Backend/constants_legacy.ts">');
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScript('ats', 'setup', '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:ats/Configuration/TypoScript/Backend/setup_legacy.ts">');
+} else {
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScript('ats', 'constants', '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:ats/Configuration/TypoScript/Backend/constants.ts">');
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScript('ats', 'setup', '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:ats/Configuration/TypoScript/Backend/setup.ts">');
+}
+
+
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'PAGEmachine.Ats',
     'Jobs',
