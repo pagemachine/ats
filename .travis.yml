@@ -55,6 +55,7 @@ jobs:
 
         TAG_ANNOTATION="$(git tag -n -l $TRAVIS_TAG)"
         TAG_MESSAGE="${TAG_ANNOTATION#* }"
+        export PATH=$PATH:$(composer global config bin-dir --absolute 2>/dev/null)
 
         git reset --hard
         git clean -xfd
@@ -71,7 +72,6 @@ jobs:
         popd
         cp /tmp/vendors/vendors.phar .
 
-        export PATH=$PATH:$(composer global config bin-dir --absolute 2>/dev/null)
         composer global require helhum/ter-client dev-master
 
         echo "Uploading release ${TRAVIS_TAG} to TER"
