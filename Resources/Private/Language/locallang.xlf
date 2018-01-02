@@ -7,6 +7,32 @@
 		<source>Job</source>
 	  </trans-unit>
 
+	  <!-- Headlines -->
+
+	  <trans-unit id="tx_ats.headline.form">
+	  	<source>General</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.headline.personal_data">
+	  	<source>Personal Data</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.headline.qualifications">
+	  	<source>Qualifications</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.headline.additional_data">
+	  	<source>Additional Information</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.headline.upload">
+	  	<source>Uploads</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.headline.summary">
+	  	<source>Overview</source>
+	  </trans-unit>
+
 	  <trans-unit id="tx_ats.loginHeader">
 		<source>Log in to proceed to job</source>
 	  </trans-unit>
@@ -261,6 +287,14 @@
 
 	  <trans-unit id="tx_ats.label.file">
 		<source>File(s)</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.upload.back">
+		<source>Back</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.summary.back">
+		<source>Back</source>
 	  </trans-unit>
 
 	  <trans-unit id="tx_ats.submission_thankyou">

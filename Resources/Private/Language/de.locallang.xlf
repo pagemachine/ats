@@ -8,6 +8,38 @@
 				<target></target>
 			</trans-unit>
 
+			<!-- Headlines -->
+
+			<trans-unit id="tx_ats.headline.form">
+				<source>General</source>
+				<target>Einleitung</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.headline.personal_data">
+				<source>Personal Data</source>
+				<target>Persönliche Daten</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.headline.qualifications">
+				<source>Qualifications</source>
+				<target>Qualifikationen</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.headline.additional_data">
+				<source>Additional Information</source>
+				<target>Weitere Angaben</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.headline.upload">
+				<source>Uploads</source>
+				<target>Uploads</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.headline.summary">
+				<source>Overview</source>
+				<target>Zusammenfassung</target>
+			</trans-unit>
+
 			<trans-unit id="tx_ats.loginHeader">
 				<source>Log in to proceed to job</source>
 				<target></target>
@@ -366,6 +398,16 @@
 			<trans-unit id="tx_ats.label.file">
 				<source>File(s)</source>
 				<target>Datei(en)</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.upload.back">
+				<source>Back</source>
+				<target>Zurück</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.summary.back">
+				<source>Back</source>
+				<target>Zurück</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.submission_thankyou">
