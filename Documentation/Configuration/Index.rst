@@ -61,6 +61,7 @@ ATS uses *symfony/workflow* (https://symfony.com/doc/current/components/workflow
 
 Example configuration (``ext_localconf.php`` in your site extension):
 ::
+
 	<?php
 	//Define custom workflow
 	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['workflows']['your-workflow'] = [
