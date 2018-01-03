@@ -19,7 +19,6 @@ Installation
 ---------------
 
 ::
-
     composer require pagemachine/ats
 
 2. From the TYPO3 Extension Repository
