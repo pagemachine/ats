@@ -1,12 +1,5 @@
-[31m/var/www/web/typo3conf/ext/ats/Documentation/Configuration/Index.rst:6: SEVERE: Problems with "include" directive path:
-InputError: [Errno 2] No such file or directory: 'Includes.txt'.
-[39;49;00m[31m/var/www/web/typo3conf/ext/ats/Documentation/Index.rst:6: SEVERE: Problems with "include" directive path:
-InputError: [Errno 2] No such file or directory: 'Includes.txt'.
-[39;49;00m[31m/var/www/web/typo3conf/ext/ats/Documentation/Index.rst:57: WARNING: toctree contains reference to nonexisting document u'    :maxdepth: 3'
+[31m/var/www/web/typo3conf/ext/ats/Documentation/Index.rst:57: WARNING: toctree contains reference to nonexisting document u'    :maxdepth: 3'
 [39;49;00m[31m/var/www/web/typo3conf/ext/ats/Documentation/Index.rst:57: WARNING: toctree contains reference to nonexisting document u'    :titlesonly:'
-[39;49;00m[31m/var/www/web/typo3conf/ext/ats/Documentation/Index.rst:57: WARNING: toctree contains reference to nonexisting document u'Introduction/Index'
-[39;49;00m[31m/var/www/web/typo3conf/ext/ats/Documentation/Index.rst:57: WARNING: toctree contains reference to nonexisting document u'User/Index'
-[39;49;00m[31m/var/www/web/typo3conf/ext/ats/Documentation/Index.rst:57: WARNING: toctree contains reference to nonexisting document u'Administrator/Index'
 [39;49;00m[31m/var/www/web/typo3conf/ext/ats/Documentation/Index.rst:57: WARNING: toctree contains reference to nonexisting document u'Developer/Index'
 [39;49;00m[31m/var/www/web/typo3conf/ext/ats/Documentation/Index.rst:57: WARNING: toctree contains reference to nonexisting document u'KnownProblems/Index'
 [39;49;00m[31m/var/www/web/typo3conf/ext/ats/Documentation/Index.rst:57: WARNING: toctree contains reference to nonexisting document u'ToDoList/Index'

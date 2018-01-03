@@ -59,9 +59,8 @@ ATS - Application Tracking System
 	:titlesonly:
 
     Introduction/Index
-    User/Index
-    Administrator/Index
     Configuration/Index
+    Security/Index
     Developer/Index
     KnownProblems/Index
     ToDoList/Index
