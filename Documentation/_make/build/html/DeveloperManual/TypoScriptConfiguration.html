@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; ATS-ApplicationTrackingSystem ###RELEASE### documentation</title>
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/jquery-ui/jquery-ui.min.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/t3more.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="ATS-ApplicationTrackingSystem ###RELEASE### documentation" href="#"/> 
+  <script src="../_static/js/modernizr.min.js"></script>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        <ul class="sidebartop">
+
+          <li class="docsite">
+            <a href="https://docs.typo3.org"><img src="../_static/img/typo3-documentation.png" class="logo" /></a>
+          </li>
+
+          <li class="project">
+            <a href="../Index.html">
+              ATS-ApplicationTrackingSystem<br>###RELEASE###</a>
+          </li><li class="nolink search">
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search this project" id="searchinput" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div></li>
+
+        </ul>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <!-- Local TOC -->
+              <div class="local-toc"><ul class="simple">
+</ul>
+</div>
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../Index.html">ATS-ApplicationTrackingSystem</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../Index.html">Docs</a> &raquo;</li>
+    <li>&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/DeveloperManual/TypoScriptConfiguration.rst.txt" rel="nofollow">
+                <span class="fa fa-binoculars"></span>&#32;View page source
+            </a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody" class="toBeIndexed">
+            
+  <p># TypoScript Configuration</p>
+<p>## Plugin Constants</p>
+<div class="line-block">
+<div class="line">Constant               | Path                                            | Description                                                                                                                                                                                                                       | Default |</div>
+</div>
+<p><a href="#id1"><span class="problematic" id="id2">|&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;|</span></a>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-<a href="#id3"><span class="problematic" id="id4">|&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;|</span></a>&#8212;&#8212;&#8212;|
+| Storage PID            | <cite>plugin.tx_ats.persistence.storagePid</cite>          | The default storagePid for jobs and users.                                                                                                                                                                                        | none    |
+| includeJQuery          | <cite>plugin.tx_ats.settings.includeJQuery</cite>          | The plugin needs jQuery to work properly. Set this to true if you do not already include jQuery in your site.                                                                                                                     | false   |
+| loginPage              | <cite>plugin.tx_ats.settings.loginPage</cite>              | Page ID where FE Users can log in. If a user tries to access the application form without being logged in, the plugin will redirect to this page.                                                                                 | none    |
+| feUserGroup            | <cite>plugin.tx_ats.settings.feUserGroup</cite>            | The ID of the FE Usergroup all applicants belong to.                                                                                                                                                                              | none    |
+| allowedStaticLanguages | <cite>plugin.tx_ats.settings.allowedStaticLanguages</cite> | Applicants can select which languages they speak. With this option, you can limit the available options to a set of <cite>static_languages</cite> uids. Should be a comma-separated list such as <cite>12,30,33</cite>. If not set, all languages are shown. | none    |
+| policyPage             | <cite>plugin.tx_ats.settings.policyPage</cite>             | Page ID where your privacy policy is found. The page is linked in the first step of the form where the user has to accept privacy settings.                                                                                       | none    |</p>
+<p>## Module Constants</p>
+<p><cite>storagePid</cite>, see above. If the extConf option <cite>enableLegacyBackendTS</cite> is enabled, this setting is inherited from the plugin configuration.
+Otherwise you have to set it (<cite>module.tx_ats.persistence.storagePid</cite>).</p>
+<p>## Module Settings</p>
+<p>If the extConf option <cite>enableLegacyBackendTS</cite> is enabled, all settings are inherited from the plugin configuration and should be set there.</p>
+<div class="line-block">
+<div class="line">Setting      | Path                                  | Description                                                                                                                                                     | Default           |</div>
+</div>
+<p><a href="#id5"><span class="problematic" id="id6">|&#8212;&#8212;&#8212;&#8212;&#8211;|</span></a>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;<a href="#id7"><span class="problematic" id="id8">|&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;|</span></a>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-|
+| deadlineTime | <cite>module.tx_ats.settings.deadlineTime</cite> | The deadline time defines when applications are marked as &#8220;deadline exceeded&#8221;. It reads as &#8220;seconds after the jobs endtime is reached&#8221;. The default is 2 weeks. | 1209600 (2 weeks) |</p>
+
+
+           </div><!-- /.toBeIndexed -->
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo" class="contentinfo">
+      <p class="show_source">
+        <a href="../_sources/DeveloperManual/TypoScriptConfiguration.rst.txt" rel="nofollow">
+          <span class="fa fa-binoculars"></span>&#32;View page source
+        </a>
+      </p>
+      <p class="show_copyright">
+            &copy; Copyright 2017, ###AUTHOR###
+      </p>
+      <p class="show_sphinx">
+        Built with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a> and
+        <a href="https://github.com/TYPO3-Documentation/t3SphinxThemeRtd" target="_blank">t3SphinxThemeRtd.</a>
+        Report theme issues <a href="https://github.com/TYPO3-Documentation/t3SphinxThemeRtd/issues" target="_blank">here.</a>
+      </p>
+      <p class="show_legalinfo">
+        <a href="https://typo3.org/legal-info/" rel="nofollow">
+          <span class="fa fa-legal"></span>&#32;Legal Info
+        </a>
+      </p>
+
+
+
+
+  </div>
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'###RELEASE###',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/jquery-ui/jquery-ui.min.js"></script>
+      <script type="text/javascript" src="../_static/js/theme.js"></script>
+      <script type="text/javascript" src="../_static/js/t3autocomplete.js"></script>
+
+  
+
+  
+   
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   <script type="text/javascript" id="idPiwikScriptPlaceholder"></script></body>
+</html>
