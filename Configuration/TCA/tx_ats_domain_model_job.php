@@ -209,6 +209,7 @@ return [
             'config' => [
                 'type' => 'radio',
                 'items' => [
+                    ['LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:be_groups.tx_ats_location.I.none', ''],
                     ['LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.location.I.0', 'Zentrale'],
                     ['LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.location.I.1', 'Niederlassung'],
                 ],

@@ -44,23 +44,23 @@
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_job.career.I.1">
-				<source>h. D.</source>
+				<source>h. D. (german civil service)</source>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_job.career.I.2">
-				<source>g. D.</source>
+				<source>g. D. (german civil service)</source>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_job.career.I.3">
-				<source>m. D.</source>
+				<source>m. D. (german civil service)</source>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_job.career.I.4">
-				<source>[EN] Ausbildung</source>
+				<source>Training</source>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_job.career.I.5">
-				<source>[EN] Berufung</source>
+				<source>Professorship</source>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_job.internal">
@@ -79,20 +79,24 @@
 				<source>Location</source>
 			</trans-unit>
 
+			<trans-unit id="tx_ats_domain_model_job.location.I.none">
+				<source>None</source>
+			</trans-unit>
+
 			<trans-unit id="tx_ats_domain_model_job.location.I.0">
-				<source>[EN] Zentrale</source>
+				<source>Headquarters</source>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_job.location.I.1">
-				<source>[EN] Niederlassung</source>
+				<source>Branch office</source>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_job.user_pa">
-				<source>[EN] Sachbearbeitung</source>
+				<source>Personell Department</source>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_job.department">
-				<source>Department</source>
+				<source>Organizational Department</source>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_job.officials">
@@ -127,8 +131,16 @@
 				<source>Location</source>
 			</trans-unit>
 
+			<trans-unit id="be_groups.tx_ats_location.I.none">
+				<source>None</source>
+			</trans-unit>
+
 			<trans-unit id="be_groups.tx_ats_location.I.0">
-				<source>[EN] Zentrale</source>
+				<source>Headquarters</source>
+			</trans-unit>
+
+			<trans-unit id="be_groups.tx_ats_location.I.1">
+				<source>Branch office</source>
 			</trans-unit>
 
 			<trans-unit id="be_groups.role.I.0">

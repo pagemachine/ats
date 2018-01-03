@@ -9,7 +9,9 @@ defined('TYPO3_MODE') or die();
         'config' => array (
             'type' => 'radio',
             'items' => array (
-                array('LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:be_groups.tx_ats_location.I.0', 'Zentrale')
+                array('LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:be_groups.tx_ats_location.I.none', ''),
+                array('LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:be_groups.tx_ats_location.I.0', 'Zentrale'),
+                array('LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:be_groups.tx_ats_location.I.1', 'Niederlassung'),
             ),
         )
     )

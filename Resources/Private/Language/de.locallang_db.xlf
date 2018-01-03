@@ -33,6 +33,11 @@
 				<target>Online-Bewerbung deaktivieren</target>
 			</trans-unit>
 
+			<trans-unit id="tx_ats_domain_model_job.user_pa">
+				<source>Personell Department</source>
+				<target>Sachbearbeitung</target>
+			</trans-unit>
+
 			<trans-unit id="tx_ats_domain_model_job.department">
 				<source>Department</source>
 				<target>Fachbereich, Abteilung, Referat</target>
@@ -40,7 +45,7 @@
 
 			<trans-unit id="tx_ats_domain_model_job.officials">
 				<source>Officials</source>
-				<target>Sachbearbeitung</target>
+				<target>Offizielle</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_job.internal">
@@ -59,6 +64,37 @@
 			<trans-unit id="tx_ats_domain_model_job.contributors">
 				<source>Contributors</source>
 				<target>Mitwirkende</target>
+			</trans-unit>
+
+
+			<trans-unit id="tx_ats_domain_model_job.career">
+				<source>Career</source>
+				<target>Karriere</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.career.I.1">
+				<source>h. D. (german civil service)</source>
+				<target>h. D. (höherer Dienst)</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.career.I.2">
+				<source>g. D. (german civil service)</source>
+				<target>g. D. (gehobener Dienst)</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.career.I.3">
+				<source>m. D. (german civil service)</source>
+				<target>m. D. (mittlerer Dienst)</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.career.I.4">
+				<source>Training</source>
+				<target>Ausbildung</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.career.I.5">
+				<source>Professorship</source>
+				<target>Berufung</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_job.deadline_email_disabled">
@@ -84,6 +120,36 @@
 			<trans-unit id="be_groups.tx_ats_location">
 				<source>Location</source>
 				<target>BMS: Ort</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.location.I.none">
+				<source>None</source>
+				<target>Keine</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.location.I.0">
+				<source>Headquarters</source>
+				<target>Zentrale</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.location.I.1">
+				<source>Branch office</source>
+				<target>Niederlassung</target>
+			</trans-unit>
+
+			<trans-unit id="be_groups.tx_ats_location.I.none">
+				<source>None</source>
+				<target>Keine</target>
+			</trans-unit>
+
+			<trans-unit id="be_groups.tx_ats_location.I.0">
+				<source>Headquarters</source>
+				<target>Zentrale</target>
+			</trans-unit>
+
+			<trans-unit id="be_groups.tx_ats_location.I.1">
+				<source>Branch office</source>
+				<target>Niederlassung</target>
 			</trans-unit>
 		</body>
 	</file>
