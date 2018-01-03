@@ -13,7 +13,7 @@ Introduction
 
 .. only:: html
 
-	This chapter describes what the features and limitations of the ats extension
+	This chapter describes the features and typical use cases of the ats extension
 
 
 Applicant Tracking System (ATS)
@@ -53,3 +53,9 @@ Application Form
 The application form consists of several tabs in order to improve usability by categorizing data.
 Some data is mandatory, other data is optional. The upload of several documents like a CV ist possible. A login enables the applicant to complete his/her application in several sessions until it is perfect for submission.
 
+
+Rolling out the ats at your organization - Human Factors
+--------------------------------------------------------
+
+Besides all technical aspects, human factors should not be underestimated when introducing the ats to a company. Switching to an ats imposes a tremendous change in workflows - an although it will make live easier for all participants, many people fear changes and might behave critically about the new system.
+Make sure to get involved all stakeholders in an early planning phase. The authors of this extension have a lot of experience in introducing application tracking systems at large companies and universities and will be happy to offer consultancy service for introducing the ats to your organization.

@@ -13,7 +13,7 @@ Security
 
 .. only:: html
 
-	This chapter describes what the features and limitations of the ats extension
+	This chapter points out some security aspects regarding the ats extension
 
 
 General Considerations
