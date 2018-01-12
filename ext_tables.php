@@ -52,7 +52,6 @@ if (TYPO3_MODE === 'BE') {
             'access'    => 'user,group',
             'icon'      => 'EXT:ats/Resources/Public/Icons/module_applications.svg',
             'labels'    => 'LLL:EXT:ats/Resources/Private/Language/locallang_mod_applications.xlf',
-            'navigationComponentId' => 'typo3-pagetree'
         )
     );
 
@@ -70,7 +69,6 @@ if (TYPO3_MODE === 'BE') {
             'access'    => 'user,group',
             'icon'      => 'EXT:ats/Resources/Public/Icons/module_archive.svg',
             'labels'    => 'LLL:EXT:ats/Resources/Private/Language/locallang_mod_archive.xlf',
-            'navigationComponentId' => 'typo3-pagetree'
         )
     );
 
@@ -88,7 +86,6 @@ if (TYPO3_MODE === 'BE') {
             'access'    => 'user,group',
             'icon'      => 'EXT:ats/Resources/Public/Icons/module_statistics.svg',
             'labels'    => 'LLL:EXT:ats/Resources/Private/Language/locallang_mod_statistics.xlf',
-            'navigationComponentId' => 'typo3-pagetree'
         )
     );
 
@@ -106,7 +103,6 @@ if (TYPO3_MODE === 'BE') {
             'access'    => 'user,group',
             'icon'      => 'EXT:ats/Resources/Public/Icons/module_massnotifications.svg',
             'labels'    => 'LLL:EXT:ats/Resources/Private/Language/locallang_mod_notification.xlf',
-            'navigationComponentId' => 'typo3-pagetree'
         )
     );
 }
