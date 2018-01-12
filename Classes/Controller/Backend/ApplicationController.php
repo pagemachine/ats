@@ -18,6 +18,7 @@ use PAGEmachine\Ats\Message\RejectMessage;
 use PAGEmachine\Ats\Message\ReplyMessage;
 use PAGEmachine\Ats\Service\DuplicationService;
 use PAGEmachine\Ats\Workflow\WorkflowManager;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
  * ApplicationController
@@ -50,8 +51,8 @@ class ApplicationController extends AbstractBackendController
      * @var array
      */
     protected $menuUrls = [
-        ["action" => "listAll", "label" => "List All"],
-        ["action" => "listMine", "label" => "List Mine"],
+        ["action" => "listAll", "label" => "be.label.AllApplications"],
+        ["action" => "listMine", "label" => "be.label.MyApplications"],
     ];
 
     /**
@@ -76,7 +77,7 @@ class ApplicationController extends AbstractBackendController
                     ->uriFor($url['action'], [], $this->request->getControllerName(), null, null);
                 $menuItem = $menu->makeMenuItem()
                     ->setHref($uri)
-                    ->setTitle($url['label'])
+                    ->setTitle(LocalizationUtility::translate($url['label'], 'ats'))
                     ->setActive($isActive);
                 $menu->addMenuItem($menuItem);
         }

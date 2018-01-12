@@ -537,6 +537,7 @@
     </trans-unit>
 
 	  <!-- backend labels -->
+
 	  <trans-unit id="tx_ats.be.label.privacy_policy">
 		<source>Accepts privacy policy</source>
 	  </trans-unit>
