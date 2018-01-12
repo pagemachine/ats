@@ -4,3 +4,6 @@
 /node_modules
 /vendor
 /web
+
+/Documentation/_make
+!/Documentation/_make/conf.py
