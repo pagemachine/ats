@@ -8,6 +8,9 @@
 	  </trans-unit>
 
 	  <!-- Headlines -->
+	  <trans-unit id="tx_ats.job.start_application">
+		<source>Start Application</source>
+	  </trans-unit>
 
 	  <trans-unit id="tx_ats.headline.form">
 	  	<source>General</source>
@@ -80,6 +83,14 @@
 	  <trans-unit id="tx_ats.upload.text2">
 		<source>First, click on "Browse...", select a file and upload it. You can then upload more files in the same way. The maximum file size is 20 MB.</source>
 	  </trans-unit>
+
+		<trans-unit id="tx_ats.upload.existing_files">
+			<source>Uploaded files</source>
+		</trans-unit>
+
+		<trans-unit id="tx_ats.upload.new">
+			<source>Upload new file</source>
+		</trans-unit>
 
 	  <trans-unit id="tx_ats.button.next">
 		<source>Next</source>
@@ -517,6 +528,14 @@
 	  <trans-unit id="tx_ats.languageskill.level.4">
 		<source>Basic knowledge</source>
 	  </trans-unit>
+
+		<trans-unit id="tx_ats.languageskill.addLanguage">
+			<source> Add Language</source>
+		</trans-unit>
+
+		<trans-unit id="tx_ats.languageskill.rmLanguage">
+			<source> Remove</source>
+		</trans-unit>
 
 	  <!-- Message labels -->
 

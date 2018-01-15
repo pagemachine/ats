@@ -4,7 +4,7 @@
 		<label><f:translate key="{translationKey}" /></label>
 	</div>
 	<div class="col-sm-10">
-		<label>Existing Files</label>
+		<label><f:translate key="tx_ats.upload.existing_files">Existing Files</f:translate></label>
 		<ul>
 		<f:for each="{application.files}" as="file" iteration="i">
 			<li>
@@ -19,7 +19,7 @@
 
     <f:render partial="Application/Field/ValidationError" arguments="{fieldName : 'files.999'}" />
 
-		<label>Upload new file</label>
+		<label><f:translate key="tx_ats.upload.new">Upload new file</f:translate></label>
 		<ats:form.upload property="files.999" >
 		</ats:form.upload>
 	</div>

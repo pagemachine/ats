@@ -8,6 +8,11 @@
 				<target></target>
 			</trans-unit>
 
+			<trans-unit id="tx_ats.job.start_application">
+				<source>Start Application</source>
+				<target>Bewerbung starten</target>
+			</trans-unit>
+
 			<!-- Headlines -->
 
 			<trans-unit id="tx_ats.headline.form">
@@ -103,6 +108,16 @@
 			<trans-unit id="tx_ats.upload.text2">
 				<source>First, click on "Browse...", select a file and upload it. You can then upload more files in the same way. The maximum file size is 20 MB.</source>
 				<target>Klicken Sie zun&#228;chst auf "Durchsuchen...", w&#228;hlen eine Datei aus und laden diese hoch. Anschließend k&#246;nnen Sie in gleicher Weise weitere Dateien hinterlegen. Die maximale Dateigr&#246;ße betr&#228;gt 20 MB.</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.upload.existing_files">
+				<source>Uploaded files</source>
+				<target>Hochgeladene Dateien</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.upload.new">
+				<source>Upload new file</source>
+				<target>Neue Datei hochladen</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.button.next">
@@ -613,12 +628,12 @@
 				<target>Grundkenntnisse</target>
 			</trans-unit>
 
-			<trans-unit id="tx_ats.addLanguage">
+			<trans-unit id="tx_ats.languageskill.addLanguage">
 				<source> Add Language</source>
 				<target> Sprache hinzufügen</target>
 			</trans-unit>
 
-			<trans-unit id="tx_ats.rmLanguage">
+			<trans-unit id="tx_ats.languageskill.rmLanguage">
 				<source> Remove</source>
 				<target> Löschen</target>
 			</trans-unit>
