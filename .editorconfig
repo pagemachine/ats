@@ -29,7 +29,7 @@ indent_size = 4
 
 # JS-Files
 [*.js]
-indent_style = tab
+indent_style = space
 indent_size = 4
 
 # JSON-Files
