@@ -20,7 +20,8 @@ abstract class AbstractMessage
     const MESSAGE_INVITE = 1;
     const MESSAGE_ACKNOWLEDGE = 2;
     const MESSAGE_REPLY = 3;
-    const MESSAGE_REJECT = 4;
+    const MESSAGE_REQUEST = 4;
+    const MESSAGE_REJECT = 5;
 
     /**
      * @var PAGEmachine\Ats\Domain\Repository\TextTemplateRepository
