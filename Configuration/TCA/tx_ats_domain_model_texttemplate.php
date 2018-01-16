@@ -70,7 +70,8 @@ return [
                 'cols' => 40,
                 'rows' => 15,
                 'eval' => 'required',
-                'enableRichtext' => true
+                'enableRichtext' => true,
+                'richtextConfiguration' => 'ats_templates'
             ],
         ],
 
