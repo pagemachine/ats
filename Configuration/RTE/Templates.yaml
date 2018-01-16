@@ -7,4 +7,4 @@ editor:
       - placeholder
   externalPlugins:
     placeholderPresets:
-      resource: "EXT:ats/Resources/Public/JavaScript/Plugins/PlaceholderPresets/plugin.js"
+      resource: "EXT:ats/Resources/Public/JavaScript/ckeditor/plugins/placeholderPresets/plugin.js"
