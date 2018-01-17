@@ -7,7 +7,6 @@ require(
         'datatables',
         'twbs/bootstrap-datetimepicker',
         'TYPO3/CMS/Ats/ckeditor/ckeditor',
-        'TYPO3/CMS/Ats/CKEditorSetup',
         'TYPO3/CMS/Ats/LanguageFields'
     ],
     function($) {
@@ -51,7 +50,13 @@ require(
 
         //Replace textarea with editor if it exists
         if ($("#ats-ck-body").length) {
-            CKEDITOR.replace("ats-ck-body");
+            CKEDITOR.replace("ats-ck-body", {
+                extraPlugins: 'placeholderPresets',
+                placeholderPresets: {
+                    useKeyAsSelector: true,
+                    placeholderKey: '#ats-ck-body'
+                }
+            });
         }
 
         //Mass Notification module

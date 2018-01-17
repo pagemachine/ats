@@ -5,3 +5,6 @@ editor:
   config:
     extraPlugins:
       - placeholder
+  externalPlugins:
+    placeholderPresets:
+      resource: "EXT:ats/Resources/Public/JavaScript/ckeditor/plugins/placeholderPresets/plugin.js"
