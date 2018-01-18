@@ -1,0 +1,14 @@
+<tr class="form-element">
+	<td>
+		<label>
+		  <f:translate key="{translationKey}" />
+		</label>
+	</td>
+	<td>
+			<f:form.checkbox
+			property="{fieldProperty}"
+			value="{fieldValue}"
+			checked="{f:if(condition:'{fieldValue} == {propertyValue}', then:'checked')}" />
+		</div>
+	</td>
+</tr>

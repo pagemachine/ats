@@ -1,27 +1,65 @@
-.tx-ats-backend .summary-block tr:hover td {
+/**
+ * Summary table and edit form table styling
+ */
+
+.tx-ats-backend .table-container tr:hover td {
 	background-color: #f5f5f5;
 }
 
-.tx-ats-backend .summary-block table {
+.tx-ats-backend .table-container table {
 	border-color: #ededed;
 }
 
-.tx-ats-backend .summary-block tr:first-child td {
+.tx-ats-backend .table-container tr:first-child td {
 	border-top: 2px solid #ededed;
 }
 
-.tx-ats-backend .summary-block td:first-child {
+.tx-ats-backend .table-container td:first-child {
 	border-right: 1px solid #ededed;
 	width: 25%;
 }
 
+.tx-ats-backend .table-container label {
+	margin: 0px;
+}
 
-.tx-ats-backend .summary-element td {
-	padding: 8px;
-	line-height: 24px;
+
+.tx-ats-backend .summary-element td, .tx-ats-backend #application-editform .form-element td {
+	padding: 12px;
+	line-height: 16px;
 	border-color: #ededed;
 }
 
-.tx-ats-backend .summary-element label {
-	margin: 0px;
+.tx-ats-backend #application-editform select {
+	min-width: 120px;
+	max-width: 300px;
+	width: auto;
 }
+
+.tx-ats-backend #application-editform legend {
+	border: 0px;
+	color: #000;
+}
+
+.tx-ats-backend #application-editform .tx-ats-addlanguage {
+
+}
+
+.tx-ats-backend #application-editform .tx-ats-addlanguage div {
+	padding-top: 12px;
+	padding-bottom: 12px;
+}
+
+.tx-ats-backend #application-editform .tx-ats-addlanguage label {
+	min-width: 75px;
+}
+
+.tx-ats-backend #application-editform .tx-ats-addlanguage {
+	border-top: 1px solid #ededed;
+}
+
+.tx-ats-backend #application-editform .addlanguagebutton {
+	padding-top: 12px;
+	padding-bottom: 12px;
+}
+

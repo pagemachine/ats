@@ -1,0 +1,29 @@
+{namespace ats=PAGEmachine\Ats\ViewHelpers}
+<tr class="form-element">
+	<td>
+		<label>
+		  <f:translate key="{translationKey}" />
+		</label>
+	</td>
+	<td>
+		<label><f:translate key="tx_ats.upload.existing_files">Existing Files</f:translate></label>
+		<ul>
+		<f:for each="{application.files}" as="file" iteration="i">
+			<li>
+				<a href="{file.backendUrl}" target="_blank">{file.originalResource.name} </a>
+				<ats:form.upload property="files.{i.index}">
+				</ats:form.upload>
+				<f:link.action action="removeUpload" arguments="{application: application, file : file}"><f:translate key="tx_ats.rmLanguage"></f:translate></f:link.action>
+
+			</li>
+		</f:for>
+		</ul>
+
+    <f:render partial="Application/Field/ValidationError" arguments="{fieldName : 'files.999'}" />
+
+		<label><f:translate key="tx_ats.upload.new">Upload new file</f:translate></label>
+		<ats:form.upload property="files.999" >
+		</ats:form.upload>
+		</div>
+	</td>
+</tr>
