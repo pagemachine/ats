@@ -1,0 +1,28 @@
+<f:form.validationResults for="application.{fieldName}">
+	<tr class="form-element {f:if(condition:validationResults.errors, then:'has-error')}" >
+		<td>
+			<label>
+			  <f:translate key="{translationKey}" />
+			</label>
+		</td>
+		<td>
+			<div class="radio-inline">
+				<label>
+					<f:form.radio
+					property="{fieldName}"
+					value="{fieldValue1}" />
+					<f:translate key="{translationKeyValue1}" />
+				</label>
+			</div>
+			<div class="radio-inline">
+				<label>
+					<f:form.radio
+					property="{fieldName}"
+					value="{fieldValue2}" />
+					<f:translate key="{translationKeyValue2}" />
+				</label>
+			</div>
+			<f:render partial="Application/Field/ValidationError" arguments="{fieldName : fieldName}" />
+		</td>
+	</tr>
+</f:form.validationResults>

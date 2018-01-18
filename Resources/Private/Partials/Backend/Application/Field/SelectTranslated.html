@@ -1,0 +1,18 @@
+{namespace ats=PAGEmachine\Ats\ViewHelpers}
+<tr class="form-element">
+	<td>
+		<label>
+		  <f:translate key="{translationKey}" />
+		</label>
+	</td>
+	<td>
+			<ats:form.translatableSelect
+				property="{fieldName}"
+			    options="{options}"
+			    translationPrefix="{translationKey}."
+			    extensionName="ats"
+			    class="form-control"
+			  />
+		</div>
+	</td>
+</tr>
