@@ -905,12 +905,17 @@
 
 	  		<trans-unit id="tx_ats.be.actions.application.editStatus">
 				<source>Workflow</source>
-				<target>Ablauf</target>
+				<target>Workflow</target>
 	  		</trans-unit>
 
 	  		<trans-unit id="tx_ats.be.actions.application.notes">
 				<source>Notes</source>
 				<target>Anmerkungen</target>
+	  		</trans-unit>
+
+	  		<trans-unit id="tx_ats.be.actions.application.acknowledge">
+				<source>Acknowledge</source>
+				<target>Eingangsbestätigung</target>
 	  		</trans-unit>
 
 	  		<trans-unit id="tx_ats.be.actions.application.reply">
@@ -940,13 +945,74 @@
 
 			<trans-unit id="tx_ats.be.actions.application.history">
 				<source>History</source>
-				<target>Verlauf</target>
+				<target>Historie</target>
 	  		</trans-unit>
 
 	  		 <trans-unit id="tx_ats.be.actions.application.clone">
 				<source>Clone</source>
 				<target>Klonen</target>
 	  		</trans-unit>
+
+	   <trans-unit id="tx_ats.be.actions.application.moveToPool">
+		<source>Move to pool</source>
+		<target>Pool</target>
+	  </trans-unit>
+
+
+      <!-- Application status -->
+      <trans-unit id="tx_ats.application.status.0">
+      	<source>Incomplete</source>
+      	<target>Unvollständig</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.10">
+      	<source>New Application</source>
+      	<target>Neue Bewerbung</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.20">
+      	<source>Requested Attestation</source>
+      	<target>Bescheinigung angefordert</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.30">
+      	<source>Bschwb</source>
+      	<target>Bschwb</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.40">
+      	<source>Gleib</source>
+      	<target>Gleib</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.50">
+      	<source>Department</source>
+      	<target>Abteilung</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.60">
+      	<source>Perso</source>
+      	<target>Perso</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.70">
+      	<source>Gleib2</source>
+      	<target>Gleib2</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.80">
+      	<source>OPR</source>
+      	<target>OPR</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.90">
+      	<source>Perso (final)</source>
+      	<target>Perso (final)</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.100">
+      	<source>Employed</source>
+      	<target>Eingestellt</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.110">
+      	<source>Cancelled (by employer)</source>
+      	<target>Abgesagt (durch Arbeitgeber)</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.120">
+      	<source>Cancelled (by Candidate)</source>
+      	<target>Abgesagt (durch Bewerber)</target>
+      </trans-unit>
+
 
 
       		<trans-unit id="be.label.ApplicationSingle.Overview.FormData">
