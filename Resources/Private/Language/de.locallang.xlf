@@ -1020,6 +1020,16 @@
       		  <target>Formulardaten</target>
       		</trans-unit>
 
+      		<trans-unit id="be.label.ApplicationSingle.Overview.Qualification">
+      		  <source>Qualification</source>
+      		  <target>Qualifikation</target>
+      		</trans-unit>
+
+      		<trans-unit id="be.label.ApplicationSingle.Overview.AdditionalData">
+      		  <source>Additional Data</source>
+      		  <target>Weitere Angaben</target>
+      		</trans-unit>
+
       		<trans-unit id="be.label.ApplicationSingle.Overview.PersonalData">
       		  <source>Personal Data</source>
       		  <target>Persönliche Daten</target>
