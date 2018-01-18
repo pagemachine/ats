@@ -1,0 +1,27 @@
+.tx-ats-backend .summary-block tr:hover td {
+	background-color: #f5f5f5;
+}
+
+.tx-ats-backend .summary-block table {
+	border-color: #ededed;
+}
+
+.tx-ats-backend .summary-block tr:first-child td {
+	border-top: 2px solid #ededed;
+}
+
+.tx-ats-backend .summary-block td:first-child {
+	border-right: 1px solid #ededed;
+	width: 25%;
+}
+
+
+.tx-ats-backend .summary-element td {
+	padding: 8px;
+	line-height: 24px;
+	border-color: #ededed;
+}
+
+.tx-ats-backend .summary-element label {
+	margin: 0px;
+}
