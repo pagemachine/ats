@@ -4,7 +4,7 @@ var languageskills = (function(window) {
     var languagesSelector = "#languages"
     var languageFormPart = undefined;
 
-    var elementPrefix = "tx_ats[application][languageSkills]";
+    var elementPrefix = "";
     var elementCount = 99;
 
     /**
@@ -16,10 +16,13 @@ var languageskills = (function(window) {
     function init() {
 
         languageFormPart = window.document.querySelector(formSelector + " .tx-ats-addlanguage");
+
+        elementPrefix = languageFormPart.getElementsByClassName("language-select")[0].getAttribute('name').split("[")[0] + '[application][languageSkills]';
+
         if (languageFormPart != undefined) {
             languageFormPart.remove();
         }
-        
+
     }
 
     /**
@@ -29,6 +32,8 @@ var languageskills = (function(window) {
      */
     function addLanguageFormPart() {
         var newFormPart = languageFormPart.cloneNode(true);
+
+
 
         newFormPart.dataset.language = elementCount;
         newFormPart.getElementsByClassName("language-select")[0].setAttribute("name", elementPrefix + "[" + elementCount + "]" + "[language]");

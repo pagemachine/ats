@@ -17,17 +17,17 @@
 						<f:form.hidden property="languageSkills.{i.index}" value="{skill}" />
 
 						<div class="form-group col-md-3">
-							<label><f:translate key="tx_ats.languageskill.language" /></label>
+							<label><f:translate key="tx_ats.languageskill.language" /></label><br>
 							<s:form.select class="language-select form-control" property="languageSkills.{i.index}.language" staticInfoTable="language" options="{}" prependOptionLabel="--select--" prependOptionValue="" />
 						</div>
 
 						<div class="form-group col-md-3">
-							<label><f:translate key="tx_ats.languageskill.textLanguage" /></label>
-							<f:form.textfield property="languageSkills.{i.index}.textLanguage" />
+							<label><f:translate key="tx_ats.languageskill.textLanguage" /></label><br>
+							<f:form.textfield property="languageSkills.{i.index}.textLanguage" class="form-control" />
 						</div>
 
 						<div class="form-group col-md-3">
-							<label><f:translate key="tx_ats.languageskill.level" /></label>
+							<label><f:translate key="tx_ats.languageskill.level" /></label><br>
 							<ats:form.translatableSelect class="level-select form-control" translationPrefix="tx_ats.languageskill.level." options="{1:1, 2:2, 3:3, 4:4}" property="languageSkills.{i.index}.level"  prependOptionLabel="--select--" prependOptionValue="" />
 						</div>
 
