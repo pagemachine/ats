@@ -905,12 +905,17 @@
 
 	  		<trans-unit id="tx_ats.be.actions.application.editStatus">
 				<source>Workflow</source>
-				<target>Ablauf</target>
+				<target>Workflow</target>
 	  		</trans-unit>
 
 	  		<trans-unit id="tx_ats.be.actions.application.notes">
 				<source>Notes</source>
 				<target>Anmerkungen</target>
+	  		</trans-unit>
+
+	  		<trans-unit id="tx_ats.be.actions.application.acknowledge">
+				<source>Acknowledge</source>
+				<target>Eingangsbestätigung</target>
 	  		</trans-unit>
 
 	  		<trans-unit id="tx_ats.be.actions.application.reply">
@@ -925,7 +930,7 @@
 
 	  		<trans-unit id="tx_ats.be.actions.application.reject">
 				<source>Reject</source>
-				<target>Ablehnen</target>
+				<target>Absagen</target>
 	  		</trans-unit>
 
 	  		<trans-unit id="tx_ats.be.actions.application.rating">
@@ -940,7 +945,7 @@
 
 			<trans-unit id="tx_ats.be.actions.application.history">
 				<source>History</source>
-				<target>Verlauf</target>
+				<target>Historie</target>
 	  		</trans-unit>
 
 	  		 <trans-unit id="tx_ats.be.actions.application.clone">
@@ -948,10 +953,253 @@
 				<target>Klonen</target>
 	  		</trans-unit>
 
+	   <trans-unit id="tx_ats.be.actions.application.backToPerso">
+		        <source>Send back to personnel department</source>
+				<target>Zurück an Perso</target>
+	  </trans-unit>
+
+
+	   <trans-unit id="tx_ats.be.actions.application.moveToPool">
+		<source>Move to pool</source>
+		<target>Pool</target>
+	  </trans-unit>
+
+			<trans-unit id="tx_ats.history.workflow.subject">
+				<source>Workflow</source>
+				<target>Workflow</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.workflow.details">
+				<source>Changed status to</source>
+				<target>Status geändert in</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.edit.subject">
+				<source>Edit (Backend)</source>
+				<target>Bearbeitet (Backend)</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.edit.details">
+				<source>Application edited via backend form</source>
+				<target>Bewerbung über Backend-Formular bearbeitet</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.reply.subject">
+				<source>Reply mail/pdf</source>
+				<target>Antwort via Mail/PDF</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.reply.details">
+				<source>Reply was sent</source>
+				<target>Antwort versendet</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.invite.subject">
+				<source>Invitation</source>
+				<target>Einladung</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.invite.details">
+				<source>Invitation was sent</source>
+				<target>Einladung versendet</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.acknowledge.subject">
+				<source>Acknowledgement</source>
+				<target>Eingangsbestätigung</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.acknowledge.details">
+				<source>Acknowledgement was sent</source>
+				<target>Eingangsbestätigung versendet</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.reject.subject">
+				<source>Rejection</source>
+				<target>Absage</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.reject.details">
+				<source>Rejection was sent</source>
+				<target>Absage versendet</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.rating.subject">
+				<source>Rating</source>
+				<target>Bewertung</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.rating.details">
+				<source>Changed rating to</source>
+				<target>Bewertung geändert in</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.ratingPerso.subject">
+				<source>Personell Rating</source>
+				<target>Rating durch Perso</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.ratingPerso.details">
+				<source>Changed personell rating to</source>
+				<target>Rating durch Perso geändert in</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.note.subject">
+				<source>Note</source>
+				<target>Anmerkung</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.note.details">
+				<source>A new note was added</source>
+				<target>Eine neue Anmerkung wurde hinzugefügt</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.close.subject">
+				<source>Close</source>
+				<target>Abgeschlossen</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.close.details">
+				<source>Application was closed</source>
+				<target>Bewerbung wurde abgeschlossen</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.backToPerso.subject">
+				<source>Returned to Perso</source>
+				<target>Zurückverwiesen an Perso</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.backToPerso.details">
+				<source>Application was sent back to personell department.</source>
+				<target>Die Bewerbung wurde an die Personalabteilung zurückverwiesen</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.new.subject">
+				<source>New Application</source>
+				<target>Neue Bewerbung</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.new.details">
+				<source>A new application was submitted.</source>
+				<target>Eine neue Bewerbung wurde eingereicht</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.clone.subject">
+				<source>New Application (cloned)</source>
+				<target>Neue Bewerbung (geklont)</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.clone.details">
+				<source>A new application was submitted (Clone).</source>
+				<target>Eine neue Bewerbung wurde eingereicht (Klon)</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.cloned.subject">
+				<source>Cloned</source>
+				<target>Geklont</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.cloned.details">
+				<source>This application was cloned.</source>
+				<target>Diese Bewerbung wurde geklont</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.moveToPool.subject">
+				<source>Move to Pool</source>
+				<target>In den Pool verschieben</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.moveToPool.details.add">
+				<source>Application was added to pool</source>
+				<target>die Bewerbung wurde in den Pool verschoben</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.moveToPool.details.remove">
+				<source>Application was removed from pool</source>
+				<target>Die Bewerbung wurde aus dem Pool entfernt</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.removeUpload.subject">
+				<source>Upload deleted</source>
+				<target>Der Upload wurde gelöscht</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.removeUpload.details">
+				<source>The following file was removed:</source>
+				<target>Die folgende Datei wurde entfernt:</target>
+			</trans-unit>
+
+
+
+      <!-- Application status -->
+      <trans-unit id="tx_ats.application.status.0">
+      	<source>Incomplete</source>
+      	<target>Unvollständig</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.10">
+      	<source>New Application</source>
+      	<target>Neue Bewerbung</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.20">
+      	<source>Requested Attestation</source>
+      	<target>Bescheinigung angefordert</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.30">
+      	<source>Bschwb</source>
+      	<target>Bschwb</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.40">
+      	<source>Gleib</source>
+      	<target>Gleib</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.50">
+      	<source>Department</source>
+      	<target>Abteilung</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.60">
+      	<source>Perso</source>
+      	<target>Perso</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.70">
+      	<source>Gleib2</source>
+      	<target>Gleib2</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.80">
+      	<source>OPR</source>
+      	<target>OPR</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.90">
+      	<source>Perso (final)</source>
+      	<target>Perso (final)</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.100">
+      	<source>Employed</source>
+      	<target>Eingestellt</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.110">
+      	<source>Cancelled (by employer)</source>
+      	<target>Abgesagt (durch Arbeitgeber)</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.application.status.120">
+      	<source>Cancelled (by Candidate)</source>
+      	<target>Abgesagt (durch Bewerber)</target>
+      </trans-unit>
+
+
 
       		<trans-unit id="be.label.ApplicationSingle.Overview.FormData">
       		  <source>Form data</source>
       		  <target>Formulardaten</target>
+      		</trans-unit>
+
+      		<trans-unit id="be.label.ApplicationSingle.Overview.Qualification">
+      		  <source>Qualification</source>
+      		  <target>Qualifikation</target>
+      		</trans-unit>
+
+      		<trans-unit id="be.label.ApplicationSingle.Overview.AdditionalData">
+      		  <source>Additional Data</source>
+      		  <target>Weitere Angaben</target>
       		</trans-unit>
 
       		<trans-unit id="be.label.ApplicationSingle.Overview.PersonalData">
@@ -1074,7 +1322,7 @@
 				<target>Senden</target>
 			</trans-unit>
 
-			<trans-unit id="be.label.ApplicationSingle.Notes">
+			<trans-unit id="be.label.ApplicationSingle.Notes.add">
 				<source>Add a new note</source>
 				<target>Neue Anmerkung</target>
 			</trans-unit>
@@ -1106,7 +1354,7 @@
 
 			<trans-unit id="be.label.ApplicationSingle.Reject">
 				<source>Reject application</source>
-				<target>Bewerbung ablehnen</target>
+				<target>Dem Bewerber absagen</target>
 			</trans-unit>
 
 			<trans-unit id="be.label.ApplicationSingle.Rating">

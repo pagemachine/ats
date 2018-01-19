@@ -639,6 +639,10 @@
 		<source>Close Application</source>
 	  </trans-unit>
 
+	   <trans-unit id="tx_ats.be.actions.application.acknowledge">
+		<source>Acknowledge</source>
+      </trans-unit>
+
 	   <trans-unit id="tx_ats.be.actions.application.reply">
 		<source>Mail</source>
 	  </trans-unit>
@@ -1201,6 +1205,10 @@
 	  	<trans-unit id="tx_ats.be.actions.application.notes">
 				<source>Notes</source>
 	  	</trans-unit>
+
+	   <trans-unit id="tx_ats.be.actions.application.acknowledge">
+		<source>Acknowledge</source>
+      </trans-unit>
 
 	  	<trans-unit id="tx_ats.be.actions.application.reply">
 				<source>Mail</source>

@@ -3,7 +3,7 @@
   "description": "Extension for Job Application Management",
   "keywords": ["typo3", "application", "jobs", "recruiting"],
   "type": "typo3-cms-extension",
-  "license": "GPL-3.0",
+  "license": "GPL-3.0-only",
   "repositories": {
     "typo3": {
       "type": "composer",
