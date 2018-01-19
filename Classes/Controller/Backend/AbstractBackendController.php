@@ -44,6 +44,8 @@ class AbstractBackendController extends ActionController
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/Recordlist/Recordlist');
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/Ats/ApplicationsModule');
 
+        $pageRenderer->addCssFile('EXT:ats/Resources/Public/Css/backend.css');
+
         $this->buildMenu();
     }
 

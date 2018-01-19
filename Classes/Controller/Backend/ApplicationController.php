@@ -828,6 +828,7 @@ class ApplicationController extends AbstractBackendController
         $propertyMappingConfiguration->forProperty("languageSkills")->allowAllProperties();
         $propertyMappingConfiguration->forProperty("languageSkills.*")->allowProperties("language");
         $propertyMappingConfiguration->forProperty("languageSkills.*")->allowProperties("level");
+        $propertyMappingConfiguration->forProperty("languageSkills.*")->allowProperties("textLanguage");
         $propertyMappingConfiguration->allowCreationForSubProperty("languageSkills.*");
     }
 }

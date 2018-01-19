@@ -1,0 +1,12 @@
+<tr class="summary-element">
+	<td>
+		<label>
+		  <f:translate key="{translationKey}" />
+		</label>
+	</td>
+	<td>
+		{text}
+		<f:translate key="{translationKey}.{select}" />
+		{date -> f:format.date(format: 'Y-m-d')}
+	</td>
+</tr>

@@ -1,150 +1,175 @@
 {namespace core = TYPO3\CMS\Core\ViewHelpers}
-<h2><f:translate id="be.label.ApplicationSingle.Overview.FormData"></f:translate></h2>
 
-<h3><f:translate id="be.label.ApplicationSingle.Overview.PersonalData"></f:translate></h3>
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.title',
-	text: '{application.title}'
-}" />
+<div class="row">
+	<div class="col-md-6 summary-block table-container">
+		<h3><f:translate id="be.label.ApplicationSingle.Overview.PersonalData"></f:translate></h3>
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.salutation',
-	select: '{application.salutation}'
-}" />
+		<table class="table">
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.firstname',
-	text: '{application.firstname}'
-}" />
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'tx_ats.label.title',
+				text: '{application.title}'
+			}" />
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.surname',
-	text: '{application.surname}'
-}" />
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'tx_ats.label.salutation',
+				select: '{application.salutation}'
+			}" />
 
- <f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.birthday',
-	date: '{application.birthday}'
-}" />
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'tx_ats.label.firstname',
+				text: '{application.firstname}'
+			}" />
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'be.label.ApplicationSingle.Overview.Disability',
-	select: '{application.disability}'
-}" />
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'tx_ats.label.surname',
+				text: '{application.surname}'
+			}" />
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.street',
-	text: '{application.street}'
-}" />
+			 <f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'tx_ats.label.birthday',
+				date: '{application.birthday}'
+			}" />
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.zipcode',
-	text: '{application.zipcode}'
-}" />
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'be.label.ApplicationSingle.Overview.Disability',
+				select: '{application.disability}'
+			}" />
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.city',
-	text: '{application.city}'
-}" />
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'tx_ats.label.street',
+				text: '{application.street}'
+			}" />
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-translationKey: 'tx_ats.label.country',
-text: '{application.country.shortNameLocal}'
-}" />
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'tx_ats.label.zipcode',
+				text: '{application.zipcode}'
+			}" />
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.email',
-	text: '{application.email}'
-}" />
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'tx_ats.label.city',
+				text: '{application.city}'
+			}" />
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.phone',
-	text: '{application.phone}'
-}" />
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+			translationKey: 'tx_ats.label.country',
+			text: '{application.country.shortNameLocal}'
+			}" />
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.mobile',
-	text: '{application.mobile}'
-}" />
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'tx_ats.label.email',
+				text: '{application.email}'
+			}" />
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.employed',
-	select: '{application.employed}'
-}" />
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'tx_ats.label.phone',
+				text: '{application.phone}'
+			}" />
 
-<h3><f:translate id="be.label.ApplicationSingle.Overview.Qualification"></f:translate></h3>
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'tx_ats.label.mobile',
+				text: '{application.mobile}'
+			}" />
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.school_qualification',
-	select: '{application.schoolQualification}'
-}" />
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'tx_ats.label.employed',
+				select: '{application.employed}'
+			}" />
+		</table>
+	</div>
+	<div class="col-md-6 summary-block table-container">
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.professional_qualification',
-	text: '{application.professionalQualification}'
-}" />
+		<h3><f:translate id="be.label.ApplicationSingle.Overview.Qualification"></h3>
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.professional_qualification_final_grade',
-	text: '{application.professionalQualificationFinalGrade}'
-}" />
+		<table class="table">
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.academic_degree',
-	text: '{application.academicDegree}'
-}" />
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'tx_ats.label.school_qualification',
+				select: '{application.schoolQualification}'
+			}" />
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.academic_degree_final_grade',
-	text: '{application.academicDegreeFinalGrade}'
-}" />
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'tx_ats.label.professional_qualification',
+				text: '{application.professionalQualification}'
+			}" />
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.doctoral_degree',
-	text: '{application.doctoralDegree}'
-}" />
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'tx_ats.label.professional_qualification_final_grade',
+				text: '{application.professionalQualificationFinalGrade}'
+			}" />
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.doctoral_degree_final_grade',
-	text: '{application.doctoralDegreeFinalGrade}'
-}" />
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'tx_ats.label.academic_degree',
+				text: '{application.academicDegree}'
+			}" />
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.previous_knowledge',
-	text: '{application.previousKnowledge}'
-}" />
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'tx_ats.label.academic_degree_final_grade',
+				text: '{application.academicDegreeFinalGrade}'
+			}" />
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.it_knowledge',
-	text: '{application.itKnowledge}'
-}" />
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'tx_ats.label.doctoral_degree',
+				text: '{application.doctoralDegree}'
+			}" />
 
-<f:render partial="Application/Field/SummaryListLanguage" arguments="{
-	languageSkills: '{application.languageSkills}'
-}" />
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'tx_ats.label.doctoral_degree_final_grade',
+				text: '{application.doctoralDegreeFinalGrade}'
+			}" />
 
-<h3><f:translate id="be.label.ApplicationSingle.Overview.AdditionalData"></f:translate></h3>
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'tx_ats.label.previous_knowledge',
+				text: '{application.previousKnowledge}'
+			}" />
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.comment',
-	text: '{application.comment}'
-}" />
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'tx_ats.label.it_knowledge',
+				text: '{application.itKnowledge}'
+			}" />
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.referrer',
-	select: '{application.referrer}'
-}" />
+			<f:render partial="Backend/Application/Field/SummaryListLanguage" arguments="{
+				languageSkills: '{application.languageSkills}'
+			}" />
+		</table>
 
-<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.forward_to_departments',
-	select: '{application.forwardToDepartments}'
-}" />
+	</div>
+</div>
 
-<h3>Upload</h3>
+<div class="row">
+	<div class="col-sm-6 summary-block table-container">
+		<h3><f:translate id="be.label.ApplicationSingle.Overview.AdditionalData"></f:translate></h3>
+		<table class="table">
 
-<f:render partial="Application/Field/SummaryListFiles" arguments="{
-	translationKey: 'tx_ats.label.file',
-	text: 'File(s)',
-	application: application
-}" />
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'tx_ats.label.comment',
+				text: '{application.comment}'
+			}" />
+
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'tx_ats.label.referrer',
+				select: '{application.referrer}'
+			}" />
+
+			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
+				translationKey: 'tx_ats.label.forward_to_departments',
+				select: '{application.forwardToDepartments}'
+			}" />
+		</table>
+	</div>
+	<div class="col-sm-6 summary-block table-container">
+		<h3>Upload</h3>
+
+		<table class="table">
+			<f:render partial="Backend/Application/Field/SummaryListFiles" arguments="{
+				translationKey: 'tx_ats.label.file',
+				text: 'File(s)',
+				application: application
+			}" />
+		</table>
+	</div>
+</div>
+
+
+

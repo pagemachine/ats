@@ -1,0 +1,16 @@
+<tr class="summary-element">
+	<td colspan="2">
+		<label><f:translate key="tx_ats.application.languageskills" /></label>
+	</td>
+</tr>
+
+<f:for each="{languageSkills}" as="languageSkill">
+	<tr class="summary-element">
+		<td>
+			<label>{f:if(condition:languageSkill.textLanguage, then:languageSkill.textLanguage, else:languageSkill.language.nameEn)}</label>
+		</td>
+		<td>
+			<f:translate key="tx_ats.languageskill.level.{languageSkill.level}" />
+		</td>
+	</tr>
+</f:for>
