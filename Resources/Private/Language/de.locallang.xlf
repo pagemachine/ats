@@ -5,7 +5,7 @@
 		<body>
 			<trans-unit id="tx_ats_domain_model_job">
 				<source>Job</source>
-				<target></target>
+				<target>Stellenangebot</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.job.start_application">
@@ -47,27 +47,27 @@
 
 			<trans-unit id="tx_ats.loginHeader">
 				<source>Log in to proceed to job</source>
-				<target></target>
+				<target>Anmelden und zur Stellenbeschreibung</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.registrationHeader">
 				<source>Register</source>
-				<target></target>
+				<target>Registrieren</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.registrationText">
 				<source>Not registered yet? Create a new account.</source>
-				<target></target>
+				<target>Noch nicht registriert? Neues Benutzerkonto erstellen.</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.registrationLinkText">
 				<source>Register here</source>
-				<target></target>
+				<target>Hier registieren</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.returnToJob">
 				<source>Return to job</source>
-				<target></target>
+				<target>Zurück zur Stellenberschreibung</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.newApply">
@@ -120,6 +120,11 @@
 				<target>Neue Datei hochladen</target>
 			</trans-unit>
 
+			<trans-unit id="tx_ats.prepend.select">
+				<source>Please select</source>
+				<target>Bitte wählen</target>
+			</trans-unit>
+
 			<trans-unit id="tx_ats.button.next">
 				<source>Next</source>
 				<target>Weiter</target>
@@ -128,6 +133,10 @@
 			<trans-unit id="tx_ats.button.prev">
 				<source>Back</source>
 				<target>Zur&#252;ck</target>
+			</trans-unit>
+			<trans-unit id="tx_ats.button.submit">
+				<source>Submit</source>
+				<target>Absenden</target>
 			</trans-unit>
 
 		<trans-unit id="tx_ats.label.privacy_policy.before">
