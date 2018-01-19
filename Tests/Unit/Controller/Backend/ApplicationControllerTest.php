@@ -215,6 +215,7 @@ class ApplicationControllerTest extends UnitTestCase
         $subConfiguration->allowAllProperties()->shouldBeCalled();
         $subConfiguration->allowProperties("language")->shouldBeCalled();
         $subConfiguration->allowProperties("level")->shouldBeCalled();
+        $subConfiguration->allowProperties("textLanguage")->shouldBeCalled();
 
         $mappingConfiguration->allowCreationForSubProperty("languageSkills.*")->shouldBeCalled();
 

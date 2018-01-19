@@ -39,7 +39,7 @@ class AbstractBackendControllerTest extends UnitTestCase
      * @var Request $request
      */
     protected $request;
-    
+
     /**
      * Set up this testcase
      */
@@ -76,6 +76,7 @@ class AbstractBackendControllerTest extends UnitTestCase
         $this->view->assign("action", "ActionName")->shouldBeCalled();
 
         $this->pageRenderer->loadRequireJsModule(Argument::type("string"))->shouldBeCalled();
+        $this->pageRenderer->addCssFile(Argument::type("string"))->shouldBeCalled();
 
         $this->abstractBackendController->initializeView($this->view->reveal());
     }
