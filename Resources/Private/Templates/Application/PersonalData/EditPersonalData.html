@@ -109,11 +109,16 @@
 			translationKeyValue2: 'tx_ats.label.employed.1'
 		}"/>
 
-		<f:link.action action="form" controller="Application\\Form" arguments="{application: application, job : application.job}">Back</f:link.action>
 
-		<f:render partial="Application/Field/SubmitButton" arguments="{
-			translationKey: 'tx_ats.button.next',
-			action: 'updatePersonalData'
-		}"/>
+		<div class="form-group">
+			<div class="col-sm-6">
+				<f:link.action action="form" controller="Application\\Form" arguments="{application: application, job : application.job}" class="btn btn-default pull-right"><f:translate key="tx_ats.button.prev">Back</f:translate></f:link.action>
+			</div>
+
+			<f:render partial="Application/Field/SubmitButton" arguments="{
+				translationKey: 'tx_ats.button.next',
+				action: 'updatePersonalData'
+			}"/>
+		</div>
 	</f:form>
 </f:section>
