@@ -67,7 +67,7 @@
 
 			<trans-unit id="tx_ats.returnToJob">
 				<source>Return to job</source>
-				<target>Zurück zur Stellenberschreibung</target>
+				<target>Zurück zur Stellenbeschreibung</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.newApply">
@@ -134,6 +134,7 @@
 				<source>Back</source>
 				<target>Zur&#252;ck</target>
 			</trans-unit>
+
 			<trans-unit id="tx_ats.button.submit">
 				<source>Submit</source>
 				<target>Absenden</target>

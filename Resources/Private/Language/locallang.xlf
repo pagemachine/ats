@@ -94,7 +94,7 @@
 
 	  <trans-unit id="tx_ats.prepend.select">
 			<source>Please select</source>
-		</trans-unit>
+	  </trans-unit>
 
 	  <trans-unit id="tx_ats.button.next">
 		<source>Next</source>
