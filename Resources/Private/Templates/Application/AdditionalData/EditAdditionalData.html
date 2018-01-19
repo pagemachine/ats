@@ -49,12 +49,16 @@
     	</f:if>
     </f:form.validationResults>
 
-    <f:link.action action="editQualifications" controller="Application\\Qualifications" arguments="{application: application}">Back</f:link.action>
+		<div class="form-group">
+			<div class="col-sm-6">
+    		<f:link.action action="editQualifications" controller="Application\\Qualifications" arguments="{application: application}" class="btn btn-default pull-right">Back</f:link.action>
+    	</div>
 
-    <f:render partial="Application/Field/SubmitButton" arguments="{
-      translationKey: 'tx_ats.button.next',
-      action: 'updateAdditionalData'
-    }"/>
+	    <f:render partial="Application/Field/SubmitButton" arguments="{
+	      translationKey: 'tx_ats.button.next',
+	      action: 'updateAdditionalData'
+	    }"/>
+	  </div>
 
   </f:form>
 
