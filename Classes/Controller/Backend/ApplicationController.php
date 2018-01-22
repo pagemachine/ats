@@ -18,6 +18,7 @@ use PAGEmachine\Ats\Message\RejectMessage;
 use PAGEmachine\Ats\Message\ReplyMessage;
 use PAGEmachine\Ats\Service\DuplicationService;
 use PAGEmachine\Ats\Workflow\WorkflowManager;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
@@ -71,15 +72,22 @@ class ApplicationController extends AbstractBackendController
             ->setIdentifier("actions");
 
         foreach ($this->menuUrls as $url) {
-                $isActive = $this->request->getControllerActionName() === $url['action'] ? true : false;
-                $uri = $uriBuilder
-                    ->reset()
-                    ->uriFor($url['action'], [], $this->request->getControllerName(), null, null);
-                $menuItem = $menu->makeMenuItem()
-                    ->setHref($uri)
-                    ->setTitle(LocalizationUtility::translate($url['label'], 'ats'))
-                    ->setActive($isActive);
-                $menu->addMenuItem($menuItem);
+            //If extbase_acl is loaded, reduce menu urls to the ones actually allowed
+            if (ExtensionManagementUtility::isLoaded("extbase_acl")) {
+                if (!\Pagemachine\ExtbaseAcl\Manager\ActionAccessManager::getInstance()->isActionAllowed(__CLASS__, $url['action'])) {
+                    continue;
+                }
+            }
+
+            $isActive = $this->request->getControllerActionName() === $url['action'] ? true : false;
+            $uri = $uriBuilder
+                ->reset()
+                ->uriFor($url['action'], [], $this->request->getControllerName(), null, null);
+            $menuItem = $menu->makeMenuItem()
+                ->setHref($uri)
+                ->setTitle(LocalizationUtility::translate($url['label'], 'ats'))
+                ->setActive($isActive);
+            $menu->addMenuItem($menuItem);
         }
 
         $menuRegistry->addMenu($menu);
