@@ -77,5 +77,24 @@ plugin.tx_ats {
 	}
 }
 
+config.tx_extbase {
+    persistence {
+        classes {
+            PAGEmachine\Ats\Domain\Model\FileReference {
+                mapping {
+                    tableName = sys_file_reference
+                    columns {
+                        uid_local.mapOnProperty = originalFileIdentifier
+                    }
+                }
+            }
+        }
+    }
+    objects {
+        TYPO3\CMS\Extbase\Domain\Model\FileReference.className = PAGEmachine\Ats\Domain\Model\FileReference
+        TYPO3\CMS\Extbase\Persistence\Generic\QueryFactoryInterface.className = PAGEmachine\Ats\Persistence\Generic\QueryFactory
+    }
+}
+
 plugin.tx_ats_jobs < plugin.tx_ats
 
