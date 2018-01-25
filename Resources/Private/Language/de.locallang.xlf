@@ -648,6 +648,16 @@
 				<target>Neue Bewerbungen</target>
 			</trans-unit>
 
+			<trans-unit id="be.label.MyApplications.DeadlineExceeded">
+				<source>Deadline Exceeded</source>
+				<target>Fristüberschreitung</target>
+			</trans-unit>
+
+			<trans-unit id="be.label.MyApplications.InProgress">
+				<source>In Progress</source>
+				<target>In Bearbeitung</target>
+			</trans-unit>
+
 			<trans-unit id="be.label.MyApplications.Table.Created">
 				<source>Created</source>
 				<target>Erstellt am</target>

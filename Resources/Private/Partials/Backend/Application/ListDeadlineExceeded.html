@@ -1,7 +1,7 @@
 {namespace ats=PAGEmachine\Ats\ViewHelpers}
 
 <f:if condition="{applications -> f:count()}">
-	<h2>Deadline Exceeded</h2>
+	<h2><f:translate key="be.label.MyApplications.DeadlineExceeded"/></h2>
 
 	<f:render partial="Backend/Application/Table" arguments="{applications : applications}" />
 
