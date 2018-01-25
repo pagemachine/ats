@@ -88,7 +88,7 @@ class ApplicationRepository extends AbstractApplicationRepository
     }
 
     /**
-     * Finds all applications with exceeded deadline
+     * Finds all applications that have been submitted freshly
      *
      * @param  int $deadlineTime
      * @param  BackendUserAuthentication $backendUser
@@ -118,7 +118,7 @@ class ApplicationRepository extends AbstractApplicationRepository
     }
 
     /**
-     * Finds all applications with exceeded deadline
+     * Finds all applications that have been processed by the personal department and are not finished
      *
      * @param  int $deadlineTime
      * @param  BackendUserAuthentication $backendUser

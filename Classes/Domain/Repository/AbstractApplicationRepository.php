@@ -176,7 +176,7 @@ class AbstractApplicationRepository extends Repository
     }
 
     /**
-     * Finds all archived applications
+     * Finds all non-archived applications
      *
      * @param  BackendUserAuthentication $user
      * @return QueryResult
