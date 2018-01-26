@@ -130,6 +130,12 @@
 				<target>Zur&#252;ck</target>
 			</trans-unit>
 
+			<trans-unit id="tx_ats.button.submit">
+		        <source>Submit</source>
+		        <target>Absenden</target>
+	        </trans-unit>
+
+
 		<trans-unit id="tx_ats.label.privacy_policy.before">
 		<source>I have read and accepted the</source>
 		<target>Ich habe die</target>
