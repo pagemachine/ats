@@ -17,9 +17,8 @@ var languageskills = (function(window) {
 
         languageFormPart = window.document.querySelector(formSelector + " .tx-ats-addlanguage");
 
-        elementPrefix = languageFormPart.getElementsByClassName("language-select")[0].getAttribute('name').split("[")[0] + '[application][languageSkills]';
-
         if (languageFormPart != undefined) {
+            elementPrefix = languageFormPart.getElementsByClassName("language-select")[0].getAttribute('name').split("[")[0] + '[application][languageSkills]';
             languageFormPart.remove();
         }
 
