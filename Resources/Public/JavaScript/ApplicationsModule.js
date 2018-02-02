@@ -85,6 +85,15 @@ require(
 			}
 		});
 
+        $("#tx-ats-fileupload").on("change", function(e){
+            if (e.target.value != "") {
+                $("#tx-ats-fileupload-button").show();
+            }
+            else {
+                $("#tx-ats-fileupload-button").hide();
+            }
+        });
+
      });
 
 });

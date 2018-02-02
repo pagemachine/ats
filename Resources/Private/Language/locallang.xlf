@@ -92,6 +92,14 @@
 			<source>Upload new file</source>
 		</trans-unit>
 
+		<trans-unit id="tx_ats.upload.save">
+			<source>Save file</source>
+		</trans-unit>
+
+		<trans-unit id="tx_ats.upload.remove">
+			<source>Remove</source>
+		</trans-unit>
+
 	  <trans-unit id="tx_ats.button.next">
 		<source>Next</source>
 	  </trans-unit>
