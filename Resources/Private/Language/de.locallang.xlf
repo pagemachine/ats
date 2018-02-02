@@ -679,6 +679,16 @@
 				<target>Bewertung</target>
 			</trans-unit>
 
+			<trans-unit id="be.label.Archive.AllApplications">
+				<source>Archive</source>
+				<target>Archiv</target>
+			</trans-unit>
+
+			<trans-unit id="be.label.Archive.Pool">
+				<source>Pool</source>
+				<target>Pool</target>
+			</trans-unit>
+
 			<trans-unit id="tx_ats.application.Rating.0">
 				<source>None</source>
 				<target>Keine</target>

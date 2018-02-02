@@ -1063,6 +1063,14 @@
 				<source>All Applications</source>
 			</trans-unit>
 
+			<trans-unit id="be.label.Archive.AllApplications">
+				<source>Archive</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.Archive.Pool">
+				<source>Pool</source>
+			</trans-unit>
+
 			<trans-unit id="be.label.Statistics">
 				<source>Statistics</source>
 			</trans-unit>

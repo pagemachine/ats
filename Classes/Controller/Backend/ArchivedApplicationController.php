@@ -22,8 +22,8 @@ class ArchivedApplicationController extends ApplicationController
      * @var array
      */
     protected $menuUrls = [
-        ["action" => "listAll", "label" => "Archive"],
-        ["action" => "listPool", "label" => "Pool"],
+        ["action" => "listAll", "label" => "be.label.Archive.AllApplications"],
+        ["action" => "listPool", "label" => "be.label.Archive.Pool"],
     ];
 
     /**
