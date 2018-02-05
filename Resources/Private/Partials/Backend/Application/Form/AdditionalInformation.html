@@ -1,0 +1,37 @@
+<fieldset class="table-container">
+	<legend><f:translate id="be.label.ApplicationSingle.Edit.AdditionalInformation"/></legend>
+
+	<table class="table">
+		<f:render partial="Backend/Application/Field/Textarea" arguments="{
+			translationKey: 'tx_ats.label.comment',
+			fieldName: 'comment',
+			fieldRows: '4',
+			fieldCols: '53',
+			FieldAdditionalAttributes: '{maxlength:255}'
+		}"/>
+
+		<f:render partial="Backend/Application/Field/Selectbox" arguments="{
+		translationKey: 'tx_ats.label.referrer',
+		fieldName: 'referrer',
+		fieldOptions: '{
+				1:\'{f:translate(key: \\\'tx_ats.label.referrer.1\\\', extensionName: \\\'ats\\\')}\',
+				2:\'{f:translate(key: \\\'tx_ats.label.referrer.2\\\', extensionName: \\\'ats\\\')}\',
+				3:\'{f:translate(key: \\\'tx_ats.label.referrer.3\\\', extensionName: \\\'ats\\\')}\',
+				4:\'{f:translate(key: \\\'tx_ats.label.referrer.4\\\', extensionName: \\\'ats\\\')}\',
+				5:\'{f:translate(key: \\\'tx_ats.label.referrer.5\\\', extensionName: \\\'ats\\\')}\',
+				6:\'{f:translate(key: \\\'tx_ats.label.referrer.6\\\', extensionName: \\\'ats\\\')}\',
+				7:\'{f:translate(key: \\\'tx_ats.label.referrer.7\\\', extensionName: \\\'ats\\\')}\'
+			}'
+		}"/>
+
+		<f:render partial="Backend/Application/Field/RadioButton" arguments="{
+			translationKey: 'tx_ats.label.forward_to_departments',
+			fieldName: 'forwardToDepartments',
+			fieldValue1: '2',
+			translationKeyValue1: 'tx_ats.label.forward_to_departments.2',
+			fieldValue2: '1',
+			translationKeyValue2: 'tx_ats.label.forward_to_departments.1'
+		}"/>
+	</table>
+
+</fieldset>

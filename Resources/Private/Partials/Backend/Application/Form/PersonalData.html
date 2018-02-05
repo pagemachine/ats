@@ -1,0 +1,106 @@
+<fieldset class="table-container">
+	<legend><f:translate id="be.label.ApplicationSingle.Edit.PersonalData"></f:translate></legend>
+
+	<table class="table">
+
+		<f:render partial="Backend/Application/Field/TextField" arguments="{
+		  translationKey: 'tx_ats.label.title',
+		  fieldType: 'text',
+		  fieldName: 'title'
+		}"/>
+
+		<f:render partial="Backend/Application/Field/SelectTranslated" arguments="{
+		  translationKey: 'tx_ats.label.salutation',
+		  fieldName: 'salutation',
+		  options: '{1:1, 2:2}'
+		}"/>
+
+
+		<f:render partial="Backend/Application/Field/TextField" arguments="{
+		  translationKey: 'tx_ats.label.firstname',
+		  fieldType: 'text',
+		  fieldName: 'firstname'
+		}"/>
+
+
+		<f:render partial="Backend/Application/Field/TextField" arguments="{
+		  translationKey: 'tx_ats.label.surname',
+		  fieldType: 'text',
+		  fieldName: 'surname'
+		}"/>
+
+
+		<f:render partial="Backend/Application/Field/TextField" arguments="{
+		  translationKey: 'tx_ats.label.birthday',
+		  fieldType: 'text',
+		  fieldName: 'birthday'
+		  fieldValue:'{application.birthday -> f:format.date(format:\"Y-m-d\")}'
+		}"/>
+
+		<f:render partial="Backend/Application/Field/SelectTranslated" arguments="{
+      translationKey: 'be.label.ApplicationSingle.Edit.Disability',
+      fieldName: 'disability',
+      options: '{1:1, 2:2}'
+    }"/>
+
+		<f:render partial="Backend/Application/Field/SelectTranslated" arguments="{
+      translationKey: 'tx_ats.label.nationality',
+      fieldName: 'nationality',
+      options: '{1:1, 2:2}'
+    }"/>
+
+
+		<f:render partial="Backend/Application/Field/TextField" arguments="{
+		  translationKey: 'tx_ats.label.street',
+		  fieldType: 'text',
+		  fieldName: 'street'
+		}"/>
+
+
+		<f:render partial="Backend/Application/Field/TextField" arguments="{
+		  translationKey: 'tx_ats.label.zipcode',
+		  fieldType: 'text',
+		  fieldName: 'zipcode'
+		}"/>
+
+		<f:render partial="Backend/Application/Field/TextField" arguments="{
+		  translationKey: 'tx_ats.label.city',
+		  fieldType: 'text',
+		  fieldName: 'city'
+		}"/>
+
+		<f:render partial="Backend/Application/Field/SelectCountry" arguments="{
+		  translationKey: 'tx_ats.label.country',
+		  fieldName: 'country'
+		}"/>
+
+
+		<f:render partial="Backend/Application/Field/TextField" arguments="{
+		  translationKey: 'tx_ats.label.email',
+		  fieldType: 'email',
+		  fieldName: 'email'
+		}"/>
+
+		<f:render partial="Backend/Application/Field/TextField" arguments="{
+		  translationKey: 'tx_ats.label.phone',
+		  fieldType: 'phone',
+		  fieldName: 'phone'
+		}"/>
+
+		<f:render partial="Backend/Application/Field/TextField" arguments="{
+		  translationKey: 'tx_ats.label.mobile',
+		  fieldType: 'phone',
+		  fieldName: 'mobile'
+		}"/>
+
+
+		<f:render partial="Backend/Application/Field/RadioButton" arguments="{
+		  translationKey: 'tx_ats.label.employed',
+		  fieldName: 'employed',
+		  fieldValue1: '2',
+		  translationKeyValue1: 'tx_ats.label.employed.2',
+		  fieldValue2: '1',
+		  translationKeyValue2: 'tx_ats.label.employed.1'
+		}"/>
+	</table>
+</fieldset>
