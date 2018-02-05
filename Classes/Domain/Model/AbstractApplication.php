@@ -25,6 +25,7 @@ class AbstractApplication extends AbstractEntity
     {
 
         $this->notes = new ObjectStorage();
+        $this->history = new ObjectStorage();
     }
 
     /**
