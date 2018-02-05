@@ -46,7 +46,7 @@ if (TYPO3_MODE === 'BE') {
         'applications',
         '',
         array(
-            'Backend\\Application' => 'index, listAll, listMine, show, edit, removeUpload, update, editStatus, updateStatus, notes, addNote, close, confirmClose, reply, sendReply, invite, sendInvitation, acknowledge, sendAcknowledgement, ratingPerso, rating, addRating, backToPerso, sendBackToPerso, reject, sendRejection, history, clone, confirmClone, new, create'
+            'Backend\\Application' => 'index, listAll, listMine, show, edit, saveUpload, removeUpload, update, editStatus, updateStatus, notes, addNote, close, confirmClose, reply, sendReply, invite, sendInvitation, acknowledge, sendAcknowledgement, ratingPerso, rating, addRating, backToPerso, sendBackToPerso, reject, sendRejection, history, clone, confirmClone, new, create'
         ),
         array(
             'access'    => 'user,group',
@@ -63,7 +63,7 @@ if (TYPO3_MODE === 'BE') {
         'archive',
         '',
         array(
-            'Backend\\ArchivedApplication' => 'index, listAll, show, edit, removeUpload, update, editStatus, updateStatus, notes, addNote, history, clone, confirmClone, listPool, moveToPool, updateMoveToPool'
+            'Backend\\ArchivedApplication' => 'index, listAll, show, edit, saveUpload, removeUpload, update, editStatus, updateStatus, notes, addNote, history, clone, confirmClone, listPool, moveToPool, updateMoveToPool'
         ),
         array(
             'access'    => 'user,group',
@@ -97,7 +97,7 @@ if (TYPO3_MODE === 'BE') {
         'multiSend',
         '',
         array(
-            'Backend\\NotificationApplication' => 'index, listAll, show, edit, removeUpload, update, editStatus, updateStatus, notes, addNote, history, clone, confirmClone, newMassNotification, sendMassNotification, downloadPdf, result'
+            'Backend\\NotificationApplication' => 'index, listAll, show, edit, saveUpload, removeUpload, update, editStatus, updateStatus, notes, addNote, history, clone, confirmClone, newMassNotification, sendMassNotification, downloadPdf, result'
         ),
         array(
             'access'    => 'user,group',

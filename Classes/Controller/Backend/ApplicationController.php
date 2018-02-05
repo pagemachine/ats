@@ -803,6 +803,20 @@ class ApplicationController extends AbstractBackendController
     }
 
     /**
+     * Saves upload and forwards back to edit
+     *
+     * @param  Application $application
+     * @return void
+     */
+    public function saveUploadAction(Application $application)
+    {
+        $this->applicationRepository->addOrUpdate($application);
+
+        $this->addFlashMessage("Successfully uploaded a new file.");
+        $this->forward("edit", null, null, ['application' => $application->getUid()]);
+    }
+
+    /**
      * @param  Application $application
      * @return void
      */
