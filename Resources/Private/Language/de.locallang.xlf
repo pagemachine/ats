@@ -1000,6 +1000,16 @@
 		<target>Pool</target>
 	  </trans-unit>
 
+			<trans-unit id="tx_ats.be.actions.application.new">
+				<source>New Application</source>
+				<target>Neue Bewerbung</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.be.new.uploadInfo">
+				<source>Uploads can be added in the next step, after submit.</source>
+				<target>Dateien können im nächsten Schritt hochgeladen werden, nachdem die Bewerbung gespeichert wurde.</target>
+			</trans-unit>
+
 			<trans-unit id="tx_ats.history.workflow.subject">
 				<source>Workflow</source>
 				<target>Workflow</target>
@@ -1317,6 +1327,11 @@
 				<source>Email</source>
 				<target>E-Mail</target>
 	  		</trans-unit>
+
+		  	<trans-unit id="be.label.ApplicationSingle.New.General">
+					<source>General</source>
+					<target>Allgemein</target>
+		  	</trans-unit>
 
 	  		<trans-unit id="be.label.ApplicationSingle.Workflow">
 				<source>Change workflow</source>

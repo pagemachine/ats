@@ -824,6 +824,41 @@ class ApplicationController extends AbstractBackendController
         $this->forward("edit", null, null, ["application" => $application->getUid()]);
     }
 
+    public function newAction(Application $application = null)
+    {
+        $this->view->assign('jobs', $this->jobRepository->findAll());
+        $this->view->assign('application', $application);
+    }
+
+    /**
+     *
+     * @return void
+     */
+    public function initializeCreateAction()
+    {
+
+        $this->fixDynamicFieldPropertyMapping();
+    }
+
+    /**
+     * Backend update action for applications
+     *
+     * @param  Application $application
+     * @ignorevalidation $application
+     * @return void
+     */
+    public function createAction(Application $application)
+    {
+
+        $application->submit();
+
+        $this->applicationRepository->addOrUpdate($application);
+
+        $this->applicationRepository->updateAndLog($application, 'new');
+        $this->addFlashMessage("A new application was created.");
+        $this->redirect("edit", null, null, ["application" => $application]);
+    }
+
     /**
      * Adds PropertyMappingConfiguration for JS-added fields like the language skills
      *

@@ -675,6 +675,14 @@
 		<source>Move to pool</source>
 	  </trans-unit>
 
+	  <trans-unit id="tx_ats.be.actions.application.new">
+	  	<source>New Application</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.be.new.uploadInfo">
+	  	<source>Uploads can be added in the next step, after submit.</source>
+	  </trans-unit>
+
 			<trans-unit id="tx_ats.history.workflow.subject">
 				<source>Workflow</source>
 			</trans-unit>
@@ -1318,6 +1326,10 @@
 
 	  	<trans-unit id="be.label.ApplicationSingle.Edit.3">
 				<source>Email</source>
+	  	</trans-unit>
+
+	  	<trans-unit id="be.label.ApplicationSingle.New.General">
+				<source>General</source>
 	  	</trans-unit>
 
 	  	<trans-unit id="be.label.ApplicationSingle.Workflow">

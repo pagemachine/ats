@@ -1,9 +1,17 @@
 
 {namespace ats=PAGEmachine\Ats\ViewHelpers}
+{namespace core = TYPO3\CMS\Core\ViewHelpers}
 <f:layout name="Backend/Backend" />
 
 <f:section name="main">
 	<h1><f:translate key="be.label.MyApplications"/></h1>
+
+	<p>
+			<f:link.action action="new" class="btn btn-default">
+				<core:icon identifier="actions-document-new" /> <f:translate key="tx_ats.be.actions.application.new" />
+			</f:link.action>
+	</p>
+
 
 	<f:render partial="Backend/Application/FilterBar" arguments="{action : 'listMine', jobs : jobs, filter : filter}" />
 
