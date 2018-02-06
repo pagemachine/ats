@@ -1,9 +1,8 @@
 {namespace s=SJBR\StaticInfoTables\ViewHelpers}
 {namespace ats=PAGEmachine\Ats\ViewHelpers}
-{namespace core = TYPO3\CMS\Core\ViewHelpers}
 
 <fieldset id="tx-ats-languageform">
-	<div class="row">
+	<div class="form-group">
 		<div class="col-sm-3">
 			<label><f:translate key="tx_ats.application.languageskills" /></label>
 		</div>
@@ -13,28 +12,28 @@
 
 				<f:for each="{application.languageSkills}" as="skill" iteration="i">
 
-					<div class="form-inline row" data-language="{i.index}">
+					<div class="row" data-language="{i.index}">
 
 						<f:form.hidden property="languageSkills.{i.index}" value="{skill}" />
 
-						<div class="form-group col-sm-3">
+						<div class="col-sm-3">
 							<label><f:translate key="tx_ats.languageskill.language" /></label>
 							<s:form.select class="language-select form-control" property="languageSkills.{i.index}.language" staticInfoTable="language" options="{}" prependOptionLabel="--select--" prependOptionValue="" />
 						</div>
 
-						<div class="form-group col-sm-3">
+						<div class="col-sm-3">
 							<label><f:translate key="tx_ats.languageskill.textLanguage" /></label>
-							<f:form.textfield property="languageSkills.{i.index}.textLanguage" />
+							<f:form.textfield class="textlanguage form-control" property="languageSkills.{i.index}.textLanguage" />
 						</div>
 
-						<div class="form-group col-sm-3">
+						<div class="col-sm-3">
 							<label><f:translate key="tx_ats.languageskill.level" /></label>
 							<ats:form.translatableSelect class="level-select form-control" translationPrefix="tx_ats.languageskill.level." options="{1:1, 2:2, 3:3, 4:4}" property="languageSkills.{i.index}.level"  prependOptionLabel="--select--" prependOptionValue="" />
 						</div>
 
-						<div class="form-group col-sm-3">
+						<div class="col-sm-3">
 							<span class="btn btn-default btn-xs" data-action="removeLanguage" data-language="{i.index}">
-								<core:icon identifier="actions-edit-delete" size="small" />
+								<span class="glyphicon glyphicon-trash"></span>
 								<f:translate key="tx_ats.languageskill.rmLanguage">Remove</f:translate>
 							</span>
 						</div>
@@ -47,37 +46,37 @@
 
 	</div>
 
-	<div class="row">
+	<div class="form-group">
 		<div class="col-sm-9 col-sm-offset-3">
-			<span class="btn btn-default" data-action="addLanguage">
-				<core:icon identifier="actions-edit-add" size="small" />
+			<span class="btn btn-default btn-sm" data-action="addLanguage">
+				<span class="glyphicon glyphicon-plus"></span>
 				<f:translate key="tx_ats.languageskill.addLanguage">Add Language</f:translate>
 			</span>
 		</div>
 	</div>
 
 
-	<div class="tx-ats-addlanguage form-inline row" data-language="999">
+	<div class="tx-ats-addlanguage row" data-language="999">
 
-		<div class="form-group col-sm-3">
+		<div class="col-sm-3">
 				<label><f:translate key="tx_ats.languageskill.language" /></label>
 				<s:form.select class="language-select form-control" property="languageSkills.999.language" staticInfoTable="language" options="{}" prependOptionLabel="--select--" prependOptionValue="" />
 		</div>
 
-		<div class="form-group col-sm-3">
+		<div class="col-sm-3">
 			<label><f:translate key="tx_ats.languageskill.textLanguage" /></label>
-			<f:form.textfield class="textlanguage" property="languageSkills.999.textLanguage" />
+			<f:form.textfield class="textlanguage form-control" property="languageSkills.999.textLanguage" />
 		</div>
 
-		<div class="form-group col-sm-3">
+		<div class="col-sm-3">
 			<label><f:translate key="tx_ats.languageskill.level" /></label>
 			<ats:form.translatableSelect class="level-select form-control" translationPrefix="tx_ats.languageskill.level." options="{1:1, 2:2, 3:3, 4:4}" property="languageSkills.999.level"  prependOptionLabel="--select--" prependOptionValue="" />
 		</div>
 
-		<div class="form-group col-sm-3">
+		<div class="col-sm-3">
 			<span class="btn btn-default btn-xs remove-button" data-action="removeLanguage" data-language="999">
-				<core:icon identifier="actions-edit-delete" size="small" />
-				Remove
+				<span class="glyphicon glyphicon-trash"></span>
+				<f:translate key="tx_ats.languageskill.rmLanguage">Remove</f:translate>
 			</span>
 		</div>
 	</div>
