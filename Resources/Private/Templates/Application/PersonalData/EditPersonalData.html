@@ -12,7 +12,7 @@
 			translationKey: 'tx_ats.label.title',
 			fieldType: 'text',
 			fieldName: 'title',
-			fieldValue: '{application.user.title}'
+			fieldValue: '{f:if(condition: application.title, then: application.title, else: application.user.title)}'
 		}"/>
 
 		<f:render partial="Application/Field/SelectTranslated" arguments="{
@@ -25,14 +25,14 @@
 			translationKey: 'tx_ats.label.firstname',
 			fieldType: 'text',
 			fieldName: 'firstname',
-			fieldValue: '{application.user.firstName}'
+			fieldValue: '{f:if(condition: application.firstname, then: application.firstname, else: application.user.firstName)}'
 		}"/>
 
 		<f:render partial="Application/Field/TextField" arguments="{
 			translationKey: 'tx_ats.label.surname',
 			fieldType: 'text',
 			fieldName: 'surname',
-			fieldValue: '{application.user.lastName}'
+			fieldValue: '{f:if(condition: application.surname, then: application.surname, else: application.user.lastName)}'
 		}"/>
 
 		<f:render partial="Application/Field/TextField" arguments="{
@@ -58,21 +58,21 @@
 			translationKey: 'tx_ats.label.street',
 			fieldType: 'text',
 			fieldName: 'street',
-			fieldValue: '{application.user.address}'
+			fieldValue: '{f:if(condition: application.street, then: application.street, else: application.user.address)}'
 		}"/>
 
 		<f:render partial="Application/Field/TextField" arguments="{
 			translationKey: 'tx_ats.label.zipcode',
 			fieldType: 'text',
 			fieldName: 'zipcode',
-			fieldValue: '{application.user.zip}'
+			fieldValue: '{f:if(condition: application.zipcode, then: application.zipcode, else: application.user.zip)}'
 		}"/>
 
 		<f:render partial="Application/Field/TextField" arguments="{
 			translationKey: 'tx_ats.label.city',
 			fieldType: 'text',
 			fieldName: 'city',
-			fieldValue: '{application.user.city}'
+			fieldValue: '{f:if(condition: application.city, then: application.city, else: application.user.city)}'
 		}"/>
 
 		<f:render partial="Application/Field/SelectCountry" arguments="{
@@ -84,14 +84,14 @@
 			translationKey: 'tx_ats.label.email',
 			fieldType: 'email',
 			fieldName: 'email',
-			fieldValue: '{application.user.email}'
+			fieldValue: '{f:if(condition:application.email, then:application.email, else:application.user.email)}'
 		}"/>
 
 		<f:render partial="Application/Field/TextField" arguments="{
 			translationKey: 'tx_ats.label.phone',
 			fieldType: 'phone',
 			fieldName: 'phone',
-			fieldValue: '{application.user.telephone}'
+			fieldValue: '{f:if(condition:application.phone, then:application.phone, else:application.user.telephone)}'
 		}"/>
 
 		<f:render partial="Application/Field/TextField" arguments="{
