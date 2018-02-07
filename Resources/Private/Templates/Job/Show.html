@@ -6,9 +6,11 @@
 <p>
 	<f:format.raw>{job.description}</f:format.raw>
 </p>
+<f:if condition="{job.enableFormLink}">
 <p>
 	<f:link.action action="form" controller="Application\\Form" arguments="{job: job}" class="btn btn-primary"><f:translate key="tx_ats.job.start_application">Start Application</f:translate></f:link.action>
 </p>
+</f:if>
 <p>
 	<f:format.raw>{job.descriptionAfterLink}</f:format.raw>
 </p>
