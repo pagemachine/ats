@@ -21,7 +21,6 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
  */
 class AbstractApplicationRepository extends Repository
 {
-
     protected $defaultOrderings = [
         'creationDate' => QueryInterface::ORDER_DESCENDING,
     ];
