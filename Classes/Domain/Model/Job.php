@@ -175,6 +175,14 @@ class Job extends AbstractEntity
     /**
      * @return string
      */
+    public function getJobNumberAndTitle()
+    {
+        return $this->jobNumber." - ".$this->title;
+    }
+
+    /**
+     * @return string
+     */
     public function getDescription()
     {
         return $this->description;
