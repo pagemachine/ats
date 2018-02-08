@@ -1,7 +1,9 @@
 {namespace ats=PAGEmachine\Ats\ViewHelpers}
 
+<h2><f:translate key="be.label.MyApplications.InProgress"/></h2>
+
 <f:if condition="{applications -> f:count()}">
-	<h2><f:translate key="be.label.MyApplications.InProgress"/></h2>
 
 	<f:render partial="Backend/Application/Table" arguments="{applications : applications}" />
+
 </f:if>
