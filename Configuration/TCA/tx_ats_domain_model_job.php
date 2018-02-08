@@ -3,6 +3,8 @@ return [
 	'ctrl' => [
 		'title'	=> 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job',
 		'label' => 'job_number',
+        'label_alt' => 'title',
+        'label_alt_force' => 1,
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
