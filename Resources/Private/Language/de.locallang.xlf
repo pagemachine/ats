@@ -1483,6 +1483,11 @@
 				<target>Senden</target>
 			</trans-unit>
 
+			<trans-unit id="be.label.Notification.Continue">
+				<source>Continue</source>
+				<target>Weiter</target>
+			</trans-unit>
+
 
 			<trans-unit id="tx_ats.message.salutation.1">
 				<source>Dear Mr.</source>
