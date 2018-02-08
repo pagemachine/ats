@@ -12,7 +12,6 @@ use PAGEmachine\Ats\Persistence\Repository;
  */
 class JobRepository extends Repository
 {
-
     // Order by BE sorting
     protected $defaultOrderings = array(
         'endtime' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING,

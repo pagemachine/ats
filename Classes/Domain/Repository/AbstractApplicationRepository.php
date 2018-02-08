@@ -23,7 +23,7 @@ class AbstractApplicationRepository extends Repository
 {
     protected $defaultOrderings = [
         'surname' => QueryInterface::ORDER_ASCENDING,
-        'firstname' => QueryInterface::ORDER_ASCENDING
+        'firstname' => QueryInterface::ORDER_ASCENDING,
     ];
 
     /**
