@@ -33,6 +33,7 @@ class DefaultWorkflowConfiguration
         'rating'=> ['from' => [], 'to' => []],
         'history' => ['from' => [], 'to' => []],
         'clone' => ['from' => [], 'to' => []],
+        'close' => ['from' => [], 'to' => []],
         // All three "final" application types can be moved to pool. This is done by adding three transitions to the same status
         'moveToPool1' => ['name' => 'moveToPool', 'from' => [ApplicationStatus::CANCELLED_BY_EMPLOYER], 'to' => [ApplicationStatus::CANCELLED_BY_EMPLOYER]],
         'moveToPool2' => ['name' => 'moveToPool', 'from' => [ApplicationStatus::CANCELLED_BY_CANDIDATE], 'to' => [ApplicationStatus::CANCELLED_BY_CANDIDATE]],
