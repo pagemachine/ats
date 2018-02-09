@@ -4,22 +4,24 @@
 		<label><f:translate key="{translationKey}" /></label>
 	</div>
 	<div class="col-sm-9">
-    <div class="panel panel-default">
-    	<div class="panel-heading">
-				<label><f:translate key="tx_ats.upload.existing_files">Existing Files</f:translate></label>
-			</div>
-			<ul class="list-group">
-			<f:for each="{application.files}" as="file" iteration="i">
-				<li class="list-group-item">
-					<a href="{file.backendUrl}" target="_blank">{file.originalResource.name} </a>
-					<ats:form.upload property="files.{i.index}" style="display: none;">
-					</ats:form.upload>
-					<f:link.action action="removeUpload" arguments="{application: application, file : file}" class="btn btn-sm btn-danger pull-right"><span class="glyphicon glyphicon-trash"></span> <f:translate key="tx_ats.upload.remove"></f:translate></f:link.action>
+		<f:if condition="{application.files}">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<label><f:translate key="tx_ats.upload.existing_files">Existing Files</f:translate></label>
+				</div>
+				<ul class="list-group">
+				<f:for each="{application.files}" as="file" iteration="i">
+					<li class="list-group-item">
+						<a href="{file.backendUrl}" target="_blank">{file.originalResource.name} </a>
+						<ats:form.upload property="files.{i.index}" style="display: none;">
+						</ats:form.upload>
+						<f:link.action action="removeUpload" arguments="{application: application, file : file}" class="btn btn-sm btn-danger pull-right"><span class="glyphicon glyphicon-trash"></span> <f:translate key="tx_ats.upload.remove"></f:translate></f:link.action>
 
-				</li>
-			</f:for>
-			</ul>
-		</div>
+					</li>
+				</f:for>
+				</ul>
+			</div>
+		</f:if>
 
     <f:render partial="Application/Field/ValidationError" arguments="{fieldName : 'files.999'}" />
 

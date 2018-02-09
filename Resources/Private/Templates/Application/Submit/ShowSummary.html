@@ -39,6 +39,11 @@
 		select: '{application.disability}'
 	}" />
 
+<f:render partial="Application/Field/SummaryList" arguments="{
+		translationKey: 'tx_ats.label.nationality',
+		text: '{application.nationality}'
+	}" />
+
 	<f:render partial="Application/Field/SummaryList" arguments="{
 		translationKey: 'tx_ats.label.street',
 		text: '{application.street}'

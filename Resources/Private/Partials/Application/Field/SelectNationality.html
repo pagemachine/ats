@@ -1,0 +1,10 @@
+{namespace s=SJBR\StaticInfoTables\ViewHelpers}
+<div class="form-group">
+	<div class="col-sm-3">
+		<label><f:translate key="{translationKey}" /></label>
+	</div>
+	<div class="col-sm-9">
+		<s:form.select name="staticInfoTablesCountry" property="{fieldName}" staticInfoTable="country" optionLabelField="shortNameLocal" optionValueField="isoCodeA3" options="{}" class="form-control"/>
+	</div>
+</div>
+
