@@ -36,7 +36,7 @@ class SimpleWorkflowConfiguration
         'notes' => ['from' => [], 'to' => []],
         'reply' => ['from' => [], 'to' => []],
         'invite' => ['from' => [], 'to' => []],
-        'reject' => ['from' => [], 'to' => []],
+        'reject' => ['from' => ApplicationStatus::NEW_APPLICATION, 'to' => ApplicationStatus::CANCELLED_BY_EMPLOYER],
         'rating'=> ['from' => [], 'to' => []],
         'history' => ['from' => [], 'to' => []],
         'clone' => ['from' => [], 'to' => []],
