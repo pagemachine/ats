@@ -75,6 +75,8 @@ class NotificationApplicationController extends ApplicationController
             $message = $this->messageFactory->createMessageFromConstantType($messageType, $applications->current());
         }
 
+        $message->applyTextTemplate();
+
         $this->view->assignMultiple([
             'applications' => $applications,
             'message' => $message,
