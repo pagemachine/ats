@@ -220,6 +220,7 @@ class AbstractApplicationRepository extends Repository
         }
 
         $this->update($application);
+        $this->persistenceManager->persistAll();
     }
 
     /**
