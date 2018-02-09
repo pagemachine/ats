@@ -573,6 +573,16 @@
 				<target>Datei Upload ist nicht möglich</target>
 			</trans-unit>
 
+			<trans-unit id="tx_ats.error.languageSkills.1347992453">
+				<source>Please fill in at least one language.</source>
+				<target>Bitte geben Sie mindestens eine Sprache an.</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.error.languageSkills.1221560910">
+				<source>Please fill in your skill level for all languages.</source>
+				<target>Bitte geben Sie bei allen Sprachkenntnissen einen Level (Kenntnisstand) an.</target>
+			</trans-unit>
+
 			<!-- LanguageSkill labels -->
 			<trans-unit id="tx_ats.languageskill.textLanguage">
 				<source>Other</source>
