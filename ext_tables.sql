@@ -14,7 +14,7 @@ CREATE TABLE tx_ats_domain_model_job (
 	starttime int(11) unsigned DEFAULT '0' NOT NULL,
 	endtime int(11) unsigned DEFAULT '0' NOT NULL,
 
-	job_number varchar(20) DEFAULT '' NOT NULL,
+	job_number varchar(255) DEFAULT '' NOT NULL,
 	title varchar(255) DEFAULT '' NOT NULL,
 	description text NOT NULL,
 	description_after_link text NOT NULL,
