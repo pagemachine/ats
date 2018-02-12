@@ -52,8 +52,8 @@ class ApplicationController extends AbstractBackendController
      * @var array
      */
     protected $menuUrls = [
-        ["action" => "listAll", "label" => "be.label.AllApplications"],
-        ["action" => "listMine", "label" => "be.label.MyApplications"],
+        "listAll" => ["action" => "listAll", "label" => "be.label.AllApplications"],
+        "listMine" => ["action" => "listMine", "label" => "be.label.MyApplications"],
     ];
 
     /**
@@ -63,6 +63,9 @@ class ApplicationController extends AbstractBackendController
      */
     public function buildMenu()
     {
+        if (!array_key_exists($this->request->getControllerActionName(), $this->menuUrls)) {
+            return;
+        }
 
         $menuRegistry = $this->getMenuRegistry();
 
