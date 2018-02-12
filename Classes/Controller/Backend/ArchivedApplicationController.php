@@ -4,6 +4,7 @@ namespace PAGEmachine\Ats\Controller\Backend;
 use PAGEmachine\Ats\Application\ApplicationFilter;
 use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Domain\Model\Note;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -114,7 +115,12 @@ class ArchivedApplicationController extends ApplicationController
                 "note" => $note->getDetails(),
             ]
         );
-        $this->addFlashMessage("Pool status successfully updated.");
+        if ($application->getPool() == 1) {
+            $this->addFlashMessage(LocalizationUtility::translate('be.flashMessage.pool.ok', 'ats'));
+        } else {
+            $this->addFlashMessage(LocalizationUtility::translate('be.flashMessage.nopool.ok', 'ats'));
+        }
+
         $this->redirect("moveToPool", null, null, ['application' => $application]);
     }
 }

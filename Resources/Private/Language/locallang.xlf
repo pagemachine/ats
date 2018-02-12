@@ -1526,6 +1526,14 @@
 			<trans-unit id='be.flashMessage.clone.ok'>
 				<source>Successfully cloned application with ID %s. The clone has the ID %s.</source>
 			</trans-unit>
+
+			<trans-unit id='be.flashMessage.pool.ok'>
+				<source>Application is now in the pool section.</source>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.nopool.ok'>
+				<source>Application is now in the archives.</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

@@ -1598,6 +1598,16 @@
 				<source>Successfully cloned application with ID %s. The clone has the ID %s.</source>
 				<target>Ein Klon der Bewerbung mit ID %s wurde erstellt. ID des Klons: %s.</target>
 			</trans-unit>
+
+			<trans-unit id='be.flashMessage.pool.ok'>
+				<source>Application is now in the pool section.</source>
+				<target>Die Bewerbung befindet sich jetzt im Pool.</target>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.nopool.ok'>
+				<source>Application is now in the archives.</source>
+				<target>Die Bewerbung befindet sich jetzt im Archiv.</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
