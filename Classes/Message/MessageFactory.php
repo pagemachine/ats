@@ -15,6 +15,7 @@ class MessageFactory implements SingletonInterface
 {
     protected $messageTypes = [
         'reply' => ReplyMessage::class,
+        'invite' => InviteMessage::class,
         'acknowledge' => AcknowledgeMessage::class,
         'reject' => RejectMessage::class,
     ];
@@ -25,6 +26,7 @@ class MessageFactory implements SingletonInterface
      */
     protected $messageTypeConstants = [
         AbstractMessage::MESSAGE_REPLY => 'reply',
+        AbstractMessage::MESSAGE_INVITE => 'invite',
         AbstractMessage::MESSAGE_ACKNOWLEDGE => 'acknowledge',
         AbstractMessage::MESSAGE_REJECT => 'reject',
     ];
@@ -34,6 +36,7 @@ class MessageFactory implements SingletonInterface
      */
     protected $messageNames = [
         AbstractMessage::MESSAGE_REPLY => 'ReplyMessage',
+        AbstractMessage::MESSAGE_INVITE => 'InviteMessage',
         AbstractMessage::MESSAGE_ACKNOWLEDGE => 'AcknowledgeMessage',
         AbstractMessage::MESSAGE_REJECT => 'RejectMessage',
     ];
