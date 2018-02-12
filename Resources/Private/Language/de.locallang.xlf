@@ -1500,31 +1500,104 @@
 			</trans-unit>
 
 
-      <!-- ATS Mass Notification -->
-      <trans-unit id="tx_ats.mass.pdf">
-        <source>PDFs</source>
-        <target>PDFs</target>
-      </trans-unit>
+	      <!-- ATS Mass Notification -->
+	      <trans-unit id="tx_ats.mass.pdf">
+	        <source>PDFs</source>
+	        <target>PDFs</target>
+	      </trans-unit>
 
-      <trans-unit id="tx_ats.mass.emailSent">
-        <source>E-mails sent</source>
-        <target>Versendete E-Mails</target>
-      </trans-unit>
+	      <trans-unit id="tx_ats.mass.emailSent">
+	        <source>E-mails sent</source>
+	        <target>Versendete E-Mails</target>
+	      </trans-unit>
 
-      <trans-unit id="tx_ats.mass.download">
-        <source>[Download]</source>
-        <target>[Herunterladen]</target>
-      </trans-unit>
+	      <trans-unit id="tx_ats.mass.download">
+	        <source>[Download]</source>
+	        <target>[Herunterladen]</target>
+	      </trans-unit>
 
-      <trans-unit id="tx_ats.mass.downloadAll">
-        <source>[Download All]</source>
-        <target>[Alle herunterladen]</target>
-      </trans-unit>
+	      <trans-unit id="tx_ats.mass.downloadAll">
+	        <source>[Download All]</source>
+	        <target>[Alle herunterladen]</target>
+	      </trans-unit>
 
-      <trans-unit id="tx_ats.be.massNotification.header">
-      	<source>New Mass Notification</source>
-      	<target>Neuer Massenbescheid</target>
-      </trans-unit>
+	      <trans-unit id="tx_ats.be.massNotification.header">
+	      	<source>New Mass Notification</source>
+	      	<target>Neuer Massenbescheid</target>
+	      </trans-unit>
+
+			<!-- FlashMessages -->
+
+			<trans-unit id="be.flashMessage.update.ok">
+				<source>Application was updated successfully.</source>
+				<target>Ihre Änderungen wurden gespeichert.</target>
+			</trans-unit>
+
+			<trans-unit id="be.flashMessage.updateStatus.ok">
+				<source>Application Status was updated successfully.</source>
+				<target>Status erfolgreich geändert.</target>
+			</trans-unit>
+
+			<trans-unit id="be.flashMessage.rating.ok">
+				<source>Rating was updated.</source>
+				<target>Ihre Bewertung wurde gespeichert.</target>
+			</trans-unit>
+
+
+			<trans-unit id='be.flashMessage.note.ok'>
+				<source>A new note was successfully added.</source>
+				<target>Eine neue Anmerkung wurde gespeichert.</target>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.reply.ok'>
+				<source>Your reply was sent.</source>
+				<target>Ihre Nachricht wurde abgeschickt.</target>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.invite.ok'>
+				<source>Your invitation was sent.</source>
+				<target>Ihre Einladung wurde abgeschickt.</target>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.acknowledge.ok'>
+				<source>Your acknowledge message was sent.</source>
+				<target>Eine Eingangsbestätigung wurde abgeschickt.</target>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.reject.ok'>
+				<source>Your rejection message was sent.</source>
+				<target>Die Absage wurde abgeschickt.</target>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.backToPerso.ok'>
+				<source>Application was successfully sent back to personell department.</source>
+				<target>Die Bewerbung wurde erfolgreich zurück an die Personalabteilung geleitet.</target>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.upload.ok'>
+				<source>Successfully added a new file.</source>
+				<target>Eine neue Datei wurde ergänzt.</target>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.close.ok'>
+				<source>Application was closed and is now in archive.</source>
+				<target>Die Bewerbung wurde abgeschlossen und befindet sich jetzt im Archiv.</target>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.create.ok'>
+				<source>Successfully created a new application.</source>
+				<target>Eine neue Bewerbung wurde angelegt.</target>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.removeUpload.ok'>
+				<source>File %s was removed.</source>
+				<target>Die Datei %s wurde entfernt.</target>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.clone.ok'>
+				<source>Successfully cloned application with ID %s. The clone has the ID %s.</source>
+				<target>Ein Klon der Bewerbung mit ID %s wurde erstellt. ID des Klons: %s.</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

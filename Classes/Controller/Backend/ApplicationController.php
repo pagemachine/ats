@@ -276,7 +276,7 @@ class ApplicationController extends AbstractBackendController
     {
 
         $this->applicationRepository->updateAndLog($application, 'edit');
-        $this->addFlashMessage("Application was updated.");
+        $this->addFlashMessage(LocalizationUtility::translate('be.flashMessage.update.ok', 'ats'));
         $this->redirect("edit", null, null, ["application" => $application]);
     }
 
@@ -322,7 +322,7 @@ class ApplicationController extends AbstractBackendController
                 'note' => $note->getDetails(),
             ]
         );
-        $this->addFlashMessage("Workflow was changed successfully.");
+        $this->addFlashMessage(LocalizationUtility::translate('be.flashMessage.updateStatus.ok', 'ats'));
         $this->redirect("editStatus", null, null, ["application" => $application]);
     }
 
@@ -393,7 +393,7 @@ class ApplicationController extends AbstractBackendController
             );
         }
 
-        $this->addFlashMessage("Rating was updated" . (!empty($note->getDetails()) ?  " and new note was added." : "."));
+        $this->addFlashMessage(LocalizationUtility::translate('be.flashMessage.rating.ok', 'ats'));
         $this->redirect($forwardAction, null, null, ["application" => $application]);
     }
 
@@ -432,7 +432,7 @@ class ApplicationController extends AbstractBackendController
             ]
         );
 
-        $this->addFlashMessage("A new note was added.");
+        $this->addFlashMessage(LocalizationUtility::translate('be.flashMessage.note.ok', 'ats'));
         $this->redirect("notes", null, null, ["application" => $application]);
     }
 
@@ -477,7 +477,7 @@ class ApplicationController extends AbstractBackendController
                 "status" => $application->getStatus(),
             ]
         );
-        $this->addFlashMessage("Application was closed successfully.");
+        $this->addFlashMessage(LocalizationUtility::translate('be.flashMessage.close.ok', 'ats'));
         $this->redirect("index");
     }
 
@@ -529,7 +529,7 @@ class ApplicationController extends AbstractBackendController
 
         $message->send();
 
-        $this->addFlashMessage("Message was successfully sent.");
+        $this->addFlashMessage(LocalizationUtility::translate('be.flashMessage.reply.ok', 'ats'));
         $this->redirect("show", null, null, ['application' => $message->getApplication()]);
     }
 
@@ -581,7 +581,7 @@ class ApplicationController extends AbstractBackendController
 
         $message->send();
 
-        $this->addFlashMessage("Message was successfully sent.");
+        $this->addFlashMessage(LocalizationUtility::translate('be.flashMessage.invite.ok', 'ats'));
         $this->redirect("show", null, null, ['application' => $message->getApplication()]);
     }
 
@@ -633,7 +633,7 @@ class ApplicationController extends AbstractBackendController
 
         $message->send();
 
-        $this->addFlashMessage("Message was successfully sent.");
+        $this->addFlashMessage(LocalizationUtility::translate('be.flashMessage.acknowledge.ok', 'ats'));
         $this->redirect("show", null, null, ['application' => $message->getApplication()]);
     }
 
@@ -685,7 +685,7 @@ class ApplicationController extends AbstractBackendController
 
         $message->send();
 
-        $this->addFlashMessage("Message was successfully sent.");
+        $this->addFlashMessage(LocalizationUtility::translate('be.flashMessage.reject.ok', 'ats'));
         $this->redirect("show", null, null, ['application' => $message->getApplication()]);
     }
 
@@ -726,7 +726,7 @@ class ApplicationController extends AbstractBackendController
             ]
         );
 
-        $this->addFlashMessage("Successfully sent to personnel department.");
+        $this->addFlashMessage(LocalizationUtility::translate('be.flashMessage.backToPerso.ok', 'ats'));
         $this->redirect("index");
     }
 
@@ -800,7 +800,7 @@ class ApplicationController extends AbstractBackendController
             ]
         );
 
-        $this->addFlashMessage("Successfully cloned application " . $application->getUid() . ". You are now viewing the copy (" . $clone->getUid() . ").");
+        $this->addFlashMessage(LocalizationUtility::translate('be.flashMessage.clone.ok', 'ats', [$application->getUid(), $clone->getUid()]));
 
         $this->redirect("show", null, null, ['application' => $clone]);
     }
@@ -815,7 +815,7 @@ class ApplicationController extends AbstractBackendController
     {
         $this->applicationRepository->addOrUpdate($application);
 
-        $this->addFlashMessage("Successfully uploaded a new file.");
+        $this->addFlashMessage(LocalizationUtility::translate('be.flashMessage.upload.ok', 'ats'));
         $this->forward("edit", null, null, ['application' => $application->getUid()]);
     }
 
@@ -836,7 +836,7 @@ class ApplicationController extends AbstractBackendController
             ]
         );
 
-        $this->addFlashMessage("File " . $file->getOriginalResource()->getName() . " was removed.");
+        $this->addFlashMessage(LocalizationUtility::translate('be.flashMessage.removeUpload.ok', 'ats', [$file->getOriginalResource()->getName()]));
 
         $this->forward("edit", null, null, ["application" => $application->getUid()]);
     }
@@ -872,7 +872,7 @@ class ApplicationController extends AbstractBackendController
         $this->applicationRepository->addOrUpdate($application);
 
         $this->applicationRepository->updateAndLog($application, 'new');
-        $this->addFlashMessage("A new application was created.");
+        $this->addFlashMessage(LocalizationUtility::translate('be.flashMessage.create.ok', 'ats'));
         $this->redirect("edit", null, null, ["application" => $application]);
     }
 

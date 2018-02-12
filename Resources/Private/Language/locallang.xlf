@@ -1463,6 +1463,69 @@
 			<trans-unit id="be.label.notification.back">
 				<source>Back to list</source>
 			</trans-unit>
+
+			<!-- FlashMessages -->
+
+			<trans-unit id="be.flashMessage.update.ok">
+				<source>Application was updated successfully.</source>
+			</trans-unit>
+
+			<trans-unit id="be.flashMessage.updateStatus.ok">
+				<source>Application Status was updated successfully.</source>
+			</trans-unit>
+
+			<trans-unit id="be.flashMessage.rating.ok">
+				<source>Rating was updated.</source>
+			</trans-unit>
+
+
+			<trans-unit id='be.flashMessage.note.ok'>
+				<source>A new note was successfully added.</source>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.reply.ok'>
+				<source>Your reply was sent.</source>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.invite.ok'>
+				<source>Your invitation was sent.</source>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.acknowledge.ok'>
+				<source>Your acknowledge message was sent.</source>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.reject.ok'>
+				<source>Your rejection message was sent.</source>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.backToPerso.ok'>
+				<source>Application was successfully sent back to personell department.</source>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.upload.ok'>
+				<source>Successfully added a new file.</source>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.close.ok'>
+				<source>Application was closed and is now in archive.</source>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.create.ok'>
+				<source>Successfully created a new application.</source>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.create.ok'>
+				<source>Successfully created a new application.</source>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.removeUpload.ok'>
+				<source>File %s was removed.</source>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.clone.ok'>
+				<source>Successfully cloned application with ID %s. The clone has the ID %s.</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
