@@ -13,7 +13,10 @@
 			<ul class="list-group">
 			<f:for each="{application.files}" as="file" iteration="i">
 				<li class="list-group-item">
-					<a href="{file.backendUrl}" target="_blank">{file.originalResource.name} </a>
+					<a href="{file.backendUrl}" target="_blank">
+						<f:image src="{file.backendUrl}" maxHeight="100" style="border: 1px solid #DDD;" /> {file.originalResource.name}
+					</a>
+
 					<ats:form.upload property="files.{i.index}" style="display: none;">
 					</ats:form.upload>
 					<f:link.action action="removeUpload" arguments="{application: application, file : file}" class="btn btn-xs btn-danger pull-right"><span class="glyphicon glyphicon-trash"></span> <f:translate key="tx_ats.upload.remove"></f:translate></f:link.action>
