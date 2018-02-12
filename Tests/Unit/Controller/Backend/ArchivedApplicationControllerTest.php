@@ -57,6 +57,7 @@ class ArchivedApplicationControllerTest extends UnitTestCase
             'forward',
             'addFlashMessage',
             'getMenuRegistry',
+            'callStatic',
             ])->getMock();
 
         $this->application = new Application();
@@ -119,6 +120,7 @@ class ArchivedApplicationControllerTest extends UnitTestCase
 
         $application = $this->prophesize(Application::class);
         $application->addNote($note->reveal())->shouldBeCalled();
+        $application->getPool()->shouldBeCalled()->willReturn(1);
 
         $this->applicationRepository->updateAndLog($application->reveal(), Argument::cetera())->shouldBeCalled();
 

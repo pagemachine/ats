@@ -116,9 +116,9 @@ class ArchivedApplicationController extends ApplicationController
             ]
         );
         if ($application->getPool() == 1) {
-            $this->addFlashMessage(LocalizationUtility::translate('be.flashMessage.pool.ok', 'ats'));
+            $this->addFlashMessage($this->callStatic(LocalizationUtility::class, 'translate', 'be.flashMessage.pool.ok', 'ats'));
         } else {
-            $this->addFlashMessage(LocalizationUtility::translate('be.flashMessage.nopool.ok', 'ats'));
+            $this->addFlashMessage($this->callStatic(LocalizationUtility::class, 'translate', 'be.flashMessage.nopool.ok', 'ats'));
         }
 
         $this->redirect("moveToPool", null, null, ['application' => $application]);

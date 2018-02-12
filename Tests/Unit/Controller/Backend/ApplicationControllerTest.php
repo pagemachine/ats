@@ -88,6 +88,7 @@ class ApplicationControllerTest extends UnitTestCase
             'forward',
             'addFlashMessage',
             'getMenuRegistry',
+            'callStatic',
             ])->getMock();
 
         $this->application = new Application();
