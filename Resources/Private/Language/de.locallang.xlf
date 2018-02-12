@@ -1499,6 +1499,32 @@
 				<target>Sehr geehrte Frau</target>
 			</trans-unit>
 
+
+      <!-- ATS Mass Notification -->
+      <trans-unit id="tx_ats.mass.pdf">
+        <source>PDFs</source>
+        <target>PDFs</target>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.mass.emailSent">
+        <source>E-mails sent</source>
+        <target>Versendete E-Mails</target>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.mass.download">
+        <source>[Download]</source>
+        <target>[Herunterladen]</target>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.mass.downloadAll">
+        <source>[Download All]</source>
+        <target>[Alle herunterladen]</target>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.be.massNotification.header">
+      	<source>New Mass Notification</source>
+      	<target>Neuer Massenbescheid</target>
+      </trans-unit>
 		</body>
 	</file>
 </xliff>
