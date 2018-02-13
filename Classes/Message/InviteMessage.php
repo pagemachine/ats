@@ -51,7 +51,9 @@ class InviteMessage extends AbstractMessage implements MessageInterface
     {
 
         if ($this->dateTime) {
-            return $this->dateTime->format("Y-m-d");
+            return $this->dateTime->format(
+                $this->typoscriptService->getSettings()['dateFormat'] ?: 'Y-m-d'
+            );
         }
 
         return null;
@@ -61,7 +63,9 @@ class InviteMessage extends AbstractMessage implements MessageInterface
     {
 
         if ($this->dateTime) {
-            return $this->dateTime->format("H:i");
+            return $this->dateTime->format(
+                $this->typoscriptService->getSettings()['timeFormat'] ?: 'Y-m-d'
+            );
         }
 
         return null;
@@ -91,7 +95,9 @@ class InviteMessage extends AbstractMessage implements MessageInterface
     public function getConfirmDateString()
     {
         if ($this->confirmDate) {
-            return $this->confirmDate->format("Y-m-d");
+            return $this->confirmDate->format(
+                $this->typoscriptService->getSettings()['dateFormat'] ?: 'Y-m-d'
+            );
         }
         return null;
     }

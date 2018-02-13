@@ -37,7 +37,7 @@
 							<f:format.raw>{application.job.title}</f:format.raw>
 						</td>
 						<td>
-							<f:format.date format="Y-m-d H:i:s">{application.receiptDate}</f:format.date>
+							<f:format.date format="{settings.dateFormat} {settings.timeFormat}">{application.receiptDate}</f:format.date>
 						</td>
 						<td>
 							<f:format.raw>{application.firstname}</f:format.raw>

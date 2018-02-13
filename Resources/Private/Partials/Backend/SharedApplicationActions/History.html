@@ -17,11 +17,11 @@
 		<f:for each="{application.history}" as="history">
 			<tr>
 				<td style="min-width: 130px;">
-					{history.creationDate -> f:format.date(format:'Y-m-d H:i')}
+					{history.creationDate -> f:format.date(format:'{settings.dateFormat} {settings.timeFormat}')}
 				</td>
 				<td style="min-width: 160px;">
 					<f:if condition="{history.user}">
-						<be:avatar backendUser="{history.user.uid}" /> 
+						<be:avatar backendUser="{history.user.uid}" />
 						{history.user.userName}
 					</f:if>
 

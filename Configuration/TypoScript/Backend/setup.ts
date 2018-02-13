@@ -1,6 +1,8 @@
 module.tx_ats {
     settings {
         deadlineTime = 1209600
+        dateFormat = d.m.Y
+        timeFormat = H:i
     }
     persistence {
         storagePid = {$module.tx_ats.persistence.storagePid}

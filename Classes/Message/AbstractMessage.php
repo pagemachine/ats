@@ -41,6 +41,12 @@ abstract class AbstractMessage
      */
     protected $fluidRenderingService;
 
+     /**
+     * @var \PAGEmachine\Ats\Service\TyposcriptService
+     * @inject
+     */
+    protected $typoscriptService;
+
 
     /**
      * @var Application $application

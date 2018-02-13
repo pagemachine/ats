@@ -7,6 +7,7 @@ use PAGEmachine\Ats\Message\InviteMessage;
 use PAGEmachine\Ats\Service\FluidRenderingService;
 use PAGEmachine\Ats\Service\MailService;
 use PAGEmachine\Ats\Service\MarkerService;
+use PAGEmachine\Ats\Service\TyposcriptService;
 use Prophecy\Argument;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
@@ -67,6 +68,14 @@ class InviteMessageTest extends UnitTestCase
 
         $this->fluidRenderingService = $this->prophesize(FluidRenderingService::class);
         $this->inject($this->inviteMessage, "fluidRenderingService", $this->fluidRenderingService->reveal());
+
+        $typoscriptService = $this->prophesize(TyposcriptService::class);
+        $this->inject($this->inviteMessage, "typoscriptService", $typoscriptService->reveal());
+
+        $typoscriptService->getSettings()->willReturn([
+            'dateFormat' => 'Y-m-d',
+            'timeFormat' => 'H:i',
+        ]);
     }
 
     /**
@@ -116,7 +125,6 @@ class InviteMessageTest extends UnitTestCase
        */
     public function returnsDatesCorrectly($inputDate, $inputConfirmDate, $outputDate, $outputTime, $outputConfirmDate)
     {
-        $this->inviteMessage = new InviteMessage();
         $this->inviteMessage->setDateTime($inputDate);
         $this->inviteMessage->setConfirmDate($inputConfirmDate);
 
