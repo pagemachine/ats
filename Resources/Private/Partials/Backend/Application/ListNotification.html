@@ -46,7 +46,7 @@
 			</f:for>
 		</tbody>
 	</table>
-	<f:form.select name="messageType" class="form-control messageType" options="{messageTypes}" />
+	<ats:form.translatableSelect translationPrefix="tx_ats.be.messageTypes." name="messageType" class="form-control messageType" options="{messageTypes}" />
 	<f:form.button name="action" value="newMassNotification" class="btn btn-primary"><f:translate id="be.label.Notification.Continue"/></f:form.button>
 </f:form>
 

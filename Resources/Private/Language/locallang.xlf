@@ -1534,6 +1534,22 @@
 			<trans-unit id='be.flashMessage.nopool.ok'>
 				<source>Application is now in the archives.</source>
 			</trans-unit>
+
+			<trans-unit id="tx_ats.be.messageTypes.1">
+				<source>Invite</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.be.messageTypes.2">
+				<source>Acknowledge</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.be.messageTypes.3">
+				<source>Reply</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.be.messageTypes.5">
+				<source>Reject</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
