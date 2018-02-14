@@ -31,6 +31,10 @@ if (!class_exists(\Symfony\Component\Workflow\Workflow::class)) {
     ]
 );
 
+if (TYPO3_MODE === 'BE') {
+  $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = \PAGEmachine\Ats\Command\AtsCommandController::class;
+}
+
 // Marker replacements (CKEDITOR --> Fluid) in both mail and pdf context.
 // Useful for defining shortcuts for ViewHelpers or translations.
 // You can add your own markers here, however they need to be added in Resources/Public/JavaScript/CKEditorSetup.js as well
