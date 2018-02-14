@@ -80,7 +80,7 @@ class AbstractApplicationController extends ActionController
                 $job = $applicationObject->getJob();
             }
         }
-        if ($job == null) {
+        if ($job === null) {
             throw new RequiredArgumentMissingException('Required argument "job" is not set for ' . $this->request->getControllerObjectName() . '->' . $this->request->getControllerActionName() . '.', 1298012500);
         }
 
