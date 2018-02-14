@@ -57,9 +57,6 @@ class MailService implements SingletonInterface
      */
     public function sendReplyMail(Application $application, $subject = "", $body = "", $cc = "", $bcc = "")
     {
-
-        $backendUser = $GLOBALS['BE_USER'];
-
         $mail = $this->callStatic(GeneralUtility::class, 'makeInstance', MailMessage::class);
 
         $renderedBody = $this->fluidRenderingService->renderTemplate(
