@@ -219,7 +219,7 @@ class ExportService implements SingletonInterface
             while ($uid = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)[uid]) {
                 $row = '';
                 $application = $this->applicationRepository->findByUid($uid);
-                if ($application != null) {
+                if ($application !== null) {
                     foreach ($options as $option) {
                         switch ($option) {
                             case 'uid':
