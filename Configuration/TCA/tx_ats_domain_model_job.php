@@ -179,7 +179,7 @@ return [
             'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.career',
             'config' => [
                 'type' => 'select',
-                'renderType' => 'selectMultipleSideBySide',
+                'renderType' => 'selectSingle',
                 'items' => [
                     ['LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.career.I.1', 'h. D.'],
                     ['LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.career.I.2', 'g. D.'],
