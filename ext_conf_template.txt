@@ -1,2 +1,5 @@
 # cat=basic/enable; type=boolean; label=Enable legacy backend TS (configure everything in plugin.tx_ats instead of separate settings in module.tx_ats)
 enableLegacyBackendTS = 1
+
+# cat=basic/enable; type=boolean; label=Create a matching backend user group when a new job is added
+createJobGroups = 0
