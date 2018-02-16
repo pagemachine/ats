@@ -3,3 +3,11 @@ enableLegacyBackendTS = 1
 
 # cat=basic/enable; type=boolean; label=Create a matching backend user group when a new job is added
 createJobGroups = 0
+
+# cat=basic/enable; type=string; label=Naming schema for job groups (%s will be filled with job number)
+jobGroupPattern = bms_jobno_%s
+
+# cat=basic/enable; type=string; label=Name of the group to use as a template (you need to create a group with this name!)
+jobGroupTemplate = bms department template %s
+
+

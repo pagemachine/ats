@@ -95,4 +95,24 @@ class ExtconfService implements SingletonInterface
     {
         return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['createJobGroups'] ? true : false;
     }
+
+    /**
+     * Returns the group schema
+     *
+     * @return boolen
+     */
+    public function getJobGroupPattern()
+    {
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['jobGroupSchema'] ?: 'bms_jobno_%s';
+    }
+
+    /**
+     * Returns the group template name
+     *
+     * @return boolen
+     */
+    public function getJobGroupTemplate()
+    {
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['jobGroupTemplate'] ?: 'bms department template %s';
+    }
 }

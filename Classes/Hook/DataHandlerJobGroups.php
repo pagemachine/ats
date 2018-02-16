@@ -12,15 +12,6 @@ use TYPO3\CMS\Core\Utility\MathUtility;
 class DataHandlerJobGroups
 {
     /**
-     * The pattern for new job groups
-     *
-     * @var string
-     */
-    protected $groupPattern = "bms_jobno_%s";
-
-    protected $templateName = "bms department template %s";
-
-    /**
      *
      *
      * @param  string $status
@@ -39,7 +30,7 @@ class DataHandlerJobGroups
         ) {
             $job = $this->getJob($id);
             if (!empty($job['job_number'])) {
-                $groupName = sprintf($this->groupPattern, $job['job_number']);
+                $groupName = sprintf(ExtconfService::getInstance()->getJobGroupPattern(), $job['job_number']);
 
                 $groupId = $this->ensureGroupForJob($groupName, $job['location']);
 
@@ -99,7 +90,7 @@ class DataHandlerJobGroups
      */
     public function cloneGroupTemplate($newName, $location)
     {
-        $title = sprintf($this->templateName, $location);
+        $title = sprintf(ExtconfService::getInstance()->getJobGroupTemplate(), $location);
         $template = $this->getDatabaseConnection()->exec_SELECTgetSingleRow(
             '*',
             'be_groups',

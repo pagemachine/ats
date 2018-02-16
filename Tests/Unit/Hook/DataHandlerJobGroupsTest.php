@@ -53,11 +53,13 @@ class DataHandlerJobGroupsTest extends TestCase
         $this->databaseConnection->exec_SELECTgetSingleRow(
             'uid',
             'be_groups',
-            'title = "bms_jobno_foo"'
+            'title = "Job_number_foo"'
         )->willReturn(['uid' => 10]);
 
         $extconfService = $this->prophesize(ExtconfService::class);
         $extconfService->getCreateJobGroups()->willReturn(true);
+        $extconfService->getJobGroupTemplate()->willReturn("Template for location %s");
+        $extconfService->getJobGroupPattern()->willReturn("Job_number_%s");
 
         GeneralUtility::setSingletonInstance(ExtconfService::class, $extconfService->reveal());
     }
@@ -81,7 +83,7 @@ class DataHandlerJobGroupsTest extends TestCase
 
         $this->dataHandlerJobGroups
             ->method('ensureGroupForJob')
-            ->with($this->equalTo('bms_jobno_foo'), $this->equalTo('Location'))
+            ->with($this->equalTo('Job_number_foo'), $this->equalTo('Location'))
             ->will($this->returnValue(10));
 
         $fieldArray = [
