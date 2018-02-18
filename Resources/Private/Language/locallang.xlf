@@ -1400,6 +1400,10 @@
 				<source>Reject application</source>
 			</trans-unit>
 
+	  		<trans-unit id="be.label.applicationSingle.Close">
+				<source>Close Application</source>
+	  		</trans-unit>
+
 			<trans-unit id="be.label.ApplicationSingle.Rating">
 				<source>Rating</source>
 			</trans-unit>

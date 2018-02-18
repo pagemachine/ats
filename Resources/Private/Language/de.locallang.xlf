@@ -994,6 +994,11 @@
 				<target>Zurück an Perso</target>
 	  </trans-unit>
 
+	   <trans-unit id="tx_ats.be.actions.application.close">
+		<source>Close Application</source>
+		<target>Bewerbung abschließen</target>
+	  </trans-unit>
+
 
 	   <trans-unit id="tx_ats.be.actions.application.moveToPool">
 		<source>Move to pool</source>
@@ -1411,6 +1416,11 @@
 			<trans-unit id="be.label.ApplicationSingle.Reject">
 				<source>Reject application</source>
 				<target>Dem Bewerber absagen</target>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Close">
+				<source>Close Application</source>
+				<target>Bewerbung abschließen</target>
 			</trans-unit>
 
 			<trans-unit id="be.label.ApplicationSingle.Rating">
