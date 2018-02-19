@@ -31,6 +31,11 @@ if (!class_exists(\Symfony\Component\Workflow\Workflow::class)) {
     ]
 );
 
+if (TYPO3_MODE === 'BE') {
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = \PAGEmachine\Ats\Command\AtsCommandController::class;
+    $GLOBALS ['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['ats'] = \PAGEmachine\Ats\Hook\DataHandlerJobGroups::class;
+}
+
 // Marker replacements (CKEDITOR --> Fluid) in both mail and pdf context.
 // Useful for defining shortcuts for ViewHelpers or translations.
 // You can add your own markers here, however they need to be added in Resources/Public/JavaScript/CKEditorSetup.js as well
@@ -72,6 +77,27 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['workflows']['simpleworkflow'] = \
 
 //Set workflow
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['activeWorkflow'] = 'defaultworkflow';
+
+
+
+//Load Extension Manager settings into EXTCONF for easier usage
+
+$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings'] = [];
+
+if (!empty($_EXTCONF)) {
+    $typoScriptService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Service\TypoScriptService::class);
+    $extensionManagementConfig = $typoScriptService->convertTypoScriptArrayToPlainArray(unserialize($_EXTCONF));
+    unset($typoScriptService);
+
+    foreach ($extensionManagementConfig as $key => $value) {
+      //Merge instance settings
+        if (is_array($value) && isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats'][$key])) {
+            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings'][$key] = array_merge($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings'][$key], $extensionManagementConfig[$key]);
+        } else {
+            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings'][$key] = $extensionManagementConfig[$key];
+        }
+    }
+}
 
 // Access configuration, if EXT:extbase_acl is available
 

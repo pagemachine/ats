@@ -4,6 +4,7 @@ namespace PAGEmachine\Ats\Service;
 use PAGEmachine\Ats\Service\MarkerService;
 use PAGEmachine\Ats\Workflow\InvalidWorkflowConfigurationException;
 use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -13,6 +14,14 @@ use TYPO3\CMS\Core\SingletonInterface;
 class ExtconfService implements SingletonInterface
 {
     protected $moduleName = "AtsAts_AtsApplications";
+
+    /**
+     * @return ExtconfService
+     */
+    public static function getInstance()
+    {
+        return GeneralUtility::makeInstance(__CLASS__);
+    }
 
     /**
      * Returns module configuration
@@ -75,5 +84,35 @@ class ExtconfService implements SingletonInterface
         }
 
         return null;
+    }
+
+    /**
+     * Returns whether to create job groups
+     *
+     * @return boolen
+     */
+    public function getCreateJobGroups()
+    {
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['createJobGroups'] ? true : false;
+    }
+
+    /**
+     * Returns the group schema
+     *
+     * @return boolen
+     */
+    public function getJobGroupPattern()
+    {
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['jobGroupSchema'] ?: 'bms_jobno_%s';
+    }
+
+    /**
+     * Returns the group template name
+     *
+     * @return boolen
+     */
+    public function getJobGroupTemplate()
+    {
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['jobGroupTemplate'] ?: 'bms department template %s';
     }
 }

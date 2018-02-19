@@ -31,4 +31,25 @@ class JobRepository extends Repository
             $query->equals('hidden', 0)
         )->execute();
     }
+
+
+    /**
+     * select all jobs which have an end date and are not expired and not deleted
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
+     */
+    public function findJobsWithEndtimeInFuture()
+    {
+        $time = time();
+        $query = $this->createQuery();
+
+        $query->matching(
+            $query->greaterThan(
+                'endtime',
+                $time
+            )
+        );
+
+        return $query->execute();
+    }
 }
