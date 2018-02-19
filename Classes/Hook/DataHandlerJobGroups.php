@@ -25,11 +25,14 @@ class DataHandlerJobGroups
     {
         if ($table == 'tx_ats_domain_model_job' &&
             ExtconfService::getInstance()->getCreateJobGroups() &&
-            MathUtility::canBeInterpretedAsInteger($id) &&
             in_array($status, ['new', 'update'])
         ) {
-            $job = $this->getJob($id);
-            if (!empty($job['job_number'])) {
+            if (MathUtility::canBeInterpretedAsInteger($id)) {
+                $job = $this->getJob($id);
+            } else {
+                $job = $fieldArray;
+            }
+            if (!empty($job['job_number']) && !empty($job['location'])) {
                 $groupName = sprintf(ExtconfService::getInstance()->getJobGroupPattern(), $job['job_number']);
 
                 $groupId = $this->ensureGroupForJob($groupName, $job['location']);
