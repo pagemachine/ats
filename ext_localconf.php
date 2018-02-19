@@ -33,6 +33,7 @@ if (!class_exists(\Symfony\Component\Workflow\Workflow::class)) {
 
 if (TYPO3_MODE === 'BE') {
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = \PAGEmachine\Ats\Command\AtsCommandController::class;
+    $GLOBALS ['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['ats'] = \PAGEmachine\Ats\Hook\DataHandlerJobGroups::class;
 }
 
 // Marker replacements (CKEDITOR --> Fluid) in both mail and pdf context.
