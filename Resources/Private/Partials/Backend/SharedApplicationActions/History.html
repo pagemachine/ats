@@ -15,40 +15,42 @@
 	<tbody>
 
 		<f:for each="{application.history}" as="history">
-			<tr>
-				<td style="min-width: 130px;">
-					{history.creationDate -> f:format.date(format:'{settings.dateFormat} {settings.timeFormat}')}
-				</td>
-				<td style="min-width: 160px;">
-					<f:if condition="{history.user}">
-						<be:avatar backendUser="{history.user.uid}" />
-						{history.user.userName}
-					</f:if>
+			<f:if condition="{history.subject}">
+				<tr>
+					<td style="min-width: 130px;">
+						{history.creationDate -> f:format.date(format:'{settings.dateFormat} {settings.timeFormat}')}
+					</td>
+					<td style="min-width: 160px;">
+						<f:if condition="{history.user}">
+							<be:avatar backendUser="{history.user.uid}" />
+							{history.user.userName}
+						</f:if>
 
-				</td>
-				<td style="min-width: 160px;">
-					<f:translate key="tx_ats.history.{history.subject}.subject">{history.subject}</f:translate>
-				<td>
-					<f:render partial="Backend/Application/History/{history.subject}" arguments="{history : history}" />
+					</td>
+					<td style="min-width: 160px;">
+						<f:translate key="tx_ats.history.{history.subject}.subject">{history.subject}</f:translate>
+					<td>
+						<f:render partial="Backend/Application/History/{history.subject}" arguments="{history : history}" />
 
-				</td>
-				<td>
-					<f:if condition="{history.diff}">
-						<div class="diff">
-							<f:for each="{history.diff}" as="fieldDiff" key="field">
-								<div class="diff-item">
-									<div class="diff-item-title">
-										{field}:
+					</td>
+					<td>
+						<f:if condition="{history.diff}">
+							<div class="diff">
+								<f:for each="{history.diff}" as="fieldDiff" key="field">
+									<div class="diff-item">
+										<div class="diff-item-title">
+											{field}:
+										</div>
+										<div class="diff-item-result" style="white-space: normal;">
+											<f:format.raw>{fieldDiff}</f:format.raw>
+										</div>
 									</div>
-									<div class="diff-item-result" style="white-space: normal;">
-										<f:format.raw>{fieldDiff}</f:format.raw>
-									</div>
-								</div>
-							</f:for>
-						</div>
-					</f:if>
-				</td>
-			</tr>
+								</f:for>
+							</div>
+						</f:if>
+					</td>
+				</tr>
+			</f:if>
 		</f:for>
 	</tbody>
 
