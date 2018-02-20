@@ -24,6 +24,15 @@ class InviteMessage extends AbstractMessage implements MessageInterface
     }
 
     /**
+     * @return string
+     * @codeCoverageIgnore
+     */
+    public function getHistoryName()
+    {
+        return "invite";
+    }
+
+    /**
      * @var \DateTime $dateTime
      */
     protected $dateTime;

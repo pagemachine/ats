@@ -23,6 +23,15 @@ class ReplyMessage extends AbstractMessage implements MessageInterface
         return "ReplyMessage";
     }
 
+   /**
+     * @return string
+     * @codeCoverageIgnore
+     */
+    public function getHistoryName()
+    {
+        return "reply";
+    }
+
     /**
      * ReplyMessage has no custom fields, return empty array
      *

@@ -106,7 +106,7 @@ class NotificationApplicationController extends ApplicationController
         foreach ($messageContainer->getMessages() as $message) {
             $this->applicationRepository->updateAndLog(
                 $message->getApplication(),
-                $messageType,
+                $message->getHistoryName(),
                 [
                     'subject' => $message->getSubject(),
                     'sendType' => $message->getSendType(),

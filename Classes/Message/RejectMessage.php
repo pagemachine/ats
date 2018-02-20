@@ -23,6 +23,15 @@ class RejectMessage extends AbstractMessage implements MessageInterface
         return "RejectMessage";
     }
 
+   /**
+     * @return string
+     * @codeCoverageIgnore
+     */
+    public function getHistoryName()
+    {
+        return "reject";
+    }
+
     /**
      * ReplyMessage has no custom fields, return empty array
      *

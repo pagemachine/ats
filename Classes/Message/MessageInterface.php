@@ -15,6 +15,11 @@ interface MessageInterface
     public function getName();
 
     /**
+     * @return string
+     */
+    public function getHistoryName();
+
+    /**
      * @return Application
      */
     public function getApplication();

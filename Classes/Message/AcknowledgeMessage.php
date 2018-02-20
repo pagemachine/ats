@@ -23,6 +23,15 @@ class AcknowledgeMessage extends AbstractMessage implements MessageInterface
         return "AcknowledgeMessage";
     }
 
+   /**
+     * @return string
+     * @codeCoverageIgnore
+     */
+    public function getHistoryName()
+    {
+        return "acknowledge";
+    }
+
     /**
      * ReplyMessage has no custom fields, return empty array
      *
