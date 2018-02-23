@@ -55,8 +55,9 @@ jobs:
 
         TAG_ANNOTATION="$(git tag -n -l $TRAVIS_TAG)"
         TAG_MESSAGE="${TAG_ANNOTATION#* }"
-        export PATH=$PATH:$(composer global config bin-dir --absolute 2>/dev/null)
+        EXTENSION_KEY="$(composer config extra.typo3/cms.extension-key)"
 
+        export PATH=$PATH:$(composer global config bin-dir --absolute 2>/dev/null)
         git reset --hard
         git clean -xfd
 
@@ -71,11 +72,12 @@ jobs:
         phar-composer build .
         popd
         cp /tmp/vendors/vendors.phar .
+        echo "require 'phar://' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('${EXTENSION_KEY}') . '/vendors.phar/vendor/autoload.php';" >> ext_localconf.php
 
         composer global require helhum/ter-client dev-master
 
         echo "Uploading release ${TRAVIS_TAG} to TER"
-        ter-client upload $(composer config extra.typo3/cms.extension-key) . -u "$TYPO3_ORG_USERNAME" -p "$TYPO3_ORG_PASSWORD" -m "$TAG_MESSAGE"
+        ter-client upload "$EXTENSION_KEY" . -u "$TYPO3_ORG_USERNAME" -p "$TYPO3_ORG_PASSWORD" -m "$TAG_MESSAGE"
 
 notifications:
   slack:

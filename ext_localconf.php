@@ -1,13 +1,5 @@
 <?php
-
-if (!defined('TYPO3_MODE')) {
-    die('Access denied.');
-}
-
-// Load vendors via phar if environment is not in composer mode
-if (!class_exists(\Symfony\Component\Workflow\Workflow::class)) {
-    include 'phar://' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('ats') . '/vendors.phar/vendor/autoload.php';
-}
+defined('TYPO3_MODE') or die();
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
     'PAGEmachine.Ats',
