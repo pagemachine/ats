@@ -812,6 +812,7 @@ class ApplicationController extends AbstractBackendController
      * Saves upload and forwards back to edit
      *
      * @param  Application $application
+     * @ignorevalidation $application
      * @return void
      */
     public function saveUploadAction(Application $application)
