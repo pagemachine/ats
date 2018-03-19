@@ -108,7 +108,7 @@ class NotificationApplicationController extends ApplicationController
                 $message->getApplication(),
                 $message->getHistoryName(),
                 [
-                    'subject' => $message->getSubject(),
+                    'subject' => $message->getRenderedSubject(),
                     'sendType' => $message->getSendType(),
                     'cc' => $message->getCc(),
                     'bcc' => $message->getBcc(),
