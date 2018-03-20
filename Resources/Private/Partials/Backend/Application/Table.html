@@ -30,7 +30,7 @@
 					<td><f:translate key="tx_ats.application.Rating.{application.Rating}" /></td>
 					<td><f:translate key="tx_ats.label.disability.{application.disability}" /></td>
 					<td><f:translate key="tx_ats.label.employed.{application.employed}" /></td>
-					<td>
+					<td style="max-width: 250px;">
 						<f:format.crop maxCharacters="100"><f:format.raw>{application.latestNote.details}</f:format.raw></f:format.crop>
 						<f:if condition="{f:count(subject:application.notes)} > 1">
 								(<f:link.action action="notes" arguments="{application : application}">+{application.notes -> f:count()} more</f:link.action>)
