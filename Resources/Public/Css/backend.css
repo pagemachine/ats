@@ -63,3 +63,77 @@
 	padding-bottom: 12px;
 }
 
+@media print {
+
+	html, body {
+		overflow: visible;
+	}
+	.nav{
+		display: none;
+	}
+	.panel-default{
+		display: none;
+		border: none;
+	}
+
+	.panel-heading{
+		border: none;
+	}
+	.table-fit{
+		border: none;
+	}
+
+	.module-docheader{
+		display: none;
+	}
+
+	.collapseIcon{
+		display: none;
+	}
+
+	h1{
+		display: none;
+	}
+
+	.module-body{
+		padding-top: 0 !important;
+	}
+
+	.panel-tab{
+		border: none;
+	}
+
+	.recordlist table tr > *{
+	    display: block;
+	}
+	.recordlist table tr {
+	    display: table-cell;
+	    height: 200px;
+	}
+
+	.recordlist tbody, .recordlist thead{
+		display: inline-block;
+	}
+
+	.recordlist th, .recordlist td{
+		border: none !important;
+		border-top: 1px solid #ccc !important;
+		height: 30px;
+	}
+
+	.recordlist tr{
+		border: 1px solid #ccc !important;
+	}
+
+	.recordlist{
+		display: block;
+		border: none;
+		-webkit-box-shadow: none;
+		        box-shadow: none;
+	}
+	.recordlist > *{
+		padding-left: 15px;
+	}
+
+}
+
