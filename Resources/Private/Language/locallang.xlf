@@ -448,7 +448,7 @@
 	  </trans-unit>
 
 	<trans-unit id="tx_ats.application.rating.0">
-		<source>None</source>
+		<source>-</source>
 	</trans-unit>
 
 	<trans-unit id="tx_ats.application.rating.10">
@@ -818,7 +818,7 @@
 			<!-- Application rating -->
 
 			<trans-unit id="tx_ats.application_rating.0">
-				<source>None</source>
+				<source>-</source>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.application_rating.10">
@@ -1044,7 +1044,7 @@
 			</trans-unit>
 
 			<trans-unit id="tx_ats.application.Rating.0">
-				<source>None</source>
+				<source>-</source>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.application.Rating.10">
