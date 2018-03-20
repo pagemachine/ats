@@ -3,8 +3,12 @@
 
 <div class="row">
 	<div class="col-md-6 summary-block table-container">
-		<h3><f:translate id="be.label.ApplicationSingle.Overview.PersonalData"></f:translate></h3>
-		<f:link.action action="show" target="_blank" arguments="{application: application, print: 1}">Print</f:link.action>
+		<h3>
+			<f:translate id="be.label.ApplicationSingle.Overview.PersonalData"></f:translate>
+			<f:link.action action="show" target="_blank" arguments="{application: application, print: 1}" class="print">
+				<f:image src="EXT:ats/Resources/Public/Icons/btn_print.png" alt="print" />
+			</f:link.action>
+		</h3>
 		<table class="table">
 
 			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
