@@ -20,7 +20,7 @@
 
 				<tr>
 					<td>{i.index}</td>
-					<td><f:format.date format="d.m.Y H:i">{application.creationDate}</f:format.date></td>
+					<td data-order="{application.creationDate -> f:format.date(format: 'U')}"><f:format.date format="d.m.Y H:i">{application.creationDate}</f:format.date></td>
 					<td>
 						<f:link.action action="show" arguments="{application : application}">{application.surname}, {application.firstname}</f:link.action>
 					</td>
