@@ -1013,6 +1013,32 @@
       	<source>Cancelled (by Candidate)</source>
       </trans-unit>
 
+      <!-- Message Fields -->
+      <trans-unit id="tx_ats.mail.subject">
+        <source>Subject</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.mail.cc">
+        <source>Cc</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.mail.bcc">
+        <source>Bcc</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.mail.body">
+        <source>Body</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.mail.dateTime">
+        <source>Date and time</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.mail.confirmDate">
+        <source>Confirmation date</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.mail.building">
+        <source>Building</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.mail.room">
+        <source>Room</source>
+      </trans-unit>
 
       <!-- Backend -->
       <trans-unit id="be.label.MyApplications">
