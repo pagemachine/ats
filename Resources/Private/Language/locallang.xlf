@@ -1321,7 +1321,7 @@
       </trans-unit>
 
 			<trans-unit id="be.label.ApplicationSingle.Edit.Submit">
-				<source>Submit</source>
+				<source>Save</source>
 			</trans-unit>
 
 			<trans-unit id="be.label.ApplicationSingle.Edit.1">

@@ -1319,8 +1319,8 @@
 	      </trans-unit>
 
 			<trans-unit id="be.label.ApplicationSingle.Edit.Submit">
-				<source>Submit</source>
-				<target>Senden</target>
+				<source>Save</source>
+				<target>Speichern</target>
 			</trans-unit>
 
 			<trans-unit id="be.label.ApplicationSingle.Edit.1">
