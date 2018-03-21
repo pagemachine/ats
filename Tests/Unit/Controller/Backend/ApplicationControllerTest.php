@@ -180,10 +180,10 @@ class ApplicationControllerTest extends UnitTestCase
      */
     public function showsASingleApplication()
     {
-        $this->view->assign("print", 1)->shouldBeCalled();
+        $this->view->assign("print", true)->shouldBeCalled();
         $this->view->assign("application", $this->application)->shouldBeCalled();
 
-        $this->applicationController->showAction($this->application, 1);
+        $this->applicationController->showAction($this->application, true);
     }
 
     public function propertyFixActions()
