@@ -226,12 +226,13 @@ class ApplicationController extends AbstractBackendController
     /**
      * Shows an application and lists all additional possible actions
      * @param  Application $application
+     * @param  bool $print
      * @ignorevalidation $application
      * @return void
      */
-    public function showAction(Application $application)
+    public function showAction(Application $application, $print = false)
     {
-
+        $this->view->assign('print', $print);
         $this->view->assign('application', $application);
     }
 

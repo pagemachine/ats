@@ -1263,6 +1263,11 @@
       		  <target>Schwerbehinderung/Gleichstellung</target>
       		</trans-unit>
 
+			<trans-unit id="be.label.ApplicationSingle.Overview.print">
+			  <source>Print</source>
+			  <target>Drucken</target>
+			</trans-unit>
+
       		<trans-unit id="be.label.ApplicationSingle.Edit.FormData">
       		  <source>Edit form data</source>
       		  <target>Formulardaten bearbeiten</target>
