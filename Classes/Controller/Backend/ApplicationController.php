@@ -230,7 +230,7 @@ class ApplicationController extends AbstractBackendController
      * @ignorevalidation $application
      * @return void
      */
-    public function showAction(Application $application, $print = 0)
+    public function showAction(Application $application, $print = false)
     {
         $this->view->assign('print', $print);
         $this->view->assign('application', $application);
