@@ -815,32 +815,6 @@
 				<source>The following file was removed:</source>
 			</trans-unit>
 
-			<!-- Application rating -->
-
-			<trans-unit id="tx_ats.application_rating.0">
-				<source>-</source>
-			</trans-unit>
-
-			<trans-unit id="tx_ats.application_rating.10">
-				<source>Unsuited</source>
-			</trans-unit>
-
-			<trans-unit id="tx_ats.application_rating.20">
-				<source>Suited</source>
-			</trans-unit>
-
-			<trans-unit id="tx_ats.application_rating.30">
-				<source>Shortlisted</source>
-			</trans-unit>
-
-			<trans-unit id="tx_ats.application_rating.40">
-				<source>Selected</source>
-			</trans-unit>
-
-			<trans-unit id="tx_ats.application_rating.50">
-				<source>Cancelled by candidate</source>
-			</trans-unit>
-
       <!-- ATS Statistics -->
       <trans-unit id="tx_ats.stat.datef">
         <source>From:</source>
@@ -1041,30 +1015,6 @@
 
 			<trans-unit id="be.label.MyApplications.Table.Rating">
 				<source>Rating</source>
-			</trans-unit>
-
-			<trans-unit id="tx_ats.application.Rating.0">
-				<source>-</source>
-			</trans-unit>
-
-			<trans-unit id="tx_ats.application.Rating.10">
-				<source>Unsuited</source>
-			</trans-unit>
-
-			<trans-unit id="tx_ats.application.Rating.20">
-				<source>Suited</source>
-			</trans-unit>
-
-			<trans-unit id="tx_ats.application.Rating.30">
-				<source>Shortlisted</source>
-			</trans-unit>
-
-			<trans-unit id="tx_ats.application.Rating.40">
-				<source>Selected</source>
-			</trans-unit>
-
-			<trans-unit id="tx_ats.application.Rating.50">
-				<source>Cancelled by candidate</source>
 			</trans-unit>
 
 			<trans-unit id="be.label.MyApplications.Table.Disability">
