@@ -700,7 +700,7 @@
 			</trans-unit>
 
 			<trans-unit id="tx_ats.application.Rating.0">
-				<source>None</source>
+				<source>-</source>
 				<target>Keine</target>
 			</trans-unit>
 
