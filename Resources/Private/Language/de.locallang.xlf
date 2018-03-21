@@ -1538,6 +1538,10 @@
 				<target>Weiter</target>
 			</trans-unit>
 
+			<trans-unit id="be.label.notification.back">
+				<source>Back to list</source>
+				<target>Zurück zur Liste</target>
+			</trans-unit>
 
 			<trans-unit id="tx_ats.message.salutation.1">
 				<source>Dear Mr.</source>
