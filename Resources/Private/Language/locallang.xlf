@@ -1233,6 +1233,9 @@
       <trans-unit id="be.label.ApplicationSingle.Overview.Disability">
         <source>Disability</source>
       </trans-unit>
+      <trans-unit id="be.label.ApplicationSingle.Overview.print">
+        <source>Print</source>
+      </trans-unit>
       <trans-unit id="be.label.ApplicationSingle.Edit.FormData">
         <source>Edit form data</source>
       </trans-unit>
