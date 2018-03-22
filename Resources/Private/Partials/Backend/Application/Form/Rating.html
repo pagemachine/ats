@@ -1,3 +1,4 @@
+{namespace ats=PAGEmachine\Ats\ViewHelpers}
 <f:form action="addRating" object="{note}" name="note">
 
 
@@ -7,13 +8,7 @@
 <f:form.hidden property="subject" value="{subject}" />
 
 <div class="form-group">
-	<f:form.select name="application[{ratingField}]" value="{ratingValue}" class="form-control" >
-		<f:for each="{ratingOptions}" as="option" key="optionKey">
-			<option value="{optionKey}" {f:if(condition: '{optionKey} == {ratingValue}', then: 'selected="selected"')}>
-				<f:translate key="tx_ats.application.rating.{optionKey}" default="{option}"/>
-			</option>
-		</f:for>
-	</f:form.select>
+	<ats:form.translatableSelect name="application[{ratingField}]" value="{ratingValue}" options="{ratingOptions}" translationPrefix="tx_ats.application.rating." extensionName="ats" class="form-control"/>
 </div>
 
 <f:form.validationResults for="{note.details}">
