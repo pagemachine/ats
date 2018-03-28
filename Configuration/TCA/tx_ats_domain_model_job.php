@@ -22,6 +22,7 @@ return [
 			'endtime' => 'endtime',
 		],
 		'searchFields' => 'job_number, title',
+		'default_sortby' => 'crdate DESC',
 		'iconfile' => 'EXT:ats/Resources/Public/Icons/tx_ats_domain_model_job.svg',
         'requestUpdate' => 'career, location'
 	],

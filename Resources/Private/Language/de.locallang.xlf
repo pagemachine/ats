@@ -699,32 +699,32 @@
 				<target>Pool</target>
 			</trans-unit>
 
-			<trans-unit id="tx_ats.application.Rating.0">
+			<trans-unit id="tx_ats.application.rating.0">
 				<source>-</source>
 				<target>Keine</target>
 			</trans-unit>
 
-			<trans-unit id="tx_ats.application.Rating.10">
+			<trans-unit id="tx_ats.application.rating.10">
 				<source>Unsuited</source>
 				<target>Ungeeignet</target>
 			</trans-unit>
 
-			<trans-unit id="tx_ats.application.Rating.20">
+			<trans-unit id="tx_ats.application.rating.20">
 				<source>Suited</source>
 				<target>Geeignet</target>
 			</trans-unit>
 
-			<trans-unit id="tx_ats.application.Rating.30">
+			<trans-unit id="tx_ats.application.rating.30">
 				<source>Shortlisted</source>
 				<target>Engere Wahl</target>
 			</trans-unit>
 
-			<trans-unit id="tx_ats.application.Rating.40">
+			<trans-unit id="tx_ats.application.rating.40">
 				<source>Selected</source>
 				<target>Ausgewählt</target>
 			</trans-unit>
 
-			<trans-unit id="tx_ats.application.Rating.50">
+			<trans-unit id="tx_ats.application.rating.50">
 				<source>Cancelled by candidate</source>
 				<target>Vom Bewerber abgesagt</target>
 			</trans-unit>
@@ -1359,8 +1359,8 @@
 	      </trans-unit>
 
 			<trans-unit id="be.label.ApplicationSingle.Edit.Submit">
-				<source>Submit</source>
-				<target>Senden</target>
+				<source>Save</source>
+				<target>Speichern</target>
 			</trans-unit>
 
 			<trans-unit id="be.label.ApplicationSingle.Edit.1">
