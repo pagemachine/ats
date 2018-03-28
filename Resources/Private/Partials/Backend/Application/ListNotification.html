@@ -2,7 +2,7 @@
 
 <f:render partial="Backend/Application/FilterBar" arguments="{action : 'listAll', jobs : jobs, filter : filter}" />
 
-<f:form action="newMassNotification">
+<f:form action="newMassNotification" onsubmit="$('.applications-list').dataTable().fnDestroy();">
 
 	<table class="table applications-list">
 		<thead>
