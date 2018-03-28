@@ -422,6 +422,10 @@
 		<source>This file type is not allowed.</source>
 	  </trans-unit>
 
+	  <trans-unit id="tx_ats.error.file.1347992453">
+		<source>Please upload at least one document.</source>
+	  </trans-unit>
+
 	  <!-- Backend errors -->
 
 	  <trans-unit id="tx_ats.error.note.details.1221560718">

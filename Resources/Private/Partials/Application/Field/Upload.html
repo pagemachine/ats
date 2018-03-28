@@ -23,18 +23,29 @@
 			</div>
 		</f:if>
 
-    <f:render partial="Application/Field/ValidationError" arguments="{fieldName : 'files.999'}" />
+		<f:form.validationResults for="application.files.999">
+			<div class="panel panel-default {f:if(condition:validationResults.errors, then:'has-error')}">
+				<div class="panel-heading">
+					<label><f:translate key="tx_ats.upload.new">Upload new file</f:translate></label>
+						<f:form.button type="submit" name="action" value="saveUpload" class="btn btn-success btn-sm pull-right" id="tx-ats-fileupload-button" style="display: none;">
+							<f:translate key="tx_ats.upload.save">save</f:translate>
+						</f:form.button>
+				</div>
+					<div class="panel-body">
+						<ats:form.upload property="files.999" id="tx-ats-fileupload" />
+						<f:render partial="Application/Field/ValidationError" arguments="{fieldName : 'files.999'}" />
+					</div>
+			</div>
+		</f:form.validationResults>
 
-    <div class="panel panel-default">
-    	<div class="panel-heading">
-    		<label><f:translate key="tx_ats.upload.new">Upload new file</f:translate></label>
-    			<f:form.button type="submit" name="action" value="saveUpload" class="btn btn-success btn-sm pull-right" id="tx-ats-fileupload-button" style="display: none;">
-    				<f:translate key="tx_ats.upload.save">save</f:translate>
-    			</f:form.button>
-    	</div>
-    	<div class="panel-body">
-    				<ats:form.upload property="files.999" id="tx-ats-fileupload" />
-    	</div>
-    </div>
+		<f:form.validationResults for="application.files">
+			<f:if condition="{validationResults.errors}">
+				<div class="has-error">
+					<f:for each="{validationResults.errors}" as="error">
+						<span class="help-block"><f:translate key="tx_ats.error.file.{error.code}">{error.message}</f:translate></span>
+					</f:for>
+				</div>
+			</f:if>
+		</f:form.validationResults>
 	</div>
 </div>

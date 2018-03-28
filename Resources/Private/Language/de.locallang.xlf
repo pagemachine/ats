@@ -573,6 +573,11 @@
 				<target>Upload ist nicht möglich, ungültiger Dateityp.</target>
 			</trans-unit>
 
+			<trans-unit id="tx_ats.error.file.1347992453">
+				<source>Please upload at least one document.</source>
+				<target>Bitte laden Sie mindestens ein Dokument hoch.</target>
+			</trans-unit>
+
 			<!-- LanguageSkill labels -->
 			<trans-unit id="tx_ats.languageskill.textLanguage">
 				<source>Other</source>
