@@ -165,7 +165,7 @@ class ApplicationControllerTest extends UnitTestCase
         ];
         $GLOBALS['BE_USER'] = $user->reveal();
 
-        $this->jobRepository->findAll()->shouldBeCalled();
+        $this->jobRepository->findByBackendUser($user->reveal())->shouldBeCalled();
 
         $this->applicationRepository->findDeadlineExceeded(argument::any(), $user->reveal(), $filter)->shouldBeCalled()->willReturn(['foo']);
         $this->applicationRepository->findNew(argument::any(), $user->reveal(), $filter)->shouldBeCalled()->willReturn(['bar']);
