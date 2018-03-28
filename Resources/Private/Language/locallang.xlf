@@ -419,7 +419,7 @@
 	  </trans-unit>
 
 	  <trans-unit id="tx_ats.error.1399312430">
-		<source>File upload is not possible</source>
+		<source>This file type is not allowed.</source>
 	  </trans-unit>
 
 	  <!-- Backend errors -->

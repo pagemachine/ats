@@ -569,8 +569,8 @@
 			</trans-unit>
 
 			<trans-unit id="tx_ats.error.1399312430">
-				<source>File upload is not possible</source>
-				<target>Datei Upload ist nicht möglich</target>
+				<source>This file type is not allowed.</source>
+				<target>Upload ist nicht möglich, ungültiger Dateityp.</target>
 			</trans-unit>
 
 			<!-- LanguageSkill labels -->
