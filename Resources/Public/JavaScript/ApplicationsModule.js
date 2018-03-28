@@ -85,6 +85,16 @@ require(
 			}
 		});
 
+        $('.newApplications').click(function(){
+            if($(this).is('.active')){
+                $('input.status_10').prop('checked', false);
+                $(this).removeClass('active btn-primary');
+            }else{
+                $('input.status_10').prop('checked', true);
+                $(this).addClass('active btn-primary');
+            }
+        });
+
         $("#tx-ats-fileupload").on("change", function(e){
             if (e.target.value != "") {
                 $("#tx-ats-fileupload-button").show();

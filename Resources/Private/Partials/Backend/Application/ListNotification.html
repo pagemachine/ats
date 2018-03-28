@@ -2,6 +2,12 @@
 
 <f:render partial="Backend/Application/FilterBar" arguments="{action : 'listAll', jobs : jobs, filter : filter}" />
 
+<div class="panel panel-default">
+	<div class="panel-body">
+		<f:form.button class="newApplications btn btn-default" /><f:translate key="tx_ats.application.status.10"/></button>
+	</div>
+</div>
+
 <f:form action="newMassNotification" onsubmit="$('.applications-list').dataTable().fnDestroy();">
 
 	<table class="table applications-list">
@@ -24,7 +30,7 @@
 			<f:for each="{applications}" as="application" iteration="i">
 
 				<tr>
-					<td><f:form.checkbox class="checkbox" multiple="1" name="applications" value="{application.uid}"/></td>
+					<td><f:form.checkbox class="checkbox status_{application.status}" multiple="1" name="applications" value="{application.uid}"/></td>
 					<td> {i.index}</td>
 					<td><f:format.date format="d.m.Y H:i">{application.creationDate}</f:format.date></td>
 					<td>
