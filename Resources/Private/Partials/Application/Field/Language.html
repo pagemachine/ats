@@ -17,15 +17,19 @@
 								<f:form.hidden property="languageSkills.{i.index}.__identity" value="{skill.uid}" />
 							</f:if>
 
-							<div class="col-sm-3">
-								<label><f:translate key="tx_ats.languageskill.language" /></label>
-								<s:form.select class="language-select form-control" property="languageSkills.{i.index}.language" staticInfoTable="language" options="{}" prependOptionLabel="--select--" prependOptionValue="" />
-							</div>
+							<f:form.validationResults for="application.languageSkills.{key}.language">
+								<div class="col-sm-3 {f:if(condition:validationResults.flattenedErrors, then:'has-error')}">
+									<label><f:translate key="tx_ats.languageskill.language" /></label>
+									<s:form.select class="language-select form-control" property="languageSkills.{i.index}.language" staticInfoTable="language" options="{}" prependOptionLabel="--select--" prependOptionValue="" />
+								</div>
 
-							<div class="col-sm-3">
-								<label><f:translate key="tx_ats.languageskill.textLanguage" /></label>
-								<f:form.textfield class="textlanguage form-control" property="languageSkills.{i.index}.textLanguage" />
-							</div>
+
+								<div class="col-sm-3 {f:if(condition:validationResults.flattenedErrors, then:'has-error')}">
+									<label><f:translate key="tx_ats.languageskill.textLanguage" /></label>
+									<f:form.textfield class="textlanguage form-control" property="languageSkills.{i.index}.textLanguage" />
+								</div>
+
+							</f:form.validationResults>
 
 							<f:form.validationResults for="application.languageSkills.{key}.level">
 								<div class="col-sm-3 {f:if(condition:validationResults.flattenedErrors, then:'has-error')}">
@@ -40,28 +44,27 @@
 									<f:translate key="tx_ats.languageskill.rmLanguage">Remove</f:translate>
 								</span>
 							</div>
-						</div>
+
 
 						<f:form.validationResults for="application.languageSkills.{key}">
 								<f:if condition="{validationResults.flattenedErrors}">
-								<div class="row">
-									<div class="col-sm-12 has-error" id="language-errors">
+									<div class="col-sm-12 has-error" class="language-errors">
 										<f:for each="{validationResults.flattenedErrors}" as="errors">
 											<f:for each="{errors}" as="error">
 												<span class="help-block"><f:translate key="tx_ats.error.languageSkills.{error.code}">{error.message}</f:translate></span>
 											</f:for>
 										</f:for>
 									</div>
-								</div>
 								</f:if>
 						</f:form.validationResults>
+						</div>
 
 					</f:for>
 
 					<f:form.validationResults for="application.languageSkills">
 						<f:if condition="{validationResults.errors}">
 						<div class="row">
-							<div class="col-sm-12 has-error" id="language-errors">
+							<div class="col-sm-12 has-error" class="language-errors">
 								<f:for each="{validationResults.errors}" as="error">
 									<span class="help-block"><f:translate key="tx_ats.error.languageSkills.{error.code}">{error.message}</f:translate></span>
 								</f:for>

@@ -62,7 +62,6 @@ class LanguageSkill extends AbstractEntity implements CloneableInterface
 
     /**
      * @var int $level
-     * @validate NotEmpty
      */
     protected $level;
 
