@@ -1256,6 +1256,41 @@
       	<target>Abgesagt (durch Bewerber)</target>
       </trans-unit>
 
+      <!-- Message Fields -->
+      <trans-unit id="tx_ats.mail.subject">
+        <source>Subject</source>
+        <target>Betreff</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.mail.cc">
+        <source>Cc</source>
+        <target>Cc</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.mail.bcc">
+        <source>Bcc</source>
+        <target>Bcc</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.mail.body">
+        <source>Body</source>
+        <target>Text</target>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.mail.dateTime">
+        <source>Date and time</source>
+        <target>Datum und Uhrzeit</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.mail.confirmDate">
+        <source>Confirmation date</source>
+        <target>Bestätigungsdatum</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.mail.building">
+        <source>Building</source>
+        <target>Gebäude</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.mail.room">
+        <source>Room</source>
+        <target>Raum</target>
+      </trans-unit>
+
 
 
       		<trans-unit id="be.label.ApplicationSingle.Overview.FormData">
@@ -1523,6 +1558,10 @@
 				<target>Weiter</target>
 			</trans-unit>
 
+			<trans-unit id="be.label.notification.back">
+				<source>Back to list</source>
+				<target>Zurück zur Liste</target>
+			</trans-unit>
 
 			<trans-unit id="tx_ats.message.salutation.1">
 				<source>Dear Mr.</source>
