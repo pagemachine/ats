@@ -419,7 +419,23 @@
 	  </trans-unit>
 
 	  <trans-unit id="tx_ats.error.1399312430">
-		<source>File upload is not possible</source>
+		<source>This file type is not allowed.</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.error.file.1347992453">
+		<source>Please upload at least one document.</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.error.languageSkills.1347992453">
+	  	<source>Please fill in at least one language.</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.error.languageSkills.1522232270">
+		<source>Please fill in your skill level for all languages.</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.error.languageSkills.1522232293">
+		<source>Please fill in a language, via selection or input.</source>
 	  </trans-unit>
 
 	  <!-- Backend errors -->

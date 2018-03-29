@@ -37,7 +37,6 @@ class QualificationsController extends AbstractApplicationController
      */
     public function initializeAction()
     {
-
         $propertyMappingConfiguration = $this->arguments->getArgument("application")->getPropertyMappingConfiguration();
 
         $propertyMappingConfiguration->forProperty("languageSkills")->allowAllProperties();
