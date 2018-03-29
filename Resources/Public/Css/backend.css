@@ -65,7 +65,7 @@
 
 @media print {
 
-	html, body {
+	html, body, .module-body{
 		overflow: visible;
 	}
 	.nav{
