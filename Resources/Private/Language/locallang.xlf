@@ -426,6 +426,18 @@
 		<source>Please upload at least one document.</source>
 	  </trans-unit>
 
+	  <trans-unit id="tx_ats.error.languageSkills.1347992453">
+	  	<source>Please fill in at least one language.</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.error.languageSkills.1522232270">
+		<source>Please fill in your skill level for all languages.</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.error.languageSkills.1522232293">
+		<source>Please fill in a language, via selection or input.</source>
+	  </trans-unit>
+
 	  <!-- Backend errors -->
 
 	  <trans-unit id="tx_ats.error.note.details.1221560718">

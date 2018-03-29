@@ -1,84 +1,116 @@
 {namespace s=SJBR\StaticInfoTables\ViewHelpers}
 {namespace ats=PAGEmachine\Ats\ViewHelpers}
+	<fieldset id="tx-ats-languageform">
+		<div class="form-group">
+			<div class="col-sm-3">
+				<label><f:translate key="tx_ats.application.languageskills" /></label>
+			</div>
 
-<fieldset id="tx-ats-languageform">
-	<div class="form-group">
-		<div class="col-sm-3">
-			<label><f:translate key="tx_ats.application.languageskills" /></label>
-		</div>
+			<div class="col-sm-9" id="languages">
+					<input type="hidden" name="tx_ats[application][languageSkills]" value="" />
 
-		<div class="col-sm-9" id="languages">
-				<input type="hidden" name="tx_ats[application][languageSkills]" value="" />
+					<f:for each="{application.languageSkills}" as="skill" iteration="i" key="key">
 
-				<f:for each="{application.languageSkills}" as="skill" iteration="i">
+						<div class="row" data-language="{i.index}">
 
-					<div class="row" data-language="{i.index}">
+							<f:if condition="{skill.uid}">
+								<f:form.hidden property="languageSkills.{i.index}.__identity" value="{skill.uid}" />
+							</f:if>
 
-						<f:form.hidden property="languageSkills.{i.index}" value="{skill}" />
+							<f:form.validationResults for="application.languageSkills.{key}.language">
+								<div class="col-sm-3 {f:if(condition:validationResults.flattenedErrors, then:'has-error')}">
+									<label><f:translate key="tx_ats.languageskill.language" /></label>
+									<s:form.select class="language-select form-control" property="languageSkills.{i.index}.language" staticInfoTable="language" options="{}" prependOptionLabel="--select--" prependOptionValue="" />
+								</div>
 
-						<div class="col-sm-3">
-							<label><f:translate key="tx_ats.languageskill.language" /></label>
-							<s:form.select class="language-select form-control" property="languageSkills.{i.index}.language" staticInfoTable="language" options="{}" prependOptionLabel="--select--" prependOptionValue="" />
+
+								<div class="col-sm-3 {f:if(condition:validationResults.flattenedErrors, then:'has-error')}">
+									<label><f:translate key="tx_ats.languageskill.textLanguage" /></label>
+									<f:form.textfield class="textlanguage form-control" property="languageSkills.{i.index}.textLanguage" />
+								</div>
+
+							</f:form.validationResults>
+
+							<f:form.validationResults for="application.languageSkills.{key}.level">
+								<div class="col-sm-3 {f:if(condition:validationResults.flattenedErrors, then:'has-error')}">
+									<label><f:translate key="tx_ats.languageskill.level" /></label>
+									<ats:form.translatableSelect class="level-select form-control" translationPrefix="tx_ats.languageskill.level." options="{1:1, 2:2, 3:3, 4:4}" property="languageSkills.{i.index}.level"  prependOptionLabel="--select--" prependOptionValue="" />
+								</div>
+							</f:form.validationResults>
+
+							<div class="col-sm-3">
+								<span class="btn btn-default btn-xs" data-action="removeLanguage" data-language="{i.index}">
+									<span class="glyphicon glyphicon-trash"></span>
+									<f:translate key="tx_ats.languageskill.rmLanguage">Remove</f:translate>
+								</span>
+							</div>
+
+
+						<f:form.validationResults for="application.languageSkills.{key}">
+								<f:if condition="{validationResults.flattenedErrors}">
+									<div class="col-sm-12 has-error" class="language-errors">
+										<f:for each="{validationResults.flattenedErrors}" as="errors">
+											<f:for each="{errors}" as="error">
+												<span class="help-block"><f:translate key="tx_ats.error.languageSkills.{error.code}">{error.message}</f:translate></span>
+											</f:for>
+										</f:for>
+									</div>
+								</f:if>
+						</f:form.validationResults>
 						</div>
 
-						<div class="col-sm-3">
-							<label><f:translate key="tx_ats.languageskill.textLanguage" /></label>
-							<f:form.textfield class="textlanguage form-control" property="languageSkills.{i.index}.textLanguage" />
+					</f:for>
+
+					<f:form.validationResults for="application.languageSkills">
+						<f:if condition="{validationResults.errors}">
+						<div class="row">
+							<div class="col-sm-12 has-error" class="language-errors">
+								<f:for each="{validationResults.errors}" as="error">
+									<span class="help-block"><f:translate key="tx_ats.error.languageSkills.{error.code}">{error.message}</f:translate></span>
+								</f:for>
+							</div>
 						</div>
+						</f:if>
+					</f:form.validationResults>
 
-						<div class="col-sm-3">
-							<label><f:translate key="tx_ats.languageskill.level" /></label>
-							<ats:form.translatableSelect class="level-select form-control" translationPrefix="tx_ats.languageskill.level." options="{1:1, 2:2, 3:3, 4:4}" property="languageSkills.{i.index}.level"  prependOptionLabel="--select--" prependOptionValue="" />
-						</div>
+			</div>
 
-						<div class="col-sm-3">
-							<span class="btn btn-default btn-xs" data-action="removeLanguage" data-language="{i.index}">
-								<span class="glyphicon glyphicon-trash"></span>
-								<f:translate key="tx_ats.languageskill.rmLanguage">Remove</f:translate>
-							</span>
-						</div>
-					</div>
-
-				</f:for>
 
 		</div>
 
-
-	</div>
-
-	<div class="form-group">
-		<div class="col-sm-9 col-sm-offset-3">
-			<span class="btn btn-default btn-sm" data-action="addLanguage">
-				<span class="glyphicon glyphicon-plus"></span>
-				<f:translate key="tx_ats.languageskill.addLanguage">Add Language</f:translate>
-			</span>
-		</div>
-	</div>
-
-
-	<div class="tx-ats-addlanguage row" data-language="999">
-
-		<div class="col-sm-3">
-				<label><f:translate key="tx_ats.languageskill.language" /></label>
-				<s:form.select class="language-select form-control" property="languageSkills.999.language" staticInfoTable="language" options="{}" prependOptionLabel="--select--" prependOptionValue="" />
+		<div class="form-group">
+			<div class="col-sm-9 col-sm-offset-3">
+				<span class="btn btn-default btn-sm" data-action="addLanguage">
+					<span class="glyphicon glyphicon-plus"></span>
+					<f:translate key="tx_ats.languageskill.addLanguage">Add Language</f:translate>
+				</span>
+			</div>
 		</div>
 
-		<div class="col-sm-3">
-			<label><f:translate key="tx_ats.languageskill.textLanguage" /></label>
-			<f:form.textfield class="textlanguage form-control" property="languageSkills.999.textLanguage" />
+
+		<div class="tx-ats-addlanguage row" data-language="999">
+
+			<div class="col-sm-3">
+					<label><f:translate key="tx_ats.languageskill.language" /></label>
+					<s:form.select class="language-select form-control" property="languageSkills.999.language" staticInfoTable="language" options="{}" prependOptionLabel="--select--" prependOptionValue="" />
+			</div>
+
+			<div class="col-sm-3">
+				<label><f:translate key="tx_ats.languageskill.textLanguage" /></label>
+				<f:form.textfield class="textlanguage form-control" property="languageSkills.999.textLanguage" />
+			</div>
+
+			<div class="col-sm-3">
+				<label><f:translate key="tx_ats.languageskill.level" /></label>
+				<ats:form.translatableSelect class="level-select form-control" translationPrefix="tx_ats.languageskill.level." options="{1:1, 2:2, 3:3, 4:4}" property="languageSkills.999.level"  prependOptionLabel="--select--" prependOptionValue="" />
+			</div>
+
+			<div class="col-sm-3">
+				<span class="btn btn-default btn-xs remove-button" data-action="removeLanguage" data-language="999">
+					<span class="glyphicon glyphicon-trash"></span>
+					<f:translate key="tx_ats.languageskill.rmLanguage">Remove</f:translate>
+				</span>
+			</div>
 		</div>
 
-		<div class="col-sm-3">
-			<label><f:translate key="tx_ats.languageskill.level" /></label>
-			<ats:form.translatableSelect class="level-select form-control" translationPrefix="tx_ats.languageskill.level." options="{1:1, 2:2, 3:3, 4:4}" property="languageSkills.999.level"  prependOptionLabel="--select--" prependOptionValue="" />
-		</div>
-
-		<div class="col-sm-3">
-			<span class="btn btn-default btn-xs remove-button" data-action="removeLanguage" data-language="999">
-				<span class="glyphicon glyphicon-trash"></span>
-				<f:translate key="tx_ats.languageskill.rmLanguage">Remove</f:translate>
-			</span>
-		</div>
-	</div>
-
-</fieldset>
+	</fieldset>
