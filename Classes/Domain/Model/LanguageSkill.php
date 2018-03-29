@@ -18,7 +18,7 @@ class LanguageSkill extends AbstractEntity implements CloneableInterface
      * @var SJBR\StaticInfoTables\Domain\Model\Language|null $language
      */
     protected $language = null;
-    
+
     /**
      * @return SJBR\StaticInfoTables\Domain\Model\Language|null
      */
@@ -26,7 +26,7 @@ class LanguageSkill extends AbstractEntity implements CloneableInterface
     {
         return $this->language;
     }
-    
+
     /**
      * @param SJBR\StaticInfoTables\Domain\Model\Language| null $language
      * @return void
@@ -41,7 +41,7 @@ class LanguageSkill extends AbstractEntity implements CloneableInterface
      * @var string $textLanguage
      */
     protected $textLanguage;
-    
+
     /**
      * @return string
      */
@@ -49,7 +49,7 @@ class LanguageSkill extends AbstractEntity implements CloneableInterface
     {
         return $this->textLanguage;
     }
-    
+
     /**
      * @param string $textLanguage
      * @return void
@@ -64,7 +64,7 @@ class LanguageSkill extends AbstractEntity implements CloneableInterface
      * @var int $level
      */
     protected $level;
-    
+
     /**
      * @return int
      */
@@ -72,7 +72,7 @@ class LanguageSkill extends AbstractEntity implements CloneableInterface
     {
         return $this->level;
     }
-    
+
     /**
      * @param int $level
      * @return void

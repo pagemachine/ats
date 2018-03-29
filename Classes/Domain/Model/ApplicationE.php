@@ -25,10 +25,11 @@ class ApplicationE extends ApplicationD
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<PAGEmachine\Ats\Domain\Model\FileReference>
+     * @validate NotEmpty
      * @lazy
      */
     protected $files;
-    
+
     /**
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
      */
@@ -36,7 +37,7 @@ class ApplicationE extends ApplicationD
     {
         return $this->files;
     }
-    
+
     /**
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $files
      * @return void
@@ -45,7 +46,7 @@ class ApplicationE extends ApplicationD
     {
         $this->files = $files;
     }
-    
+
     /**
      * @param PAGEmachine\Ats\Domain\Model\FileReference $file
      * @return void
@@ -54,7 +55,7 @@ class ApplicationE extends ApplicationD
     {
         $this->files->attach($file);
     }
-    
+
     /**
      * @param PAGEmachine\Ats\Domain\Model\FileReference $file
      * @return void
