@@ -7,39 +7,35 @@ cache:
     - $HOME/.composer/cache
 
 install:
-  - composer require typo3/cms="$TYPO3_VERSION"
-
-script:
-  - composer test
+  - composer install
 
 jobs:
   fast_finish: true
   include:
-    - php: 5.6
+    - &test
+      php: 7.0
+      env: TYPO3_VERSION=^8.7
+      install:
+        - composer require typo3/cms="$TYPO3_VERSION"
+      script:
+        - composer lint:php
+        - composer test
+        
+    - <<: *test
+      env: TYPO3_VERSION=^7.6
+      
+    - <<: *test
+      php: 5.6
       env: TYPO3_VERSION=^7.6
       before_install:
         # Not compatible to PHP 5.6
         - composer remove --no-update --dev slevomat/coding-standard
-      script:
-        - composer lint:php
-        - composer test
-    - php: 7.0
-      env: TYPO3_VERSION=^7.6
-    - php: 7.0
-      env: TYPO3_VERSION=^8.7
 
-    - &lint
-      php: 7.0
-      env: PHP lint
-      install:
-        - composer install
-      script:
-        - composer lint:php
-    - <<: *lint
+    - php: 7.0
       env: XML lint
       script:
         - composer lint:xml
-    - <<: *lint
+    - php: 7.0
       env: Codestyle
       script:
         - composer lint:style
