@@ -218,7 +218,7 @@ class ApplicationController extends AbstractBackendController
             'exceededApplications' => $this->applicationRepository->findDeadlineExceeded($this->settings['deadlineTime'], $GLOBALS['BE_USER'], $filter),
             'newApplications' => $this->applicationRepository->findNew($this->settings['deadlineTime'], $GLOBALS['BE_USER'], $filter),
             'progressApplications' => $this->applicationRepository->findInProgress($this->settings['deadlineTime'], $GLOBALS['BE_USER'], $filter),
-            'jobs' => $this->jobRepository->findAll(),
+            'jobs' => $this->jobRepository->findByBackendUser($GLOBALS['BE_USER']),
             'filter' => $filter,
         ]);
     }
