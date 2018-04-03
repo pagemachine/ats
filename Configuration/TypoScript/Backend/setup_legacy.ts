@@ -27,6 +27,8 @@ plugin.tx_ats {
         policyPage = {$plugin.tx_ats.settings.policyPage}
 
         deadlineTime = 1209600
+        dateFormat = d.m.Y
+        timeFormat = H:i
 
         allowedStaticLanguages = {$plugin.tx_ats.settings.allowedStaticLanguages}
     }
