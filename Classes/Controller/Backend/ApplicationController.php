@@ -826,6 +826,8 @@ class ApplicationController extends AbstractBackendController
 
     /**
      * @param  Application $application
+     * @param  FileReference $file
+     * @ignorevalidation $application
      * @return void
      */
     public function removeUploadAction(Application $application, FileReference $file)
