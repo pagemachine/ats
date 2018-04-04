@@ -8,6 +8,7 @@ namespace PAGEmachine\Ats\Tests\Unit\Controller\Application;
 use PAGEmachine\Ats\Controller\Application\AbstractApplicationController;
 use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
+use PAGEmachine\Ats\Property\TypeConverter\UploadedFileReferenceConverter;
 use PAGEmachine\Ats\Service\AuthenticationService;
 use Prophecy\Argument;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
@@ -144,7 +145,7 @@ class AbstractApplicationControllerTest extends UnitTestCase
     /**
      * @test
      */
-    public function setsTypeConverterOptionForDateTime()
+    public function setsTypeConverterOptionsForApplication()
     {
 
         $this->controller = $this->getMockBuilder(AbstractApplicationController::class)->setMethods([
@@ -169,6 +170,13 @@ class AbstractApplicationControllerTest extends UnitTestCase
         $argument->getPropertyMappingConfiguration()->willReturn($configuration->reveal());
         $arguments->getArgument("application")->willReturn($argument->reveal());
         $configuration->forProperty('birthday')->willReturn($configuration->reveal());
+
+
+        $configuration->forProperty('files.999')->shouldBeCalled()->willReturn($configuration->reveal());
+        $configuration->setTypeConverterOptions(
+            UploadedFileReferenceConverter::class,
+            Argument::type("array")
+        )->shouldBeCalled();
 
         $this->inject($this->controller, "arguments", $arguments->reveal());
 

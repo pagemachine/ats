@@ -52,6 +52,15 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats'] = [
     ],
     // Active workflow
     'activeWorkflow' => 'defaultworkflow',
+    //Settings handled by extension manager
+    'emSettings' => [
+        //Upload related settings
+        'fileHandling' => [
+            'allowedFileExtensions' => 'png,gif,jpg,tif,pdf,xls,xlsx,doc,docx,rtf,txt,zip,rar',
+            'conflictMode' => \TYPO3\CMS\Core\Resource\DuplicationBehavior::RENAME,
+            'uploadFolder' => '1:/tx_ats/',
+        ],
+    ],
 ];
 
 
@@ -75,8 +84,6 @@ $signalSlotDispatcher->connect(
 
 //Load Extension Manager settings into EXTCONF for easier usage
 
-$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings'] = [];
-
 if (!empty($_EXTCONF)) {
     $typoScriptService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Service\TypoScriptService::class);
     $extensionManagementConfig = $typoScriptService->convertTypoScriptArrayToPlainArray(unserialize($_EXTCONF));
@@ -84,7 +91,7 @@ if (!empty($_EXTCONF)) {
 
     foreach ($extensionManagementConfig as $key => $value) {
       //Merge instance settings
-        if (is_array($value) && isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats'][$key])) {
+        if (is_array($value) && isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings'][$key])) {
             $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings'][$key] = array_merge($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings'][$key], $extensionManagementConfig[$key]);
         } else {
             $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings'][$key] = $extensionManagementConfig[$key];

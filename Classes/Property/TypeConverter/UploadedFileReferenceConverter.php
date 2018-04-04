@@ -32,6 +32,11 @@ class UploadedFileReferenceConverter extends AbstractTypeConverter
     const CONFIGURATION_UPLOAD_CONFLICT_MODE = 2;
 
     /**
+     * Allowed file extensions
+     */
+    const CONFIGURATION_FILE_EXTENSIONS = 3;
+
+    /**
      * @var string
      */
     protected $allowedFileExtensions = 'png,gif,jpg,tif,pdf,xls,xlsx,doc,docx,rtf,txt,zip,rar';
@@ -40,6 +45,11 @@ class UploadedFileReferenceConverter extends AbstractTypeConverter
      * @var string
      */
     protected $defaultUploadFolder = '1:/tx_ats/';
+
+    /**
+     * @var int
+     */
+    protected $defaultConflictMode = DuplicationBehavior::RENAME;
 
     /**
      * @var array<string>
@@ -164,7 +174,7 @@ class UploadedFileReferenceConverter extends AbstractTypeConverter
             throw new TypeConverterException('Uploading files with PHP file extensions is not allowed!', 1399312430);
         }
 
-        $allowedFileExtensions = $this->allowedFileExtensions;
+        $allowedFileExtensions = $configuration->getConfigurationValue(__CLASS__, self::CONFIGURATION_FILE_EXTENSIONS) ?: $this->allowedFileExtensions;
 
         if ($allowedFileExtensions !== null) {
             $filePathInfo = PathUtility::pathinfo($uploadInfo['name']);
@@ -173,9 +183,7 @@ class UploadedFileReferenceConverter extends AbstractTypeConverter
             }
         }
 
-        $defaultConflictMode = DuplicationBehavior::RENAME;
-
-        $conflictMode = $configuration->getConfigurationValue(__CLASS__, self::CONFIGURATION_UPLOAD_CONFLICT_MODE) ?: $defaultConflictMode;
+        $conflictMode = $configuration->getConfigurationValue(__CLASS__, self::CONFIGURATION_UPLOAD_CONFLICT_MODE) ?: $this->defaultConflictMode;
 
         $uploadFolderId = $configuration->getConfigurationValue(__CLASS__, self::CONFIGURATION_UPLOAD_FOLDER) ?: $this->defaultUploadFolder;
 

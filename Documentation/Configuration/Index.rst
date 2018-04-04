@@ -87,3 +87,12 @@ This configuration would define the following workflow:
 
 All other actions will not appear in the backend module until you add them to your workflow.
 
+File upload options
+-------------------
+
+You can configure how file uploads in the application form should behave. The options include **location** (storage and/or folder), **allowed file types** and the **conflict behaviour** (what if the file already exists with this name?).
+
+Configuration options can be found in the extension manager settings (tab *Advanced*).
+
+
+
