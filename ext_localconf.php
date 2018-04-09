@@ -23,6 +23,8 @@ defined('TYPO3_MODE') or die();
     ]
 );
 
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['FileDumpEID.php']['checkFileAccess']['ats_protection'] = \PAGEmachine\Ats\Hook\FileDumpControllerHook::class;
+
 if (TYPO3_MODE === 'BE') {
     $GLOBALS ['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['ats'] = \PAGEmachine\Ats\Hook\DataHandlerJobGroups::class;
 }
