@@ -569,8 +569,28 @@
 			</trans-unit>
 
 			<trans-unit id="tx_ats.error.1399312430">
-				<source>File upload is not possible</source>
-				<target>Datei Upload ist nicht möglich</target>
+				<source>This file type is not allowed.</source>
+				<target>Upload ist nicht möglich, ungültiger Dateityp.</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.error.file.1347992453">
+				<source>Please upload at least one document.</source>
+				<target>Bitte laden Sie mindestens ein Dokument hoch.</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.error.languageSkills.1347992453">
+				<source>Please fill in at least one language.</source>
+				<target>Bitte geben Sie mindestens eine Sprache an.</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.error.languageSkills.1522232270">
+				<source>Please fill in your skill level for all languages.</source>
+				<target>Bitte geben Sie bei allen Sprachkenntnissen einen Level (Kenntnisstand) an.</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.error.languageSkills.1522232293">
+				<source>Please fill in a language, either via selection or input.</source>
+				<target>Bitte geben Sie eine Sprache an, per Auswahl oder Eingabe.</target>
 			</trans-unit>
 
 			<!-- LanguageSkill labels -->
@@ -1236,6 +1256,41 @@
       	<target>Abgesagt (durch Bewerber)</target>
       </trans-unit>
 
+      <!-- Message Fields -->
+      <trans-unit id="tx_ats.mail.subject">
+        <source>Subject</source>
+        <target>Betreff</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.mail.cc">
+        <source>Cc</source>
+        <target>Cc</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.mail.bcc">
+        <source>Bcc</source>
+        <target>Bcc</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.mail.body">
+        <source>Body</source>
+        <target>Text</target>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.mail.dateTime">
+        <source>Date and time</source>
+        <target>Datum und Uhrzeit</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.mail.confirmDate">
+        <source>Confirmation date</source>
+        <target>Bestätigungsdatum</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.mail.building">
+        <source>Building</source>
+        <target>Gebäude</target>
+      </trans-unit>
+      <trans-unit id="tx_ats.mail.room">
+        <source>Room</source>
+        <target>Raum</target>
+      </trans-unit>
+
 
 
       		<trans-unit id="be.label.ApplicationSingle.Overview.FormData">
@@ -1503,6 +1558,10 @@
 				<target>Weiter</target>
 			</trans-unit>
 
+			<trans-unit id="be.label.notification.back">
+				<source>Back to list</source>
+				<target>Zurück zur Liste</target>
+			</trans-unit>
 
 			<trans-unit id="tx_ats.message.salutation.1">
 				<source>Dear Mr.</source>

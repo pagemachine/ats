@@ -6,6 +6,7 @@ namespace PAGEmachine\Ats\Domain\Repository;
  */
 
 use PAGEmachine\Ats\Persistence\Repository;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 
 /**
  * The repository for Jobs
@@ -30,6 +31,32 @@ class JobRepository extends Repository
         return $query->matching(
             $query->equals('hidden', 0)
         )->execute();
+    }
+
+    /**
+     * Returns a list of jobs the current user is linked to (as a department, personell staff etc.).
+     *
+     * @param  BackendUserAuthentication $backendUser
+     * @return QueryResultInterface
+     */
+    public function findByBackendUser(BackendUserAuthentication $backendUser)
+    {
+        $query = $this->createQuery();
+        $constraints = [];
+
+        $constraints[] = $query->contains("userPa", $backendUser->user['uid']);
+
+        foreach ($backendUser->userGroups as $group) {
+            $constraints[] = $query->contains("department", $group['uid']);
+            $constraints[] = $query->contains("officials", $group['uid']);
+            $constraints[] = $query->contains("contributors", $group['uid']);
+        }
+
+        $query->matching(
+            $query->logicalOr($constraints)
+        );
+
+        return $query->execute();
     }
 
 

@@ -419,7 +419,23 @@
 	  </trans-unit>
 
 	  <trans-unit id="tx_ats.error.1399312430">
-		<source>File upload is not possible</source>
+		<source>This file type is not allowed.</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.error.file.1347992453">
+		<source>Please upload at least one document.</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.error.languageSkills.1347992453">
+	  	<source>Please fill in at least one language.</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.error.languageSkills.1522232270">
+		<source>Please fill in your skill level for all languages.</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.error.languageSkills.1522232293">
+		<source>Please fill in a language, via selection or input.</source>
 	  </trans-unit>
 
 	  <!-- Backend errors -->
@@ -987,6 +1003,32 @@
       	<source>Cancelled (by Candidate)</source>
       </trans-unit>
 
+      <!-- Message Fields -->
+      <trans-unit id="tx_ats.mail.subject">
+        <source>Subject</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.mail.cc">
+        <source>Cc</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.mail.bcc">
+        <source>Bcc</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.mail.body">
+        <source>Body</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.mail.dateTime">
+        <source>Date and time</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.mail.confirmDate">
+        <source>Confirmation date</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.mail.building">
+        <source>Building</source>
+      </trans-unit>
+      <trans-unit id="tx_ats.mail.room">
+        <source>Room</source>
+      </trans-unit>
 
       <!-- Backend -->
       <trans-unit id="be.label.MyApplications">
