@@ -393,7 +393,7 @@ abstract class AbstractMessage
      */
     public function getFileName()
     {
-        return PdfService::getInstance()->createCleanedFilename($this->getSubject() . '_' . $this->application->getSurname() . '_' . date('Y-m-d'));
+        return PdfService::getInstance()->createCleanedFilename($this->getRenderedSubject() . '_' . $this->application->getSurname() . '_' . date('Y-m-d'));
     }
 
 
