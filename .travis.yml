@@ -70,7 +70,7 @@ jobs:
         cp /tmp/vendors/vendors.phar .
         echo "require 'phar://' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('${EXTENSION_KEY}') . '/vendors.phar/vendor/autoload.php';" >> ext_localconf.php
 
-        composer global require helhum/ter-client dev-master
+        composer global require helhum/ter-client
 
         echo "Uploading release ${TRAVIS_TAG} to TER"
         ter-client upload "$EXTENSION_KEY" . -u "$TYPO3_ORG_USERNAME" -p "$TYPO3_ORG_PASSWORD" -m "$TAG_MESSAGE"
