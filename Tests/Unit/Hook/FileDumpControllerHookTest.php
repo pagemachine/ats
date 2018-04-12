@@ -51,7 +51,7 @@ class FileDumpControllerHookTest extends TestCase
     {
         $feUser = $this->prophesize(FrontendUserAuthentication::class);
         $feUser->user = [
-            'uid' => '999'
+            'uid' => '999',
         ];
 
         return [
@@ -81,7 +81,7 @@ class FileDumpControllerHookTest extends TestCase
     {
         $feUser = $this->prophesize(FrontendUserAuthentication::class);
         $feUser->user = [
-            'uid' => '999'
+            'uid' => '999',
         ];
 
         return [
@@ -101,7 +101,7 @@ class FileDumpControllerHookTest extends TestCase
     {
         $extconfService = $this->prophesize(ExtconfService::class);
         $extconfService->getUploadConfiguration()->willReturn([
-            'uploadFolder' => '12:/somestorage/'
+            'uploadFolder' => '12:/somestorage/',
         ]);
 
         GeneralUtility::setSingletonInstance(ExtconfService::class, $extconfService->reveal());
@@ -110,7 +110,6 @@ class FileDumpControllerHookTest extends TestCase
         $file->getCombinedIdentifier()->willReturn($filePath);
 
         $this->assertEquals($returnValue, $this->fileDumpControllerHook->fileIsInAtsStorage($file->reveal()));
-
     }
 
     /**
@@ -125,6 +124,4 @@ class FileDumpControllerHookTest extends TestCase
             'file in different folder' => ['12:/non_ats_folder/foo.pdf', false],
         ];
     }
-
-
 }
