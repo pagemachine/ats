@@ -77,6 +77,11 @@ require(
 			});
 		});
 
+        // Destroy the dataTable on submit to keep the right order in the BFCache
+        $('#newMassNotification').on('submit', function(){
+            $(this).find('.applications-list').dataTable().fnDestroy();
+        })
+
 		$('.selectAll').click(function(){
 			if($(this).is(":checked")){
 				$('.checkbox').prop('checked', true);
@@ -84,6 +89,16 @@ require(
 				$('.checkbox').prop('checked', false);
 			}
 		});
+
+        $('.newApplications').click(function(){
+            if($(this).is('.active')){
+                $('input.status_10').prop('checked', false);
+                $(this).removeClass('active btn-primary');
+            }else{
+                $('input.status_10').prop('checked', true);
+                $(this).addClass('active btn-primary');
+            }
+        });
 
         $("#tx-ats-fileupload").on("change", function(e){
             if (e.target.value != "") {

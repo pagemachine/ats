@@ -1595,6 +1595,11 @@
 	        <target>[Alle herunterladen]</target>
 	      </trans-unit>
 
+	      <trans-unit id="tx_ats.mass.selectApplications">
+	        <source>Select all new applications</source>
+	        <target>Alle neuen Bewerbungen auswählen</target>
+	      </trans-unit>
+
 	      <trans-unit id="tx_ats.be.massNotification.header">
 	      	<source>New Mass Notification</source>
 	      	<target>Neuer Massenbescheid</target>

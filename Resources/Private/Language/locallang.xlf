@@ -933,6 +933,10 @@
         <source>[Download All]</source>
       </trans-unit>
 
+      <trans-unit id="tx_ats.mass.selectApplications">
+        <source>Select all new applications</source>
+      </trans-unit>
+
       <trans-unit id="tx_ats.be.massNotification.header">
       	<source>New Mass Notification</source>
       </trans-unit>
