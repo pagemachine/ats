@@ -85,7 +85,7 @@ class SubmitController extends AbstractApplicationController
 
             $this->repository->updateAndLog(
                 $message->getApplication(),
-                'acknowledge',
+                'autoAcknowledge',
                 [
                     'subject' => $message->getRenderedSubject(),
                     'sendType' => $message->getSendType(),

@@ -1080,6 +1080,11 @@
 				<target>Eingangsbestätigung</target>
 			</trans-unit>
 
+			<trans-unit id="tx_ats.history.autoAcknowledge.subject">
+				<source>Automatic Acknowledgement</source>
+				<target>Automatische Eingangsbestätigung</target>
+			</trans-unit>
+
 			<trans-unit id="tx_ats.history.acknowledge.details">
 				<source>Acknowledgement was sent</source>
 				<target>Eingangsbestätigung versendet</target>

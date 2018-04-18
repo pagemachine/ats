@@ -735,6 +735,10 @@
 				<source>Acknowledgement</source>
 			</trans-unit>
 
+			<trans-unit id="tx_ats.history.autoAcknowledge.subject">
+				<source>Automatic Acknowledgement</source>
+			</trans-unit>
+
 			<trans-unit id="tx_ats.history.acknowledge.details">
 				<source>Acknowledgement was sent</source>
 			</trans-unit>

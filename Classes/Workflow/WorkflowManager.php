@@ -33,6 +33,7 @@ class WorkflowManager implements SingletonInterface
     protected $availableTransitions = [
         'submit',
         'acknowledge',
+        'autoAcknowledge',
         'backToPerso',
         'close',
         'notes',
