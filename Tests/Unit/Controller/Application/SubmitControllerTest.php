@@ -39,7 +39,10 @@ class SubmitControllerTest extends UnitTestCase
     public function setUp()
     {
 
-        $this->controller = new SubmitController;
+        $this->controller = $this->getMockBuilder(SubmitController::class)->setMethods([
+            'redirect',
+            'forward'
+            ])->getMock();
 
         $this->application = $this->prophesize(Application::class);
 
