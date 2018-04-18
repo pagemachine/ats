@@ -2,6 +2,7 @@
 namespace PAGEmachine\Ats\Controller\Application;
 
 use PAGEmachine\Ats\Domain\Model\Application;
+use PAGEmachine\Ats\Service\ExtconfService;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -33,7 +34,6 @@ class SubmitController extends AbstractApplicationController
      */
     public function showSummaryAction(Application $application)
     {
-
         $this->view->assign("application", $application);
     }
 
@@ -51,9 +51,7 @@ class SubmitController extends AbstractApplicationController
             'new'
         );
 
-        $Placeholder = 1;
-
-        if($Placeholder){
+        if( ExtconfService::getInstance()->getSendAutoAcknowledge() ){
             $this->forward("sendAutoAcknowledgement", null, null, ['application' => $application]);
         }else{
             $this->redirect("submited", null, null, ['application' => $application]);
@@ -74,13 +72,12 @@ class SubmitController extends AbstractApplicationController
      * @return void
      */
     public function sendAutoAcknowledgementAction(Application $application){
-        $PlacehoderUid = 4;
-
+        $templateUid = ExtconfService::getInstance()->getAutoAcknowledgeTemplate();
 
         $message = $this->messageFactory->createMessage("acknowledge", $application);
 
-        if(array_key_exists( $PlacehoderUid, $message->getTextTemplateDropdownOptions() )){
-            $message->setTextTemplate($PlacehoderUid);
+        if(array_key_exists( $templateUid, $message->getTextTemplateDropdownOptions() )){
+            $message->setTextTemplate($templateUid);
             $message->applyTextTemplate();
 
             $this->repository->updateAndLog(
