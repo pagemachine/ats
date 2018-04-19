@@ -43,10 +43,10 @@ Since TYPO3 does not offer conditional access protection for publicly available 
 
 1. Create a new folder on your webserver that is **outside** the document root (so no web users can access it). PHP (and TYPO3) should have proper read/write access to it. Ask your server administrator for help with this step if you cannot do this on your own.
 
-2. Create a new **File Storage** record on root level of your pagetree. Set the base path to match the file path you just created.
+2. Create a new **File Storage** record on root level of your pagetree. Set the base path to match the file path you just created. Note that the warning "storage is not public" is exactly what we want to see!
 
-   .. image:: ../Images/Security/protect-storage.png
-      :alt: Example protected storage. Note that the warning "storage is not public" is exactly what we want to see!
+   .. image:: ../Images/Security/protected-storage.png
+      :alt: Example protected storage
 
 3. Go to the Extension Manager and open the ATS extension settings (gear symbol on the right side of the name). Move to the tab "advanced". Change the upload folder for application assets to the newly created storage ID (f.ex. "2:/"). You can also add a subfolder if desired, the folder must already exist inside the storage.
 
