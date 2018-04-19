@@ -54,7 +54,7 @@ class SubmitController extends AbstractApplicationController
         if (ExtconfService::getInstance()->getSendAutoAcknowledge()) {
             $this->forward("sendAutoAcknowledgement", null, null, ['application' => $application]);
         } else {
-            $this->redirect("submited", null, null, ['application' => $application]);
+            $this->redirect("submitted", null, null, ['application' => $application]);
         }
     }
 
@@ -62,7 +62,7 @@ class SubmitController extends AbstractApplicationController
      * @param  Application $application
      * @return void
      */
-    public function submitedAction(Application $application)
+    public function submittedAction(Application $application)
     {
 
         $this->view->assign("application", $application);
@@ -97,6 +97,6 @@ class SubmitController extends AbstractApplicationController
             $message->send();
         }
 
-        $this->redirect("submited", null, null, ['application' => $application]);
+        $this->redirect("submitted", null, null, ['application' => $application]);
     }
 }
