@@ -2,7 +2,6 @@
 namespace PAGEmachine\Ats\Controller\Application;
 
 use PAGEmachine\Ats\Domain\Model\Application;
-use PAGEmachine\Ats\Service\ExtconfService;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -51,37 +50,8 @@ class SubmitController extends AbstractApplicationController
             'new'
         );
 
-        if (ExtconfService::getInstance()->getSendAutoAcknowledge()) {
-            $this->forward("sendAutoAcknowledgement", null, null, ['application' => $application]);
-        } else {
-            $this->redirect("submitted", null, null, ['application' => $application]);
-        }
-    }
-
-    /**
-     * @param  Application $application
-     * @return void
-     */
-    public function submittedAction(Application $application)
-    {
-
-        $this->view->assign("application", $application);
-    }
-
-    /**
-     * @param  Application $application
-     * @return void
-     */
-    public function sendAutoAcknowledgementAction(Application $application)
-    {
-        $templateUid = ExtconfService::getInstance()->getAutoAcknowledgeTemplate();
-
         $message = $this->messageFactory->createMessage("acknowledge", $application);
-
-        if (array_key_exists($templateUid, $message->getTextTemplateDropdownOptions())) {
-            $message->setTextTemplate($templateUid);
-            $message->applyTextTemplate();
-
+        if ($message->applyAutoAcknowledgeTemplate()) {
             $this->repository->updateAndLog(
                 $message->getApplication(),
                 'autoAcknowledge',
@@ -98,5 +68,15 @@ class SubmitController extends AbstractApplicationController
         }
 
         $this->redirect("submitted", null, null, ['application' => $application]);
+    }
+
+    /**
+     * @param  Application $application
+     * @return void
+     */
+    public function submittedAction(Application $application)
+    {
+
+        $this->view->assign("application", $application);
     }
 }
