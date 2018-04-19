@@ -527,7 +527,7 @@ class ApplicationControllerTest extends UnitTestCase
         $mappingConfiguration->forProperty('birthday')->shouldBeCalled()->willReturn($mappingConfiguration->reveal());
         $mappingConfiguration->setTypeConverterOption(\TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::class, \TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'Y-m-d')->shouldBeCalled();
 
-        $mappingConfiguration->forProperty('files.999')->shouldBeCalled()->willReturn($mappingConfiguration->reveal());
+        $mappingConfiguration->forProperty('files.999')->willReturn($mappingConfiguration->reveal());
         $mappingConfiguration->setTypeConverterOptions(
             UploadedFileReferenceConverter::class,
             Argument::type("array")

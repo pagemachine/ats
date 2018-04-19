@@ -172,7 +172,7 @@ class AbstractApplicationControllerTest extends UnitTestCase
         $configuration->forProperty('birthday')->willReturn($configuration->reveal());
 
 
-        $configuration->forProperty('files.999')->shouldBeCalled()->willReturn($configuration->reveal());
+        $configuration->forProperty('files.999')->willReturn($configuration->reveal());
         $configuration->setTypeConverterOptions(
             UploadedFileReferenceConverter::class,
             Argument::type("array")

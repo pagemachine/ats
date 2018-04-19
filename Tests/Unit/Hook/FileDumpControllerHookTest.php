@@ -32,6 +32,14 @@ class FileDumpControllerHookTest extends TestCase
     }
 
     /**
+     * Tear down this testcase
+     */
+    protected function tearDown()
+    {
+        GeneralUtility::purgeInstances();
+    }
+
+    /**
      * @test
      *
      * @dataProvider grantedUserCombinations
@@ -41,7 +49,7 @@ class FileDumpControllerHookTest extends TestCase
      */
     public function grantsAccess($application = [], FrontendBackendUserAuthentication $beUser = null, FrontendUserAuthentication $feUser = null)
     {
-        $this->assertEquals(true, $this->fileDumpControllerHook->hasAccess($application, $feUser, $beUser));
+        $this->assertTrue($this->fileDumpControllerHook->hasAccess($application, $feUser, $beUser));
     }
 
     /**
@@ -70,7 +78,7 @@ class FileDumpControllerHookTest extends TestCase
      */
     public function deniesAccess($application = [], FrontendBackendUserAuthentication $beUser = null, FrontendUserAuthentication $feUser = null)
     {
-        $this->assertEquals(false, $this->fileDumpControllerHook->hasAccess($application, $feUser, $beUser));
+        $this->assertFalse($this->fileDumpControllerHook->hasAccess($application, $feUser, $beUser));
     }
 
 

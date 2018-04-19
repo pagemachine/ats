@@ -61,19 +61,13 @@ class FileDumpControllerHook implements FileDumpEIDHookInterface
             $feUser = $GLOBALS['TSFE']->fe_user;
             $beUser = $GLOBALS['TSFE']->initializeBackendUser();
 
-            $applications = $this->getLinkedApplications($file->getUid());
-
-            $hasAccess = false;
-            foreach ($applications as $application) {
+            foreach ($this->getLinkedApplications($file->getUid()) as $application) {
                 if ($this->hasAccess($application, $feUser, $beUser)) {
-                    $hasAccess = true;
-                    break;
+                    return;
                 }
             }
 
-            if (!$hasAccess) {
-                HttpUtility::setResponseCodeAndExit(HttpUtility::HTTP_STATUS_403);
-            }
+            HttpUtility::setResponseCodeAndExit(HttpUtility::HTTP_STATUS_403);
         }
     }
 
@@ -121,7 +115,7 @@ class FileDumpControllerHook implements FileDumpEIDHookInterface
      * Returns all applications connected to a file
      *
      * @param  int $fileUid
-     * @return array
+     * @return \Generator
      */
     protected function getLinkedApplications($fileUid)
     {
@@ -139,13 +133,9 @@ class FileDumpControllerHook implements FileDumpEIDHookInterface
             ' AND ' . implode(' AND ', $constraints)
         );
 
-        $applications = [];
-
         while ($row = $this->getDatabaseConnection()->sql_fetch_assoc($applicationQuery)) {
-            $applications[] = $row;
+            yield $row;
         }
-
-        return $applications;
     }
 
     /**
@@ -165,7 +155,7 @@ class FileDumpControllerHook implements FileDumpEIDHookInterface
     {
         EidUtility::initTCA();
         if (!is_object($GLOBALS['TT'])) {
-            $GLOBALS['TT'] = new \TYPO3\CMS\Core\TimeTracker\TimeTracker;
+            $GLOBALS['TT'] = new \TYPO3\CMS\Core\TimeTracker\TimeTracker();
             $GLOBALS['TT']->start();
         }
         if (!is_object($GLOBALS['TSFE'])) {
