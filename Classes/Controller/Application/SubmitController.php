@@ -51,9 +51,9 @@ class SubmitController extends AbstractApplicationController
             'new'
         );
 
-        if( ExtconfService::getInstance()->getSendAutoAcknowledge() ){
+        if (ExtconfService::getInstance()->getSendAutoAcknowledge()) {
             $this->forward("sendAutoAcknowledgement", null, null, ['application' => $application]);
-        }else{
+        } else {
             $this->redirect("submited", null, null, ['application' => $application]);
         }
     }
@@ -65,18 +65,20 @@ class SubmitController extends AbstractApplicationController
     public function submitedAction(Application $application)
     {
 
+        $this->view->assign("application", $application);
     }
 
     /**
      * @param  Application $application
      * @return void
      */
-    public function sendAutoAcknowledgementAction(Application $application){
+    public function sendAutoAcknowledgementAction(Application $application)
+    {
         $templateUid = ExtconfService::getInstance()->getAutoAcknowledgeTemplate();
 
         $message = $this->messageFactory->createMessage("acknowledge", $application);
 
-        if(array_key_exists( $templateUid, $message->getTextTemplateDropdownOptions() )){
+        if (array_key_exists($templateUid, $message->getTextTemplateDropdownOptions())) {
             $message->setTextTemplate($templateUid);
             $message->applyTextTemplate();
 
