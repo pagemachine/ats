@@ -151,6 +151,23 @@
 				<source>Branch office</source>
 				<target>Niederlassung</target>
 			</trans-unit>
+
+			<!-- FlexForm labels -->
+
+			<trans-unit id="flexform.jobs.applicationPage">
+				<source>Application form page</source>
+				<target>Bewerbungsformular-Seite</target>
+			</trans-unit>
+
+			<trans-unit id="flexform.jobs.policyPage">
+				<source>Page with policy details</source>
+				<target>Datenschutzerklärungs-Seite</target>
+			</trans-unit>
+
+			<trans-unit id="flexform.jobs.allowedStaticLanguages">
+				<source>Allowed languages inside language dropdown</source>
+				<target>Erlaubte Sprachangaben im Sprach-Auswahlfeld</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

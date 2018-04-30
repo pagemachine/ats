@@ -255,6 +255,20 @@
 				<source>Application History</source>
 			</trans-unit>
 
+			<!-- FlexForm labels -->
+
+			<trans-unit id="flexform.jobs.applicationPage">
+				<source>Application form page</source>
+			</trans-unit>
+
+			<trans-unit id="flexform.jobs.policyPage">
+				<source>Page with policy details</source>
+			</trans-unit>
+
+			<trans-unit id="flexform.jobs.allowedStaticLanguages">
+				<source>Allowed languages inside language dropdown</source>
+			</trans-unit>
+
 		</body>
 	</file>
 </xliff>
