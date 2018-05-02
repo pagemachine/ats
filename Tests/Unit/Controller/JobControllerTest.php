@@ -41,6 +41,136 @@ class JobControllerTest extends UnitTestCase
     /**
      * @test
      */
+    public function mergesTSSettingsWithNonEmptyFlexSettings()
+    {
+        $settings = [
+            'foo' => 'bar',
+            'bar' => 'baz',
+            'flexForm' => [
+                'override' => '1',
+                'foo' => 'overrideBar',
+                'bar' => '',
+            ],
+        ];
+
+        $expectedSettings = [
+            'foo' => 'overrideBar',
+            'bar' => 'baz',
+            'override' => '1',
+        ];
+
+        $this->assertEquals(
+            $expectedSettings,
+            $this->controller->mergeFlexFormAndTypoScriptSettings($settings)
+        );
+    }
+
+
+    /**
+     * @test
+     */
+    public function mergesTSSettingsWithEmptyFlexSettings()
+    {
+        $settings = [
+            'foo' => 'bar',
+            'bar' => 'baz',
+            'flexForm' => [
+                'override' => '1',
+                'overrideEmptyValues' => '1',
+                'foo' => 'overrideBar',
+                'bar' => '',
+            ],
+        ];
+
+        $expectedSettings = [
+            'foo' => 'overrideBar',
+            'bar' => '',
+            'override' => '1',
+            'overrideEmptyValues' => '1',
+        ];
+
+        $this->assertEquals(
+            $expectedSettings,
+            $this->controller->mergeFlexFormAndTypoScriptSettings($settings)
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function keepsTSSettingsIfFlexformIsDisabled()
+    {
+        $settings = [
+            'foo' => 'bar',
+            'bar' => 'baz',
+            'flexForm' => [
+                'override' => '0',
+                'overrideEmptyValues' => '0',
+                'foo' => 'overrideBar',
+                'bar' => '',
+            ],
+        ];
+
+        $expectedSettings = [
+            'foo' => 'bar',
+            'bar' => 'baz',
+        ];
+
+        $this->assertEquals(
+            $expectedSettings,
+            $this->controller->mergeFlexFormAndTypoScriptSettings($settings)
+        );
+    }
+
+    // /**
+    //  * @test
+    //  * @dataProvider settings
+    //  *
+    //  * @param  string $override      Override. String since the parsed config contains an integer string such as '1'
+    //  * @param  string $overrideEmpty Override empty values. String since the parsed config contains an integer string such as '1'
+    //  * @param  array  $tsSettings    Global TS settings array
+    //  * @param  array  $flexSettings  Flexform settings array
+    //  * @param  array  $expectedResultSettings The expected result settings
+    //  * @return void
+    //  */
+    // public function mergesFlexformSettingsWithTypoScriptSettings($override, $overrideEmpty, $tsSettings = [], $flexSettings = [], $expectedResultSettings = [])
+    // {
+    //     $settings = [
+
+
+    //     ]
+
+
+    //     $this->assertEquals()
+    // }
+
+    // public function settings()
+    // {
+    //     return [
+    //         'override, ignore empty' => [
+    //             '1',
+    //             '0',
+    //             [
+    //                 'value1' => 'TS value',
+    //                 'value2' => 'TS value',
+    //             ],
+    //             [
+    //                 'value1' => 'Flex value',
+    //                 'value2' => '',
+    //             ],
+    //             [
+    //                 'value1' => 'Flex value',
+    //                 'value2' => 'TS value',
+    //             ],
+    //         ]
+
+
+    //     ];
+    // }
+
+    /**
+     * @test
+     */
     public function listsJobs()
     {
 

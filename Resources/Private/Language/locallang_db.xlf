@@ -257,6 +257,30 @@
 
 			<!-- FlexForm labels -->
 
+			<trans-unit id="flexform.jobs.title">
+				<source>Job plugin options</source>
+			</trans-unit>
+
+			<trans-unit id="flexform.jobs.override">
+				<source>Override global settings</source>
+			</trans-unit>
+
+			<trans-unit id="flexform.jobs.override.1">
+				<source>Override</source>
+			</trans-unit>
+
+			<trans-unit id="flexform.jobs.overrideEmptyValues">
+				<source>Override configuration</source>
+			</trans-unit>
+
+			<trans-unit id="flexform.jobs.overrideEmptyValues.0">
+				<source>Ignore empty Flexform values and use TypoScript values instead</source>
+			</trans-unit>
+
+			<trans-unit id="flexform.jobs.overrideEmptyValues.1">
+				<source>Override all values, even if they are empty</source>
+			</trans-unit>
+
 			<trans-unit id="flexform.jobs.applicationPage">
 				<source>Application form page</source>
 			</trans-unit>

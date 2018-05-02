@@ -6,13 +6,50 @@
       <sDEF>
          <ROOT>
             <TCEforms>
-               <sheetTitle>LLL:EXT:ats/locallang_db.xlf:flexform.jobs.title</sheetTitle>
+               <sheetTitle>LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:flexform.jobs.title</sheetTitle>
             </TCEforms>
             <type>array</type>
             <el>
-               <settings.applicationPage>
+               <settings.flexForm.override>
+                  <TCEforms>
+                     <label>LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:flexform.jobs.override</label>
+                     <onChange>reload</onChange>
+                     <config>
+                        <type>check</type>
+                        <default>0</default>
+                        <items type="array">
+                           <numIndex index="0" type="array">
+                              <numIndex index="0">LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:flexform.jobs.override.1</numIndex>
+                              <numIndex index="1">1</numIndex>
+                           </numIndex>
+                        </items>
+                     </config>
+                  </TCEforms>
+               </settings.flexForm.override>
+               <settings.flexForm.overrideEmptyValues>
+                  <TCEforms>
+                     <label>LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:flexform.jobs.overrideEmptyValues</label>
+                     <displayCond>FIELD:settings.flexForm.override:REQ:true</displayCond>
+                     <config>
+                        <type>radio</type>
+                        <default>0</default>
+                        <items type="array">
+                           <numIndex index="0" type="array">
+                              <numIndex index="0">LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:flexform.jobs.overrideEmptyValues.0</numIndex>
+                              <numIndex index="1">0</numIndex>
+                           </numIndex>
+                           <numIndex index="1" type="array">
+                              <numIndex index="0">LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:flexform.jobs.overrideEmptyValues.1</numIndex>
+                              <numIndex index="1">1</numIndex>
+                           </numIndex>
+                        </items>
+                     </config>
+                  </TCEforms>
+               </settings.flexForm.overrideEmptyValues>
+               <settings.flexForm.applicationPage>
                   <TCEforms>
                      <label>LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:flexform.jobs.applicationPage</label>
+                     <displayCond>FIELD:settings.flexForm.override:REQ:true</displayCond>
                      <config>
                         <type>group</type>
                         <internal_type>db</internal_type>
@@ -23,10 +60,11 @@
                         <show_thumbs>1</show_thumbs>
                      </config>
                   </TCEforms>
-               </settings.applicationPage>
-               <settings.policyPage>
+               </settings.flexForm.applicationPage>
+               <settings.flexForm.policyPage>
                   <TCEforms>
                      <label>LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:flexform.jobs.policyPage</label>
+                     <displayCond>FIELD:settings.flexForm.override:REQ:true</displayCond>
                      <config>
                         <type>group</type>
                         <internal_type>db</internal_type>
@@ -37,10 +75,11 @@
                         <show_thumbs>1</show_thumbs>
                      </config>
                   </TCEforms>
-               </settings.policyPage>
-               <settings.allowedStaticLanguages>
+               </settings.flexForm.policyPage>
+               <settings.flexForm.allowedStaticLanguages>
                   <TCEforms>
                      <label>LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:flexform.jobs.allowedStaticLanguages</label>
+                     <displayCond>FIELD:settings.flexForm.override:REQ:true</displayCond>
                      <config>
                         <type>group</type>
                         <internal_type>db</internal_type>
@@ -51,7 +90,7 @@
                         <show_thumbs>1</show_thumbs>
                      </config>
                   </TCEforms>
-               </settings.allowedStaticLanguages>
+               </settings.flexForm.allowedStaticLanguages>
                // ...
             </el>
          </ROOT>
