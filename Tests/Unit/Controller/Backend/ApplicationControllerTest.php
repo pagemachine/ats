@@ -14,6 +14,7 @@ use PAGEmachine\Ats\Message\InviteMessage;
 use PAGEmachine\Ats\Message\MessageFactory;
 use PAGEmachine\Ats\Message\RejectMessage;
 use PAGEmachine\Ats\Message\ReplyMessage;
+use PAGEmachine\Ats\Property\TypeConverter\UploadedFileReferenceConverter;
 use PAGEmachine\Ats\Workflow\WorkflowManager;
 use Prophecy\Argument;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
@@ -505,7 +506,7 @@ class ApplicationControllerTest extends UnitTestCase
     /**
      * @test
      */
-    public function setsApplicationDatePropertyMapping()
+    public function setsApplicationPropertyMapping()
     {
         $request = $this->prophesize(Request::class);
         $request->hasArgument('message')->willReturn(false);
@@ -525,6 +526,12 @@ class ApplicationControllerTest extends UnitTestCase
 
         $mappingConfiguration->forProperty('birthday')->shouldBeCalled()->willReturn($mappingConfiguration->reveal());
         $mappingConfiguration->setTypeConverterOption(\TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::class, \TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'Y-m-d')->shouldBeCalled();
+
+        $mappingConfiguration->forProperty('files.999')->willReturn($mappingConfiguration->reveal());
+        $mappingConfiguration->setTypeConverterOptions(
+            UploadedFileReferenceConverter::class,
+            Argument::type("array")
+        )->shouldBeCalled();
 
         $this->applicationController->initializeAction();
     }

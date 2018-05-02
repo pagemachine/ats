@@ -5,6 +5,8 @@ namespace PAGEmachine\Ats\Property\TypeConverter;
  * This file is part of the PAGEmachine ATS project.
  */
 
+use PAGEmachine\Ats\Domain\Model\FileReference;
+use TYPO3\CMS\Core\Resource\DuplicationBehavior;
 use TYPO3\CMS\Core\Resource\File as FalFile;
 use TYPO3\CMS\Core\Resource\FileReference as FalFileReference;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -30,6 +32,11 @@ class UploadedFileReferenceConverter extends AbstractTypeConverter
     const CONFIGURATION_UPLOAD_CONFLICT_MODE = 2;
 
     /**
+     * Allowed file extensions
+     */
+    const CONFIGURATION_FILE_EXTENSIONS = 3;
+
+    /**
      * @var string
      */
     protected $allowedFileExtensions = 'png,gif,jpg,tif,pdf,xls,xlsx,doc,docx,rtf,txt,zip,rar';
@@ -40,14 +47,19 @@ class UploadedFileReferenceConverter extends AbstractTypeConverter
     protected $defaultUploadFolder = '1:/tx_ats/';
 
     /**
+     * @var int
+     */
+    protected $defaultConflictMode = DuplicationBehavior::RENAME;
+
+    /**
      * @var array<string>
      */
-    protected $sourceTypes = array('array');
+    protected $sourceTypes = ['array'];
 
     /**
      * @var string
      */
-    protected $targetType = 'PAGEmachine\\Ats\\Domain\\Model\\FileReference';
+    protected $targetType = FileReference::class;
 
     /**
      * Take precedence over the available FileReferenceConverter
@@ -77,7 +89,7 @@ class UploadedFileReferenceConverter extends AbstractTypeConverter
     /**
      * @var \TYPO3\CMS\Core\Resource\FileInterface[]
      */
-    protected $convertedResources = array();
+    protected $convertedResources = [];
 
     /**
      * Actually convert from $source to $targetType, taking into account the fully
@@ -162,7 +174,7 @@ class UploadedFileReferenceConverter extends AbstractTypeConverter
             throw new TypeConverterException('Uploading files with PHP file extensions is not allowed!', 1399312430);
         }
 
-        $allowedFileExtensions = $this->allowedFileExtensions;
+        $allowedFileExtensions = $configuration->getConfigurationValue(__CLASS__, self::CONFIGURATION_FILE_EXTENSIONS) ?: $this->allowedFileExtensions;
 
         if ($allowedFileExtensions !== null) {
             $filePathInfo = PathUtility::pathinfo($uploadInfo['name']);
@@ -171,16 +183,9 @@ class UploadedFileReferenceConverter extends AbstractTypeConverter
             }
         }
 
-        //Conflict mode (<=7.6)
-        if (class_exists('TYPO3\\CMS\\Core\\Resource\\DuplicationBehavior')) {
-            $defaultConflictMode = \TYPO3\CMS\Core\Resource\DuplicationBehavior::RENAME;
-        } else {
-            // @deprecated since 7.6 will be removed once 6.2 support is removed
-            $defaultConflictMode = 'changeName';
-        }
-        $conflictMode = $configuration->getConfigurationValue('Helhum\\UploadExample\\Property\\TypeConverter\\UploadedFileReferenceConverter', self::CONFIGURATION_UPLOAD_CONFLICT_MODE) ?: $defaultConflictMode;
+        $conflictMode = $configuration->getConfigurationValue(__CLASS__, self::CONFIGURATION_UPLOAD_CONFLICT_MODE) ?: $this->defaultConflictMode;
 
-        $uploadFolderId = $configuration->getConfigurationValue('Helhum\\UploadExample\\Property\\TypeConverter\\UploadedFileReferenceConverter', self::CONFIGURATION_UPLOAD_FOLDER) ?: $this->defaultUploadFolder;
+        $uploadFolderId = $configuration->getConfigurationValue(__CLASS__, self::CONFIGURATION_UPLOAD_FOLDER) ?: $this->defaultUploadFolder;
 
         $uploadFolder = $this->resourceFactory->retrieveFileOrFolderObject($uploadFolderId);
         $uploadedFile =  $uploadFolder->addUploadedFile($uploadInfo, $conflictMode);
@@ -215,15 +220,14 @@ class UploadedFileReferenceConverter extends AbstractTypeConverter
     /**
      * @param FalFileReference $falFileReference
      * @param int $resourcePointer
-     * @return \Helhum\UploadExample\Domain\Model\FileReference
+     * @return \PAGEmachine\Ats\Domain\Model\FileReference
      */
     protected function createFileReferenceFromFalFileReferenceObject(FalFileReference $falFileReference, $resourcePointer = null)
     {
         if ($resourcePointer === null) {
-            /** @var $fileReference \Helhum\UploadExample\Domain\Model\FileReference */
-            $fileReference = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Domain\\Model\\FileReference');
+            $fileReference = $this->objectManager->get(FileReference::class);
         } else {
-            $fileReference = $this->persistenceManager->getObjectByIdentifier($resourcePointer, 'TYPO3\\CMS\\Extbase\\Domain\\Model\\FileReference', false);
+            $fileReference = $this->persistenceManager->getObjectByIdentifier($resourcePointer, FileReference::class, false);
         }
 
         $fileReference->setOriginalResource($falFileReference);
