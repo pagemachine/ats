@@ -10,8 +10,10 @@ use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
 use PAGEmachine\Ats\Message\AcknowledgeMessage;
 use PAGEmachine\Ats\Message\MessageFactory;
+use PAGEmachine\Ats\Service\ExtconfService;
 use Prophecy\Argument;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 
@@ -61,6 +63,11 @@ class SubmitControllerTest extends UnitTestCase
         $this->inject($this->controller, "messageFactory", $this->messageFactory->reveal());
     }
 
+    public function tearDown()
+    {
+        GeneralUtility::purgeInstances();
+    }
+
     /**
      * @test
      */
@@ -91,6 +98,11 @@ class SubmitControllerTest extends UnitTestCase
             $this->application->reveal(),
             'new'
         )->shouldBeCalled();
+
+        $extconfService = $this->prophesize(ExtconfService::class);
+        $extconfService->getSendAutoAcknowledge()->willReturn(true);
+
+        GeneralUtility::setSingletonInstance(ExtconfService::class, $extconfService->reveal());
 
         $message = $this->prophesize(AcknowledgeMessage::class);
         $message->applyAutoAcknowledgeTemplate()->shouldBeCalled()->willReturn(true);

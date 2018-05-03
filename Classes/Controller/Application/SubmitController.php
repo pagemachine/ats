@@ -2,6 +2,7 @@
 namespace PAGEmachine\Ats\Controller\Application;
 
 use PAGEmachine\Ats\Domain\Model\Application;
+use PAGEmachine\Ats\Service\ExtconfService;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -50,22 +51,26 @@ class SubmitController extends AbstractApplicationController
             'new'
         );
 
-        $message = $this->messageFactory->createMessage("acknowledge", $application);
-        if ($message->applyAutoAcknowledgeTemplate()) {
-            $this->repository->updateAndLog(
-                $message->getApplication(),
-                'autoAcknowledge',
-                [
-                    'subject' => $message->getRenderedSubject(),
-                    'sendType' => $message->getSendType(),
-                    'cc' => $message->getCc(),
-                    'bcc' => $message->getBcc(),
-                    'message' => $message->getRenderedBody(),
-                ]
-            );
+        if (ExtconfService::getInstance()->getSendAutoAcknowledge()) {
+            $message = $this->messageFactory->createMessage("acknowledge", $application);
+            if ($message->applyAutoAcknowledgeTemplate()) {
+                $this->repository->updateAndLog(
+                    $message->getApplication(),
+                    'autoAcknowledge',
+                    [
+                        'subject' => $message->getRenderedSubject(),
+                        'sendType' => $message->getSendType(),
+                        'cc' => $message->getCc(),
+                        'bcc' => $message->getBcc(),
+                        'message' => $message->getRenderedBody(),
+                    ]
+                );
 
-            $message->send();
+                $message->send();
+            }
         }
+
+
 
         $this->redirect("submitted", null, null, ['application' => $application]);
     }

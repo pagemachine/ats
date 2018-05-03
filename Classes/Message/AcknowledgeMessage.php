@@ -52,13 +52,12 @@ class AcknowledgeMessage extends AbstractMessage implements MessageInterface
      */
     public function applyAutoAcknowledgeTemplate()
     {
-        if (ExtconfService::getInstance()->getSendAutoAcknowledge()) {
-            $templateUid = ExtconfService::getInstance()->getAutoAcknowledgeTemplate();
-            if (array_key_exists($templateUid, $this->getTextTemplateDropdownOptions())) {
-                $this->setTextTemplate($templateUid);
-                $this->applyTextTemplate();
-                return true;
-            }
+        $templateUid = ExtconfService::getInstance()->getAutoAcknowledgeTemplate();
+
+        if (array_key_exists($templateUid, $this->getTextTemplateDropdownOptions())) {
+            $this->setTextTemplate($templateUid);
+            $this->applyTextTemplate();
+            return true;
         }
         return false;
     }
