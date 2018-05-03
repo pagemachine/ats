@@ -6,6 +6,7 @@ namespace PAGEmachine\Ats\Controller;
  */
 
 use PAGEmachine\Ats\Domain\Model\Job;
+use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
@@ -20,7 +21,40 @@ class JobController extends ActionController
      * @inject
      */
     protected $jobRepository = null;
-    
+
+    /**
+     *
+     * @return void
+     */
+    public function initializeAction()
+    {
+        parent::initializeAction();
+
+        $this->settings = $this->mergeFlexFormAndTypoScriptSettings($this->settings);
+    }
+
+    /**
+     * Merges global TypoScript and FlexForm settings depending on config (override, override of empty values).
+     *
+     * @return array
+     */
+    public function mergeFlexFormAndTypoScriptSettings($settings = [])
+    {
+        if (!empty($settings['flexForm']) && intval($settings['flexForm']['override']) == 1) {
+            $overrideSettings = $settings['flexForm'];
+
+            ArrayUtility::mergeRecursiveWithOverrule(
+                $settings,
+                $overrideSettings,
+                true,
+                (intval($overrideSettings['overrideEmptyValues']) == 1 ? true : false)
+            );
+        }
+        unset($settings['flexForm']);
+
+        return $settings;
+    }
+
     /**
      * action list
      *
@@ -31,7 +65,7 @@ class JobController extends ActionController
         $jobs = $this->jobRepository->findAll();
         $this->view->assign('jobs', $jobs);
     }
-    
+
     /**
      * action show
      *

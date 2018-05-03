@@ -151,6 +151,53 @@
 				<source>Branch office</source>
 				<target>Niederlassung</target>
 			</trans-unit>
+
+			<!-- FlexForm labels -->
+
+			<trans-unit id="flexform.jobs.title">
+				<source>Job plugin options</source>
+				<target>job Plugin-Optionen</target>
+			</trans-unit>
+
+			<trans-unit id="flexform.jobs.override">
+				<source>Override global settings</source>
+				<target>Globale Einstellungen überschreiben</target>
+			</trans-unit>
+
+			<trans-unit id="flexform.jobs.override.1">
+				<source>Override</source>
+				<target>Überschreiben</target>
+			</trans-unit>
+
+			<trans-unit id="flexform.jobs.overrideEmptyValues">
+				<source>Override configuration</source>
+				<target>Überschreibungsmodus</target>
+			</trans-unit>
+
+			<trans-unit id="flexform.jobs.overrideEmptyValues.0">
+				<source>Ignore empty Flexform values and use TypoScript values instead</source>
+				<target>Leere Flexform-Werte ignorieren und stattdessen TypoScript-Einstellungen verwenden</target>
+			</trans-unit>
+
+			<trans-unit id="flexform.jobs.overrideEmptyValues.1">
+				<source>Override all values, even if they are empty</source>
+				<target>Alle Einstellungen überschreiben, auch mit leeren Flexform-Werten</target>
+			</trans-unit>
+
+			<trans-unit id="flexform.jobs.applicationPage">
+				<source>Application form page</source>
+				<target>Bewerbungsformular-Seite</target>
+			</trans-unit>
+
+			<trans-unit id="flexform.jobs.policyPage">
+				<source>Page with policy details</source>
+				<target>Datenschutzerklärungs-Seite</target>
+			</trans-unit>
+
+			<trans-unit id="flexform.jobs.allowedStaticLanguages">
+				<source>Allowed languages inside language dropdown</source>
+				<target>Erlaubte Sprachangaben im Sprach-Auswahlfeld</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
