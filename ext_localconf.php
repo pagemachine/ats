@@ -23,26 +23,48 @@ defined('TYPO3_MODE') or die();
     ]
 );
 
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['FileDumpEID.php']['checkFileAccess']['ats_protection'] = \PAGEmachine\Ats\Hook\FileDumpControllerHook::class;
+
 if (TYPO3_MODE === 'BE') {
     $GLOBALS ['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['ats'] = \PAGEmachine\Ats\Hook\DataHandlerJobGroups::class;
 }
-
-// Marker replacements (CKEDITOR --> Fluid) in both mail and pdf context.
-// Useful for defining shortcuts for ViewHelpers or translations.
-// You can add your own markers here, however they need to be added in Resources/Public/JavaScript/CKEditorSetup.js as well
-$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['replacemarkers']['default'] = [
-    'application.salutation' => 'f:translate(key:"tx_ats.message.salutation.{application.salutation}",extensionName:"ats")',
+/**
+ * ATS extension configuration
+ * These are default values, feel free to modify them in your site extension.
+ */
+$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats'] = [
+    // Marker replacements (CKEDITOR --> Fluid) in both mail and pdf context.
+    // Useful for defining shortcuts for ViewHelpers or translations.
+    // You can add your own markers here, however they need to be added in Resources/Public/JavaScript/CKEditorSetup.js as well
+    'replacemarkers' => [
+        'default' => [
+            'application.salutation' => 'f:translate(key:"tx_ats.message.salutation.{application.salutation}",extensionName:"ats")',
+        ],
+        'mail' => [
+            'backenduser.signature' => 'backenduser.tx_ats_email_signature',
+        ],
+        'pdf' => [
+            'backenduser.signature' => 'backenduser.tx_ats_pdf_signature',
+        ],
+    ],
+    // Workflows
+    'workflows' => [
+        'defaultworkflow' => \PAGEmachine\Ats\Workflow\DefaultWorkflowConfiguration::get(),
+        'simpleworkflow' => \PAGEmachine\Ats\Workflow\SimpleWorkflowConfiguration::get(),
+    ],
+    // Active workflow
+    'activeWorkflow' => 'defaultworkflow',
+    //Settings handled by extension manager
+    'emSettings' => [
+        //Upload related settings
+        'fileHandling' => [
+            'allowedFileExtensions' => 'png,gif,jpg,tif,pdf,xls,xlsx,doc,docx,rtf,txt,zip,rar',
+            'conflictMode' => \TYPO3\CMS\Core\Resource\DuplicationBehavior::RENAME,
+            'uploadFolder' => '1:/tx_ats/',
+        ],
+    ],
 ];
 
-//Only used for mails
-$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['replacemarkers']['mail'] = [
-    'backenduser.signature' => 'backenduser.tx_ats_email_signature',
-];
-
-//Only used for pdfs
-$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['replacemarkers']['pdf'] = [
-    'backenduser.signature' => 'backenduser.tx_ats_pdf_signature',
-];
 
 // Add ckeditor template preset
 $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['ats_templates'] = 'EXT:ats/Configuration/RTE/Templates.yaml';
@@ -62,18 +84,7 @@ $signalSlotDispatcher->connect(
     'filterLanguageItems'
 );
 
-//Define workflows
-$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['workflows']['defaultworkflow'] = \PAGEmachine\Ats\Workflow\DefaultWorkflowConfiguration::get();
-$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['workflows']['simpleworkflow'] = \PAGEmachine\Ats\Workflow\SimpleWorkflowConfiguration::get();
-
-//Set workflow
-$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['activeWorkflow'] = 'defaultworkflow';
-
-
-
 //Load Extension Manager settings into EXTCONF for easier usage
-
-$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings'] = [];
 
 if (!empty($_EXTCONF)) {
     $typoScriptService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Service\TypoScriptService::class);
@@ -82,7 +93,7 @@ if (!empty($_EXTCONF)) {
 
     foreach ($extensionManagementConfig as $key => $value) {
       //Merge instance settings
-        if (is_array($value) && isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats'][$key])) {
+        if (is_array($value) && isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings'][$key])) {
             $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings'][$key] = array_merge($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings'][$key], $extensionManagementConfig[$key]);
         } else {
             $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings'][$key] = $extensionManagementConfig[$key];

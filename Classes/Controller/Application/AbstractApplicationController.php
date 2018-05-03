@@ -6,6 +6,8 @@ namespace PAGEmachine\Ats\Controller\Application;
  */
 
 
+use PAGEmachine\Ats\Property\TypeConverter\UploadedFileReferenceConverter;
+use PAGEmachine\Ats\Service\ExtconfService;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Controller\Exception\RequiredArgumentMissingException;
 
@@ -98,10 +100,23 @@ class AbstractApplicationController extends ActionController
      */
     protected function setPropertyMappingConfigurationForApplication()
     {
-
         $this->arguments->getArgument('application')
             ->getPropertyMappingConfiguration()
             ->forProperty('birthday')
             ->setTypeConverterOption(\TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::class, \TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'Y-m-d');
+
+        $uploadConfiguration = ExtconfService::getInstance()->getUploadConfiguration();
+
+        $this->arguments->getArgument('application')
+            ->getPropertyMappingConfiguration()
+            ->forProperty('files.999')
+            ->setTypeConverterOptions(
+                UploadedFileReferenceConverter::class,
+                [
+                    UploadedFileReferenceConverter::CONFIGURATION_UPLOAD_FOLDER => $uploadConfiguration['uploadFolder'],
+                    UploadedFileReferenceConverter::CONFIGURATION_UPLOAD_CONFLICT_MODE => $uploadConfiguration['conflictMode'],
+                    UploadedFileReferenceConverter::CONFIGURATION_FILE_EXTENSIONS => $uploadConfiguration['allowedFileExtensions'],
+                ]
+            );
     }
 }

@@ -115,4 +115,14 @@ class ExtconfService implements SingletonInterface
     {
         return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['jobGroupTemplate'] ?: 'bms department template %s';
     }
+
+    /**
+     * Returns the file handling options
+     *
+     * @return array
+     */
+    public function getUploadConfiguration()
+    {
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['fileHandling'];
+    }
 }

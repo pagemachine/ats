@@ -9,7 +9,7 @@
 			<f:for each="{application.files}" as="file">
 				<li class="list-group-item">
 					<a href="{file.backendUrl}" target="_blank">
-						<f:image src="{file.backendUrl}" maxHeight="100" style="border: 1px solid #DDD;" /> {file.originalResource.name}
+						<f:image image="{file.originalResource}" maxHeight="100" style="border: 1px solid #DDD;"/> {file.originalResource.name}
 					</a>
 				</li>
 			</f:for>
