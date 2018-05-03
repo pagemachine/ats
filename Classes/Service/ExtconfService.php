@@ -125,4 +125,24 @@ class ExtconfService implements SingletonInterface
     {
         return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['fileHandling'];
     }
+
+    /**
+     * Returns whether to send automatic acknowledge e-mails
+     *
+     * @return boolen
+     */
+    public function getSendAutoAcknowledge()
+    {
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['sendAutoAcknowledge'] ? true : false;
+    }
+
+    /**
+     * Returns The automatic acknowledgenebt E-mail template UID
+     *
+     * @return boolen
+     */
+    public function getAutoAcknowledgeTemplate()
+    {
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['autoAcknowledgeTemplate'] ?: '';
+    }
 }

@@ -2,6 +2,7 @@
 namespace PAGEmachine\Ats\Controller\Application;
 
 use PAGEmachine\Ats\Domain\Model\Application;
+use PAGEmachine\Ats\Service\ExtconfService;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -21,13 +22,18 @@ class SubmitController extends AbstractApplicationController
     protected $repository = null;
 
     /**
+     * @var \PAGEmachine\Ats\Message\MessageFactory
+     * @inject
+     */
+    protected $messageFactory;
+
+    /**
      * @param  Application $application
      * @ignorevalidation $application
      * @return void
      */
     public function showSummaryAction(Application $application)
     {
-
         $this->view->assign("application", $application);
     }
 
@@ -37,12 +43,45 @@ class SubmitController extends AbstractApplicationController
      */
     public function submitAction(Application $application)
     {
-        
+
         $application->submit();
 
         $this->repository->updateAndLog(
             $application,
             'new'
         );
+
+        if (ExtconfService::getInstance()->getSendAutoAcknowledge()) {
+            $message = $this->messageFactory->createMessage("acknowledge", $application);
+            if ($message->applyAutoAcknowledgeTemplate()) {
+                $this->repository->updateAndLog(
+                    $message->getApplication(),
+                    'autoAcknowledge',
+                    [
+                        'subject' => $message->getRenderedSubject(),
+                        'sendType' => $message->getSendType(),
+                        'cc' => $message->getCc(),
+                        'bcc' => $message->getBcc(),
+                        'message' => $message->getRenderedBody(),
+                    ]
+                );
+
+                $message->send();
+            }
+        }
+
+
+
+        $this->redirect("submitted", null, null, ['application' => $application]);
+    }
+
+    /**
+     * @param  Application $application
+     * @return void
+     */
+    public function submittedAction(Application $application)
+    {
+
+        $this->view->assign("application", $application);
     }
 }

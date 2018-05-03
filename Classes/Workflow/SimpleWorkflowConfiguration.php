@@ -30,6 +30,7 @@ class SimpleWorkflowConfiguration
         'edit' => ['from' => [], 'to' => []],
         'editStatus'=> ['from' => [], 'to' => []],
         'acknowledge' => ['from' => [], 'to' => []],
+        'autoAcknowledge'=> ['from' => [], 'to' => []],
         'employ' => ['name' => 'close', 'from' => ApplicationStatus::NEW_APPLICATION, 'to' => ApplicationStatus::EMPLOYED],
         'cancelByEmployer' => ['name' => 'close', 'from' => ApplicationStatus::NEW_APPLICATION, 'to' => ApplicationStatus::CANCELLED_BY_EMPLOYER],
         'cancelByCandidate' => ['name' => 'close', 'from' => ApplicationStatus::NEW_APPLICATION, 'to' => ApplicationStatus::CANCELLED_BY_CANDIDATE],
