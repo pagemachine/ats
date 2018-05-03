@@ -8,7 +8,12 @@ namespace PAGEmachine\Ats\Tests\Unit\Controller\Application;
 use PAGEmachine\Ats\Controller\Application\SubmitController;
 use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
+use PAGEmachine\Ats\Message\AcknowledgeMessage;
+use PAGEmachine\Ats\Message\MessageFactory;
+use PAGEmachine\Ats\Service\ExtconfService;
+use Prophecy\Argument;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 
@@ -34,17 +39,33 @@ class SubmitControllerTest extends UnitTestCase
     protected $application;
 
     /**
+     * @var MessageFactory
+     */
+    protected $messageFactory;
+
+    /**
      * Set up this testcase
     */
     public function setUp()
     {
 
-        $this->controller = new SubmitController;
+        $this->controller = $this->getMockBuilder(SubmitController::class)->setMethods([
+            'redirect',
+            'forward',
+            ])->getMock();
 
         $this->application = $this->prophesize(Application::class);
 
         $this->view = $this->prophesize(ViewInterface::class);
         $this->inject($this->controller, 'view', $this->view->reveal());
+
+        $this->messageFactory = $this->prophesize(MessageFactory::class);
+        $this->inject($this->controller, "messageFactory", $this->messageFactory->reveal());
+    }
+
+    public function tearDown()
+    {
+        GeneralUtility::purgeInstances();
     }
 
     /**
@@ -77,6 +98,30 @@ class SubmitControllerTest extends UnitTestCase
             $this->application->reveal(),
             'new'
         )->shouldBeCalled();
+
+        $extconfService = $this->prophesize(ExtconfService::class);
+        $extconfService->getSendAutoAcknowledge()->willReturn(true);
+
+        GeneralUtility::setSingletonInstance(ExtconfService::class, $extconfService->reveal());
+
+        $message = $this->prophesize(AcknowledgeMessage::class);
+        $message->applyAutoAcknowledgeTemplate()->shouldBeCalled()->willReturn(true);
+        $message->getApplication()->willReturn($this->application);
+        $message->getRenderedSubject()->willReturn("foo");
+        $message->getCc()->willReturn("cc");
+        $message->getBcc()->willReturn("bcc");
+        $message->getRenderedBody()->willReturn("Body");
+        $message->getSendType()->willReturn("mail");
+        $message->send()->shouldBeCalled();
+
+        $repository->updateAndLog(
+            $this->application->reveal(),
+            'autoAcknowledge',
+            Argument::type("array")
+        )->shouldBeCalled();
+
+        $this->messageFactory->createMessage("acknowledge", $this->application)->shouldBeCalled()->willReturn($message->reveal());
+
         $this->controller->submitAction($this->application->reveal());
     }
 }
