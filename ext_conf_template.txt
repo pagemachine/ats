@@ -22,7 +22,7 @@ fileHandling {
 }
 
 # cat=extra/enable; type=boolean; label=Send out an automated application receipt acknowledgement E-mail to the applicant (you need to specify the template below!)
-sendReceiptAcknowledge = 0
+sendAutoAcknowledge = 0
 
 # cat=extra/enable; type=integer; label=E-mail Template UID for the receipt acknowledgement
-ReceiptAcknowledgeTemplate =
+autoAcknowledgeTemplate =
