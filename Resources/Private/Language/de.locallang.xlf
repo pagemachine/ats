@@ -238,7 +238,7 @@
 
 			<trans-unit id="tx_ats.label.birthday">
 				<source>Date of birth (YYYY-MM-DD)</source>
-				<target>Geburtstag (TT-MM-JJJJ)</target>
+				<target>Geburtstag (TT.MM.JJJJ)</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.label.disability">
@@ -565,7 +565,7 @@
 
 			<trans-unit id="tx_ats.error.1307719788">
 				<source>The date was not recognized (for format "YYYY-MM-DD")</source>
-				<target>Das Datum wurde nicht erkannt (Format "TT-MM-JJJJ")</target>
+				<target>Das Datum wurde nicht erkannt (Format "TT.MM.JJJJ")</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.error.1399312430">
