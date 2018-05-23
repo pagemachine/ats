@@ -6,12 +6,27 @@ namespace PAGEmachine\Ats\Domain\Repository;
  */
 
 use PAGEmachine\Ats\Persistence\Repository;
+use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
 
 /**
  * The repository for TextTemplates
  */
 class TextTemplateRepository extends Repository
 {
+    /**
+     * Default query settings adjustments
+     * Ensures text templates are loaded system-wide and not restricted by pid, since they are used in BE and FE
+     *
+     * @return void
+     */
+    public function initializeObject()
+    {
+        $querySettings = $this->objectManager->get(Typo3QuerySettings::class);
+        $querySettings->setRespectStoragePage(false);
+
+        $this->setDefaultQuerySettings($querySettings);
+    }
+
     /**
      * Returns dropdown options for given message type
      *
@@ -20,7 +35,6 @@ class TextTemplateRepository extends Repository
      */
     public function getDropdownOptionsForType($type)
     {
-
         $textTemplates = $this->findByType($type);
 
         $dropdown = [];
