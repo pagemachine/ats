@@ -105,6 +105,7 @@ class SubmitControllerTest extends UnitTestCase
         GeneralUtility::setSingletonInstance(ExtconfService::class, $extconfService->reveal());
 
         $message = $this->prophesize(AcknowledgeMessage::class);
+        $message->setUseBackendUserCredentials(false)->shouldBeCalled();
         $message->applyAutoAcknowledgeTemplate()->shouldBeCalled()->willReturn(true);
         $message->getApplication()->willReturn($this->application);
         $message->getRenderedSubject()->willReturn("foo");

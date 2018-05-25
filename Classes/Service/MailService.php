@@ -53,9 +53,12 @@ class MailService implements SingletonInterface
      * @param  Application $application The application to pull information from
      * @param  string $subject
      * @param  string $body
+     * @param  string $cc
+     * @param  string $bcc
+     * @param  bool $useBackendUserCredentials Whether the mail should use the current backend user for sender details
      * @return void
      */
-    public function sendReplyMail(Application $application, $subject = "", $body = "", $cc = "", $bcc = "")
+    public function sendReplyMail(Application $application, $subject = "", $body = "", $cc = "", $bcc = "", $useBackendUserCredentials = true)
     {
         $mail = $this->callStatic(GeneralUtility::class, 'makeInstance', MailMessage::class);
 
@@ -71,7 +74,7 @@ class MailService implements SingletonInterface
 
         $mail
             ->setSubject($subject)
-            ->setFrom($this->fetchFrom())
+            ->setFrom($this->fetchFrom($useBackendUserCredentials))
             ->setTo([$application->getEmail() => $application->getFirstname() . ' ' . $application->getSurname()])
             ->setBody($renderedBody, 'text/html');
 
@@ -90,17 +93,18 @@ class MailService implements SingletonInterface
     /**
      * Returns Sender email/name from the current backend user (or fallback settings if not set)
      *
+     * Fallback order is BE user credentials > system wide settings
+     *
+     * @param $useBackendUserCredentials
      * @return array
      */
-    protected function fetchFrom()
+    protected function fetchFrom($useBackendUserCredentials = true)
     {
-
-        if (empty($this->backendUser->user['email']) || empty($this->backendUser->user['realName'])) {
-            $systemFrom = $this->fetchSystemFrom();
-            return $systemFrom;
+        if ($useBackendUserCredentials && !empty($this->backendUser->user['email']) && !empty($this->backendUser->user['realName'])) {
+            return [$this->backendUser->user['email'] => $this->backendUser->user['realName']];
         }
 
-        return [$this->backendUser->user['email'] => $this->backendUser->user['realName']];
+        return $this->fetchSystemFrom();
     }
 
     /**

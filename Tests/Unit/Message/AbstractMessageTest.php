@@ -86,7 +86,7 @@ class AbstractMessageTest extends UnitTestCase
         $this->fluidRenderingService->render("subject with replacedmarker", Argument::type("array"))->shouldBeCalled()->willReturn("rendered subject");
         $this->fluidRenderingService->render("someText", Argument::type("array"))->shouldBeCalled()->willReturn("<p>SomeText</p>");
 
-        $mailService->sendReplyMail($this->application, "rendered subject", "<p>SomeText</p>", "cc@foobar.de", "bcc@foobar.de")->shouldBeCalled();
+        $mailService->sendReplyMail($this->application, "rendered subject", "<p>SomeText</p>", "cc@foobar.de", "bcc@foobar.de", true)->shouldBeCalled();
 
         $this->abstractMessage->send();
     }
