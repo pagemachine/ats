@@ -191,6 +191,29 @@ abstract class AbstractMessage
 
 
     /**
+     * @var bool
+     */
+    protected $useBackendUserCredentials = true;
+
+    /**
+     * @return bool
+     */
+    public function getUseBackendUserCredentials()
+    {
+        return $this->useBackendUserCredentials;
+    }
+
+    /**
+     * @param bool $useBackendUserCredentials
+     * @return void
+     */
+    public function setUseBackendUserCredentials($useBackendUserCredentials)
+    {
+        $this->useBackendUserCredentials = $useBackendUserCredentials;
+    }
+
+
+    /**
      * @validate NotEmpty
      * @var string $subject
      */
@@ -433,7 +456,14 @@ abstract class AbstractMessage
     {
 
         if ($this->sendType == AbstractMessage::SENDTYPE_MAIL) {
-            MailService::getInstance()->sendReplyMail($this->application, $this->getRenderedSubject(), $this->getRenderedBody(), $this->cc, $this->bcc);
+            MailService::getInstance()->sendReplyMail(
+                $this->application,
+                $this->getRenderedSubject(),
+                $this->getRenderedBody(),
+                $this->cc,
+                $this->bcc,
+                $this->useBackendUserCredentials
+            );
         } elseif ($this->sendType == AbstractMessage::SENDTYPE_PDF) {
             PdfService::getInstance()->generateAndDownloadPdf($this->getRenderedSubject(), $this->application, $this->getRenderedBody());
         }

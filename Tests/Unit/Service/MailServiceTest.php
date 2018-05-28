@@ -6,6 +6,7 @@ namespace PAGEmachine\Ats\Tests\Unit\Service;
  */
 
 use PAGEmachine\Ats\Domain\Model\Application;
+use PAGEmachine\Ats\Service\ExtconfService;
 use PAGEmachine\Ats\Service\FluidRenderingService;
 use PAGEmachine\Ats\Service\MailService;
 use Prophecy\Argument;
@@ -68,14 +69,19 @@ class MailServiceTest extends UnitTestCase
 
         $this->mailMessage = $this->prophesize(MailMessage::class);
 
-        $this->mailMessage->setSubject('Foo')->willReturn($this->mailMessage->reveal())->shouldBeCalled();
-        $this->mailMessage->setBody('Bar', 'text/html')->willReturn($this->mailMessage->reveal())->shouldBeCalled();
+        $this->mailMessage->setSubject('Foo')->willReturn($this->mailMessage->reveal());
+        $this->mailMessage->setBody('Bar', 'text/html')->willReturn($this->mailMessage->reveal());
 
-        $this->mailMessage->setTo(['sherlock@holmes.com' => 'Sherlock Holmes'])->willReturn($this->mailMessage->reveal())->shouldBeCalled();
+        $this->mailMessage->setTo(['sherlock@holmes.com' => 'Sherlock Holmes'])->willReturn($this->mailMessage->reveal());
 
-        $this->mailMessage->send()->shouldBeCalled();
+        $this->mailMessage->send()->willReturn();
 
         $this->mailService->method('callStatic')->with(GeneralUtility::class, 'makeInstance', MailMessage::class)->willReturn($this->mailMessage->reveal());
+    }
+
+    public function tearDown()
+    {
+        GeneralUtility::purgeInstances();
     }
 
     /**
@@ -133,5 +139,125 @@ class MailServiceTest extends UnitTestCase
         $this->fluidRenderingService->renderTemplate('Mail/Html', Argument::type('array'))->shouldBeCalled()->willReturn('Bar');
 
         $this->mailService->sendReplyMail($this->application, "Foo", "Bar", "", "bcc@domain.com");
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider mailCombinations
+     */
+    public function fetchesCorrectFrom($useBeUserCredentials, $backendUserRecord, $atsSystemName, $atsSystemAddress, $systemFrom, $expectedFrom)
+    {
+        $this->backendUser->user = $backendUserRecord;
+
+        $extconfService = $this->prophesize(ExtconfService::class);
+        $extconfService->getEmailDefaultSenderName()->willReturn($atsSystemName);
+        $extconfService->getEmailDefaultSenderAddress()->willReturn($atsSystemAddress);
+
+        GeneralUtility::setSingletonInstance(ExtconfService::class, $extconfService->reveal());
+
+        $this->mailService->method('fetchSystemFrom')->will($this->returnValue($systemFrom));
+
+        $this->assertEquals(
+            $expectedFrom,
+            $this->mailService->fetchFrom($useBeUserCredentials)
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function mailCombinations()
+    {
+        return [
+            'backend user data allowed, backend user valid' => [
+                true,
+                [
+                    'email' => 'beuser@example.com',
+                    'realName' => 'BackendUser',
+                ],
+                'ATS',
+                'ats@example.com',
+                ['system@example.com' => 'System'],
+                ['beuser@example.com' => 'BackendUser'],
+            ],
+            'backend user data allowed, backend user email invalid' => [
+                true,
+                [
+                    'email' => 'invalid',
+                    'realName' => 'backend user',
+                ],
+                'ATS',
+                'ats@example.com',
+                ['system@example.com' => 'System'],
+                ['ats@example.com' => 'ATS'],
+            ],
+            'backend user data allowed, backend user name invalid' => [
+                true,
+                [
+                    'email' => 'beuser@example.com',
+                    'realName' => '',
+                ],
+                'ATS',
+                'ats@example.com',
+                ['system@example.com' => 'System'],
+                ['ats@example.com' => 'ATS'],
+            ],
+            'backend user data allowed, backend user email invalid, ATS email invalid' => [
+                true,
+                [
+                    'email' => 'invalid',
+                    'realName' => 'backend user',
+                ],
+                'ATS',
+                'invalid',
+                ['system@example.com' => 'System'],
+                ['system@example.com' => 'System'],
+            ],
+            'backend user data allowed, backend user email invalid, ATS name invalid' => [
+                true,
+                [
+                    'email' => 'invalid',
+                    'realName' => 'backend user',
+                ],
+                '',
+                'ats@example.com',
+                ['system@example.com' => 'System'],
+                ['system@example.com' => 'System'],
+            ],
+            'backend user data allowed, backend user name invalid, ATS email invalid' => [
+                true,
+                [
+                    'email' => 'beuser@example.com',
+                    'realName' => '',
+                ],
+                'ATS',
+                'invalid',
+                ['system@example.com' => 'System'],
+                ['system@example.com' => 'System'],
+            ],
+            'backend user data allowed, backend user name invalid, ATS name invalid' => [
+                true,
+                [
+                    'email' => 'beuser@example.com',
+                    'realName' => '',
+                ],
+                '',
+                'ats@example.com',
+                ['system@example.com' => 'System'],
+                ['system@example.com' => 'System'],
+            ],
+            'backend user data not allowed' => [
+                false,
+                [
+                    'email' => 'beuser@example.com',
+                    'realName' => 'backend user',
+                ],
+                'ATS',
+                'ats@example.com',
+                ['system@example.com' => 'System'],
+                ['ats@example.com' => 'ATS'],
+            ],
+        ];
     }
 }

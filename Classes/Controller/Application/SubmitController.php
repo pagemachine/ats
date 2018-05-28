@@ -53,6 +53,8 @@ class SubmitController extends AbstractApplicationController
 
         if (ExtconfService::getInstance()->getSendAutoAcknowledge()) {
             $message = $this->messageFactory->createMessage("acknowledge", $application);
+            $message->setUseBackendUserCredentials(false);
+
             if ($message->applyAutoAcknowledgeTemplate()) {
                 $this->repository->updateAndLog(
                     $message->getApplication(),
@@ -69,8 +71,6 @@ class SubmitController extends AbstractApplicationController
                 $message->send();
             }
         }
-
-
 
         $this->redirect("submitted", null, null, ['application' => $application]);
     }

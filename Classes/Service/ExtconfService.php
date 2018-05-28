@@ -145,4 +145,24 @@ class ExtconfService implements SingletonInterface
     {
         return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['autoAcknowledgeTemplate'] ?: '';
     }
+
+    /**
+     * Returns the default email sender name
+     *
+     * @return string
+     */
+    public function getEmailDefaultSenderName()
+    {
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['emailDefaultSenderName'] ?: '';
+    }
+
+    /**
+     * Returns the default email sender address
+     *
+     * @return string
+     */
+    public function getEmailDefaultSenderAddress()
+    {
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['emailDefaultSenderAddress'] ?: '';
+    }
 }

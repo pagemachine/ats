@@ -10,6 +10,12 @@ jobGroupPattern = bms_jobno_%s
 # cat=basic/enable; type=string; label=Name of the group to use as a template (you need to create a group with this name!)
 jobGroupTemplate = bms department template %s
 
+# cat=basic/enable; type=string; label=Default email sender (if empty, system settings are used)
+emailDefaultSenderName =
+
+# cat=basic/enable; type=string; label=Default email address (if empty, system settings are used)
+emailDefaultSenderAddress =
+
 fileHandling {
 	# cat=advanced/file; type=string; label=Allowed upload file extensions
 	allowedFileExtensions = png,gif,jpg,tif,pdf,xls,xlsx,doc,docx,rtf,txt,zip,rar
