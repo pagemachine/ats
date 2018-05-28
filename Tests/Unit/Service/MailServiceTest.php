@@ -146,12 +146,9 @@ class MailServiceTest extends UnitTestCase
      *
      * @dataProvider mailCombinations
      */
-    public function fetchesCorrectFrom($useBeUserCredentials, $beUserName, $beUserAddress, $atsSystemName, $atsSystemAddress, $systemName, $systemAddress, $expectedName, $expectedAddress)
+    public function fetchesCorrectFrom($useBeUserCredentials, $backendUserRecord, $atsSystemName, $atsSystemAddress, $systemFrom, $expectedFrom)
     {
-        $this->backendUser->user = [
-            'email' => $beUserAddress,
-            'realName' => $beUserName,
-        ];
+        $this->backendUser->user = $backendUserRecord;
 
         $extconfService = $this->prophesize(ExtconfService::class);
         $extconfService->getEmailDefaultSenderName()->willReturn($atsSystemName);
@@ -159,10 +156,10 @@ class MailServiceTest extends UnitTestCase
 
         GeneralUtility::setSingletonInstance(ExtconfService::class, $extconfService->reveal());
 
-        $this->mailService->method('fetchSystemFrom')->will($this->returnValue([$systemAddress => $systemName]));
+        $this->mailService->method('fetchSystemFrom')->will($this->returnValue($systemFrom));
 
         $this->assertEquals(
-            [$expectedAddress => $expectedName],
+            $expectedFrom,
             $this->mailService->fetchFrom($useBeUserCredentials)
         );
     }
@@ -173,11 +170,72 @@ class MailServiceTest extends UnitTestCase
     public function mailCombinations()
     {
         return [
-            'be user data allowed, be user set' => [true, 'Beuser', 'beuser@foo.com', 'ATS', 'ats@foo.com', 'System', 'system@foo.com', 'Beuser', 'beuser@foo.com'],
-            'be user data allowed, be user invalid, ATS fallback' => [true, 'Beuser', 'beuserfoo.com', 'ATS', 'ats@foo.com', 'System', 'system@foo.com', 'ATS', 'ats@foo.com'],
-            'be user data allowed, be user invalid, ATS invalid, system fallback' => [true, 'Beuser', 'beuserfoo.com', 'ATS', 'atsfoo.com', 'System', 'system@foo.com', 'System', 'system@foo.com'],
-            'be user data not allowed, ATS fallback' => [false, 'Beuser', 'beuser@foo.com', 'ATS', 'ats@foo.com', 'System', 'system@foo.com', 'ATS', 'ats@foo.com'],
-            'be user data not allowed, system fallback' => [false, 'Beuser', 'beuser@foo.com', '', '', 'System', 'system@foo.com', 'System', 'system@foo.com'],
+            'backend user data allowed, backend user valid' => [
+                true,
+                [
+                    'email' => 'beuser@foo.com',
+                    'realName' => 'backend user',
+                ],
+                'ATS',
+                'ats@foo.com',
+                ['System' => 'system@foo.com'],
+                ['Beuser' => 'beuser@foo.com'],
+            ],
+            'backend user data allowed, backend user email invalid' => [
+                true,
+                [
+                    'email' => 'invalid',
+                    'realName' => 'backend user',
+                ],
+                'ATS',
+                'ats@foo.com',
+                ['System' => 'system@foo.com'],
+                ['ATS' => 'ats@foo.com'],
+            ],
+            'backend user data allowed, backend user name invalid' => [
+                true,
+                [
+                    'email' => 'beuser@foo.com',
+                    'realName' => '',
+                ],
+                'ATS',
+                'ats@foo.com',
+                ['System' => 'system@foo.com'],
+                ['ATS' => 'ats@foo.com'],
+            ],
+            'backend user data allowed, backend user invalid, ATS email invalid' => [
+                true,
+                [
+                    'email' => 'beuserfoo.com',
+                    'realName' => 'backend user',
+                ],
+                'ATS',
+                'invalid',
+                ['System' => 'system@foo.com'],
+                ['System' => 'system@foo.com'],
+            ],
+            'backend user data allowed, backend user invalid, ATS name invalid' => [
+                true,
+                [
+                    'email' => 'beuserfoo.com',
+                    'realName' => 'backend user',
+                ],
+                '',
+                'ats@foo.com',
+                ['System' => 'system@foo.com'],
+                ['System' => 'system@foo.com'],
+            ],
+            'backend user data not allowed' => [
+                false,
+                [
+                    'email' => 'beuser@foo.com',
+                    'realName' => 'backend user',
+                ],
+                'ATS',
+                'ats@foo.com',
+                ['System' => 'system@foo.com'],
+                ['ATS' => 'ats@foo.com'],
+            ],
         ];
     }
 }
