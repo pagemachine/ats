@@ -6,6 +6,7 @@ namespace PAGEmachine\Ats\Tests\Unit\Service;
  */
 
 use PAGEmachine\Ats\Domain\Model\Application;
+use PAGEmachine\Ats\Service\ExtconfService;
 use PAGEmachine\Ats\Service\FluidRenderingService;
 use PAGEmachine\Ats\Service\MailService;
 use Prophecy\Argument;
@@ -68,14 +69,19 @@ class MailServiceTest extends UnitTestCase
 
         $this->mailMessage = $this->prophesize(MailMessage::class);
 
-        $this->mailMessage->setSubject('Foo')->willReturn($this->mailMessage->reveal())->shouldBeCalled();
-        $this->mailMessage->setBody('Bar', 'text/html')->willReturn($this->mailMessage->reveal())->shouldBeCalled();
+        $this->mailMessage->setSubject('Foo')->willReturn($this->mailMessage->reveal());
+        $this->mailMessage->setBody('Bar', 'text/html')->willReturn($this->mailMessage->reveal());
 
-        $this->mailMessage->setTo(['sherlock@holmes.com' => 'Sherlock Holmes'])->willReturn($this->mailMessage->reveal())->shouldBeCalled();
+        $this->mailMessage->setTo(['sherlock@holmes.com' => 'Sherlock Holmes'])->willReturn($this->mailMessage->reveal());
 
-        $this->mailMessage->send()->shouldBeCalled();
+        $this->mailMessage->send()->willReturn();
 
         $this->mailService->method('callStatic')->with(GeneralUtility::class, 'makeInstance', MailMessage::class)->willReturn($this->mailMessage->reveal());
+    }
+
+    public function tearDown()
+    {
+        GeneralUtility::purgeInstances();
     }
 
     /**
@@ -133,5 +139,45 @@ class MailServiceTest extends UnitTestCase
         $this->fluidRenderingService->renderTemplate('Mail/Html', Argument::type('array'))->shouldBeCalled()->willReturn('Bar');
 
         $this->mailService->sendReplyMail($this->application, "Foo", "Bar", "", "bcc@domain.com");
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider mailCombinations
+     */
+    public function fetchesCorrectFrom($useBeUserCredentials, $beUserName, $beUserAddress, $atsSystemName, $atsSystemAddress, $systemName, $systemAddress, $expectedName, $expectedAddress)
+    {
+        $this->backendUser->user = [
+            'email' => $beUserAddress,
+            'realName' => $beUserName,
+        ];
+
+        $extconfService = $this->prophesize(ExtconfService::class);
+        $extconfService->getEmailDefaultSenderName()->willReturn($atsSystemName);
+        $extconfService->getEmailDefaultSenderAddress()->willReturn($atsSystemAddress);
+
+        GeneralUtility::setSingletonInstance(ExtconfService::class, $extconfService->reveal());
+
+        $this->mailService->method('fetchSystemFrom')->will($this->returnValue([$systemAddress => $systemName]));
+
+        $this->assertEquals(
+            [$expectedAddress => $expectedName],
+            $this->mailService->fetchFrom($useBeUserCredentials)
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function mailCombinations()
+    {
+        return [
+            'be user data allowed, be user set' => [true, 'Beuser', 'beuser@foo.com', 'ATS', 'ats@foo.com', 'System', 'system@foo.com', 'Beuser', 'beuser@foo.com'],
+            'be user data allowed, be user invalid, ATS fallback' => [true, 'Beuser', 'beuserfoo.com', 'ATS', 'ats@foo.com', 'System', 'system@foo.com', 'ATS', 'ats@foo.com'],
+            'be user data allowed, be user invalid, ATS invalid, system fallback' => [true, 'Beuser', 'beuserfoo.com', 'ATS', 'atsfoo.com', 'System', 'system@foo.com', 'System', 'system@foo.com'],
+            'be user data not allowed, ATS fallback' => [false, 'Beuser', 'beuser@foo.com', 'ATS', 'ats@foo.com', 'System', 'system@foo.com', 'ATS', 'ats@foo.com'],
+            'be user data not allowed, system fallback' => [false, 'Beuser', 'beuser@foo.com', '', '', 'System', 'system@foo.com', 'System', 'system@foo.com'],
+        ];
     }
 }

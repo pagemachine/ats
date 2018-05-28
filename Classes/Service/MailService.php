@@ -2,6 +2,7 @@
 namespace PAGEmachine\Ats\Service;
 
 use PAGEmachine\Ats\Domain\Model\Application;
+use PAGEmachine\Ats\Service\ExtconfService;
 use PAGEmachine\Ats\Service\FluidRenderingService;
 use PAGEmachine\Ats\Traits\StaticCalling;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
@@ -93,15 +94,21 @@ class MailService implements SingletonInterface
     /**
      * Returns Sender email/name from the current backend user (or fallback settings if not set)
      *
-     * Fallback order is BE user credentials > system wide settings
+     * Fallback order is BE user credentials > ATS settings > system wide settings
      *
      * @param $useBackendUserCredentials
      * @return array
      */
-    protected function fetchFrom($useBackendUserCredentials = true)
+    public function fetchFrom($useBackendUserCredentials = true)
     {
-        if ($useBackendUserCredentials && !empty($this->backendUser->user['email']) && !empty($this->backendUser->user['realName'])) {
+        if ($useBackendUserCredentials && GeneralUtility::validEmail($this->backendUser->user['email']) && !empty($this->backendUser->user['realName'])) {
             return [$this->backendUser->user['email'] => $this->backendUser->user['realName']];
+        }
+
+        $extconfService = ExtconfService::getInstance();
+
+        if (!empty($extconfService->getEmailDefaultSenderName()) && GeneralUtility::validEmail($extconfService->getEmailDefaultSenderAddress())) {
+            return [$extconfService->getEmailDefaultSenderAddress() => $extconfService->getEmailDefaultSenderName()];
         }
 
         return $this->fetchSystemFrom();
@@ -113,9 +120,8 @@ class MailService implements SingletonInterface
      * @codeCoverageIgnore
      * @return array
      */
-    protected function fetchSystemFrom()
+    public function fetchSystemFrom()
     {
-
         return MailUtility::getSystemFrom();
     }
 }
