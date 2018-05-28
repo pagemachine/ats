@@ -174,12 +174,12 @@ class MailServiceTest extends UnitTestCase
                 true,
                 [
                     'email' => 'beuser@example.com',
-                    'realName' => 'backend user',
+                    'realName' => 'BackendUser',
                 ],
                 'ATS',
                 'ats@example.com',
                 ['system@example.com' => 'System'],
-                ['beuser@example.com' => 'Beuser'],
+                ['beuser@example.com' => 'BackendUser'],
             ],
             'backend user data allowed, backend user email invalid' => [
                 true,
