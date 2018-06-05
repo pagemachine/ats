@@ -10,6 +10,7 @@ use PAGEmachine\Ats\Domain\Model\AbstractApplication;
 use PAGEmachine\Ats\Domain\Model\History;
 use PAGEmachine\Ats\Domain\Model\Job;
 use PAGEmachine\Ats\Persistence\Repository;
+use PAGEmachine\Ats\Service\ExtconfService;
 use TYPO3\CMS\Beuser\Domain\Model\BackendUser;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Extbase\Domain\Model\FrontendUser;
@@ -21,10 +22,17 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
  */
 class AbstractApplicationRepository extends Repository
 {
-    protected $defaultOrderings = [
-        'surname' => QueryInterface::ORDER_ASCENDING,
-        'firstname' => QueryInterface::ORDER_ASCENDING,
-    ];
+    /**
+     * Set default orderings on initialization
+     *
+     * @return void
+     */
+    public function initializeObject()
+    {
+        $this->setDefaultOrderings(
+            ExtconfService::getInstance()->getApplicationDefaultOrderings()
+        );
+    }
 
     /**
      *
