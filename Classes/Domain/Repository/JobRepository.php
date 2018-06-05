@@ -6,6 +6,7 @@ namespace PAGEmachine\Ats\Domain\Repository;
  */
 
 use PAGEmachine\Ats\Persistence\Repository;
+use PAGEmachine\Ats\Service\ExtconfService;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 
 /**
@@ -13,11 +14,17 @@ use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
  */
 class JobRepository extends Repository
 {
-    // Order by BE sorting
-    protected $defaultOrderings = array(
-        'endtime' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING,
-        'title' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
-    );
+    /**
+     * Set default orderings on initialization
+     *
+     * @return void
+     */
+    public function initializeObject()
+    {
+        $this->setDefaultOrderings(
+            ExtconfService::getInstance()->getJobDefaultOrderings()
+        );
+    }
 
     /**
      * Override findAll() function to apply hidden field restriction in backend context, since all enableFields are not applied there

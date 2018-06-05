@@ -165,4 +165,24 @@ class ExtconfService implements SingletonInterface
     {
         return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['emailDefaultSenderAddress'] ?: '';
     }
+
+    /**
+     * Returns the default orderings for applications
+     *
+     * @return array
+     */
+    public function getApplicationDefaultOrderings()
+    {
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['defaultOrderings']['application'] ?: [];
+    }
+
+    /**
+     * Returns the default orderings for jobs
+     *
+     * @return array
+     */
+    public function getJobDefaultOrderings()
+    {
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['defaultOrderings']['job'] ?: [];
+    }
 }

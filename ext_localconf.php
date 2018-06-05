@@ -33,6 +33,17 @@ if (TYPO3_MODE === 'BE') {
  * These are default values, feel free to modify them in your site extension.
  */
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats'] = [
+    // Default orderings in repository classes. Change these to modify the default order of jobs/applications.
+    'defaultOrderings' => [
+        'application' => [
+            'surname' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
+            'firstname' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
+        ],
+        'job' => [
+            'endtime' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING,
+            'title' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
+        ],
+    ],
     // Marker replacements (CKEDITOR --> Fluid) in both mail and pdf context.
     // Useful for defining shortcuts for ViewHelpers or translations.
     // You can add your own markers here, however they need to be added in Resources/Public/JavaScript/CKEditorSetup.js as well
