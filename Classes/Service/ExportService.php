@@ -4,6 +4,7 @@ namespace PAGEmachine\Ats\Service;
 use PAGEmachine\Ats\Application\ApplicationRating;
 use PAGEmachine\Ats\Application\ApplicationStatus;
 use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Lang\LanguageService;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -26,7 +27,7 @@ class ExportService implements SingletonInterface
 
     public function __construct()
     {
-        $GLOBALS['LANG']->includeLLFile('EXT:ats/Resources/Private/Language/locallang.xlf');
+        $this->getLanguageService()->includeLLFile('EXT:ats/Resources/Private/Language/locallang.xlf');
     }
 
     /**
@@ -187,8 +188,8 @@ class ExportService implements SingletonInterface
     {
         $exportHeader = '';
         foreach ($options as $option) {
-            if ($GLOBALS['LANG']->getLL('tx_ats.application.'.$option)) {
-                $exportHeader .= '"'.utf8_decode($GLOBALS['LANG']->getLL('tx_ats.application.'.$option)).'";';
+            if ($this->getLanguageService()->getLL('tx_ats.application.'.$option)) {
+                $exportHeader .= '"'.utf8_decode($this->getLanguageService()->getLL('tx_ats.application.'.$option)).'";';
             } else {
                 $exportHeader .= '"'.$option.'";';
             }
@@ -229,7 +230,7 @@ class ExportService implements SingletonInterface
                                 $row[] = $application->getCreationDate()->format('Y-m-d');
                                 break;
                             case 'application_type':
-                                $row[] = $GLOBALS['LANG']->getLL('tx_ats.application.application_type.'.$application->getApplicationType());
+                                $row[] = $this->getLanguageService()->getLL('tx_ats.application.application_type.'.$application->getApplicationType());
                                 break;
                             case 'status':
                                 $row[] = ApplicationStatus::getFlippedConstants()[$application->getStatus()->__toString()];
@@ -286,7 +287,7 @@ class ExportService implements SingletonInterface
                                 $row[] = $application->getTitle();
                                 break;
                             case 'salutation':
-                                $row[] = $GLOBALS['LANG']->getLL('tx_ats.label.salutation.'.$application->getSalutation());
+                                $row[] = $this->getLanguageService()->getLL('tx_ats.label.salutation.'.$application->getSalutation());
                                 break;
                             case 'firstname':
                                 $row[] = $application->getFirstname();
@@ -298,7 +299,7 @@ class ExportService implements SingletonInterface
                                 $row[] = $application->getBirthday() ? $application->getBirthday()->format('Y-m-d') : '';
                                 break;
                             case 'disability':
-                                $row[] = $GLOBALS['LANG']->getLL('tx_ats.label.disability.'.$application->getDisability());
+                                $row[] = $this->getLanguageService()->getLL('tx_ats.label.disability.'.$application->getDisability());
                                 break;
                             case 'nationality':
                                 $row[] = $application->getNationality();
@@ -325,10 +326,10 @@ class ExportService implements SingletonInterface
                                 $row[] = $application->getMobile();
                                 break;
                             case 'employed':
-                                $row[] = $GLOBALS['LANG']->getLL('tx_ats.label.employed.'.$application->getEmployed());
+                                $row[] = $this->getLanguageService()->getLL('tx_ats.label.employed.'.$application->getEmployed());
                                 break;
                             case 'school_qualification':
-                                $row[] = $GLOBALS['LANG']->getLL('tx_ats.label.school_qualification.'.$application->getSchoolQualification());
+                                $row[] = $this->getLanguageService()->getLL('tx_ats.label.school_qualification.'.$application->getSchoolQualification());
                                 break;
                             case 'professional_qualification':
                                 $row[] = $application->getProfessionalQualification();
@@ -393,13 +394,13 @@ class ExportService implements SingletonInterface
                                 $row[] = str_replace("\r\n", ' ', $application->getComment());
                                 break;
                             case 'referrer':
-                                $row[] = $GLOBALS['LANG']->getLL('tx_ats.label.referrer.'.$application->getReferrer());
+                                $row[] = $this->getLanguageService()->getLL('tx_ats.label.referrer.'.$application->getReferrer());
                                 break;
                             case 'communication_channel':
                                 $row[] = 'communication_channel';
                                 break;
                             case 'forward_to_departments':
-                                $row[] = $GLOBALS['LANG']->getLL('tx_ats.label.forward_to_departments.'.$application->getForwardToDepartments());
+                                $row[] = $this->getLanguageService()->getLL('tx_ats.label.forward_to_departments.'.$application->getForwardToDepartments());
                                 break;
                             case 'comment_employer':
                                 $row[] = 'comment_employer';
@@ -485,5 +486,13 @@ class ExportService implements SingletonInterface
             $whereClause .= " AND t1.crdate <= UNIX_TIMESTAMP('".$filter['finish']."')";
         }
         return $whereClause;
+    }
+
+    /**
+     * @return LanguageService
+     */
+    public function getLanguageService()
+    {
+        return $GLOBALS['LANG'];
     }
 }
