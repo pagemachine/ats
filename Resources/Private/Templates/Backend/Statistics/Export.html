@@ -33,11 +33,11 @@
 						<table class="table table-striped table-sm">
 							<f:for each="{exportOptions}" as="option">
 								<tr>
-									<th width="20">
+									<td width="20">
 										<f:form.checkbox name="selectedOptions[]" value="{option}" />
-									</th>
+									</td>
 									<td>
-										<f:translate key="tx_ats.application.{option}" default="{option}"/>
+										<f:translate key="tx_ats.statistics.label.{option}" default="{option}"/>
 									</td>
 								</tr>
 							</f:for>

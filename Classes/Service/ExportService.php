@@ -4,7 +4,6 @@ namespace PAGEmachine\Ats\Service;
 use PAGEmachine\Ats\Application\ApplicationRating;
 use PAGEmachine\Ats\Application\ApplicationStatus;
 use TYPO3\CMS\Core\SingletonInterface;
-use TYPO3\CMS\Lang\LanguageService;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -188,8 +187,8 @@ class ExportService implements SingletonInterface
     {
         $exportHeader = '';
         foreach ($options as $option) {
-            if ($this->getLanguageService()->getLL('tx_ats.application.'.$option)) {
-                $exportHeader .= '"'.utf8_decode($this->getLanguageService()->getLL('tx_ats.application.'.$option)).'";';
+            if ($this->getLanguageService()->getLL('tx_ats.statistics.label.'.$option)) {
+                $exportHeader .= '"'.utf8_decode($this->getLanguageService()->getLL('tx_ats.statistics.label.'.$option)).'";';
             } else {
                 $exportHeader .= '"'.$option.'";';
             }
@@ -358,10 +357,10 @@ class ExportService implements SingletonInterface
                             case 'language':
                                 $lang = [];
                                 foreach ($application->getLanguageSkills() as $key => $languageSkill) {
-
-                                    $lang[] = sprintf("%s: %s",
+                                    $lang[] = sprintf(
+                                        "%s: %s",
                                         $languageSkill->getLanguage() ? $languageSkill->getLanguage()->getNameEn() : $languageSkill->getTextLanguage(),
-                                        $languageSkill->getLevel()
+                                        $this->getLanguageService()->getLL('tx_ats.languageskill.level.' . $languageSkill->getLevel())
                                     );
                                 }
                                 $row[] = implode(', ', $lang);

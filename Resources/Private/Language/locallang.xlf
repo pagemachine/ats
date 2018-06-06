@@ -1557,6 +1557,181 @@
 			<trans-unit id="tx_ats.be.messageTypes.5">
 				<source>Reject</source>
 			</trans-unit>
+
+
+			<!-- Statistics -->
+			<trans-unit id='tx_ats.statistics.label.uid'>
+				<source>ID</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.crdate'>
+				<source>Creation Date</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.application_type'>
+				<source>Application Type</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.status'>
+				<source>Status</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.aip'>
+				<source>AIP</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.rating'>
+				<source>Rating</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.comment_rating'>
+				<source>Rating Comment</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.rating_perso'>
+				<source>Rating Personell Dep.</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.comment_rating_perso'>
+				<source>Rating Personell Dep. Comment</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.job_number'>
+				<source>Job Number</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.job'>
+				<source>Job</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.privacy_policy'>
+				<source>Privacy Policy</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.vocational_training_completed'>
+				<source>Voc. Training Completed</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.title'>
+				<source>Title</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.salutation'>
+				<source>Salutation</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.firstname'>
+				<source>First name</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.surname'>
+				<source>Last name</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.birthday'>
+				<source>Birthday</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.disability'>
+				<source>Disability</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.nationality'>
+				<source>Nationality</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.street'>
+				<source>Street</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.zipcode'>
+				<source>ZIP Code</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.city'>
+				<source>City</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.country'>
+				<source>Country</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.email'>
+				<source>Email</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.phone'>
+				<source>Phone</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.mobile'>
+				<source>Mobile</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.employed'>
+				<source>Are you currently employed at our company?</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.school_qualification'>
+				<source>School Qualification</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.professional_qualification'>
+				<source>Professional Qualification</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.professional_qualification_final_grade'>
+				<source>Prof. Qu. final grade</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.academic_degree'>
+				<source>Academic Degree</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.academic_degree_final_grade'>
+				<source>A. D. final grade</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.doctoral_degree'>
+				<source>Doctoral Degree</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.doctoral_degree_final_grade'>
+				<source>Doc. Deg. final grade</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.previous_knowledge'>
+				<source>Previous Knowledge</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.it_knowledge'>
+				<source>IT Knowledge</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.language'>
+				<source>Languages</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.comment'>
+				<source>Comment</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.referrer'>
+				<source>Referrer</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.forward_to_departments'>
+				<source>Forward to Departments</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.career'>
+				<source>Career</source>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.location'>
+				<source>Location</source>
+			</trans-unit>
+
 		</body>
 	</file>
 </xliff>

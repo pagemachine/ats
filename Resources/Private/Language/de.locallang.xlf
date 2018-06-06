@@ -1712,6 +1712,216 @@
 				<source>Reject</source>
 				<target>Absage</target>
 			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.uid'>
+				<source>ID</source>
+				<target>ID</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.crdate'>
+				<source>Creation Date</source>
+				<target>Erstelldatum</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.application_type'>
+				<source>Application Type</source>
+				<target>Art der Bewerbung</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.status'>
+				<source>Status</source>
+				<target>Status</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.aip'>
+				<source>AIP</source>
+				<target>AIP</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.rating'>
+				<source>Rating</source>
+				<target>Rating</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.comment_rating'>
+				<source>Rating Comment</source>
+				<target>Rating Kommentar</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.rating_perso'>
+				<source>Rating Personell Dep.</source>
+				<target>Rating Perso</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.comment_rating_perso'>
+				<source>Rating Personell Dep. Comment</source>
+				<target>Rating Perso Kommentar</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.job_number'>
+				<source>Job Number</source>
+				<target>Job Nr.</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.job'>
+				<source>Job</source>
+				<target>Job</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.privacy_policy'>
+				<source>Privacy Policy</source>
+				<target>Datenschutz-Einwilligung</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.title'>
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.salutation'>
+				<source>Salutation</source>
+				<target>Anrede</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.firstname'>
+				<source>First name</source>
+				<target>Vorname</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.surname'>
+				<source>Last name</source>
+				<target>Nachname</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.birthday'>
+				<source>Birthday</source>
+				<target>Geburtstag</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.disability'>
+				<source>Disability</source>
+				<target>Schwerbehinderung</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.nationality'>
+				<source>Nationality</source>
+				<target>Nationalität</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.street'>
+				<source>Street</source>
+				<target>Straße</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.zipcode'>
+				<source>ZIP Code</source>
+				<target>Postleitzahl</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.city'>
+				<source>City</source>
+				<target>Stadt</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.country'>
+				<source>Country</source>
+				<target>Land</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.email'>
+				<source>Email</source>
+				<target>E-Mail</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.phone'>
+				<source>Phone</source>
+				<target>Telefon</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.mobile'>
+				<source>Mobile</source>
+				<target>Mobil</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.employed'>
+				<source>Are you currently employed at our company?</source>
+				<target>Sind Sie derzeit in unserem Unternehmen besch&#228;ftigt?</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.school_qualification'>
+				<source>School Qualification</source>
+				<target>H&#246;chster Schulabschluss</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.professional_qualification'>
+				<source>Professional Qualification</source>
+				<target>Berufsabschluss/Fachrichtung</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.professional_qualification_final_grade'>
+				<source>Prof. Qu. final grade</source>
+				<target>Berufsabschluss Note</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.academic_degree'>
+				<source>Academic Degree</source>
+				<target>Akademischer Abschluss</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.academic_degree_final_grade'>
+				<source>A. D. final grade</source>
+				<target>Akademischer Abschluss Note</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.doctoral_degree'>
+				<source>Doctoral Degree</source>
+				<target>Studienabschluss/Fachrichtung</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.doctoral_degree_final_grade'>
+				<source>Doc. Deg. final grade</source>
+				<target>Studienabschluss Note</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.previous_knowledge'>
+				<source>Previous Knowledge</source>
+				<target>Vorkenntnisse</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.it_knowledge'>
+				<source>IT Knowledge</source>
+				<target>IT-Vorkenntnisse</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.language'>
+				<source>Languages</source>
+				<target>Sprachen</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.comment'>
+				<source>Comment</source>
+				<target>Bemerkung</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.referrer'>
+				<source>Referrer</source>
+				<target>Wie wurden Sie auf uns aufmerksam</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.forward_to_departments'>
+				<source>Forward to Departments</source>
+				<target>Weiterleitung an andere Einheiten</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.career'>
+				<source>Career</source>
+				<target>Karriere</target>
+			</trans-unit>
+
+			<trans-unit id='tx_ats.statistics.label.location'>
+				<source>Location</source>
+				<target>Ort</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
