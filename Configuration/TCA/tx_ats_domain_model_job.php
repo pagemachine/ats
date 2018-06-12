@@ -24,21 +24,22 @@ return [
 		'searchFields' => 'job_number, title',
 		'default_sortby' => 'crdate DESC',
 		'iconfile' => 'EXT:ats/Resources/Public/Icons/tx_ats_domain_model_job.svg',
-        'requestUpdate' => 'career, location'
+        'requestUpdate' => 'career, location, override_global_hiring_organization, override_global_location'
 	],
 	'interface' => [
-		'showRecordFieldList' => 'sys_language_uid,  l10n_parent,  l10n_diffsource,  hidden,  starttime,  endtime, job_number, title, description, description_after_link, enable_form_link, career, internal, deactivated, location, user_pa, department, officials, contributors, contact, deadline_email_disabled, deadline_email, organization_unit, job_title, base_salary, base_salary_currency, base_salary_unit, education_requirements, employment_type, experience_requirements, hiring_organization, incentive_compensation, job_benefits, industry, job_location_address_country, job_location_address_region, job_location_address_locality, job_location_address_postal_code, job_location_address_street_address, occupational_category, qualifications, responsibilities, skills, special_commitments, work_hours'
+		'showRecordFieldList' => 'sys_language_uid,  l10n_parent,  l10n_diffsource,  hidden,  starttime,  endtime, job_number, title, description, description_after_link, enable_form_link, career, internal, deactivated, location, user_pa, department, officials, contributors, contact, deadline_email_disabled, deadline_email, organization_unit, job_title, base_salary, base_salary_currency, base_salary_unit, education_requirements, employment_type, experience_requirements, override_global_hiring_organization, hiring_organization, incentive_compensation, job_benefits, industry, override_global_location, job_location_address_country, job_location_address_region, job_location_address_locality, job_location_address_postal_code, job_location_address_street_address, occupational_category, qualifications, responsibilities, skills, special_commitments, work_hours'
 	],
 	'types' => [
 		'1' => ['showitem' =>
             'hidden, --palette--;;1, deactivated, job_number, title, description, description_after_link, enable_form_link, career,
-            internal, location, user_pa, department, officials, contributors, contact, deadline_email_disabled, deadline_email, sys_language_uid, l18n_parent, --div--;JSON LD Fields, job_title, industry, occupational_category, employment_type, --palette--;LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.base_salary.palette;3, work_hours, hiring_organization, --palette--;LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.job_location.palette;4, education_requirements, experience_requirements, incentive_compensation, job_benefits, qualifications, responsibilities, skills, special_commitments, '],
+            internal, location, user_pa, department, officials, contributors, contact, deadline_email_disabled, deadline_email, sys_language_uid, l18n_parent, --div--;LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.div.json_ld, job_title, industry, occupational_category, employment_type, --palette--;LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.base_salary.palette;3, work_hours, --palette--;LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.hiring_organization.palette;4, --palette--;LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.job_location.palette;5, education_requirements, experience_requirements, incentive_compensation, job_benefits, qualifications, responsibilities, skills, special_commitments, '],
 	],
 	'palettes' => [
         '1' => ['showitem' => 'starttime,endtime'],
         '2' => ['showitem' => 'templatefile,--linebreak--,required_fields,--linebreak--,org_unit'],
         '3' => ['showitem' => 'base_salary, base_salary_currency, base_salary_unit'],
-        '4' => ['showitem' => 'job_location_address_country, job_location_address_region, --linebreak--, job_location_address_postal_code, job_location_address_street_address, job_location_address_locality'],
+        '4' => ['showitem' => 'override_global_hiring_organization, --linebreak--, hiring_organization'],
+        '5' => ['showitem' => 'override_global_location, --linebreak--, job_location_address_country, job_location_address_region, --linebreak--, job_location_address_postal_code, job_location_address_street_address, job_location_address_locality'],
 	],
 	'columns' => [
 
@@ -404,9 +405,20 @@ return [
                 'enableRichtext' => true
             ],
         ],
+        'override_global_hiring_organization' => [
+            'exclude' => 1,
+            'label' => '',
+            'config' => [
+                'type' => 'check',
+                'items' => [
+                    ['LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.override_global_hiring_organization', 1],
+                ]
+            ],
+        ],
         'hiring_organization' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.hiring_organization',
+            'displayCond' => 'FIELD:override_global_hiring_organization:REQ:true',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -440,9 +452,20 @@ return [
                 'size' => 30,
             ],
         ],
+        'override_global_location' => [
+            'exclude' => 1,
+            'label' => '',
+            'config' => [
+                'type' => 'check',
+                'items' => [
+                    ['LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.override_global_location', 1],
+                ],
+            ],
+        ],
         'job_location_address_country' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.job_location_address_country',
+            'displayCond' => 'FIELD:override_global_location:REQ:true',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -456,6 +479,7 @@ return [
         'job_location_address_region' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.job_location_address_region',
+            'displayCond' => 'FIELD:override_global_location:REQ:true',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -469,6 +493,7 @@ return [
         'job_location_address_locality' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.job_location_address_locality',
+            'displayCond' => 'FIELD:override_global_location:REQ:true',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -477,6 +502,7 @@ return [
         'job_location_address_postal_code' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.job_location_address_postal_code',
+            'displayCond' => 'FIELD:override_global_location:REQ:true',
             'config' => [
                 'type' => 'input',
                 'size' => 6,
@@ -485,6 +511,7 @@ return [
         'job_location_address_street_address' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.job_location_address_street_address',
+            'displayCond' => 'FIELD:override_global_location:REQ:true',
             'config' => [
                 'type' => 'input',
                 'size' => 30,

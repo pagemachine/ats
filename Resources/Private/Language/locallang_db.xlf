@@ -125,6 +125,10 @@
 
 			<!-- JSON-LD fields -->
 
+			<trans-unit id="tx_ats_domain_model_job.div.json_ld">
+				<source>Structured Data</source>
+			</trans-unit>
+
 			<trans-unit id="tx_ats_domain_model_job.job_title">
 				<source>Job (position) title</source>
 			</trans-unit>
@@ -189,6 +193,14 @@
 				<source>Experience requirements</source>
 			</trans-unit>
 
+			<trans-unit id="tx_ats_domain_model_job.hiring_organization.palette">
+				<source>Hiring organization</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.override_global_hiring_organization">
+				<source>Override company-wide hiring organization</source>
+			</trans-unit>
+
 			<trans-unit id="tx_ats_domain_model_job.hiring_organization">
 				<source>Hiring organization</source>
 			</trans-unit>
@@ -207,6 +219,10 @@
 
 			<trans-unit id="tx_ats_domain_model_job.job_location.palette">
 				<source>Job Location</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.override_global_location">
+				<source>Override company-wide location</source>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_job.job_location_address_country">
