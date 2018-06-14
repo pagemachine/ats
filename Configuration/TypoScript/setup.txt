@@ -82,6 +82,8 @@ plugin.tx_ats {
 
 		allowedStaticLanguages = {$plugin.tx_ats.settings.allowedStaticLanguages}
 
+		renderStructuredJobDefinitions = {$plugin.tx_ats.settings.renderStructuredJobDefinitions}
+
 		companyData {
 			name = {$plugin.tx_ats.settings.companyData.name}
 			street = {$plugin.tx_ats.settings.companyData.street}
