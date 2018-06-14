@@ -43,7 +43,7 @@ class SubmitController extends AbstractApplicationController
      */
     public function submitAction(Application $application)
     {
-
+        $application->setApplicationType(1);
         $application->submit();
 
         $this->repository->updateAndLog(

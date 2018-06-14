@@ -85,6 +85,7 @@ class SubmitControllerTest extends UnitTestCase
     public function submitsApplication()
     {
 
+        $this->application->setApplicationType(1)->shouldBeCalled();
         $this->application->submit()->shouldBeCalled();
 
         $repository = $this->prophesize(ApplicationRepository::class);
