@@ -2,6 +2,9 @@
 <f:layout name="Default" />
 
 <f:section name="main">
+
+<f:render partial="Job/JsonLd" arguments="{job : job}" />
+
 <h1>{job.title}</h1>
 <p>
 	<f:format.raw>{job.description}</f:format.raw>

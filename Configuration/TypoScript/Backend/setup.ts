@@ -8,6 +8,13 @@ module.tx_ats {
         storagePid = {$module.tx_ats.persistence.storagePid}
 
         classes {
+            PAGEmachine\Ats\Domain\Model\Job {
+              mapping {
+                  columns {
+                    crdate.mapOnProperty = creationDate
+                  }
+              }
+            }
             PAGEmachine\Ats\Domain\Model\Application {
                 mapping {
                     columns {

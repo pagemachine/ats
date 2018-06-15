@@ -3,6 +3,41 @@
 	<file source-language="de" datatype="plaintext" original="messages" product-name="ats">
 		<header/>
 		<body>
+			<trans-unit id="constants.category.company_data">
+				<source>Global Organization Data</source>
+				<target>Globale Firmendaten</target>
+			</trans-unit>
+
+			<trans-unit id="constants.company_data.name">
+				<source>Name</source>
+				<target>Firmenname</target>
+			</trans-unit>
+
+			<trans-unit id="constants.company_data.street">
+				<source>Street</source>
+				<target>Straße</target>
+			</trans-unit>
+
+			<trans-unit id="constants.company_data.postal_code">
+				<source>Postal Code</source>
+				<target>Postleitzahl</target>
+			</trans-unit>
+
+			<trans-unit id="constants.company_data.locality">
+				<source>Locality</source>
+				<target>Stadt/Ort</target>
+			</trans-unit>
+
+			<trans-unit id="constants.company_data.region">
+				<source>Region</source>
+				<target>Region/Bundesland</target>
+			</trans-unit>
+
+			<trans-unit id="constants.company_data.country">
+				<source>Country (3-digit code)</source>
+				<target>Land (dreistelliger Code, z.B. DEU)</target>
+			</trans-unit>
+
 			<trans-unit id="tx_ats_domain_model_job">
 				<source>Job</source>
 				<target></target>

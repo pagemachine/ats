@@ -123,6 +123,166 @@
 				<source>Show link to form</source>
 			</trans-unit>
 
+			<!-- JSON-LD fields -->
+
+			<trans-unit id="tx_ats_domain_model_job.div.json_ld">
+				<source>Structured Data</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.job_title">
+				<source>Job (position) title</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.base_salary.palette">
+				<source>Base salary</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.base_salary">
+				<source>Amount</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.base_salary_currency">
+				<source>Currency</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.base_salary_currency.default">
+				<source>Undefined</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.base_salary_unit">
+				<source>Unit</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.base_salary_unit.default">
+				<source>Undefined</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.base_salary_unit.HOUR">
+				<source>Hour</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.base_salary_unit.DAY">
+				<source>Day</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.base_salary_unit.WEEK">
+				<source>Week</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.base_salary_unit.MONTH">
+				<source>Month</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.base_salary_unit.YEAR">
+				<source>Year</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.education_requirements">
+				<source>Education requirements</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.employment_type">
+				<source>Employment type</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.employment_type.placeholder">
+				<source>full-time, part-time, contract, temporary...</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.experience_requirements">
+				<source>Experience requirements</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.hiring_organization.palette">
+				<source>Hiring organization</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.override_global_hiring_organization">
+				<source>Override company-wide hiring organization</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.hiring_organization">
+				<source>Hiring organization</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.incentive_compensation">
+				<source>Incentive compensation</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.industry">
+				<source>Industry</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.job_benefits">
+				<source>Job benefits</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.job_location.palette">
+				<source>Job Location</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.override_global_location">
+				<source>Override company-wide location</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.job_location_address_country">
+				<source>Country</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.job_location_address_country.default">
+				<source>Undefined</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.job_location_address_locality">
+				<source>Locality</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.job_location_address_region">
+				<source>Region</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.job_location_address_region.default">
+				<source>Undefined</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.job_location_address_postal_code">
+				<source>Postal code</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.job_location_address_street_address">
+				<source>Street address</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.occupational_category">
+				<source>Occupational Category</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.qualifications">
+				<source>Qualifications</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.responsibilities">
+				<source>Responsibilities</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.skills">
+				<source>Skills</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.special_commitments">
+				<source>Special commitments</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.work_hours">
+				<source>Work hours</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.work_hours.placeholder">
+				<source>e.g. 1st shift, night shift, 8am-5pm</source>
+			</trans-unit>
+
+
+
 			<trans-unit id="be_groups.tx_ats">
 				<source>ATS</source>
 			</trans-unit>
