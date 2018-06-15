@@ -2,9 +2,6 @@
 namespace PAGEmachine\Ats\Domain\Model;
 
 use PAGEmachine\Ats\Service\TyposcriptService;
-use SJBR\StaticInfoTables\Domain\Model\Country;
-use SJBR\StaticInfoTables\Domain\Model\CountryZone;
-use SJBR\StaticInfoTables\Domain\Model\Currency;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -129,16 +126,6 @@ trait StructuredJobDefinitionTrait
     }
 
     /**
-     * @param string $jobTitle
-     * @return void
-     */
-    public function setJobTitle($jobTitle)
-    {
-        $this->jobTitle = $jobTitle;
-    }
-
-
-    /**
      * @var float $baseSalary
      */
     protected $baseSalary;
@@ -150,16 +137,6 @@ trait StructuredJobDefinitionTrait
     {
         return $this->baseSalary;
     }
-
-    /**
-     * @param float $baseSalary
-     * @return void
-     */
-    public function setBaseSalary($baseSalary)
-    {
-        $this->baseSalary = $baseSalary;
-    }
-
 
     /**
      * @var SJBR\StaticInfoTables\Domain\Model\Currency $baseSalaryCurrency
@@ -175,17 +152,6 @@ trait StructuredJobDefinitionTrait
     }
 
     /**
-     * @param SJBR\StaticInfoTables\Domain\Model\Currency $baseSalaryCurrency
-     * @return void
-     */
-    public function setBaseSalaryCurrency(Currency $baseSalaryCurrency)
-    {
-        $this->baseSalaryCurrency = $baseSalaryCurrency;
-    }
-
-
-
-    /**
      * @var string $baseSalaryUnit
      */
     protected $baseSalaryUnit;
@@ -197,16 +163,6 @@ trait StructuredJobDefinitionTrait
     {
         return $this->baseSalaryUnit;
     }
-
-    /**
-     * @param string $baseSalaryUnit
-     * @return void
-     */
-    public function setBaseSalaryUnit($baseSalaryUnit)
-    {
-        $this->baseSalaryUnit = $baseSalaryUnit;
-    }
-
 
     /**
      * @var string $educationRequirements
@@ -222,16 +178,6 @@ trait StructuredJobDefinitionTrait
     }
 
     /**
-     * @param string $educationRequirements
-     * @return void
-     */
-    public function setEducationRequirements($educationRequirements)
-    {
-        $this->educationRequirements = $educationRequirements;
-    }
-
-
-    /**
      * @var string $employmentType
      */
     protected $employmentType;
@@ -243,16 +189,6 @@ trait StructuredJobDefinitionTrait
     {
         return $this->employmentType;
     }
-
-    /**
-     * @param string $employmentType
-     * @return void
-     */
-    public function setEmploymentType($employmentType)
-    {
-        $this->employmentType = $employmentType;
-    }
-
 
     /**
      * @var string $experienceRequirements
@@ -268,16 +204,6 @@ trait StructuredJobDefinitionTrait
     }
 
     /**
-     * @param string $experienceRequirements
-     * @return void
-     */
-    public function setExperienceRequirements($experienceRequirements)
-    {
-        $this->experienceRequirements = $experienceRequirements;
-    }
-
-
-    /**
      * @var bool $overrideGlobalHiringOrganization
      */
     protected $overrideGlobalHiringOrganization;
@@ -289,16 +215,6 @@ trait StructuredJobDefinitionTrait
     {
         return $this->overrideGlobalHiringOrganization;
     }
-
-    /**
-     * @param bool $overrideGlobalHiringOrganization
-     * @return void
-     */
-    public function setOverrideGlobalHiringOrganization($overrideGlobalHiringOrganization)
-    {
-        $this->overrideGlobalHiringOrganization = $overrideGlobalHiringOrganization;
-    }
-
 
     /**
      * @var string $hiringOrganization
@@ -314,16 +230,6 @@ trait StructuredJobDefinitionTrait
     }
 
     /**
-     * @param string $hiringOrganization
-     * @return void
-     */
-    public function setHiringOrganization($hiringOrganization)
-    {
-        $this->hiringOrganization = $hiringOrganization;
-    }
-
-
-    /**
      * @var string $incentiveCompensation
      */
     protected $incentiveCompensation;
@@ -335,16 +241,6 @@ trait StructuredJobDefinitionTrait
     {
         return $this->incentiveCompensation;
     }
-
-    /**
-     * @param string $incentiveCompensation
-     * @return void
-     */
-    public function setIncentiveCompensation($incentiveCompensation)
-    {
-        $this->incentiveCompensation = $incentiveCompensation;
-    }
-
 
     /**
      * @var string $industry
@@ -360,16 +256,6 @@ trait StructuredJobDefinitionTrait
     }
 
     /**
-     * @param string $industry
-     * @return void
-     */
-    public function setIndustry($industry)
-    {
-        $this->industry = $industry;
-    }
-
-
-    /**
      * @var string $jobBenefits
      */
     protected $jobBenefits;
@@ -381,16 +267,6 @@ trait StructuredJobDefinitionTrait
     {
         return $this->jobBenefits;
     }
-
-    /**
-     * @param string $jobBenefits
-     * @return void
-     */
-    public function setJobBenefits($jobBenefits)
-    {
-        $this->jobBenefits = $jobBenefits;
-    }
-
 
     /**
      * @var bool $overrideGlobalLocation
@@ -406,16 +282,6 @@ trait StructuredJobDefinitionTrait
     }
 
     /**
-     * @param bool $overrideGlobalLocation
-     * @return void
-     */
-    public function setOverrideGlobalLocation($overrideGlobalLocation)
-    {
-        $this->overrideGlobalLocation = $overrideGlobalLocation;
-    }
-
-
-    /**
      * @var \SJBR\StaticInfoTables\Domain\Model\Country $jobLocationAddressCountry
      */
     protected $jobLocationAddressCountry;
@@ -427,16 +293,6 @@ trait StructuredJobDefinitionTrait
     {
         return $this->jobLocationAddressCountry;
     }
-
-    /**
-     * @param \SJBR\StaticInfoTables\Domain\Model\Country $jobLocationAddressCountry
-     * @return void
-     */
-    public function setJobLocationAddressCountry(Country $jobLocationAddressCountry)
-    {
-        $this->jobLocationAddressCountry = $jobLocationAddressCountry;
-    }
-
 
     /**
      * @var string $jobLocationAddressLocality
@@ -452,16 +308,6 @@ trait StructuredJobDefinitionTrait
     }
 
     /**
-     * @param string $jobLocationAddressLocality
-     * @return void
-     */
-    public function setJobLocationAddressLocality($jobLocationAddressLocality)
-    {
-        $this->jobLocationAddressLocality = $jobLocationAddressLocality;
-    }
-
-
-    /**
      * @var \SJBR\StaticInfoTables\Domain\Model\CountryZone $jobLocationAddressRegion
      */
     protected $jobLocationAddressRegion;
@@ -473,17 +319,6 @@ trait StructuredJobDefinitionTrait
     {
         return $this->jobLocationAddressRegion;
     }
-
-    /**
-     * @param \SJBR\StaticInfoTables\Domain\Model\CountryZone $jobLocationAddressRegion
-     * @return void
-     */
-    public function setJobLocationAddressRegion(CountryZone $jobLocationAddressRegion)
-    {
-        $this->jobLocationAddressRegion = $jobLocationAddressRegion;
-    }
-
-
 
     /**
      * @var string $jobLocationAddressPostalCode
@@ -499,16 +334,6 @@ trait StructuredJobDefinitionTrait
     }
 
     /**
-     * @param string $jobLocationAddressPostalCode
-     * @return void
-     */
-    public function setJobLocationAddressPostalCode($jobLocationAddressPostalCode)
-    {
-        $this->jobLocationAddressPostalCode = $jobLocationAddressPostalCode;
-    }
-
-
-    /**
      * @var string $jobLocationAddressStreetAddress
      */
     protected $jobLocationAddressStreetAddress;
@@ -520,16 +345,6 @@ trait StructuredJobDefinitionTrait
     {
         return $this->jobLocationAddressStreetAddress;
     }
-
-    /**
-     * @param string $jobLocationAddressStreetAddress
-     * @return void
-     */
-    public function setJobLocationAddressStreetAddress($jobLocationAddressStreetAddress)
-    {
-        $this->jobLocationAddressStreetAddress = $jobLocationAddressStreetAddress;
-    }
-
 
     /**
      * @var string $occupationalCategory
@@ -545,16 +360,6 @@ trait StructuredJobDefinitionTrait
     }
 
     /**
-     * @param string $occupationalCategory
-     * @return void
-     */
-    public function setOccupationalCategory($occupationalCategory)
-    {
-        $this->occupationalCategory = $occupationalCategory;
-    }
-
-
-    /**
      * @var string $qualifications
      */
     protected $qualifications;
@@ -566,16 +371,6 @@ trait StructuredJobDefinitionTrait
     {
         return $this->qualifications;
     }
-
-    /**
-     * @param string $qualifications
-     * @return void
-     */
-    public function setQualifications($qualifications)
-    {
-        $this->qualifications = $qualifications;
-    }
-
 
     /**
      * @var string $responsibilities
@@ -591,16 +386,6 @@ trait StructuredJobDefinitionTrait
     }
 
     /**
-     * @param string $responsibilities
-     * @return void
-     */
-    public function setResponsibilities($responsibilities)
-    {
-        $this->responsibilities = $responsibilities;
-    }
-
-
-    /**
      * @var string $skills
      */
     protected $skills;
@@ -612,16 +397,6 @@ trait StructuredJobDefinitionTrait
     {
         return $this->skills;
     }
-
-    /**
-     * @param string $skills
-     * @return void
-     */
-    public function setSkills($skills)
-    {
-        $this->skills = $skills;
-    }
-
 
     /**
      * @var string $specialCommitments
@@ -637,16 +412,6 @@ trait StructuredJobDefinitionTrait
     }
 
     /**
-     * @param string $specialCommitments
-     * @return void
-     */
-    public function setSpecialCommitments($specialCommitments)
-    {
-        $this->specialCommitments = $specialCommitments;
-    }
-
-
-    /**
      * @var string $workHours
      */
     protected $workHours;
@@ -657,14 +422,5 @@ trait StructuredJobDefinitionTrait
     public function getWorkHours()
     {
         return $this->workHours;
-    }
-
-    /**
-     * @param string $workHours
-     * @return void
-     */
-    public function setWorkHours($workHours)
-    {
-        $this->workHours = $workHours;
     }
 }
