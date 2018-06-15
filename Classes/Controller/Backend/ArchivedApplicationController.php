@@ -3,7 +3,9 @@ namespace PAGEmachine\Ats\Controller\Backend;
 
 use PAGEmachine\Ats\Application\ApplicationFilter;
 use PAGEmachine\Ats\Domain\Model\Application;
+use PAGEmachine\Ats\Domain\Model\Job;
 use PAGEmachine\Ats\Domain\Model\Note;
+use PAGEmachine\Ats\Workflow\WorkflowManager;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /*
@@ -122,5 +124,27 @@ class ArchivedApplicationController extends ApplicationController
         }
 
         $this->redirect("moveToPool", null, null, ['application' => $application]);
+    }
+
+    /**
+     * @param  \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\PAGEmachine\Ats\Domain\Model\Application>  $applications
+     */
+    public function newMassPoolMovingAction($applications)
+    {
+        $this->view->assign('applications', $applications);
+        $this->view->assign('statusOptions', WorkflowManager::getInstance()->getPlaces());
+        $this->view->assign('jobs', $this->jobRepository->findAll());
+        $this->view->assign('beUser', $GLOBALS['BE_USER']->user);
+    }
+
+    /**
+     * @param  \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\PAGEmachine\Ats\Domain\Model\Application>  $applications
+     * @param  Job $job
+     * @param  Note $note
+     * @ignorevalidation $note
+     * @return void
+     */
+    public function setMassPoolMovingAction($applications, Job $job, Note $note){
+
     }
 }

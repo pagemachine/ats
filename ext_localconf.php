@@ -166,6 +166,8 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('extbase_acl'))
         'listPool',
         'moveToPool',
         'updateMoveToPool',
+        'newMassPoolMoving',
+        'setMassPoolMoving',
     ];
 
     $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['extbase_acl']['protectedControllerActions'][\PAGEmachine\Ats\Controller\Backend\StatisticsController::class] = [

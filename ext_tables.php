@@ -63,7 +63,7 @@ if (TYPO3_MODE === 'BE') {
         'archive',
         '',
         array(
-            'Backend\\ArchivedApplication' => 'index, listAll, show, edit, saveUpload, removeUpload, update, editStatus, updateStatus, notes, addNote, history, clone, confirmClone, listPool, moveToPool, updateMoveToPool'
+            'Backend\\ArchivedApplication' => 'index, listAll, show, edit, saveUpload, removeUpload, update, editStatus, updateStatus, notes, addNote, history, clone, confirmClone, listPool, moveToPool, updateMoveToPool, newMassPoolMoving, setMassPoolMoving'
         ),
         array(
             'access'    => 'user,group',

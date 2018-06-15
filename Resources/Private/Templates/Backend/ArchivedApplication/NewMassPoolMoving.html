@@ -1,0 +1,26 @@
+<f:form action="setMassPoolMoving">
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="form-inline">
+				Move Applications
+			</div>
+		</div>
+		<div class="panel-body">
+			<f:for each="{applications}" as="application">
+				<f:form.hidden name="applications[{application.uid}]" value="{application.uid}" />
+			</f:for>
+			<div class="form-group">
+				<f:form.select
+					property="job"
+					options="{jobs}"
+					optionLabelField="jobNumberAndTitle"
+					optionValueField="uid"
+					class="form-control"
+					name="job"/>
+			</div>
+			<f:render partial="Backend/Application/Form/StatusChange" arguments="{statusOptions : statusOptions, beUser : beUser}" />
+		</div>
+	</div>
+
+</f:form>
