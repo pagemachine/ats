@@ -22,16 +22,36 @@ TypoScript Configuration
 Plugin Constants
 ^^^^^^^^^^^^^^^^
 
-========================   ==================================================  ============================================================================================================================================================================================================================================  ========
-| Constant                 Path                                                Description                                                                                                                                                                                                                                   Default
-========================   ==================================================  ============================================================================================================================================================================================================================================  ========
-| Storage PID              ``plugin.tx_ats.persistence.storagePid``             The default storagePid for jobs and users.                                                                                                                                                                                                    none
-| includeJQuery            ``plugin.tx_ats.settings.includeJQuery``             The plugin needs jQuery to work properly. Set this to true if you do not already include jQuery in your site.                                                                                                                                 false
-| loginPage                ``plugin.tx_ats.settings.loginPage``                 Page ID where FE Users can log in. If a user tries to access the application form without being logged in, the plugin will redirect to this page.                                                                                             none
-| feUserGroup              ``plugin.tx_ats.settings.feUserGroup``               The ID of the FE Usergroup all applicants belong to.                                                                                                                                                                                          none
-| allowedStaticLanguages   ``plugin.tx_ats.settings.allowedStaticLanguages``    Applicants can select which languages they speak. With this option, you can limit the available options to a set of ``static_languages`` uids. Should be a comma-separated list such as ``12,30,33``. If not set, all languages are shown.    none
-| policyPage               ``plugin.tx_ats.settings.policyPage``                Page ID where your privacy policy is found. The page is linked in the first step of the form where the user has to accept privacy settings.                                                                                                   none
-========================   ==================================================  ============================================================================================================================================================================================================================================  ========
+================================   ==========================================================   ============================================================================================================================================================================================================================================  ===========
+| Constant                         Path                                                         Description                                                                                                                                                                                                                                   Default
+================================   ==========================================================   ============================================================================================================================================================================================================================================  ===========
+| Storage PID                      ``plugin.tx_ats.persistence.storagePid``                     The default storagePid for jobs and users.                                                                                                                                                                                                    none
+| includeJQuery                    ``plugin.tx_ats.settings.includeJQuery``                     The plugin needs jQuery to work properly. Set this to true if you do not already include jQuery in your site.                                                                                                                                 false
+| loginPage                        ``plugin.tx_ats.settings.loginPage``                         Page ID where FE Users can log in. If a user tries to access the application form without being logged in, the plugin will redirect to this page.                                                                                             none
+| feUserGroup                      ``plugin.tx_ats.settings.feUserGroup``                       The ID of the FE Usergroup all applicants belong to.                                                                                                                                                                                          none
+| allowedStaticLanguages           ``plugin.tx_ats.settings.allowedStaticLanguages``            Applicants can select which languages they speak. With this option, you can limit the available options to a set of ``static_languages`` uids. Should be a comma-separated list such as ``12,30,33``. If not set, all languages are shown.    none
+| policyPage                       ``plugin.tx_ats.settings.policyPage``                        Page ID where your privacy policy is found. The page is linked in the first step of the form where the user has to accept privacy settings.                                                                                                   none
+| renderStructuredJobDefinitions   ``plugin.tx_ats.settings.renderStructuredJobDefinitions``    If enabled, the default job template contains JSON-LD markup. Use the tab "Structured Data" inside the job edit form to fill in values.                                                                                                       0 (false)
+================================   ==========================================================   ============================================================================================================================================================================================================================================  ===========
+
+Company-related Constants
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
++---------------------+-------------------------------------------------------+---------------------------------------------------+---------+
+| Constant            | Path                                                  | Description                                       | Default |
++=====================+=======================================================+===================================================+=========+
+| Company name        | ``plugin.tx_ats.settings.companyData.name``           | Default company name.                             |         |
++---------------------+-------------------------------------------------------+---------------------------------------------------+---------+
+| Company street      | ``plugin.tx_ats.settings.companyData.street``         | Default company street.                           |         |
++---------------------+-------------------------------------------------------+---------------------------------------------------+---------+
+| Company postal code | ``plugin.tx_ats.settings.companyData.postalCode``     | Default company postal code.                      |         |
++---------------------+-------------------------------------------------------+---------------------------------------------------+---------+
+| Company locality    | ``plugin.tx_ats.settings.companyData.locality``       | Default company locality (city, town...)          |         |
++---------------------+-------------------------------------------------------+---------------------------------------------------+---------+
+| Company region      | ``plugin.tx_ats.settings.companyData.region``         | Default company region                            |         |
++---------------------+-------------------------------------------------------+---------------------------------------------------+---------+
+| Company country     | ``plugin.tx_ats.settings.companyData.country``        | Default company country (ISO code with 3 letters) |         |
++---------------------+-------------------------------------------------------+---------------------------------------------------+---------+
 
 Module Constants
 ^^^^^^^^^^^^^^^^

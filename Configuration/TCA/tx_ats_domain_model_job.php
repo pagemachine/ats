@@ -24,19 +24,22 @@ return [
 		'searchFields' => 'job_number, title',
 		'default_sortby' => 'crdate DESC',
 		'iconfile' => 'EXT:ats/Resources/Public/Icons/tx_ats_domain_model_job.svg',
-        'requestUpdate' => 'career, location'
+        'requestUpdate' => 'career, location, override_global_hiring_organization, override_global_location'
 	],
 	'interface' => [
-		'showRecordFieldList' => 'sys_language_uid,  l10n_parent,  l10n_diffsource,  hidden,  starttime,  endtime, job_number, title, description, description_after_link, enable_form_link, career, internal, deactivated, location, user_pa, department, officials, contributors, contact, deadline_email_disabled, deadline_email, organization_unit'
+		'showRecordFieldList' => 'sys_language_uid,  l10n_parent,  l10n_diffsource,  hidden,  starttime,  endtime, job_number, title, description, description_after_link, enable_form_link, career, internal, deactivated, location, user_pa, department, officials, contributors, contact, deadline_email_disabled, deadline_email, organization_unit, job_title, base_salary, base_salary_currency, base_salary_unit, education_requirements, employment_type, experience_requirements, override_global_hiring_organization, hiring_organization, incentive_compensation, job_benefits, industry, override_global_location, job_location_address_country, job_location_address_region, job_location_address_locality, job_location_address_postal_code, job_location_address_street_address, occupational_category, qualifications, responsibilities, skills, special_commitments, work_hours'
 	],
 	'types' => [
 		'1' => ['showitem' =>
             'hidden, --palette--;;1, deactivated, job_number, title, description, description_after_link, enable_form_link, career,
-            internal, location, user_pa, department, officials, contributors, contact, deadline_email_disabled, deadline_email, sys_language_uid, l18n_parent'],
+            internal, location, user_pa, department, officials, contributors, contact, deadline_email_disabled, deadline_email, sys_language_uid, l18n_parent, --div--;LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.div.json_ld, job_title, industry, occupational_category, employment_type, --palette--;LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.base_salary.palette;3, work_hours, --palette--;LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.hiring_organization.palette;4, --palette--;LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.job_location.palette;5, education_requirements, experience_requirements, incentive_compensation, job_benefits, qualifications, responsibilities, skills, special_commitments, '],
 	],
 	'palettes' => [
         '1' => ['showitem' => 'starttime,endtime'],
-        '2' => ['showitem' => 'templatefile,--linebreak--,required_fields,--linebreak--,org_unit']
+        '2' => ['showitem' => 'templatefile,--linebreak--,required_fields,--linebreak--,org_unit'],
+        '3' => ['showitem' => 'base_salary, base_salary_currency, base_salary_unit'],
+        '4' => ['showitem' => 'override_global_hiring_organization, --linebreak--, hiring_organization'],
+        '5' => ['showitem' => 'override_global_location, --linebreak--, job_location_address_country, job_location_address_region, --linebreak--, job_location_address_postal_code, job_location_address_street_address, job_location_address_locality'],
 	],
 	'columns' => [
 
@@ -325,6 +328,243 @@ return [
                 'default' => '1'
             ]
         ],
-
+        'job_title' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.job_title',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+            ],
+        ],
+        'base_salary' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.base_salary',
+            'config' => [
+                'type' => 'input',
+                'size' => 6,
+                'eval' => 'double2',
+            ],
+        ],
+        'base_salary_currency' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.base_salary_currency',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.base_salary_currency.default', 0],
+                ],
+                'foreign_table' => 'static_currencies',
+                'foreign_table_where' => 'ORDER BY static_currencies.cu_name_en',
+                'default' => 49,
+            ],
+        ],
+        'base_salary_unit' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.base_salary_unit',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.base_salary_unit.default', ''],
+                    ['LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.base_salary_unit.HOUR', 'HOUR'],
+                    ['LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.base_salary_unit.DAY', 'DAY'],
+                    ['LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.base_salary_unit.WEEK', 'WEEK'],
+                    ['LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.base_salary_unit.MONTH', 'MONTH'],
+                    ['LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.base_salary_unit.YEAR', 'YEAR'],
+                ],
+                'default' => 'YEAR',
+            ],
+        ],
+        'education_requirements' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.education_requirements',
+            'config' => [
+                'type' => 'text',
+                'cols' => '30',
+                'rows' => '5',
+                'enableRichtext' => true
+            ],
+        ],
+        'employment_type' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.employment_type',
+            'config' => [
+                'type' => 'input',
+                'placeholder' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.employment_type.placeholder',
+                'size' => 30,
+            ],
+        ],
+        'experience_requirements' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.experience_requirements',
+            'config' => [
+                'type' => 'text',
+                'cols' => '30',
+                'rows' => '5',
+                'enableRichtext' => true
+            ],
+        ],
+        'override_global_hiring_organization' => [
+            'exclude' => 1,
+            'label' => '',
+            'config' => [
+                'type' => 'check',
+                'items' => [
+                    ['LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.override_global_hiring_organization', 1],
+                ]
+            ],
+        ],
+        'hiring_organization' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.hiring_organization',
+            'displayCond' => 'FIELD:override_global_hiring_organization:REQ:true',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+            ],
+        ],
+        'incentive_compensation' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.incentive_compensation',
+            'config' => [
+                'type' => 'text',
+                'cols' => '30',
+                'rows' => '5',
+                'enableRichtext' => true
+            ],
+        ],
+        'job_benefits' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.job_benefits',
+            'config' => [
+                'type' => 'text',
+                'cols' => '30',
+                'rows' => '5',
+                'enableRichtext' => true
+            ],
+        ],
+        'industry' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.industry',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+            ],
+        ],
+        'override_global_location' => [
+            'exclude' => 1,
+            'label' => '',
+            'config' => [
+                'type' => 'check',
+                'items' => [
+                    ['LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.override_global_location', 1],
+                ],
+            ],
+        ],
+        'job_location_address_country' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.job_location_address_country',
+            'displayCond' => 'FIELD:override_global_location:REQ:true',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.job_location_address_country.default', 0],
+                ],
+                'foreign_table' => 'static_countries',
+                'default' => 54,
+            ],
+        ],
+        'job_location_address_region' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.job_location_address_region',
+            'displayCond' => 'FIELD:override_global_location:REQ:true',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.job_location_address_region.default', 0],
+                ],
+                'foreign_table' => 'static_country_zones',
+                'foreign_table_where' => ' AND static_country_zones.zn_country_uid = ###REC_FIELD_job_location_address_country###',
+            ],
+        ],
+        'job_location_address_locality' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.job_location_address_locality',
+            'displayCond' => 'FIELD:override_global_location:REQ:true',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+            ],
+        ],
+        'job_location_address_postal_code' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.job_location_address_postal_code',
+            'displayCond' => 'FIELD:override_global_location:REQ:true',
+            'config' => [
+                'type' => 'input',
+                'size' => 6,
+            ],
+        ],
+        'job_location_address_street_address' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.job_location_address_street_address',
+            'displayCond' => 'FIELD:override_global_location:REQ:true',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+            ],
+        ],
+        'occupational_category' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.occupational_category',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+            ],
+        ],
+        'qualifications' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.qualifications',
+            'config' => [
+                'type' => 'text',
+                'enableRichtext' => true
+            ],
+        ],
+        'responsibilities' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.responsibilities',
+            'config' => [
+                'type' => 'text',
+                'enableRichtext' => true
+            ],
+        ],
+        'skills' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.skills',
+            'config' => [
+                'type' => 'text',
+                'enableRichtext' => true
+            ],
+        ],
+        'special_commitments' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.special_commitments',
+            'config' => [
+                'type' => 'text',
+                'enableRichtext' => true
+            ],
+        ],
+        'work_hours' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.work_hours',
+            'config' => [
+                'type' => 'input',
+                'placeholder' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.work_hours.placeholder',
+                'size' => 30,
+            ],
+        ],
 	]
 ];

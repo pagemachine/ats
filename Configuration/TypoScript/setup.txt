@@ -20,6 +20,13 @@ plugin.tx_ats {
 	persistence {
 		storagePid = {$plugin.tx_ats.persistence.storagePid}
 		classes {
+			PAGEmachine\Ats\Domain\Model\Job {
+				mapping {
+					columns {
+						crdate.mapOnProperty = creationDate
+					}
+				}
+			}
 		    PAGEmachine\Ats\Domain\Model\Application {
 			mapping {
 			    columns {
@@ -74,6 +81,17 @@ plugin.tx_ats {
 		policyPage = {$plugin.tx_ats.settings.policyPage}
 
 		allowedStaticLanguages = {$plugin.tx_ats.settings.allowedStaticLanguages}
+
+		renderStructuredJobDefinitions = {$plugin.tx_ats.settings.renderStructuredJobDefinitions}
+
+		companyData {
+			name = {$plugin.tx_ats.settings.companyData.name}
+			street = {$plugin.tx_ats.settings.companyData.street}
+			postalCode = {$plugin.tx_ats.settings.companyData.postalCode}
+			locality = {$plugin.tx_ats.settings.companyData.locality}
+			region = {$plugin.tx_ats.settings.companyData.region}
+			country = {$plugin.tx_ats.settings.companyData.country}
+		}
 	}
 }
 

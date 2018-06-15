@@ -15,12 +15,20 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  *
  * @codeCoverageIgnore
  */
-class Job extends AbstractEntity
+class Job extends AbstractEntity implements \JsonSerializable
 {
+    use StructuredJobDefinitionTrait;
+
     /**
      * @var string $jobNumber
      */
     protected $jobNumber;
+
+
+    /**
+     * @var \DateTime $creationDate
+     */
+    protected $creationDate;
 
     /**
      * @var string $title
@@ -178,6 +186,23 @@ class Job extends AbstractEntity
     public function getJobNumberAndTitle()
     {
         return $this->jobNumber." - ".$this->title;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreationDate()
+    {
+        return $this->creationDate;
+    }
+
+    /**
+     * @param \DateTime $creationDate
+     * @return void
+     */
+    public function setCreationDate(\DateTime $creationDate)
+    {
+        $this->creationDate = $creationDate;
     }
 
     /**

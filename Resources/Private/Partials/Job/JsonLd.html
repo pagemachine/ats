@@ -1,0 +1,5 @@
+<f:if condition="{settings.renderStructuredJobDefinitions}">
+	<script type="application/ld+json">
+		{job -> f:format.json() -> f:format.raw()}
+	</script>
+</f:if>
