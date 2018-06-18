@@ -769,6 +769,11 @@
 				<target>Alle Bewerbungen</target>
 			</trans-unit>
 
+			<trans-unit id="be.label.Applications">
+				<source>Applications</source>
+				<target>Bewerbungen</target>
+			</trans-unit>
+
 			<trans-unit id="be.label.Statistics">
 				<source>Statistics</source>
 				<target>Statistik</target>

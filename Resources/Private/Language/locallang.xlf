@@ -1103,6 +1103,10 @@
 				<source>Statistics</source>
 			</trans-unit>
 
+			<trans-unit id="be.label.Applications">
+				<source>Applications</source>
+			</trans-unit>
+
 			<trans-unit id="be.label.Statistics.dateFrom">
         <source>From:</source>
       </trans-unit>
