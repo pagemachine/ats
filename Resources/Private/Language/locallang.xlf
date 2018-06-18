@@ -835,6 +835,14 @@
 				<source>The following file was removed:</source>
 			</trans-unit>
 
+			<trans-unit id="tx_ats.history.massPoolMoving.subject">
+				<source>Move</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.massPoolMoving.details.changeJob">
+				<source>Move to job</source>
+			</trans-unit>
+
       <!-- ATS Statistics -->
       <trans-unit id="tx_ats.stat.datef">
         <source>From:</source>

@@ -1205,6 +1205,15 @@
 				<target>Die folgende Datei wurde entfernt:</target>
 			</trans-unit>
 
+			<trans-unit id="tx_ats.history.massPoolMoving.subject">
+				<source>Move</source>
+				<target>Verschiebung</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.massPoolMoving.details.changeJob">
+				<source>Move to job</source>
+				<target>Verschiebung zur Stelle</target>
+			</trans-unit>
 
 
       <!-- Application status -->

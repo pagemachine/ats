@@ -165,10 +165,11 @@ class ArchivedApplicationController extends ApplicationController
 
             $this->applicationRepository->updateAndLog(
                 $application,
-                'workflow',
+                'massPoolMoving',
                 [
                     'status' => $application->getStatus()->__toString(),
                     'note' => $note->getDetails(),
+                    'job' => $application->getJob()->getTitle(),
                 ]
             );
         }
