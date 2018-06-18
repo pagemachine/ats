@@ -147,10 +147,11 @@ class ArchivedApplicationController extends ApplicationController
      * @ignorevalidation $note
      * @return void
      */
-    public function setMassPoolMovingAction($applications, Job $job, $status, Note $note){
+    public function setMassPoolMovingAction($applications, Job $job, $status, Note $note)
+    {
         $useDuplicate = 0;
         foreach ($applications as $application) {
-            if($useDuplicate){
+            if ($useDuplicate) {
                 $note = DuplicationService::getInstance()->duplicateObject($note);
             }
             $useDuplicate = 1;
