@@ -1554,6 +1554,10 @@
 				<source>Application is now in the archives.</source>
 			</trans-unit>
 
+			<trans-unit id='be.flashMessage.massPoolMoving.ok'>
+				<source>Applications were moved successfully.</source>
+			</trans-unit>
+
 			<trans-unit id="tx_ats.be.messageTypes.1">
 				<source>Invite</source>
 			</trans-unit>

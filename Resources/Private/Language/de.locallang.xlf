@@ -1707,6 +1707,11 @@
 				<target>Die Bewerbung befindet sich jetzt im Archiv.</target>
 			</trans-unit>
 
+			<trans-unit id='be.flashMessage.massPoolMoving.ok'>
+				<source>Applications were moved successfully.</source>
+				<target>Bewerbungen wurden erfolgreich verschoben.</target>
+			</trans-unit>
+
 			<trans-unit id="tx_ats.be.messageTypes.1">
 				<source>Invite</source>
 				<target>Einladung</target>

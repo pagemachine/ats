@@ -173,5 +173,7 @@ class ArchivedApplicationController extends ApplicationController
                 ]
             );
         }
+        $this->addFlashMessage($this->callStatic(LocalizationUtility::class, 'translate', 'be.flashMessage.massPoolMoving.ok', 'ats'));
+        $this->redirect("listPool", null, null, []);
     }
 }
