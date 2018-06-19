@@ -1099,6 +1099,10 @@
 				<source>Pool</source>
 			</trans-unit>
 
+			<trans-unit id="be.label.Archive.Pool.Move">
+				<source>Move Applications</source>
+			</trans-unit>
+
 			<trans-unit id="be.label.Statistics">
 				<source>Statistics</source>
 			</trans-unit>
