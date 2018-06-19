@@ -3,6 +3,35 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2016-04-27T15:35:26Z" product-name="ats">
 		<header/>
 		<body>
+
+	  <trans-unit id="constants.category.company_data">
+		<source>Global Organization Data</source>
+	  </trans-unit>
+
+	  <trans-unit id="constants.company_data.name">
+		<source>Name</source>
+	  </trans-unit>
+
+	  <trans-unit id="constants.company_data.street">
+		<source>Street</source>
+	  </trans-unit>
+
+	  <trans-unit id="constants.company_data.postal_code">
+		<source>Postal Code</source>
+	  </trans-unit>
+
+	  <trans-unit id="constants.company_data.locality">
+		<source>Locality</source>
+	  </trans-unit>
+
+	  <trans-unit id="constants.company_data.region">
+		<source>Region</source>
+	  </trans-unit>
+
+	  <trans-unit id="constants.company_data.country">
+		<source>Company Country (3-digit code)</source>
+	  </trans-unit>
+
 	  <trans-unit id="tx_ats_domain_model_job">
 		<source>Job</source>
 	  </trans-unit>

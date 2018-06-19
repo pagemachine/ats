@@ -1,3 +1,4 @@
+# customsubcategory=company_data=LLL:EXT:ats/Resources/Private/Language/locallang.xlf:constants.category.company_data
 
 plugin.tx_ats {
 	view {
@@ -23,5 +24,29 @@ plugin.tx_ats {
 		allowedStaticLanguages =
 		# cat=plugin.tx_ats/pages; type=string; label=Privacy Policy page
 		policyPage =
+
+		# cat=plugin.tx_ats//enable; type=boolean; label=Render structured job definitions (JSON-LD)
+		renderStructuredJobDefinitions = 0
+
+		companyData {
+
+			# cat=plugin.tx_ats/company_data; type=string; label=LLL:EXT:ats/Resources/Private/Language/locallang.xlf:constants.company_data.name
+			name =
+
+			# cat=plugin.tx_ats/company_data; type=string; label=LLL:EXT:ats/Resources/Private/Language/locallang.xlf:constants.company_data.street
+			street =
+
+			# cat=plugin.tx_ats/company_data; type=string; label=LLL:EXT:ats/Resources/Private/Language/locallang.xlf:constants.company_data.postal_code
+			postalCode =
+
+			# cat=plugin.tx_ats/company_data; type=string; label=LLL:EXT:ats/Resources/Private/Language/locallang.xlf:constants.company_data.locality
+			locality =
+
+			# cat=plugin.tx_ats/company_data; type=string; label=LLL:EXT:ats/Resources/Private/Language/locallang.xlf:constants.company_data.region
+			region =
+
+			# cat=plugin.tx_ats/company_data; type=string; label=LLL:EXT:ats/Resources/Private/Language/locallang.xlf:constants.company_data.country
+			country =
+		}
 	}
 }
