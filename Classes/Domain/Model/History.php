@@ -7,6 +7,7 @@ use TYPO3\CMS\Beuser\Domain\Model\BackendUser;
 use TYPO3\CMS\Core\Utility\DiffUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -22,7 +23,7 @@ class History extends AbstractEntity implements CloneableInterface
      * @var \PAGEmachine\Ats\Domain\Model\AbstractApplication $application
      */
     protected $application;
-    
+
     /**
      * @return AbstractApplication
      */
@@ -30,7 +31,7 @@ class History extends AbstractEntity implements CloneableInterface
     {
         return $this->application;
     }
-    
+
     /**
      * @param AbstractApplication $application
      * @return void
@@ -45,7 +46,7 @@ class History extends AbstractEntity implements CloneableInterface
      * @var \TYPO3\CMS\Beuser\Domain\Model\BackendUser $user
      */
     protected $user;
-    
+
     /**
      * @return BackendUser
      */
@@ -53,7 +54,7 @@ class History extends AbstractEntity implements CloneableInterface
     {
         return $this->user;
     }
-    
+
     /**
      * @param BackendUser $user
      * @return void
@@ -68,7 +69,7 @@ class History extends AbstractEntity implements CloneableInterface
      * @var \DateTime $creationDate
      */
     protected $creationDate;
-    
+
     /**
      * @return \DateTime
      */
@@ -81,7 +82,7 @@ class History extends AbstractEntity implements CloneableInterface
      * @var string $subject
      */
     protected $subject;
-    
+
     /**
      * @return string
      */
@@ -89,7 +90,7 @@ class History extends AbstractEntity implements CloneableInterface
     {
         return $this->subject;
     }
-    
+
     /**
      * @param string $subject
      * @return void
@@ -103,7 +104,7 @@ class History extends AbstractEntity implements CloneableInterface
      * @var string $details
      */
     protected $details = "";
-    
+
     /**
      * @return string
      */
@@ -111,7 +112,7 @@ class History extends AbstractEntity implements CloneableInterface
     {
         return unserialize($this->details);
     }
-    
+
     /**
      * @param string $details
      * @return void
@@ -125,7 +126,7 @@ class History extends AbstractEntity implements CloneableInterface
      * @var string $historyData
      */
     protected $historyData = "";
-    
+
     /**
      * @return string
      */
@@ -133,7 +134,7 @@ class History extends AbstractEntity implements CloneableInterface
     {
         return unserialize($this->historyData);
     }
-    
+
     /**
      * @param string $historyData
      * @return void
@@ -167,8 +168,8 @@ class History extends AbstractEntity implements CloneableInterface
 
                 foreach ($historyData['newRecord'] as $key => $newRecord) {
                     $diffData[$key] = $diffUtility->makeDiffDisplay(
-                        BackendUtility::getProcessedValue("tx_ats_domain_model_application", $key, $historyData['oldRecord'][$key], 0, true),
-                        BackendUtility::getProcessedValue("tx_ats_domain_model_application", $key, $newRecord, 0, true)
+                        $this->getHistoryValue($key, $historyData['oldRecord'][$key]),
+                        $this->getHistoryValue($key, $newRecord)
                     );
                 }
             }
@@ -177,5 +178,28 @@ class History extends AbstractEntity implements CloneableInterface
         }
 
         return $this->diff;
+    }
+
+    /**
+     * Returns a human readable output
+     *
+     * @param string $col
+     * @param string $value
+     *
+     * @return string
+     */
+    protected function getHistoryValue($col, $value)
+    {
+        if ($value == 'NULL') {
+            return '';
+        }
+
+        $translation = LocalizationUtility::translate('tx_ats.application.'.$col.'.'.$value, 'ats');
+        if ($translation) {
+            return $translation;
+        }
+
+        return BackendUtility::getProcessedValue("tx_ats_domain_model_application", $col, $value, 0, true);
+        ;
     }
 }
