@@ -784,6 +784,26 @@
 				<target>Vom Bewerber abgesagt</target>
 			</trans-unit>
 
+			<trans-unit id="tx_ats.application.application_type.0">
+				<source>Undefined</source>
+				<target>Undefiniert</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.application.application_type.1">
+				<source>Website</source>
+				<target>Website</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.application.application_type.2">
+				<source>Letter</source>
+				<target>Brief</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.application.application_type.3">
+				<source>Email</source>
+				<target>E-Mail</target>
+			</trans-unit>
+
 			<trans-unit id="be.label.MyApplications.Table.Disability">
 				<source>Disability</source>
 				<target>Schwerbehinderung</target>
