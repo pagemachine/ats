@@ -430,7 +430,7 @@
 
 			<trans-unit id="tx_ats_domain_model_application.rating_perso">
 			  <source>Rating (Perso)</source>
-			  <target>Bewertungs Bemerkung (Perso)</target>
+			  <target>Bewertung (Perso)</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_application.comment_rating_perso">
