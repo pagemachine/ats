@@ -39,7 +39,7 @@
 								<f:for each="{history.diff}" as="fieldDiff" key="field">
 									<div class="diff-item">
 										<div class="diff-item-title">
-											{field}:
+											<f:translate key="LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_application.{field}">{field}</f:translate>:
 										</div>
 										<div class="diff-item-result" style="white-space: normal;">
 											<f:format.raw>{fieldDiff}</f:format.raw>
