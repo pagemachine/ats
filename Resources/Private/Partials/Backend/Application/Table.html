@@ -1,43 +1,4 @@
 {namespace ats=PAGEmachine\Ats\ViewHelpers}
 <f:be.widget.paginate objects="{applications}" as="paginatedApplications" configuration="{itemsPerPage : 300, recordsLabel : 'Bewerbungen'}">
-	<table class="applications-list table">
-		<thead>
-			<tr>
-				<th>#</th>
-				<th><f:translate key="be.label.MyApplications.Table.Created"/></th>
-				<th>Name</th>
-				<th>ID</th>
-				<th><f:translate key="be.label.MyApplications.Table.JobNumber"/></th>
-				<th>Status</th>
-				<th><f:translate key="be.label.MyApplications.Table.Rating"/></th>
-				<th><f:translate key="be.label.MyApplications.Table.Disability"/></th>
-				<th><f:translate key="be.label.MyApplications.Table.Employed"/></th>
-				<th><f:translate key="be.label.MyApplications.Table.LatestNote"/></th>
-			</tr>
-		</thead>
-		<tbody>
-			<f:for each="{paginatedApplications}" as="application" iteration="i">
-
-				<tr>
-					<td>{i.index}</td>
-					<td data-order="{application.creationDate -> f:format.date(format: 'U')}"><f:format.date format="d.m.Y H:i">{application.creationDate}</f:format.date></td>
-					<td>
-						<f:link.action action="show" arguments="{application : application}">{application.surname}, {application.firstname}</f:link.action>
-					</td>
-					<td>{application.uid}</td>
-					<td>{application.job.jobNumber}</td>
-					<td><f:translate key="tx_ats.application.status.{application.status}">{application.status}</f:translate></td>
-					<td><f:translate key="tx_ats.application.Rating.{application.rating}" /></td>
-					<td><f:translate key="tx_ats.label.disability.{application.disability}" /></td>
-					<td><f:translate key="tx_ats.label.employed.{application.employed}" /></td>
-					<td style="max-width: 250px;">
-						<f:format.crop maxCharacters="100"><f:format.raw>{application.latestNote.details}</f:format.raw></f:format.crop>
-						<f:if condition="{f:count(subject:application.notes)} > 1">
-								(<f:link.action action="notes" arguments="{application : application}">+{application.notes -> f:count()} more</f:link.action>)
-						</f:if>
-					</td>
-				</tr>
-			</f:for>
-		</tbody>
-	</table>
+	<f:render partial="Backend/Application/TableInner" arguments="{applications : paginatedApplications}" />
 </f:be.widget.paginate>
