@@ -423,9 +423,19 @@
 			  <target>Bewertung</target>
 			</trans-unit>
 
+			<trans-unit id="tx_ats_domain_model_application.comment_rating">
+			  <source>Rating note</source>
+			  <source>Rating note</source>
+			</trans-unit>
+
 			<trans-unit id="tx_ats_domain_model_application.rating_perso">
 			  <source>Rating (Perso)</source>
-			  <target>Bewertung (Perso)</target>
+			  <target>Bewertungs Bemerkung (Perso)</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.comment_rating_perso">
+			  <source>Rating note (Perso)</source>
+			  <target>Bewertungs Bemerkung (Perso)</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_application.aip">
@@ -666,6 +676,11 @@
 			<trans-unit id="tx_ats_domain_model_application.creation_date">
 			  <source>Creation date</source>
 			  <target>Erstellungsdatum</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.language">
+			  <source>Language</source>
+			  <target>Sprache</target>
 			</trans-unit>
 		</body>
 	</file>
