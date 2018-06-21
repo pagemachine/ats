@@ -453,6 +453,227 @@
 				<source>Allowed languages inside language dropdown</source>
 			</trans-unit>
 
+			<!-- tx_ats_domain_model_application -->
+
+			<trans-unit id="tx_ats_domain_model_application.receiptdate">
+			  <source>Receipt date</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.pool">
+			  <source>Pool</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.application_type">
+			  <source>Application type</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.status">
+			  <source>Status</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.job">
+			  <source>Job</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.rating">
+			  <source>Rating</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.rating_perso">
+			  <source>Rating (Perso)</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.aip">
+			  <source>aip</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.invited">
+			  <source>Invited</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.opr">
+			  <source>opr</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.anonym">
+			  <source>anonym</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.vocational_training_completed">
+			  <source>Vocational training completed</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.privacy_policy">
+			  <source>Accepts privacy policy</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.title">
+			  <source>Titel</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.salutation">
+			  <source>Form of address</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.firstname">
+			  <source>First name</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.surname">
+			  <source>Surname</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.birthday">
+			  <source>Birthday</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.disability">
+			  <source>Disability</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.nationality">
+			  <source>Nationality</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.street">
+			  <source>Street</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.zipcode">
+			  <source>Post code</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.city">
+			  <source>Town/City</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.country">
+			  <source>Country</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.email">
+			  <source>Email</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.phone">
+			  <source>Tel. no. landline</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.mobile">
+			  <source>Tel. no. mobile</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.employed">
+			  <source>Employed</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.school_qualification">
+			  <source>Highest school-leaving qualification</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.professional_qualification">
+			  <source>Professional qualification</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.professional_qualification_final_grade">
+			  <source>Final qualification grade</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.academic_degree">
+			  <source>Academic degree</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.academic_degree_final_grade">
+			  <source>Final academic grade</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.doctoral_degree">
+			  <source>Doctoral degree</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.doctoral_degree_final_grade">
+			  <source>Final doctoral grade</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.previous_knowledge">
+			  <source>Relevant knowledge for vacancy</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.it_knowledge">
+			  <source>Relevant IT knowledge for vacancy</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.target_graduation">
+			  <source>Target Graduation</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.graduation_completed">
+			  <source>Graduation completed</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.maths_grade">
+			  <source>Maths grade</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.physics_grade">
+			  <source>Physics grade</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.chemistry_grade">
+			  <source>Chemistry grade</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.german_grade">
+			  <source>German grade</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.english_grade">
+			  <source>English grade</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.art_grade">
+			  <source>Art grade</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.comment">
+			  <source>Note</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.referrer">
+			  <source>Referrer</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.communication_channel">
+			  <source>Communication channel</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.forward_to_departments">
+			  <source>Allow forwarding to other department</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.files">
+			  <source>Files</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.user">
+			  <source>User</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.language_skills">
+			  <source>Language skills</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.notes">
+			  <source>Notes</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.history">
+			  <source>History</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.creation_date">
+			  <source>Creation date</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
