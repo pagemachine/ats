@@ -27,6 +27,7 @@ class ExportService implements SingletonInterface
     public function __construct()
     {
         $GLOBALS['LANG']->includeLLFile('EXT:ats/Resources/Private/Language/locallang.xlf');
+        $GLOBALS['LANG']->includeLLFile('EXT:ats/Resources/Private/Language/locallang_db.xlf');
     }
 
     /**
@@ -187,8 +188,10 @@ class ExportService implements SingletonInterface
     {
         $exportHeader = '';
         foreach ($options as $option) {
-            if ($GLOBALS['LANG']->getLL('tx_ats.application.'.$option)) {
-                $exportHeader .= '"'.utf8_decode($GLOBALS['LANG']->getLL('tx_ats.application.'.$option)).'";';
+            if ($GLOBALS['LANG']->getLL('tx_ats_domain_model_application.'.$option)) {
+                $exportHeader .= '"'.utf8_decode($GLOBALS['LANG']->getLL('tx_ats_domain_model_application.'.$option)).'";';
+            }elseif ($GLOBALS['LANG']->getLL('tx_ats_domain_model_job.'.$option)) {
+                $exportHeader .= '"'.utf8_decode($GLOBALS['LANG']->getLL('tx_ats_domain_model_job.'.$option)).'";';
             } else {
                 $exportHeader .= '"'.$option.'";';
             }
@@ -245,7 +248,9 @@ class ExportService implements SingletonInterface
                                 foreach ($application->getnotes() as $key => $note) {
                                     if (!$note->getIsInternal()) {
                                         $string = $note->getCreationDate()->format('Y-m-d').' - ';
-                                        $string .= $note->getUser()->getRealName() ? $note->getUser()->getRealName().' ('.$note->getUser()->getUserName().')':$note->getUser()->getUserName();
+                                        if($note->getUser()){
+                                            $string .= $note->getUser()->getRealName() ? $note->getUser()->getRealName().' ('.$note->getUser()->getUserName().')':$note->getUser()->getUserName();
+                                        }
                                         $string .= ': '.$note->getDetails();
                                         $comments[] = $string;
                                     }
@@ -295,7 +300,7 @@ class ExportService implements SingletonInterface
                                 $row[] = $application->getSurname();
                                 break;
                             case 'birthday':
-                                $row[] = $application->getBirthday()->format('Y-m-d');
+                                $row[] = $application->getBirthday() ? $application->getBirthday()->format('Y-m-d') : '';
                                 break;
                             case 'disability':
                                 $row[] = $GLOBALS['LANG']->getLL('tx_ats.label.disability.'.$application->getDisability());
