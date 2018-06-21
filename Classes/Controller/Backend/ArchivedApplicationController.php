@@ -2,8 +2,12 @@
 namespace PAGEmachine\Ats\Controller\Backend;
 
 use PAGEmachine\Ats\Application\ApplicationFilter;
+use PAGEmachine\Ats\Application\ApplicationStatus;
 use PAGEmachine\Ats\Domain\Model\Application;
+use PAGEmachine\Ats\Domain\Model\Job;
 use PAGEmachine\Ats\Domain\Model\Note;
+use PAGEmachine\Ats\Service\DuplicationService;
+use PAGEmachine\Ats\Workflow\WorkflowManager;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /*
@@ -122,5 +126,54 @@ class ArchivedApplicationController extends ApplicationController
         }
 
         $this->redirect("moveToPool", null, null, ['application' => $application]);
+    }
+
+    /**
+     * @param  \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\PAGEmachine\Ats\Domain\Model\Application>  $applications
+     */
+    public function newMassPoolMovingAction($applications)
+    {
+        $this->view->assign('applications', $applications);
+        $this->view->assign('statusOptions', WorkflowManager::getInstance()->getPlaces());
+        $this->view->assign('jobs', $this->jobRepository->findAll());
+        $this->view->assign('beUser', $GLOBALS['BE_USER']->user);
+    }
+
+    /**
+     * @param  \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\PAGEmachine\Ats\Domain\Model\Application>  $applications
+     * @param  Job $job
+     * @param  string $status
+     * @param  Note $note
+     * @ignorevalidation $note
+     * @return void
+     */
+    public function setMassPoolMovingAction($applications, Job $job, $status, Note $note)
+    {
+        $useDuplicate = 0;
+        foreach ($applications as $application) {
+            if ($useDuplicate) {
+                $note = DuplicationService::getInstance()->duplicateObject($note);
+            }
+            $useDuplicate = 1;
+
+            $application->setJob($job);
+            $application->setStatus(ApplicationStatus::cast($status));
+
+            if (!empty($note->getDetails())) {
+                $application->addNote($note);
+            }
+
+            $this->applicationRepository->updateAndLog(
+                $application,
+                'massPoolMoving',
+                [
+                    'status' => $application->getStatus()->__toString(),
+                    'note' => $note->getDetails(),
+                    'job' => $application->getJob()->getTitle(),
+                ]
+            );
+        }
+        $this->addFlashMessage($this->callStatic(LocalizationUtility::class, 'translate', 'be.flashMessage.massPoolMoving.ok', 'ats'));
+        $this->redirect("listPool", null, null, []);
     }
 }

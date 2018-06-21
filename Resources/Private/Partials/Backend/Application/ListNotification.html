@@ -8,50 +8,10 @@
 	</div>
 </div>
 
-<f:form action="newMassNotification" id="newMassNotification">
+<f:form action="newMassNotification" id="newMassNotification" class="checkbox-table-form">
 
-	<table class="table applications-list">
-		<thead>
-			<tr>
-				<th><input type="checkbox" class="selectAll"></th>
-				<th>#</th>
-				<th><f:translate key="be.label.MyApplications.Table.Created"/></th>
-				<th>Name</th>
-				<th>ID</th>
-				<th><f:translate key="be.label.MyApplications.Table.JobNumber"/></th>
-				<th>Status</th>
-				<th><f:translate key="be.label.MyApplications.Table.Rating"/></th>
-				<th><f:translate key="be.label.MyApplications.Table.Disability"/></th>
-				<th><f:translate key="be.label.MyApplications.Table.Employed"/></th>
-				<th><f:translate key="be.label.MyApplications.Table.LatestNote"/></th>
-			</tr>
-		</thead>
-		<tbody>
-			<f:for each="{applications}" as="application" iteration="i">
+	<f:render partial="Backend/Application/TableInner" arguments="{applications : applications, checkboxes : 1}" />
 
-				<tr>
-					<td><f:form.checkbox class="checkbox status_{application.status}" multiple="1" name="applications" value="{application.uid}"/></td>
-					<td> {i.index}</td>
-					<td data-order="{application.creationDate -> f:format.date(format: 'U')}"><f:format.date format="d.m.Y H:i">{application.creationDate}</f:format.date></td>
-					<td>
-						<f:link.action action="show" arguments="{application : application}">{application.surname}, {application.firstname}</f:link.action>
-					</td>
-					<td>{application.uid}</td>
-					<td>{application.job.jobNumber}</td>
-					<td><f:translate key="tx_ats.application.status.{application.status}">{application.status}</f:translate></td>
-					<td><f:translate key="tx_ats.application.rating.{application.rating}" /></td>
-					<td><f:translate key="tx_ats.label.disability.{application.disability}" /></td>
-					<td><f:translate key="tx_ats.label.employed.{application.employed}" /></td>
-					<td>
-						<f:format.crop maxCharacters="100"><f:format.raw>{application.latestNote.details}</f:format.raw></f:format.crop>
-						<f:if condition="{f:count(subject:application.notes)} > 1">
-								(<f:link.action action="notes" arguments="{application : application}">+{application.notes -> f:count()} more</f:link.action>)
-						</f:if>
-					</td>
-				</tr>
-			</f:for>
-		</tbody>
-	</table>
 	<ats:form.translatableSelect translationPrefix="tx_ats.be.messageTypes." name="messageType" class="form-control form-group  messageType" options="{messageTypes}" />
 	<f:form.button name="action" value="newMassNotification" class="form-group btn btn-primary"><f:translate id="be.label.Notification.Continue"/></f:form.button>
 </f:form>

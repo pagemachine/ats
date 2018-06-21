@@ -1,0 +1,43 @@
+<table class="applications-list table">
+	<thead>
+		<tr>
+			<f:if condition="{checkboxes}"><th><input type="checkbox" class="selectAll"></th></f:if>
+			<th>#</th>
+			<th><f:translate key="be.label.MyApplications.Table.Created"/></th>
+			<th>Name</th>
+			<th>ID</th>
+			<th><f:translate key="be.label.MyApplications.Table.JobNumber"/></th>
+			<th>Status</th>
+			<th><f:translate key="be.label.MyApplications.Table.Rating"/></th>
+			<th><f:translate key="be.label.MyApplications.Table.Disability"/></th>
+			<th><f:translate key="be.label.MyApplications.Table.Employed"/></th>
+			<th><f:translate key="be.label.MyApplications.Table.LatestNote"/></th>
+		</tr>
+	</thead>
+	<tbody>
+		<f:for each="{applications}" as="application" iteration="i">
+			<tr>
+				<f:if condition="{checkboxes}">
+					<td><f:form.checkbox class="checkbox status_{application.status}" multiple="1" name="applications" value="{application.uid}"/></td>
+				</f:if>
+				<td>{i.index}</td>
+				<td data-order="{application.creationDate -> f:format.date(format: 'U')}"><f:format.date format="d.m.Y H:i">{application.creationDate}</f:format.date></td>
+				<td>
+					<f:link.action action="show" arguments="{application : application}">{application.surname}, {application.firstname}</f:link.action>
+				</td>
+				<td>{application.uid}</td>
+				<td>{application.job.jobNumber}</td>
+				<td><f:translate key="tx_ats.application.status.{application.status}">{application.status}</f:translate></td>
+				<td><f:translate key="tx_ats.application.Rating.{application.rating}" /></td>
+				<td><f:translate key="tx_ats.label.disability.{application.disability}" /></td>
+				<td><f:translate key="tx_ats.label.employed.{application.employed}" /></td>
+				<td style="max-width: 250px;">
+					<f:format.crop maxCharacters="100"><f:format.raw>{application.latestNote.details}</f:format.raw></f:format.crop>
+					<f:if condition="{f:count(subject:application.notes)} > 1">
+							(<f:link.action action="notes" arguments="{application : application}">+{application.notes -> f:count()} more</f:link.action>)
+					</f:if>
+				</td>
+			</tr>
+		</f:for>
+	</tbody>
+</table>

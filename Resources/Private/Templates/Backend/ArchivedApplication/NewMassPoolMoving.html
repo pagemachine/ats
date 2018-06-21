@@ -1,0 +1,64 @@
+{namespace ats=PAGEmachine\Ats\ViewHelpers}
+<f:form action="setMassPoolMoving">
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="form-inline">
+				<f:translate key="be.label.Archive.Pool.Move" />
+			</div>
+		</div>
+		<div class="panel-body">
+			<f:for each="{applications}" as="application">
+				<f:form.hidden name="applications[{application.uid}]" value="{application.uid}" />
+			</f:for>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<f:translate key="be.label.Applications" /> (<f:count>{applications}</f:count>)
+					<a href="#" title="Collapse table" class="pull-right t3js-toggle-recordlist" data-toggle="collapse" data-target="#application-notes" aria-expanded="true">
+						<span class="collapseIcon">
+							<core:icon identifier="actions-view-list-expand" size="small" />
+						</span>
+					</a>
+				</div>
+				<div class="collapse" data-state="collapsed" id="application-notes">
+					<div class="panel-body">
+						<f:render partial="Backend/Application/TableInner" arguments="{applications : applications}" />
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="job"><f:translate key="be.label.newMassPoolMoving.job">Job</f:translate></label>
+				<f:form.select
+					name="job"
+					options="{jobs}"
+					optionLabelField="jobNumberAndTitle"
+					optionValueField="uid"
+					class="form-control"
+				/>
+			</div>
+
+			<div class="form-group">
+				<label for="status"><f:translate key="be.label.newMassPoolMoving.status">Status</f:translate></label>
+				<ats:form.translatableSelect name="status" value="10" options="{statusOptions}" translationPrefix="tx_ats.application.status." class="form-control" />
+			</div>
+
+			<div class="form-group">
+				<f:form.hidden name="note[subject]" value="Status" />
+				<f:form.hidden name="note[user]" value="{beUser.uid}" />
+
+				<label for="details"><f:translate id="be.label.ApplicationSingle.Workflow.Note"/></label>
+
+				<f:form.textarea name="note[details]" id="details" rows="7" class="form-control" />
+			</div>
+
+			<div class="form-group">
+				<f:form.submit value="<f:translate id='be.label.ApplicationSingle.Workflow.Submit'/>" class="btn btn-primary" />
+			</div>
+
+		</div>
+
+	</div>
+
+</f:form>

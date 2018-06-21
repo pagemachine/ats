@@ -864,6 +864,14 @@
 				<source>The following file was removed:</source>
 			</trans-unit>
 
+			<trans-unit id="tx_ats.history.massPoolMoving.subject">
+				<source>Move</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.massPoolMoving.details.changeJob">
+				<source>Move to job</source>
+			</trans-unit>
+
       <!-- ATS Statistics -->
       <trans-unit id="tx_ats.stat.datef">
         <source>From:</source>
@@ -1120,8 +1128,16 @@
 				<source>Pool</source>
 			</trans-unit>
 
+			<trans-unit id="be.label.Archive.Pool.Move">
+				<source>Move selected applications</source>
+			</trans-unit>
+
 			<trans-unit id="be.label.Statistics">
 				<source>Statistics</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.Applications">
+				<source>Applications</source>
 			</trans-unit>
 
 			<trans-unit id="be.label.Statistics.dateFrom">
@@ -1500,6 +1516,14 @@
 				<source>Back to list</source>
 			</trans-unit>
 
+			<trans-unit id="be.label.newMassPoolMoving.job">
+				<source>Job</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.newMassPoolMoving.status">
+				<source>Status</source>
+			</trans-unit>
+
 			<!-- FlashMessages -->
 
 			<trans-unit id="be.flashMessage.update.ok">
@@ -1569,6 +1593,10 @@
 
 			<trans-unit id='be.flashMessage.nopool.ok'>
 				<source>Application is now in the archives.</source>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.massPoolMoving.ok'>
+				<source>Applications were moved successfully.</source>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.be.messageTypes.1">
