@@ -258,7 +258,7 @@ class ExportService implements SingletonInterface
                                 $row[] = str_replace("\r\n", ' ', implode(' ', $comments));
                                 break;
                             case 'rating_perso':
-                                $row[] = $GLOBALS['LANG']->getLL('tx_ats.application.rating_perso.'.$application->getRatingPerso()->__toString());
+                                $row[] = $GLOBALS['LANG']->getLL('tx_ats.application.rating.'.$application->getRatingPerso()->__toString());
                                 break;
                             case 'comment_rating_perso':
                                 $comments = [];
