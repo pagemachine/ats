@@ -425,7 +425,7 @@
 
 			<trans-unit id="tx_ats_domain_model_application.comment_rating">
 			  <source>Rating note</source>
-			  <source>Rating note</source>
+			  <target>Bewertungs Bemerkung</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_application.rating_perso">

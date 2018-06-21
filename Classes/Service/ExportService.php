@@ -235,13 +235,13 @@ class ExportService implements SingletonInterface
                                 $row[] = $GLOBALS['LANG']->getLL('tx_ats.application.application_type.'.$application->getApplicationType());
                                 break;
                             case 'status':
-                                $row[] = ApplicationStatus::getFlippedConstants()[$application->getStatus()->__toString()];
+                                $row[] = $GLOBALS['LANG']->getLL('tx_ats.application.status.'.$application->getStatus()->__toString());
                                 break;
                             case 'aip':
                                 $row[] = $application->getAip() == 1 ? 'yes' : '';
                                 break;
                             case 'rating':
-                                $row[] = ApplicationRating::getFlippedConstants()[$application->getRating()->__toString()];
+                                $row[] = $GLOBALS['LANG']->getLL('tx_ats.application.rating.'.$application->getRating()->__toString());
                                 break;
                             case 'comment_rating':
                                 $comments = [];
@@ -258,7 +258,7 @@ class ExportService implements SingletonInterface
                                 $row[] = str_replace("\r\n", ' ', implode(' ', $comments));
                                 break;
                             case 'rating_perso':
-                                $row[] = ApplicationRating::getFlippedConstants()[$application->getRatingPerso()->__toString()];
+                                $row[] = $GLOBALS['LANG']->getLL('tx_ats.application.rating_perso.'.$application->getRatingPerso()->__toString());
                                 break;
                             case 'comment_rating_perso':
                                 $comments = [];
