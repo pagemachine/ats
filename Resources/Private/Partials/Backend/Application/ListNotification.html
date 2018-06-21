@@ -10,7 +10,7 @@
 
 <f:form action="newMassNotification" id="newMassNotification" class="checkbox-table-form">
 
-	<f:render partial="Backend/Application/CheckboxTable" arguments="{applications : applications}" />
+	<f:render partial="Backend/Application/TableInner" arguments="{applications : applications, checkboxes : true}" />
 
 	<ats:form.translatableSelect translationPrefix="tx_ats.be.messageTypes." name="messageType" class="form-control form-group  messageType" options="{messageTypes}" />
 	<f:form.button name="action" value="newMassNotification" class="form-group btn btn-primary"><f:translate id="be.label.Notification.Continue"/></f:form.button>

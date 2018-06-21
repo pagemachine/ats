@@ -1,6 +1,7 @@
 	<table class="applications-list table">
 		<thead>
 			<tr>
+				<f:if condition="{checkboxes}"><th><input type="checkbox" class="selectAll"></th></f:if>
 				<th>#</th>
 				<th><f:translate key="be.label.MyApplications.Table.Created"/></th>
 				<th>Name</th>
@@ -16,6 +17,9 @@
 		<tbody>
 			<f:for each="{applications}" as="application" iteration="i">
 				<tr>
+					<f:if condition="{checkboxes}">
+						<td><f:form.checkbox class="checkbox status_{application.status}" multiple="1" name="applications" value="{application.uid}"/></td>
+					</f:if>
 					<td>{i.index}</td>
 					<td data-order="{application.creationDate -> f:format.date(format: 'U')}"><f:format.date format="d.m.Y H:i">{application.creationDate}</f:format.date></td>
 					<td>
