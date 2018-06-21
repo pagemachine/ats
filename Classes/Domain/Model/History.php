@@ -193,13 +193,29 @@ class History extends AbstractEntity implements CloneableInterface
         if ($value == 'NULL') {
             return '';
         }
+        switch ($col) {
+            case 'referrer':
+            case 'forward_to_departments':
+            case 'school_qualification':
+            case 'salutation':
+            case 'disability':
+            case 'employed':
+                $translation = LocalizationUtility::translate('tx_ats.label.'.$col.'.'.$value, 'ats');
+                break;
 
-        $translation = LocalizationUtility::translate('tx_ats.application.'.$col.'.'.$value, 'ats');
+            case 'rating_perso':
+                $translation = LocalizationUtility::translate('tx_ats.application.rating.'.$value, 'ats');
+                break;
+
+            default:
+                $translation = LocalizationUtility::translate('tx_ats.application.'.$col.'.'.$value, 'ats');
+                break;
+        }
+
         if ($translation) {
             return $translation;
         }
 
         return BackendUtility::getProcessedValue("tx_ats_domain_model_application", $col, $value, 0, true);
-        ;
     }
 }
