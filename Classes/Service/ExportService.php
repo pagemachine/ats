@@ -190,7 +190,7 @@ class ExportService implements SingletonInterface
         foreach ($options as $option) {
             if ($GLOBALS['LANG']->getLL('tx_ats_domain_model_application.'.$option)) {
                 $exportHeader .= '"'.utf8_decode($GLOBALS['LANG']->getLL('tx_ats_domain_model_application.'.$option)).'";';
-            }elseif ($GLOBALS['LANG']->getLL('tx_ats_domain_model_job.'.$option)) {
+            } elseif ($GLOBALS['LANG']->getLL('tx_ats_domain_model_job.'.$option)) {
                 $exportHeader .= '"'.utf8_decode($GLOBALS['LANG']->getLL('tx_ats_domain_model_job.'.$option)).'";';
             } else {
                 $exportHeader .= '"'.$option.'";';
@@ -248,7 +248,7 @@ class ExportService implements SingletonInterface
                                 foreach ($application->getnotes() as $key => $note) {
                                     if (!$note->getIsInternal()) {
                                         $string = $note->getCreationDate()->format('Y-m-d').' - ';
-                                        if($note->getUser()){
+                                        if ($note->getUser()) {
                                             $string .= $note->getUser()->getRealName() ? $note->getUser()->getRealName().' ('.$note->getUser()->getUserName().')':$note->getUser()->getUserName();
                                         }
                                         $string .= ': '.$note->getDetails();
