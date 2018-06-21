@@ -1,8 +1,6 @@
 <?php
 namespace PAGEmachine\Ats\Service;
 
-use PAGEmachine\Ats\Application\ApplicationRating;
-use PAGEmachine\Ats\Application\ApplicationStatus;
 use TYPO3\CMS\Core\SingletonInterface;
 
 /*
