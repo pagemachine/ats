@@ -755,8 +755,8 @@
 			</trans-unit>
 
 			<trans-unit id="be.label.Archive.Pool.Move">
-				<source>Move Applications</source>
-				<target>Bewerbungen verschieben</target>
+				<source>Move selected applications</source>
+				<target>Ausgewählte Bewerbungen verschieben</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.application.rating.0">

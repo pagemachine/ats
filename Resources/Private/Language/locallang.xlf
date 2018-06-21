@@ -1129,7 +1129,7 @@
 			</trans-unit>
 
 			<trans-unit id="be.label.Archive.Pool.Move">
-				<source>Move Applications</source>
+				<source>Move selected applications</source>
 			</trans-unit>
 
 			<trans-unit id="be.label.Statistics">
