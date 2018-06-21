@@ -1516,6 +1516,14 @@
 				<source>Back to list</source>
 			</trans-unit>
 
+			<trans-unit id="be.label.newMassPoolMoving.job">
+				<source>Job</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.newMassPoolMoving.status">
+				<source>Status</source>
+			</trans-unit>
+
 			<!-- FlashMessages -->
 
 			<trans-unit id="be.flashMessage.update.ok">
