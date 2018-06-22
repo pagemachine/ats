@@ -207,6 +207,10 @@ class History extends AbstractEntity implements CloneableInterface
                 $translation = LocalizationUtility::translate('tx_ats.application.rating.'.$value, 'ats');
                 break;
 
+            case 'birthday':
+                $value = date('r', $value);
+                break;
+
             default:
                 $translation = LocalizationUtility::translate('tx_ats.application.'.$col.'.'.$value, 'ats');
                 break;
