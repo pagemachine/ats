@@ -109,6 +109,12 @@ return [
                 ],
             ],
         ],
+        'creation_date' => [
+            'config' => [
+                'type' => 'input',
+                'eval' => 'datetime'
+            ],
+        ],
         'receiptdate' => [
             'config' => [
                 'type' => 'input',
