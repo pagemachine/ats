@@ -495,6 +495,7 @@ class ApplicationController extends AbstractBackendController
             "close",
             [
                 "status" => $application->getStatus(),
+                "note" => $note->getDetails(),
             ]
         );
         $this->addFlashMessage($this->callStatic(LocalizationUtility::class, 'translate', 'be.flashMessage.close.ok', 'ats'));
