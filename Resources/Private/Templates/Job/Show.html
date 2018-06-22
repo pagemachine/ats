@@ -18,6 +18,14 @@
 	<f:format.raw>{job.descriptionAfterLink}</f:format.raw>
 </p>
 
+<div class="row">
+	<f:for each="{job.media}" as="file">
+		<div class="col-sm-6">
+			<f:media file="{file}" alt="{file.alternative}" title="{file.title}" width="500" height="500m" />
+		</div>
+	</f:for>
+</div>
+
 
 
 </f:section>

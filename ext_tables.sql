@@ -31,6 +31,7 @@ CREATE TABLE tx_ats_domain_model_job (
 	deadline_email int(11) DEFAULT '0' NOT NULL,
 	deactivated tinyint(3) DEFAULT '0' NOT NULL,
 	enable_form_link tinyint(1) DEFAULT '0' NOT NULL,
+	media int(11) unsigned DEFAULT '0' NOT NULL,
 
 	job_title varchar(255) DEFAULT '' NOT NULL,
 	base_salary float(23) DEFAULT '0' NOT NULL,
