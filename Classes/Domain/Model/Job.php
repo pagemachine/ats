@@ -7,6 +7,7 @@ namespace PAGEmachine\Ats\Domain\Model;
 
 use TYPO3\CMS\Extbase\Domain\Model\BackendUser;
 use TYPO3\CMS\Extbase\Domain\Model\BackendUserGroup;
+use TYPO3\CMS\Extbase\Domain\Model\Category;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
@@ -144,6 +145,49 @@ class Job extends AbstractEntity implements \JsonSerializable
         $this->department = new ObjectStorage();
         $this->officials = new ObjectStorage();
         $this->contributors = new ObjectStorage();
+    }
+
+
+
+    /**
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category>
+     * @lazy
+     */
+    protected $categories;
+
+    /**
+     * @return ObjectStorage
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * @param ObjectStorage $categories
+     * @return void
+     */
+    public function setCategories(ObjectStorage $categories)
+    {
+        $this->categories = $categories;
+    }
+
+    /**
+     * @param Category $category
+     * @return void
+     */
+    public function addCategory(Category $category)
+    {
+        $this->categories->attach($category);
+    }
+
+    /**
+     * @param Category $category
+     * @return void
+     */
+    public function removeCategory(Category $category)
+    {
+        $this->categories->detach($category);
     }
 
     /**
