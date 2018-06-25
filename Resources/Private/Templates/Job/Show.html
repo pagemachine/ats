@@ -6,6 +6,9 @@
 <f:render partial="Job/JsonLd" arguments="{job : job}" />
 
 <h1>{job.title}</h1>
+
+<f:render partial="Job/Categories" arguments="{job : job }" />
+
 <p>
 	<f:format.raw>{job.description}</f:format.raw>
 </p>
