@@ -1,0 +1,9 @@
+{namespace ats=PAGEmachine\Ats\ViewHelpers}
+
+<f:form action="newMassPoolMoving" id="newMassPoolMoving" class="checkbox-table-form">
+
+	<f:render partial="Backend/Application/TableInner" arguments="{applications : applications, checkboxes : 1}" />
+
+	<f:form.button name="action" value="newMassPoolMoving" class="form-group btn btn-primary"><f:translate id="be.label.Archive.Pool.Move"/></f:form.button>
+
+</f:form>

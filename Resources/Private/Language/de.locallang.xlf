@@ -754,6 +754,11 @@
 				<target>Pool</target>
 			</trans-unit>
 
+			<trans-unit id="be.label.Archive.Pool.Move">
+				<source>Move selected applications</source>
+				<target>Ausgewählte Bewerbungen verschieben</target>
+			</trans-unit>
+
 			<trans-unit id="tx_ats.application.rating.0">
 				<source>-</source>
 				<target>Keine</target>
@@ -822,6 +827,11 @@
 			<trans-unit id="be.label.AllApplications">
 				<source>All Applications</source>
 				<target>Alle Bewerbungen</target>
+			</trans-unit>
+
+			<trans-unit id="be.label.Applications">
+				<source>Applications</source>
+				<target>Bewerbungen</target>
 			</trans-unit>
 
 			<trans-unit id="be.label.Statistics">
@@ -1260,6 +1270,15 @@
 				<target>Die folgende Datei wurde entfernt:</target>
 			</trans-unit>
 
+			<trans-unit id="tx_ats.history.massPoolMoving.subject">
+				<source>Move</source>
+				<target>Verschiebung</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.massPoolMoving.details.changeJob">
+				<source>Move to job</source>
+				<target>Verschiebung zur Stelle</target>
+			</trans-unit>
 
 
       <!-- Application status -->
@@ -1746,6 +1765,11 @@
 			<trans-unit id='be.flashMessage.nopool.ok'>
 				<source>Application is now in the archives.</source>
 				<target>Die Bewerbung befindet sich jetzt im Archiv.</target>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.massPoolMoving.ok'>
+				<source>Applications were moved successfully.</source>
+				<target>Bewerbungen wurden erfolgreich verschoben.</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.be.messageTypes.1">

@@ -78,7 +78,7 @@ require(
 		});
 
         // Destroy the dataTable on submit to keep the right order in the BFCache
-        $('#newMassNotification').on('submit', function(){
+        $('.checkbox-table-form').on('submit', function(){
             $(this).find('.applications-list').dataTable().fnDestroy();
         })
 
