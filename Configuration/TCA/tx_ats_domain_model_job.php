@@ -570,7 +570,7 @@ return [
             'exclude' => 1,
             'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.media',
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig('media', [
-            ], $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']),
+            ], 'jpg,jpeg,png,svg,pdf,avi,mp4,youtube,vimeo'),
         ],
 	]
 ];
