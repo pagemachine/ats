@@ -5,6 +5,7 @@ namespace PAGEmachine\Ats\Domain\Model;
  * This file is part of the PAGEmachine ATS project.
  */
 
+use PAGEmachine\Ats\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\Domain\Model\BackendUser;
 use TYPO3\CMS\Extbase\Domain\Model\BackendUserGroup;
 use TYPO3\CMS\Extbase\Domain\Model\Category;
@@ -264,6 +265,48 @@ class Job extends AbstractEntity implements \JsonSerializable
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+
+    /**
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<PAGEmachine\Ats\Domain\Model\FileReference>
+     * @lazy
+     */
+    protected $media;
+
+    /**
+     * @return ObjectStorage
+     */
+    public function getMedia()
+    {
+        return $this->media;
+    }
+
+    /**
+     * @param ObjectStorage $media
+     * @return void
+     */
+    public function setMedia(ObjectStorage $media)
+    {
+        $this->media = $media;
+    }
+
+    /**
+     * @param FileReference $media
+     * @return void
+     */
+    public function addMedia(FileReference $media)
+    {
+        $this->media->attach($media);
+    }
+
+    /**
+     * @param FileReference $media
+     * @return void
+     */
+    public function removeMedia(FileReference $media)
+    {
+        $this->media->detach($media);
     }
 
     /**
