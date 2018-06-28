@@ -39,7 +39,6 @@ class ApplicationB extends ApplicationA
 
     /**
      * @var int $salutation
-     * @validate int
      */
     protected $salutation;
 
@@ -62,7 +61,6 @@ class ApplicationB extends ApplicationA
 
     /**
      * @var string $firstname
-     * @validate NotEmpty
      */
     protected $firstname;
 
@@ -85,7 +83,6 @@ class ApplicationB extends ApplicationA
 
     /**
      * @var string $surname
-     * @validate NotEmpty
      */
     protected $surname;
 
@@ -109,8 +106,6 @@ class ApplicationB extends ApplicationA
 
     /**
      * @var \DateTime $birthday
-     * @validate NotEmpty
-     * @validate DateTime
      */
     protected $birthday;
 
@@ -134,7 +129,6 @@ class ApplicationB extends ApplicationA
 
     /**
      * @var int $disability
-     * @validate NumberRange(minimum=1, maximum=2)
      */
     protected $disability;
 
@@ -179,7 +173,6 @@ class ApplicationB extends ApplicationA
 
     /**
      * @var string $street
-     * @validate NotEmpty
      */
     protected $street;
 
@@ -203,7 +196,6 @@ class ApplicationB extends ApplicationA
 
     /**
      * @var string $zipcode
-     * @validate NotEmpty
      */
     protected $zipcode;
 
@@ -227,7 +219,6 @@ class ApplicationB extends ApplicationA
 
     /**
      * @var string $city
-     * @validate NotEmpty
      */
     protected $city;
 
@@ -274,8 +265,6 @@ class ApplicationB extends ApplicationA
 
     /**
      * @var string $email
-     * @validate NotEmpty
-     * @validate EmailAddress
      */
     protected $email;
 
@@ -344,7 +333,6 @@ class ApplicationB extends ApplicationA
 
     /**
      * @var int $employed
-     * @validate NumberRange(minimum=1, maximum=2)
      */
     protected $employed;
 

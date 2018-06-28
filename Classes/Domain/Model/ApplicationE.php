@@ -25,7 +25,6 @@ class ApplicationE extends ApplicationD
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<PAGEmachine\Ats\Domain\Model\FileReference>
-     * @validate NotEmpty
      * @lazy
      */
     protected $files;

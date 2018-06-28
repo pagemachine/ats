@@ -35,6 +35,7 @@ class PersonalDataController extends AbstractApplicationController
     /**
      *
      * @param  ApplicationB $application
+     * @validate $application \PAGEmachine\Ats\Domain\Validator\TypoScriptValidator
      * @return void
      */
     public function updatePersonalDataAction(ApplicationB $application)

@@ -63,6 +63,7 @@ class UploadController extends AbstractApplicationController
     /**
      *
      * @param  ApplicationE $application
+     * @validate $application \PAGEmachine\Ats\Domain\Validator\TypoScriptValidator
      * @return void
      */
     public function updateUploadAction(ApplicationE $application)

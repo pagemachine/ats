@@ -48,6 +48,7 @@ class QualificationsController extends AbstractApplicationController
     /**
      *
      * @param  ApplicationC $application
+     * @validate $application \PAGEmachine\Ats\Domain\Validator\TypoScriptValidator
      * @return void
      */
     public function updateQualificationsAction(ApplicationC $application)

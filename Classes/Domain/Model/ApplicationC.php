@@ -229,7 +229,6 @@ class ApplicationC extends ApplicationB
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<PAGEmachine\Ats\Domain\Model\LanguageSkill>
-     * @validate NotEmpty
      * @lazy
      */
     protected $languageSkills;

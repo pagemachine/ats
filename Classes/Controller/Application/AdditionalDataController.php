@@ -34,6 +34,7 @@ class AdditionalDataController extends AbstractApplicationController
     /**
      *
      * @param  ApplicationD $application
+     * @validate $application \PAGEmachine\Ats\Domain\Validator\TypoScriptValidator
      * @return void
      */
     public function updateAdditionalDataAction(ApplicationD $application)
