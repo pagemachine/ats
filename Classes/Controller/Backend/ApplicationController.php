@@ -265,6 +265,7 @@ class ApplicationController extends AbstractBackendController
      * Backend edit action for applications
      *
      * @param  Application $application
+     * @ignorevalidation $application
      * @return void
      */
     public function editAction(Application $application)
