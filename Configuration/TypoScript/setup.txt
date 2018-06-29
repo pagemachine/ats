@@ -107,13 +107,28 @@ plugin.tx_ats {
 			}
 		}
 		PAGEmachine\Ats\Domain\Model\ApplicationB {
-			salutation.1.type = Integer
-			firstName.1.type = NotEmpty
-			surname.1.type = NotEmpty
-
+			salutation {
+				1 {
+					type = Integer
+				}
+			}
+			firstName {
+				1 {
+					type = NotEmpty
+				}
+			}
+			surname {
+				1 {
+					type = NotEmpty
+				}
+			}
 			birthday {
-				1.type = NotEmpty
-				2.type = DateTime
+				1 {
+					type = NotEmpty
+				}
+				2 {
+					type = DateTime
+				}
 			}
 			disability {
 				1 {
@@ -124,13 +139,28 @@ plugin.tx_ats {
 					}
 				}
 			}
-			street.1.type = NotEmpty
-			zipcode.1.type = NotEmpty
-			city.1.type = NotEmpty
-
+			street {
+				1 {
+					type = NotEmpty
+				}
+			}
+			zipcode {
+				1 {
+					type = NotEmpty
+				}
+			}
+			city {
+				1 {
+					type = NotEmpty
+				}
+			}
 			email {
-				1.type = NotEmpty
-				2.type = EmailAddress
+				1 {
+					type = NotEmpty
+				}
+				2 {
+					type = EmailAddress
+				}
 			}
 			employed {
 				1 {
@@ -144,9 +174,11 @@ plugin.tx_ats {
 		}
 
 		PAGEmachine\Ats\Domain\Model\ApplicationC {
+			// Please note the custom Languageskill model Validator that is always active. It ensures language records are filled in properly.
 			languageSkills {
-				1.type = NotEmpty
-				// Please note the custom Languageskill model Validator that is always active. It ensures language records are filled in properly.
+				1 {
+					type = NotEmpty
+				}
 			}
 		}
 
@@ -163,7 +195,11 @@ plugin.tx_ats {
 		}
 
 		PAGEmachine\Ats\Domain\Model\ApplicationE {
-			files.1.type = NotEmpty
+			files {
+				1 {
+					type = NotEmpty
+				}
+			}
 		}
 	}
 }
