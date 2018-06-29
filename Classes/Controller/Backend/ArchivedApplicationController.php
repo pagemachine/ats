@@ -88,7 +88,6 @@ class ArchivedApplicationController extends ApplicationController
      * add or remove application from pool
      *
      * @param   Application  $application
-     * @ignorevalidation $application
      * @return void
      */
     public function moveToPoolAction(Application $application)
@@ -102,7 +101,6 @@ class ArchivedApplicationController extends ApplicationController
      *
      * @param    Application  $application
      * @param    Note         $note
-     * @ignorevalidation $application
      * @ignorevalidation $note
      * @return   void
      */

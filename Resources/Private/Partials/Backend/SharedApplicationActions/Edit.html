@@ -2,6 +2,8 @@
 
 <f:form action="update" object="{application}" name="application" enctype="multipart/form-data" id="application-editform">
 
+	<f:render partial="Application/ValidationResults" arguments="{application : application}" />
+
 	<f:render partial="Backend/Application/Form/Introduction" arguments="{application : application}" />
 	<f:render partial="Backend/Application/Form/PersonalData" arguments="{application : application}" />
 	<f:render partial="Backend/Application/Form/Qualifications" arguments="{application : application}" />

@@ -44,4 +44,16 @@ class TyposcriptService implements SingletonInterface
             'ats'
         );
     }
+
+    /**
+     * Shorthand function to retrieve TypoScript framework configuration outside of the controllers.
+     * @return array
+     */
+    public function getFrameworkConfiguration()
+    {
+        return $this->configurationManager->getConfiguration(
+            ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
+            'ats'
+        );
+    }
 }

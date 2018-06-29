@@ -66,6 +66,8 @@ module.tx_ats {
         templateRootPaths.0 = {$module.tx_ats.view.templateRootPath}
         partialRootPaths.0 = {$module.tx_ats.view.partialRootPath}
         layoutRootPaths.0 = {$module.tx_ats.view.layoutRootPath}
+
+        pluginNamespace = tx_ats
     }
     features {
         ignoreAllEnableFieldsInBe = true
