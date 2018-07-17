@@ -112,7 +112,7 @@ plugin.tx_ats {
 					type = Integer
 				}
 			}
-			firstName {
+			firstname {
 				1 {
 					type = NotEmpty
 				}
