@@ -60,7 +60,6 @@ class ApplicationD extends ApplicationC
 
     /**
      * @var int $forwardToDepartments
-     * @validate NumberRange(minimum=1, maximum=2)
      */
     protected $forwardToDepartments;
 

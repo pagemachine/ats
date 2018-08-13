@@ -137,6 +137,11 @@
 				<target>Niederlassung</target>
 			</trans-unit>
 
+			<trans-unit id="tx_ats_domain_model_job.media">
+				<source>Media</source>
+				<target>Medienelemente</target>
+			</trans-unit>
+
 			<trans-unit id="be_groups.tx_ats_location.I.none">
 				<source>None</source>
 				<target>Keine</target>
@@ -151,6 +156,7 @@
 				<source>Branch office</source>
 				<target>Niederlassung</target>
 			</trans-unit>
+
 
 			<!-- JSON-LD fields -->
 

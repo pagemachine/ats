@@ -93,6 +93,115 @@ plugin.tx_ats {
 			country = {$plugin.tx_ats.settings.companyData.country}
 		}
 	}
+
+
+	mvc.validation {
+		PAGEmachine\Ats\Domain\Model\ApplicationA {
+			privacyPolicy {
+				1 {
+					type = Boolean
+					options {
+						is = true
+					}
+				}
+			}
+		}
+		PAGEmachine\Ats\Domain\Model\ApplicationB {
+			salutation {
+				1 {
+					type = Integer
+				}
+			}
+			firstname {
+				1 {
+					type = NotEmpty
+				}
+			}
+			surname {
+				1 {
+					type = NotEmpty
+				}
+			}
+			birthday {
+				1 {
+					type = NotEmpty
+				}
+				2 {
+					type = DateTime
+				}
+			}
+			disability {
+				1 {
+					type = NumberRange
+					options {
+						minimum = 1
+						maximum = 2
+					}
+				}
+			}
+			street {
+				1 {
+					type = NotEmpty
+				}
+			}
+			zipcode {
+				1 {
+					type = NotEmpty
+				}
+			}
+			city {
+				1 {
+					type = NotEmpty
+				}
+			}
+			email {
+				1 {
+					type = NotEmpty
+				}
+				2 {
+					type = EmailAddress
+				}
+			}
+			employed {
+				1 {
+					type = NumberRange
+					options {
+						minimum = 1
+						maximum = 2
+					}
+				}
+			}
+		}
+
+		PAGEmachine\Ats\Domain\Model\ApplicationC {
+			// Please note the custom Languageskill model Validator that is always active. It ensures language records are filled in properly.
+			languageSkills {
+				1 {
+					type = NotEmpty
+				}
+			}
+		}
+
+		PAGEmachine\Ats\Domain\Model\ApplicationD {
+			forwardToDepartments {
+				1 {
+					type = NumberRange
+					options {
+						minimum = 1
+						maximum = 2
+					}
+				}
+			}
+		}
+
+		PAGEmachine\Ats\Domain\Model\ApplicationE {
+			files {
+				1 {
+					type = NotEmpty
+				}
+			}
+		}
+	}
 }
 
 config.tx_extbase {

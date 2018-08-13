@@ -243,7 +243,6 @@ class ApplicationController extends AbstractBackendController
      * Shows an application and lists all additional possible actions
      * @param  Application $application
      * @param  bool $print
-     * @ignorevalidation $application
      * @return void
      */
     public function showAction(Application $application, $print = false)
@@ -289,7 +288,6 @@ class ApplicationController extends AbstractBackendController
      * Backend update action for applications
      *
      * @param  Application $application
-     * @ignorevalidation $application
      * @return void
      */
     public function updateAction(Application $application)
@@ -305,7 +303,6 @@ class ApplicationController extends AbstractBackendController
      * Change workflow (status)
      *
      * @param  Application $application
-     * @ignorevalidation $application
      * @return void
      */
     public function editStatusAction(Application $application)
@@ -323,7 +320,6 @@ class ApplicationController extends AbstractBackendController
      *
      * @param  Application $application
      * @param  Note $note
-     * @ignorevalidation $application
      * @ignorevalidation $note
      * @return void
      */
@@ -350,7 +346,6 @@ class ApplicationController extends AbstractBackendController
      * ratingPerso action
      *
      * @param  Application $application
-     * @ignorevalidation $application
      * @return void
      */
     public function ratingPersoAction(Application $application)
@@ -365,7 +360,6 @@ class ApplicationController extends AbstractBackendController
      * rating action
      *
      * @param  Application $application
-     * @ignorevalidation $application
      * @return void
      */
     public function ratingAction(Application $application)
@@ -382,7 +376,6 @@ class ApplicationController extends AbstractBackendController
      * @param Note $note
      * @param  Application $application
      * @param  string $forwardAction
-     * @ignorevalidation $application
      * @ignorevalidation $note
      * @return void
      */
@@ -421,7 +414,6 @@ class ApplicationController extends AbstractBackendController
      * notes action - lists all notes for a given application
      *
      * @param  Application $application
-     * @ignorevalidation $application
      * @return void
      */
     public function notesAction(Application $application)
@@ -436,7 +428,6 @@ class ApplicationController extends AbstractBackendController
      *
      * @param Note $note
      * @param  Application $application
-     * @ignorevalidation $application
      * @return void
      */
     public function addNoteAction(Note $note, Application $application)
@@ -460,7 +451,6 @@ class ApplicationController extends AbstractBackendController
      * Closes an application (with reason) (status change)
      *
      * @param  Application $application
-     * @ignorevalidation $application
      * @return void
      */
     public function closeAction(Application $application)
@@ -478,7 +468,6 @@ class ApplicationController extends AbstractBackendController
      * Confirm close action
      *
      * @param  Application $application
-     * @ignorevalidation $application
      * @ignorevalidation $note
      * @param  Note        $note
      * @return void
@@ -507,7 +496,6 @@ class ApplicationController extends AbstractBackendController
 
      * @param  ReplyMessage $message
      * @param  Application $application
-     * @ignorevalidation $application
      * @ignorevalidation $message
      * @return void
      */
@@ -559,7 +547,6 @@ class ApplicationController extends AbstractBackendController
 
      * @param  ReplyMessage $message
      * @param  Application $application
-     * @ignorevalidation $application
      * @ignorevalidation $message
      * @return void
      */
@@ -611,7 +598,6 @@ class ApplicationController extends AbstractBackendController
 
      * @param  ReplyMessage $message
      * @param  Application $application
-     * @ignorevalidation $application
      * @ignorevalidation $message
      * @return void
      */
@@ -663,7 +649,6 @@ class ApplicationController extends AbstractBackendController
 
      * @param  RejectMessage $message
      * @param  Application $application
-     * @ignorevalidation $application
      * @ignorevalidation $message
      * @return void
      */
@@ -714,7 +699,6 @@ class ApplicationController extends AbstractBackendController
      * Back to Personal Department view
      *
      * @param  Application  $application
-     * @ignorevalidation $application
      * @return void
      */
     public function backToPersoAction(Application $application)
@@ -728,7 +712,6 @@ class ApplicationController extends AbstractBackendController
      *
      * @param  Application $application
      * @param  Note $note
-     * @ignorevalidation $application
      * @ignorevalidation $note
      * @return void
      */
@@ -755,7 +738,6 @@ class ApplicationController extends AbstractBackendController
      * Action for history
      *
      * @param  Application $application
-     * @ignorevalidation $application
      * @return void
      */
     public function historyAction(Application $application)
@@ -768,7 +750,6 @@ class ApplicationController extends AbstractBackendController
      * Cloning preparation action
      *
      * @param  Application $application
-     * @ignorevalidation $application
      * @return void
      */
     public function cloneAction(Application $application)
@@ -785,7 +766,6 @@ class ApplicationController extends AbstractBackendController
      * @param  Application $application
      * @param  Job $job
      * @param  Note $note
-     * @ignorevalidation $application
      * @ignorevalidation $note
      * @return void
      */
@@ -830,7 +810,6 @@ class ApplicationController extends AbstractBackendController
      * Saves upload and forwards back to edit
      *
      * @param  Application $application
-     * @ignorevalidation $application
      * @return void
      */
     public function saveUploadAction(Application $application)
@@ -844,7 +823,6 @@ class ApplicationController extends AbstractBackendController
     /**
      * @param  Application $application
      * @param  FileReference $file
-     * @ignorevalidation $application
      * @return void
      */
     public function removeUploadAction(Application $application, FileReference $file)
@@ -885,7 +863,6 @@ class ApplicationController extends AbstractBackendController
      * Backend update action for applications
      *
      * @param  Application $application
-     * @ignorevalidation $application
      * @return void
      */
     public function createAction(Application $application)

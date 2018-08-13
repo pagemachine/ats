@@ -27,11 +27,11 @@ return [
         'requestUpdate' => 'career, location, override_global_hiring_organization, override_global_location'
 	],
 	'interface' => [
-		'showRecordFieldList' => 'sys_language_uid,  l10n_parent,  l10n_diffsource,  hidden,  starttime,  endtime, job_number, title, description, description_after_link, enable_form_link, career, internal, deactivated, location, user_pa, department, officials, contributors, contact, deadline_email_disabled, deadline_email, organization_unit, job_title, base_salary, base_salary_currency, base_salary_unit, education_requirements, employment_type, experience_requirements, override_global_hiring_organization, hiring_organization, incentive_compensation, job_benefits, industry, override_global_location, job_location_address_country, job_location_address_region, job_location_address_locality, job_location_address_postal_code, job_location_address_street_address, occupational_category, qualifications, responsibilities, skills, special_commitments, work_hours'
+		'showRecordFieldList' => 'sys_language_uid,  l10n_parent,  l10n_diffsource,  hidden,  starttime,  endtime, job_number, title, description, description_after_link, enable_form_link, media, career, internal, deactivated, location, user_pa, department, officials, contributors, contact, deadline_email_disabled, deadline_email, organization_unit, job_title, base_salary, base_salary_currency, base_salary_unit, education_requirements, employment_type, experience_requirements, override_global_hiring_organization, hiring_organization, incentive_compensation, job_benefits, industry, override_global_location, job_location_address_country, job_location_address_region, job_location_address_locality, job_location_address_postal_code, job_location_address_street_address, occupational_category, qualifications, responsibilities, skills, special_commitments, work_hours'
 	],
 	'types' => [
 		'1' => ['showitem' =>
-            'hidden, --palette--;;1, deactivated, job_number, title, description, description_after_link, enable_form_link, career,
+            'hidden, --palette--;;1, deactivated, job_number, title, description, description_after_link, enable_form_link, media, career,
             internal, location, user_pa, department, officials, contributors, contact, deadline_email_disabled, deadline_email, sys_language_uid, l18n_parent, --div--;LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.div.json_ld, job_title, industry, occupational_category, employment_type, --palette--;LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.base_salary.palette;3, work_hours, --palette--;LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.hiring_organization.palette;4, --palette--;LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.job_location.palette;5, education_requirements, experience_requirements, incentive_compensation, job_benefits, qualifications, responsibilities, skills, special_commitments, '],
 	],
 	'palettes' => [
@@ -565,6 +565,12 @@ return [
                 'placeholder' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.work_hours.placeholder',
                 'size' => 30,
             ],
+        ],
+        'media' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.media',
+            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig('media', [
+            ], 'jpg,jpeg,png,svg,pdf,avi,mp4,youtube,vimeo'),
         ],
 	]
 ];

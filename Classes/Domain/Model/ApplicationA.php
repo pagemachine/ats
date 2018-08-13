@@ -62,7 +62,6 @@ class ApplicationA extends AbstractApplication
 
     /**
      * @var bool $privacyPolicy
-     * @validate Boolean(is='true')
      */
     protected $privacyPolicy;
 

@@ -123,6 +123,10 @@
 				<source>Show link to form</source>
 			</trans-unit>
 
+			<trans-unit id="tx_ats_domain_model_job.media">
+				<source>Media</source>
+			</trans-unit>
+
 			<!-- JSON-LD fields -->
 
 			<trans-unit id="tx_ats_domain_model_job.div.json_ld">
