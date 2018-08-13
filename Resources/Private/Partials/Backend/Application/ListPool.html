@@ -2,6 +2,16 @@
 
 <f:form action="newMassPoolMoving" id="newMassPoolMoving" class="checkbox-table-form">
 
+	<f:form.validationResults for="applications">
+		<f:if condition="{validationResults.flattenedErrors}">
+			<div class="alert alert-danger" role="alert">
+				<f:for each="{validationResults.errors}" as="error">
+					<span class="error-intro"><f:translate key="tx_ats.error.newMassPoolMoving.{error.code}">{error.message}</f:translate></span>
+				</f:for>
+			</div>
+		</f:if>
+	</f:form.validationResults>
+
 	<f:render partial="Backend/Application/TableInner" arguments="{applications : applications, checkboxes : 1}" />
 
 	<f:form.button name="action" value="newMassPoolMoving" class="form-group btn btn-primary"><f:translate id="be.label.Archive.Pool.Move"/></f:form.button>
