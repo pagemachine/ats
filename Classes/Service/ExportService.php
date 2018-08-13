@@ -226,7 +226,7 @@ class ExportService implements SingletonInterface
                                 $row[] = $application->getUid();
                                 break;
                             case 'crdate':
-                                $row[] = $application->getCreationDate()->format('Y-m-d');
+                                $row[] = $application->getCreationDate() ? $application->getCreationDate()->format('Y-m-d'): '';
                                 break;
                             case 'application_type':
                                 $row[] = $GLOBALS['LANG']->getLL('tx_ats.application.application_type.'.$application->getApplicationType());
@@ -295,7 +295,7 @@ class ExportService implements SingletonInterface
                                 $row[] = $application->getSurname();
                                 break;
                             case 'birthday':
-                                $row[] = $application->getBirthday()->format('Y-m-d');
+                                $row[] = $application->getBirthday() ? $application->getBirthday()->format('Y-m-d') : '';
                                 break;
                             case 'disability':
                                 $row[] = $GLOBALS['LANG']->getLL('tx_ats.label.disability.'.$application->getDisability());
@@ -357,7 +357,11 @@ class ExportService implements SingletonInterface
                             case 'language':
                                 $lang = [];
                                 foreach ($application->getLanguageSkills() as $key => $languageSkill) {
-                                    $lang[] = $languageSkill->getLanguage()->getNameEn().' ('.($languageSkill->getTextLanguage()? $languageSkill->getTextLanguage().', ':'').$GLOBALS['LANG']->getLL('tx_ats.languageskill.level.'.$languageSkill->getLevel()).')';
+                                    if ($languageSkill->getTextLanguage() != '') {
+                                        $lang[] = sprintf('%s : %s', $languageSkill->getTextLanguage, $GLOBALS['LANG']->getLL('tx_ats.languageskill.level.'.$languageSkill->getLevel()));
+                                    } elseif ($languageSkill->getLanguage() != null) {
+                                        $lang[] = sprintf('%s : %s', $languageSkill->getLanguage()->getNameEn(), $GLOBALS['LANG']->getLL('tx_ats.languageskill.level.'.$languageSkill->getLevel()));
+                                    }
                                 }
                                 $row[] = implode(', ', $lang);
                                 break;
