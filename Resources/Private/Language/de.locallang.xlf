@@ -630,7 +630,7 @@
 
 			<!-- Backend errors -->
 
-			<trans-unit id="tx_ats.error.newMassPoolMoving.1347992453">
+			<trans-unit id="tx_ats.error.massApplication.1347992453">
 				<source>Please select at least one application.</source>
 				<target>Bitte wählen Sie mindestens eine Bewerbung aus.</target>
 			</trans-unit>
