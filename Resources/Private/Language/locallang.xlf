@@ -481,6 +481,11 @@
 		<source>Please enter a message.</source>
 	  </trans-unit>
 
+	  <trans-unit id="tx_ats.error.massApplication.1347992453">
+		<source>Please select at least one application.</source>
+	  </trans-unit>
+
+
 
 	  <!-- Application (internal) labels -->
 

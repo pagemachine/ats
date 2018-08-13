@@ -1,0 +1,9 @@
+<f:form.validationResults for="{object}">
+	<f:if condition="{validationResults.flattenedErrors}">
+		<div class="alert alert-danger" role="alert">
+			<f:for each="{validationResults.errors}" as="error">
+				<span class="error-intro"><f:translate key="tx_ats.error.{errorPrefix}.{error.code}">{error.message}</f:translate></span>
+			</f:for>
+		</div>
+	</f:if>
+</f:form.validationResults>
