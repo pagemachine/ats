@@ -243,7 +243,7 @@ class ExportService implements SingletonInterface
                             case 'comment_rating':
                                 $comments = [];
                                 foreach ($application->getnotes() as $key => $note) {
-                                    if (!$note->getIsInternal()) {
+                                    if (!$note->getIsInternal() && $note->getSubject() == 'rating') {
                                         $string = $note->getCreationDate()->format('Y-m-d').' - ';
                                         $string .= $note->getUser()->getRealName() ? $note->getUser()->getRealName().' ('.$note->getUser()->getUserName().')':$note->getUser()->getUserName();
                                         $string .= ': '.$note->getDetails();
@@ -258,7 +258,7 @@ class ExportService implements SingletonInterface
                             case 'comment_rating_perso':
                                 $comments = [];
                                 foreach ($application->getnotes() as $key => $note) {
-                                    if ($note->getIsInternal()) {
+                                    if (!$note->getIsInternal() && $note->getSubject() == 'ratingPerso') {
                                         $string = $note->getCreationDate()->format('Y-m-d').' - ';
                                         $string .= $note->getUser()->getRealName() ? $note->getUser()->getRealName().' ('.$note->getUser()->getUserName().')':$note->getUser()->getUserName();
                                         $string .= ': '.$note->getDetails();
