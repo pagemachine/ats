@@ -628,6 +628,13 @@
 				<target>Bitte geben Sie eine Sprache an, per Auswahl oder Eingabe.</target>
 			</trans-unit>
 
+			<!-- Backend errors -->
+
+			<trans-unit id="tx_ats.error.massApplication.1347992453">
+				<source>Please select at least one application.</source>
+				<target>Bitte wählen Sie mindestens eine Bewerbung aus.</target>
+			</trans-unit>
+
 			<!-- LanguageSkill labels -->
 			<trans-unit id="tx_ats.languageskill.textLanguage">
 				<source>Other</source>
