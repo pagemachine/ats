@@ -257,7 +257,7 @@ class ApplicationB extends ApplicationA
      * @param SJBR\StaticInfoTables\Domain\Model\Country $country
      * @return void
      */
-    public function setCountry(Country $country)
+    public function setCountry(Country $country = null)
     {
         $this->country = $country;
     }

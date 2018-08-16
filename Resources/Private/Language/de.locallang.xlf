@@ -716,6 +716,11 @@
 				<target> Löschen</target>
 			</trans-unit>
 
+			<trans-unit id="tx_ats.label.select.undefined">
+				<source>Undefined</source>
+				<target>Keine Angabe</target>
+			</trans-unit>
+
 			<trans-unit id="be.label.MyApplications">
 				<source>My Applications</source>
 				<target>Meine Bewerbungen</target>
