@@ -34,6 +34,7 @@ class DefaultWorkflowConfiguration
         'reject2' => ['name'=> 'reject', 'from' => ApplicationStatus::PERSO, 'to' => ApplicationStatus::CANCELLED_BY_EMPLOYER],
         'reject3' => ['name'=> 'reject', 'from' => ApplicationStatus::DEPARTMENT, 'to' => ApplicationStatus::CANCELLED_BY_EMPLOYER],
         'rating'=> ['from' => [], 'to' => []],
+        'ratingPerso'=> ['from' => [], 'to' => []],
         'history' => ['from' => [], 'to' => []],
         'clone' => ['from' => [], 'to' => []],
         'close' => ['from' => [], 'to' => []],
