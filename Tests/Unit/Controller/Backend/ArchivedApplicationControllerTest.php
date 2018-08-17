@@ -3,9 +3,7 @@ namespace PAGEmachine\Ats\Tests\Unit\Controller\Backend;
 
 use PAGEmachine\Ats\Controller\Backend\ArchivedApplicationController;
 use PAGEmachine\Ats\Domain\Model\Application;
-use PAGEmachine\Ats\Domain\Model\Note;
 use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
-use Prophecy\Argument;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
 use TYPO3\CMS\Extbase\Mvc\Controller\ControllerContext;
 use TYPO3\CMS\Extbase\Mvc\Request;
@@ -108,25 +106,5 @@ class ArchivedApplicationControllerTest extends UnitTestCase
         $this->view->assign("beUser", ['foo'])->shouldBeCalled();
 
         $this->archivedApplicationController->moveToPoolAction($this->application);
-    }
-
-    /**
-     * @test
-     */
-    public function updateMoveToPool()
-    {
-        $note = $this->prophesize(Note::class);
-        $note->getDetails()->willReturn("Hello");
-
-        $application = $this->prophesize(Application::class);
-        $application->addNote($note->reveal())->shouldBeCalled();
-        $application->getPool()->shouldBeCalled()->willReturn(1);
-
-        $this->applicationRepository->updateAndLog($application->reveal(), Argument::cetera())->shouldBeCalled();
-
-        $this->archivedApplicationController->expects($this->once())->method("addFlashMessage");
-        $this->archivedApplicationController->expects($this->once())->method("redirect")->with("moveToPool");
-
-        $this->archivedApplicationController->updateMoveToPoolAction($application->reveal(), $note->reveal());
     }
 }

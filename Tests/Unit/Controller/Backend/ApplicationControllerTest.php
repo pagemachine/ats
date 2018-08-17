@@ -6,7 +6,6 @@ use PAGEmachine\Ats\Application\ApplicationRating;
 use PAGEmachine\Ats\Application\ApplicationStatus;
 use PAGEmachine\Ats\Controller\Backend\ApplicationController;
 use PAGEmachine\Ats\Domain\Model\Application;
-use PAGEmachine\Ats\Domain\Model\Note;
 use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
 use PAGEmachine\Ats\Domain\Repository\JobRepository;
 use PAGEmachine\Ats\Message\AcknowledgeMessage;
@@ -283,31 +282,6 @@ class ApplicationControllerTest extends UnitTestCase
     /**
      * @test
      */
-    public function updatesStatus()
-    {
-        $application = $this->prophesize(Application::class);
-        $note = $this->prophesize(Note::class);
-        $note->getDetails()->willReturn("blabla");
-
-        $application->addNote($note->reveal())->shouldBeCalled();
-        $application->getStatus()->willReturn(new ApplicationStatus());
-
-        $this->applicationRepository->updateAndLog($application->reveal(), Argument::type("string"), Argument::type("array"))->shouldBeCalled();
-
-        $this->applicationController->expects($this->once())->method("addFlashMessage");
-        $this->applicationController->expects($this->once())->method("redirect")->with(
-            "editStatus",
-            null,
-            null,
-            ['application' => $application->reveal()]
-        );
-
-        $this->applicationController->updateStatusAction($application->reveal(), $note->reveal());
-    }
-
-    /**
-     * @test
-     */
     public function runsNotesAction()
     {
         $GLOBALS['BE_USER'] = new \stdClass();
@@ -316,32 +290,6 @@ class ApplicationControllerTest extends UnitTestCase
         $this->view->assign("beUser", ['foo'])->shouldBeCalled();
 
         $this->applicationController->notesAction($this->application);
-    }
-
-    /**
-     * @test
-     */
-    public function addsNote()
-    {
-        $note = $this->prophesize(Note::class);
-        $application = $this->prophesize(Application::class);
-
-        $note->getDetails()->willReturn("foobar");
-        $note->getIsInternal()->willReturn(false);
-
-        $application->addNote($note->reveal())->shouldBeCalled();
-
-        $this->applicationRepository->updateAndLog($application->reveal(), Argument::cetera())->shouldBeCalled();
-
-        $this->applicationController->expects($this->once())->method("addFlashMessage");
-        $this->applicationController->expects($this->once())->method("redirect")->with(
-            "notes",
-            null,
-            null,
-            ['application' => $application->reveal()]
-        );
-
-        $this->applicationController->addNoteAction($note->reveal(), $application->reveal());
     }
 
     /**
@@ -357,28 +305,6 @@ class ApplicationControllerTest extends UnitTestCase
         $this->view->assign("beUser", ['foo'])->shouldBeCalled();
 
         $this->applicationController->closeAction($this->application);
-    }
-
-    /**
-     * @test
-     */
-    public function closesApplicationAndAddsNote()
-    {
-        $note = $this->prophesize(Note::class);
-        $application = $this->prophesize(Application::class);
-
-        $note->getDetails()->willReturn("foobar");
-        $application->addNote($note->reveal())->shouldBeCalled();
-        $application->getStatus()->willReturn(new ApplicationStatus());
-
-        $this->applicationRepository->updateAndLog($application->reveal(), Argument::cetera())->shouldBeCalled();
-
-        $this->applicationController->expects($this->once())->method("addFlashMessage");
-        $this->applicationController->expects($this->once())->method("redirect")->with(
-            "index"
-        );
-
-        $this->applicationController->confirmCloseAction($application->reveal(), $note->reveal());
     }
 
 
@@ -566,32 +492,6 @@ class ApplicationControllerTest extends UnitTestCase
     /**
      * @test
      */
-    public function addsRating()
-    {
-        $note = new Note();
-        $application = $this->prophesize(Application::class);
-
-        $note->setDetails("foobar");
-
-        $application->addNote($note)->shouldBeCalled();
-        $application->getRatingPerso()->willReturn(new ApplicationRating());
-
-        $this->applicationRepository->updateAndLog($application->reveal(), Argument::cetera())->shouldBeCalled();
-
-        $this->applicationController->expects($this->once())->method("addFlashMessage");
-        $this->applicationController->expects($this->once())->method("redirect")->with(
-            "foo",
-            null,
-            null,
-            ['application' => $application->reveal()]
-        );
-
-        $this->applicationController->addRatingAction($note, $application->reveal(), 'foo');
-    }
-
-    /**
-     * @test
-     */
     public function runsBackToPersoAction()
     {
         $GLOBALS['BE_USER'] = new \stdClass();
@@ -600,24 +500,5 @@ class ApplicationControllerTest extends UnitTestCase
         $this->view->assign("beUser", ['foo'])->shouldBeCalled();
 
         $this->applicationController->backToPersoAction($this->application);
-    }
-
-    /**
-     * @test
-     */
-    public function sendBackToPerso()
-    {
-        $note = $this->prophesize(Note::class);
-        $note->getDetails()->willReturn("Hello");
-
-        $application = $this->prophesize(Application::class);
-        $application->addNote($note->reveal())->shouldBeCalled();
-
-        $this->applicationRepository->updateAndLog($application->reveal(), Argument::cetera())->shouldBeCalled();
-
-        $this->applicationController->expects($this->once())->method("addFlashMessage");
-        $this->applicationController->expects($this->once())->method("redirect")->with("index");
-
-        $this->applicationController->sendBackToPersoAction($application->reveal(), $note->reveal());
     }
 }
