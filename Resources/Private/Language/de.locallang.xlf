@@ -1671,6 +1671,26 @@
 				<target>Senden</target>
 			</trans-unit>
 
+			<trans-unit id="be.label.ApplicationSingle.Notes.Date">
+				<source>Date</source>
+				<target>Datum</target>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Notes.User">
+				<source>User</source>
+				<target>Benutzer</target>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Notes.Subject">
+				<source>Subject</source>
+				<target>Betreff</target>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Notes.Details">
+				<source>Details</source>
+				<target>Anmerkung</target>
+			</trans-unit>
+
 			<trans-unit id="be.label.Notification.Continue">
 				<source>Continue</source>
 				<target>Weiter</target>

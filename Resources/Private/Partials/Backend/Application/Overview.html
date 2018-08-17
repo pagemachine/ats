@@ -65,7 +65,7 @@
 	</div>
 </div>
 
-<div class="panel panel-space panel-default">
+<div class="panel panel-space panel-default recordlist">
 	<div class="panel-heading">
 		<f:translate key="be.label.ApplicationSingle.Notes" /> (<f:count>{application.notes}</f:count>)
 		<a href="#" title="Collapse table" class="pull-right t3js-toggle-recordlist" data-toggle="collapse" data-target="#application-notes" aria-expanded="true">
@@ -75,7 +75,7 @@
 		</a>
 	</div>
 	<div class="collapse" data-state="collapsed" id="application-notes">
-		<div class="panel-body">
+		<div class="table-fit">
 			<f:render partial="Backend/Application/NoteList" arguments="{notes : application.notes, crop : 1}" />
 
 		</div>

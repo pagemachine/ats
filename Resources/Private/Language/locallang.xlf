@@ -1555,6 +1555,22 @@
 				<source>Submit</source>
 			</trans-unit>
 
+			<trans-unit id="be.label.ApplicationSingle.Notes.Date">
+				<source>Date</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Notes.User">
+				<source>User</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Notes.Subject">
+				<source>Subject</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Notes.Details">
+				<source>Details</source>
+			</trans-unit>
+
 			<trans-unit id="be.label.Notification.Continue">
 				<source>Continue</source>
 			</trans-unit>
