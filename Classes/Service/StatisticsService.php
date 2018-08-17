@@ -94,7 +94,7 @@ class StatisticsService implements SingletonInterface
     public function getAgeDistributionUnder($dates)
     {
         $ageUpperLimit = array(20, 29, 39, 49, 59, 100);
-        $ageLowerLimit = array(1, 20, 30, 40, 50, 60);
+        $ageLowerLimit = array(0, 20, 30, 40, 50, 60);
         $ageList = array();
         $size = count($ageUpperLimit);
         for ($i = 0; $i < $size; $i++) {
@@ -116,10 +116,9 @@ class StatisticsService implements SingletonInterface
                         - (
                             DATE_FORMAT( NOW( ) , '00-%m-%d' )
                             < DATE_FORMAT( birthday,  '00-%m-%d' )
-                        )
+                        ) BETWEEN $ageLowerLimit[$i] AND $ageUpperLimit[$i]
                         ".$this->getWhereApplicationInterval($dates)
                         .BackendUtility::deleteClause("tx_ats_domain_model_application")."
-                    BETWEEN $ageLowerLimit[$i] AND $ageUpperLimit[$i]
                 ) b, (
                     SELECT COUNT(
                         DATE_FORMAT( NOW( ) ,  '%Y' )
@@ -135,10 +134,9 @@ class StatisticsService implements SingletonInterface
                         - (
                             DATE_FORMAT( NOW( ) , '00-%m-%d' )
                             < DATE_FORMAT( birthday,  '00-%m-%d' )
-                        )
+                        ) BETWEEN 0 AND 100
                         ".$this->getWhereApplicationInterval($dates)
                         .BackendUtility::deleteClause("tx_ats_domain_model_application")."
-                    BETWEEN 0 AND 100
                 ) c",
                 "1=1"
             );
