@@ -1376,11 +1376,6 @@
       <trans-unit id="be.label.ApplicationSingle.Edit.Upload">
         <source>Upload</source>
       </trans-unit>
-
-			<trans-unit id="be.label.ApplicationSingle.Edit.Submit">
-				<source>Save</source>
-			</trans-unit>
-
 			<trans-unit id="be.label.ApplicationSingle.Edit.1">
 				<source>Website</source>
 	  	</trans-unit>
@@ -1404,10 +1399,6 @@
 	  	<trans-unit id="be.label.ApplicationSingle.Workflow.Note">
       	<source>Note</source>
       </trans-unit>
-
-      <trans-unit id="be.label.ApplicationSingle.Workflow.Submit">
-				<source>Submit</source>
-			</trans-unit>
 
 			<trans-unit id="be.label.ApplicationSingle.Acknowledge">
 				<source>Acknowledge application</source>
@@ -1435,10 +1426,6 @@
 
 			<trans-unit id="be.label.ApplicationSingle.Notes.Internal">
 				<source>Internal</source>
-			</trans-unit>
-
-			<trans-unit id="be.label.ApplicationSingle.Notes.Submit">
-				<source>Submit</source>
 			</trans-unit>
 
 			<trans-unit id="be.label.ApplicationSingle.Notes.AllNotes">
@@ -1469,9 +1456,6 @@
 				<source>All notes</source>
 			</trans-unit>
 
-			<trans-unit id="be.label.ApplicationSingle.Rating.Submit">
-				<source>Submit</source>
-			</trans-unit>
 
 			<trans-unit id="be.label.ApplicationSingle.RatingPerso">
 				<source>Rating (Perso)</source>
@@ -1511,10 +1495,6 @@
 
 			<trans-unit id="be.label.ApplicationSingle.Clone.Note">
 				<source>Note</source>
-			</trans-unit>
-
-			<trans-unit id="be.label.ApplicationSingle.Clone.Submit">
-				<source>Submit</source>
 			</trans-unit>
 
 			<trans-unit id="be.label.Notification.Continue">
@@ -1623,6 +1603,11 @@
 			<trans-unit id="tx_ats.be.messageTypes.5">
 				<source>Reject</source>
 			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Form.Submit">
+				<source>Save</source>
+			</trans-unit>
+
 		</body>
 	</file>
 </xliff>
