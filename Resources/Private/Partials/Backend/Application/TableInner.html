@@ -1,7 +1,16 @@
 <table class="applications-list table">
 	<thead>
 		<tr>
-			<f:if condition="{checkboxes}"><th><input type="checkbox" class="selectAll"></th></f:if>
+			<f:if condition="{checkboxes}">
+				<th>
+					<f:if condition="{applications}">
+						<f:else>
+							<f:form.hidden name="applications" value="" />
+						</f:else>
+					</f:if>
+					<input type="checkbox" class="selectAll">
+				</th>
+			</f:if>
 			<th>#</th>
 			<th><f:translate key="be.label.MyApplications.Table.Created"/></th>
 			<th>Name</th>

@@ -595,6 +595,10 @@
 			<source> Remove</source>
 		</trans-unit>
 
+	  <trans-unit id="tx_ats.label.select.undefined">
+		<source>Undefined</source>
+	  </trans-unit>
+
 	  <!-- Message labels -->
 
 		<trans-unit id="tx_ats.message.subject">
