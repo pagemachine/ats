@@ -94,7 +94,7 @@ class StatisticsService implements SingletonInterface
     public function getAgeDistributionUnder($dates)
     {
         $ageUpperLimit = array(20, 29, 39, 49, 59, 100);
-        $ageLowerLimit = array(0, 20, 30, 40, 50, 60);
+        $ageLowerLimit = array(1, 20, 30, 40, 50, 60);
         $ageList = array();
         $size = count($ageUpperLimit);
         for ($i = 0; $i < $size; $i++) {
