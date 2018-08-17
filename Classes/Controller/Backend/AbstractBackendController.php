@@ -58,4 +58,17 @@ class AbstractBackendController extends ActionController
     public function buildMenu()
     {
     }
+
+    /**
+     *
+     * We do not want technical errors in the ATS backend ("an error occured while calling...""),
+     * so returning false disables the message completely.
+     *
+     * @return string The flash message or FALSE if no flash message should be set
+     * @api
+     */
+    protected function getErrorFlashMessage()
+    {
+        return false;
+    }
 }
