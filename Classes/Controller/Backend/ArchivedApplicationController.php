@@ -3,6 +3,7 @@ namespace PAGEmachine\Ats\Controller\Backend;
 
 use PAGEmachine\Ats\Application\ApplicationFilter;
 use PAGEmachine\Ats\Application\ApplicationStatus;
+use PAGEmachine\Ats\Application\Note\NoteSubject;
 use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Domain\Model\Job;
 use PAGEmachine\Ats\Domain\Model\Note;
@@ -107,6 +108,7 @@ class ArchivedApplicationController extends ApplicationController
     public function updateMoveToPoolAction(Application $application, Note $note)
     {
         if (!empty($note->getDetails())) {
+            $note->setSubject(new NoteSubject(NoteSubject::POOL));
             $application->addNote($note);
         }
 
@@ -150,6 +152,8 @@ class ArchivedApplicationController extends ApplicationController
      */
     public function setMassPoolMovingAction($applications, Job $job, $status, Note $note)
     {
+        $note->setSubject(new NoteSubject(NoteSubject::STATUS));
+
         $useDuplicate = 0;
         foreach ($applications as $application) {
             if ($useDuplicate) {

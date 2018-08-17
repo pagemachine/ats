@@ -1327,6 +1327,53 @@
       	<target>Abgesagt (durch Bewerber)</target>
       </trans-unit>
 
+      <!-- Note subjects -->
+
+      <trans-unit id="tx_ats.note.subject.note">
+      	<source>Note</source>
+      	<target>Bemerkung</target>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.note.subject.rating">
+      	<source>Rating</source>
+      	<target>Bewertung</target>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.note.subject.rating_perso">
+      	<source>Rating (Personell Department)</source>
+      	<target>Bewertung (Personalabteilung)</target>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.note.subject.status">
+      	<source>Status change</source>
+      	<target>Statusänderung</target>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.note.subject.cloned">
+      	<source>Clone created</source>
+      	<target>Duplikat erstellt</target>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.note.subject.back_to_perso">
+      	<source>Returned to perso</source>
+      	<target>Zurück an Personalabteilung</target>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.note.subject.closed">
+      	<source>Closed application</source>
+      	<target>Bewerbung abschließen</target>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.note.subject.pool">
+      	<source>Pool</source>
+      	<target>Pool</target>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.note.subject.unknown">
+      	<source>No subject</source>
+      	<target>Kein Betreff</target>
+      </trans-unit>
+
       <!-- Message Fields -->
       <trans-unit id="tx_ats.mail.subject">
         <source>Subject</source>
