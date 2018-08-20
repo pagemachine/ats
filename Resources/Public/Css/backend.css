@@ -63,6 +63,10 @@
 	padding-bottom: 12px;
 }
 
+.tx-ats-backend .diff del {
+	margin-right: 4px;
+}
+
 @media print {
 
 	html, body, .module-body{
