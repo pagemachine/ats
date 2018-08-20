@@ -1213,6 +1213,10 @@
         <source>Female</source>
       </trans-unit>
 
+      <trans-unit id="be.label.Export">
+        <source>Export</source>
+      </trans-unit>
+
       <trans-unit id="be.label.Export.Location">
         <source>Location:</source>
       </trans-unit>

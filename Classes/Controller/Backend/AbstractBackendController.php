@@ -5,16 +5,21 @@ namespace PAGEmachine\Ats\Controller\Backend;
  * This file is part of the PAGEmachine ATS project.
  */
 
+use PAGEmachine\Ats\Traits\StaticCalling;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\View\NotFoundView;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
  * AbstractBackendController
  */
 class AbstractBackendController extends ActionController
 {
+    use StaticCalling;
+
     /**
      * Backend Template Container
      *
@@ -50,13 +55,57 @@ class AbstractBackendController extends ActionController
     }
 
     /**
-     * Blank buildMenu function to be overriden by the different controllers
+     * Testing helper class
      *
+     * @return MenuRegistry
      * @codeCoverageIgnore
+     */
+    public function getMenuRegistry()
+    {
+        return $this->view->getModuleTemplate()->getDocHeaderComponent()->getMenuRegistry();
+    }
+
+    /**
+     * Builds the backend docheader menu with actions
+     *
      * @return void
      */
     public function buildMenu()
     {
+        if (empty($this->menuUrls)) {
+            return;
+        }
+        if (!array_key_exists($this->request->getControllerActionName(), $this->menuUrls)) {
+            return;
+        }
+
+        $menuRegistry = $this->getMenuRegistry();
+
+        $uriBuilder = $this->controllerContext->getUriBuilder();
+
+        $menu = $menuRegistry->makeMenu()
+            ->setIdentifier("actions");
+
+        foreach ($this->menuUrls as $url) {
+            //If extbase_acl is loaded, reduce menu urls to the ones actually allowed
+            if (ExtensionManagementUtility::isLoaded("extbase_acl")) {
+                if (!\Pagemachine\ExtbaseAcl\Manager\ActionAccessManager::getInstance()->isActionAllowed(static::class, $url['action'])) {
+                    continue;
+                }
+            }
+
+            $isActive = $this->request->getControllerActionName() === $url['action'] ? true : false;
+            $uri = $uriBuilder
+                ->reset()
+                ->uriFor($url['action'], [], $this->request->getControllerName(), null, null);
+            $menuItem = $menu->makeMenuItem()
+                ->setHref($uri)
+                ->setTitle($this->callStatic(LocalizationUtility::class, 'translate', $url['label'], 'ats'))
+                ->setActive($isActive);
+            $menu->addMenuItem($menuItem);
+        }
+
+        $menuRegistry->addMenu($menu);
     }
 
     /**

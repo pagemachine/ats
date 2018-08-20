@@ -21,7 +21,6 @@ use PAGEmachine\Ats\Service\DuplicationService;
 use PAGEmachine\Ats\Service\ExtconfService;
 use PAGEmachine\Ats\Traits\StaticCalling;
 use PAGEmachine\Ats\Workflow\WorkflowManager;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
@@ -60,57 +59,6 @@ class ApplicationController extends AbstractBackendController
         "listAll" => ["action" => "listAll", "label" => "be.label.AllApplications"],
         "listMine" => ["action" => "listMine", "label" => "be.label.MyApplications"],
     ];
-
-    /**
-     * Builds the backend docheader menu with actions
-     *
-     * @return void
-     */
-    public function buildMenu()
-    {
-        if (!array_key_exists($this->request->getControllerActionName(), $this->menuUrls)) {
-            return;
-        }
-
-        $menuRegistry = $this->getMenuRegistry();
-
-        $uriBuilder = $this->controllerContext->getUriBuilder();
-
-        $menu = $menuRegistry->makeMenu()
-            ->setIdentifier("actions");
-
-        foreach ($this->menuUrls as $url) {
-            //If extbase_acl is loaded, reduce menu urls to the ones actually allowed
-            if (ExtensionManagementUtility::isLoaded("extbase_acl")) {
-                if (!\Pagemachine\ExtbaseAcl\Manager\ActionAccessManager::getInstance()->isActionAllowed(static::class, $url['action'])) {
-                    continue;
-                }
-            }
-
-            $isActive = $this->request->getControllerActionName() === $url['action'] ? true : false;
-            $uri = $uriBuilder
-                ->reset()
-                ->uriFor($url['action'], [], $this->request->getControllerName(), null, null);
-            $menuItem = $menu->makeMenuItem()
-                ->setHref($uri)
-                ->setTitle($this->callStatic(LocalizationUtility::class, 'translate', $url['label'], 'ats'))
-                ->setActive($isActive);
-            $menu->addMenuItem($menuItem);
-        }
-
-        $menuRegistry->addMenu($menu);
-    }
-
-    /**
-     * Testing helper class
-     *
-     * @return MenuRegistry
-     * @codeCoverageIgnore
-     */
-    public function getMenuRegistry()
-    {
-        return $this->view->getModuleTemplate()->getDocHeaderComponent()->getMenuRegistry();
-    }
 
     /**
      * Forwards to the first allowed action (since some could be disallowed by role)

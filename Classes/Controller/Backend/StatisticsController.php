@@ -31,39 +31,9 @@ class StatisticsController extends AbstractBackendController
      * @var array
      */
     protected $menuUrls = [
-        ["action" => "statistics", "label" => "Statistics"],
-        ["action" => "export", "label" => "Export"],
+        'statistics' => ["action" => "statistics", "label" => "be.label.Statistics"],
+        'export' => ["action" => "export", "label" => "be.label.Export"],
     ];
-
-    /**
-     * Builds the backend docheader menu with actions
-     *
-     * @return void
-     */
-    public function buildMenu()
-    {
-
-        $menuRegistry = $this->getMenuRegistry();
-
-        $uriBuilder = $this->controllerContext->getUriBuilder();
-
-        $menu = $menuRegistry->makeMenu()
-            ->setIdentifier("actions");
-
-        foreach ($this->menuUrls as $url) {
-                $isActive = $this->request->getControllerActionName() === $url['action'] ? true : false;
-                $uri = $uriBuilder
-                    ->reset()
-                    ->uriFor($url['action'], [], $this->request->getControllerName(), null, null);
-                $menuItem = $menu->makeMenuItem()
-                    ->setHref($uri)
-                    ->setTitle($url['label'])
-                    ->setActive($isActive);
-                $menu->addMenuItem($menuItem);
-        }
-
-        $menuRegistry->addMenu($menu);
-    }
 
     /**
      * Testing helper class
