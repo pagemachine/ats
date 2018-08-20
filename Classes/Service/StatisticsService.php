@@ -191,7 +191,7 @@ class StatisticsService implements SingletonInterface
                 ) c",
                 "1 = 1"
             );
-        return $applications;
+        return ['value' => $applications, 'total' => intval($applications["men"])+intval($applications["women"])];
     }
 
      /**
@@ -222,7 +222,7 @@ class StatisticsService implements SingletonInterface
                 ) c",
                 "1 = 1"
             );
-        return $interviews;
+        return ['value' => $interviews, 'total' => intval($interviews["men"])+intval($interviews["women"])];
     }
 
      /**
@@ -253,7 +253,7 @@ class StatisticsService implements SingletonInterface
                 ) c",
                 "1 = 1"
             );
-        return $occupiedPositions;
+        return ['value' => $occupiedPositions, 'total' => intval($occupiedPositions["men"])+intval($occupiedPositions["women"])];
     }
 
      /**

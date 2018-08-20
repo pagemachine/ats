@@ -185,29 +185,35 @@
   	<table class="table table-bordered table-striped">
   	  <thead>
   	    <tr>
-  	      <th class="col-xs-6"><f:translate key="be.label.Statistics.Table.Male"/></th>
+  	      <th class="col-xs-5"><f:translate key="be.label.Statistics.Table.Male"/></th>
   	      <th class="col-xs-6"><f:translate key="be.label.Statistics.Table.Female"/></th>
+  	      <th class="col-xs-1"><f:translate key="be.label.Statistics.Table.Total"/></th>
   	    </tr>
   	  </thead>
   	    <tbody>
   	            <tr>
   	              <td>
-  	                  {applications.men}
+  	                  {applications.value.men}
   	              </td>
   	              <td>
-  	                  {applications.women}
+  	                  {applications.value.women}
+  	              </td>
+  	              <td>
+  	                  {applications.total}
   	              </td>
   	            </tr>
   	            <tr>
   	              <td>
   	                  <span class="progress-bar" role="progressbar" aria-valuenow="66.7"
-  	                  aria-valuemin="0" aria-valuemax="100" style="width:{applications.menPerc}%">
-  	                  {applications.menPerc}%
+  	                  aria-valuemin="0" aria-valuemax="100" style="width:{applications.value.menPerc}%">
+  	                  {applications.value.menPerc}%
   	              </td>
   	              <td>
   	                  <span class="progress-bar" role="progressbar" aria-valuenow="66.7"
-  	                  aria-valuemin="0" aria-valuemax="100" style="width:{applications.womenPerc}%">
-  	                  {applications.womenPerc}%
+  	                  aria-valuemin="0" aria-valuemax="100" style="width:{applications.value.womenPerc}%">
+  	                  {applications.value.womenPerc}%
+  	              </td>
+  	              <td>
   	              </td>
   	            </tr>
   	      </tbody>
@@ -226,29 +232,35 @@
   	<table class="table table-bordered table-striped">
   	  <thead>
   	    <tr>
-  	      <th class="col-xs-6"><f:translate key="be.label.Statistics.Table.Male"/></th>
+  	      <th class="col-xs-5"><f:translate key="be.label.Statistics.Table.Male"/></th>
   	      <th class="col-xs-6"><f:translate key="be.label.Statistics.Table.Female"/></th>
+  	      <th class="col-xs-1"><f:translate key="be.label.Statistics.Table.Total"/></th>
   	    </tr>
   	  </thead>
   	    <tbody>
   	      <tr>
   	        <td>
-  	            {interviews.men}
+  	            {interviews.value.men}
   	        </td>
   	        <td>
-  	            {interviews.women}
+  	            {interviews.value.women}
+  	        </td>
+  	        <td>
+  	            {interviews.total}
   	        </td>
   	      </tr>
   	      <tr>
   	        <td>
   	            <span class="progress-bar" role="progressbar" aria-valuenow="70"
-  	              aria-valuemin="0" aria-valuemax="100" style="width:{interviews.menPerc}%">
-  	              {interviews.menPerc}%
+  	              aria-valuemin="0" aria-valuemax="100" style="width:{interviews.value.menPerc}%">
+  	              {interviews.value.menPerc}%
   	        </td>
   	        <td>
   	            <span class="progress-bar" role="progressbar" aria-valuenow="70"
-  	              aria-valuemin="0" aria-valuemax="100" style="width:{interviews.womenPerc}%">
-  	              {interviews.womenPerc}%
+  	              aria-valuemin="0" aria-valuemax="100" style="width:{interviews.value.womenPerc}%">
+  	              {interviews.value.womenPerc}%
+  	        </td>
+  	        <td>
   	        </td>
   	      </tr>
   	      </tbody>
@@ -267,29 +279,35 @@
   	<table class="table table-bordered table-striped">
   	  <thead>
   	    <tr>
-  	      <th class="col-xs-6"><f:translate key="be.label.Statistics.Table.Male"/></th>
+  	      <th class="col-xs-5"><f:translate key="be.label.Statistics.Table.Male"/></th>
   	      <th class="col-xs-6"><f:translate key="be.label.Statistics.Table.Female"/></th>
+  	      <th class="col-xs-1"><f:translate key="be.label.Statistics.Table.Total"/></th>
   	    </tr>
   	  </thead>
   	    <tbody>
   	      <tr>
   	        <td>
-  	            {positions.men}
+  	            {positions.value.men}
   	        </td>
   	        <td>
-  	            {positions.women}
+  	            {positions.value.women}
+  	        </td>
+  	        <td>
+  	            {positions.total}
   	        </td>
   	      </tr>
   	      <tr>
   	        <td>
   	            <span class="progress-bar" role="progressbar" aria-valuenow="70"
-  	              aria-valuemin="0" aria-valuemax="100" style="width:{positions.menPerc}%">
-  	              {positions.menPerc}%
+  	              aria-valuemin="0" aria-valuemax="100" style="width:{positions.value.menPerc}%">
+  	              {positions.value.menPerc}%
   	        </td>
   	        <td>
   	            <span class="progress-bar" role="progressbar" aria-valuenow="70"
-  	              aria-valuemin="0" aria-valuemax="100" style="width:{positions.womenPerc}%">
-  	              {positions.womenPerc}%
+  	              aria-valuemin="0" aria-valuemax="100" style="width:{positions.value.womenPerc}%">
+  	              {positions.value.womenPerc}%
+  	        </td>
+  	        <td>
   	        </td>
   	      </tr>
   	      </tbody>
