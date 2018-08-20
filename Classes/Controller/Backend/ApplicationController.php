@@ -8,6 +8,7 @@ namespace PAGEmachine\Ats\Controller\Backend;
 use PAGEmachine\Ats\Application\ApplicationFilter;
 use PAGEmachine\Ats\Application\ApplicationRating;
 use PAGEmachine\Ats\Application\ApplicationStatus;
+use PAGEmachine\Ats\Application\Note\NoteSubject;
 use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Domain\Model\FileReference;
 use PAGEmachine\Ats\Domain\Model\Job;
@@ -329,6 +330,7 @@ class ApplicationController extends AbstractBackendController
     {
 
         if (!empty($note->getDetails())) {
+            $note->setSubject(new NoteSubject(NoteSubject::STATUS));
             $application->addNote($note);
         }
 
@@ -385,6 +387,9 @@ class ApplicationController extends AbstractBackendController
     {
 
         if (!empty($note->getDetails())) {
+            $note->setSubject(
+                new NoteSubject($forwardAction == "rating" ? NoteSubject::RATING : NoteSubject::RATINGPERSO)
+            );
             $application->addNote($note);
         }
 
@@ -434,7 +439,7 @@ class ApplicationController extends AbstractBackendController
      */
     public function addNoteAction(Note $note, Application $application)
     {
-
+        $note->setSubject(new NoteSubject(NoteSubject::NOTE));
         $application->addNote($note);
 
         $this->applicationRepository->updateAndLog(
@@ -478,6 +483,7 @@ class ApplicationController extends AbstractBackendController
     {
 
         if (!empty($note->getDetails())) {
+            $note->setSubject(new NoteSubject(NoteSubject::CLOSED));
             $application->addNote($note);
         }
 
@@ -721,6 +727,7 @@ class ApplicationController extends AbstractBackendController
     {
 
         if (!empty($note->getDetails())) {
+            $note->setSubject(new NoteSubject(NoteSubject::BACKTOPERSO));
             $application->addNote($note);
         }
 
@@ -780,6 +787,7 @@ class ApplicationController extends AbstractBackendController
         $clone->setStatus(ApplicationStatus::cast(ApplicationStatus::NEW_APPLICATION));
 
         if (!empty($note->getDetails())) {
+            $note->setSubject(new NoteSubject(NoteSubject::CLONED));
             $clone->addNote($note);
         }
 

@@ -1,6 +1,7 @@
 <?php
 namespace PAGEmachine\Ats\Domain\Model;
 
+use PAGEmachine\Ats\Application\Note\NoteSubject;
 use PAGEmachine\Ats\Domain\Model\Application;
 use TYPO3\CMS\Beuser\Domain\Model\BackendUser;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
@@ -85,13 +86,12 @@ class Note extends AbstractEntity implements CloneableInterface
 
 
     /**
-     * @var string $subject
-     * @validate NotEmpty
+     * @var \PAGEmachine\Ats\Application\Note\NoteSubject $subject
      */
-    protected $subject;
+    protected $subject = null;
 
     /**
-     * @return string
+     * @return \PAGEmachine\Ats\Application\Note\NoteSubject
      */
     public function getSubject()
     {
@@ -99,10 +99,10 @@ class Note extends AbstractEntity implements CloneableInterface
     }
 
     /**
-     * @param string $subject
+     * @param \PAGEmachine\Ats\Application\Note\NoteSubject $subject
      * @return void
      */
-    public function setSubject($subject)
+    public function setSubject(NoteSubject $subject)
     {
         $this->subject = $subject;
     }

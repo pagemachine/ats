@@ -1061,6 +1061,44 @@
       	<source>Cancelled (by Candidate)</source>
       </trans-unit>
 
+      <!-- Note subjects -->
+
+      <trans-unit id="tx_ats.note.subject.note">
+      	<source>Note</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.note.subject.rating">
+      	<source>Rating</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.note.subject.rating_perso">
+      	<source>Rating (Personell Department)</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.note.subject.status">
+      	<source>Status change</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.note.subject.cloned">
+      	<source>Clone created</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.note.subject.back_to_perso">
+      	<source>Returned to perso</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.note.subject.closed">
+      	<source>Closed application</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.note.subject.pool">
+      	<source>Pool</source>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.note.subject.unknown">
+      	<source>No subject</source>
+      </trans-unit>
+
       <!-- Message Fields -->
       <trans-unit id="tx_ats.mail.subject">
         <source>Subject</source>
@@ -1499,6 +1537,26 @@
 
 			<trans-unit id="be.label.ApplicationSingle.Clone.Note">
 				<source>Note</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Clone.Submit">
+				<source>Submit</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Notes.Date">
+				<source>Date</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Notes.User">
+				<source>User</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Notes.Subject">
+				<source>Subject</source>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Notes.Details">
+				<source>Details</source>
 			</trans-unit>
 
 			<trans-unit id="be.label.Notification.Continue">
