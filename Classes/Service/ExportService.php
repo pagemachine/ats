@@ -227,7 +227,7 @@ class ExportService implements SingletonInterface
                                 $row[] = $application->getUid();
                                 break;
                             case 'crdate':
-                                $row[] = $application->getCreationDate()->format('Y-m-d');
+                                $row[] = $application->getCreationDate() ? $application->getCreationDate()->format('Y-m-d'): '';
                                 break;
                             case 'application_type':
                                 $row[] = $GLOBALS['LANG']->getLL('tx_ats.application.application_type.'.$application->getApplicationType());
@@ -244,7 +244,7 @@ class ExportService implements SingletonInterface
                             case 'comment_rating':
                                 $comments = [];
                                 foreach ($application->getnotes() as $key => $note) {
-                                    if (!$note->getIsInternal()) {
+                                    if (!$note->getIsInternal() && $note->getSubject() == 'rating') {
                                         $string = $note->getCreationDate()->format('Y-m-d').' - ';
                                         if ($note->getUser()) {
                                             $string .= $note->getUser()->getRealName() ? $note->getUser()->getRealName().' ('.$note->getUser()->getUserName().')':$note->getUser()->getUserName();
@@ -261,7 +261,7 @@ class ExportService implements SingletonInterface
                             case 'comment_rating_perso':
                                 $comments = [];
                                 foreach ($application->getnotes() as $key => $note) {
-                                    if ($note->getIsInternal()) {
+                                    if (!$note->getIsInternal() && $note->getSubject() == 'ratingPerso') {
                                         $string = $note->getCreationDate()->format('Y-m-d').' - ';
                                         $string .= $note->getUser()->getRealName() ? $note->getUser()->getRealName().' ('.$note->getUser()->getUserName().')':$note->getUser()->getUserName();
                                         $string .= ': '.$note->getDetails();
@@ -271,10 +271,10 @@ class ExportService implements SingletonInterface
                                 $row[] = str_replace("\r\n", ' ', implode(' ', $comments));
                                 break;
                             case 'job_number':
-                                $row[] = $application->getJob()->getJobNumber();
+                                $row[] = $application->getJob() ? $application->getJob()->getJobNumber() : '';
                                 break;
                             case 'job':
-                                $row[] = $application->getJob()->getTitle();
+                                $row[] = $application->getJob() ? $application->getJob()->getTitle() : '';
                                 break;
                             case 'vocational_training':
                                 $row[] = 'vocational_training';
@@ -360,7 +360,11 @@ class ExportService implements SingletonInterface
                             case 'language':
                                 $lang = [];
                                 foreach ($application->getLanguageSkills() as $key => $languageSkill) {
-                                    $lang[] = $languageSkill->getLanguage()->getNameEn().' ('.($languageSkill->getTextLanguage()? $languageSkill->getTextLanguage().', ':'').$GLOBALS['LANG']->getLL('tx_ats.languageskill.level.'.$languageSkill->getLevel()).')';
+                                    if ($languageSkill->getTextLanguage() != '') {
+                                        $lang[] = sprintf('%s : %s', $languageSkill->getTextLanguage, $GLOBALS['LANG']->getLL('tx_ats.languageskill.level.'.$languageSkill->getLevel()));
+                                    } elseif ($languageSkill->getLanguage() != null) {
+                                        $lang[] = sprintf('%s : %s', $languageSkill->getLanguage()->getNameEn(), $GLOBALS['LANG']->getLL('tx_ats.languageskill.level.'.$languageSkill->getLevel()));
+                                    }
                                 }
                                 $row[] = implode(', ', $lang);
                                 break;
@@ -407,13 +411,13 @@ class ExportService implements SingletonInterface
                                 $row[] = 'working_hours';
                                 break;
                             case 'career':
-                                $row[] = $application->getJob()->getCareer();
+                                $row[] = $application->getJob() ? $application->getJob()->getCareer() : '';
                                 break;
                             case 'limitation':
                                 $row[] = 'limitation';
                                 break;
                             case 'location':
-                                $row[] = $application->getJob()->getLocation();
+                                $row[] = $application->getJob() ? $application->getJob()->getLocation() : '';
                                 break;
                             default:
                                 $row[] = '';

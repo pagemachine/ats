@@ -82,7 +82,7 @@ class ApplicationController extends AbstractBackendController
         foreach ($this->menuUrls as $url) {
             //If extbase_acl is loaded, reduce menu urls to the ones actually allowed
             if (ExtensionManagementUtility::isLoaded("extbase_acl")) {
-                if (!\Pagemachine\ExtbaseAcl\Manager\ActionAccessManager::getInstance()->isActionAllowed(__CLASS__, $url['action'])) {
+                if (!\Pagemachine\ExtbaseAcl\Manager\ActionAccessManager::getInstance()->isActionAllowed(static::class, $url['action'])) {
                     continue;
                 }
             }

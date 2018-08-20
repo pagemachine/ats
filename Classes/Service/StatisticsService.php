@@ -23,13 +23,19 @@ class StatisticsService implements SingletonInterface
     {
         $totalApplications = $this->getDatabaseConnection()
             ->exec_SELECTgetRows(
-                "job.title as title, COUNT( application.uid ) AS counter, TRUNCATE((
-                 COUNT( application.uid ) *100 / (
-                 SELECT COUNT( * )
-                 FROM tx_ats_domain_model_application WHERE 1 = 1".$this->getWhereApplicationInterval($dates)." )
-                 ),1) AS perc",
+                "job.title as title, COUNT( application.uid ) AS counter,
+                TRUNCATE((
+                    COUNT( application.uid ) *100 / (
+                        SELECT COUNT( * )
+                        FROM tx_ats_domain_model_application
+                        WHERE 1 = 1
+                            ".$this->getWhereApplicationInterval($dates)."
+                            ".BackendUtility::deleteClause("tx_ats_domain_model_application", "application")."
+                    )
+                ),1) AS perc",
                 "tx_ats_domain_model_job job, tx_ats_domain_model_application application",
-                "job.uid = application.job".$this->getWhereApplicationInterval($dates, 'application'),
+                "job.uid = application.job".$this->getWhereApplicationInterval($dates, 'application')
+                    .BackendUtility::deleteClause("tx_ats_domain_model_application", "application"),
                 "job"
             );
         return $totalApplications;
@@ -67,10 +73,10 @@ class StatisticsService implements SingletonInterface
             "a.ref, num1 as total, TRUNCATE(((num1/num2) * 100),1) as perc",
             "(SELECT `referrer` as ref, COUNT( * ) as num1
                   FROM `tx_ats_domain_model_application`
-                  WHERE `referrer` != 0 ".$this->getWhereApplicationInterval($dates)." group by `referrer`) a,
+                  WHERE `referrer` != 0 ".$this->getWhereApplicationInterval($dates).BackendUtility::deleteClause("tx_ats_domain_model_application")." group by `referrer`) a,
                   (SELECT COUNT( * ) as num2
                   FROM `tx_ats_domain_model_application`
-                  WHERE `referrer` != 0 ".$this->getWhereApplicationInterval($dates).") b",
+                  WHERE `referrer` != 0 ".$this->getWhereApplicationInterval($dates).BackendUtility::deleteClause("tx_ats_domain_model_application").") b",
             "1=1"
         );
         return $provenancesArray;
@@ -95,14 +101,43 @@ class StatisticsService implements SingletonInterface
             $ageDistribution = $this->getDatabaseConnection()
             ->exec_SELECTgetSingleRow(
                 "single, TRUNCATE(single/total * 100, 1) as ratio",
-                "(SELECT COUNT( DATE_FORMAT( NOW( ) ,  '%Y' ) - DATE_FORMAT( birthday,  '%Y' ) - ( DATE_FORMAT( NOW( ) ,  '00-%m-%d' ) < DATE_FORMAT( birthday,  '00-%m-%d' ) ) ) AS single
-                  FROM  `tx_ats_domain_model_application`
-                  WHERE DATE_FORMAT( NOW( ) ,  '%Y' ) - DATE_FORMAT( birthday,  '%Y' ) - ( DATE_FORMAT( NOW( ) , '00-%m-%d' ) < DATE_FORMAT( birthday,  '00-%m-%d' ) ) ".$this->getWhereApplicationInterval($dates)."
-                  BETWEEN $ageLowerLimit[$i] AND $ageUpperLimit[$i]) b,
-                  (SELECT COUNT( DATE_FORMAT( NOW( ) ,  '%Y' ) - DATE_FORMAT( birthday,  '%Y' ) - ( DATE_FORMAT( NOW( ) ,  '00-%m-%d' ) < DATE_FORMAT( birthday,  '00-%m-%d' ) ) ) AS total
-                  FROM  `tx_ats_domain_model_application`
-                  WHERE DATE_FORMAT( NOW( ) ,  '%Y' ) - DATE_FORMAT( birthday,  '%Y' ) - ( DATE_FORMAT( NOW( ) , '00-%m-%d' ) < DATE_FORMAT( birthday,  '00-%m-%d' ) ) ".$this->getWhereApplicationInterval($dates)."
-                  BETWEEN 0 AND 100) c",
+                "(
+                    SELECT COUNT(
+                        DATE_FORMAT( NOW( ) ,  '%Y' )
+                        - DATE_FORMAT( birthday,  '%Y' )
+                        - (
+                            DATE_FORMAT( NOW( ) ,  '00-%m-%d' )
+                            < DATE_FORMAT( birthday,  '00-%m-%d' )
+                        )
+                    ) AS single
+                    FROM  `tx_ats_domain_model_application`
+                    WHERE DATE_FORMAT( NOW( ) ,  '%Y' )
+                        - DATE_FORMAT( birthday,  '%Y' )
+                        - (
+                            DATE_FORMAT( NOW( ) , '00-%m-%d' )
+                            < DATE_FORMAT( birthday,  '00-%m-%d' )
+                        ) BETWEEN $ageLowerLimit[$i] AND $ageUpperLimit[$i]
+                        ".$this->getWhereApplicationInterval($dates)
+                        .BackendUtility::deleteClause("tx_ats_domain_model_application")."
+                ) b, (
+                    SELECT COUNT(
+                        DATE_FORMAT( NOW( ) ,  '%Y' )
+                        - DATE_FORMAT( birthday,  '%Y' )
+                        - (
+                            DATE_FORMAT( NOW( ) ,  '00-%m-%d' )
+                            < DATE_FORMAT( birthday,  '00-%m-%d' )
+                        )
+                    ) AS total
+                    FROM  `tx_ats_domain_model_application`
+                    WHERE DATE_FORMAT( NOW( ) ,  '%Y' )
+                        - DATE_FORMAT( birthday,  '%Y' )
+                        - (
+                            DATE_FORMAT( NOW( ) , '00-%m-%d' )
+                            < DATE_FORMAT( birthday,  '00-%m-%d' )
+                        ) BETWEEN 0 AND 100
+                        ".$this->getWhereApplicationInterval($dates)
+                        .BackendUtility::deleteClause("tx_ats_domain_model_application")."
+                ) c",
                 "1=1"
             );
             array_push($ageList, $ageDistribution);
@@ -140,8 +175,19 @@ class StatisticsService implements SingletonInterface
         $applications = $this->getDatabaseConnection()
             ->exec_SELECTgetSingleRow(
                 "men, women, TRUNCATE (men/sum(men + women) * 100, 1) as menPerc, TRUNCATE (women/sum(men + women) * 100, 1) as womenPerc",
-                "(SELECT COUNT(*) as men FROM `tx_ats_domain_model_application` WHERE salutation = 1".$this->getWhereApplicationInterval($dates).") b,
-                 (SELECT COUNT(*) as women FROM `tx_ats_domain_model_application` WHERE salutation = 2".$this->getWhereApplicationInterval($dates).") c",
+                "(
+                    SELECT COUNT(*) as men
+                    FROM `tx_ats_domain_model_application`
+                    WHERE salutation = 1
+                        ".$this->getWhereApplicationInterval($dates)
+                        .BackendUtility::deleteClause("tx_ats_domain_model_application")."
+                ) b, (
+                    SELECT COUNT(*) as women
+                    FROM `tx_ats_domain_model_application`
+                    WHERE salutation = 2
+                        ".$this->getWhereApplicationInterval($dates)
+                        .BackendUtility::deleteClause("tx_ats_domain_model_application")."
+                ) c",
                 "1 = 1"
             );
         return $applications;
@@ -160,8 +206,19 @@ class StatisticsService implements SingletonInterface
         $interviews = $this->getDatabaseConnection()
             ->exec_SELECTgetSingleRow(
                 "men, women, TRUNCATE (men/sum(men + women) * 100, 1) as menPerc, TRUNCATE (women/sum(men + women) * 100, 1) as womenPerc",
-                "(SELECT COUNT(*) as men FROM `tx_ats_domain_model_application` WHERE salutation = 1 AND `invited`!= 0 ".$this->getWhereApplicationInterval($dates).") b,
-                 (SELECT COUNT(*) as women FROM `tx_ats_domain_model_application` WHERE salutation = 2 AND `invited`!= 0 ".$this->getWhereApplicationInterval($dates).") c",
+                "(
+                    SELECT COUNT(*) as men
+                    FROM `tx_ats_domain_model_application`
+                    WHERE salutation = 1 AND `invited`!= 0
+                        ".$this->getWhereApplicationInterval($dates)
+                        .BackendUtility::deleteClause("tx_ats_domain_model_application")."
+                ) b, (
+                    SELECT COUNT(*) as women
+                    FROM `tx_ats_domain_model_application`
+                    WHERE salutation = 2 AND `invited`!= 0
+                        ".$this->getWhereApplicationInterval($dates)
+                        .BackendUtility::deleteClause("tx_ats_domain_model_application")."
+                ) c",
                 "1 = 1"
             );
         return $interviews;
@@ -180,8 +237,19 @@ class StatisticsService implements SingletonInterface
         $occupiedPositions = $this->getDatabaseConnection()
             ->exec_SELECTgetSingleRow(
                 "men, women, TRUNCATE (men/sum(men + women) * 100, 1) as menPerc, TRUNCATE (women/sum(men + women) * 100, 1) as womenPerc",
-                "(SELECT COUNT(*) as men FROM `tx_ats_domain_model_application` WHERE salutation = 1 AND `status` = ".ApplicationStatus::EMPLOYED .$this->getWhereApplicationInterval($dates).") b,
-                 (SELECT COUNT(*) as women FROM `tx_ats_domain_model_application` WHERE salutation = 2 AND `status` = ".ApplicationStatus::EMPLOYED .$this->getWhereApplicationInterval($dates).") c",
+                "(
+                    SELECT COUNT(*) as men
+                    FROM `tx_ats_domain_model_application`
+                    WHERE salutation = 1 AND `status` = ".ApplicationStatus::EMPLOYED
+                        .$this->getWhereApplicationInterval($dates)
+                        .BackendUtility::deleteClause("tx_ats_domain_model_application")."
+                ) b, (
+                    SELECT COUNT(*) as women
+                    FROM `tx_ats_domain_model_application`
+                    WHERE salutation = 2 AND `status` = ".ApplicationStatus::EMPLOYED
+                        .$this->getWhereApplicationInterval($dates)
+                        .BackendUtility::deleteClause("tx_ats_domain_model_application")."
+                ) c",
                 "1 = 1"
             );
         return $occupiedPositions;

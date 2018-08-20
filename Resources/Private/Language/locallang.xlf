@@ -481,6 +481,11 @@
 		<source>Please enter a message.</source>
 	  </trans-unit>
 
+	  <trans-unit id="tx_ats.error.massApplication.1347992453">
+		<source>Please select at least one application.</source>
+	  </trans-unit>
+
+
 
 	  <!-- Application (internal) labels -->
 
@@ -589,6 +594,10 @@
 		<trans-unit id="tx_ats.languageskill.rmLanguage">
 			<source> Remove</source>
 		</trans-unit>
+
+	  <trans-unit id="tx_ats.label.select.undefined">
+		<source>Undefined</source>
+	  </trans-unit>
 
 	  <!-- Message labels -->
 
