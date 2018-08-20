@@ -225,17 +225,6 @@ class ApplicationControllerTest extends UnitTestCase
         $this->applicationController->$action();
     }
 
-
-    /**
-     * @test
-     */
-    public function editsASingleApplication()
-    {
-        $this->view->assign("application", $this->application)->shouldBeCalled();
-
-        $this->applicationController->editAction($this->application);
-    }
-
     /**
      * @test
      */

@@ -270,8 +270,10 @@ class ApplicationController extends AbstractBackendController
      */
     public function editAction(Application $application)
     {
-
-        $this->view->assign('application', $application);
+        $this->view->assignMultiple([
+            'application' => $application,
+            'jobs' => $this->jobRepository->findAll(),
+        ]);
     }
 
     /**
