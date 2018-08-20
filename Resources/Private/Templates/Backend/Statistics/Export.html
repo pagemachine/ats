@@ -37,7 +37,11 @@
 										<f:form.checkbox name="selectedOptions[]" value="{option}" />
 									</th>
 									<td>
-										<f:translate key="tx_ats.application.{option}" default="{option}"/>
+										<f:translate key="LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_application.{option}">
+											<f:translate key="LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.{option}">
+												{option}
+											</f:translate>
+										</f:translate>
 									</td>
 								</tr>
 							</f:for>
