@@ -38,7 +38,13 @@ class StatisticsService implements SingletonInterface
                     .BackendUtility::deleteClause("tx_ats_domain_model_application", "application"),
                 "job"
             );
-        return $totalApplications;
+
+        $total = 0;
+        for ($i = 0; $i < count($totalApplications); $i++) {
+            $total += intval($totalApplications[$i]["counter"]);
+        }
+
+        return ['value' => $totalApplications, 'total' => $total];
     }
 
     /**

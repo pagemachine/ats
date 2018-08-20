@@ -22,7 +22,7 @@
     <div class="panel-heading">
       <f:translate key="be.label.Statistics.Table.1"/>
     </div>
-  
+
 		<table class="table table-bordered table-striped">
 		  <thead>
 		    <tr>
@@ -32,7 +32,7 @@
 		    </tr>
 		  </thead>
 		    <tbody>
-		      <f:for each="{totalApplications}" as="app">
+		      <f:for each="{totalApplications.value}" as="app">
 		            <tr>
 		              <td>
 		                  {app.title}
@@ -47,6 +47,16 @@
 		              </td>
 		            </tr>
 		      </f:for>
+						<tr>
+							<td>
+								<f:translate key="be.label.Statistics.Table.Total"/>
+							</td>
+							<td>
+								{totalApplications.total}
+							</td>
+							<td>
+							</td>
+						</tr>
 		      </tbody>
 		</table>
   </div>
