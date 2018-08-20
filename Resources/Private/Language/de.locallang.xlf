@@ -922,8 +922,8 @@
       		</trans-unit>
 
       		<trans-unit id="be.label.Statistics.Table.Total">
-      		  <source>Total:</source>
-      		  <target>Gesamt:</target>
+      		  <source>Total</source>
+      		  <target>Gesamt</target>
       		</trans-unit>
 
       		<trans-unit id="be.label.Statistics.Table.Male">

@@ -1244,7 +1244,7 @@
       </trans-unit>
 
       <trans-unit id="be.label.Statistics.Table.Total">
-        <source>Total:</source>
+        <source>Total</source>
       </trans-unit>
 
       <trans-unit id="be.label.Statistics.Table.Male">
