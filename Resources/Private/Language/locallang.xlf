@@ -383,10 +383,6 @@
 		<source>Please check your entries.</source>
 	  </trans-unit>
 
-		<trans-unit id="tx_ats_domain_model_application.crdate">
-			<source>Creation date</source>
-		</trans-unit>
-
 	  <trans-unit id="tx_ats_domain_model_application.privacyPolicy">
 		<source>Privacy Policy:</source>
 	  </trans-unit>
