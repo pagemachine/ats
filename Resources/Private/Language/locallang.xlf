@@ -697,6 +697,10 @@
 		<source>Send back to personnel department</source>
 	  </trans-unit>
 
+	   <trans-unit id="tx_ats.be.actions.application.backToPerso.sendback">
+	  	<source>Send back</source>
+	  </trans-unit>
+
 	   <trans-unit id="tx_ats.be.actions.application.close">
 		<source>Close Application</source>
 	  </trans-unit>

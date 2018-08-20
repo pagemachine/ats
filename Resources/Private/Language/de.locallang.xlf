@@ -1071,6 +1071,11 @@
 				<target>Zurück an Perso</target>
 	  </trans-unit>
 
+	   <trans-unit id="tx_ats.be.actions.application.backToPerso.sendback">
+	  	<source>Send back</source>
+	  	<target>Zurückgeben</target>
+	  </trans-unit>
+
 	   <trans-unit id="tx_ats.be.actions.application.close">
 		<source>Close Application</source>
 		<target>Bewerbung abschließen</target>
