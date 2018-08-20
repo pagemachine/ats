@@ -385,7 +385,7 @@ class ApplicationController extends AbstractBackendController
     {
 
         if (!empty($note->getDetails())) {
-            $application->setSubject(
+            $note->setSubject(
                 new NoteSubject($forwardAction == "rating" ? NoteSubject::RATING : NoteSubject::RATINGPERSO)
             );
             $application->addNote($note);
