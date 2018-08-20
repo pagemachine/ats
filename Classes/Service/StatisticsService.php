@@ -39,12 +39,7 @@ class StatisticsService implements SingletonInterface
                 "job"
             );
 
-        $total = 0;
-        for ($i = 0; $i < count($totalApplications); $i++) {
-            $total += intval($totalApplications[$i]["counter"]);
-        }
-
-        return ['value' => $totalApplications, 'total' => $total];
+        return ['value' => $totalApplications, 'total' => $this->getTotalNumber($totalApplications, "counter")];
     }
 
     /**
@@ -85,7 +80,7 @@ class StatisticsService implements SingletonInterface
                   WHERE `referrer` != 0 ".$this->getWhereApplicationInterval($dates).BackendUtility::deleteClause("tx_ats_domain_model_application").") b",
             "1=1"
         );
-        return $provenancesArray;
+        return ['value' => $provenancesArray, 'total' => $this->getTotalNumber($provenancesArray, 'total')];
     }
 
     /**
@@ -148,7 +143,7 @@ class StatisticsService implements SingletonInterface
             );
             array_push($ageList, $ageDistribution);
         }
-        return $ageList;
+        return ['value' => $ageList, 'total' => $this->getTotalNumber($ageList, 'single')];
     }
 
      /**
@@ -314,5 +309,20 @@ class StatisticsService implements SingletonInterface
             )";
 
         return $whereClause;
+    }
+
+    /**
+     * Adding all keys in a array.
+     *
+     * @param      array   $array
+     * @param      string  $selector
+     */
+    protected function getTotalNumber($array, $key)
+    {
+        $total = 0;
+        for ($i = 0; $i < count($array); $i++) {
+            $total += intval($array[$i][$key]);
+        }
+        return $total;
     }
 }

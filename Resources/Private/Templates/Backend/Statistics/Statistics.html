@@ -78,7 +78,7 @@
   	    </tr>
   	  </thead>
   	    <tbody>
-  	      <f:for each="{provenances}" as="pr">
+  	      <f:for each="{provenances.value}" as="pr">
   	            <tr>
   	              <td>
   	                  <f:translate key="tx_ats.label.referrer.{pr.ref}">{pr.ref}</f:translate>
@@ -93,6 +93,16 @@
   	              </td>
   	            </tr>
   	      </f:for>
+						<tr>
+							<td>
+								<f:translate key="be.label.Statistics.Table.Total"/>
+							</td>
+							<td>
+								{provenances.total}
+							</td>
+							<td>
+							</td>
+						</tr>
   	    </tbody>
   	</table>
   </div>
@@ -114,7 +124,7 @@
   	    </tr>
   	  </thead>
   	    <tbody>
-  	      <f:for each="{ageDistribution}" as="count" key="ageDis">
+  	      <f:for each="{ageDistribution.value}" as="count" key="ageDis">
   	            <tr>
   	              <td>
   	                  <f:translate key="tx_ats.stat.age.{ageDis}">{age.ageDis}</f:translate>
@@ -129,6 +139,16 @@
   	              </td>
   	            </tr>
   	      </f:for>
+						<tr>
+							<td>
+								<f:translate key="be.label.Statistics.Table.Total"/>
+							</td>
+							<td>
+								{provenances.total}
+							</td>
+							<td>
+							</td>
+						</tr>
   	      </tbody>
   	</table>
   </div>
