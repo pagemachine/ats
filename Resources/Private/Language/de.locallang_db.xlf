@@ -679,7 +679,7 @@
 			  <target>Historie</target>
 			</trans-unit>
 
-			<trans-unit id="tx_ats_domain_model_application.creation_date">
+			<trans-unit id="tx_ats_domain_model_application.crdate">
 			  <source>Creation date</source>
 			  <target>Erstellungsdatum</target>
 			</trans-unit>
