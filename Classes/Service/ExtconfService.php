@@ -147,6 +147,21 @@ class ExtconfService implements SingletonInterface
     }
 
     /**
+     * Returns whether to use backend user name and mail address in emails
+     *
+     * Default return value is true to enable backwards compatibility - if the value is not set, it should still resolve to true.
+     *
+     * @return bool
+     */
+    public function getUseBackendUserCredentialsInEmails()
+    {
+        if (isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['useBackendUserCredentialsInEmails'])) {
+            return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['useBackendUserCredentialsInEmails'] ? true : false;
+        }
+        return true;
+    }
+
+    /**
      * Returns the default email sender name
      *
      * @return string

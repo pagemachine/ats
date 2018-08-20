@@ -10,6 +10,9 @@ jobGroupPattern = bms_jobno_%s
 # cat=basic/enable; type=string; label=Name of the group to use as a template (you need to create a group with this name!)
 jobGroupTemplate = bms department template %s
 
+# cat=basic/enable; type=boolean; label=Use backend user credentials in emails (name and mail address)
+useBackendUserCredentialsInEmails = 1
+
 # cat=basic/enable; type=string; label=Default email sender (if empty, system settings are used)
 emailDefaultSenderName =
 

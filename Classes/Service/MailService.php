@@ -101,11 +101,11 @@ class MailService implements SingletonInterface
      */
     public function fetchFrom($useBackendUserCredentials = true)
     {
-        if ($useBackendUserCredentials && GeneralUtility::validEmail($this->backendUser->user['email']) && !empty($this->backendUser->user['realName'])) {
+        $extconfService = ExtconfService::getInstance();
+
+        if ($extconfService->getUseBackendUserCredentialsInEmails() && $useBackendUserCredentials && GeneralUtility::validEmail($this->backendUser->user['email']) && !empty($this->backendUser->user['realName'])) {
             return [$this->backendUser->user['email'] => $this->backendUser->user['realName']];
         }
-
-        $extconfService = ExtconfService::getInstance();
 
         if (!empty($extconfService->getEmailDefaultSenderName()) && GeneralUtility::validEmail($extconfService->getEmailDefaultSenderAddress())) {
             return [$extconfService->getEmailDefaultSenderAddress() => $extconfService->getEmailDefaultSenderName()];
