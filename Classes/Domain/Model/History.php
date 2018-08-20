@@ -168,10 +168,12 @@ class History extends AbstractEntity implements CloneableInterface
                 $diffUtility = GeneralUtility::makeInstance(DiffUtility::class);
 
                 foreach ($historyData['newRecord'] as $key => $newRecord) {
-                    $diffData[$key] = $diffUtility->makeDiffDisplay(
-                        $this->getHistoryValue($key, $historyData['oldRecord'][$key]),
-                        $this->getHistoryValue($key, $newRecord)
-                    );
+                    $oldValue = $this->getHistoryValue($key, $historyData['oldRecord'][$key]);
+                    $newValue = $this->getHistoryValue($key, $newRecord);
+
+                    if (!empty($oldValue) && !empty($newValue)) {
+                        $diffData[$key] = $diffUtility->makeDiffDisplay($oldValue, $newValue);
+                    }
                 }
             }
 
@@ -219,7 +221,8 @@ class History extends AbstractEntity implements CloneableInterface
                     $value
                 );
                 break;
-
+            case 'notes':
+                return '';
             default:
                 $translation = LocalizationUtility::translate('tx_ats.application.'.$col.'.'.$value, 'ats');
                 break;
