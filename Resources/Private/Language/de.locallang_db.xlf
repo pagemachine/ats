@@ -122,6 +122,11 @@
 				<target>BMS: Ort</target>
 			</trans-unit>
 
+			<trans-unit id="tx_ats_domain_model_job.location">
+				<source>Location</source>
+				<target>Standort</target>
+			</trans-unit>
+
 			<trans-unit id="tx_ats_domain_model_job.location.I.none">
 				<source>None</source>
 				<target>Keine</target>
