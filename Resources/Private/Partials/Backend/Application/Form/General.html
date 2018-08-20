@@ -1,0 +1,21 @@
+	<fieldset class="table-container">
+		<legend><f:translate key="be.label.ApplicationSingle.New.General">General</f:translate></legend>
+		<table class="table">
+			<tr class="form-element">
+				<td>
+					<label>
+					  <f:translate key="tx_ats.job.jobNumber" />
+					</label>
+				</td>
+				<td>
+						<f:form.select
+							property="job"
+							options="{jobs}"
+							optionLabelField="jobNumberAndTitle"
+							optionValueField="uid"
+							class="form-control" />
+					</div>
+				</td>
+			</tr>
+		</table>
+	</fieldset>
