@@ -111,7 +111,8 @@ return [
         ],
         'receiptdate' => [
             'config' => [
-                'type' => 'input'
+                'type' => 'input',
+                'eval' => 'datetime'
             ],
         ],
         'pool' => [

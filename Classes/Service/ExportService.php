@@ -1,8 +1,6 @@
 <?php
 namespace PAGEmachine\Ats\Service;
 
-use PAGEmachine\Ats\Application\ApplicationRating;
-use PAGEmachine\Ats\Application\ApplicationStatus;
 use TYPO3\CMS\Core\SingletonInterface;
 
 /*
@@ -27,6 +25,7 @@ class ExportService implements SingletonInterface
     public function __construct()
     {
         $GLOBALS['LANG']->includeLLFile('EXT:ats/Resources/Private/Language/locallang.xlf');
+        $GLOBALS['LANG']->includeLLFile('EXT:ats/Resources/Private/Language/locallang_db.xlf');
     }
 
     /**
@@ -187,8 +186,10 @@ class ExportService implements SingletonInterface
     {
         $exportHeader = '';
         foreach ($options as $option) {
-            if ($GLOBALS['LANG']->getLL('tx_ats.application.'.$option)) {
-                $exportHeader .= '"'.utf8_decode($GLOBALS['LANG']->getLL('tx_ats.application.'.$option)).'";';
+            if ($GLOBALS['LANG']->getLL('tx_ats_domain_model_application.'.$option)) {
+                $exportHeader .= '"'.utf8_decode($GLOBALS['LANG']->getLL('tx_ats_domain_model_application.'.$option)).'";';
+            } elseif ($GLOBALS['LANG']->getLL('tx_ats_domain_model_job.'.$option)) {
+                $exportHeader .= '"'.utf8_decode($GLOBALS['LANG']->getLL('tx_ats_domain_model_job.'.$option)).'";';
             } else {
                 $exportHeader .= '"'.$option.'";';
             }
@@ -232,20 +233,22 @@ class ExportService implements SingletonInterface
                                 $row[] = $GLOBALS['LANG']->getLL('tx_ats.application.application_type.'.$application->getApplicationType());
                                 break;
                             case 'status':
-                                $row[] = ApplicationStatus::getFlippedConstants()[$application->getStatus()->__toString()];
+                                $row[] = $GLOBALS['LANG']->getLL('tx_ats.application.status.'.$application->getStatus()->__toString());
                                 break;
                             case 'aip':
                                 $row[] = $application->getAip() == 1 ? 'yes' : '';
                                 break;
                             case 'rating':
-                                $row[] = ApplicationRating::getFlippedConstants()[$application->getRating()->__toString()];
+                                $row[] = $GLOBALS['LANG']->getLL('tx_ats.application.rating.'.$application->getRating()->__toString());
                                 break;
                             case 'comment_rating':
                                 $comments = [];
                                 foreach ($application->getnotes() as $key => $note) {
                                     if (!$note->getIsInternal() && $note->getSubject() == 'rating') {
                                         $string = $note->getCreationDate()->format('Y-m-d').' - ';
-                                        $string .= $note->getUser()->getRealName() ? $note->getUser()->getRealName().' ('.$note->getUser()->getUserName().')':$note->getUser()->getUserName();
+                                        if ($note->getUser()) {
+                                            $string .= $note->getUser()->getRealName() ? $note->getUser()->getRealName().' ('.$note->getUser()->getUserName().')':$note->getUser()->getUserName();
+                                        }
                                         $string .= ': '.$note->getDetails();
                                         $comments[] = $string;
                                     }
@@ -253,7 +256,7 @@ class ExportService implements SingletonInterface
                                 $row[] = str_replace("\r\n", ' ', implode(' ', $comments));
                                 break;
                             case 'rating_perso':
-                                $row[] = ApplicationRating::getFlippedConstants()[$application->getRatingPerso()->__toString()];
+                                $row[] = $GLOBALS['LANG']->getLL('tx_ats.application.rating.'.$application->getRatingPerso()->__toString());
                                 break;
                             case 'comment_rating_perso':
                                 $comments = [];
