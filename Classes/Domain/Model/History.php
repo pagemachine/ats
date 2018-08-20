@@ -2,6 +2,7 @@
 namespace PAGEmachine\Ats\Domain\Model;
 
 use PAGEmachine\Ats\Domain\Model\AbstractApplication;
+use PAGEmachine\Ats\Service\TyposcriptService;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Beuser\Domain\Model\BackendUser;
 use TYPO3\CMS\Core\Utility\DiffUtility;
@@ -193,6 +194,10 @@ class History extends AbstractEntity implements CloneableInterface
         if ($value == 'NULL') {
             return '';
         }
+
+        $dateFormat = TyposcriptService::getInstance()->getSettings()['dateFormat'] ?: 'Y-m-d';
+        $timeFormat = TyposcriptService::getInstance()->getSettings()['timeFormat'] ?: 'H:i:s';
+
         switch ($col) {
             case 'referrer':
             case 'forward_to_departments':
@@ -208,7 +213,11 @@ class History extends AbstractEntity implements CloneableInterface
                 break;
 
             case 'birthday':
-                $value = date('r', $value);
+            case 'receiptdate':
+                $value = date(
+                    sprintf('%s %s', $dateFormat, $timeFormat),
+                    $value
+                );
                 break;
 
             default:
