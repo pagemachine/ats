@@ -1091,6 +1091,11 @@
 				<target>Zurück an Perso</target>
 	  </trans-unit>
 
+	   <trans-unit id="tx_ats.be.actions.application.backToPerso.sendback">
+	  	<source>Send back</source>
+	  	<target>Zurückgeben</target>
+	  </trans-unit>
+
 	   <trans-unit id="tx_ats.be.actions.application.close">
 		<source>Close Application</source>
 		<target>Bewerbung abschließen</target>
@@ -1347,6 +1352,53 @@
       	<target>Abgesagt (durch Bewerber)</target>
       </trans-unit>
 
+      <!-- Note subjects -->
+
+      <trans-unit id="tx_ats.note.subject.note">
+      	<source>Note</source>
+      	<target>Bemerkung</target>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.note.subject.rating">
+      	<source>Rating</source>
+      	<target>Bewertung</target>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.note.subject.rating_perso">
+      	<source>Rating (Personell Department)</source>
+      	<target>Bewertung (Personalabteilung)</target>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.note.subject.status">
+      	<source>Status change</source>
+      	<target>Statusänderung</target>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.note.subject.cloned">
+      	<source>Clone created</source>
+      	<target>Duplikat erstellt</target>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.note.subject.back_to_perso">
+      	<source>Returned to perso</source>
+      	<target>Zurück an Personalabteilung</target>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.note.subject.closed">
+      	<source>Closed application</source>
+      	<target>Bewerbung abschließen</target>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.note.subject.pool">
+      	<source>Pool</source>
+      	<target>Pool</target>
+      </trans-unit>
+
+      <trans-unit id="tx_ats.note.subject.unknown">
+      	<source>No subject</source>
+      	<target>Kein Betreff</target>
+      </trans-unit>
+
       <!-- Message Fields -->
       <trans-unit id="tx_ats.mail.subject">
         <source>Subject</source>
@@ -1469,11 +1521,6 @@
 	        <target>Upload</target>
 	      </trans-unit>
 
-			<trans-unit id="be.label.ApplicationSingle.Edit.Submit">
-				<source>Save</source>
-				<target>Speichern</target>
-			</trans-unit>
-
 			<trans-unit id="be.label.ApplicationSingle.Edit.1">
 				<source>Website</source>
 				<target>Website</target>
@@ -1503,11 +1550,6 @@
       		  <source>Note</source>
       		  <target>Anmerkung</target>
       		</trans-unit>
-
-      		<trans-unit id="be.label.ApplicationSingle.Workflow.Submit">
-				<source>Submit</source>
-				<target>Senden</target>
-			</trans-unit>
 
 			<trans-unit id="be.label.ApplicationSingle.Acknowledge">
 				<source>Acknowledge application</source>
@@ -1544,11 +1586,6 @@
 				<target>Intern</target>
 			</trans-unit>
 
-			<trans-unit id="be.label.ApplicationSingle.Notes.Submit">
-				<source>Submit</source>
-				<target>Senden</target>
-			</trans-unit>
-
 			<trans-unit id="be.label.ApplicationSingle.Notes.AllNotes">
 				<source>All notes</source>
 				<target>Alle Anmerkungen</target>
@@ -1582,11 +1619,6 @@
 			<trans-unit id="be.label.ApplicationSingle.Rating.AllNotes">
 				<source>All notes</source>
 				<target>Alle Anmerkungen</target>
-			</trans-unit>
-
-			<trans-unit id="be.label.ApplicationSingle.Rating.Submit">
-				<source>Submit</source>
-				<target>Senden</target>
 			</trans-unit>
 
 			<trans-unit id="be.label.ApplicationSingle.RatingPerso">
@@ -1642,6 +1674,26 @@
 			<trans-unit id="be.label.ApplicationSingle.Clone.Submit">
 				<source>Submit</source>
 				<target>Senden</target>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Notes.Date">
+				<source>Date</source>
+				<target>Datum</target>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Notes.User">
+				<source>User</source>
+				<target>Benutzer</target>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Notes.Subject">
+				<source>Subject</source>
+				<target>Betreff</target>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Notes.Details">
+				<source>Details</source>
+				<target>Anmerkung</target>
 			</trans-unit>
 
 			<trans-unit id="be.label.Notification.Continue">
@@ -1802,6 +1854,11 @@
 			<trans-unit id="tx_ats.be.messageTypes.5">
 				<source>Reject</source>
 				<target>Absage</target>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Form.Submit">
+				<source>Save</source>
+				<target>Speichern</target>
 			</trans-unit>
 		</body>
 	</file>
