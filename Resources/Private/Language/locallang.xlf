@@ -1015,11 +1015,6 @@
         <source>60 and older</source>
       </trans-unit>
 
-      <!-- Age distribution proc -->
-      <trans-unit id="tx_ats.stat.age.proc.1">
-        <source></source>
-      </trans-unit>
-
       <!-- Application status -->
       <trans-unit id="tx_ats.application.status.0">
       	<source>Incomplete</source>
@@ -1244,7 +1239,7 @@
       </trans-unit>
 
       <trans-unit id="be.label.Statistics.Table.Total">
-        <source>Total:</source>
+        <source>Total</source>
       </trans-unit>
 
       <trans-unit id="be.label.Statistics.Table.Male">

@@ -922,8 +922,8 @@
       		</trans-unit>
 
       		<trans-unit id="be.label.Statistics.Table.Total">
-      		  <source>Total:</source>
-      		  <target>Gesamt:</target>
+      		  <source>Total</source>
+      		  <target>Gesamt</target>
       		</trans-unit>
 
       		<trans-unit id="be.label.Statistics.Table.Male">
@@ -1751,6 +1751,32 @@
 	      <trans-unit id="tx_ats.be.massNotification.header">
 	      	<source>New Mass Notification</source>
 	      	<target>Neuer Massenbescheid</target>
+	      </trans-unit>
+
+	      <!-- Age distribution -->
+	      <trans-unit id="tx_ats.stat.age.0">
+	        <source>under 20</source>
+	        <target>unter 20</target>
+	      </trans-unit>
+	      <trans-unit id="tx_ats.stat.age.1">
+	        <source>under 29</source>
+	        <target>unter 29</target>
+	      </trans-unit>
+	      <trans-unit id="tx_ats.stat.age.2">
+	        <source>under 39</source>
+	        <target>unter 39</target>
+	      </trans-unit>
+	      <trans-unit id="tx_ats.stat.age.3">
+	        <source>under 49</source>
+	        <target>unter 49</target>
+	      </trans-unit>
+	      <trans-unit id="tx_ats.stat.age.4">
+	        <source>under 59</source>
+	        <target>unter 59</target>
+	      </trans-unit>
+	      <trans-unit id="tx_ats.stat.age.5">
+	        <source>60 and older</source>
+	        <target>60 und älter</target>
 	      </trans-unit>
 
 			<!-- FlashMessages -->

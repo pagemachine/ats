@@ -38,7 +38,8 @@ class StatisticsService implements SingletonInterface
                     .BackendUtility::deleteClause("tx_ats_domain_model_application", "application"),
                 "job"
             );
-        return $totalApplications;
+
+        return ['value' => $totalApplications, 'total' => $this->getTotalNumber($totalApplications, "counter")];
     }
 
     /**
@@ -79,7 +80,7 @@ class StatisticsService implements SingletonInterface
                   WHERE `referrer` != 0 ".$this->getWhereApplicationInterval($dates).BackendUtility::deleteClause("tx_ats_domain_model_application").") b",
             "1=1"
         );
-        return $provenancesArray;
+        return ['value' => $provenancesArray, 'total' => $this->getTotalNumber($provenancesArray, 'total')];
     }
 
     /**
@@ -142,7 +143,7 @@ class StatisticsService implements SingletonInterface
             );
             array_push($ageList, $ageDistribution);
         }
-        return $ageList;
+        return ['value' => $ageList, 'total' => $this->getTotalNumber($ageList, 'single')];
     }
 
      /**
@@ -190,7 +191,7 @@ class StatisticsService implements SingletonInterface
                 ) c",
                 "1 = 1"
             );
-        return $applications;
+        return ['value' => $applications, 'total' => $applications["men"] + $applications["women"]];
     }
 
      /**
@@ -221,7 +222,7 @@ class StatisticsService implements SingletonInterface
                 ) c",
                 "1 = 1"
             );
-        return $interviews;
+        return ['value' => $interviews, 'total' => $interviews["men"] + $interviews["women"]];
     }
 
      /**
@@ -252,7 +253,7 @@ class StatisticsService implements SingletonInterface
                 ) c",
                 "1 = 1"
             );
-        return $occupiedPositions;
+        return ['value' => $occupiedPositions, 'total' => $occupiedPositions["men"] + $occupiedPositions["women"]];
     }
 
      /**
@@ -308,5 +309,16 @@ class StatisticsService implements SingletonInterface
             )";
 
         return $whereClause;
+    }
+
+    /**
+     * Sums the values of an array on a specific key.
+     *
+     * @param      array   $statisticArray
+     * @param      string  $key
+     */
+    protected function getTotalNumber($statisticArray, $key)
+    {
+        return array_sum(array_column($statisticArray, $key));
     }
 }

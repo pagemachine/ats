@@ -23,6 +23,10 @@
 	margin: 0px;
 }
 
+.tx-ats-backend table .progress-bar{
+	text-shadow: -1px 0 #0078e6, 0 1px #0078e6, 1px 0 #0078e6, 0 -1px #0078e6;
+}
+
 
 .tx-ats-backend .summary-element td, .tx-ats-backend #application-editform .form-element td {
 	padding: 12px;
