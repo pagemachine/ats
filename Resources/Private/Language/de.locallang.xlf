@@ -821,6 +821,11 @@
 				<target>E-Mail</target>
 			</trans-unit>
 
+			<trans-unit id="tx_ats.application.receiptDate">
+				<source>Receipt date</source>
+				<target>Eingangsdatum</target>
+			</trans-unit>
+
 			<trans-unit id="be.label.MyApplications.Table.Disability">
 				<source>Disability</source>
 				<target>Schwerbehinderung</target>
