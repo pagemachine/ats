@@ -191,7 +191,7 @@ class StatisticsService implements SingletonInterface
                 ) c",
                 "1 = 1"
             );
-        return ['value' => $applications, 'total' => intval($applications["men"])+intval($applications["women"])];
+        return ['value' => $applications, 'total' => $applications["men"] + $applications["women"]];
     }
 
      /**
