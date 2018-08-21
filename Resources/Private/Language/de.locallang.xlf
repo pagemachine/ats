@@ -1779,12 +1779,6 @@
 	        <target>60 und älter</target>
 	      </trans-unit>
 
-	      <!-- Age distribution proc -->
-	      <trans-unit id="tx_ats.stat.age.proc.1">
-	        <source></source>
-	        <target></target>
-	      </trans-unit>
-
 			<!-- FlashMessages -->
 
 			<trans-unit id="be.flashMessage.update.ok">
