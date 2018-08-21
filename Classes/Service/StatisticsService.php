@@ -222,7 +222,7 @@ class StatisticsService implements SingletonInterface
                 ) c",
                 "1 = 1"
             );
-        return ['value' => $interviews, 'total' => intval($interviews["men"])+intval($interviews["women"])];
+        return ['value' => $interviews, 'total' => $interviews["men"]+$interviews["women"]];
     }
 
      /**
@@ -253,7 +253,7 @@ class StatisticsService implements SingletonInterface
                 ) c",
                 "1 = 1"
             );
-        return ['value' => $occupiedPositions, 'total' => intval($occupiedPositions["men"])+intval($occupiedPositions["women"])];
+        return ['value' => $occupiedPositions, 'total' => $occupiedPositions["men"]+$occupiedPositions["women"]];
     }
 
      /**
@@ -312,16 +312,16 @@ class StatisticsService implements SingletonInterface
     }
 
     /**
-     * Adding all keys in a array.
+     * Sums the values of an array on a specific key.
      *
-     * @param      array   $array
-     * @param      string  $selector
+     * @param      array   $statisticArray
+     * @param      string  $key
      */
-    protected function getTotalNumber($array, $key)
+    protected function getTotalNumber($statisticArray, $key)
     {
         $total = 0;
-        for ($i = 0; $i < count($array); $i++) {
-            $total += intval($array[$i][$key]);
+        for ($i = 0; $i < count($statisticArray); $i++) {
+            $total += $statisticArray[$i][$key];
         }
         return $total;
     }
