@@ -319,10 +319,6 @@ class StatisticsService implements SingletonInterface
      */
     protected function getTotalNumber($statisticArray, $key)
     {
-        $total = 0;
-        for ($i = 0; $i < count($statisticArray); $i++) {
-            $total += $statisticArray[$i][$key];
-        }
-        return $total;
+        return array_sum(array_column($statisticArray, $key));
     }
 }
