@@ -126,6 +126,11 @@ class ApplicationController extends AbstractBackendController
                 ->forProperty('birthday')
                 ->setTypeConverterOption(\TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::class, \TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'Y-m-d');
 
+            $this->arguments->getArgument('application')
+                ->getPropertyMappingConfiguration()
+                ->forProperty('receiptdate')
+                ->setTypeConverterOption(\TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::class, \TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'Y-m-d');
+
             $uploadConfiguration = ExtconfService::getInstance()->getUploadConfiguration();
 
             $this->arguments->getArgument('application')
@@ -813,7 +818,6 @@ class ApplicationController extends AbstractBackendController
      */
     public function initializeCreateAction()
     {
-
         $this->fixDynamicFieldPropertyMapping();
     }
 

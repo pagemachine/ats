@@ -53,7 +53,7 @@ class Application extends ApplicationE implements CloneableInterface
      * @param \DateTime $receiptdate
      * @return void
      */
-    public function setReceiptdate(\DateTime $receiptdate)
+    public function setReceiptdate($receiptdate)
     {
         $this->receiptdate = $receiptdate;
     }
@@ -291,8 +291,10 @@ class Application extends ApplicationE implements CloneableInterface
     public function submit()
     {
         $this->setCreationDate(new \DateTime);
-        $this->setReceiptdate(new \DateTime);
 
+        if ($this->receiptdate == null) {
+            $this->setReceiptdate(new \DateTime);
+        }
         $this->setStatus(ApplicationStatus::cast(ApplicationStatus::NEW_APPLICATION));
     }
 }
