@@ -146,13 +146,14 @@ class MailServiceTest extends UnitTestCase
      *
      * @dataProvider mailCombinations
      */
-    public function fetchesCorrectFrom($useBeUserCredentials, $backendUserRecord, $atsSystemName, $atsSystemAddress, $systemFrom, $expectedFrom)
+    public function fetchesCorrectFrom($globallyAllowUserCredentials, $useBeUserCredentials, $backendUserRecord, $atsSystemName, $atsSystemAddress, $systemFrom, $expectedFrom)
     {
         $this->backendUser->user = $backendUserRecord;
 
         $extconfService = $this->prophesize(ExtconfService::class);
         $extconfService->getEmailDefaultSenderName()->willReturn($atsSystemName);
         $extconfService->getEmailDefaultSenderAddress()->willReturn($atsSystemAddress);
+        $extconfService->getUseBackendUserCredentialsInEmails()->willReturn($globallyAllowUserCredentials);
 
         GeneralUtility::setSingletonInstance(ExtconfService::class, $extconfService->reveal());
 
@@ -172,6 +173,7 @@ class MailServiceTest extends UnitTestCase
         return [
             'backend user data allowed, backend user valid' => [
                 true,
+                true,
                 [
                     'email' => 'beuser@example.com',
                     'realName' => 'BackendUser',
@@ -182,6 +184,7 @@ class MailServiceTest extends UnitTestCase
                 ['beuser@example.com' => 'BackendUser'],
             ],
             'backend user data allowed, backend user email invalid' => [
+                true,
                 true,
                 [
                     'email' => 'invalid',
@@ -194,6 +197,7 @@ class MailServiceTest extends UnitTestCase
             ],
             'backend user data allowed, backend user name invalid' => [
                 true,
+                true,
                 [
                     'email' => 'beuser@example.com',
                     'realName' => '',
@@ -204,6 +208,7 @@ class MailServiceTest extends UnitTestCase
                 ['ats@example.com' => 'ATS'],
             ],
             'backend user data allowed, backend user email invalid, ATS email invalid' => [
+                true,
                 true,
                 [
                     'email' => 'invalid',
@@ -216,6 +221,7 @@ class MailServiceTest extends UnitTestCase
             ],
             'backend user data allowed, backend user email invalid, ATS name invalid' => [
                 true,
+                true,
                 [
                     'email' => 'invalid',
                     'realName' => 'backend user',
@@ -226,6 +232,7 @@ class MailServiceTest extends UnitTestCase
                 ['system@example.com' => 'System'],
             ],
             'backend user data allowed, backend user name invalid, ATS email invalid' => [
+                true,
                 true,
                 [
                     'email' => 'beuser@example.com',
@@ -238,6 +245,7 @@ class MailServiceTest extends UnitTestCase
             ],
             'backend user data allowed, backend user name invalid, ATS name invalid' => [
                 true,
+                true,
                 [
                     'email' => 'beuser@example.com',
                     'realName' => '',
@@ -248,6 +256,19 @@ class MailServiceTest extends UnitTestCase
                 ['system@example.com' => 'System'],
             ],
             'backend user data not allowed' => [
+                true,
+                false,
+                [
+                    'email' => 'beuser@example.com',
+                    'realName' => 'backend user',
+                ],
+                'ATS',
+                'ats@example.com',
+                ['system@example.com' => 'System'],
+                ['ats@example.com' => 'ATS'],
+            ],
+            'backend user data globally disabled' => [
+                false,
                 false,
                 [
                     'email' => 'beuser@example.com',
