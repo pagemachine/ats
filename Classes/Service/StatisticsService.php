@@ -222,7 +222,7 @@ class StatisticsService implements SingletonInterface
                 ) c",
                 "1 = 1"
             );
-        return ['value' => $interviews, 'total' => $interviews["men"]+$interviews["women"]];
+        return ['value' => $interviews, 'total' => $interviews["men"] + $interviews["women"]];
     }
 
      /**
@@ -253,7 +253,7 @@ class StatisticsService implements SingletonInterface
                 ) c",
                 "1 = 1"
             );
-        return ['value' => $occupiedPositions, 'total' => $occupiedPositions["men"]+$occupiedPositions["women"]];
+        return ['value' => $occupiedPositions, 'total' => $occupiedPositions["men"] + $occupiedPositions["women"]];
     }
 
      /**
