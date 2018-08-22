@@ -11,6 +11,7 @@ use PAGEmachine\Ats\Service\PdfService;
 use Prophecy\Argument;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
+use TYPO3\CMS\Core\Utility\File\BasicFileUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
@@ -74,6 +75,7 @@ class PdfServiceTest extends UnitTestCase
 
         $objectManager = $this->prophesize(ObjectManager::class);
         $objectManager->get(ConfigurationManager::class)->willReturn($configurationManager->reveal());
+        $objectManager->get(BasicFileUtility::class)->willReturn(new BasicFileUtility());
         $objectManager->get('mPDF', Argument::type('string'), Argument::type('string'), Argument::type('string'), Argument::type('string'), 0, 0, 0, 0, 0, 0)->willReturn(new \mPDF("c", "A4", "", "", 0, 0, 0, 0, 0, 0));
 
         $this->fluidRenderingService = $this->prophesize(FluidRenderingService::class);
@@ -141,7 +143,7 @@ class PdfServiceTest extends UnitTestCase
     public function cleansFilename()
     {
         $dirtySubject = "filename!§$%&/=?-foo^#'+*öäü";
-        $expectedFilename = "filename-fooöäü.pdf";
+        $expectedFilename = "filename_________-foo_____oeaeue.pdf";
 
         $this->assertEquals($expectedFilename, $this->pdfService->createCleanedFilename($dirtySubject));
     }
