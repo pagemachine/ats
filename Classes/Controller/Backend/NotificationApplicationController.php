@@ -71,8 +71,19 @@ class NotificationApplicationController extends ApplicationController
      */
     public function newMassNotificationAction($applications, MessageInterface $message = null, $messageType = null)
     {
+        $currentApplication = $applications->current();
+
+        // If there is at least one application without email, select it as the active one
+        // so sending the mass notification via email is impossible
+        foreach ($applications as $application) {
+            if (empty($application->getEmail())) {
+                $currentApplication = $application;
+                break;
+            }
+        }
+
         if ($message == null) {
-            $message = $this->messageFactory->createMessageFromConstantType($messageType, $applications->current());
+            $message = $this->messageFactory->createMessageFromConstantType($messageType, $currentApplication);
         }
 
         $message->applyTextTemplate();

@@ -1701,6 +1701,11 @@
 				<target>Anmerkung</target>
 			</trans-unit>
 
+			<trans-unit id="be.label.ApplicationSingle.NoEmailAddressWarning">
+				<source>This application does not include an email address, you can only create a PDF file.</source>
+				<target>In der Bewerbung wurde keine E-Mail angegeben, Ausgabe nur als PDF möglich. </target>
+			</trans-unit>
+
 			<trans-unit id="be.label.Notification.Continue">
 				<source>Continue</source>
 				<target>Weiter</target>
