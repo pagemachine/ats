@@ -216,7 +216,7 @@ class History extends AbstractEntity implements CloneableInterface
 
             case 'birthday':
             case 'receiptdate':
-                $value = date(
+                $translation = date(
                     sprintf('%s %s', $dateFormat, $timeFormat),
                     $value
                 );
