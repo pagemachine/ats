@@ -1,6 +1,7 @@
 <?php
 namespace PAGEmachine\Ats\Tests\Unit\Message;
 
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Message\AbstractMessage;
 use PAGEmachine\Ats\Message\InviteMessage;
@@ -10,7 +11,6 @@ use PAGEmachine\Ats\Service\MarkerService;
 use PAGEmachine\Ats\Service\TyposcriptService;
 use Prophecy\Argument;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 

@@ -1,6 +1,7 @@
 <?php
 namespace PAGEmachine\Ats\Tests\Unit\Domain\Repository;
 
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 use PAGEmachine\Ats\Domain\Model\AbstractApplication;
 use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Domain\Model\History;
@@ -11,7 +12,6 @@ use Prophecy\Argument;
 use Symfony\Component\Workflow\Workflow;
 use TYPO3\CMS\Beuser\Domain\Model\BackendUser;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
 use TYPO3\CMS\Extbase\Domain\Model\FrontendUser;
 use TYPO3\CMS\Extbase\Mvc\Exception\InvalidArgumentTypeException;
 use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;

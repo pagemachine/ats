@@ -5,10 +5,10 @@ namespace PAGEmachine\Ats\Tests\Unit\Controller\Application;
  * This file is part of the PAGEmachine ATS project.
  */
 
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 use PAGEmachine\Ats\Controller\Application\PersonalDataController;
 use PAGEmachine\Ats\Domain\Model\ApplicationB;
 use PAGEmachine\Ats\Domain\Repository\ApplicationBRepository;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 

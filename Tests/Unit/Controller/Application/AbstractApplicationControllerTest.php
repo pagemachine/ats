@@ -5,13 +5,13 @@ namespace PAGEmachine\Ats\Tests\Unit\Controller\Application;
  * This file is part of the PAGEmachine ATS project.
  */
 
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 use PAGEmachine\Ats\Controller\Application\AbstractApplicationController;
 use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
 use PAGEmachine\Ats\Property\TypeConverter\UploadedFileReferenceConverter;
 use PAGEmachine\Ats\Service\AuthenticationService;
 use Prophecy\Argument;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
 use TYPO3\CMS\Extbase\Mvc\Controller\Argument as ControllerArgument;
 use TYPO3\CMS\Extbase\Mvc\Controller\Arguments;
 use TYPO3\CMS\Extbase\Mvc\Controller\Exception\RequiredArgumentMissingException;

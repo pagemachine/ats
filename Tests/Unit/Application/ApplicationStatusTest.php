@@ -5,8 +5,8 @@ namespace PAGEmachine\Ats\Tests\Unit\Application;
  * This file is part of the PAGEmachine ATS project.
  */
 
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 use PAGEmachine\Ats\Application\ApplicationStatus;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
 
 /**
  * Testcase for PAGEmachine\Ats\Application\ApplicationStatus
