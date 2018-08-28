@@ -9,6 +9,7 @@ use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Service\FluidRenderingService;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\File\BasicFileUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
@@ -26,6 +27,11 @@ class PdfService implements SingletonInterface
     protected $configurationManager;
 
     /**
+     * @var \TYPO3\CMS\Core\Utility\File\BasicFileUtility
+     */
+    protected $basicFileFunctions;
+
+    /**
      * @var \PAGEmachine\Ats\Service\FluidRenderingService
      */
     protected $fluidRenderingService;
@@ -39,6 +45,7 @@ class PdfService implements SingletonInterface
     {
         $this->objectManager = $objectManager ? $objectManager : GeneralUtility::makeInstance(ObjectManager::class);
         $this->configurationManager = $this->objectManager->get(ConfigurationManager::class);
+        $this->basicFileFunctions = $this->objectManager->get(BasicFileUtility::class);
         $this->backendUser = $backendUser ?: $GLOBALS['BE_USER'];
         $this->fluidRenderingService = $fluidRenderingService ?: GeneralUtility::makeInstance(FluidRenderingService::class);
     }
@@ -77,8 +84,7 @@ class PdfService implements SingletonInterface
      */
     public function createCleanedFilename($rawFilename)
     {
-
-        return mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $rawFilename.'.pdf');
+        return $this->basicFileFunctions->cleanFileName($rawFilename.'.pdf');
     }
 
     /**
