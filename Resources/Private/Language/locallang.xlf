@@ -1563,7 +1563,7 @@
 			</trans-unit>
 
 			<trans-unit id="be.label.ApplicationSingle.NoEmailAddressWarning">
-				<source>This application does not include an email address, so you can only create a PDF file.</source>
+				<source>This application does not include a valid email address, so you can only create a PDF file.</source>
 			</trans-unit>
 
 			<trans-unit id="be.label.Notification.Continue">

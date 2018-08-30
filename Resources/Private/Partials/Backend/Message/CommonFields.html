@@ -2,7 +2,7 @@
 <f:form.hidden property="application" value="{message.application.uid}" />
 <f:form.hidden name="action" value="{previewAction}" />
 
-<f:if condition="{message.application.email}">
+<f:if condition="{message.application.validEmail}">
 	<f:then>
 		<div class="radio">
 		  <label>

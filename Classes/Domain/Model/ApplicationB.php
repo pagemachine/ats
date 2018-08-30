@@ -276,6 +276,14 @@ class ApplicationB extends ApplicationA
         return $this->email;
     }
 
+    public function getValidEmail()
+    {
+        if (!empty($this->email) && \TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($this->email)) {
+            return $this->email;
+        }
+        return null;
+    }
+
     /**
      * @param string $email
      * @return void
