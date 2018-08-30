@@ -995,6 +995,10 @@
       	<source>New Mass Notification</source>
       </trans-unit>
 
+      <trans-unit id="tx_ats.be.massNotification.selectedApplications">
+      	<source>Selected applications</source>
+      </trans-unit>
+
       <!-- Age distribution -->
       <trans-unit id="tx_ats.stat.age.0">
         <source>under 20</source>
