@@ -5,9 +5,9 @@ namespace PAGEmachine\Ats\Tests\Unit\Service;
  * This file is part of the PAGEmachine ATS project.
  */
 
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 use PAGEmachine\Ats\Service\ExtconfService;
 use PAGEmachine\Ats\Service\MarkerService;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
 
 /**
  * Testcase for PAGEmachine\Ats\Service\MarkerService

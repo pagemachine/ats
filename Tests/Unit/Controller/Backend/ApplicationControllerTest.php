@@ -1,6 +1,7 @@
 <?php
 namespace PAGEmachine\Ats\Tests\Unit\Controller\Backend;
 
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 use PAGEmachine\Ats\Application\ApplicationFilter;
 use PAGEmachine\Ats\Application\ApplicationRating;
 use PAGEmachine\Ats\Application\ApplicationStatus;
@@ -17,7 +18,6 @@ use PAGEmachine\Ats\Property\TypeConverter\UploadedFileReferenceConverter;
 use PAGEmachine\Ats\Workflow\WorkflowManager;
 use Prophecy\Argument;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\Argument as ControllerArgument;
 use TYPO3\CMS\Extbase\Mvc\Controller\Arguments;
