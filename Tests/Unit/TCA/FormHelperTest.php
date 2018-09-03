@@ -5,10 +5,10 @@ namespace PAGEmachine\Ats\Tests\Unit\TCA;
  * This file is part of the PAGEmachine ATS project.
  */
 
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 use PAGEmachine\Ats\TCA\FormHelper;
 use Prophecy\Argument;
 use TYPO3\CMS\Core\Database\DatabaseConnection;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
 
 /**
  * Testcase for PAGEmachine\Ats\Controller\ApplicationController

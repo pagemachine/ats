@@ -5,13 +5,13 @@ namespace PAGEmachine\Ats\Tests\Unit\Controller\Application;
  * This file is part of the PAGEmachine ATS project.
  */
 
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 use PAGEmachine\Ats\Application\ApplicationStatus;
 use PAGEmachine\Ats\Controller\Application\FormController;
 use PAGEmachine\Ats\Domain\Model\ApplicationA;
 use PAGEmachine\Ats\Domain\Model\Job;
 use PAGEmachine\Ats\Domain\Repository\ApplicationARepository;
 use PAGEmachine\Ats\Service\AuthenticationService;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
 use TYPO3\CMS\Extbase\Domain\Model\FrontendUser;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;

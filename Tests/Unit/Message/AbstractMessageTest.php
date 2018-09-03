@@ -1,6 +1,7 @@
 <?php
 namespace PAGEmachine\Ats\Tests\Unit\Message;
 
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Domain\Repository\TextTemplateRepository;
 use PAGEmachine\Ats\Message\AbstractMessage;
@@ -9,7 +10,6 @@ use PAGEmachine\Ats\Service\MailService;
 use PAGEmachine\Ats\Service\MarkerService;
 use PAGEmachine\Ats\Service\PdfService;
 use Prophecy\Argument;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /*

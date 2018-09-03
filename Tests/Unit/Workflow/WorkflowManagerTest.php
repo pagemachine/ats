@@ -5,6 +5,7 @@ namespace PAGEmachine\Ats\Tests\Unit\Workflow;
  * This file is part of the PAGEmachine ATS project.
  */
 
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 use PAGEmachine\Ats\Service\ExtconfService;
 use PAGEmachine\Ats\Workflow\InvalidWorkflowConfigurationException;
 use PAGEmachine\Ats\Workflow\WorkflowManager;
@@ -12,7 +13,6 @@ use Prophecy\Argument;
 use Symfony\Component\Workflow\Definition;
 use Symfony\Component\Workflow\DefinitionBuilder;
 use Symfony\Component\Workflow\Transition;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
