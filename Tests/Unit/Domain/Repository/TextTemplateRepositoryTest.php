@@ -1,9 +1,9 @@
 <?php
 namespace PAGEmachine\Ats\Tests\Unit\Domain\Repository;
 
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 use PAGEmachine\Ats\Domain\Model\TextTemplate;
 use PAGEmachine\Ats\Domain\Repository\TextTemplateRepository;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**

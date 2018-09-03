@@ -1,11 +1,11 @@
 <?php
 namespace PAGEmachine\Ats\Tests\Unit\Message;
 
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Message\MessageFactory;
 use PAGEmachine\Ats\Message\ReplyMessage;
 use PAGEmachine\Ats\Message\UndefinedMessageException;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 /*

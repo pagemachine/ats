@@ -6,12 +6,12 @@ namespace PAGEmachine\Ats\Tests\Unit\Controller\Backend;
  */
 
 
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 use PAGEmachine\Ats\Controller\Backend\AbstractBackendController;
 use Prophecy\Argument;
 use TYPO3\CMS\Backend\Template\ModuleTemplate;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
 use TYPO3\CMS\Core\Page\PageRenderer;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
 use TYPO3\CMS\Extbase\Mvc\Request;
 use TYPO3\CMS\Extbase\Mvc\View\NotFoundView;
 

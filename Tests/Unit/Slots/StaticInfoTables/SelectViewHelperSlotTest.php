@@ -1,8 +1,8 @@
 <?php
 namespace PAGEmachine\Ats\Tests\Unit\Slots\StaticInfoTables;
 
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 use PAGEmachine\Ats\Slots\StaticInfoTables\SelectViewHelperSlot;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\DomainObject\AbstractDomainObject;

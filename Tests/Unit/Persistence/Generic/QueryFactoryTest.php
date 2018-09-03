@@ -1,10 +1,10 @@
 <?php
 namespace PAGEmachine\Ats\Tests\Unit\Persistence\Generic;
 
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 use PAGEmachine\Ats\Persistence\Generic\QueryFactory;
 use PAGEmachine\Ats\Persistence\OpenRepositoryInterface;
 use Prophecy\Argument;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\QueryFactory as ExtbaseQueryFactory;
 use TYPO3\CMS\Extbase\Persistence\Generic\QuerySettingsInterface;
@@ -68,10 +68,10 @@ class QueryFactoryTest extends UnitTestCase
         /** @var QuerySettingsInterface */
         $querySettings = $this->prophesize(QuerySettingsInterface::class);
 
-        
+
         $this->repository->getDefaultQuerySettings()->willReturn($querySettings->reveal());
         $this->repository->getDefaultOrderings()->willReturn(['foo' => 'bar']);
-        
+
         $this->objectManager->get('Foo\\Bar\\Domain\\Repository\\TestRepository')->willReturn($this->repository->reveal());
 
         $this->query->setQuerySettings(Argument::type(QuerySettingsInterface::class))->shouldBeCalled();

@@ -5,8 +5,8 @@ namespace PAGEmachine\Ats\Tests\Unit;
  * This file is part of the PAGEmachine Ats project.
  */
 
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 use PAGEmachine\Ats\Tests\Unit\Traits\Fixtures\DerivedClass;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
 
 class StaticCallingTest extends UnitTestCase
 {
