@@ -387,7 +387,7 @@ return [
                     'tablenames' => 'tx_ats_domain_model_application',
                     'table_local' => 'sys_file',
                 ]
-            ], $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'])
+            ], $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['fileHandling']['allowedFileExtensions'])
 
         ],
         'language_skills' => [
