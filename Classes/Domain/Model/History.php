@@ -171,7 +171,7 @@ class History extends AbstractEntity implements CloneableInterface
                     $oldValue = $this->getHistoryValue($key, $historyData['oldRecord'][$key]);
                     $newValue = $this->getHistoryValue($key, $newRecord);
 
-                    if (!empty($oldValue) && !empty($newValue)) {
+                    if (!empty($oldValue) && !empty($newValue) && ($oldValue != $newValue)) {
                         $diffData[$key] = $diffUtility->makeDiffDisplay($oldValue, $newValue);
                     }
                 }
@@ -198,7 +198,6 @@ class History extends AbstractEntity implements CloneableInterface
         }
 
         $dateFormat = TyposcriptService::getInstance()->getSettings()['dateFormat'] ?: 'Y-m-d';
-        $timeFormat = TyposcriptService::getInstance()->getSettings()['timeFormat'] ?: 'H:i:s';
 
         switch ($col) {
             case 'referrer':
@@ -216,8 +215,8 @@ class History extends AbstractEntity implements CloneableInterface
 
             case 'birthday':
             case 'receiptdate':
-                $value = date(
-                    sprintf('%s %s', $dateFormat, $timeFormat),
+                $translation = date(
+                    $dateFormat,
                     $value
                 );
                 break;
