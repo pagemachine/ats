@@ -2,24 +2,40 @@
 <f:form.hidden property="application" value="{message.application.uid}" />
 <f:form.hidden name="action" value="{previewAction}" />
 
-<div class="radio">
-  <label>
-	<f:form.radio property="sendType" id="sendTypeMail" value="mail" />
-	<f:translate id="be.label.ApplicationSingle.Acknowledge.SendMailTo"/> {message.application.email}
-  </label>
-</div>
-<div class="radio">
-  <label>
-	<f:form.radio property="sendType" id="sendTypePdf" value="pdf" />
-	<f:translate id="be.label.ApplicationSingle.Acknowledge.CreatePdf"/>
-  </label>
-</div>
-  <f:if condition="{message.textTemplateDropdownOptions -> f:count()} > 0">
-	  <div class="form-group">
-		  <label for="textTemplate">Template</label>
-				  <f:form.select class="form-control" property="textTemplate" id="textTemplate" options="{message.textTemplateDropdownOptions}" additionalAttributes="{onchange: 'this.form.submit()'}" prependOptionLabel="---" prependOptionValue="" />
-	  </div>
-  </f:if>
+<f:if condition="{message.application.validEmail}">
+	<f:then>
+		<div class="radio">
+		  <label>
+			<f:form.radio property="sendType" id="sendTypeMail" value="mail" />
+			<f:translate id="be.label.ApplicationSingle.Acknowledge.SendMailTo"/> {message.application.email}
+		  </label>
+		</div>
+		<div class="radio">
+		  <label>
+			<f:form.radio property="sendType" id="sendTypePdf" value="pdf" />
+			<f:translate id="be.label.ApplicationSingle.Acknowledge.CreatePdf"/>
+		  </label>
+		</div>
+	</f:then>
+	<f:else>
+		<f:be.infobox state="1" message="{f:translate(key:'be.label.ApplicationSingle.NoEmailAddressWarning', default:'This application has no mail address. You can only create PDFs.')}" />
+
+		<div class="radio">
+		  <label>
+			<f:form.radio property="sendType" id="sendTypePdf" value="pdf" checked="1" />
+			<f:translate id="be.label.ApplicationSingle.Acknowledge.CreatePdf"/>
+		  </label>
+		</div>
+	</f:else>
+</f:if>
+
+
+<f:if condition="{message.textTemplateDropdownOptions -> f:count()} > 0">
+  <div class="form-group">
+	  <label for="textTemplate">Template</label>
+			  <f:form.select class="form-control" property="textTemplate" id="textTemplate" options="{message.textTemplateDropdownOptions}" additionalAttributes="{onchange: 'this.form.submit()'}" prependOptionLabel="---" prependOptionValue="" />
+  </div>
+</f:if>
 
 <f:render partial="Backend/Message/Fields/Textfield" arguments="{
   field : 'subject',

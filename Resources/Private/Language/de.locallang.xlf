@@ -1701,6 +1701,11 @@
 				<target>Anmerkung</target>
 			</trans-unit>
 
+			<trans-unit id="be.label.ApplicationSingle.NoEmailAddressWarning">
+				<source>This application does not include a valid email address, you can only create a PDF file.</source>
+				<target>In der Bewerbung wurde keine gültige E-Mail angegeben, Ausgabe nur als PDF möglich. </target>
+			</trans-unit>
+
 			<trans-unit id="be.label.Notification.Continue">
 				<source>Continue</source>
 				<target>Weiter</target>
@@ -1752,6 +1757,11 @@
 	      	<source>New Mass Notification</source>
 	      	<target>Neuer Massenbescheid</target>
 	      </trans-unit>
+
+		<trans-unit id="tx_ats.be.massNotification.selectedApplications">
+			<source>Selected applications</source>
+			<target>Ausgewählte Bewerbungen</target>
+		</trans-unit>
 
 	      <!-- Age distribution -->
 	      <trans-unit id="tx_ats.stat.age.0">

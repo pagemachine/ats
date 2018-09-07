@@ -3,6 +3,14 @@
 	<f:for each="{applications}" as="application">
 		<f:form.hidden name="applications[{application.uid}]" value="{application.uid}" />
 	</f:for>
+
+	<div class="panel panel-default">
+		<div class="panel-heading"><f:translate key="tx_ats.be.massNotification.selectedApplications">Selected Applications</f:translate></div>
+		<div class="table-fit">
+			<f:render partial="Backend/Application/TableInner" arguments="{applications : applications}" />
+		</div>
+	</div>
+
 	<div class="panel panel-default">
 
 		<div class="panel-heading">
