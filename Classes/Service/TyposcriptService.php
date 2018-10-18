@@ -2,6 +2,7 @@
 namespace PAGEmachine\Ats\Service;
 
 use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
@@ -55,5 +56,27 @@ class TyposcriptService implements SingletonInterface
             ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
             'ats'
         );
+    }
+
+    /**
+     * Merges global TypoScript and FlexForm settings depending on config (override, override of empty values).
+     *
+     * @return array
+     */
+    public function mergeFlexFormAndTypoScriptSettings($settings = [])
+    {
+        if (!empty($settings['flexForm']) && intval($settings['flexForm']['override']) == 1) {
+            $overrideSettings = $settings['flexForm'];
+
+            ArrayUtility::mergeRecursiveWithOverrule(
+                $settings,
+                $overrideSettings,
+                true,
+                (intval($overrideSettings['overrideEmptyValues']) == 1 ? true : false)
+            );
+        }
+        unset($settings['flexForm']);
+
+        return $settings;
     }
 }
