@@ -13,6 +13,18 @@ use PAGEmachine\Ats\Service\TyposcriptService;
 trait StructuredJobDefinitionTrait
 {
     /**
+     * This is a compat function since in TYPO3 7 Fluid does not include f:format.json.
+     * @TODO Remove this and use {job -> f:format.json()} in the JsonLD template
+     * once we drop TYPO3 7 support
+     *
+     * @return string
+     */
+    public function getJson()
+    {
+        return json_encode($this);
+    }
+
+    /**
      * Returns structured JSON-LD data when run through json_encode()
      * @return array
      */
