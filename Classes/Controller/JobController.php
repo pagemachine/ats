@@ -7,7 +7,6 @@ namespace PAGEmachine\Ats\Controller;
 
 use PAGEmachine\Ats\Domain\Model\Job;
 use PAGEmachine\Ats\Service\TyposcriptService;
-use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**

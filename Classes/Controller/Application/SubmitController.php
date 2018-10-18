@@ -73,7 +73,11 @@ class SubmitController extends AbstractApplicationController
             }
         }
 
-        $this->redirect("submitted", null, null, ['application' => $application]);
+        if (intval($this->settings['afterSubmitPage']) > 0) {
+            $this->redirect(null, null, null, null, intval($this->settings['afterSubmitPage']));
+        } else {
+            $this->redirect("submitted", null, null, ['application' => $application]);
+        }
     }
 
     /**

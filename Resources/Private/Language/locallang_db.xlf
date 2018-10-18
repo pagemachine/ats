@@ -453,6 +453,10 @@
 				<source>Page with policy details</source>
 			</trans-unit>
 
+			<trans-unit id="flexform.jobs.afterSubmitPage">
+				<source>Page to redirect to after successful submit ("Thank you"-Page)</source>
+			</trans-unit>
+
 			<trans-unit id="flexform.jobs.allowedStaticLanguages">
 				<source>Allowed languages inside language dropdown</source>
 			</trans-unit>

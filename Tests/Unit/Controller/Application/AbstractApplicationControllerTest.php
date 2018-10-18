@@ -49,6 +49,13 @@ class AbstractApplicationControllerTest extends UnitTestCase
 
         $this->view = $this->prophesize(ViewInterface::class);
         $this->inject($this->controller, 'view', $this->view->reveal());
+
+        $typoscriptService = $this->prophesize(TyposcriptService::class);
+        //Return orginal settings without modification
+        $typoscriptService->mergeFlexFormAndTypoScriptSettings(Argument::type("array"))->will(function($args){
+            return $args[0];
+        });
+        GeneralUtility::addSingletonInstance(TyposcriptService::class, $typoscriptService->reveal());
     }
 
     /**
