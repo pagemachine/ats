@@ -398,7 +398,7 @@
 			</trans-unit>
 
 			<trans-unit id="flexform.jobs.afterSubmitPage">
-				<source>Page to redirect to after successful submit ("Thank you"-Page)</source>
+				<source>Page to redirect to after successful submit ("Thank you" page)</source>
 				<target>Seite, zu der nach dem Abschicken der Bewerbung weitergeleitet werden soll ("Danke"-Seite)</target>
 			</trans-unit>
 
