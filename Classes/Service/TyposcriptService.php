@@ -5,6 +5,7 @@ use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -28,9 +29,9 @@ class TyposcriptService implements SingletonInterface
         return GeneralUtility::makeInstance(__CLASS__);
     }
 
-    public function __construct()
+    public function __construct(ObjectManager $objectManager = null)
     {
-        $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\ObjectManager::class);
+        $objectManager = $objectManager ?: GeneralUtility::makeInstance(ObjectManager::class);
         $this->configurationManager = $objectManager->get(ConfigurationManagerInterface::class);
     }
 

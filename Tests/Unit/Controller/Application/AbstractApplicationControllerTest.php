@@ -11,7 +11,9 @@ use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
 use PAGEmachine\Ats\Property\TypeConverter\UploadedFileReferenceConverter;
 use PAGEmachine\Ats\Service\AuthenticationService;
+use PAGEmachine\Ats\Service\TyposcriptService;
 use Prophecy\Argument;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\Argument as ControllerArgument;
 use TYPO3\CMS\Extbase\Mvc\Controller\Arguments;
 use TYPO3\CMS\Extbase\Mvc\Controller\Exception\RequiredArgumentMissingException;
@@ -52,10 +54,8 @@ class AbstractApplicationControllerTest extends UnitTestCase
 
         $typoscriptService = $this->prophesize(TyposcriptService::class);
         //Return orginal settings without modification
-        $typoscriptService->mergeFlexFormAndTypoScriptSettings(Argument::type("array"))->will(function($args){
-            return $args[0];
-        });
-        GeneralUtility::addSingletonInstance(TyposcriptService::class, $typoscriptService->reveal());
+        $typoscriptService->mergeFlexFormAndTypoScriptSettings(Argument::any())->willReturnArgument(0);
+        GeneralUtility::setSingletonInstance(TyposcriptService::class, $typoscriptService->reveal());
     }
 
     /**
