@@ -24,6 +24,8 @@ plugin.tx_ats {
 		allowedStaticLanguages =
 		# cat=plugin.tx_ats/pages; type=string; label=Privacy Policy page
 		policyPage =
+		# cat=plugin.tx_ats/pages; type=string; label=Page to redirect to after submit (if empty, default text is shown)
+		afterSubmitPage =
 
 		# cat=plugin.tx_ats//enable; type=boolean; label=Render structured job definitions (JSON-LD)
 		renderStructuredJobDefinitions = 0

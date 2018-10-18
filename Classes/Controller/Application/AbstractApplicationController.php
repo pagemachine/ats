@@ -8,6 +8,7 @@ namespace PAGEmachine\Ats\Controller\Application;
 
 use PAGEmachine\Ats\Property\TypeConverter\UploadedFileReferenceConverter;
 use PAGEmachine\Ats\Service\ExtconfService;
+use PAGEmachine\Ats\Service\TyposcriptService;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Controller\Exception\RequiredArgumentMissingException;
 
@@ -38,6 +39,9 @@ class AbstractApplicationController extends ActionController
      */
     public function initializeAction()
     {
+        // Merge TS and FlexForm settings
+        $this->settings = TyposcriptService::getInstance()->mergeFlexFormAndTypoScriptSettings($this->settings);
+
 
         if ($this->request->hasArgument('application')) {
             $this->setPropertyMappingConfigurationForApplication();

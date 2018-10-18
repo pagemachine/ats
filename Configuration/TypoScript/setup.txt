@@ -79,6 +79,7 @@ plugin.tx_ats {
 		applicationPage = {$plugin.tx_ats.settings.applicationPage}
 		feUserGroup = {$plugin.tx_ats.settings.feUserGroup}
 		policyPage = {$plugin.tx_ats.settings.policyPage}
+		afterSubmitPage = {$plugin.tx_ats.settings.afterSubmitPage}
 
 		allowedStaticLanguages = {$plugin.tx_ats.settings.allowedStaticLanguages}
 
