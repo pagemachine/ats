@@ -1,7 +1,7 @@
 {namespace s=SJBR\StaticInfoTables\ViewHelpers}
 {namespace ats=PAGEmachine\Ats\ViewHelpers}
 	<fieldset id="tx-ats-languageform">
-		<div class="form-group">
+		<div class="form-group row">
 			<div class="col-sm-3">
 				<label><f:translate key="tx_ats.application.languageskills" /></label>
 			</div>
@@ -39,7 +39,7 @@
 							</f:form.validationResults>
 
 							<div class="col-sm-3">
-								<span class="btn btn-default btn-xs" data-action="removeLanguage" data-language="{i.index}">
+								<span class="btn btn-danger btn-xs" data-action="removeLanguage" data-language="{i.index}">
 									<span class="glyphicon glyphicon-trash"></span>
 									<f:translate key="tx_ats.languageskill.rmLanguage">Remove</f:translate>
 								</span>
@@ -78,9 +78,9 @@
 
 		</div>
 
-		<div class="form-group">
+		<div class="form-group row">
 			<div class="col-sm-9 col-sm-offset-3">
-				<span class="btn btn-default btn-sm" data-action="addLanguage">
+				<span class="btn btn-primary btn-sm" data-action="addLanguage">
 					<span class="glyphicon glyphicon-plus"></span>
 					<f:translate key="tx_ats.languageskill.addLanguage">Add Language</f:translate>
 				</span>
@@ -106,7 +106,7 @@
 			</div>
 
 			<div class="col-sm-3">
-				<span class="btn btn-default btn-xs remove-button" data-action="removeLanguage" data-language="999">
+				<span class="btn btn-danger btn-xs remove-button" data-action="removeLanguage" data-language="999">
 					<span class="glyphicon glyphicon-trash"></span>
 					<f:translate key="tx_ats.languageskill.rmLanguage">Remove</f:translate>
 				</span>
