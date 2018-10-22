@@ -45,21 +45,28 @@
 	color: #000;
 }
 
-.tx-ats-backend #application-editform .tx-ats-addlanguage {
-
+.tx-ats-backend #application-editform .languagebox {
+	margin-top: 10px;
+	border: 1px solid #ededed;
+	background-color: #f5f5f5;
+	margin-right: 10px;
 }
 
-.tx-ats-backend #application-editform .tx-ats-addlanguage div {
+.tx-ats-backend #application-editform .languagebox div {
 	padding-top: 12px;
 	padding-bottom: 12px;
 }
 
-.tx-ats-backend #application-editform .tx-ats-addlanguage label {
+.tx-ats-backend #application-editform .languagebox label {
 	min-width: 75px;
 }
 
-.tx-ats-backend #application-editform .tx-ats-addlanguage {
-	border-top: 1px solid #ededed;
+.tx-ats-backend #application-editform .languagebox select {
+	width: 100%;
+}
+
+.tx-ats-backend #application-editform .languagebox .remove-button {
+	float: right;
 }
 
 .tx-ats-backend #application-editform .addlanguagebutton {

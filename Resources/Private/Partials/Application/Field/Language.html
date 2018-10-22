@@ -11,7 +11,7 @@
 
 					<f:for each="{application.languageSkills}" as="skill" iteration="i" key="key">
 
-						<div class="row" data-language="{i.index}">
+						<div class="languagebox row" data-language="{i.index}">
 
 							<f:if condition="{skill.uid}">
 								<f:form.hidden property="languageSkills.{i.index}.__identity" value="{skill.uid}" />
@@ -39,7 +39,7 @@
 							</f:form.validationResults>
 
 							<div class="col-sm-3">
-								<span class="btn btn-danger btn-xs" data-action="removeLanguage" data-language="{i.index}">
+								<span class="btn btn-danger btn-xs remove-button" data-action="removeLanguage" data-language="{i.index}">
 									<span class="glyphicon glyphicon-trash"></span>
 									<f:translate key="tx_ats.languageskill.rmLanguage">Remove</f:translate>
 								</span>
@@ -88,7 +88,7 @@
 		</div>
 
 
-		<div class="tx-ats-addlanguage row" data-language="999">
+		<div class="tx-ats-addlanguage languagebox row" data-language="999">
 
 			<div class="col-sm-3">
 					<label><f:translate key="tx_ats.languageskill.language" /></label>
