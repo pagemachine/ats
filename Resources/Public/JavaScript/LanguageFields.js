@@ -19,7 +19,7 @@ var languageskills = (function(window) {
 
         if (languageFormPart != undefined) {
             elementPrefix = languageFormPart.getElementsByClassName("language-select")[0].getAttribute('name').split("[")[0] + '[application][languageSkills]';
-            languageFormPart.remove();
+            languageFormPart.parentNode.removeChild(languageFormPart);
         }
 
     }
@@ -57,7 +57,7 @@ var languageskills = (function(window) {
 
         if (languageElement != undefined) {
 
-            languageElement.remove();
+            languageElement.parentNode.removeChild(languageElement);
         }
     }
 
