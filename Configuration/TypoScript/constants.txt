@@ -16,6 +16,8 @@ plugin.tx_ats {
 	settings {
 		# cat=plugin.tx_ats//a; type=boolean; label=Include jQuery
 		includeJQuery =
+		# cat=plugin.tx_ats//a; type=string; label=Application/Job single view page (current page if not set)
+		applicationPage =
 		# cat=plugin.tx_ats//a; type=string; label=Login page to redirect to when no login is active
 		loginPage =
 		# cat=plugin.tx_ats//a; type=string; label=FE User group that has access
