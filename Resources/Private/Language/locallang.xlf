@@ -521,6 +521,14 @@
 		<source>Cancelled by candidate</source>
 	</trans-unit>
 
+	<trans-unit id="tx_ats.application.rating.60">
+		<source>Unsuited (Scan)</source>
+	</trans-unit>
+
+	<trans-unit id="tx_ats.application.rating.70">
+		<source>Suited (Scan)</source>
+	</trans-unit>
+
 	  <trans-unit id="tx_ats.application.ratingPerso">
 		<source>Rating Perso</source>
 	  </trans-unit>

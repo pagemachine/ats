@@ -29,6 +29,12 @@ class ApplicationRating extends Enumeration
    /** @var Int former ABSAGE_DURCH_BEWERBER*/
     const CANCELLED_BY_CANDIDATE = 50;
 
+   /** @var Int */
+    const SCAN_UNSUITED = 60;
+
+   /** @var Int */
+    const SCAN_SUITED = 70;
+
    /**
     * Flips getConstants() so the returned array is value => constant (for fluid forms)
     *

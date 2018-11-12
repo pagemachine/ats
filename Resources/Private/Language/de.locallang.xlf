@@ -801,6 +801,16 @@
 				<target>Vom Bewerber abgesagt</target>
 			</trans-unit>
 
+			<trans-unit id="tx_ats.application.rating.60">
+				<source>Unsuited (Scan)</source>
+				<target>Nach Scan ungeeignet</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.application.rating.70">
+				<source>Suited (Scan)</source>
+				<target>Nach Scan geeignet</target>
+			</trans-unit>
+
 			<trans-unit id="tx_ats.application.application_type.0">
 				<source>Undefined</source>
 				<target>Undefiniert</target>
