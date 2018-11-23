@@ -93,6 +93,7 @@ module.tx_ats {
         ignoreAllEnableFieldsInBe = true
     }
 }
+<INCLUDE_TYPOSCRIPT: source="FILE:./anonymization.ts">
 
 config.tx_extbase {
     persistence {

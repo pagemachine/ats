@@ -1,8 +1,8 @@
 <?php
 namespace Pagemachine\Ats\Command;
 
+use PAGEmachine\Ats\Service\AnonymizationService;
 use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
-use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /*
  * This file is part of the Pagemachine ATS project.
@@ -25,68 +25,11 @@ class AnonymizeCommandController extends CommandController
      */
     public function applicationsCommand()
     {
-        /**
-         * Future config vars
-         */
-        $anonymizeLimit = "90 days";
+        $this->outputLine("Starting anonymization of applications...");
 
-        $config = [
-            'title' => '*',
-            'firstname' => '*',
-            'surname' => '*',
-            'nationality' => '*',
-            'street' => '*',
-            'zipcode' => '*',
-            'city' => '*',
-            'email' => '*',
-            'phone' => '*',
-            'mobile' => '*',
-            'employed' => 0,
-            'schoolQualification' => '*',
-            'professionalQualification' => '*',
-            'professionalQualificationFinalGrade' => '*',
-            'academicDegree' => '*',
-            'academicDegreeFinalGrade' => '*',
-            'doctoralDegree' => '*',
-            'doctoralDegreeFinalGrade' => '*',
-            'previousKnowledge' => '*',
-            'itKnowledge' => '*',
-            'languageSkills' => new ObjectStorage(),
-            'comment' => '*',
-            'referrer' => '*',
-            //TODO: Languageskills?
-            //TODO: Files
-        ];
+        $anonymizationService = AnonymizationService::getInstance();
 
-
-        $threshold = new \DateTime();
-        $threshold->sub(
-            \DateInterval::createFromDateString($anonymizeLimit)
-        );
-
-        $count = $this->applicationRepository->countOldApplications($threshold);
-        $this->outputLine(sprintf('Found %s old applications for anonymization.', $count));
-
-        $counter = 0;
-
-        foreach ($this->applicationRepository->findOldApplications($threshold) as $application) {
-            foreach ($config as $property => $value) {
-                $application->_setProperty($property, $value);
-            }
-            $application->setAnonymized(true);
-            $this->applicationRepository->update($application);
-
-            $counter++;
-
-            if ($counter >= 20) {
-                $this->applicationRepository->persistAll();
-                $counter = 0;
-            }
-
-            $this->outputLine(sprintf('\tAnonymized application with uid %s.', $application->getUid()));
-        }
-
-        $this->applicationRepository->persistAll();
+        $anonymizationService->anonymize('PAGEmachine\Ats\Domain\Model\Application');
 
         $this->outputLine();
         $this->outputLine('Done.');

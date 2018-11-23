@@ -15,6 +15,8 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
  */
 class ApplicationRepository extends AbstractApplicationRepository
 {
+    use AnonymizationTrait;
+
     /**
      * Adds the constraint for exceeded deadline
      *
@@ -225,51 +227,5 @@ class ApplicationRepository extends AbstractApplicationRepository
         );
 
         return $query->execute();
-    }
-
-    /**
-     * Counts all applications older than a given date
-     * @param  \DateTime $threshold The date up to which applications are "old"
-     * @return QueryResult
-     */
-    public function countOldApplications(\DateTime $threshold)
-    {
-        $query = $this->createQuery();
-        $query->matching(
-            $query->logicalAnd(
-                $query->equals('anonymized', false),
-                $query->lessThan("creationDate", $threshold)
-            )
-        );
-
-        return $query->count();
-    }
-
-    /**
-     * Finds all applications older than a given date
-     * Fetches one application at a time to prevent too large result sets
-     *
-     * @param  \DateTime $threshold The date up to which applications are "old"
-     * @return \Generator
-     */
-    public function findOldApplications(\DateTime $threshold)
-    {
-        $query = $this->createQuery();
-        $query->matching(
-            $query->logicalAnd(
-                $query->equals('anonymized', false),
-                $query->lessThan("creationDate", $threshold)
-            )
-        )->setLimit(1);
-
-        for ($i = 0; $i < $this->countOldApplications($threshold); $i++) {
-            $query->setOffset($i);
-            yield $query->execute()->getFirst();
-        }
-    }
-
-    public function persistAll()
-    {
-        $this->persistenceManager->persistAll();
     }
 }
