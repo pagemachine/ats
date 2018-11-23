@@ -3,8 +3,12 @@ namespace PAGEmachine\Ats\Service;
 
 use TYPO3\CMS\Core\Utility\ClassNamingUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\DomainObject\AbstractDomainObject;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
 use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -12,6 +16,9 @@ use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
 
 class AnonymizationService
 {
+    const ANONYMIZATION_MODE_ANONYMIZE = 'anonymize';
+    const ANONYMIZATION_MODE_ANONYMIZE_DELETE = 'anonymize_and_delete';
+
     /**
      * @return AnonymizationService
      */
@@ -21,6 +28,11 @@ class AnonymizationService
     }
 
     /**
+     * @var PersistenceManager
+     */
+    protected $persistenceManager;
+
+    /**
      * Anonymizes records of given classname
      *
      * @param  string $className
@@ -28,6 +40,9 @@ class AnonymizationService
      */
     public function anonymize($className)
     {
+        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+        $this->persistenceManager = $objectManager->get(PersistenceManager::class);
+
         $threshold = new \DateTime();
         $threshold->sub(
             \DateInterval::createFromDateString($this->getMinimumAnonymizationAge())
@@ -39,21 +54,59 @@ class AnonymizationService
         $counter = 0;
 
         foreach ($repository->findOldObjects($threshold) as $object) {
-            foreach ($config['properties'] as $property => $value) {
-                $object->_setProperty($property, $value);
-            }
-            $object->setAnonymized(true);
-            $repository->update($object);
+            $this->anonymizeObject($object, $config);
 
             $counter++;
 
             if ($counter >= 20) {
-                $repository->persistAll();
+                $this->persistenceManager->persistAll();
                 $counter = 0;
             }
         }
 
-        $repository->persistAll();
+        $this->persistenceManager->persistAll();
+    }
+
+    /**
+     * Anonymizes a single object
+     *
+     * @param  AbstractDomainObject $object
+     * @param  array               $config
+     * @return void
+     */
+    protected function anonymizeObject(AbstractDomainObject $object, $config)
+    {
+        if ($object->_hasProperty('anonymized')) {
+            $object->setAnonymized(true);
+        }
+
+        switch ($config['mode']) {
+            case self::ANONYMIZATION_MODE_ANONYMIZE:
+                foreach ($config['properties'] as $property => $value) {
+                    $object->_setProperty($property, $value);
+                }
+                $this->persistenceManager->update($object);
+                break;
+            case self::ANONYMIZATION_MODE_ANONYMIZE_DELETE:
+                foreach ($config['properties'] as $property => $value) {
+                    $object->_setProperty($property, $value);
+                }
+                $this->persistenceManager->remove($object);
+                break;
+        }
+        if (!empty($config['children'])) {
+            foreach ($config['children'] as $propertyName => $childConfig) {
+                $property = $object->_getProperty($propertyName);
+
+                if ($property instanceof ObjectStorage) {
+                    foreach ($property as $child) {
+                        $this->anonymizeObject($child, $childConfig);
+                    }
+                } else {
+                    throw new IllegalObjectTypeException('Only ObjectStorages are supported for anonymization', 1542985424);
+                }
+            }
+        }
     }
 
     /**
@@ -74,6 +127,9 @@ class AnonymizationService
         }
     }
 
+    /**
+     * @return string
+     */
     protected function getMinimumAnonymizationAge()
     {
         $settings = TyposcriptService::getInstance()->getSettings();

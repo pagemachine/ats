@@ -2,6 +2,7 @@ module.tx_ats.settings.anonymization {
   minimumAge = 90 days
   objects {
     PAGEmachine\Ats\Domain\Model\Application {
+      mode = anonymize
       properties {
         title = *
         firstname = *
@@ -25,6 +26,34 @@ module.tx_ats.settings.anonymization {
         itKnowledge = *
         comment = *
         referrer = *
+      }
+      children {
+        history {
+          mode = anonymize_and_delete
+          properties {
+            subject = *
+            details = a:0:{}
+            historyData = a:0:{}
+            user = 0
+          }
+        }
+        notes {
+          mode = anonymize_and_delete
+          properties {
+            subject = *
+            details = *
+            is_internal = 0
+            user = 0
+          }
+        }
+        languageSkills {
+          mode = anonymize_and_delete
+          properties {
+            level = 0
+            language = 0
+            textLanguage = *
+          }
+        }
       }
     }
   }
