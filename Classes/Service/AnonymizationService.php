@@ -1,6 +1,7 @@
 <?php
 namespace PAGEmachine\Ats\Service;
 
+use PAGEmachine\Ats\Domain\Model\FileReference;
 use TYPO3\CMS\Core\Utility\ClassNamingUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractDomainObject;
@@ -18,6 +19,7 @@ class AnonymizationService
 {
     const ANONYMIZATION_MODE_ANONYMIZE = 'anonymize';
     const ANONYMIZATION_MODE_ANONYMIZE_DELETE = 'anonymize_and_delete';
+    const ANONYMIZATION_MODE_DELETE_FILES = 'delete_files';
 
     /**
      * @return AnonymizationService
@@ -93,6 +95,9 @@ class AnonymizationService
                 }
                 $this->persistenceManager->remove($object);
                 break;
+            case self::ANONYMIZATION_MODE_DELETE_FILES:
+                $this->deleteFile($object);
+                break;
         }
         if (!empty($config['children'])) {
             foreach ($config['children'] as $propertyName => $childConfig) {
@@ -106,6 +111,22 @@ class AnonymizationService
                     throw new IllegalObjectTypeException('Only ObjectStorages are supported for anonymization', 1542985424);
                 }
             }
+        }
+    }
+
+    /**
+     * Deletes the file behind given file reference.
+     * The reference itself is deleted automatically.
+     *
+     * @param  FileReference $fileReference
+     * @return void
+     */
+    protected function deleteFile(FileReference $fileReference)
+    {
+        $originalFile = $fileReference->getOriginalResource()->getOriginalFile();
+
+        if ($originalFile->exists()) {
+            $originalFile->getStorage()->deleteFile($originalFile);
         }
     }
 

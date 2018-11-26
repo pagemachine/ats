@@ -54,6 +54,9 @@ module.tx_ats.settings.anonymization {
             textLanguage = *
           }
         }
+        files {
+          mode = delete_files
+        }
       }
     }
   }
