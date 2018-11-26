@@ -37,22 +37,22 @@ class AnonymizationService
     /**
      * Anonymizes records of given classname
      *
-     * @param  string $className
+     * @param string $className
+     * @param string $minimumAge
+     * @param array $config
      * @return void
      */
-    public function anonymize($className)
+    public function anonymize($className, $minimumAge, $config)
     {
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
         $this->persistenceManager = $objectManager->get(PersistenceManager::class);
 
         $threshold = new \DateTime();
         $threshold->sub(
-            \DateInterval::createFromDateString($this->getMinimumAnonymizationAge())
+            \DateInterval::createFromDateString($minimumAge)
         );
 
         $repository = $this->findRepositoryForClass($className);
-
-        $config = $this->getAnonymizationConfigurationForClassName($className);
         $counter = 0;
 
         foreach ($repository->findOldObjects($threshold) as $object) {
@@ -145,32 +145,6 @@ class AnonymizationService
             return $repository;
         } catch (UnknownObjectException $e) {
             throw new \PAGEmachine\Ats\Exception(sprintf('Repository for class %s not found. Stopping anonymization.', $className), 1542970640);
-        }
-    }
-
-    /**
-     * @return string
-     */
-    protected function getMinimumAnonymizationAge()
-    {
-        $settings = TyposcriptService::getInstance()->getSettings();
-        return $settings['anonymization']['minimumAge'] ?: '120 days';
-    }
-
-    /**
-     * Fetches config for anonymization for given class
-     *
-     * @param  string $className
-     * @return array
-     */
-    protected function getAnonymizationConfigurationForClassName($className)
-    {
-        $settings = TyposcriptService::getInstance()->getSettings();
-
-        if ($settings['anonymization']['objects'][$className]) {
-            return $settings['anonymization']['objects'][$className];
-        } else {
-            throw new \PAGEmachine\Ats\Exception(sprintf('Could not find anonymization configuration for class %1$s. Check your TypoScript setup in path "module.tx_ats.anonymization.objects.%1$s.', $className), 1542970640);
         }
     }
 }
