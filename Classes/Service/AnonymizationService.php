@@ -55,7 +55,7 @@ class AnonymizationService
         $repository = $this->findRepositoryForClass($className);
         $counter = 0;
 
-        foreach ($repository->findOldObjects($threshold) as $object) {
+        foreach ($repository->findOldObjects($threshold, $config['conditions']) as $object) {
             $this->anonymizeObject($object, $config);
 
             $counter++;

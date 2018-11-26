@@ -6,6 +6,20 @@ module.tx_ats.settings.anonymization {
   objects {
     PAGEmachine\Ats\Domain\Model\Application {
       mode = anonymize
+      conditions {
+        status {
+          property = status
+          operator = greaterThanOrEqual
+          value = 100
+          cast = int
+        }
+        unpooled {
+          property = pool
+          operator = equals
+          value = 0
+          cast = int
+        }
+      }
       properties {
         title = *
         firstname = *

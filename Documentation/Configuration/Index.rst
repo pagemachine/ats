@@ -128,4 +128,36 @@ You can also customize the exact behaviour for applications and their child reco
 - Inside **properties** you can define the replacement value for each property. Default is "*".
 - If you want to keep a property or child as it is, simply remove the value or child section.
 
+Custom conditions
+^^^^^^^^^^^^^^^^^
+
+If you have custom conditions for anonymization, there is a subkey `conditions` inside the configuration for just that.
+These conditions are appended to the general query. They use extbase query logic ("equals", "greaterThan"...).
+
+**Example**: By default only applications with status 100 (employed) or higher are anonymized. Let's say you want to change this to 110 (cancelled) instead.
+
+Inside your ``ext_typoscript_setup.txt``:
+::
+   module.tx_ats.settings.anonymization {
+      objects {
+         PAGEmachine\Ats\Domain\Model\Application {
+            conditions {
+              status {
+                property = status
+                operator = greaterThanOrEqual
+                value = 110
+                cast = int
+              }
+            }
+         }
+      }
+   }
+
+Please note that the *cast* option is not always necessary, but cleaner if the value is not a string.
+If you want to pass on a boolean, use 0 or 1 and cast to "bool".
+
+Also, the logic can only handle operators which require one value. Multivalued operators (in, between...) are currently not supported. Use multiple conditions for that.
+
+
+
 
