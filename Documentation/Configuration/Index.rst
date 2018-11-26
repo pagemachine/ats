@@ -115,5 +115,17 @@ You can configure how file uploads in the application form should behave. The op
 
 Configuration options can be found in the extension manager settings (tab *Advanced*).
 
+Anonymization
+-------------
+
+The extension provides a scheduler command for automatic anonymization of applications (GDPR!), depending on their age (configurable).
+
+The default configuration can be found inside ``Configuration/TypoScript/Backend/anonymization.ts``.
+
+You can also customize the exact behaviour for applications and their child records.
+
+- **mode** defines the exact anonymization behaviour: Either *anonymize*, *anonymize_and_delete* or *delete_files* for file references.
+- Inside **properties** you can define the replacement value for each property. Default is "*".
+- If you want to keep a property or child as it is, simply remove the value or child section.
 
 

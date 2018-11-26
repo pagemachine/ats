@@ -1,5 +1,8 @@
 module.tx_ats.settings.anonymization {
+
+  # Anonymize all applications older than 90 days.
   minimumAge = 90 days
+
   objects {
     PAGEmachine\Ats\Domain\Model\Application {
       mode = anonymize
