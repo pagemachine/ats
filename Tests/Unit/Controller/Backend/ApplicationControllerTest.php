@@ -460,7 +460,6 @@ class ApplicationControllerTest extends UnitTestCase
         $GLOBALS['BE_USER']->user = ['foo'];
         $this->view->assign("application", $this->application)->shouldBeCalled();
         $this->view->assign("beUser", ['foo'])->shouldBeCalled();
-        $this->view->assign('ratingOptions', ApplicationRating::getFlippedConstants())->shouldBeCalled();
 
         $this->applicationController->ratingAction($this->application);
     }
@@ -474,7 +473,6 @@ class ApplicationControllerTest extends UnitTestCase
         $GLOBALS['BE_USER']->user = ['foo'];
         $this->view->assign("application", $this->application)->shouldBeCalled();
         $this->view->assign("beUser", ['foo'])->shouldBeCalled();
-        $this->view->assign('ratingOptions', ApplicationRating::getFlippedConstants())->shouldBeCalled();
 
         $this->applicationController->ratingPersoAction($this->application);
     }

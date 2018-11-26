@@ -307,10 +307,8 @@ class ApplicationController extends AbstractBackendController
      */
     public function ratingPersoAction(Application $application)
     {
-
         $this->view->assign('application', $application);
         $this->view->assign('beUser', $GLOBALS['BE_USER']->user);
-        $this->view->assign('ratingOptions', ApplicationRating::getFlippedConstants());
     }
 
     /**
@@ -321,10 +319,8 @@ class ApplicationController extends AbstractBackendController
      */
     public function ratingAction(Application $application)
     {
-
         $this->view->assign('application', $application);
         $this->view->assign('beUser', $GLOBALS['BE_USER']->user);
-        $this->view->assign('ratingOptions', ApplicationRating::getFlippedConstants());
     }
 
     /**

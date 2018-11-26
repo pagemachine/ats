@@ -1,6 +1,7 @@
 <?php
 namespace PAGEmachine\Ats\Application;
 
+use PAGEmachine\Ats\Service\TyposcriptService;
 use TYPO3\CMS\Core\Type\Enumeration;
 
 /*
@@ -9,25 +10,21 @@ use TYPO3\CMS\Core\Type\Enumeration;
 
 class ApplicationRating extends Enumeration
 {
-    const __default = self::NONE;
+    /**
+     * Overrides the parent method to set enum values by config
+     *
+     * @throws Exception\InvalidEnumerationValueException
+     * @throws Exception\InvalidEnumerationDefinitionException
+     * @internal param string $class
+     */
+    protected static function loadValues()
+    {
+        $ratingOptions = TyposcriptService::getInstance()->getSettings()['ratingOptions'];
 
-   /** @var Int */
-    const NONE = 0;
-
-   /** @var Int former UNGEEIGNET*/
-    const UNSUITED = 10;
-
-   /** @var Int former GEEIGNET*/
-    const SUITED = 20;
-
-   /** @var Int former ENGERE_AUSWAHL*/
-    const SHORTLISTED= 30;
-
-   /** @var Int former AUSGEWAELT*/
-    const SELECTED = 40;
-
-   /** @var Int former ABSAGE_DURCH_BEWERBER*/
-    const CANCELLED_BY_CANDIDATE = 50;
+        foreach($ratingOptions as $value => $option) {
+            static::$enumConstants[get_called_class()][$option['name']] = $value;
+        }
+    }
 
    /**
     * Flips getConstants() so the returned array is value => constant (for fluid forms)
