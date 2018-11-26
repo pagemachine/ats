@@ -43,12 +43,8 @@ trait AnonymizationTrait
                 $query->equals('anonymized', false),
                 $query->lessThan("creationDate", $threshold)
             )
-        )->setLimit(1);
-
-        for ($i = 0; $i < $this->countOldObjects($threshold); $i++) {
-            $query->setOffset($i);
-            yield $query->execute()->getFirst();
-        }
+        );
+        return $query->execute();
     }
 
     public function persistAll()
