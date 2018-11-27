@@ -42,7 +42,7 @@ class AnonymizationService
      * @param array $config
      * @return void
      */
-    public function anonymize($className, $minimumAge, $config)
+    public function anonymize($className, $minimumAge, array $config)
     {
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
         $this->persistenceManager = $objectManager->get(PersistenceManager::class);
@@ -54,6 +54,8 @@ class AnonymizationService
 
         $repository = $this->findRepositoryForClass($className);
         $counter = 0;
+
+        $config['conditions'] = $config['conditions'] ?: [];
 
         foreach ($repository->findOldObjects($threshold, $config['conditions']) as $object) {
             $this->anonymizeObject($object, $config);
