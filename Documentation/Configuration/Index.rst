@@ -65,11 +65,12 @@ Module Settings
 
 If the extConf option ``enableLegacyBackendTS`` is enabled, all settings are inherited from the plugin configuration and should be set there.
 
-=============    ========================================  ===================================================================================================================================================================   ================
+=============    ========================================  ===================================================================================================================================================================   =================
 Setting          Path                                      Description                                                                                                                                                           Default
-=============    ========================================  ===================================================================================================================================================================   ================
-deadlineTime     ``module.tx_ats.settings.deadlineTime``    The deadline time defines when applications are marked as "deadline exceeded". It reads as "seconds after the jobs endtime is reached". The default is 2 weeks.       1209600 (2 weeks)
-=============    ========================================  ===================================================================================================================================================================   ================
+=============    ========================================  ===================================================================================================================================================================   =================
+deadlineTime     ``module.tx_ats.settings.deadlineTime``   The deadline time defines when applications are marked as "deadline exceeded". It reads as "seconds after the jobs endtime is reached". The default is 2 weeks.       1209600 (2 weeks)
+ratingOptions    ``module.tx_ats.settings.ratingOptions``  All options available for application rating and personell rating are listed here. You can add your own rating options, see the ATS default TS for examples.          Array of options
+=============    ========================================  ===================================================================================================================================================================   =================
 
 Workflows
 ---------
