@@ -21,7 +21,7 @@ class ApplicationRating extends Enumeration
     {
         try {
             parent::__construct($value);
-        } catch(InvalidEnumerationValueException $e) {
+        } catch (InvalidEnumerationValueException $e) {
             /**
              * Catch invalid enumeration values
              * Since enumeration values can change by config, this should not result in an exception.
@@ -43,7 +43,7 @@ class ApplicationRating extends Enumeration
     {
         $ratingOptions = TyposcriptService::getInstance()->getSettings()['ratingOptions'];
 
-        foreach($ratingOptions as $value => $option) {
+        foreach ($ratingOptions as $value => $option) {
             static::$enumConstants[get_called_class()][$option['name']] = $value;
         }
     }

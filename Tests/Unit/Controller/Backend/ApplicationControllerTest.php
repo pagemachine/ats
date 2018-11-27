@@ -3,7 +3,6 @@ namespace PAGEmachine\Ats\Tests\Unit\Controller\Backend;
 
 use Nimut\TestingFramework\TestCase\UnitTestCase;
 use PAGEmachine\Ats\Application\ApplicationFilter;
-use PAGEmachine\Ats\Application\ApplicationRating;
 use PAGEmachine\Ats\Application\ApplicationStatus;
 use PAGEmachine\Ats\Controller\Backend\ApplicationController;
 use PAGEmachine\Ats\Domain\Model\Application;
