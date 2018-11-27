@@ -80,10 +80,6 @@ class AnonymizationService
      */
     protected function anonymizeObject(AbstractDomainObject $object, $config)
     {
-        if ($object->_hasProperty('anonymized')) {
-            $object->setAnonymized(true);
-        }
-
         switch ($config['mode']) {
             case self::ANONYMIZATION_MODE_ANONYMIZE:
                 foreach ($config['properties'] as $property => $value) {
@@ -101,6 +97,7 @@ class AnonymizationService
                 $this->deleteFile($object);
                 break;
         }
+
         if (!empty($config['children'])) {
             foreach ($config['children'] as $propertyName => $childConfig) {
                 $property = $object->_getProperty($propertyName);
@@ -113,6 +110,10 @@ class AnonymizationService
                     throw new IllegalObjectTypeException('Only ObjectStorages are supported for anonymization', 1542985424);
                 }
             }
+        }
+        if ($object->_hasProperty('anonymized')) {
+            $object->setAnonymized(true);
+            $this->persistenceManager->update($object);
         }
     }
 
