@@ -1,6 +1,7 @@
 <?php
 namespace Pagemachine\Ats\Command;
 
+use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
 use PAGEmachine\Ats\Service\AnonymizationService;
 use PAGEmachine\Ats\Service\TyposcriptService;
 use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
@@ -16,10 +17,18 @@ use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
 class AnonymizeCommandController extends CommandController
 {
     /**
-     * @var \PAGEmachine\Ats\Domain\Repository\ApplicationRepository
-     * @inject
+     * @var ApplicationRepository
      */
     protected $applicationRepository;
+
+    /**
+     * @param ApplicationRepository $applicationRepository
+     * @return void
+     */
+    public function injectApplicationRepository(ApplicationRepository $applicationRepository)
+    {
+        $this->applicationRepository = $applicationRepository;
+    }
 
     /**
      * Command to anonymize applications
