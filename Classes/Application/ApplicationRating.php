@@ -47,15 +47,4 @@ class ApplicationRating extends Enumeration
             static::$enumConstants[get_called_class()][$option['name']] = $value;
         }
     }
-
-   /**
-    * Flips getConstants() so the returned array is value => constant (for fluid forms)
-    *
-    * @return array
-    */
-    public static function getFlippedConstants()
-    {
-
-        return array_flip(static::getConstants());
-    }
 }
