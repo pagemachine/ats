@@ -1,6 +1,7 @@
 <?php
 namespace Pagemachine\Ats\Command;
 
+use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
 use PAGEmachine\Ats\Service\AnonymizationService;
 use PAGEmachine\Ats\Service\TyposcriptService;
@@ -11,10 +12,9 @@ use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
  */
 
 /**
- * Anonymize command controller
- * Anonymizes applications and user data
+ * Application related commandcontroller
  */
-class AnonymizeCommandController extends CommandController
+class ApplicationsCommandController extends CommandController
 {
     /**
      * @var ApplicationRepository
@@ -33,16 +33,16 @@ class AnonymizeCommandController extends CommandController
     /**
      * Command to anonymize applications
      */
-    public function applicationsCommand()
+    public function anonymizeCommand()
     {
         $this->outputLine("Starting anonymization of applications...");
 
         $anonymizationService = AnonymizationService::getInstance();
 
         $anonymizationService->anonymize(
-            'PAGEmachine\Ats\Domain\Model\Application',
+            Application::class,
             $this->getMinimumAnonymizationAge(),
-            $this->getAnonymizationConfigurationForClassName('PAGEmachine\Ats\Domain\Model\Application')
+            $this->getAnonymizationConfigurationForClassName(Application::class)
         );
 
         $this->outputLine();
