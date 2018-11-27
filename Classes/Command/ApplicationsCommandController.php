@@ -4,6 +4,7 @@ namespace Pagemachine\Ats\Command;
 use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
 use PAGEmachine\Ats\Service\AnonymizationService;
+use PAGEmachine\Ats\Service\CleanupService;
 use PAGEmachine\Ats\Service\TyposcriptService;
 use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
 
@@ -50,12 +51,36 @@ class ApplicationsCommandController extends CommandController
     }
 
     /**
+     * Command to remove (hard-delete) old and anonymized applications
+     */
+    public function cleanupCommand()
+    {
+        $this->outputLine("Starting cleanup of applications...");
+
+        $cleanupService = CleanupService::getInstance();
+
+        $affectedApplications = $cleanupService->cleanupUnfinishedApplications($this->getMinimumApplicationCleanupAge());
+
+        $this->outputLine();
+        $this->outputLine(sprintf("Removed %s unfinished applications.", $affectedApplications));
+    }
+
+    /**
      * @return string
      */
     protected function getMinimumAnonymizationAge()
     {
         $settings = TyposcriptService::getInstance()->getSettings();
         return $settings['anonymization']['minimumAge'] ?: '120 days';
+    }
+
+    /**
+     * @return string
+     */
+    protected function getMinimumApplicationCleanupAge()
+    {
+        $settings = TyposcriptService::getInstance()->getSettings();
+        return $settings['cleanup']['deleteUnusedApplicationsAfter'] ?: '60 days';
     }
 
     /**
