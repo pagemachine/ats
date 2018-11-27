@@ -146,14 +146,14 @@ Inside your ``ext_typoscript_setup.txt``:
                 property = status
                 operator = greaterThanOrEqual
                 value = 110
-                cast = int
+                type = int
               }
             }
          }
       }
    }
 
-Please note that the *cast* option is not always necessary, but cleaner if the value is not a string.
+Please note that the *type* option is not always necessary, but cleaner if the value is not a string.
 If you want to pass on a boolean, use 0 or 1 and cast to "bool".
 
 Also, the logic can only handle operators which require one value. Multivalued operators (in, between...) are currently not supported. Use multiple conditions for that.

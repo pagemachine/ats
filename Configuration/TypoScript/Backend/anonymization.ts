@@ -11,13 +11,13 @@ module.tx_ats.settings.anonymization {
           property = status
           operator = greaterThanOrEqual
           value = 100
-          cast = int
+          type = int
         }
         unpooled {
           property = pool
           operator = equals
           value = 0
-          cast = int
+          type = int
         }
       }
       properties {

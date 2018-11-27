@@ -63,10 +63,10 @@ trait AnonymizationTrait
     {
         $value = $constraintConfig['value'];
 
-        if ($constraintConfig['cast']) {
-            $castResult = settype($value, $constraintConfig['cast']);
+        if ($constraintConfig['type']) {
+            $castResult = settype($value, $constraintConfig['type']);
             if (!$castResult) {
-                throw new \Exception(sprintf('Could not cast value "%s" to type "%s"', $value, $constraintConfig['cast']));
+                throw new \Exception(sprintf('Could not cast value "%s" to type "%s"', $value, $constraintConfig['type']));
             }
         }
 
