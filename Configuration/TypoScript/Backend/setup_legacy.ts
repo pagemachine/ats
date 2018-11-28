@@ -94,6 +94,7 @@ module.tx_ats {
     }
 }
 <INCLUDE_TYPOSCRIPT: source="FILE:./anonymization.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:./cleanup.ts">
 
 config.tx_extbase {
     persistence {

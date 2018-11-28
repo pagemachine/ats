@@ -82,6 +82,41 @@ class CleanupService
     }
 
     /**
+     * Cleans up users of given group and minimum age
+     *
+     * @param  int $userGroup
+     * @param  string $loginOlderThan
+     * @return int $affectedUsers
+     */
+    public function cleanupUsers($userGroup, $loginOlderThan)
+    {
+        $threshold = new \DateTime();
+        $threshold->sub(
+            \DateInterval::createFromDateString($loginOlderThan)
+        );
+
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('fe_users');
+
+        // Remove hidden and deleted records as well
+        $queryBuilder->getRestrictions()->removeAll();
+
+        /**
+         * Deletes all users which did not login in the
+         */
+        $affectedRows = $queryBuilder
+            ->delete('fe_users')
+            ->where(
+                $queryBuilder->expr()->andX(
+                    $queryBuilder->expr()->lt('lastlogin', $threshold->getTimestamp()),
+                    $queryBuilder->expr()->inSet('usergroup', (int)$userGroup)
+                )
+            )
+            ->execute();
+
+        return $affectedRows;
+    }
+
+    /**
      * Cleans up application child records (hard-deletes them)
      *
      * @param string $table Child table

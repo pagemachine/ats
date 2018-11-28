@@ -93,3 +93,4 @@ config.tx_extbase {
     }
 }
 <INCLUDE_TYPOSCRIPT: source="FILE:./anonymization.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:./cleanup.ts">
