@@ -2,6 +2,7 @@
 namespace PAGEmachine\Ats\Controller\Application;
 
 use PAGEmachine\Ats\Domain\Model\ApplicationB;
+use SJBR\StaticInfoTables\Domain\Repository\CountryRepository;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -21,12 +22,32 @@ class PersonalDataController extends AbstractApplicationController
     protected $repository = null;
 
     /**
+     * @var CountryRepository
+     */
+    protected $countryRepository;
+
+    /**
+     * @param  CountryRepository $countryRepository
+     */
+    public function injectCountryRepository(CountryRepository $countryRepository)
+    {
+        $this->countryRepository = $countryRepository;
+    }
+
+    /**
      * @param  ApplicationB $application
      * @ignorevalidation $application
      * @return void
      */
     public function editPersonalDataAction(ApplicationB $application)
     {
+        if (!empty($this->settings['defaultCountry'])) {
+            $this->view->assign('defaultCountry', $this->countryRepository->findOneByIsoCodeA3($this->settings['defaultCountry']));
+        }
+        if (!empty($this->settings['defaultNationality'])) {
+            $this->view->assign('defaultNationality', $this->countryRepository->findOneByIsoCodeA3($this->settings['defaultNationality']));
+        }
+
 
         $this->view->assign("application", $application);
     }

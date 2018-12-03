@@ -24,6 +24,10 @@ plugin.tx_ats {
 		feUserGroup =
 		# cat=plugin.tx_ats//a; type=string; label=Allowed languages in language skill dropdown
 		allowedStaticLanguages =
+		# cat=plugin.tx_ats//a; type=string; label=Default country in country select (ISO3, for example DEU for germany)
+		defaultCountry =
+		# cat=plugin.tx_ats//a; type=string; label=Default country in nationality select (ISO3, for example DEU for germany)
+		defaultNationality =
 		# cat=plugin.tx_ats/pages; type=string; label=Privacy Policy page
 		policyPage =
 		# cat=plugin.tx_ats/pages; type=string; label=Page to redirect to after submit (if empty, default text is shown)

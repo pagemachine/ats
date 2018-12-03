@@ -50,7 +50,8 @@
 
 		<f:render partial="Application/Field/SelectNationality" arguments="{
 			translationKey: 'tx_ats.label.nationality',
-			fieldName: 'nationality'
+			fieldName: 'nationality',
+			defaultNationality: defaultNationality
 		}"/>
 
 		<f:render partial="Application/Field/TextField" arguments="{
@@ -76,7 +77,8 @@
 
 		<f:render partial="Application/Field/SelectCountry" arguments="{
 			translationKey: 'tx_ats.label.country',
-			fieldName: 'country'
+			fieldName: 'country',
+			defaultCountry: defaultCountry
 		}"/>
 
 		<f:render partial="Application/Field/TextField" arguments="{

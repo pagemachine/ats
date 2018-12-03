@@ -4,7 +4,14 @@
 		<label><f:translate key="{translationKey}" /></label>
 	</div>
 	<div class="col-sm-9">
-		<s:form.select name="staticInfoTablesCountry" property="{fieldName}" staticInfoTable="country" optionLabelField="shortNameLocal" optionValueField="isoCodeA3" options="{}" class="form-control"/>
+		<f:if condition="{defaultNationality}">
+			<f:then>
+				<s:form.select name="staticInfoTablesCountry" property="{fieldName}" staticInfoTable="country" optionLabelField="shortNameLocal" optionValueField="isoCodeA3" options="{}" class="form-control" defaultOptionLabel="{defaultNationality.shortNameLocal}" defaultOptionValue="{defaultNationality.uid}"/>
+			</f:then>
+			<f:else>
+				<s:form.select name="staticInfoTablesCountry" property="{fieldName}" staticInfoTable="country" optionLabelField="shortNameLocal" optionValueField="isoCodeA3" options="{}" class="form-control" />
+			</f:else>
+		</f:if>
 	</div>
 </div>
 
