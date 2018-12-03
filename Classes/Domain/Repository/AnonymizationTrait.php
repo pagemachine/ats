@@ -18,7 +18,7 @@ trait AnonymizationTrait
      *
      * @param \DateTime $threshold The date up to which applications are "old"
      * @param array $additionalConditions
-     * @return \Generator
+     * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
      */
     public function findOldObjects(\DateTime $threshold, $additionalConditions = null)
     {
