@@ -403,6 +403,11 @@ return [
                 'foreign_table' => 'tx_ats_domain_model_note',
                 'foreign_field' => 'application'
             ]
-        ]
+        ],
+        'anonymized' => [
+            'config' => [
+                'type' => 'check',
+            ],
+        ],
     ]
 ];

@@ -15,6 +15,8 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
  */
 class ApplicationRepository extends AbstractApplicationRepository
 {
+    use AnonymizationTrait;
+
     /**
      * Adds the constraint for exceeded deadline
      *
@@ -74,6 +76,7 @@ class ApplicationRepository extends AbstractApplicationRepository
             $this->getDeadlineExceededConstraint($query, $deadlineTime),
             $query->greaterThan("status", ApplicationStatus::INCOMPLETE),
             $query->lessThan("status", ApplicationStatus::EMPLOYED),
+            $query->equals('anonymized', false),
         ];
 
         if ($backendUser != null) {
@@ -104,6 +107,7 @@ class ApplicationRepository extends AbstractApplicationRepository
                 $this->getDeadlineExceededConstraint($query, $deadlineTime)
             ),
             $query->equals("status", ApplicationStatus::NEW_APPLICATION),
+            $query->equals('anonymized', false),
         ];
 
         if ($backendUser != null) {
@@ -135,6 +139,7 @@ class ApplicationRepository extends AbstractApplicationRepository
             ),
             $query->greaterThan("status", ApplicationStatus::NEW_APPLICATION),
             $query->lessThan("status", ApplicationStatus::EMPLOYED),
+            $query->equals('anonymized', false),
         ];
 
         if ($backendUser != null) {
@@ -160,6 +165,7 @@ class ApplicationRepository extends AbstractApplicationRepository
 
         $constraints = [
             $query->greaterThanOrEqual("status", ApplicationStatus::EMPLOYED),
+            $query->equals('anonymized', false),
         ];
         $constraints = $this->getFilterConstraints($query, $constraints, $filter);
 
@@ -184,6 +190,7 @@ class ApplicationRepository extends AbstractApplicationRepository
         $constraints = [
             $query->greaterThanOrEqual("status", ApplicationStatus::EMPLOYED),
             $query->equals("pool", true),
+            $query->equals('anonymized', false),
         ];
 
         $constraints = $this->getFilterConstraints($query, $constraints, $filter);
@@ -211,6 +218,7 @@ class ApplicationRepository extends AbstractApplicationRepository
         $constraints = [
             $query->lessThan("status", ApplicationStatus::EMPLOYED),
             $query->logicalNot($query->equals("status", ApplicationStatus::INCOMPLETE)),
+            $query->equals('anonymized', false),
         ];
         $constraints = $this->getFilterConstraints($query, $constraints, $filter);
 

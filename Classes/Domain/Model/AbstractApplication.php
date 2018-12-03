@@ -167,4 +167,26 @@ class AbstractApplication extends AbstractEntity
     {
         $this->history->detach($historyEntry);
     }
+
+    /**
+     * @var bool $anonymized
+     */
+    protected $anonymized;
+
+    /**
+     * @return bool
+     */
+    public function getAnonymized()
+    {
+        return $this->anonymized;
+    }
+
+    /**
+     * @param bool $anonymized
+     * @return void
+     */
+    public function setAnonymized($anonymized)
+    {
+        $this->anonymized = $anonymized;
+    }
 }
