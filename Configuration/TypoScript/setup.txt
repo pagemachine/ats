@@ -82,6 +82,8 @@ plugin.tx_ats {
 		afterSubmitPage = {$plugin.tx_ats.settings.afterSubmitPage}
 
 		allowedStaticLanguages = {$plugin.tx_ats.settings.allowedStaticLanguages}
+		defaultCountry = {$plugin.tx_ats.settings.defaultCountry}
+		defaultNationality = {$plugin.tx_ats.settings.defaultNationality}
 
 		renderStructuredJobDefinitions = {$plugin.tx_ats.settings.renderStructuredJobDefinitions}
 
