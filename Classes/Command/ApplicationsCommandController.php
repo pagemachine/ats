@@ -6,6 +6,7 @@ use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
 use PAGEmachine\Ats\Service\AnonymizationService;
 use PAGEmachine\Ats\Service\CleanupService;
 use PAGEmachine\Ats\Service\TyposcriptService;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
 
 /*
@@ -55,6 +56,11 @@ class ApplicationsCommandController extends CommandController
      */
     public function cleanupCommand()
     {
+        // Limit this command to TYPO3 >= 8.7
+        if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) < 8007000) {
+            $this->outputLine('You need at least TYPO3 version 8.7 to use this command.');
+            return;
+        }
         $this->outputLine("Starting cleanup of applications...");
 
         $cleanupService = CleanupService::getInstance();
