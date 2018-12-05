@@ -6,7 +6,7 @@
 	<div class="col-sm-9">
 		<f:if condition="{defaultNationality}">
 			<f:then>
-				<s:form.select name="staticInfoTablesCountry" property="{fieldName}" staticInfoTable="country" optionLabelField="shortNameLocal" optionValueField="isoCodeA3" options="{}" class="form-control" defaultOptionLabel="{defaultNationality.shortNameLocal}" defaultOptionValue="{defaultNationality.uid}"/>
+				<s:form.select name="staticInfoTablesCountry" property="{fieldName}" staticInfoTable="country" optionLabelField="shortNameLocal" optionValueField="isoCodeA3" options="{}" class="form-control" defaultOptionLabel="{defaultNationality.shortNameLocal}" defaultOptionValue="{defaultNationality.isoCodeA3}"/>
 			</f:then>
 			<f:else>
 				<s:form.select name="staticInfoTablesCountry" property="{fieldName}" staticInfoTable="country" optionLabelField="shortNameLocal" optionValueField="isoCodeA3" options="{}" class="form-control" />
