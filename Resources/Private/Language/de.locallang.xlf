@@ -272,8 +272,8 @@
 			</trans-unit>
 
 			<trans-unit id="tx_ats.label.birthday">
-				<source>Date of birth (YYYY-MM-DD)</source>
-				<target>Geburtstag (JJJJ-MM-TT)</target>
+				<source>Date of birth</source>
+				<target>Geburtstag</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.label.disability">
