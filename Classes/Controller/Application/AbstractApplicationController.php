@@ -45,6 +45,7 @@ class AbstractApplicationController extends ActionController
 
         if ($this->request->hasArgument('application')) {
             $this->setPropertyMappingConfigurationForApplication();
+            $this->loadValidationSettings();
         }
 
         $groupid = !empty($this->settings['feUserGroup']) ? $this->settings['feUserGroup'] : null;
@@ -122,5 +123,15 @@ class AbstractApplicationController extends ActionController
                     UploadedFileReferenceConverter::CONFIGURATION_FILE_EXTENSIONS => $uploadConfiguration['allowedFileExtensions'],
                 ]
             );
+    }
+
+    /**
+     * Loads validation settings into settings array to pass on to fluid
+     *
+     * @return void
+     */
+    protected function loadValidationSettings()
+    {
+        $this->settings['validation'] = TyposcriptService::getInstance()->getFrameworkConfiguration()['mvc']['validation'][$this->arguments->getArgument('application')->getDataType()];
     }
 }

@@ -47,6 +47,7 @@ class AbstractApplicationControllerTest extends UnitTestCase
         $this->controller = $this->getMockBuilder(AbstractApplicationController::class)->setMethods([
             'redirectToUri',
             'setPropertyMappingConfigurationForApplication',
+            'loadValidationSettings',
         ])->getMock();
 
         $this->view = $this->prophesize(ViewInterface::class);
@@ -157,6 +158,7 @@ class AbstractApplicationControllerTest extends UnitTestCase
 
         $this->controller = $this->getMockBuilder(AbstractApplicationController::class)->setMethods([
             'redirectToUri',
+            'loadValidationSettings',
         ])->getMock();
         $this->inject($this->controller, 'view', $this->view->reveal());
 
