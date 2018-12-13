@@ -3,7 +3,8 @@
 	<fieldset id="tx-ats-languageform">
 		<div class="form-group row">
 			<div class="col-sm-3">
-				<label><f:translate key="tx_ats.application.languageskills" /><f:if condition="{settings.validation.{fieldName}}">*</f:if></label>
+				<f:render partial="Application/Field/Label" arguments="{fieldName : 'languageSkills', translationKey :
+				'tx_ats.application.languageskills'}" />
 			</div>
 
 			<div class="col-sm-9" id="languages">

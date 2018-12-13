@@ -1,6 +1,6 @@
 <div class="form-group">
 	<div class="col-sm-3">
-		<label><f:translate key="{translationKey}" /><f:if condition="{settings.validation.{fieldName}}">*</f:if></label>
+		<f:render partial="Application/Field/Label" arguments="{fieldName : fieldName, translationKey : translationKey}" />
 	</div>
 	<div class="col-sm-9">
 		<f:form.textarea

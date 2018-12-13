@@ -642,8 +642,8 @@
 			</trans-unit>
 
 			<trans-unit id="tx_ats.application.languageskills">
-				<source>Language Skills*</source>
-				<target>Sprachkenntnisse*</target>
+				<source>Language Skills</source>
+				<target>Sprachkenntnisse</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.language_skill">
