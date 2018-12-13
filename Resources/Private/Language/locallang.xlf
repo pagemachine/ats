@@ -550,7 +550,7 @@
 	  </trans-unit>
 
 	  <trans-unit id="tx_ats.application.languageskills">
-		<source>Language Skills*</source>
+		<source>Language Skills</source>
 	  </trans-unit>
 
 	  <!-- LanguageSkill labels -->

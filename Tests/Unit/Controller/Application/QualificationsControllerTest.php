@@ -9,9 +9,6 @@ use Nimut\TestingFramework\TestCase\UnitTestCase;
 use PAGEmachine\Ats\Controller\Application\QualificationsController;
 use PAGEmachine\Ats\Domain\Model\ApplicationC;
 use PAGEmachine\Ats\Domain\Repository\ApplicationCRepository;
-use TYPO3\CMS\Extbase\Mvc\Controller\Argument;
-use TYPO3\CMS\Extbase\Mvc\Controller\Arguments;
-use TYPO3\CMS\Extbase\Mvc\Controller\MvcPropertyMappingConfiguration;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 
@@ -80,30 +77,5 @@ class QualificationsControllerTest extends UnitTestCase
 
         $this->controller->expects($this->once())->method('forward');
         $this->controller->updateQualificationsAction($this->application->reveal());
-    }
-
-    /**
-     * @test
-     */
-    public function setsPropertyMappingConfigurationForLanguageSkills()
-    {
-
-        $propertyMappingConfiguration = $this->prophesize(MvcPropertyMappingConfiguration::class);
-        $propertyMappingConfiguration->forProperty("languageSkills")->willReturn($propertyMappingConfiguration->reveal());
-        $propertyMappingConfiguration->forProperty("languageSkills.*")->willReturn($propertyMappingConfiguration->reveal());
-
-        $propertyMappingConfiguration->allowAllProperties()->shouldBeCalled();
-        $propertyMappingConfiguration->allowProperties("language", "level", "textLanguage")->shouldBeCalled();
-        $propertyMappingConfiguration->allowCreationForSubProperty("languageSkills.*")->shouldBeCalled();
-
-        $argument = $this->prophesize(Argument::class);
-        $argument->getPropertyMappingConfiguration()->willReturn($propertyMappingConfiguration->reveal());
-
-        $arguments = $this->prophesize(Arguments::class);
-        $arguments->getArgument("application")->willReturn($argument->reveal());
-
-        $this->inject($this->controller, "arguments", $arguments->reveal());
-
-        $this->controller->initializeAction();
     }
 }
