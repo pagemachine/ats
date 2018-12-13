@@ -123,6 +123,12 @@ class AbstractApplicationController extends ActionController
                     UploadedFileReferenceConverter::CONFIGURATION_FILE_EXTENSIONS => $uploadConfiguration['allowedFileExtensions'],
                 ]
             );
+
+        $this->arguments->getArgument('application')
+            ->getPropertyMappingConfiguration()
+            ->forProperty("languageSkills")->allowAllProperties()
+            ->forProperty("languageSkills.*")->allowProperties("language", "level", "textLanguage")
+            ->allowCreationForSubProperty('languageSkills.*');
     }
 
     /**
