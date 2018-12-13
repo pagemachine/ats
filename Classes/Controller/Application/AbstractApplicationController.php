@@ -105,16 +105,14 @@ class AbstractApplicationController extends ActionController
      */
     protected function setPropertyMappingConfigurationForApplication()
     {
-        $this->arguments->getArgument('application')
-            ->getPropertyMappingConfiguration()
-            ->forProperty('birthday')
+        $mappingConfiguration = $this->arguments->getArgument('application')->getPropertyMappingConfiguration();
+
+        $mappingConfiguration->forProperty('birthday')
             ->setTypeConverterOption(\TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::class, \TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'Y-m-d');
 
         $uploadConfiguration = ExtconfService::getInstance()->getUploadConfiguration();
 
-        $this->arguments->getArgument('application')
-            ->getPropertyMappingConfiguration()
-            ->forProperty('files.999')
+        $mappingConfiguration->forProperty('files.999')
             ->setTypeConverterOptions(
                 UploadedFileReferenceConverter::class,
                 [
@@ -124,11 +122,9 @@ class AbstractApplicationController extends ActionController
                 ]
             );
 
-        $this->arguments->getArgument('application')
-            ->getPropertyMappingConfiguration()
-            ->forProperty("languageSkills")->allowAllProperties()
-            ->forProperty("languageSkills.*")->allowProperties("language", "level", "textLanguage")
-            ->allowCreationForSubProperty('languageSkills.*');
+        $mappingConfiguration->forProperty("languageSkills")->allowAllProperties();
+        $mappingConfiguration->forProperty("languageSkills.*")->allowProperties("language", "level", "textLanguage");
+        $mappingConfiguration->allowCreationForSubProperty('languageSkills.*');
     }
 
     /**
