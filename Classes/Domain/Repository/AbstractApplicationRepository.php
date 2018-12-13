@@ -105,6 +105,7 @@ class AbstractApplicationRepository extends Repository
             [
                 $query->equals("user", $user),
                 $query->equals("job", $job),
+                $query->equals('anonymized', false),
             ],
             $this->buildConstraintsForStatusRange($query, $minStatus, $maxStatus)
         );
@@ -162,7 +163,8 @@ class AbstractApplicationRepository extends Repository
 
         $constraint = $query->logicalAnd(
             $query->logicalOr($constraints),
-            $query->lessThan("status", ApplicationStatus::EMPLOYED)
+            $query->lessThan("status", ApplicationStatus::EMPLOYED),
+            $query->equals('anonymized', false)
         );
 
         return $constraint;
@@ -200,7 +202,10 @@ class AbstractApplicationRepository extends Repository
         $query = $this->createQuery();
 
         $query->matching(
-            $query->lessThan("status", ApplicationStatus::EMPLOYED)
+            $query->logicalAnd(
+                $query->equals('anonymized', false),
+                $query->lessThan("status", ApplicationStatus::EMPLOYED)
+            )
         );
 
         return $query->execute();

@@ -31,6 +31,8 @@ Plugin Constants
 | applicationPage                  ``plugin.tx_ats.settings.applicationPage``                   Page ID for the job list view --> job single view link. If none is set, the current page is used.                                                                                                                                             none
 | feUserGroup                      ``plugin.tx_ats.settings.feUserGroup``                       The ID of the FE Usergroup all applicants belong to.                                                                                                                                                                                          none
 | allowedStaticLanguages           ``plugin.tx_ats.settings.allowedStaticLanguages``            Applicants can select which languages they speak. With this option, you can limit the available options to a set of ``static_languages`` uids. Should be a comma-separated list such as ``12,30,33``. If not set, all languages are shown.    none
+| defaultCountry                   ``plugin.tx_ats.settings.defaultCountry``                    Which country should be selected by default in the application country field? (ISO3, for example DEU for germany)                                                                                                                             none
+| defaultCountry                   ``plugin.tx_ats.settings.defaultNationality``                Which country should be selected by default in the application nationality field? (ISO3, for example DEU for germany)                                                                                                                         none
 | policyPage                       ``plugin.tx_ats.settings.policyPage``                        Page ID where your privacy policy is found. The page is linked in the first step of the form where the user has to accept privacy settings.                                                                                                   none
 | renderStructuredJobDefinitions   ``plugin.tx_ats.settings.renderStructuredJobDefinitions``    If enabled, the default job template contains JSON-LD markup. Use the tab "Structured Data" inside the job edit form to fill in values.                                                                                                       0 (false)
 ================================   ==========================================================   ============================================================================================================================================================================================================================================  ===========
@@ -115,6 +117,50 @@ File upload options
 You can configure how file uploads in the application form should behave. The options include **location** (storage and/or folder), **allowed file types** and the **conflict behaviour** (what if the file already exists with this name?).
 
 Configuration options can be found in the extension manager settings (tab *Advanced*).
+
+Anonymization
+-------------
+
+The extension provides a scheduler command for automatic anonymization of applications (GDPR!), depending on their age (configurable).
+
+The default configuration can be found inside ``Configuration/TypoScript/Backend/anonymization.ts``.
+
+You can also customize the exact behaviour for applications and their child records.
+
+- **mode** defines the exact anonymization behaviour: Either *anonymize*, *anonymize_and_delete* or *delete_files* for file references.
+- Inside **properties** you can define the replacement value for each property. Default is "*".
+- If you want to keep a property or child as it is, simply remove the value or child section.
+
+Custom conditions
+^^^^^^^^^^^^^^^^^
+
+If you have custom conditions for anonymization, there is a subkey `conditions` inside the configuration for just that.
+These conditions are appended to the general query. They use extbase query logic ("equals", "greaterThan"...).
+
+**Example**: By default only applications with status 100 (employed) or higher are anonymized. Let's say you want to change this to 110 (cancelled) instead.
+
+Inside your ``ext_typoscript_setup.txt``:
+::
+   module.tx_ats.settings.anonymization {
+      objects {
+         PAGEmachine\Ats\Domain\Model\Application {
+            conditions {
+              status {
+                property = status
+                operator = greaterThanOrEqual
+                value = 110
+                type = int
+              }
+            }
+         }
+      }
+   }
+
+Please note that the *type* option is not always necessary, but cleaner if the value is not a string.
+If you want to pass on a boolean, use 0 or 1 and cast to "bool".
+
+Also, the logic can only handle operators which require one value. Multivalued operators (in, between...) are currently not supported. Use multiple conditions for that.
+
 
 
 

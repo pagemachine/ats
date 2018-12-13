@@ -119,3 +119,4 @@ config.tx_extbase {
         TYPO3\CMS\Extbase\Persistence\Generic\QueryFactoryInterface.className = PAGEmachine\Ats\Persistence\Generic\QueryFactory
     }
 }
+<INCLUDE_TYPOSCRIPT: source="FILE:./anonymization.ts">

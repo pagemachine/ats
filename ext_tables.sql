@@ -168,6 +168,8 @@ CREATE TABLE tx_ats_domain_model_application (
   notes int(11) unsigned DEFAULT '0' NOT NULL,
   history int(11) unsigned DEFAULT '0' NOT NULL,
 
+  anonymized tinyint(4) unsigned DEFAULT '0' NOT NULL,
+
 	t3ver_oid int(11) DEFAULT '0' NOT NULL,
 	t3ver_id int(11) DEFAULT '0' NOT NULL,
 	t3ver_wsid int(11) DEFAULT '0' NOT NULL,

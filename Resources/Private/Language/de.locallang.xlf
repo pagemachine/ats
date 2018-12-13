@@ -102,7 +102,7 @@
 
 			<trans-unit id="tx_ats.returnToJob">
 				<source>Return to job</source>
-				<target></target>
+				<target>Zurück zum Jobangebot</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.newApply">
@@ -272,8 +272,8 @@
 			</trans-unit>
 
 			<trans-unit id="tx_ats.label.birthday">
-				<source>Date of birth (YYYY-MM-DD)</source>
-				<target>Geburtstag (JJJJ-MM-TT)</target>
+				<source>Date of birth</source>
+				<target>Geburtstag</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.label.disability">
@@ -642,8 +642,8 @@
 			</trans-unit>
 
 			<trans-unit id="tx_ats.application.languageskills">
-				<source>Language Skills*</source>
-				<target>Sprachkenntnisse*</target>
+				<source>Language Skills</source>
+				<target>Sprachkenntnisse</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.language_skill">

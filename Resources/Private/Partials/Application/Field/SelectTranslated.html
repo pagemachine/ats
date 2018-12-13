@@ -1,7 +1,7 @@
 {namespace ats=PAGEmachine\Ats\ViewHelpers}
 <div class="form-group">
 	<div class="col-sm-3">
-		<label><f:translate key="{translationKey}" /></label>
+		<f:render partial="Application/Field/Label" arguments="{fieldName : fieldName, translationKey : translationKey}" />
 	</div>
 	<div class="col-sm-9">
 		<ats:form.translatableSelect

@@ -33,20 +33,6 @@ class QualificationsController extends AbstractApplicationController
 
     /**
      *
-     * @return void
-     */
-    public function initializeAction()
-    {
-        $propertyMappingConfiguration = $this->arguments->getArgument("application")->getPropertyMappingConfiguration();
-
-        $propertyMappingConfiguration->forProperty("languageSkills")->allowAllProperties();
-        $propertyMappingConfiguration->forProperty("languageSkills.*")->allowProperties("language", "level", "textLanguage");
-        $propertyMappingConfiguration->allowCreationForSubProperty("languageSkills.*");
-    }
-
-
-    /**
-     *
      * @param  ApplicationC $application
      * @validate $application \PAGEmachine\Ats\Domain\Validator\TypoScriptValidator
      * @return void

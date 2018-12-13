@@ -111,9 +111,10 @@ class AbstractApplicationRepositoryTest extends UnitTestCase
 
 
         $this->query->matching("logicalAndExpression")->willReturn($this->query->reveal());
-        $this->query->logicalAnd(["Comparison", "Comparison", "Comparison", "Comparison"])->willReturn("logicalAndExpression");
+        $this->query->logicalAnd(["Comparison", "Comparison", "Comparison", "Comparison", "Comparison"])->willReturn("logicalAndExpression");
         $this->query->equals("job", $job->reveal())->willReturn("Comparison");
         $this->query->equals("user", $user->reveal())->willReturn("Comparison");
+        $this->query->equals("anonymized", false)->willReturn("Comparison");
         $this->query->greaterThanOrEqual("status", 10)->willReturn("Comparison");
         $this->query->lessThanOrEqual("status", 50)->willReturn("Comparison");
 
@@ -183,9 +184,10 @@ class AbstractApplicationRepositoryTest extends UnitTestCase
         $this->query->contains("job.officials", 3)->shouldBeCalled()->willReturn("group2officials");
         $this->query->contains("job.contributors", 3)->shouldBeCalled()->willReturn("group2contributors");
         $this->query->lessThan("status", 100)->shouldBeCalled()->willReturn("statusless");
+        $this->query->equals("anonymized", false)->shouldBeCalled()->willReturn("non-anonymized");
 
         $this->query->logicalOr(Argument::size(7))->shouldBeCalled()->willReturn("logicalor");
-        $this->query->logicalAnd("logicalor", "statusless")->shouldBeCalled()->willReturn("matching");
+        $this->query->logicalAnd("logicalor", "statusless", "non-anonymized")->shouldBeCalled()->willReturn("matching");
         $this->query->matching("matching")->shouldBeCalled();
 
         $this->query->execute()->willReturn("something");

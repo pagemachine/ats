@@ -45,6 +45,7 @@ class AbstractApplicationController extends ActionController
 
         if ($this->request->hasArgument('application')) {
             $this->setPropertyMappingConfigurationForApplication();
+            $this->loadValidationSettings();
         }
 
         $groupid = !empty($this->settings['feUserGroup']) ? $this->settings['feUserGroup'] : null;
@@ -104,16 +105,14 @@ class AbstractApplicationController extends ActionController
      */
     protected function setPropertyMappingConfigurationForApplication()
     {
-        $this->arguments->getArgument('application')
-            ->getPropertyMappingConfiguration()
-            ->forProperty('birthday')
+        $mappingConfiguration = $this->arguments->getArgument('application')->getPropertyMappingConfiguration();
+
+        $mappingConfiguration->forProperty('birthday')
             ->setTypeConverterOption(\TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::class, \TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'Y-m-d');
 
         $uploadConfiguration = ExtconfService::getInstance()->getUploadConfiguration();
 
-        $this->arguments->getArgument('application')
-            ->getPropertyMappingConfiguration()
-            ->forProperty('files.999')
+        $mappingConfiguration->forProperty('files.999')
             ->setTypeConverterOptions(
                 UploadedFileReferenceConverter::class,
                 [
@@ -122,5 +121,19 @@ class AbstractApplicationController extends ActionController
                     UploadedFileReferenceConverter::CONFIGURATION_FILE_EXTENSIONS => $uploadConfiguration['allowedFileExtensions'],
                 ]
             );
+
+        $mappingConfiguration->forProperty("languageSkills")->allowAllProperties();
+        $mappingConfiguration->forProperty("languageSkills.*")->allowProperties("language", "level", "textLanguage");
+        $mappingConfiguration->allowCreationForSubProperty('languageSkills.*');
+    }
+
+    /**
+     * Loads validation settings into settings array to pass on to fluid
+     *
+     * @return void
+     */
+    protected function loadValidationSettings()
+    {
+        $this->settings['validation'] = TyposcriptService::getInstance()->getFrameworkConfiguration()['mvc']['validation'][$this->arguments->getArgument('application')->getDataType()];
     }
 }

@@ -1,7 +1,7 @@
 <f:form.validationResults for="application.{fieldName}">
 <div class="form-group {f:if(condition:validationResults.errors, then:'has-error')}">
 	<div class="col-sm-3">
-		<label><f:translate key="{translationKey}" /></label>
+		<f:render partial="Application/Field/Label" arguments="{fieldName : fieldName, translationKey : translationKey}" />
 	</div>
 	<div class="col-sm-9">
 		<f:form.textfield
