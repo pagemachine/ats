@@ -525,7 +525,7 @@
 
 			<trans-unit id="tx_ats_domain_model_application.privacyPolicy">
 				<source>Privacy Policy:</source>
-				<target>Datenschutzbestimmung:</target>
+				<target>Datenschutz:</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_application.firstname">
@@ -575,7 +575,7 @@
 
 			<trans-unit id="tx_ats.error.1361959228">
 				<source>Please confirm privacy policy</source>
-				<target>Bitte bestätigen Sie die Datenschutzerklärung</target>
+				<target>Bitte bestätigen Sie die Datenschutzbestimmungen</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.error.1221560718">
