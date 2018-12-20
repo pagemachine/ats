@@ -573,6 +573,11 @@
 		<target>Können wir Ihre Bewerbung an andere interessierte Abteilungen unseres Unternehmens weiterleiten:</target>
 			</trans-unit>
 
+			<trans-unit id="tx_ats_domain_model_application.languageSkills">
+				<source>Language skills:</source>
+				<target>Sprachkenntnisse:</target>
+			</trans-unit>
+
 			<trans-unit id="tx_ats.error.1361959228">
 				<source>Please confirm privacy policy</source>
 				<target>Bitte bestätigen Sie die Datenschutzbestimmungen</target>

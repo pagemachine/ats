@@ -423,6 +423,10 @@
 		<source>May we forward your application to other interested departments of our company:</source>
 	  </trans-unit>
 
+	  <trans-unit id="tx_ats_domain_model_application.languageSkills">
+		<source>Language skills:</source>
+	  </trans-unit>
+
 	  <trans-unit id="tx_ats.error.1361959228">
 		<source>Please confirm privacy policy</source>
 	  </trans-unit>
