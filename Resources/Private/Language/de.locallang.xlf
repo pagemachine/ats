@@ -516,6 +516,11 @@
 				<target>Sonstige</target>
 			</trans-unit>
 
+			<trans-unit id="tx_ats.select.placeholder">
+				<source>Select</source>
+				<target>Bitte wählen</target>
+			</trans-unit>
+
 			 <!-- Frontend errors -->
 
 			<trans-unit id="tx_ats.error.intro">

@@ -377,6 +377,10 @@
 		<source>Others</source>
 	  </trans-unit>
 
+	<trans-unit id="tx_ats.select.placeholder">
+		<source>Select</source>
+	</trans-unit>
+
 	  <!-- Frontend errors -->
 
 	  <trans-unit id="tx_ats.error.intro">
