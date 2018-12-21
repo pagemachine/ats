@@ -21,7 +21,7 @@
 							<f:form.validationResults for="application.languageSkills.{key}.language">
 								<div class="col-sm-3 {f:if(condition:validationResults.flattenedErrors, then:'has-error')}">
 									<label><f:translate key="tx_ats.languageskill.language" /></label>
-									<s:form.select class="language-select form-control" property="languageSkills.{i.index}.language" staticInfoTable="language" options="{}" prependOptionLabel="--select--" prependOptionValue="" />
+									<s:form.select class="language-select form-control" property="languageSkills.{i.index}.language" staticInfoTable="language" options="{}" prependOptionLabel="{f:translate(key:'tx_ats.select.placeholder')}" prependOptionValue="" />
 								</div>
 
 
@@ -35,7 +35,7 @@
 							<f:form.validationResults for="application.languageSkills.{key}.level">
 								<div class="col-sm-3 {f:if(condition:validationResults.flattenedErrors, then:'has-error')}">
 									<label><f:translate key="tx_ats.languageskill.level" /></label>
-									<ats:form.translatableSelect class="level-select form-control" translationPrefix="tx_ats.languageskill.level." options="{1:1, 2:2, 3:3, 4:4}" property="languageSkills.{i.index}.level"  prependOptionLabel="--select--" prependOptionValue="" />
+									<ats:form.translatableSelect class="level-select form-control" translationPrefix="tx_ats.languageskill.level." options="{1:1, 2:2, 3:3, 4:4}" property="languageSkills.{i.index}.level"  prependOptionLabel="{f:translate(key:'tx_ats.select.placeholder')}" prependOptionValue="" />
 								</div>
 							</f:form.validationResults>
 
@@ -93,7 +93,7 @@
 
 			<div class="col-sm-3">
 					<label><f:translate key="tx_ats.languageskill.language" /></label>
-					<s:form.select class="language-select form-control" property="languageSkills.999.language" staticInfoTable="language" options="{}" prependOptionLabel="--select--" prependOptionValue="" />
+					<s:form.select class="language-select form-control" property="languageSkills.999.language" staticInfoTable="language" options="{}" prependOptionLabel="{f:translate(key:'tx_ats.select.placeholder')}" prependOptionValue="" />
 			</div>
 
 			<div class="col-sm-3">
@@ -103,7 +103,7 @@
 
 			<div class="col-sm-3">
 				<label><f:translate key="tx_ats.languageskill.level" /></label>
-				<ats:form.translatableSelect class="level-select form-control" translationPrefix="tx_ats.languageskill.level." options="{1:1, 2:2, 3:3, 4:4}" property="languageSkills.999.level"  prependOptionLabel="--select--" prependOptionValue="" />
+				<ats:form.translatableSelect class="level-select form-control" translationPrefix="tx_ats.languageskill.level." options="{1:1, 2:2, 3:3, 4:4}" property="languageSkills.999.level"  prependOptionLabel="{f:translate(key:'tx_ats.select.placeholder')}" prependOptionValue="" />
 			</div>
 
 			<div class="col-sm-3">
