@@ -583,6 +583,11 @@
 				<target>Sprachkenntnisse:</target>
 			</trans-unit>
 
+			<trans-unit id="tx_ats_domain_model_application.files">
+				<source>Files:</source>
+				<target>Dateien:</target>
+			</trans-unit>
+
 			<trans-unit id="tx_ats.error.1361959228">
 				<source>Please confirm privacy policy</source>
 				<target>Bitte bestätigen Sie die Datenschutzbestimmungen</target>
@@ -618,7 +623,7 @@
 				<target>Upload ist nicht möglich, ungültiger Dateityp.</target>
 			</trans-unit>
 
-			<trans-unit id="tx_ats.error.file.1347992453">
+			<trans-unit id="tx_ats.error.files.1347992453">
 				<source>Please upload at least one document.</source>
 				<target>Bitte laden Sie mindestens ein Dokument hoch.</target>
 			</trans-unit>
