@@ -525,7 +525,7 @@
 
 			<trans-unit id="tx_ats_domain_model_application.privacyPolicy">
 				<source>Privacy Policy:</source>
-				<target>Datenschutzbestimmung:</target>
+				<target>Datenschutz:</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_application.firstname">
@@ -573,9 +573,19 @@
 		<target>Können wir Ihre Bewerbung an andere interessierte Abteilungen unseres Unternehmens weiterleiten:</target>
 			</trans-unit>
 
+			<trans-unit id="tx_ats_domain_model_application.languageSkills">
+				<source>Language skills:</source>
+				<target>Sprachkenntnisse:</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.files">
+				<source>Files:</source>
+				<target>Dateien:</target>
+			</trans-unit>
+
 			<trans-unit id="tx_ats.error.1361959228">
 				<source>Please confirm privacy policy</source>
-				<target>Bitte bestätigen Sie die Datenschutzerklärung</target>
+				<target>Bitte bestätigen Sie die Datenschutzbestimmungen</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.error.1221560718">
@@ -608,7 +618,7 @@
 				<target>Upload ist nicht möglich, ungültiger Dateityp.</target>
 			</trans-unit>
 
-			<trans-unit id="tx_ats.error.file.1347992453">
+			<trans-unit id="tx_ats.error.files.1347992453">
 				<source>Please upload at least one document.</source>
 				<target>Bitte laden Sie mindestens ein Dokument hoch.</target>
 			</trans-unit>

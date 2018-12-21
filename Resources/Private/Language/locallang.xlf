@@ -423,6 +423,15 @@
 		<source>May we forward your application to other interested departments of our company:</source>
 	  </trans-unit>
 
+	  <trans-unit id="tx_ats_domain_model_application.languageSkills">
+		<source>Language skills:</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats_domain_model_application.files">
+		<source>Files:</source>
+	  </trans-unit>
+
+
 	  <trans-unit id="tx_ats.error.1361959228">
 		<source>Please confirm privacy policy</source>
 	  </trans-unit>
@@ -451,7 +460,7 @@
 		<source>This file type is not allowed.</source>
 	  </trans-unit>
 
-	  <trans-unit id="tx_ats.error.file.1347992453">
+	  <trans-unit id="tx_ats.error.files.1347992453">
 		<source>Please upload at least one document.</source>
 	  </trans-unit>
 
