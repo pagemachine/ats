@@ -67,7 +67,7 @@
 					<f:if condition="{settings.validation.languageSkills}">
 						<f:if condition="{application.languageSkills}">
 							<f:else>
-								<f:render section="languagerow" arguments="{languageID : placeholderIndex}" />
+								<f:render section="languagerow" arguments="{languageOffset : placeholderIndex}" />
 							</f:else>
 						</f:if>
 					</f:if>
@@ -87,7 +87,7 @@
 			</div>
 
 			<f:comment>Template rendering</f:comment>
-			<f:render section="languagerow" arguments="{languageID : newLanguageIndex, class: 'tx-ats-addlanguage'}" />
+			<f:render section="languagerow" arguments="{languageOffset : newLanguageIndex, class: 'tx-ats-addlanguage'}" />
 
 
 		</div>
@@ -106,25 +106,25 @@
 
 
 <f:section name="languagerow">
-		<div class="{class} languagebox row" data-language="{languageID}">
+		<div class="{class} languagebox row" data-language="{languageOffset}">
 
 			<div class="col-sm-3">
 					<label><f:translate key="tx_ats.languageskill.language" /></label>
-					<s:form.select class="language-select form-control" property="languageSkills.{languageID}.language" staticInfoTable="language" options="{}" prependOptionLabel="{f:translate(key:'tx_ats.select.placeholder')}" prependOptionValue="" />
+					<s:form.select class="language-select form-control" property="languageSkills.{languageOffset}.language" staticInfoTable="language" options="{}" prependOptionLabel="{f:translate(key:'tx_ats.select.placeholder')}" prependOptionValue="" />
 			</div>
 
 			<div class="col-sm-3">
 				<label><f:translate key="tx_ats.languageskill.textLanguage" /></label>
-				<f:form.textfield class="textlanguage form-control" property="languageSkills.{languageID}.textLanguage" />
+				<f:form.textfield class="textlanguage form-control" property="languageSkills.{languageOffset}.textLanguage" />
 			</div>
 
 			<div class="col-sm-3">
 				<label><f:translate key="tx_ats.languageskill.level" /></label>
-				<ats:form.translatableSelect class="level-select form-control" translationPrefix="tx_ats.languageskill.level." options="{1:1, 2:2, 3:3, 4:4}" property="languageSkills.{languageID}.level"  prependOptionLabel="{f:translate(key:'tx_ats.select.placeholder')}" prependOptionValue="" />
+				<ats:form.translatableSelect class="level-select form-control" translationPrefix="tx_ats.languageskill.level." options="{1:1, 2:2, 3:3, 4:4}" property="languageSkills.{languageOffset}.level"  prependOptionLabel="{f:translate(key:'tx_ats.select.placeholder')}" prependOptionValue="" />
 			</div>
 
 			<div class="col-sm-3">
-				<span class="btn btn-danger btn-xs remove-button" data-action="removeLanguage" data-language="{languageID}">
+				<span class="btn btn-danger btn-xs remove-button" data-action="removeLanguage" data-language="{languageOffset}">
 					<span class="glyphicon glyphicon-trash"></span>
 					<f:translate key="tx_ats.languageskill.rmLanguage">Remove</f:translate>
 				</span>
