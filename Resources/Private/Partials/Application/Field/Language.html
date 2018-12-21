@@ -1,5 +1,6 @@
 {namespace s=SJBR\StaticInfoTables\ViewHelpers}
 {namespace ats=PAGEmachine\Ats\ViewHelpers}
+<f:alias map="{placeholderIndex: 998, newLanguageIndex: 999}">
 	<fieldset id="tx-ats-languageform">
 		<div class="form-group row">
 			<div class="col-sm-3">
@@ -66,7 +67,7 @@
 					<f:if condition="{settings.validation.languageSkills}">
 						<f:if condition="{application.languageSkills}">
 							<f:else>
-								<f:render section="languagerow" arguments="{languageID : 998}" />
+								<f:render section="languagerow" arguments="{languageID : placeholderIndex}" />
 							</f:else>
 						</f:if>
 					</f:if>
@@ -85,10 +86,8 @@
 
 			</div>
 
-
-
 			<f:comment>Template rendering</f:comment>
-			<f:render section="languagerow" arguments="{languageID : 999, class: 'tx-ats-addlanguage'}" />
+			<f:render section="languagerow" arguments="{languageID : newLanguageIndex, class: 'tx-ats-addlanguage'}" />
 
 
 		</div>
@@ -102,10 +101,8 @@
 			</div>
 		</div>
 
-
-
-
 	</fieldset>
+</f:alias>
 
 
 <f:section name="languagerow">
