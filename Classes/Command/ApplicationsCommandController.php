@@ -86,7 +86,7 @@ class ApplicationsCommandController extends CommandController
     protected function getMinimumApplicationCleanupAge()
     {
         $settings = TyposcriptService::getInstance()->getSettings();
-        return $settings['cleanup']['deleteUnusedApplicationsAfter'] ?: '60 days';
+        return $settings['cleanup']['unfinishedApplicationsLifetime'] ?: '60 days';
     }
 
     /**

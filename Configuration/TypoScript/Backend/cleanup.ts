@@ -1,4 +1,4 @@
 module.tx_ats.settings.cleanup {
-  deleteUnusedApplicationsAfter = 30 days
-  deleteInactiveUsersAfter = 2 years
+  unfinishedApplicationsLifetime = 30 days
+  inactiveUsersLifetime = 2 years
 }

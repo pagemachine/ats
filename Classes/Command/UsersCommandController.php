@@ -65,6 +65,6 @@ class UsersCommandController extends CommandController
     protected function getMinimumUsersAge()
     {
         $settings = TyposcriptService::getInstance()->getSettings();
-        return $settings['cleanup']['deleteInactiveUsersAfter'] ?: '2 years';
+        return $settings['cleanup']['inactiveUsersLifetime'] ?: '2 years';
     }
 }
