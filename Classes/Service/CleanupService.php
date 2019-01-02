@@ -67,17 +67,30 @@ class CleanupService
         $affectedRows = 0;
 
         while ($row = $statement->fetch()) {
-            // Deletes child language skills. History and notes are not present in unfinished applications, so no need to delete them
-            $this->removeApplicationChildren('tx_ats_domain_model_languageskill', (int)$row['uid']);
-            $this->removeFiles((int)$row['uid']);
-
-            $affectedRows += $queryBuilder
-                ->delete('tx_ats_domain_model_application')
-                ->where(
-                    $queryBuilder->expr()->eq('uid', (int)$row['uid'])
-                )
-                ->execute();
+            $affectedRows += $this->cleanupApplicationRow((int)$row['uid']);
         }
+        return $affectedRows;
+    }
+
+    /**
+     * Removes a single application
+     *
+     * @param  int $applicationUid The application ID to delete
+     * @return int $affectedRows The amount of rows affected (should be 0 or 1 of course)
+     */
+    public function cleanupApplicationRow($applicationUid)
+    {
+        $applicationUid = (int) $applicationUid;
+        $this->removeApplicationChildren('tx_ats_domain_model_languageskill', $applicationUid);
+        $this->removeFiles($applicationUid);
+
+        $affectedRows = $queryBuilder
+            ->delete('tx_ats_domain_model_application')
+            ->where(
+                $queryBuilder->expr()->eq('uid', $applicationUid)
+            )
+            ->execute();
+
         return $affectedRows;
     }
 
@@ -101,7 +114,7 @@ class CleanupService
         $queryBuilder->getRestrictions()->removeAll();
 
         /**
-         * Deletes all users which did not login in the
+         * Deletes all users which did not login in the specified period
          */
         $affectedRows = $queryBuilder
             ->delete('fe_users')
