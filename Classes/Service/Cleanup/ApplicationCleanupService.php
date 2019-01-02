@@ -1,7 +1,8 @@
 <?php
-namespace PAGEmachine\Ats\Service;
+namespace PAGEmachine\Ats\Service\Cleanup;
 
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Resource\FileRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -9,12 +10,17 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * This file is part of the PAGEmachine ATS project.
  */
 
-class CleanupService
+class ApplicationCleanupService
 {
     /**
      * @var FileRepository
      */
     protected $fileRepository;
+
+    /**
+     * @var QueryBuilder
+     */
+    protected $queryBuilder;
 
     /**
      * @return AnonymizationService
@@ -27,9 +33,13 @@ class CleanupService
     /**
      * @param FileRepository|null $fileRepository
      */
-    public function __construct(FileRepository $fileRepository = null)
+    public function __construct(FileRepository $fileRepository = null, QueryBuilder $queryBuilder = null)
     {
         $this->fileRepository = $fileRepository ?: GeneralUtility::makeInstance(FileRepository::class);
+        $this->queryBuilder = $queryBuilder ?: GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_ats_domain_model_application');
+
+        // Show hidden and deleted records as well
+        $this->queryBuilder->getRestrictions()->removeAll();
     }
 
     /**
@@ -45,21 +55,16 @@ class CleanupService
             \DateInterval::createFromDateString($olderThan)
         );
 
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_ats_domain_model_application');
-
-        // Show hidden and deleted records as well
-        $queryBuilder->getRestrictions()->removeAll();
-
         /**
          * Deletes all applications which are unfinished and older than 30 days
          */
-        $statement = $queryBuilder
+        $statement = $this->queryBuilder
             ->select('uid')
             ->from('tx_ats_domain_model_application')
             ->where(
-                $queryBuilder->expr()->andX(
-                    $queryBuilder->expr()->lt('crdate', $unfinishedThreshold->getTimestamp()),
-                    $queryBuilder->expr()->eq('status', 0)
+                $this->queryBuilder->expr()->andX(
+                    $this->queryBuilder->expr()->lt('crdate', $unfinishedThreshold->getTimestamp()),
+                    $this->queryBuilder->expr()->eq('status', 0)
                 )
             )
             ->execute();
@@ -82,47 +87,14 @@ class CleanupService
     {
         $applicationUid = (int) $applicationUid;
         $this->removeApplicationChildren('tx_ats_domain_model_languageskill', $applicationUid);
+        $this->removeApplicationChildren('tx_ats_domain_model_history', $applicationUid);
+        $this->removeApplicationChildren('tx_ats_domain_model_note', $applicationUid);
         $this->removeFiles($applicationUid);
 
-        $affectedRows = $queryBuilder
+        $affectedRows = $this->queryBuilder
             ->delete('tx_ats_domain_model_application')
             ->where(
-                $queryBuilder->expr()->eq('uid', $applicationUid)
-            )
-            ->execute();
-
-        return $affectedRows;
-    }
-
-    /**
-     * Cleans up users of given group and minimum age
-     *
-     * @param  int $userGroup
-     * @param  string $loginOlderThan
-     * @return int $affectedUsers
-     */
-    public function cleanupUsers($userGroup, $loginOlderThan)
-    {
-        $threshold = new \DateTime();
-        $threshold->sub(
-            \DateInterval::createFromDateString($loginOlderThan)
-        );
-
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('fe_users');
-
-        // Remove hidden and deleted records as well
-        $queryBuilder->getRestrictions()->removeAll();
-
-        /**
-         * Deletes all users which did not login in the specified period
-         */
-        $affectedRows = $queryBuilder
-            ->delete('fe_users')
-            ->where(
-                $queryBuilder->expr()->andX(
-                    $queryBuilder->expr()->lt('lastlogin', $threshold->getTimestamp()),
-                    $queryBuilder->expr()->inSet('usergroup', (int)$userGroup)
-                )
+                $this->queryBuilder->expr()->eq('uid', $applicationUid)
             )
             ->execute();
 

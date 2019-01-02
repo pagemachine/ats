@@ -4,7 +4,7 @@ namespace Pagemachine\Ats\Command;
 use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
 use PAGEmachine\Ats\Service\AnonymizationService;
-use PAGEmachine\Ats\Service\CleanupService;
+use PAGEmachine\Ats\Service\Cleanup\ApplicationCleanupService;
 use PAGEmachine\Ats\Service\TyposcriptService;
 use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
@@ -63,7 +63,7 @@ class ApplicationsCommandController extends CommandController
         }
         $this->outputLine("Starting cleanup of applications...");
 
-        $cleanupService = CleanupService::getInstance();
+        $cleanupService = ApplicationCleanupService::getInstance();
 
         $affectedApplications = $cleanupService->cleanupUnfinishedApplications($this->getMinimumApplicationCleanupAge());
 

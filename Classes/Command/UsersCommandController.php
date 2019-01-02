@@ -3,7 +3,7 @@ namespace Pagemachine\Ats\Command;
 
 use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
 use PAGEmachine\Ats\Exception;
-use PAGEmachine\Ats\Service\CleanupService;
+use PAGEmachine\Ats\Service\Cleanup\UserCleanupService;
 use PAGEmachine\Ats\Service\TyposcriptService;
 use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
@@ -51,7 +51,7 @@ class UsersCommandController extends CommandController
             return;
         }
 
-        $cleanupService = CleanupService::getInstance();
+        $cleanupService = UserCleanupService::getInstance();
 
         $affectedUsers = $cleanupService->cleanupUsers($userGroup, $this->getMinimumUsersAge());
 
