@@ -54,4 +54,67 @@ Since TYPO3 does not offer conditional access protection for publicly available 
 
 Since the folder is protected, TYPO3 uses a custom script ("DumpFile") to expose them to the public. ATS hooks into this script and if the requested file is within the ATS folder, it will only allow access for **logged-in backend users** and **the frontend user who created the application**.
 
+GDPR-related features
+---------------------
+
+Personal data should not be kept longer than necessary on public servers. However, cleanup by hand is a lot of effort and hard deletions inside the database are not even possible via the TYPO3 interface.
+
+This is why ATS provides tools in form of console/scheduler commands which do the cleanup and anonymization job for you.
+
+ Anonymization
+-------------
+
+The command *applications:anonymize* is a script which anonymizes applications (fills them with an asterisk in all person-related fields) and deletes all relations and files associated to them.
+
+The default configuration can be found inside ``Configuration/TypoScript/Backend/anonymization.ts``.
+
+You can also customize the exact behaviour for applications and their child records.
+
+- **mode** defines the exact anonymization behaviour: Either *anonymize*, *anonymize_and_delete* or *delete_files* for file references.
+- Inside **properties** you can define the replacement value for each property. Default is "*".
+- If you want to keep a property or child as it is, simply remove the value or child section.
+
+**By default applications in closed status (>=100) which are older than 90 days and not pooled are subject to anonymization.**
+
+Custom conditions
+^^^^^^^^^^^^^^^^^
+
+If you have custom conditions for anonymization, there is a subkey `conditions` inside the configuration for just that.
+These conditions are appended to the general query. They use extbase query logic ("equals", "greaterThan"...).
+
+**Example**: By default only applications with status 100 (employed) or higher are anonymized. Let's say you want to change this to 110 (cancelled) instead.
+
+Inside your ``ext_typoscript_setup.txt``:
+::
+   module.tx_ats.settings.anonymization {
+      objects {
+         PAGEmachine\Ats\Domain\Model\Application {
+            conditions {
+              status {
+                property = status
+                operator = greaterThanOrEqual
+                value = 110
+                type = int
+              }
+            }
+         }
+      }
+   }
+
+Please note that the *type* option is not always necessary, but cleaner if the value is not a string.
+If you want to pass on a boolean, use 0 or 1 and cast to "bool".
+
+Also, the logic can only handle operators which require one value. Multivalued operators (in, between...) are currently not supported. Use multiple conditions for that.
+
+Cleanup
+-------
+
+The commands *applications:cleanup* and *users:cleanup* triggers hard-deletion scripts which actually perform a database delete instead of just setting the deleted-flag - so the information is actually gone and cannot be hacked, sold, leaked by accident... you name it.
+
+*users:cleanup* needs the sysfolder ID containing the users as parameter.
+
+By default all unfinished applications are deleted **after 30 days**. Users are deleted when the last login was **two years ago**. Both timespans are configurable via TypoScript.
+
+
+
 

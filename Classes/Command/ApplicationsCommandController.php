@@ -4,7 +4,9 @@ namespace Pagemachine\Ats\Command;
 use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
 use PAGEmachine\Ats\Service\AnonymizationService;
+use PAGEmachine\Ats\Service\Cleanup\ApplicationCleanupService;
 use PAGEmachine\Ats\Service\TyposcriptService;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
 
 /*
@@ -50,12 +52,41 @@ class ApplicationsCommandController extends CommandController
     }
 
     /**
+     * Command to remove (hard-delete) old and anonymized applications
+     */
+    public function cleanupCommand()
+    {
+        // Limit this command to TYPO3 >= 8.7
+        if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) < 8007000) {
+            $this->outputLine('You need at least TYPO3 version 8.7 to use this command.');
+            return;
+        }
+        $this->outputLine("Starting cleanup of applications...");
+
+        $cleanupService = ApplicationCleanupService::getInstance();
+
+        $affectedApplications = $cleanupService->cleanupUnfinishedApplications($this->getMinimumApplicationCleanupAge());
+
+        $this->outputLine();
+        $this->outputLine(sprintf("Removed %s unfinished applications.", $affectedApplications));
+    }
+
+    /**
      * @return string
      */
     protected function getMinimumAnonymizationAge()
     {
         $settings = TyposcriptService::getInstance()->getSettings();
         return $settings['anonymization']['minimumAge'] ?: '120 days';
+    }
+
+    /**
+     * @return string
+     */
+    protected function getMinimumApplicationCleanupAge()
+    {
+        $settings = TyposcriptService::getInstance()->getSettings();
+        return $settings['cleanup']['unfinishedApplicationsLifetime'] ?: '60 days';
     }
 
     /**
