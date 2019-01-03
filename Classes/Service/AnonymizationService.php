@@ -38,18 +38,17 @@ class AnonymizationService
      * Anonymizes records of given classname
      *
      * @param string $className
-     * @param string $minimumAge
      * @param array $config
      * @return void
      */
-    public function anonymize($className, $minimumAge, array $config)
+    public function anonymize($className, array $config)
     {
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
         $this->persistenceManager = $objectManager->get(PersistenceManager::class);
 
         $threshold = new \DateTime();
         $threshold->sub(
-            \DateInterval::createFromDateString($minimumAge)
+            \DateInterval::createFromDateString($config['minimumAge'])
         );
 
         $repository = $this->findRepositoryForClass($className);
@@ -107,7 +106,7 @@ class AnonymizationService
                         $this->anonymizeObject($child, $childConfig);
                     }
                 } else {
-                    throw new IllegalObjectTypeException('Only ObjectStorages are supported for anonymization', 1542985424);
+                    throw new IllegalObjectTypeException('Only ObjectStorages, DomainObjects and FileReferences are supported for anonymization.', 1542985424);
                 }
             }
         }

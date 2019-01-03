@@ -34,8 +34,9 @@ class ApplicationsCommandController extends CommandController
 
     /**
      * Command to anonymize applications
+     * @param string $preset The configuration preset to use, see TS: module.tx_ats.settings.anonymization.[className].[preset]
      */
-    public function anonymizeCommand()
+    public function anonymizeCommand($preset = "default")
     {
         $this->outputLine("Starting anonymization of applications...");
 
@@ -43,8 +44,7 @@ class ApplicationsCommandController extends CommandController
 
         $anonymizationService->anonymize(
             Application::class,
-            $this->getMinimumAnonymizationAge(),
-            $this->getAnonymizationConfigurationForClassName(Application::class)
+            $this->getAnonymizationConfigurationForClassName(Application::class, $preset)
         );
 
         $this->outputLine();
@@ -74,15 +74,6 @@ class ApplicationsCommandController extends CommandController
     /**
      * @return string
      */
-    protected function getMinimumAnonymizationAge()
-    {
-        $settings = TyposcriptService::getInstance()->getSettings();
-        return $settings['anonymization']['minimumAge'] ?: '120 days';
-    }
-
-    /**
-     * @return string
-     */
     protected function getMinimumApplicationCleanupAge()
     {
         $settings = TyposcriptService::getInstance()->getSettings();
@@ -92,17 +83,18 @@ class ApplicationsCommandController extends CommandController
     /**
      * Fetches config for anonymization for given class
      *
-     * @param  string $className
+     * @param string $className
+     * @param string $preset
      * @return array
      */
-    protected function getAnonymizationConfigurationForClassName($className)
+    protected function getAnonymizationConfigurationForClassName($className, $preset)
     {
         $settings = TyposcriptService::getInstance()->getSettings();
 
-        if ($settings['anonymization']['objects'][$className]) {
-            return $settings['anonymization']['objects'][$className];
+        if ($settings['anonymization']['objects'][$className][$preset]) {
+            return $settings['anonymization']['objects'][$className][$preset];
         } else {
-            throw new \PAGEmachine\Ats\Exception(sprintf('Could not find anonymization configuration for class %1$s. Check your TypoScript setup in path "module.tx_ats.anonymization.objects.%1$s.', $className), 1542970640);
+            throw new \PAGEmachine\Ats\Exception(sprintf('Could not find anonymization configuration for class %1$s and preset "%2s". Check your TypoScript setup in path "module.tx_ats.anonymization.objects.%1$s.%2s".', $className, $preset), 1542970640);
         }
     }
 }
