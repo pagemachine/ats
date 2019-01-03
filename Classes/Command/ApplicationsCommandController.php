@@ -34,9 +34,9 @@ class ApplicationsCommandController extends CommandController
 
     /**
      * Command to anonymize applications
-     * @param string $preset The configuration preset to use, see TS: module.tx_ats.settings.anonymization.[className].[preset]
+     * @param string $preset The configuration preset to use, see TS: module.tx_ats.settings.anonymization.[className].[preset]. Defaults: "archived" or "pooled".
      */
-    public function anonymizeCommand($preset = "default")
+    public function anonymizeCommand($preset = "archived")
     {
         $this->outputLine("Starting anonymization of applications...");
 
