@@ -88,6 +88,8 @@ If your scheduler is correctly set up, it should now anonymize all old applicati
 Custom presets
 ^^^^^^^^^^^^^^^^^
 
+**Note: The configuration part for anonymization has changed from version 1.12.1 to 1.13.0 (moving the configuration into preset sub-configuration). If your instance includes custom changes, you need to move them to the corresponding preset (archived).**
+
 The default configuration presets can be found inside ``Configuration/TypoScript/Backend/anonymization.ts``.
 
 You can also customize the exact behaviour for applications and their child records by creating your own preset.
