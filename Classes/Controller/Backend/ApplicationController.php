@@ -6,7 +6,6 @@ namespace PAGEmachine\Ats\Controller\Backend;
  */
 
 use PAGEmachine\Ats\Application\ApplicationFilter;
-use PAGEmachine\Ats\Application\ApplicationRating;
 use PAGEmachine\Ats\Application\ApplicationStatus;
 use PAGEmachine\Ats\Application\Note\NoteSubject;
 use PAGEmachine\Ats\Domain\Model\Application;
@@ -307,10 +306,8 @@ class ApplicationController extends AbstractBackendController
      */
     public function ratingPersoAction(Application $application)
     {
-
         $this->view->assign('application', $application);
         $this->view->assign('beUser', $GLOBALS['BE_USER']->user);
-        $this->view->assign('ratingOptions', ApplicationRating::getFlippedConstants());
     }
 
     /**
@@ -321,10 +318,8 @@ class ApplicationController extends AbstractBackendController
      */
     public function ratingAction(Application $application)
     {
-
         $this->view->assign('application', $application);
         $this->view->assign('beUser', $GLOBALS['BE_USER']->user);
-        $this->view->assign('ratingOptions', ApplicationRating::getFlippedConstants());
     }
 
     /**

@@ -7,7 +7,11 @@
 <f:form.hidden property="user" value="{beUser.uid}" />
 
 <div class="form-group">
-	<ats:form.translatableSelect name="application[{ratingField}]" value="{ratingValue}" options="{ratingOptions}" translationPrefix="tx_ats.application.rating." extensionName="ats" class="form-control"/>
+	<f:form.select name="application[{ratingField}]" value="{application.{ratingField}}">
+		<f:for each="{settings.ratingOptions}" as="option" key="value">
+			<f:form.select.option value="{value}"><f:translate key="{option.label}" /></f:form.select.option>
+		</f:for>
+	</f:form.select>
 </div>
 
 <f:form.validationResults for="{note.details}">

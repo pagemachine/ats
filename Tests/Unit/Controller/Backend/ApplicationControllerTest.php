@@ -3,7 +3,6 @@ namespace PAGEmachine\Ats\Tests\Unit\Controller\Backend;
 
 use Nimut\TestingFramework\TestCase\UnitTestCase;
 use PAGEmachine\Ats\Application\ApplicationFilter;
-use PAGEmachine\Ats\Application\ApplicationRating;
 use PAGEmachine\Ats\Application\ApplicationStatus;
 use PAGEmachine\Ats\Controller\Backend\ApplicationController;
 use PAGEmachine\Ats\Domain\Model\Application;
@@ -460,7 +459,6 @@ class ApplicationControllerTest extends UnitTestCase
         $GLOBALS['BE_USER']->user = ['foo'];
         $this->view->assign("application", $this->application)->shouldBeCalled();
         $this->view->assign("beUser", ['foo'])->shouldBeCalled();
-        $this->view->assign('ratingOptions', ApplicationRating::getFlippedConstants())->shouldBeCalled();
 
         $this->applicationController->ratingAction($this->application);
     }
@@ -474,7 +472,6 @@ class ApplicationControllerTest extends UnitTestCase
         $GLOBALS['BE_USER']->user = ['foo'];
         $this->view->assign("application", $this->application)->shouldBeCalled();
         $this->view->assign("beUser", ['foo'])->shouldBeCalled();
-        $this->view->assign('ratingOptions', ApplicationRating::getFlippedConstants())->shouldBeCalled();
 
         $this->applicationController->ratingPersoAction($this->application);
     }
