@@ -54,4 +54,88 @@ Since TYPO3 does not offer conditional access protection for publicly available 
 
 Since the folder is protected, TYPO3 uses a custom script ("DumpFile") to expose them to the public. ATS hooks into this script and if the requested file is within the ATS folder, it will only allow access for **logged-in backend users** and **the frontend user who created the application**.
 
+GDPR-related features
+---------------------
+
+Personal data should not be kept longer than necessary on public servers. However, cleanup by hand is a lot of effort and hard deletions inside the database are not even possible via the TYPO3 interface.
+
+This is why ATS provides tools in form of console/scheduler commands which do the cleanup and anonymization job for you.
+
+ Anonymization
+-------------
+
+The command *applications:anonymize* is a script which anonymizes applications (fills them with an asterisk in all person-related fields) and deletes all relations and files associated to them.
+
+**By default applications in closed status (>=100) which are older than 90 days (not pooled) or older than 1 year (in pool) are subject to anonymization.** They must be triggered f.ex. via scheduler, see below.
+
+Creating the default scheduler tasks
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The default anonymization setup consists of two separate presets, one for archived applications and one for pooled applications.
+
+You have to create a scheduler task for each of these presets. Step by step:
+
+- Create a new scheduler task and select "Extbase CommandController Task" in the "Class" selectbox.
+- Scroll down to "CommandController Command" and select "Ats Applications:anonymize".
+- Set a frequency and a start time (recommended is once every night). Save the form.
+- Scroll down again, now there is a new text field called "preset". Type in "archived". Save the form.
+
+Now create another task for pooled applications, repeat all steps.
+Set a slightly different start time so the tasks do not interfere. Enter "pooled" inside the "preset" field.
+
+If your scheduler is correctly set up, it should now anonymize all old applications in the specified intervals.
+
+Custom presets
+^^^^^^^^^^^^^^^^^
+
+**Note: The configuration part for anonymization has changed from version 1.12.1 to 1.13.0 (moving the configuration into preset sub-configuration). If your instance includes custom changes, you need to move them to the corresponding preset (archived).**
+
+The default configuration presets can be found inside ``Configuration/TypoScript/Backend/anonymization.ts``.
+
+You can also customize the exact behaviour for applications and their child records by creating your own preset.
+
+- **mode** defines the exact anonymization behaviour: Either *anonymize*, *anonymize_and_delete* or *delete_files* for file references.
+- Inside **properties** you can define the replacement value for each property. Default is "*".
+- If you want to keep a property or child as it is, simply remove the value or child section.
+
+If you have custom conditions for anonymization, there is a subkey `conditions` inside the configuration for just that.
+These conditions are appended to the general query. They use extbase query logic ("equals", "greaterThan"...).
+
+**Example**: By default only applications with status 100 (employed) or higher are anonymized. Let's say you want to change this to 110 (cancelled) instead for the "archived" preset.
+
+Inside your ``ext_typoscript_setup.txt``:
+::
+   module.tx_ats.settings.anonymization {
+      objects {
+         PAGEmachine\Ats\Domain\Model\Application {
+            archived {
+               conditions {
+                 status {
+                   property = status
+                   operator = greaterThanOrEqual
+                   value = 110
+                   type = int
+                 }
+               }
+            }
+         }
+      }
+   }
+
+Please note that the *type* option is not always necessary, but cleaner if the value is not a string.
+If you want to pass on a boolean, use 0 or 1 and cast to "bool".
+
+Also, the logic can only handle operators which require one value. Multivalued operators (in, between...) are currently not supported. Use multiple conditions for that.
+
+Cleanup
+-------
+
+The commands *applications:cleanup* and *users:cleanup* triggers hard-deletion scripts which actually perform a database delete instead of just setting the deleted-flag - so the information is actually gone and cannot be hacked, sold, leaked by accident... you name it.
+
+*users:cleanup* needs the sysfolder ID containing the users as parameter.
+
+By default all unfinished applications are deleted **after 30 days**. Users are deleted when the last login was **two years ago**. Both timespans are configurable via TypoScript.
+
+
+
 
