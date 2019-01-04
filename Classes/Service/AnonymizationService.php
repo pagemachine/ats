@@ -106,7 +106,7 @@ class AnonymizationService
                         $this->anonymizeObject($child, $childConfig);
                     }
                 } else {
-                    throw new IllegalObjectTypeException('Only ObjectStorages, DomainObjects and FileReferences are supported for anonymization.', 1542985424);
+                    throw new IllegalObjectTypeException('Only ObjectStorages are supported for child anonymization.', 1542985424);
                 }
             }
         }
