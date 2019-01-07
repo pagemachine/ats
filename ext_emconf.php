@@ -6,12 +6,12 @@ $EM_CONF[$_EXTKEY] = [
     'category' => 'plugin',
     'author' => 'Saskia Schreiber, Stefan Schütt',
     'author_email' => 'sschreiber@pagemachine.de, sschuett@pagemachine.de',
-    'state' => 'stable',
+    'state' => 'alpha',
     'clearCacheOnLoad' => 0,
-    'version' => '1.13.1',
+    'version' => '2.0-alpha',
     'constraints' => [
         'depends' => [
-            'typo3' => '7.6.0-8.7.99',
+            'typo3' => '8.7.99-9.5.99',
             'static_info_tables' => '6.3.0-6.99.99',
         ],
         'suggests' => [
