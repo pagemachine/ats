@@ -24,11 +24,11 @@
     "php": "^7.0 || ^7.2",
     "mpdf/mpdf": "^6.1",
     "symfony/workflow": "^3.3",
-    "typo3/cms-backend": "^8.7 || 9.5",
-    "typo3/cms-beuser": "^8.7 || 9.5",
-    "typo3/cms-core": "^8.7 || 9.5",
-    "typo3/cms-extbase": "^8.7 || 9.5",
-    "typo3/cms-fluid": "^8.7 || 9.5",
+    "typo3/cms-core": "^8.7 || ^9.5",
+    "typo3/cms-backend": "^8.7 || ^9.5",
+    "typo3/cms-beuser": "^8.7 || ^9.5",
+    "typo3/cms-extbase": "^8.7 || ^9.5",
+    "typo3/cms-fluid": "^8.7 || ^9.5",
     "sjbr/static-info-tables": "^6.7"
   },
   "require-dev": {
