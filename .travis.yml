@@ -16,20 +16,14 @@ jobs:
       php: 7.0
       env: TYPO3_VERSION=^8.7
       install:
-        - composer require typo3/cms="$TYPO3_VERSION"
+        - composer require typo3/minimal="$TYPO3_VERSION"
       script:
         - composer lint:php
         - composer test
-        
+
     - <<: *test
-      env: TYPO3_VERSION=^7.6
-      
-    - <<: *test
-      php: 5.6
-      env: TYPO3_VERSION=^7.6
-      before_install:
-        # Not compatible to PHP 5.6
-        - composer remove --no-update --dev slevomat/coding-standard
+      php: 7.2
+      env: TYPO3_VERSION=^9.5
 
     - php: 7.0
       env: XML lint
