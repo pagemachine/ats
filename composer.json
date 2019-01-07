@@ -21,14 +21,14 @@
     }
   ],
   "require": {
-    "php": "^5.6 || ^7.0",
+    "php": "^7.0 || ^7.2",
     "mpdf/mpdf": "^6.1",
     "symfony/workflow": "^3.3",
-    "typo3/cms-backend": "^7.6 || ^8.7",
-    "typo3/cms-beuser": "^7.6 || ^8.7",
-    "typo3/cms-core": "^7.6 || ^8.7",
-    "typo3/cms-extbase": "^7.6 || ^8.7",
-    "typo3/cms-fluid": "^7.6 || ^8.7",
+    "typo3/cms-backend": "^8.7 || 9.5",
+    "typo3/cms-beuser": "^8.7 || 9.5",
+    "typo3/cms-core": "^8.7 || 9.5",
+    "typo3/cms-extbase": "^8.7 || 9.5",
+    "typo3/cms-fluid": "^8.7 || 9.5",
     "typo3-ter/static-info-tables": "^6.4"
   },
   "require-dev": {
