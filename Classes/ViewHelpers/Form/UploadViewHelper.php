@@ -1,6 +1,9 @@
 <?php
 namespace PAGEmachine\Ats\ViewHelpers\Form;
 
+use TYPO3\CMS\Extbase\Property\PropertyMapper;
+use TYPO3\CMS\Extbase\Security\Cryptography\HashService;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -34,16 +37,31 @@ namespace PAGEmachine\Ats\ViewHelpers\Form;
 class UploadViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\UploadViewHelper
 {
     /**
-     * @var \TYPO3\CMS\Extbase\Security\Cryptography\HashService
-     * @inject
+     * @var HashService
      */
     protected $hashService;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Property\PropertyMapper
-     * @inject
+     * @var PropertyMapper $propertyMapper
      */
     protected $propertyMapper;
+
+    /**
+     * @param HashService $hashService
+     */
+    public function injectHashService(HashService $hashService)
+    {
+        $this->hashService = $hashService;
+    }
+
+    /**
+     * @param PropertyMapper $propertyMapper
+     */
+    public function injectPropertyMapper(PropertyMapper $propertyMapper)
+    {
+        $this->propertyMapper = $propertyMapper;
+    }
+
 
     /**
      * Render the upload field including possible resource pointer

@@ -6,7 +6,9 @@ namespace PAGEmachine\Ats\Controller\Application;
  */
 
 
+use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
 use PAGEmachine\Ats\Property\TypeConverter\UploadedFileReferenceConverter;
+use PAGEmachine\Ats\Service\AuthenticationService;
 use PAGEmachine\Ats\Service\ExtconfService;
 use PAGEmachine\Ats\Service\TyposcriptService;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -18,19 +20,31 @@ use TYPO3\CMS\Extbase\Mvc\Controller\Exception\RequiredArgumentMissingException;
 class AbstractApplicationController extends ActionController
 {
     /**
-     * applicationRepository
-     *
-     * @var \PAGEmachine\Ats\Domain\Repository\ApplicationRepository
-     * @inject
+     * @var ApplicationRepository
      */
     protected $applicationRepository = null;
 
 
     /**
-     * @var \PAGEmachine\Ats\Service\AuthenticationService
-     * @inject
+     * @var AuthenticationService
     */
     protected $authenticationService;
+
+    /**
+     * @param  ApplicationRepository $applicationRepository
+     */
+    public function injectApplicationRepository(ApplicationRepository $applicationRepository)
+    {
+        $this->applicationRepository = $applicationRepository;
+    }
+
+    /**
+     * @param  AuthenticationService $authenticationService
+     */
+    public function injectAuthenticationService(AuthenticationService $authenticationService)
+    {
+        $this->authenticationService = $authenticationService;
+    }
 
     /**
      * This is called before the form action and checks if a valid FE User is logged in.

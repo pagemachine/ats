@@ -3,6 +3,7 @@ namespace PAGEmachine\Ats\Controller\Application;
 
 use PAGEmachine\Ats\Domain\Model\ApplicationE;
 use PAGEmachine\Ats\Domain\Model\FileReference;
+use PAGEmachine\Ats\Domain\Repository\ApplicationERepository;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -14,12 +15,17 @@ use PAGEmachine\Ats\Domain\Model\FileReference;
 class UploadController extends AbstractApplicationController
 {
     /**
-     * applicationERepository
-     *
-     * @var \PAGEmachine\Ats\Domain\Repository\ApplicationERepository
-     * @inject
+     * @var ApplicationERepository
      */
     protected $repository = null;
+
+    /**
+     * @param  ApplicationERepository
+     */
+    public function injectRepository(ApplicationERepository $repository)
+    {
+        $this->repository = $repository;
+    }
 
     /**
      * @param  Job $job

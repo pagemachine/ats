@@ -3,6 +3,7 @@ namespace PAGEmachine\Ats\Domain\Validator;
 
 use PAGEmachine\Ats\Service\TyposcriptService;
 use TYPO3\CMS\Extbase\Validation\Validator\GenericObjectValidator;
+use TYPO3\CMS\Extbase\Validation\ValidatorResolver;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -14,10 +15,17 @@ use TYPO3\CMS\Extbase\Validation\Validator\GenericObjectValidator;
 class TypoScriptValidator extends GenericObjectValidator
 {
     /**
-     * @var \TYPO3\CMS\Extbase\Validation\ValidatorResolver
-     * @inject
+     * @var ValidatorResolver $validatorResolver
      */
     protected $validatorResolver;
+
+    /**
+     * @param ValidatorResolver $validatorResolver
+     */
+    public function injectValidatorResolver(ValidatorResolver $validatorResolver)
+    {
+        $this->validatorResolver = $validatorResolver;
+    }
 
     /**
      * Checks if the given value is valid according to the property validators.
