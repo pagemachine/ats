@@ -2,8 +2,12 @@
 namespace PAGEmachine\Ats\Message;
 
 use PAGEmachine\Ats\Domain\Model\Application;
+use PAGEmachine\Ats\Domain\Repository\TextTemplateRepository;
+use PAGEmachine\Ats\Service\FluidRenderingService;
 use PAGEmachine\Ats\Service\MailService;
+use PAGEmachine\Ats\Service\MarkerService;
 use PAGEmachine\Ats\Service\PdfService;
+use PAGEmachine\Ats\Service\TyposcriptService;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -24,29 +28,56 @@ abstract class AbstractMessage
     const MESSAGE_REJECT = 5;
 
     /**
-     * @var PAGEmachine\Ats\Domain\Repository\TextTemplateRepository
-     * @inject
+     * @var TextTemplateRepository $textTemplateRepository
      */
     protected $textTemplateRepository;
 
     /**
-     * @var \PAGEmachine\Ats\Service\MarkerService
-     * @inject
+     * @var MarkerService $markerService
      */
     protected $markerService;
 
-     /**
-     * @var \PAGEmachine\Ats\Service\FluidRenderingService
-     * @inject
+    /**
+     * @var FluidRenderingService $fluidRenderingService
      */
     protected $fluidRenderingService;
 
-     /**
-     * @var \PAGEmachine\Ats\Service\TyposcriptService
-     * @inject
+    /**
+     * @var TyposcriptService $typoscriptService
      */
     protected $typoscriptService;
 
+    /**
+     * @param TextTemplateRepository $textTemplateRepository
+     */
+    public function injectTextTemplateRepository(TextTemplateRepository $textTemplateRepository)
+    {
+        $this->textTemplateRepository = $textTemplateRepository;
+    }
+
+    /**
+     * @param MarkerService $markerService
+     */
+    public function injectMarkerService(MarkerService $markerService)
+    {
+        $this->markerService = $markerService;
+    }
+
+    /**
+     * @param FluidRenderingService $fluidRenderingService
+     */
+    public function injectFluidRenderingService(FluidRenderingService $fluidRenderingService)
+    {
+        $this->fluidRenderingService = $fluidRenderingService;
+    }
+
+    /**
+     * @param TyposcriptService $typoscriptService
+     */
+    public function injectTyposcriptService(TyposcriptService $typoscriptService)
+    {
+        $this->typoscriptService = $typoscriptService;
+    }
 
     /**
      * @var Application $application

@@ -11,11 +11,14 @@ use PAGEmachine\Ats\Domain\Model\History;
 use PAGEmachine\Ats\Domain\Model\Job;
 use PAGEmachine\Ats\Persistence\Repository;
 use PAGEmachine\Ats\Service\ExtconfService;
+use PAGEmachine\Ats\Workflow\WorkflowManager;
 use TYPO3\CMS\Beuser\Domain\Model\BackendUser;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Extbase\Domain\Model\FrontendUser;
 use TYPO3\CMS\Extbase\Mvc\Exception\InvalidArgumentTypeException;
+use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Service\EnvironmentService;
 
 /**
  * The repository for Jobs
@@ -35,36 +38,46 @@ class AbstractApplicationRepository extends Repository
     }
 
     /**
-     *
-     * @var \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper
-     * @inject
+     * @var DataMapper $dataMapper
      */
     protected $dataMapper;
 
-
     /**
-     * @var \TYPO3\CMS\Extbase\Service\EnvironmentService
-     * @inject
+     * @var EnvironmentService $environmentService
      */
     protected $environmentService;
 
     /**
-     * @var \PAGEmachine\Ats\Workflow\WorkflowManager $workflowManager
+     * @var WorkflowManager $workflowManager
      */
     protected $workflowManager;
 
-
     /**
-     * @var \Symfony\Component\Workflow\Workflow $workflow
+     * @var Workflow $workflow
      */
     protected $workflow;
 
     /**
-     *
-     * @param  \PAGEmachine\Ats\Workflow\WorkflowManager $workflowManager
-     * @return void
+     * @param DataMapper $dataMapper
      */
-    public function injectWorkflowManager(\PAGEmachine\Ats\Workflow\WorkflowManager $workflowManager)
+    public function injectDataMapper(DataMapper $dataMapper)
+    {
+        $this->dataMapper = $dataMapper;
+    }
+
+    /**
+     * @param EnvironmentService $environmentService
+     */
+    public function injectEnvironmentService(EnvironmentService $environmentService)
+    {
+        $this->environmentService = $environmentService;
+    }
+
+    /**
+     *
+     * @param  WorkflowManager $workflowManager
+     */
+    public function injectWorkflowManager(WorkflowManager $workflowManager)
     {
         $this->workflowManager = $workflowManager;
         $this->workflow = $workflowManager->getWorkflow();

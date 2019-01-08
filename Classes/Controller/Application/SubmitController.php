@@ -2,6 +2,8 @@
 namespace PAGEmachine\Ats\Controller\Application;
 
 use PAGEmachine\Ats\Domain\Model\Application;
+use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
+use PAGEmachine\Ats\Message\MessageFactory;
 use PAGEmachine\Ats\Service\ExtconfService;
 
 /*
@@ -14,18 +16,30 @@ use PAGEmachine\Ats\Service\ExtconfService;
 class SubmitController extends AbstractApplicationController
 {
     /**
-     * applicationRepository
-     *
-     * @var \PAGEmachine\Ats\Domain\Repository\ApplicationRepository
-     * @inject
+     * @var ApplicationRepository
      */
     protected $repository = null;
 
     /**
-     * @var \PAGEmachine\Ats\Message\MessageFactory
-     * @inject
+     * @var MessageFactory
      */
     protected $messageFactory;
+
+    /**
+     * @param  ApplicationRepository $repository
+     */
+    public function injectApplicationRepository(ApplicationRepository $applicationRepository)
+    {
+        $this->applicationRepository = $applicationRepository;
+    }
+
+    /**
+     * @param  MessageFactory $messageFactory
+     */
+    public function injectMessageFactory(MessageFactory $messageFactory)
+    {
+        $this->messageFactory = $messageFactory;
+    }
 
     /**
      * @param  Application $application

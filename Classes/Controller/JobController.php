@@ -6,6 +6,7 @@ namespace PAGEmachine\Ats\Controller;
  */
 
 use PAGEmachine\Ats\Domain\Model\Job;
+use PAGEmachine\Ats\Domain\Repository\JobRepository;
 use PAGEmachine\Ats\Service\TyposcriptService;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
@@ -15,12 +16,17 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 class JobController extends ActionController
 {
     /**
-     * jobRepository
-     *
-     * @var \PAGEmachine\Ats\Domain\Repository\JobRepository
-     * @inject
+     * @var JobRepository $jobRepository
      */
-    protected $jobRepository = null;
+    protected $jobRepository;
+
+    /**
+     * @param JobRepository $jobRepository
+     */
+    public function injectJobRepository(JobRepository $jobRepository)
+    {
+        $this->jobRepository = $jobRepository;
+    }
 
     /**
      *

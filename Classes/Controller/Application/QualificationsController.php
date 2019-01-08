@@ -2,6 +2,7 @@
 namespace PAGEmachine\Ats\Controller\Application;
 
 use PAGEmachine\Ats\Domain\Model\ApplicationC;
+use PAGEmachine\Ats\Domain\Repository\ApplicationCRepository;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -13,12 +14,17 @@ use PAGEmachine\Ats\Domain\Model\ApplicationC;
 class QualificationsController extends AbstractApplicationController
 {
     /**
-     * applicationCRepository
-     *
-     * @var \PAGEmachine\Ats\Domain\Repository\ApplicationCRepository
-     * @inject
+     * @var ApplicationCRepository
      */
     protected $repository = null;
+
+    /**
+     * @param  ApplicationCRepository $repository
+     */
+    public function injectRepository(ApplicationCRepository $repository)
+    {
+        $this->repository = $repository;
+    }
 
     /**
      * @param  ApplicationC $application
