@@ -2,6 +2,7 @@
 namespace PAGEmachine\Ats\ViewHelpers\Workflow;
 
 use PAGEmachine\Ats\Domain\Model\Application;
+use PAGEmachine\Ats\Workflow\WorkflowManager;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
@@ -16,15 +17,12 @@ use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 class ApplicationActionsViewHelper extends AbstractViewHelper
 {
     /**
-     * @var \PAGEmachine\Ats\Workflow\WorkflowManager
-     * @inject
+     * @var WorkflowManager $workflowManager
      */
     protected $workflowManager;
 
     /**
-     *
-     * @var TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
-     * @inject
+     * @var ConfifurationManagerInterface $configurationManager
      */
     protected $configurationManager;
 
@@ -34,6 +32,23 @@ class ApplicationActionsViewHelper extends AbstractViewHelper
      * @var array
      */
     protected $actions;
+
+    /**
+     * @param WorkflowManager $workflowManager
+     */
+    public function injectWorkflowManager(WorkflowManager $workflowManager)
+    {
+        $this->workflowManager = $workflowManager;
+    }
+
+    /**
+     * @param ConfifurationManagerInterface $configurationManager
+     */
+    public function injectConfigurationManager(ConfifurationManagerInterface $configurationManager)
+    {
+        $this->configurationManager = $configurationManager;
+    }
+
 
     /**
      * @return void

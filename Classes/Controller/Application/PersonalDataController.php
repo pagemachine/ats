@@ -2,6 +2,7 @@
 namespace PAGEmachine\Ats\Controller\Application;
 
 use PAGEmachine\Ats\Domain\Model\ApplicationB;
+use PAGEmachine\Ats\Domain\Repository\ApplicationBRepository;
 use SJBR\StaticInfoTables\Domain\Repository\CountryRepository;
 
 /*
@@ -14,10 +15,7 @@ use SJBR\StaticInfoTables\Domain\Repository\CountryRepository;
 class PersonalDataController extends AbstractApplicationController
 {
     /**
-     * applicationBRepository
-     *
-     * @var \PAGEmachine\Ats\Domain\Repository\ApplicationBRepository
-     * @inject
+     * @var ApplicationBRepository
      */
     protected $repository = null;
 
@@ -25,6 +23,14 @@ class PersonalDataController extends AbstractApplicationController
      * @var CountryRepository
      */
     protected $countryRepository;
+
+    /**
+     * @param  ApplicationBRepository $repository
+     */
+    public function injectRepository(ApplicationBRepository $repository)
+    {
+        $this->repository = $repository;
+    }
 
     /**
      * @param  CountryRepository $countryRepository

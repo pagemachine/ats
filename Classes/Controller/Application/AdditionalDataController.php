@@ -2,6 +2,7 @@
 namespace PAGEmachine\Ats\Controller\Application;
 
 use PAGEmachine\Ats\Domain\Model\ApplicationD;
+use PAGEmachine\Ats\Domain\Repository\ApplicationDRepository;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -13,12 +14,17 @@ use PAGEmachine\Ats\Domain\Model\ApplicationD;
 class AdditionalDataController extends AbstractApplicationController
 {
     /**
-     * applicationDRepository
-     *
-     * @var \PAGEmachine\Ats\Domain\Repository\ApplicationDRepository
-     * @inject
+     * @var ApplicationDRepository
      */
     protected $repository = null;
+
+    /**
+     * @param  ApplicationDRepository $repository
+     */
+    public function injectRepository(ApplicationDRepository $repository)
+    {
+        $this->repository = $repository;
+    }
 
     /**
      * @param  ApplicationD $application

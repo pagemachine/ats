@@ -4,6 +4,7 @@ namespace PAGEmachine\Ats\Controller\Application;
 use PAGEmachine\Ats\Application\ApplicationStatus;
 use PAGEmachine\Ats\Domain\Model\ApplicationA;
 use PAGEmachine\Ats\Domain\Model\Job;
+use PAGEmachine\Ats\Domain\Repository\ApplicationARepository;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -15,12 +16,17 @@ use PAGEmachine\Ats\Domain\Model\Job;
 class FormController extends AbstractApplicationController
 {
     /**
-     * applicationARepository
-     *
-     * @var \PAGEmachine\Ats\Domain\Repository\ApplicationARepository
-     * @inject
+     * @var ApplicationARepository
      */
     protected $applicationARepository = null;
+
+    /**
+     * @param  ApplicationARepository $repository
+     */
+    public function injectApplicationARepository(ApplicationARepository $applicationARepository)
+    {
+        $this->applicationARepository = $applicationARepository;
+    }
 
     /**
      * starts a new application form

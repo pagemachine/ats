@@ -1,6 +1,8 @@
 <?php
 namespace PAGEmachine\Ats\Service;
 
+use TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository;
+
 /*
  * This file is part of the PAGEmachine ATS project.
  */
@@ -8,10 +10,17 @@ namespace PAGEmachine\Ats\Service;
 class AuthenticationService
 {
     /**
-     * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
-     * @inject
+     * @var FrontendUserRepository $frontendUserRepository
      */
     protected $frontendUserRepository;
+
+    /**
+     * @param FrontendUserRepository $frontendUserRepository
+     */
+    public function injectFrontendUserRepository(FrontendUserRepository $frontendUserRepository)
+    {
+        $this->frontendUserRepository = $frontendUserRepository;
+    }
 
     /**
      * Returns whether any user is currently authenticated
