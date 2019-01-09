@@ -2,6 +2,8 @@
 namespace PAGEmachine\Ats\Hook;
 
 use PAGEmachine\Ats\Service\ExtconfService;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
 
 /*
@@ -56,12 +58,15 @@ class DataHandlerJobGroups
      */
     public function getJob($uid)
     {
-        $job = $this->getDatabaseConnection()->exec_SELECTgetSingleRow(
-            'job_number, location, department',
-            'tx_ats_domain_model_job',
-            'uid = ' . intval($uid)
-        );
-        return $job;
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_ats_domain_model_job');
+        $queryBuilder->getRestrictions()->removeAll();
+        $res = $queryBuilder->select('job_number', 'location', 'department')
+            ->from('tx_ats_domain_model_job')
+            ->where($queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter(intval($uid))))
+            ->setMaxResults(1)
+            ->execute();
+
+        return $res->fetch();
     }
 
     /**
@@ -72,11 +77,15 @@ class DataHandlerJobGroups
      */
     public function ensureGroupForJob($name, $location)
     {
-        $group = $this->getDatabaseConnection()->exec_SELECTgetSingleRow(
-            'uid',
-            'be_groups',
-            'title = "' . $name . '"'
-        );
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('be_groups');
+        $queryBuilder->getRestrictions()->removeAll();
+        $res = $queryBuilder->select('uid')
+            ->from('be_groups')
+            ->where($queryBuilder->expr()->eq('title', $queryBuilder->createNamedParameter($name)))
+            ->setMaxResults(1)
+            ->execute();
+
+        $group = $res->fetch();
 
         if ($group === false) {
             return $this->cloneGroupTemplate($name, $location);
@@ -94,11 +103,16 @@ class DataHandlerJobGroups
     public function cloneGroupTemplate($newName, $location)
     {
         $title = sprintf(ExtconfService::getInstance()->getJobGroupTemplate(), $location);
-        $template = $this->getDatabaseConnection()->exec_SELECTgetSingleRow(
-            '*',
-            'be_groups',
-            'title = "' . $title . '"'
-        );
+
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('be_groups');
+        $queryBuilder->getRestrictions()->removeAll();
+        $res = $queryBuilder->select('*')
+            ->from('be_groups')
+            ->where($queryBuilder->expr()->eq('title', $queryBuilder->createNamedParameter($title)))
+            ->setMaxResults(1)
+            ->execute();
+        $template = $res->fetch();
+
         if ($template !== false) {
             $newGroup = $template;
             $newGroup['title'] = $newName;
@@ -106,13 +120,11 @@ class DataHandlerJobGroups
             $newGroup['crdate'] = time();
             unset($newGroup['uid']);
 
-            $result = $this->getDatabaseConnection()->exec_INSERTquery(
-                'be_groups',
-                $newGroup
-            );
+            $connection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('be_groups');
+            $result = $connection->insert('be_groups', $newGroup);
 
-            if ($result === true) {
-                return $this->getDatabaseConnection()->sql_insert_id();
+            if ($result) {
+                return (int)$connection->lastInsertId('be_groups');
             } else {
                 //Something went wrong with the insertion, group was NOT created.
                 return false;
