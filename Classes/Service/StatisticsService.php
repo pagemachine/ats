@@ -127,56 +127,41 @@ class StatisticsService implements SingletonInterface
 
     public function getAgeDistributionUnder($dates)
     {
-        return[];
         $ageUpperLimit = array(20, 29, 39, 49, 59, 100);
         $ageLowerLimit = array(0, 20, 30, 40, 50, 60);
         $ageList = array();
         $size = count($ageUpperLimit);
         for ($i = 0; $i < $size; $i++) {
-            $ageDistribution = $this->getDatabaseConnection()
-            ->exec_SELECTgetSingleRow(
-                "single, TRUNCATE(single/total * 100, 1) as ratio",
-                "(
-                    SELECT COUNT(
-                        DATE_FORMAT( NOW( ) ,  '%Y' )
-                        - DATE_FORMAT( birthday,  '%Y' )
-                        - (
-                            DATE_FORMAT( NOW( ) ,  '00-%m-%d' )
-                            < DATE_FORMAT( birthday,  '00-%m-%d' )
-                        )
-                    ) AS single
-                    FROM  `tx_ats_domain_model_application`
-                    WHERE DATE_FORMAT( NOW( ) ,  '%Y' )
-                        - DATE_FORMAT( birthday,  '%Y' )
-                        - (
-                            DATE_FORMAT( NOW( ) , '00-%m-%d' )
-                            < DATE_FORMAT( birthday,  '00-%m-%d' )
-                        ) BETWEEN $ageLowerLimit[$i] AND $ageUpperLimit[$i]
-                        ".$this->getWhereApplicationInterval($dates)
-                        .BackendUtility::deleteClause("tx_ats_domain_model_application")."
-                ) b, (
-                    SELECT COUNT(
-                        DATE_FORMAT( NOW( ) ,  '%Y' )
-                        - DATE_FORMAT( birthday,  '%Y' )
-                        - (
-                            DATE_FORMAT( NOW( ) ,  '00-%m-%d' )
-                            < DATE_FORMAT( birthday,  '00-%m-%d' )
-                        )
-                    ) AS total
-                    FROM  `tx_ats_domain_model_application`
-                    WHERE DATE_FORMAT( NOW( ) ,  '%Y' )
-                        - DATE_FORMAT( birthday,  '%Y' )
-                        - (
-                            DATE_FORMAT( NOW( ) , '00-%m-%d' )
-                            < DATE_FORMAT( birthday,  '00-%m-%d' )
-                        ) BETWEEN 0 AND 100
-                        ".$this->getWhereApplicationInterval($dates)
-                        .BackendUtility::deleteClause("tx_ats_domain_model_application")."
-                ) c",
-                "1=1"
-            );
-            array_push($ageList, $ageDistribution);
+
+            $dateUpper = date('Y-m-d', strtotime('-'.$ageUpperLimit[$i].' years'));
+            $dateLower = date('Y-m-d', strtotime('-'.$ageLowerLimit[$i].' years'));
+
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_ats_domain_model_application');
+            $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(DeletedRestriction::class));
+            $queryBuilder->count('*')
+                ->from('tx_ats_domain_model_application')
+                ->where(
+                    $queryBuilder->expr()->gte('birthday', $queryBuilder->createNamedParameter($dateUpper)),
+                    $queryBuilder->expr()->lte('birthday', $queryBuilder->createNamedParameter($dateLower))
+                );
+
+            if (!empty($where = $this->getWhereApplicationInterval($queryBuilder, $dates))) {
+                $queryBuilder->andWhere(...$where);
+            }
+
+            $res = $queryBuilder->execute()->fetchColumn(0);
+
+            $ageList[] = ['single' => $res];
         }
+
+        $total = $this->getTotalNumber($ageList, 'single');
+
+        if (!empty($ageList) && $total > 0) {
+            foreach ($ageList as $key => $value) {
+                $ageList[$key]['ratio'] = number_format($value['single'] * 100 / $total, 1);
+            }
+        }
+
         return ['value' => $ageList, 'total' => $this->getTotalNumber($ageList, 'single')];
     }
 
