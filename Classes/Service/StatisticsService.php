@@ -61,13 +61,20 @@ class StatisticsService implements SingletonInterface
 
     public function getTotalApplicationsProvenance($dates)
     {
-        $totalApplicationsProvenance = $this->getDatabaseConnection()
-            ->exec_SELECTcountRows(
-                "*",
-                "tx_ats_domain_model_application",
-                "`referrer`" . BackendUtility::deleteClause("tx_ats_domain_model_application").$this->getWhereApplicationInterval($dates)
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_ats_domain_model_application');
+        $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(DeletedRestriction::class));
+        $count = $queryBuilder
+            ->count('uid')
+            ->from('tx_ats_domain_model_application')
+            ->where(
+                $queryBuilder->expr()->neq('referrer', $queryBuilder->createNamedParameter(0))
             );
-        return $totalApplicationsProvenance;
+
+        if (!empty($where = $this->getWhereApplicationInterval($queryBuilder, $dates))) {
+            $queryBuilder->andWhere(...$where);
+        }
+
+        return $queryBuilder->execute()->fetchColumn(0);
     }
 
     /**
@@ -80,17 +87,33 @@ class StatisticsService implements SingletonInterface
 
     public function getProvenances($dates)
     {
-        $provenancesArray = $this->getDatabaseConnection()->exec_SELECTgetRows(
-            "a.ref, num1 as total, TRUNCATE(((num1/num2) * 100),1) as perc",
-            "(SELECT `referrer` as ref, COUNT( * ) as num1
-                  FROM `tx_ats_domain_model_application`
-                  WHERE `referrer` != 0 ".$this->getWhereApplicationInterval($dates).BackendUtility::deleteClause("tx_ats_domain_model_application")." group by `referrer`) a,
-                  (SELECT COUNT( * ) as num2
-                  FROM `tx_ats_domain_model_application`
-                  WHERE `referrer` != 0 ".$this->getWhereApplicationInterval($dates).BackendUtility::deleteClause("tx_ats_domain_model_application").") b",
-            "1=1"
-        );
-        return ['value' => $provenancesArray, 'total' => $this->getTotalNumber($provenancesArray, 'total')];
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_ats_domain_model_application');
+        $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(DeletedRestriction::class));
+
+        $queryBuilder->select('referrer as ref')
+            ->addSelectLiteral(
+                $queryBuilder->expr()->count('*', 'total')
+            )
+            ->from('tx_ats_domain_model_application')
+            ->where($queryBuilder->expr()->neq('referrer', $queryBuilder->createNamedParameter(0)))
+            ->groupBy('referrer');
+
+        if (!empty($where = $this->getWhereApplicationInterval($queryBuilder, $dates))) {
+            $queryBuilder->andWhere(...$where);
+        }
+
+        $res =  $queryBuilder->execute();
+
+        $rows = $res->fetchAll();
+        $total = $this->getTotalNumber($rows, "total");
+
+        if (!empty($rows) && $total > 0) {
+            foreach ($rows as $key => $value) {
+                $rows[$key]['perc'] = number_format($value['total'] * 100 / $total, 1);
+            }
+        }
+
+        return ['value' => $rows, 'total' => $total];
     }
 
     /**
@@ -104,6 +127,7 @@ class StatisticsService implements SingletonInterface
 
     public function getAgeDistributionUnder($dates)
     {
+        return[];
         $ageUpperLimit = array(20, 29, 39, 49, 59, 100);
         $ageLowerLimit = array(0, 20, 30, 40, 50, 60);
         $ageList = array();
@@ -165,13 +189,18 @@ class StatisticsService implements SingletonInterface
 
     public function getTenderingProcedures($dates)
     {
-        $tenderingProcedures = $this->getDatabaseConnection()
-            ->exec_SELECTcountRows(
-                "*",
-                "tx_ats_domain_model_job",
-                "1=1" . BackendUtility::deleteClause("tx_ats_domain_model_job") . $this->getWhereJobInterval($dates)
-            );
-        return $tenderingProcedures;
+        return[];
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_ats_domain_model_job');
+        $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(DeletedRestriction::class));
+        $count = $queryBuilder
+            ->count('*')
+            ->from('tx_ats_domain_model_job');
+
+        if (!empty($where = $this->getWhereJobInterval($queryBuilder, $dates, 'tx_ats_domain_model_job'))) {
+            $queryBuilder->where(...$where);
+        }
+
+        return $queryBuilder->execute()->fetchColumn(0);
     }
 
     /**
@@ -181,27 +210,59 @@ class StatisticsService implements SingletonInterface
      * @return array
      */
 
-    public function getApplications($dates)
+    public function getApplications($dates, &$queryBuilder = null, $additionalWhere = null)
     {
-        $applications = $this->getDatabaseConnection()
-            ->exec_SELECTgetSingleRow(
-                "men, women, TRUNCATE (men/sum(men + women) * 100, 1) as menPerc, TRUNCATE (women/sum(men + women) * 100, 1) as womenPerc",
-                "(
-                    SELECT COUNT(*) as men
-                    FROM `tx_ats_domain_model_application`
-                    WHERE salutation = 1
-                        ".$this->getWhereApplicationInterval($dates)
-                        .BackendUtility::deleteClause("tx_ats_domain_model_application")."
-                ) b, (
-                    SELECT COUNT(*) as women
-                    FROM `tx_ats_domain_model_application`
-                    WHERE salutation = 2
-                        ".$this->getWhereApplicationInterval($dates)
-                        .BackendUtility::deleteClause("tx_ats_domain_model_application")."
-                ) c",
-                "1 = 1"
-            );
-        return ['value' => $applications, 'total' => $applications["men"] + $applications["women"]];
+        if ($queryBuilder == null) {
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_ats_domain_model_application');
+        }
+
+        $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(DeletedRestriction::class));
+
+        $queryBuilder->select('salutation')
+            ->addSelectLiteral(
+                $queryBuilder->expr()->count('*', 'total')
+            )
+            ->from('tx_ats_domain_model_application')
+            ->orWhere(
+                $queryBuilder->expr()->eq('salutation', $queryBuilder->createNamedParameter(1)),
+                $queryBuilder->expr()->eq('salutation', $queryBuilder->createNamedParameter(2))
+            )
+            ->groupBy('salutation');
+
+
+        if ($additionalWhere != null) {
+            $queryBuilder->andWhere(...$additionalWhere);
+        }
+
+        if (!empty($where = $this->getWhereApplicationInterval($queryBuilder, $dates))) {
+            $queryBuilder->andWhere(...$where);
+        }
+
+        $res =  $queryBuilder->execute();
+
+        $rows = $res->fetchAll();
+        $total = $this->getTotalNumber($rows, "total");
+
+        $applications = [
+            'men' => 0,
+            'women' => 0,
+            'menPerc' => 0,
+            'womenPerc' => 0,
+        ];
+
+        if (!empty($rows) && $total > 0) {
+            foreach ($rows as $key => $value) {
+                if ($value['salutation'] == 1) {
+                    $applications['men'] = $value['total'];
+                    $applications['menPerc'] = number_format($value['total'] * 100 / $total, 1);
+                } else {
+                    $applications['women'] = $value['total'];
+                    $applications['womenPerc'] = number_format($value['total'] * 100 / $total, 1);
+                }
+            }
+        }
+
+        return ['value' =>  $applications, 'total' => $total];
     }
 
      /**
@@ -213,26 +274,10 @@ class StatisticsService implements SingletonInterface
 
     public function getInterviews($dates)
     {
-        $interviews = array();
-        $interviews = $this->getDatabaseConnection()
-            ->exec_SELECTgetSingleRow(
-                "men, women, TRUNCATE (men/sum(men + women) * 100, 1) as menPerc, TRUNCATE (women/sum(men + women) * 100, 1) as womenPerc",
-                "(
-                    SELECT COUNT(*) as men
-                    FROM `tx_ats_domain_model_application`
-                    WHERE salutation = 1 AND `invited`!= 0
-                        ".$this->getWhereApplicationInterval($dates)
-                        .BackendUtility::deleteClause("tx_ats_domain_model_application")."
-                ) b, (
-                    SELECT COUNT(*) as women
-                    FROM `tx_ats_domain_model_application`
-                    WHERE salutation = 2 AND `invited`!= 0
-                        ".$this->getWhereApplicationInterval($dates)
-                        .BackendUtility::deleteClause("tx_ats_domain_model_application")."
-                ) c",
-                "1 = 1"
-            );
-        return ['value' => $interviews, 'total' => $interviews["men"] + $interviews["women"]];
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_ats_domain_model_application');
+        return $this->getApplications($dates, $queryBuilder, [
+            $queryBuilder->expr()->neq('invited', $queryBuilder->createNamedParameter(0)),
+        ]);
     }
 
      /**
@@ -244,26 +289,10 @@ class StatisticsService implements SingletonInterface
 
     public function getOccupiedPositions($dates)
     {
-        $occupiedPositions = array();
-        $occupiedPositions = $this->getDatabaseConnection()
-            ->exec_SELECTgetSingleRow(
-                "men, women, TRUNCATE (men/sum(men + women) * 100, 1) as menPerc, TRUNCATE (women/sum(men + women) * 100, 1) as womenPerc",
-                "(
-                    SELECT COUNT(*) as men
-                    FROM `tx_ats_domain_model_application`
-                    WHERE salutation = 1 AND `status` = ".ApplicationStatus::EMPLOYED
-                        .$this->getWhereApplicationInterval($dates)
-                        .BackendUtility::deleteClause("tx_ats_domain_model_application")."
-                ) b, (
-                    SELECT COUNT(*) as women
-                    FROM `tx_ats_domain_model_application`
-                    WHERE salutation = 2 AND `status` = ".ApplicationStatus::EMPLOYED
-                        .$this->getWhereApplicationInterval($dates)
-                        .BackendUtility::deleteClause("tx_ats_domain_model_application")."
-                ) c",
-                "1 = 1"
-            );
-        return ['value' => $occupiedPositions, 'total' => $occupiedPositions["men"] + $occupiedPositions["women"]];
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_ats_domain_model_application');
+        return $this->getApplications($dates, $queryBuilder, [
+            $queryBuilder->expr()->eq('status', $queryBuilder->createNamedParameter(ApplicationStatus::EMPLOYED)),
+        ]);
     }
 
      /**
