@@ -3,7 +3,10 @@ namespace PAGEmachine\Ats\Service;
 
 use PAGEmachine\Ats\Application\ApplicationStatus;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -21,25 +24,32 @@ class StatisticsService implements SingletonInterface
 
     public function getTotalApplications($dates)
     {
-        $totalApplications = $this->getDatabaseConnection()
-            ->exec_SELECTgetRows(
-                "job.title as title, COUNT( application.uid ) AS counter,
-                TRUNCATE((
-                    COUNT( application.uid ) *100 / (
-                        SELECT COUNT( * )
-                        FROM tx_ats_domain_model_application
-                        WHERE 1 = 1
-                            ".$this->getWhereApplicationInterval($dates)."
-                            ".BackendUtility::deleteClause("tx_ats_domain_model_application", "application")."
-                    )
-                ),1) AS perc",
-                "tx_ats_domain_model_job job, tx_ats_domain_model_application application",
-                "job.uid = application.job".$this->getWhereApplicationInterval($dates, 'application')
-                    .BackendUtility::deleteClause("tx_ats_domain_model_application", "application"),
-                "job"
-            );
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_ats_domain_model_job');
+        $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(DeletedRestriction::class));
+        $queryBuilder->select('job.title as title')
+            ->addSelectLiteral(
+                $queryBuilder->expr()->count('application.uid', 'counter')
+            )
+            ->from('tx_ats_domain_model_job', 'job')
+            ->join('job', 'tx_ats_domain_model_application', 'application', 'job.uid = application.job')
+            ->groupBy('job');
 
-        return ['value' => $totalApplications, 'total' => $this->getTotalNumber($totalApplications, "counter")];
+        if (!empty($where = $this->getWhereApplicationInterval($queryBuilder, $dates, 'application'))) {
+            $queryBuilder->where(...$where);
+        }
+
+        $res = $queryBuilder->execute();
+
+        $rows = $res->fetchAll();
+        $total = $this->getTotalNumber($rows, "counter");
+
+        if (!empty($rows) && $total > 0) {
+            foreach ($rows as $key => $value) {
+                $rows[$key]['perc'] = number_format($value['counter'] * 100 / $total, 1);
+            }
+        }
+
+        return ['value' => $rows, 'total' => $total];
     }
 
     /**
@@ -273,15 +283,18 @@ class StatisticsService implements SingletonInterface
      * @param  string $table
      * @return string
      */
-    public function getWhereApplicationInterval($dates, $table = 'tx_ats_domain_model_application')
+    public function getWhereApplicationInterval(&$queryBuilder, $dates, $table = 'tx_ats_domain_model_application')
     {
+        $where = [];
         if ($dates == null) {
-            return '';
+            return $where;
         }
+        $where[] = $queryBuilder->expr()->gte($table.'.crdate', $queryBuilder->createNamedParameter(strtotime($dates['start'])));
+        $where[] = $queryBuilder->expr()->lte($table.'.crdate', $queryBuilder->createNamedParameter(strtotime($dates['finish'])));
 
-        $whereClause = " AND ".$table.".crdate >= UNIX_TIMESTAMP('".$dates['start']."') AND ".$table.".crdate <= UNIX_TIMESTAMP('".$dates['finish']."') ";
-        return $whereClause;
+        return $where;
     }
+
 
     /**
      * Generates a Where-Clause for displaying JOBs in the defined time interval
