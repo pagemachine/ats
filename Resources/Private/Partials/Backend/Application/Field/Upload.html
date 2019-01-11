@@ -15,7 +15,7 @@
 				<f:if condition="{file.uid}">
 					<li class="list-group-item">
 						<a href="{file.backendUrl}" target="_blank">
-							<f:image src="{file.backendUrl}" maxHeight="100" style="border: 1px solid #DDD;" /> {file.originalResource.name}
+							<f:image image="{file.originalResource}" maxHeight="100" style="border: 1px solid #DDD;" /> {file.originalResource.name}
 						</a>
 
 						<ats:form.upload property="files.{i.index}" style="display: none;">
