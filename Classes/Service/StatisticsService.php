@@ -2,7 +2,6 @@
 namespace PAGEmachine\Ats\Service;
 
 use PAGEmachine\Ats\Application\ApplicationStatus;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\SingletonInterface;
@@ -132,7 +131,6 @@ class StatisticsService implements SingletonInterface
         $ageList = array();
         $size = count($ageUpperLimit);
         for ($i = 0; $i < $size; $i++) {
-
             $dateUpper = date('Y-m-d', strtotime('-'.$ageUpperLimit[$i].' years'));
             $dateLower = date('Y-m-d', strtotime('-'.$ageLowerLimit[$i].' years'));
 
@@ -174,7 +172,6 @@ class StatisticsService implements SingletonInterface
 
     public function getTenderingProcedures($dates)
     {
-        return[];
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_ats_domain_model_job');
         $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(DeletedRestriction::class));
         $count = $queryBuilder
@@ -317,25 +314,32 @@ class StatisticsService implements SingletonInterface
      * @param  string $table
      * @return string
      */
-    public function getWhereJobInterval($dates, $table = 'tx_ats_domain_model_job')
+    public function getWhereJobInterval(&$queryBuilder, $dates, $table = 'tx_ats_domain_model_job')
     {
+        $where = [];
         if ($dates == null) {
-            return '';
+            return $where;
         }
+        $where[] = $queryBuilder->expr()->gte($table.'.crdate', $queryBuilder->createNamedParameter(strtotime($dates['start'])));
+        $where[] = $queryBuilder->expr()->lte($table.'.crdate', $queryBuilder->createNamedParameter(strtotime($dates['finish'])));
 
-        $whereClause = " AND ".$table.".crdate >= UNIX_TIMESTAMP('".$dates['start']."') AND ".$table.".crdate <= UNIX_TIMESTAMP('".$dates['finish']."') ";
+        $where[] = $queryBuilder->expr()->orX(
+            $queryBuilder->expr()->andX(
+                $queryBuilder->expr()->gte($table.'.starttime', $queryBuilder->createNamedParameter(strtotime($dates['start']))),
+                $queryBuilder->expr()->lte($table.'.starttime', $queryBuilder->createNamedParameter(strtotime($dates['finish'])))
+            ),
+            $queryBuilder->expr()->eq($table.'.starttime', $queryBuilder->createNamedParameter(0))
+        );
 
+        $where[] = $queryBuilder->expr()->orX(
+            $queryBuilder->expr()->andX(
+                $queryBuilder->expr()->gte($table.'.endtime', $queryBuilder->createNamedParameter(strtotime($dates['start']))),
+                $queryBuilder->expr()->lte($table.'.endtime', $queryBuilder->createNamedParameter(strtotime($dates['finish'])))
+            ),
+            $queryBuilder->expr()->eq($table.'.endtime', $queryBuilder->createNamedParameter(0))
+        );
 
-        $whereClause = " AND
-            (
-                ".$table.".starttime BETWEEN UNIX_TIMESTAMP('".$dates["start"]."') AND UNIX_TIMESTAMP('".$dates["finish"]."')
-                OR
-                ".$table.".starttime=0 AND ".$table.".crdate BETWEEN  UNIX_TIMESTAMP('".$dates["start"]."') AND UNIX_TIMESTAMP('".$dates["finish"]."')
-            ) AND (
-                ".$table.".endtime BETWEEN UNIX_TIMESTAMP('".$dates["start"]."') AND UNIX_TIMESTAMP('".$dates["finish"] ."') OR ".$table.".endtime=0
-            )";
-
-        return $whereClause;
+        return $where;
     }
 
     /**
