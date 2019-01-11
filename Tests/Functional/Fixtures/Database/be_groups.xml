@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataset>
+    <be_groups>
+        <uid>1</uid>
+        <pid>0</pid>
+        <title>UserPa</title>
+        <deleted>0</deleted>
+        <hidden>0</hidden>
+        <tx_ats_location>Zentrale</tx_ats_location>
+    </be_groups>
+</dataset>
