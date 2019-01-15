@@ -24,7 +24,7 @@ class DataHandlerJobGroupsTest extends FunctionalTestCase
     /**
      * @var string
      */
-    protected $backendUserFixture = __DIR__ .'/Fixtures/Database/Overrides/be_users.xml';
+    protected $backendUserFixture = __DIR__ .'/../Fixtures/Database/Overrides/be_users.xml';
 
     /**
      * @var DataHandlerJobGroups
@@ -46,8 +46,8 @@ class DataHandlerJobGroupsTest extends FunctionalTestCase
         \TYPO3\CMS\Core\Core\Bootstrap::getInstance()->initializeLanguageObject();
 
 
-        $this->importDataSet(__DIR__ . '/Fixtures/Database/be_groups.xml');
-        $this->importDataSet(__DIR__ . '/Fixtures/Database/tx_ats_domain_model_job.xml');
+        $this->importDataSet(__DIR__ . '/../Fixtures/Database/be_groups.xml');
+        $this->importDataSet(__DIR__ . '/../Fixtures/Database/tx_ats_domain_model_job.xml');
 
         /** @var \PAGEmachine\Ats\Hook\DataHandlerJobGroups */
         $this->dataHandlerJobGroups = GeneralUtility::makeInstance(DataHandlerJobGroups::class);
