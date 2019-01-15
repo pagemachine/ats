@@ -8,4 +8,12 @@
         <hidden>0</hidden>
         <tx_ats_location>Zentrale</tx_ats_location>
     </be_groups>
+    <be_groups>
+        <uid>2</uid>
+        <pid>0</pid>
+        <title>bms department template Zentrale</title>
+        <deleted>0</deleted>
+        <hidden>0</hidden>
+        <tx_ats_location>Zentrale</tx_ats_location>
+    </be_groups>
 </dataset>
