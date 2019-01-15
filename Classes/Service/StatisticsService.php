@@ -33,7 +33,7 @@ class StatisticsService implements SingletonInterface
             ->join('job', 'tx_ats_domain_model_application', 'application', 'job.uid = application.job')
             ->groupBy('job');
 
-        $where = $this->getWhereApplicationInterval($queryBuilder, $dates, 'application')
+        $where = $this->getWhereApplicationInterval($queryBuilder, $dates, 'application');
         if (!empty($where)) {
             $queryBuilder->where(...$where);
         }
@@ -70,7 +70,7 @@ class StatisticsService implements SingletonInterface
                 $queryBuilder->expr()->neq('referrer', $queryBuilder->createNamedParameter(0))
             );
 
-        $where = $this->getWhereApplicationInterval($queryBuilder, $dates)
+        $where = $this->getWhereApplicationInterval($queryBuilder, $dates);
         if (!empty($where)) {
             $queryBuilder->andWhere(...$where);
         }
@@ -99,7 +99,7 @@ class StatisticsService implements SingletonInterface
             ->where($queryBuilder->expr()->neq('referrer', $queryBuilder->createNamedParameter(0)))
             ->groupBy('referrer');
 
-        $where = $this->getWhereApplicationInterval($queryBuilder, $dates)
+        $where = $this->getWhereApplicationInterval($queryBuilder, $dates);
         if (!empty($where)) {
             $queryBuilder->andWhere(...$where);
         }
@@ -146,7 +146,7 @@ class StatisticsService implements SingletonInterface
                     $queryBuilder->expr()->lte('birthday', $queryBuilder->createNamedParameter($dateLower))
                 );
 
-            $where = $this->getWhereApplicationInterval($queryBuilder, $dates)
+            $where = $this->getWhereApplicationInterval($queryBuilder, $dates);
             if (!empty($where)) {
                 $queryBuilder->andWhere(...$where);
             }
@@ -182,7 +182,7 @@ class StatisticsService implements SingletonInterface
             ->count('*')
             ->from('tx_ats_domain_model_job');
 
-        $where = $this->getWhereJobInterval($queryBuilder, $dates, 'tx_ats_domain_model_job')
+        $where = $this->getWhereJobInterval($queryBuilder, $dates, 'tx_ats_domain_model_job');
         if (!empty($where)) {
             $queryBuilder->where(...$where);
         }
@@ -221,7 +221,7 @@ class StatisticsService implements SingletonInterface
             $queryBuilder->andWhere(...$additionalWhere);
         }
 
-        $where = $this->getWhereApplicationInterval($queryBuilder, $dates)
+        $where = $this->getWhereApplicationInterval($queryBuilder, $dates);
         if (!empty($where)) {
             $queryBuilder->andWhere(...$where);
         }
