@@ -1,6 +1,9 @@
 <?php
 namespace PAGEmachine\Ats\Controller\Backend;
 
+use PAGEmachine\Ats\Service\ExportService;
+use PAGEmachine\Ats\Service\StatisticsService;
+
 /*
  * This file is part of the PAGEmachine ATS project.
  */
@@ -12,18 +15,30 @@ namespace PAGEmachine\Ats\Controller\Backend;
 class StatisticsController extends AbstractBackendController
 {
     /**
-     *
-     * @var \PAGEmachine\Ats\Service\StatisticsService
-     * @inject
+     * @var StatisticsService $statisticsService
      */
     protected $statisticsService;
 
     /**
-     *
-     * @var \PAGEmachine\Ats\Service\ExportService
-     * @inject
+     * @var ExportService $exportService
      */
     protected $exportService;
+
+    /**
+     * @param StatisticsService $statisticsService
+     */
+    public function injectStatisticsService(StatisticsService $statisticsService)
+    {
+        $this->statisticsService = $statisticsService;
+    }
+
+    /**
+     * @param ExportService $exportService
+     */
+    public function injectExportService(ExportService $exportService)
+    {
+        $this->exportService = $exportService;
+    }
 
     /**
      * Action URLs for the action menu

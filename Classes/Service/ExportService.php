@@ -1,6 +1,8 @@
 <?php
 namespace PAGEmachine\Ats\Service;
 
+use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
+use PAGEmachine\Ats\Domain\Repository\JobRepository;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -13,16 +15,30 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class ExportService implements SingletonInterface
 {
     /**
-     * @var PAGEmachine\Ats\Domain\Repository\ApplicationRepository
-     * @inject
+     * @var ApplicationRepository $applicationRepository
      */
     protected $applicationRepository;
 
     /**
-     * @var PAGEmachine\Ats\Domain\Repository\JobRepository
-     * @inject
+     * @var JobRepository $jobRepository
      */
     protected $jobRepository;
+
+    /**
+     * @param ApplicationRepository $applicationRepository
+     */
+    public function injectApplicationRepository(ApplicationRepository $applicationRepository)
+    {
+        $this->applicationRepository = $applicationRepository;
+    }
+
+    /**
+     * @param JobRepository $jobRepository
+     */
+    public function injectJobRepository(JobRepository $jobRepository)
+    {
+        $this->jobRepository = $jobRepository;
+    }
 
     public function __construct()
     {

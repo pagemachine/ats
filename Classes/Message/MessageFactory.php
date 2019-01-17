@@ -5,6 +5,7 @@ use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Message\AbstractMessage;
 use PAGEmachine\Ats\Message\MassMessageContainer;
 use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -42,10 +43,18 @@ class MessageFactory implements SingletonInterface
     ];
 
     /**
-     * @var \TYPO3\CMS\Extbase\Object\ObjectManager
-     * @inject
+     * @var ObjectManager $objectManager
      */
     protected $objectManager;
+
+    /**
+     * @param ObjectManager $objectManager
+     */
+    public function injectObjectManager(ObjectManager $objectManager)
+    {
+        $this->objectManager = $objectManager;
+    }
+
 
     /**
      * Returns message types
