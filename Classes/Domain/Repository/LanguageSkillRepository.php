@@ -12,5 +12,4 @@ use PAGEmachine\Ats\Persistence\Repository;
  */
 class LanguageSkillRepository extends Repository
 {
-
 }
