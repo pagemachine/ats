@@ -142,7 +142,7 @@ class PdfService implements SingletonInterface
             'margin_bottom' => 0,
             'margin_header' => 0,
             'margin_footer' => 0,
-            'orientation' => 'P'
+            'orientation' => 'P',
         ]);
 
         $pdf->setAutoTopMargin = true;
