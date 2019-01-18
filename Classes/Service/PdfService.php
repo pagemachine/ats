@@ -130,8 +130,20 @@ class PdfService implements SingletonInterface
     {
         $filePath = GeneralUtility::getFileAbsFileName('typo3temp/' . $fileName);
 
-        /* @var $pdf \mPDF */
-        $pdf = $this->objectManager->get('mPDF', 'c', 'A4', '', '', 0, 0, 0, 0, 0, 0);
+        /* @var $pdf \Mpdf\Mpdf */
+        $pdf = $this->objectManager->get('Mpdf\Mpdf', [
+            'mode' => 'c',
+            'format' => 'A4',
+            'default_font_size' => '',
+            'default_font' => '',
+            'margin_left' => 0,
+            'margin_right' => 0,
+            'margin_top' => 0,
+            'margin_bottom' => 0,
+            'margin_header' => 0,
+            'margin_footer' => 0,
+            'orientation' => 'P'
+        ]);
 
         $pdf->setAutoTopMargin = true;
 
