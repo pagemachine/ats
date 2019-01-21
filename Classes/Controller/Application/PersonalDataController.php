@@ -42,6 +42,7 @@ class PersonalDataController extends AbstractApplicationController
 
     /**
      * @param  ApplicationB $application
+     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("application")
      * @ignorevalidation $application
      * @return void
      */
