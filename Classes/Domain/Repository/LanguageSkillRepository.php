@@ -8,7 +8,7 @@ namespace PAGEmachine\Ats\Domain\Repository;
 use PAGEmachine\Ats\Persistence\Repository;
 
 /**
- * The repository for Notes
+ * The repository for language skills
  */
 class LanguageSkillRepository extends Repository
 {

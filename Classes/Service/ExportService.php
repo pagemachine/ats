@@ -229,8 +229,8 @@ class ExportService implements SingletonInterface
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_ats_domain_model_application');
         $queryBuilder->getRestrictions()->removeAll();
         $queryBuilder->select('t1.uid')
-        ->from('tx_ats_domain_model_application', 't1')
-        ->leftJoin('t1', 'tx_ats_domain_model_job', 't10', 't1.job = t10.uid');
+            ->from('tx_ats_domain_model_application', 't1')
+            ->leftJoin('t1', 'tx_ats_domain_model_job', 't10', 't1.job = t10.uid');
         $where = $this->getExportFilterWhere($queryBuilder, $filter);
         if (!empty($where)) {
             $queryBuilder->where(...$where);
@@ -240,7 +240,8 @@ class ExportService implements SingletonInterface
         $res = $queryBuilder->execute();
 
         if ($res) {
-            while ($uid = $res->fetch()['uid']) {
+            foreach ($res as $resRow) {
+                $uid = $resRow['uid'];
                 $row = [];
                 $application = $this->applicationRepository->findByUid($uid);
                 if ($application !== null) {
@@ -495,7 +496,7 @@ class ExportService implements SingletonInterface
      *
      * @param  object $queryBuilder
      * @param  array $filter
-     * @return void
+     * @return array
      */
     public function getExportFilterWhere(&$queryBuilder, $filter)
     {
