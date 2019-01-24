@@ -1,6 +1,7 @@
 <?php
 namespace PAGEmachine\Ats\TCA;
 
+use PAGEmachine\Ats\Service\ExtconfService;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -25,7 +26,7 @@ class FormHelper
     public function findUserPa(&$params)
     {
 
-         $params['items'] = $this->findUserByGroupRoleAndLocation(ExtconfService->getInstance()->getJobRoleDefinitions()['user_pa'], $params['row']['location']);
+         $params['items'] = $this->findUserByGroupRoleAndLocation(ExtconfService::getInstance()->getJobRoleDefinitions()['user_pa'], $params['row']['location']);
     }
 
     /**
@@ -38,7 +39,7 @@ class FormHelper
     public function findOfficials(&$params)
     {
 
-         $params['items'] = $this->findUserByGroupRoleAndLocation(ExtconfService->getInstance()->getJobRoleDefinitions()['officials'], $params['row']['location']);
+         $params['items'] = $this->findUserByGroupRoleAndLocation(ExtconfService::getInstance()->getJobRoleDefinitions()['officials'], $params['row']['location']);
     }
 
     /**
@@ -51,7 +52,7 @@ class FormHelper
     public function findContributors(&$params)
     {
 
-         $params['items'] = $this->findUserByGroupRoleAndLocation(ExtconfService->getInstance()->getJobRoleDefinitions()['contributors'], $params['row']['location']);
+         $params['items'] = $this->findUserByGroupRoleAndLocation(ExtconfService::getInstance()->getJobRoleDefinitions()['contributors'], $params['row']['location']);
     }
 
     /**
@@ -68,9 +69,9 @@ class FormHelper
             ->from('be_groups')
             ->where($queryBuilder->expr()->eq('tx_ats_location', $queryBuilder->createNamedParameter($params['row']['location'])));
 
-        if (ExtensionManagementUtility::isLoaded('extbase_acl') && !empty(ExtconfService->getInstance()->getJobRoleDefinitions()['department'])) {
+        if (ExtensionManagementUtility::isLoaded('extbase_acl') && !empty(ExtconfService::getInstance()->getJobRoleDefinitions()['department'])) {
             $queryBuilder->andWhere(
-                $queryBuilder->expr()->in('tx_extbaseacl_role', $queryBuilder->createNamedParameter(ExtconfService->getInstance()->getJobRoleDefinitions()['department']))
+                $queryBuilder->expr()->in('tx_extbaseacl_role', $queryBuilder->createNamedParameter(ExtconfService::getInstance()->getJobRoleDefinitions()['department']))
             );
         }
 
