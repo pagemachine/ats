@@ -25,7 +25,7 @@ class FormHelper
     public function findUserPa(&$params)
     {
 
-         $params['items'] = $this->findUserByGroupRoleAndLocation($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['job']['roles']['user_pa'], $params['row']['location']);
+         $params['items'] = $this->findUserByGroupRoleAndLocation(ExtconfService->getInstance()->getJobRoleDefinitions()['user_pa'], $params['row']['location']);
     }
 
     /**
@@ -38,7 +38,7 @@ class FormHelper
     public function findOfficials(&$params)
     {
 
-         $params['items'] = $this->findUserByGroupRoleAndLocation($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['job']['roles']['officials'], $params['row']['location']);
+         $params['items'] = $this->findUserByGroupRoleAndLocation(ExtconfService->getInstance()->getJobRoleDefinitions()['officials'], $params['row']['location']);
     }
 
     /**
@@ -51,7 +51,7 @@ class FormHelper
     public function findContributors(&$params)
     {
 
-         $params['items'] = $this->findUserByGroupRoleAndLocation($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['job']['roles']['contributors'], $params['row']['location']);
+         $params['items'] = $this->findUserByGroupRoleAndLocation(ExtconfService->getInstance()->getJobRoleDefinitions()['contributors'], $params['row']['location']);
     }
 
     /**
@@ -63,14 +63,14 @@ class FormHelper
     public function findDepartment(&$params)
     {
 
-        $queryBuilder = $this->getQueryBuilder('be_groups');
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('be_groups');
         $queryBuilder->select('uid', 'title')
             ->from('be_groups')
             ->where($queryBuilder->expr()->eq('tx_ats_location', $queryBuilder->createNamedParameter($params['row']['location'])));
 
-        if (ExtensionManagementUtility::isLoaded('extbase_acl') && !empty($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['job']['roles']['department'])) {
+        if (ExtensionManagementUtility::isLoaded('extbase_acl') && !empty(ExtconfService->getInstance()->getJobRoleDefinitions()['department'])) {
             $queryBuilder->andWhere(
-                $queryBuilder->expr()->in('tx_extbaseacl_role', $queryBuilder->createNamedParameter($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['job']['roles']['department']))
+                $queryBuilder->expr()->in('tx_extbaseacl_role', $queryBuilder->createNamedParameter(ExtconfService->getInstance()->getJobRoleDefinitions()['department']))
             );
         }
 
@@ -96,7 +96,7 @@ class FormHelper
 
         $groupsArray = [];
 
-        $queryBuilder = $this->getQueryBuilder('be_groups');
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('be_groups');
         $queryBuilder->select('uid')
             ->from('be_groups')
             ->where($queryBuilder->expr()->eq('tx_ats_location', $queryBuilder->createNamedParameter($location)));
@@ -114,7 +114,7 @@ class FormHelper
             $groupsArray[] = $row['uid'];
         }
 
-        $queryBuilder = $this->getQueryBuilder('be_users');
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('be_users');
 
         $queryBuilder->select("*")->from("be_users")->orderBy('realName');
 
@@ -135,17 +135,5 @@ class FormHelper
             $items[] = array($row['realName'].' ('.$row['username'].')', $row['uid']);
         }
         return $items;
-    }
-
-    /**
-     * Helper function to mock QueryBuilder
-     * @codeCoverageIgnore
-     *
-     * @param  string $table
-     * @return object
-     */
-    public function getQueryBuilder($table)
-    {
-        return GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
     }
 }
