@@ -41,6 +41,9 @@ class ApplicationRating extends Enumeration
      */
     protected static function loadValues()
     {
+        static::$enumConstants[get_called_class()] = [
+            '__default' => 0,
+        ];
         $ratingOptions = TyposcriptService::getInstance()->getSettings()['ratingOptions'];
 
         foreach ($ratingOptions as $value => $option) {
