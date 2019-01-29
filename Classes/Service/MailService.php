@@ -54,12 +54,12 @@ class MailService implements SingletonInterface
      * @param  Application $application The application to pull information from
      * @param  string $subject
      * @param  string $body
-     * @param  string $cc
-     * @param  string $bcc
+     * @param  array $cc
+     * @param  array $bcc
      * @param  bool $useBackendUserCredentials Whether the mail should use the current backend user for sender details
      * @return void
      */
-    public function sendReplyMail(Application $application, $subject = "", $body = "", $cc = "", $bcc = "", $useBackendUserCredentials = true)
+    public function sendReplyMail(Application $application, $subject = "", $body = "", $cc = [], $bcc = [], $useBackendUserCredentials = true)
     {
         $mail = $this->callStatic(GeneralUtility::class, 'makeInstance', MailMessage::class);
 
@@ -79,11 +79,11 @@ class MailService implements SingletonInterface
             ->setTo([$application->getEmail() => $application->getFirstname() . ' ' . $application->getSurname()])
             ->setBody($renderedBody, 'text/html');
 
-        if ($cc != "") {
+        if (!empty($cc)) {
             $mail->setCc($cc);
         }
 
-        if ($bcc != "") {
+        if (!empty($bcc)) {
             $mail->setBcc($bcc);
         }
 

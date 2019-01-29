@@ -103,7 +103,7 @@ class InviteMessageTest extends UnitTestCase
         $this->fluidRenderingService->render("subject", Argument::type("array"))->willReturn("subject");
         $this->fluidRenderingService->render("someText", Argument::type("array"))->willReturn("<p>SomeText</p>");
 
-        $mailService->sendReplyMail($this->application, "subject", "<p>SomeText</p>", "cc@foobar.de", "bcc@foobar.de", true)->shouldBeCalled();
+        $mailService->sendReplyMail($this->application, "subject", "<p>SomeText</p>", ["cc@foobar.de"], ["bcc@foobar.de"], true)->shouldBeCalled();
         $this->inviteMessage->send();
     }
 
