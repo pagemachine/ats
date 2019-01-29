@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataset>
+    <be_users>
+        <uid>2</uid>
+        <pid>0</pid>
+        <username>mueller</username>
+        <realName>Max Mueller</realName>
+        <deleted>0</deleted>
+        <disable>0</disable>
+        <usergroup>1</usergroup>
+        <tx_ats_email_signature>Max Mueller email</tx_ats_email_signature>
+        <tx_ats_pdf_signature>Max Mueller pdf</tx_ats_pdf_signature>
+        <tx_ats_contact_print>Max Mueller print</tx_ats_contact_print>
+    </be_users>
+    <be_users>
+        <uid>3</uid>
+        <pid>0</pid>
+        <username>mueller</username>
+        <realName>Max Mueller</realName>
+        <deleted>0</deleted>
+        <disable>0</disable>
+        <usergroup>1</usergroup>
+        <tx_ats_email_signature>Max Mueller email</tx_ats_email_signature>
+        <tx_ats_pdf_signature>Max Mueller pdf</tx_ats_pdf_signature>
+        <tx_ats_contact_print>Max Mueller print</tx_ats_contact_print>
+    </be_users>
+</dataset>

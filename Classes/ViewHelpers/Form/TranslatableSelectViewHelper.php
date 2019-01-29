@@ -43,7 +43,7 @@ class TranslatableSelectViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\Sel
         }
 
         $translationId = $this->arguments['translationPrefix'] . $value;
-        $request = $this->controllerContext->getRequest();
+        $request = $this->renderingContext->getControllerContext()->getRequest();
         $extensionName = $this->arguments['extensionName'] ?: $request->getControllerExtensionName();
         $translatedLabel = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($translationId, $extensionName);
 

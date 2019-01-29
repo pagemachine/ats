@@ -3,6 +3,7 @@ namespace PAGEmachine\Ats\Hook;
 
 use PAGEmachine\Ats\Service\ExtconfService;
 use TYPO3\CMS\Backend\FrontendBackendUserAuthentication;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Resource\AbstractFile;
 use TYPO3\CMS\Core\Resource\Hook\FileDumpEIDHookInterface;
 use TYPO3\CMS\Core\Resource\ResourceInterface;
@@ -119,31 +120,32 @@ class FileDumpControllerHook implements FileDumpEIDHookInterface
      */
     protected function getLinkedApplications($fileUid)
     {
-        $constraints = [
-            sprintf('sys_file_reference.tablenames = "%s"', $this->tableNames),
-            sprintf('sys_file_reference.fieldname = "%s"', $this->fieldName),
-            sprintf('sys_file.uid = "%s"', intval($fileUid)),
-        ];
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_file');
+        $queryBuilder->getRestrictions()->removeAll();
+        $res = $queryBuilder->select('tx_ats_domain_model_application.*')
+            ->from('sys_file')
+            ->leftJoin(
+                'sys_file',
+                'sys_file_reference',
+                'sys_file_reference',
+                'sys_file.uid = sys_file_reference.uid_local'
+            )
+            ->leftJoin(
+                'sys_file_reference',
+                'tx_ats_domain_model_application',
+                'tx_ats_domain_model_application',
+                'sys_file_reference.uid_foreign = tx_ats_domain_model_application.uid'
+            )
+            ->where(
+                $queryBuilder->expr()->eq('sys_file_reference.tablenames', $queryBuilder->createNamedParameter($this->tableNames)),
+                $queryBuilder->expr()->eq('sys_file_reference.fieldname', $queryBuilder->createNamedParameter($this->fieldName)),
+                $queryBuilder->expr()->eq('sys_file.uid', $queryBuilder->createNamedParameter(intval($fileUid)))
+            )
+            ->execute();
 
-        $applicationQuery = $this->getDatabaseConnection()->exec_SELECT_mm_query(
-            'tx_ats_domain_model_application.*',
-            'sys_file',
-            'sys_file_reference',
-            'tx_ats_domain_model_application',
-            ' AND ' . implode(' AND ', $constraints)
-        );
-
-        while ($row = $this->getDatabaseConnection()->sql_fetch_assoc($applicationQuery)) {
+        foreach ($res as $row) {
             yield $row;
         }
-    }
-
-    /**
-     * @return \TYPO3\CMS\Core\Database\DatabaseConnection
-     */
-    public function getDatabaseConnection()
-    {
-        return $GLOBALS['TYPO3_DB'];
     }
 
     /**

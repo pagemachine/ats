@@ -1,8 +1,10 @@
 <?php
 namespace PAGEmachine\Ats\TCA;
 
-use TYPO3\CMS\Backend\Utility\BackendUtility;
+use PAGEmachine\Ats\Service\ExtconfService;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -24,7 +26,7 @@ class FormHelper
     public function findUserPa(&$params)
     {
 
-         $params['items'] = $this->findUserByGroupRoleAndLocation($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['job']['roles']['user_pa'], $params['row']['location']);
+         $params['items'] = $this->findUserByGroupRoleAndLocation(ExtconfService::getInstance()->getJobRoleDefinitions()['user_pa'], $params['row']['location']);
     }
 
     /**
@@ -37,7 +39,7 @@ class FormHelper
     public function findOfficials(&$params)
     {
 
-         $params['items'] = $this->findUserByGroupRoleAndLocation($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['job']['roles']['officials'], $params['row']['location']);
+         $params['items'] = $this->findUserByGroupRoleAndLocation(ExtconfService::getInstance()->getJobRoleDefinitions()['officials'], $params['row']['location']);
     }
 
     /**
@@ -50,7 +52,7 @@ class FormHelper
     public function findContributors(&$params)
     {
 
-         $params['items'] = $this->findUserByGroupRoleAndLocation($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['job']['roles']['contributors'], $params['row']['location']);
+         $params['items'] = $this->findUserByGroupRoleAndLocation(ExtconfService::getInstance()->getJobRoleDefinitions()['contributors'], $params['row']['location']);
     }
 
     /**
@@ -62,18 +64,20 @@ class FormHelper
     public function findDepartment(&$params)
     {
 
-        $where = implode('', [
-            'be_groups.tx_ats_location = "' . $params['row']['location'] . '"',
-            $this->getDeleteClause("be_groups"),
-            $this->getBackendEnableFields("be_groups"),
-        ]);
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('be_groups');
+        $queryBuilder->select('uid', 'title')
+            ->from('be_groups')
+            ->where($queryBuilder->expr()->eq('tx_ats_location', $queryBuilder->createNamedParameter($params['row']['location'])));
 
-        if (ExtensionManagementUtility::isLoaded('extbase_acl') && !empty($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['job']['roles']['department'])) {
-            $where .= ' AND be_groups.tx_extbaseacl_role IN(' . $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['job']['roles']['department'] . ')';
+        if (ExtensionManagementUtility::isLoaded('extbase_acl') && !empty(ExtconfService::getInstance()->getJobRoleDefinitions()['department'])) {
+            $queryBuilder->andWhere(
+                $queryBuilder->expr()->in('tx_extbaseacl_role', $queryBuilder->createNamedParameter(ExtconfService::getInstance()->getJobRoleDefinitions()['department']))
+            );
         }
-        $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery("uid, title", "be_groups", $where);
 
-        while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+        $res = $queryBuilder->execute();
+
+        while ($row = $res->fetch()) {
             $params['items'][] = [
                 $row['title'],
                 $row['uid'],
@@ -93,62 +97,44 @@ class FormHelper
 
         $groupsArray = [];
 
-        $where = 'be_groups.tx_ats_location = "'.$location.'"';
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('be_groups');
+        $queryBuilder->select('uid')
+            ->from('be_groups')
+            ->where($queryBuilder->expr()->eq('tx_ats_location', $queryBuilder->createNamedParameter($location)));
 
         // Include extbase acl roles if available
         if (ExtensionManagementUtility::isLoaded('extbase_acl') && !empty($role)) {
-            $where .= ' AND be_groups.tx_extbaseacl_role = "' . $role . '"';
+            $queryBuilder->andWhere(
+                $queryBuilder->expr()->eq('tx_extbaseacl_role', $queryBuilder->createNamedParameter($role))
+            );
         }
 
-        $where .= $this->getDeleteClause("be_groups") . $this->getBackendEnableFields("be_groups");
+        $res = $queryBuilder->execute();
 
-
-        $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery("uid", "be_groups", $where);
-        while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+        while ($row = $res->fetch()) {
             $groupsArray[] = $row['uid'];
         }
 
-        $where = ' ( 1=0 ';
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('be_users');
+
+        $queryBuilder->select("*")->from("be_users")->orderBy('realName');
+
+        $orWhere = [];
         foreach ($groupsArray as $val) {
-            $where .= " OR FIND_IN_SET($val, `usergroup`)";
+            $orWhere[] = $queryBuilder->expr()->inSet('usergroup', $queryBuilder->createNamedParameter($val));
         }
-        $where .= ')';
 
-        $where .= $this->getDeleteClause("be_users") . $this->getBackendEnableFields("be_users");
+        if (!empty($orWhere)) {
+            $queryBuilder->orWhere(...$orWhere);
+        }
 
-        $orderBy = 'realName';
-        $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery("*", "be_users", $where, '', $orderBy);
+        $res = $queryBuilder->execute();
 
         $items = [];
 
-        while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+        while ($row = $res->fetch()) {
             $items[] = array($row['realName'].' ('.$row['username'].')', $row['uid']);
         }
-
         return $items;
-    }
-
-    /**
-     * Helper function to mock static BackendUtility function
-     * @codeCoverageIgnore
-     *
-     * @param  string $table
-     * @return string
-     */
-    public function getDeleteClause($table)
-    {
-        return BackendUtility::deleteClause($table);
-    }
-
-    /**
-     * Helper function to mock static BackendUtility function
-     * @codeCoverageIgnore
-     *
-     * @param  string $table
-     * @return string
-     */
-    public function getBackendEnableFields($table)
-    {
-        return BackendUtility::BEenableFields($table);
     }
 }

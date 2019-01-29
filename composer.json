@@ -38,7 +38,8 @@
     "squizlabs/php_codesniffer": "^3.0",
     "slevomat/coding-standard": "^3.0",
     "phpunit/phpunit": "^6.4",
-    "nimut/testing-framework": "^4.1"
+    "nimut/testing-framework": "^4.1",
+    "doppy/composer-symlink": "^1.0"
   },
   "suggest": {
     "typo3-ter/femanager": "for user registration and account management",
@@ -52,6 +53,9 @@
       "extension-key": "ats",
       "cms-package-dir": "{$vendor-dir}/typo3/cms",
       "web-dir": "web"
+    },
+    "doppy-composer-symlink": {
+      "web/typo3conf/ext/ats": "../../.."
     }
   },
   "scripts": {
@@ -64,8 +68,13 @@
       "@lint:xml"
     ],
     "test:unit": "phpunit",
+    "test:functional": "phpunit --configuration phpunit-functional.xml",
     "test": [
-      "@test:unit"
+      "@test:unit",
+      "@test:functional"
+    ],
+    "post-autoload-dump": [
+      "Doppy\\ComposerSymlink\\ComposerSymlink::apply"
     ]
   },
   "autoload": {

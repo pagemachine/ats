@@ -1,0 +1,37 @@
+<phpunit
+  backupGlobals="true"
+  backupStaticAttributes="false"
+  bootstrap="vendor/nimut/testing-framework/res/Configuration/FunctionalTestsBootstrap.php"
+  colors="true"
+  convertErrorsToExceptions="true"
+  convertWarningsToExceptions="true"
+  forceCoversAnnotation="false"
+  processIsolation="true"
+  stopOnError="false"
+  stopOnFailure="false"
+  stopOnIncomplete="false"
+  stopOnSkipped="false"
+  verbose="false"
+>
+
+  <php>
+    <env name="TYPO3_PATH_WEB" value="web"/>
+    <env name="typo3DatabaseName" value="typo3_functional"/>
+    <env name="typo3DatabaseHost" value="127.0.0.1"/>
+    <env name="typo3DatabaseUsername" value="root"/>
+    <env name="typo3DatabasePassword" value=""/>
+  </php>
+
+  <testsuites>
+    <testsuite name="Functional tests">
+      <directory>Tests/Functional/</directory>
+    </testsuite>
+  </testsuites>
+
+  <filter>
+    <whitelist>
+      <directory suffix=".php">Classes/</directory>
+    </whitelist>
+  </filter>
+
+</phpunit>

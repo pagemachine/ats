@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataset>
+    <tx_ats_domain_model_job>
+        <uid>1</uid>
+        <pid>0</pid>
+        <sys_language_uid>-1</sys_language_uid>
+        <job_number>1337</job_number>
+        <title>Developer</title>
+        <description></description>
+        <description_after_link></description_after_link>
+        <contact></contact>
+        <education_requirements></education_requirements>
+        <incentive_compensation></incentive_compensation>
+        <job_benefits></job_benefits>
+        <qualifications></qualifications>
+        <responsibilities></responsibilities>
+        <skills></skills>
+        <special_commitments></special_commitments>
+        <internal>no</internal>
+        <location>Zentrale</location>
+        <department></department>
+        <deleted>0</deleted>
+        <hidden>0</hidden>
+    </tx_ats_domain_model_job>
+</dataset>

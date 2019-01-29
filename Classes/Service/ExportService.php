@@ -3,7 +3,9 @@ namespace PAGEmachine\Ats\Service;
 
 use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
 use PAGEmachine\Ats\Domain\Repository\JobRepository;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -183,7 +185,7 @@ class ExportService implements SingletonInterface
      */
     public function checkExportOptions($options)
     {
-        $newOptions = "";
+        $newOptions = [];
         foreach ($options as $key => $option) {
             if (in_array($option, $this->getExportOptions())) {
                 $newOptions[] = $option;
@@ -223,18 +225,24 @@ class ExportService implements SingletonInterface
      */
     protected function getExportBody($options, $filter)
     {
-        $where = '1=1'.$this->getExportFilterWhere($filter);
-        $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-            't1.uid',
-            'tx_ats_domain_model_application t1 LEFT JOIN tx_ats_domain_model_job t10 ON t1.job = t10.uid',
-            $where,
-            '',
-            't1.crdate ASC',
-            ''
-        );
+
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_ats_domain_model_application');
+        $queryBuilder->getRestrictions()->removeAll();
+        $queryBuilder->select('t1.uid')
+            ->from('tx_ats_domain_model_application', 't1')
+            ->leftJoin('t1', 'tx_ats_domain_model_job', 't10', 't1.job = t10.uid');
+        $where = $this->getExportFilterWhere($queryBuilder, $filter);
+        if (!empty($where)) {
+            $queryBuilder->where(...$where);
+        }
+        $queryBuilder->orderBy('t1.crdate', 'ASC');
+
+        $res = $queryBuilder->execute();
+
         if ($res) {
-            while ($uid = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)[uid]) {
-                $row = '';
+            foreach ($res as $resRow) {
+                $uid = $resRow['uid'];
+                $row = [];
                 $application = $this->applicationRepository->findByUid($uid);
                 if ($application !== null) {
                     foreach ($options as $option) {
@@ -484,25 +492,28 @@ class ExportService implements SingletonInterface
     }
 
     /**
-     * Returns where clause for the export
+     * get filter for queryBuilder
      *
+     * @param  object $queryBuilder
      * @param  array $filter
-     * @return string
+     * @return array
      */
-    public function getExportFilterWhere($filter)
+    public function getExportFilterWhere(&$queryBuilder, $filter)
     {
+        $where = [];
         if ($filter['job']) {
-            $whereClause .= ' AND t1.job = '.$filter['job'];
+            $where[] = $queryBuilder->expr()->eq('t1.job', $queryBuilder->createNamedParameter($filter['job']));
         }
         if ($filter['location']) {
-            $whereClause .= " AND t10.location = '".$filter['location']."'";
+            $where[] = $queryBuilder->expr()->eq('t10.location', $queryBuilder->createNamedParameter($filter['location']));
         }
         if ($filter['start']) {
-            $whereClause .= " AND t1.crdate >= UNIX_TIMESTAMP('".$filter['start']."')";
+            $where[] = $queryBuilder->expr()->gte('t1.crdate', $queryBuilder->createNamedParameter(strtotime($filter['location'])));
         }
         if ($filter['finish']) {
-            $whereClause .= " AND t1.crdate <= UNIX_TIMESTAMP('".$filter['finish']."')";
+            $where[] = $queryBuilder->expr()->lte('t1.crdate', $queryBuilder->createNamedParameter(strtotime($filter['finish'])));
         }
-        return $whereClause;
+
+        return $where;
     }
 }
