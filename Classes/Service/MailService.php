@@ -54,8 +54,8 @@ class MailService implements SingletonInterface
      * @param  Application $application The application to pull information from
      * @param  string $subject
      * @param  string $body
-     * @param  array $cc
-     * @param  array $bcc
+     * @param  array|string $cc
+     * @param  array|string $bcc
      * @param  bool $useBackendUserCredentials Whether the mail should use the current backend user for sender details
      * @return void
      */
