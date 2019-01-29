@@ -42,9 +42,9 @@ class ApplicationActionsViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param ConfifurationManagerInterface $configurationManager
+     * @param ConfigurationManagerInterface $configurationManager
      */
-    public function injectConfigurationManager(ConfifurationManagerInterface $configurationManager)
+    public function injectConfigurationManager(ConfigurationManagerInterface $configurationManager)
     {
         $this->configurationManager = $configurationManager;
     }
