@@ -74,6 +74,21 @@ deadlineTime     ``module.tx_ats.settings.deadlineTime``   The deadline time def
 ratingOptions    ``module.tx_ats.settings.ratingOptions``  All options available for application rating and personell rating are listed here. You can add your own rating options, see the ATS default TS for examples.          Array of options
 =============    ========================================  ===================================================================================================================================================================   =================
 
+Cleanup Settings
+^^^^^^^^^^^^^^^^
+
+These settings determine the age (measured by creation date) of users and unfinished applications to be considered for deletion:
+
++-------------------------------------+--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+---------+
+| Setting                             | Path                                                               | Description                                                                                                            | Default |
++=====================================+====================================================================+========================================================================================================================+=========+
+| Lifetime of unfinished applications | ``module.tx_ats.settings.cleanup.unfinishedApplicationsLifetime``  | Lifetime (starting at creation date) of unfinished applications.                                                       | 30 days |
++-------------------------------------+--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+---------+
+| Lifetime of inactive users          | ``module.tx_ats.settings.cleanup.inactiveUsersLifetime``           | Lifetime of inactive users. Defines when users are considered inactive and should be deleted (measured by last login). | 2 years |
++-------------------------------------+--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+---------+
+
+
+
 Workflows
 ---------
 

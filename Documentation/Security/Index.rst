@@ -66,7 +66,10 @@ This is why ATS provides tools in form of console/scheduler commands which do th
 
 The command *applications:anonymize* is a script which anonymizes applications (fills them with an asterisk in all person-related fields) and deletes all relations and files associated to them.
 
-**By default applications in closed status (>=100) which are older than 90 days (not pooled) or older than 1 year (in pool) are subject to anonymization.** They must be triggered f.ex. via scheduler, see below.
+**By default applications in closed status (>=100) which were created 90 days ago (not pooled) or 1 year ago (in pool) are subject to anonymization.**
+They must be triggered f.ex. via scheduler, see below.
+
+Application age is determined via creationDate, meaning: The moment the applicant started his/her application and finished the first page.
 
 Creating the default scheduler tasks
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -109,6 +112,7 @@ Inside your ``ext_typoscript_setup.txt``:
       objects {
          PAGEmachine\Ats\Domain\Model\Application {
             archived {
+               minimumAge = 90 days
                conditions {
                  status {
                    property = status
@@ -134,7 +138,7 @@ The commands *applications:cleanup* and *users:cleanup* triggers hard-deletion s
 
 *users:cleanup* needs the sysfolder ID containing the users as parameter.
 
-By default all unfinished applications are deleted **after 30 days**. Users are deleted when the last login was **two years ago**. Both timespans are configurable via TypoScript.
+By default all unfinished applications are deleted **after 30 days** (measured by creation date, not last change). Users are deleted when their last login was **two years ago**. Both timespans are configurable via TypoScript (See :doc:`Configuration<../Configuration/Index>`, "Cleanup Settings").
 
 
 
