@@ -1,7 +1,6 @@
 <?php
 namespace PAGEmachine\Ats\Service;
 
-
 use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
 use PAGEmachine\Ats\Domain\Repository\JobRepository;
 use TYPO3\CMS\Core\Database\ConnectionPool;
