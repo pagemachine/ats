@@ -31,6 +31,33 @@ plugin.tx_ats {
         timeFormat = H:i
 
         allowedStaticLanguages = {$plugin.tx_ats.settings.allowedStaticLanguages}
+
+        ratingOptions {
+          0 {
+            name = NONE
+            label = LLL:EXT:ats/Resources/Private/Language/locallang.xlf:tx_ats.application.rating.0
+          }
+          10 {
+            name = UNSUITED
+            label = LLL:EXT:ats/Resources/Private/Language/locallang.xlf:tx_ats.application.rating.10
+          }
+          20 {
+            name = SUITED
+            label = LLL:EXT:ats/Resources/Private/Language/locallang.xlf:tx_ats.application.rating.20
+          }
+          30 {
+            name = SHORTLISTED
+            label = LLL:EXT:ats/Resources/Private/Language/locallang.xlf:tx_ats.application.rating.30
+          }
+          40 {
+            name = SELECTED
+            label = LLL:EXT:ats/Resources/Private/Language/locallang.xlf:tx_ats.application.rating.40
+          }
+          50 {
+            name = CANCELLED_BY_CANDIDATE
+            label = LLL:EXT:ats/Resources/Private/Language/locallang.xlf:tx_ats.application.rating.50
+          }
+        }
     }
     persistence {
         classes {
