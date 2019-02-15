@@ -102,6 +102,7 @@ class ArchivedApplicationController extends ApplicationController
      *
      * @param    Application  $application
      * @param    Note         $note
+     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("note")
      * @ignorevalidation $note
      * @return   void
      */
@@ -147,6 +148,7 @@ class ArchivedApplicationController extends ApplicationController
      * @param  string $status
      * @param  Note $note
      * @validate $applications NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("note")
      * @ignorevalidation $note
      * @return void
      */

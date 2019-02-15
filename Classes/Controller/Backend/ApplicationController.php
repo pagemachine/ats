@@ -240,6 +240,7 @@ class ApplicationController extends AbstractBackendController
      * Backend edit action for applications
      *
      * @param  Application $application
+     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("application")
      * @ignorevalidation $application
      * @return void
      */
@@ -297,6 +298,7 @@ class ApplicationController extends AbstractBackendController
      *
      * @param  Application $application
      * @param  Note $note
+     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("note")
      * @ignorevalidation $note
      * @return void
      */
@@ -350,6 +352,7 @@ class ApplicationController extends AbstractBackendController
      * @param Note $note
      * @param  Application $application
      * @param  string $forwardAction
+     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("note")
      * @ignorevalidation $note
      * @return void
      */
@@ -445,6 +448,7 @@ class ApplicationController extends AbstractBackendController
      * Confirm close action
      *
      * @param  Application $application
+     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("note")
      * @ignorevalidation $note
      * @param  Note        $note
      * @return void
@@ -471,9 +475,9 @@ class ApplicationController extends AbstractBackendController
 
     /**
      * Form for mail/pdf reply text creation
-
      * @param  ReplyMessage $message
      * @param  Application $application
+     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("message")
      * @ignorevalidation $message
      * @return void
      */
@@ -522,9 +526,9 @@ class ApplicationController extends AbstractBackendController
 
     /**
      * Form for mail/pdf invite text creation
-
      * @param  ReplyMessage $message
      * @param  Application $application
+     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("message")
      * @ignorevalidation $message
      * @return void
      */
@@ -573,9 +577,9 @@ class ApplicationController extends AbstractBackendController
 
     /**
      * Form for mail/pdf invite text creation
-
      * @param  ReplyMessage $message
      * @param  Application $application
+     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("message")
      * @ignorevalidation $message
      * @return void
      */
@@ -624,9 +628,9 @@ class ApplicationController extends AbstractBackendController
 
     /**
      * Form for mail/pdf reject text creation
-
      * @param  RejectMessage $message
      * @param  Application $application
+     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("message")
      * @ignorevalidation $message
      * @return void
      */
@@ -690,6 +694,7 @@ class ApplicationController extends AbstractBackendController
      *
      * @param  Application $application
      * @param  Note $note
+     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("note")
      * @ignorevalidation $note
      * @return void
      */
@@ -745,6 +750,7 @@ class ApplicationController extends AbstractBackendController
      * @param  Application $application
      * @param  Job $job
      * @param  Note $note
+     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("note")
      * @ignorevalidation $note
      * @return void
      */

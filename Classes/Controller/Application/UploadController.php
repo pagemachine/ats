@@ -30,6 +30,7 @@ class UploadController extends AbstractApplicationController
     /**
      * @param  Job $job
      * @param  ApplicationE $application
+     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("application")
      * @ignorevalidation $application
      * @return void
      */

@@ -28,6 +28,7 @@ class QualificationsController extends AbstractApplicationController
 
     /**
      * @param  ApplicationC $application
+     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("application")
      * @ignorevalidation $application
      * @return void
      */

@@ -229,6 +229,7 @@ class ApplicationC extends ApplicationB
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<PAGEmachine\Ats\Domain\Model\LanguageSkill>
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      * @lazy
      */
     protected $languageSkills;

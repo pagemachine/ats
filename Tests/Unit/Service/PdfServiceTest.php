@@ -76,7 +76,7 @@ class PdfServiceTest extends UnitTestCase
         $objectManager = $this->prophesize(ObjectManager::class);
         $objectManager->get(ConfigurationManager::class)->willReturn($configurationManager->reveal());
         $objectManager->get(BasicFileUtility::class)->willReturn(new BasicFileUtility());
-        $objectManager->get('mPDF', Argument::type('string'), Argument::type('string'), Argument::type('string'), Argument::type('string'), 0, 0, 0, 0, 0, 0)->willReturn(new \mPDF("c", "A4", "", "", 0, 0, 0, 0, 0, 0));
+        $objectManager->get('Mpdf\Mpdf', Argument::type('array'))->willReturn(new \Mpdf\Mpdf());
 
         $this->fluidRenderingService = $this->prophesize(FluidRenderingService::class);
 

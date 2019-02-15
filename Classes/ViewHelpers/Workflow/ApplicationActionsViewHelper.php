@@ -22,7 +22,7 @@ class ApplicationActionsViewHelper extends AbstractViewHelper
     protected $workflowManager;
 
     /**
-     * @var ConfifurationManagerInterface $configurationManager
+     * @var ConfigurationManagerInterface $configurationManager
      */
     protected $configurationManager;
 
