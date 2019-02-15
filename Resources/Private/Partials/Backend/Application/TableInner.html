@@ -37,7 +37,7 @@
 				<td>{application.uid}</td>
 				<td>{application.job.jobNumber}</td>
 				<td><f:translate key="tx_ats.application.status.{application.status}">{application.status}</f:translate></td>
-				<td><f:translate key="tx_ats.application.Rating.{application.rating}" /></td>
+				<td><f:translate id="{settings.ratingOptions.{application.rating}.label}" key="tx_ats.application.rating.{application.rating}" default="{application.rating}" /></td>
 				<td><f:translate key="tx_ats.label.disability.{application.disability}" /></td>
 				<td><f:translate key="tx_ats.label.employed.{application.employed}" /></td>
 				<td style="max-width: 250px;">
