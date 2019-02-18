@@ -52,10 +52,10 @@
 							<f:translate key="tx_ats.application.status.{application.status}">{application.status}</f:translate>
 						</td>
 						<td>
-							<f:format.raw><f:translate key="tx_ats.application.rating.{application.rating}" /></f:format.raw>
+							<f:format.raw><f:translate id="{settings.ratingOptions.{application.rating}.label}" key="tx_ats.application.rating.{application.rating}" default="{application.rating}" /></f:format.raw>
 						</td>
 						<td>
-							<f:format.raw><f:translate key="tx_ats.application.rating.{application.ratingPerso}" /></f:format.raw>
+							<f:format.raw><f:translate id="{settings.ratingOptions.{application.ratingPerso}.label}" key="tx_ats.application.rating.{application.ratingPerso}" default="{application.ratingPerso}" /></f:format.raw>
 						</td>
 					</tr>
 				</tbody>

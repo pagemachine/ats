@@ -197,7 +197,10 @@ class History extends AbstractEntity implements CloneableInterface
             return '';
         }
 
-        $dateFormat = TyposcriptService::getInstance()->getSettings()['dateFormat'] ?: 'Y-m-d';
+        $typoscriptService = TyposcriptService::getInstance();
+
+        $dateFormat = $typoscriptService->getSettings()['dateFormat'] ?: 'Y-m-d';
+        $ratingOptions = $typoscriptService->getSettings()['ratingOptions'];
 
         switch ($col) {
             case 'referrer':
@@ -209,8 +212,9 @@ class History extends AbstractEntity implements CloneableInterface
                 $translation = LocalizationUtility::translate('tx_ats.label.'.$col.'.'.$value, 'ats');
                 break;
 
+            case 'rating':
             case 'rating_perso':
-                $translation = LocalizationUtility::translate('tx_ats.application.rating.'.$value, 'ats');
+                $translation = LocalizationUtility::translate($ratingOptions[$value]['label'], 'ats');
                 break;
 
             case 'birthday':
