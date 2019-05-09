@@ -68,7 +68,7 @@ jobs:
         phar-composer build .
         popd
         cp /tmp/vendors/vendors.phar .
-        echo "require 'phar://' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('${EXTENSION_KEY}') . '/vendors.phar/vendor/autoload.php';" >> ext_localconf.php
+        echo "require 'phar://' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('${EXTENSION_KEY}') . 'vendors.phar/vendor/autoload.php';" >> ext_localconf.php
 
         composer global require helhum/ter-client
 
