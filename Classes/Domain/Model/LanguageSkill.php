@@ -1,6 +1,7 @@
 <?php
 namespace PAGEmachine\Ats\Domain\Model;
 
+use PAGEmachine\Ats\Service\IntlLocalizationService;
 use SJBR\StaticInfoTables\Domain\Model\Language;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
@@ -80,5 +81,27 @@ class LanguageSkill extends AbstractEntity implements CloneableInterface
     public function setLevel($level)
     {
         $this->level = $level;
+    }
+
+    /**
+     * @var string
+     */
+    protected $localizedName = null;
+
+    /**
+     * Returns the localized name for this skill in the current active language
+     * (converts for example 'es' to 'Spanisch' in german language)
+     *
+     * @return string
+     */
+    public function getLocalizedName()
+    {
+        if ($this->getTextLanguage()) {
+            return $this->getTextLanguage();
+        }
+        if ($this->localizedName) {
+            return $this->localizedName;
+        }
+        return IntlLocalizationService::getInstance()->getLocalizedLanguageName($this->language->getIsoCodeA2()) ?: $this->language->getLocalName();
     }
 }

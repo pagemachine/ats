@@ -1,7 +1,7 @@
 <h4><f:translate key="tx_ats.application.languageskills" /></h4>
 <div class="row">
 	 <div class="col-sm-6">
-		<label>{f:if(condition:languageSkill.textLanguage, then:languageSkill.textLanguage, else:languageSkill.language.nameEn)}</label>
+		<label>{languageSkill.localizedName}</label>
 	</div>
 	 <div class="col-sm-6">
 		<f:translate key="tx_ats.languageskill.level.{languageSkill.level}" />

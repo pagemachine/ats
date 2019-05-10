@@ -21,13 +21,26 @@ class QualificationsController extends AbstractApplicationController
     protected $repository = null;
 
     /**
+     * @var \PAGEmachine\Ats\Domain\Repository\LanguageRepository
+     * @inject
+     */
+    protected $languageRepository = null;
+
+    /**
      * @param  ApplicationC $application
      * @ignorevalidation $application
      * @return void
      */
     public function editQualificationsAction(ApplicationC $application)
     {
+        if (!empty($this->settings['allowedStaticLanguages'])) {
+            $languageUids = explode(',', $this->settings['allowedStaticLanguages']);
+            $languages = $this->languageRepository->findLanguagesByUids($languageUids);
+        } else {
+            $languages = $this->languageRepository->findAll();
+        }
 
+        $this->view->assign('languages', $languages);
         $this->view->assign("application", $application);
     }
 

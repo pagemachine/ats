@@ -22,7 +22,7 @@
 							<f:form.validationResults for="application.languageSkills.{key}.language">
 								<div class="col-sm-3 {f:if(condition:validationResults.flattenedErrors, then:'has-error')}">
 									<label><f:translate key="tx_ats.languageskill.language" /></label>
-									<s:form.select class="language-select form-control" property="languageSkills.{i.index}.language" staticInfoTable="language" options="{}" prependOptionLabel="{f:translate(key:'tx_ats.select.placeholder')}" prependOptionValue="" />
+									<f:form.select class="language-select form-control" property="languageSkills.{i.index}.language" optionValueField="uid" optionLabelField="localizedName" options="{languages}" prependOptionLabel="{f:translate(key:'tx_ats.select.placeholder')}" prependOptionValue="" />
 								</div>
 
 
@@ -87,7 +87,7 @@
 			</div>
 
 			<f:comment>Template rendering</f:comment>
-			<f:render section="languagerow" arguments="{languageOffset : newLanguageIndex, class: 'tx-ats-addlanguage'}" />
+			<f:render section="languagerow" arguments="{languageOffset : newLanguageIndex, class: 'tx-ats-addlanguage', languages : languages}" />
 
 
 		</div>
@@ -110,7 +110,7 @@
 
 			<div class="col-sm-3">
 					<label><f:translate key="tx_ats.languageskill.language" /></label>
-					<s:form.select class="language-select form-control" property="languageSkills.{languageOffset}.language" staticInfoTable="language" options="{}" prependOptionLabel="{f:translate(key:'tx_ats.select.placeholder')}" prependOptionValue="" />
+					<f:form.select class="language-select form-control" property="languageSkills.{languageOffset}.language" optionValueField="uid" optionLabelField="localizedName" options="{languages}" prependOptionLabel="{f:translate(key:'tx_ats.select.placeholder')}" prependOptionValue="" />
 			</div>
 
 			<div class="col-sm-3">

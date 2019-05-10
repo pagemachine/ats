@@ -2,7 +2,9 @@
 namespace PAGEmachine\Ats\Tests\Unit\Slots\StaticInfoTables;
 
 use Nimut\TestingFramework\TestCase\UnitTestCase;
+use PAGEmachine\Ats\Service\IntlLocalizationService;
 use PAGEmachine\Ats\Slots\StaticInfoTables\SelectViewHelperSlot;
+use SJBR\StaticInfoTables\Domain\Model\Language;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\DomainObject\AbstractDomainObject;
@@ -45,10 +47,16 @@ class SelectViewHelperSlotTest extends UnitTestCase
 
         GeneralUtility::setSingletonInstance(ObjectManager::class, $objectManager->reveal());
 
-        $allowedLanguage = $this->prophesize(AbstractDomainObject::class);
-        $allowedLanguage->getUid()->willReturn(2);
+        $intlLocalizationService = $this->prophesize(IntlLocalizationService::class);
+        $intlLocalizationService->getLocalizedLanguageName('de')->willReturn('deutsch');
+        GeneralUtility::setSingletonInstance(IntlLocalizationService::class, $intlLocalizationService->reveal());
 
-        $filteredLanguage = $this->prophesize(AbstractDomainObject::class);
+        $allowedLanguage = $this->prophesize(Language::class);
+        $allowedLanguage->getUid()->willReturn(2);
+        $allowedLanguage->getIsoCodeA2()->willReturn('de');
+        $allowedLanguage->setNameLocalized('deutsch')->shouldBeCalled();
+
+        $filteredLanguage = $this->prophesize(Language::class);
         $filteredLanguage->getUid()->willReturn(5);
 
         $arguments = ['staticInfoTable' => 'language'];

@@ -9,6 +9,7 @@ use Nimut\TestingFramework\TestCase\UnitTestCase;
 use PAGEmachine\Ats\Controller\Application\QualificationsController;
 use PAGEmachine\Ats\Domain\Model\ApplicationC;
 use PAGEmachine\Ats\Domain\Repository\ApplicationCRepository;
+use PAGEmachine\Ats\Domain\Repository\LanguageRepository;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 
@@ -47,6 +48,10 @@ class QualificationsControllerTest extends UnitTestCase
 
         $this->view = $this->prophesize(ViewInterface::class);
         $this->inject($this->controller, 'view', $this->view->reveal());
+
+        $languageRepository = $this->prophesize(LanguageRepository::class);
+        $languageRepository->findAll()->willReturn([]);
+        $this->inject($this->controller, 'languageRepository', $languageRepository->reveal());
     }
 
     /**
@@ -56,6 +61,7 @@ class QualificationsControllerTest extends UnitTestCase
     {
 
         $this->view->assign('application', $this->application->reveal())->shouldBeCalled();
+        $this->view->assign('languages', [])->shouldBeCalled();
 
         $this->controller->editQualificationsAction($this->application->reveal());
     }
