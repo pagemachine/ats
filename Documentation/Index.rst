@@ -63,4 +63,5 @@ ATS - Application Tracking System
     Configuration/Index
     Security/Index
     Development/Index
+    Upgrading/Index
 
