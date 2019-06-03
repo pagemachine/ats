@@ -7,6 +7,7 @@ use PAGEmachine\Ats\Message\MessageFactory;
 use PAGEmachine\Ats\Message\ReplyMessage;
 use PAGEmachine\Ats\Message\UndefinedMessageException;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -43,6 +44,10 @@ class MessageFactoryTest extends UnitTestCase
         $application = new Application();
 
         $objectManager->get(ReplyMessage::class)->shouldBeCalled()->willReturn($message->reveal());
+
+        $signalSlotDispatcher = $this->prophesize(Dispatcher::class);
+        $signalSlotDispatcher->dispatch(MessageFactory::class, 'afterMessageCreated', [$message])->shouldBeCalled()->willReturn([$message]);
+        $objectManager->get(Dispatcher::class)->willReturn($signalSlotDispatcher->reveal());
         $message->setApplication($application)->shouldBeCalled();
 
         $this->assertEquals($message->reveal(), $this->messageFactory->createMessage("reply", $application));

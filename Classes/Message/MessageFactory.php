@@ -6,6 +6,7 @@ use PAGEmachine\Ats\Message\AbstractMessage;
 use PAGEmachine\Ats\Message\MassMessageContainer;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -94,6 +95,10 @@ class MessageFactory implements SingletonInterface
         $message = $this->objectManager->get($this->messageTypes[$type]);
 
         $message->setApplication($application);
+
+        // Use this signal to modify messages before they are passed to the form (for default input etc.)
+        $signalSlotDispatcher = $this->objectManager->get(Dispatcher::class);
+        list($message) = $signalSlotDispatcher->dispatch(__CLASS__, 'afterMessageCreated', [$message]);
 
         return $message;
     }

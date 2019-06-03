@@ -1,4 +1,4 @@
-# Applicant Tracking System (ATS) [![Build Status](https://travis-ci.org/pagemachine/ats.svg)](https://travis-ci.org/pagemachine/ats)
+# Applicant Tracking System (ATS) [![Build Status](https://travis-ci.org/pagemachine/ats.svg?branch=master)](https://travis-ci.org/pagemachine/ats)
 
 Highly customizable enterprise application tracking system based on Extbase & Fluid. Provides management of job offers and job applications, allowing for complex job application workflows involving numerous roles as they are required in environments of universities as well as private and public companies.
 

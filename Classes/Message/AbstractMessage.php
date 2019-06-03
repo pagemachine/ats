@@ -8,6 +8,7 @@ use PAGEmachine\Ats\Service\MailService;
 use PAGEmachine\Ats\Service\MarkerService;
 use PAGEmachine\Ats\Service\PdfService;
 use PAGEmachine\Ats\Service\TyposcriptService;
+use TYPO3\CMS\Core\Utility\MailUtility;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -491,8 +492,8 @@ abstract class AbstractMessage
                 $this->application,
                 $this->getRenderedSubject(),
                 $this->getRenderedBody(),
-                $this->cc,
-                $this->bcc,
+                MailUtility::parseAddresses($this->cc),
+                MailUtility::parseAddresses($this->bcc),
                 $this->useBackendUserCredentials
             );
         } elseif ($this->sendType == AbstractMessage::SENDTYPE_PDF) {

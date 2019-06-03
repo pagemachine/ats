@@ -1,4 +1,7 @@
-<p><f:translate key="tx_ats.history.ratingPerso.details">Rating Perso:</f:translate> <b><f:translate key="{settings.ratingOptions.{history.details.ratingPerso}.label}" /></b> ({history.details.ratingPerso})</p>
+<p>
+	<f:translate key="tx_ats.history.ratingPerso.details">Rating Perso:</f:translate>
+	<b><f:translate id="{settings.ratingOptions.{history.details.ratingPerso}.label}" key="tx_ats.application.rating.{history.details.ratingPerso}" default="{history.details.ratingPerso}" /></b> ({history.details.ratingPerso})
+</p>
 
 <f:if condition="{history.details.note}">
 	<p>Note: {history.details.note}</p>

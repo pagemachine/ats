@@ -3,9 +3,11 @@ namespace PAGEmachine\Ats\Service;
 
 use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
 use PAGEmachine\Ats\Domain\Repository\JobRepository;
+use PAGEmachine\Ats\Service\TyposcriptService;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -40,10 +42,17 @@ class ExportService implements SingletonInterface
         $this->jobRepository = $jobRepository;
     }
 
+    /**
+     * @var array
+     */
+    protected $settings;
+
     public function __construct()
     {
         $GLOBALS['LANG']->includeLLFile('EXT:ats/Resources/Private/Language/locallang.xlf');
         $GLOBALS['LANG']->includeLLFile('EXT:ats/Resources/Private/Language/locallang_db.xlf');
+
+        $this->settings = TyposcriptService::getInstance()->getSettings();
     }
 
     /**
@@ -263,7 +272,7 @@ class ExportService implements SingletonInterface
                                 $row[] = $application->getAip() == 1 ? 'yes' : '';
                                 break;
                             case 'rating':
-                                $row[] = $GLOBALS['LANG']->getLL('tx_ats.application.rating.'.$application->getRating()->__toString());
+                                $row[] = LocalizationUtility::translate($this->settings['ratingOptions'][$application->getRating()->__toString()]['label'], 'ats');
                                 break;
                             case 'comment_rating':
                                 $comments = [];
@@ -280,7 +289,7 @@ class ExportService implements SingletonInterface
                                 $row[] = str_replace("\r\n", ' ', implode(' ', $comments));
                                 break;
                             case 'rating_perso':
-                                $row[] = $GLOBALS['LANG']->getLL('tx_ats.application.rating.'.$application->getRatingPerso()->__toString());
+                                $row[] = LocalizationUtility::translate($this->settings['ratingOptions'][$application->getRatingPerso()->__toString()]['label'], 'ats');
                                 break;
                             case 'comment_rating_perso':
                                 $comments = [];

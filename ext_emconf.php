@@ -6,6 +6,7 @@ $EM_CONF[$_EXTKEY] = [
     'category' => 'plugin',
     'author' => 'Saskia Schreiber, Stefan Schütt',
     'author_email' => 'sschreiber@pagemachine.de, sschuett@pagemachine.de',
+    'author_company' => 'Pagemachine AG',
     'state' => 'alpha',
     'clearCacheOnLoad' => 0,
     'version' => '2.0-alpha',

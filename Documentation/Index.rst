@@ -62,9 +62,5 @@ ATS - Application Tracking System
     Installation/Index
     Configuration/Index
     Security/Index
-    Developer/Index
-    KnownProblems/Index
-    ToDoList/Index
-    ChangeLog/Index
-    Links
-  
+    Development/Index
+
