@@ -6,7 +6,8 @@ CKEDITOR.plugins.setLang( 'placeholderPresets', 'de', {
             firstname: 'Vorname des Bewerbers',
             surname: 'Nachname des Bewerbers',
             job: {
-                title: 'Jobtitel'
+                title: 'Jobtitel',
+                jobNumber: 'Job Nr.'
             }
         },
         fields: {
