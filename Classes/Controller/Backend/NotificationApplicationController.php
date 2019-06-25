@@ -50,7 +50,7 @@ class NotificationApplicationController extends ApplicationController
 
         $this->view->assignMultiple([
             'applications' => $this->applicationRepository->findNotification($filter),
-            'jobs' => $this->jobRepository->findAll(),
+            'jobs' => $this->jobRepository->findActive(),
             'filter' => $filter,
             'messageTypes' => $this->messageFactory->getMessageTypes(),
         ]);

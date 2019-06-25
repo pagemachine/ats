@@ -164,7 +164,7 @@ class ApplicationController extends AbstractBackendController
             'exceededApplications' => $this->applicationRepository->findDeadlineExceeded($this->settings['deadlineTime'], null, $filter),
             'newApplications' => $this->applicationRepository->findNew($this->settings['deadlineTime'], null, $filter),
             'progressApplications' => $this->applicationRepository->findInProgress($this->settings['deadlineTime'], null, $filter),
-            'jobs' => $this->jobRepository->findAll(),
+            'jobs' => $this->jobRepository->findActive(),
             'filter' => $filter,
         ]);
     }
@@ -224,7 +224,7 @@ class ApplicationController extends AbstractBackendController
     {
         $this->view->assignMultiple([
             'application' => $application,
-            'jobs' => $this->jobRepository->findAll(),
+            'jobs' => $this->jobRepository->findActive(),
         ]);
     }
 
@@ -712,7 +712,7 @@ class ApplicationController extends AbstractBackendController
     {
 
         $this->view->assign('application', $application);
-        $this->view->assign('jobs', $this->jobRepository->findAll());
+        $this->view->assign('jobs', $this->jobRepository->findActive());
         $this->view->assign('beUser', $GLOBALS['BE_USER']->user);
     }
 
@@ -802,7 +802,7 @@ class ApplicationController extends AbstractBackendController
 
     public function newAction(Application $application = null)
     {
-        $this->view->assign('jobs', $this->jobRepository->findAll());
+        $this->view->assign('jobs', $this->jobRepository->findActive());
         $this->view->assign('application', $application);
     }
 

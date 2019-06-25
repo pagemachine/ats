@@ -26,17 +26,14 @@ class JobRepository extends Repository
         );
     }
 
-    /**
-     * Override findAll() function to apply hidden field restriction in backend context, since all enableFields are not applied there
-     *
-     * @return QueryResult
-     */
-    public function findAll()
+    public function findActive()
     {
         $query = $this->createQuery();
-
         return $query->matching(
-            $query->equals('hidden', 0)
+            $query->logicalAnd(
+                $query->equals('hidden', 0),
+                $query->equals('deactivated', 0)
+            )
         )->execute();
     }
 
@@ -52,6 +49,7 @@ class JobRepository extends Repository
         $constraints = [];
 
         $constraints[] = $query->contains("userPa", $backendUser->user['uid']);
+        $constraints[] = $query->equals('deactivated', 0);
 
         foreach ($backendUser->userGroups as $group) {
             $constraints[] = $query->contains("department", $group['uid']);
