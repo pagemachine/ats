@@ -32,7 +32,7 @@ class JobRepository extends Repository
         return $query->matching(
             $query->logicalAnd(
                 $query->equals('hidden', 0),
-                $query->equals('deactivated', 0)
+                $query->equals('deactivated', false)
             )
         )->execute();
     }
@@ -49,7 +49,6 @@ class JobRepository extends Repository
         $constraints = [];
 
         $constraints[] = $query->contains("userPa", $backendUser->user['uid']);
-        $constraints[] = $query->equals('deactivated', 0);
 
         foreach ($backendUser->userGroups as $group) {
             $constraints[] = $query->contains("department", $group['uid']);
@@ -58,7 +57,10 @@ class JobRepository extends Repository
         }
 
         $query->matching(
-            $query->logicalOr($constraints)
+            $query->logicalAnd(
+                $query->logicalOr($constraints),
+                $query->equals('deactivated', false)
+            )
         );
 
         return $query->execute();

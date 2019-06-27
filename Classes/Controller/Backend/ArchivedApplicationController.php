@@ -59,7 +59,7 @@ class ArchivedApplicationController extends ApplicationController
 
         $this->view->assignMultiple([
             'applications' => $this->applicationRepository->findArchived($filter),
-            'jobs' => $this->jobRepository->findActive(),
+            'jobs' => $this->jobRepository->findAll(),
             'filter' => $filter,
         ]);
     }
@@ -80,7 +80,7 @@ class ArchivedApplicationController extends ApplicationController
 
         $this->view->assignMultiple([
             'applications' => $this->applicationRepository->findPooled($filter),
-            'jobs' => $this->jobRepository->findActive(),
+            'jobs' => $this->jobRepository->findAll(),
             'filter' => $filter,
         ]);
     }
@@ -137,7 +137,7 @@ class ArchivedApplicationController extends ApplicationController
     {
         $this->view->assign('applications', $applications);
         $this->view->assign('statusOptions', WorkflowManager::getInstance()->getPlaces());
-        $this->view->assign('jobs', $this->jobRepository->findActive());
+        $this->view->assign('jobs', $this->jobRepository->findAll());
         $this->view->assign('beUser', $GLOBALS['BE_USER']->user);
     }
 
