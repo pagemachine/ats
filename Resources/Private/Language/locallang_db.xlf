@@ -412,7 +412,7 @@
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_texttemplate.texttemplate">
-				<source>Text Template</source>
+				<source>Text</source>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_history">
