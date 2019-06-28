@@ -141,7 +141,7 @@ class ApplicationControllerTest extends UnitTestCase
     {
         $filter = new ApplicationFilter();
 
-        $this->jobRepository->findAll()->shouldBeCalled();
+        $this->jobRepository->findActive()->shouldBeCalled();
 
         $this->applicationRepository->findDeadlineExceeded(Argument::any(), null, $filter)->shouldBeCalled()->willReturn(['foo']);
         $this->applicationRepository->findNew(Argument::any(), null, $filter)->shouldBeCalled()->willReturn(['bar']);

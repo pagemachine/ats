@@ -30,7 +30,7 @@
 
 			<trans-unit id="tx_ats_domain_model_job.deactivated">
 				<source>Deactivated</source>
-				<target>Online-Bewerbung deaktivieren</target>
+				<target>Job in der Bewerbungsverwaltung ausblenden</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_job.user_pa">
