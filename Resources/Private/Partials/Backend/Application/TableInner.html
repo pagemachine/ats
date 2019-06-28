@@ -29,7 +29,7 @@
 				<f:if condition="{checkboxes}">
 					<td><f:form.checkbox class="checkbox status_{application.status}" multiple="1" name="applications" value="{application.uid}"/></td>
 				</f:if>
-				<td>{i.index}</td>
+				<td>{i.cycle}</td>
 				<td data-order="{application.creationDate -> f:format.date(format: 'U')}"><f:format.date format="d.m.Y H:i">{application.creationDate}</f:format.date></td>
 				<td>
 					<f:link.action action="show" arguments="{application : application}">{application.surname}, {application.firstname}</f:link.action>
