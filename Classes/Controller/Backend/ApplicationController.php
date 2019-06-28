@@ -178,7 +178,6 @@ class ApplicationController extends AbstractBackendController
      */
     public function listMineAction(ApplicationFilter $filter = null, $resetFilter = false)
     {
-
         if ($filter == null | $resetFilter === true) {
             $filter = new ApplicationFilter();
         }

@@ -1916,6 +1916,21 @@
 				<source>Save</source>
 				<target>Speichern</target>
 			</trans-unit>
+
+			<trans-unit id="tx_ats.be.label.disability">
+				<source>Disability</source>
+				<target>Schwerbehinderung / Gleichstellung</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.be.label.disability.2">
+				<source>Yes</source>
+				<target>Ja</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.be.label.disability.1">
+				<source>No</source>
+				<target>Nein</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
