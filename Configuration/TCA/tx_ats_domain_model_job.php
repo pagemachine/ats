@@ -175,7 +175,6 @@ return [
                 'type' => 'text',
                 'cols' => '30',
                 'rows' => '5',
-                'eval' => 'required',
             ]
         ],
         'career' => [
@@ -233,7 +232,6 @@ return [
                 'items' => [],
                 'itemsProcFunc' => \PAGEmachine\Ats\TCA\FormHelper::class . '->findUserPa',
                 'size' => 5,
-                'minitems' => 1,
                 'maxitems' => 10,
                 'suppress_icons' => '1'
             ]
@@ -248,7 +246,6 @@ return [
                 'renderType' => 'selectMultipleSideBySide',
                 'itemsProcFunc' => \PAGEmachine\Ats\TCA\FormHelper::class . '->findDepartment',
                 'size' => 5,
-                'minitems' => 1,
                 'maxitems' => 10,
                 'suppress_icons' => '1'
             ]
@@ -264,7 +261,6 @@ return [
                 'items' => [],
                 'itemsProcFunc' => \PAGEmachine\Ats\TCA\FormHelper::class . '->findOfficials',
                 'size' => 5,
-                'minitems' => 1,
                 'maxitems' => 10,
                 'suppress_icons' => '1'
             ]
@@ -281,7 +277,6 @@ return [
                 // TBA
                 //'itemsProcFunc' => 'tx_jobmodul_TCAform->userCmContributors',
                 'size' => 5,
-                'minitems' => 1,
                 'maxitems' => 10,
                 'suppress_icons' => '1'
             ]
