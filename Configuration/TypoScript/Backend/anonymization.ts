@@ -65,6 +65,7 @@ module.tx_ats.settings.anonymization {
       archived < ._default
       archived {
         minimumAge = 90 days
+        ageProperty = creationDate
         conditions {
           status {
             property = status
@@ -84,6 +85,7 @@ module.tx_ats.settings.anonymization {
       pooled < ._default
       pooled {
         minimumAge = 1 year
+        ageProperty = creationDate
         conditions {
           status {
             property = status
