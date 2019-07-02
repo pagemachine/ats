@@ -250,7 +250,12 @@
 				<target>Benötigte Vorerfahrung</target>
 			</trans-unit>
 
-			<trans-unit id="tx_ats_domain_model_job.override_hiring_organization">
+			<trans-unit id="tx_ats_domain_model_job.hiring_organization.palette">
+				<source>Hiring organization</source>
+				<target>Einstellende Firma/Organisation</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.override_global_hiring_organization">
 				<source>Override company-wide hiring organization</source>
 				<target>Namen der einstellenden Firma überschreiben</target>
 			</trans-unit>
