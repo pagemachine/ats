@@ -36,7 +36,7 @@
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_job.deactivated">
-				<source>Deactivated</source>
+				<source>Hide in applications module</source>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_job.career">
