@@ -36,7 +36,7 @@ class StatisticsService implements SingletonInterface
                 "tx_ats_domain_model_job job, tx_ats_domain_model_application application",
                 "job.uid = application.job".$this->getWhereApplicationInterval($dates, 'application')
                     .BackendUtility::deleteClause("tx_ats_domain_model_application", "application"),
-                "job"
+                "job.title, application.deleted"
             );
 
         return ['value' => $totalApplications, 'total' => $this->getTotalNumber($totalApplications, "counter")];
@@ -189,7 +189,8 @@ class StatisticsService implements SingletonInterface
                         ".$this->getWhereApplicationInterval($dates)
                         .BackendUtility::deleteClause("tx_ats_domain_model_application")."
                 ) c",
-                "1 = 1"
+                "1 = 1",
+                "men, women"
             );
         return ['value' => $applications, 'total' => $applications["men"] + $applications["women"]];
     }
@@ -220,7 +221,8 @@ class StatisticsService implements SingletonInterface
                         ".$this->getWhereApplicationInterval($dates)
                         .BackendUtility::deleteClause("tx_ats_domain_model_application")."
                 ) c",
-                "1 = 1"
+                "1 = 1",
+                "men, women"
             );
         return ['value' => $interviews, 'total' => $interviews["men"] + $interviews["women"]];
     }
@@ -251,7 +253,8 @@ class StatisticsService implements SingletonInterface
                         .$this->getWhereApplicationInterval($dates)
                         .BackendUtility::deleteClause("tx_ats_domain_model_application")."
                 ) c",
-                "1 = 1"
+                "1 = 1",
+                "men, women"
             );
         return ['value' => $occupiedPositions, 'total' => $occupiedPositions["men"] + $occupiedPositions["women"]];
     }
