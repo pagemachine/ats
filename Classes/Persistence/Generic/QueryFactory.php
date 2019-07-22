@@ -4,7 +4,7 @@ namespace PAGEmachine\Ats\Persistence\Generic;
 use PAGEmachine\Ats\Persistence\OpenRepositoryInterface;
 use PAGEmachine\Ats\Traits\StaticCalling;
 use TYPO3\CMS\Core\Utility\ClassNamingUtility;
-use TYPO3\CMS\Extbase\Object\Container\Exception\UnknownObjectException;
+use TYPO3\CMS\Extbase\Reflection\Exception\UnknownClassException;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -27,7 +27,7 @@ class QueryFactory extends \TYPO3\CMS\Extbase\Persistence\Generic\QueryFactory
      */
     public function create($className)
     {
-        
+
         $query = $this->callStatic(parent::class, 'create', $className);
 
         $repository = null;
@@ -35,7 +35,7 @@ class QueryFactory extends \TYPO3\CMS\Extbase\Persistence\Generic\QueryFactory
         try {
             $repositoryClassName = ClassNamingUtility::translateModelNameToRepositoryName($className);
             $repository = $this->objectManager->get($repositoryClassName);
-        } catch (UnknownObjectException $e) {
+        } catch (UnknownClassException $e) {
             // Silently ignore
         }
 
