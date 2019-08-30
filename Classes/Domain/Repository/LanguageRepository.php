@@ -28,7 +28,7 @@ class LanguageRepository
         $localizationService = IntlLocalizationService::getInstance();
 
         foreach ($languages as $key => $language) {
-            $languages[$key]['localizedName'] = $localizationService->getLocalizedLanguageName($language['lg_iso_2']);
+            $languages[$key]['localizedName'] = $localizationService->getLocalizedLanguageName($language['lg_iso_2']) ?: $language['lg_name_en'];
         }
 
         return $languages;
@@ -57,7 +57,7 @@ class LanguageRepository
         $localizationService = IntlLocalizationService::getInstance();
 
         foreach ($languages as $key => $language) {
-            $languages[$key]['localizedName'] = $localizationService->getLocalizedLanguageName($language['lg_iso_2']);
+            $languages[$key]['localizedName'] = $localizationService->getLocalizedLanguageName($language['lg_iso_2']) ?: $language['lg_name_en'];
         }
 
         return $languages;
