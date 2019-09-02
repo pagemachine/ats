@@ -14,12 +14,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class CountryRepository
 {
-    /**
-     * @var SJBR\StaticInfoTables\Domain\Repository\CountryRepository
-     * @inject
-     */
-    protected $staticInfoTablesCountryRepository;
-
     public function findAll()
     {
         /** @var QueryBuilder */

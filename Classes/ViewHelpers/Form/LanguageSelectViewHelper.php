@@ -1,6 +1,10 @@
 <?php
 namespace PAGEmachine\Ats\ViewHelpers\Form;
 
+use PAGEmachine\Ats\Domain\Repository\LanguageRepository;
+use PAGEmachine\Ats\Domain\Repository\LegacyLanguageRepository;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
+
 /*
  * This file is part of the PAGEmachine ATS project.
  */
@@ -10,12 +14,6 @@ namespace PAGEmachine\Ats\ViewHelpers\Form;
  */
 class LanguageSelectViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\SelectViewHelper
 {
-    /**
-     * @var \PAGEmachine\Ats\Domain\Repository\LanguageRepository
-     * @inject
-     */
-    protected $languageRepository;
-
     /**
      * Initialize arguments.
      *
@@ -36,12 +34,28 @@ class LanguageSelectViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\SelectV
     public function initialize()
     {
         parent::initialize();
+
+        $languageRepository = $this->getLanguageRepository();
+
         if ($this->arguments['languageUids'] != null && $this->arguments['languageUids'] != "") {
             $languageUids = explode(",", $this->arguments['languageUids']);
-            $languages = $this->languageRepository->findLanguagesByUids($languageUids);
+            $languages = $languageRepository->findLanguagesByUids($languageUids);
         } else {
-            $languages = $this->languageRepository->findAll();
+            $languages = $languageRepository->findAll();
         }
         $this->arguments['options'] = $languages;
+    }
+
+    /**
+     * @return LanguageRepository|LegacyLanguageRepository
+     * @todo remove this in V2
+     */
+    protected function getLanguageRepository()
+    {
+        if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) < 8007000) {
+            return $this->objectManager->get(LegacyLanguageRepository::class);
+        } else {
+            return $this->objectManager->get(LanguageRepository::class);
+        }
     }
 }

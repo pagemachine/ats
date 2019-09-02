@@ -9,7 +9,6 @@ use Nimut\TestingFramework\TestCase\UnitTestCase;
 use PAGEmachine\Ats\Controller\Application\QualificationsController;
 use PAGEmachine\Ats\Domain\Model\ApplicationC;
 use PAGEmachine\Ats\Domain\Repository\ApplicationCRepository;
-use PAGEmachine\Ats\Domain\Repository\LanguageRepository;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 

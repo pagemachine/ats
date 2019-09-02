@@ -1,6 +1,9 @@
 <?php
 namespace PAGEmachine\Ats\ViewHelpers\Form;
 
+use PAGEmachine\Ats\Domain\Repository\CountryRepository;
+use PAGEmachine\Ats\Domain\Repository\LegacyCountryRepository;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /*
@@ -63,5 +66,14 @@ class CountrySelectViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\SelectVi
             'StaticInfoTables',
             'pi1'
         );
+    }
+
+    protected function getCountryRepository()
+    {
+        if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) < 8007000) {
+            return $this->objectManager->get(LegacyCountryRepository::class);
+        } else {
+            return $this->objectManager->get(CountryRepository::class);
+        }
     }
 }
