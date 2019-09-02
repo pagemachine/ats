@@ -20,7 +20,7 @@ class LanguageRepository
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('static_languages');
 
         $languages = $queryBuilder
-            ->select('uid', 'lg_iso_2', 'lg_name_en')
+            ->select('uid', 'lg_iso_2', 'lg_name_en', 'lg_name_local')
             ->from('static_languages')
             ->execute()
             ->fetchAll();
@@ -28,7 +28,7 @@ class LanguageRepository
         $localizationService = IntlLocalizationService::getInstance();
 
         foreach ($languages as $key => $language) {
-            $languages[$key]['localizedName'] = $localizationService->getLocalizedLanguageName($language['lg_iso_2']) ?: $language['lg_name_en'];
+            $languages[$key]['localizedName'] = $localizationService->getLocalizedLanguageName($language['lg_iso_2']) ?: $language['lg_name_local'];
         }
 
         return $languages;
@@ -46,7 +46,7 @@ class LanguageRepository
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('static_languages');
 
         $languages = $queryBuilder
-            ->select('uid', 'lg_iso_2', 'lg_name_en')
+            ->select('uid', 'lg_iso_2', 'lg_name_en', 'lg_name_local')
             ->from('static_languages')
             ->where(
                 $queryBuilder->expr()->in('uid', $uids)
@@ -57,7 +57,7 @@ class LanguageRepository
         $localizationService = IntlLocalizationService::getInstance();
 
         foreach ($languages as $key => $language) {
-            $languages[$key]['localizedName'] = $localizationService->getLocalizedLanguageName($language['lg_iso_2']) ?: $language['lg_name_en'];
+            $languages[$key]['localizedName'] = $localizationService->getLocalizedLanguageName($language['lg_iso_2']) ?: $language['lg_name_local'];
         }
 
         return $languages;

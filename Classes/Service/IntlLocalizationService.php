@@ -43,7 +43,7 @@ class IntlLocalizationService implements SingletonInterface
         return null;
     }
 
-    public function orderItemsByLabel(array $items = [], $labelField)
+    public function orderItemsByLabel(array $items = [], $labelField = '')
     {
         if (extension_loaded('intl')) {
             $collator = \Collator::create($this->getActiveLocale());

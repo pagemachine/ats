@@ -16,7 +16,7 @@ class LegacyLanguageRepository
     public function findAll()
     {
         $languages = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-            implode(',', ['uid', 'lg_iso_2', 'lg_name_en']),
+            implode(',', ['uid', 'lg_iso_2', 'lg_name_en', 'lg_name_local']),
             'static_languages',
             'deleted = 0'
         );
@@ -24,7 +24,7 @@ class LegacyLanguageRepository
         $localizationService = IntlLocalizationService::getInstance();
 
         foreach ($languages as $key => $language) {
-            $languages[$key]['localizedName'] = $localizationService->getLocalizedLanguageName($language['lg_iso_2']) ?: $language['lg_name_en'];
+            $languages[$key]['localizedName'] = $localizationService->getLocalizedLanguageName($language['lg_iso_2']) ?: $language['lg_name_local'];
         }
 
         return $languages;
@@ -40,7 +40,7 @@ class LegacyLanguageRepository
     {
 
         $languages = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-            implode(',', ['uid', 'lg_iso_2', 'lg_name_en']),
+            implode(',', ['uid', 'lg_iso_2', 'lg_name_en', 'lg_name_local']),
             'static_languages',
             'deleted = 0 AND uid IN(' . implode(',', $uids) . ')'
         );
@@ -48,7 +48,7 @@ class LegacyLanguageRepository
         $localizationService = IntlLocalizationService::getInstance();
 
         foreach ($languages as $key => $language) {
-            $languages[$key]['localizedName'] = $localizationService->getLocalizedLanguageName($language['lg_iso_2']) ?: $language['lg_name_en'];
+            $languages[$key]['localizedName'] = $localizationService->getLocalizedLanguageName($language['lg_iso_2']) ?: $language['lg_name_local'];
         }
 
         return $languages;

@@ -20,7 +20,7 @@ class CountryRepository
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('static_countries');
 
         $countries = $queryBuilder
-            ->select('uid', 'cn_iso_2', 'cn_iso_3', 'cn_short_en')
+            ->select('uid', 'cn_iso_2', 'cn_iso_3', 'cn_short_en', 'cn_short_local')
             ->from('static_countries')
             ->execute()
             ->fetchAll();
@@ -28,7 +28,7 @@ class CountryRepository
         $localizationService = IntlLocalizationService::getInstance();
 
         foreach ($countries as $key => $country) {
-            $countries[$key]['localizedName'] = $localizationService->getLocalizedRegionName($country['cn_iso_2']) ?: $country['cn_short_en'];
+            $countries[$key]['localizedName'] = $localizationService->getLocalizedRegionName($country['cn_iso_2']) ?: $country['cn_short_local'];
         }
 
         return $countries;
@@ -46,7 +46,7 @@ class CountryRepository
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('static_countries');
 
         $countries = $queryBuilder
-            ->select('uid', 'cn_iso_2', 'cn_iso_3', 'cn_short_en')
+            ->select('uid', 'cn_iso_2', 'cn_iso_3', 'cn_short_en', 'cn_short_local')
             ->from('static_countries')
             ->where(
                 $queryBuilder->expr()->in('uid', $uids)
@@ -57,7 +57,7 @@ class CountryRepository
         $localizationService = IntlLocalizationService::getInstance();
 
         foreach ($countries as $key => $country) {
-            $countries[$key]['localizedName'] = $localizationService->getLocalizedRegionName($country['cn_iso_2']) ?: $country['cn_short_en'];
+            $countries[$key]['localizedName'] = $localizationService->getLocalizedRegionName($country['cn_iso_2']) ?: $country['cn_short_local'];
         }
 
         return $countries;
@@ -73,7 +73,7 @@ class CountryRepository
         }, $isoCodes);
 
         $countries = $queryBuilder
-            ->select('uid', 'cn_iso_2', 'cn_iso_3', 'cn_short_en')
+            ->select('uid', 'cn_iso_2', 'cn_iso_3', 'cn_short_en', 'cn_short_local')
             ->from('static_countries')
             ->where(
                 $queryBuilder->expr()->in('cn_iso_3', $isoCodes)
@@ -84,7 +84,7 @@ class CountryRepository
         $localizationService = IntlLocalizationService::getInstance();
 
         foreach ($countries as $key => $country) {
-            $countries[$key]['localizedName'] = $localizationService->getLocalizedRegionName($country['cn_iso_2']) ?: $country['cn_short_en'];
+            $countries[$key]['localizedName'] = $localizationService->getLocalizedRegionName($country['cn_iso_2']) ?: $country['cn_short_local'];
         }
 
         return $countries;
@@ -96,7 +96,7 @@ class CountryRepository
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('static_countries');
 
         $country = $queryBuilder
-            ->select('uid', 'cn_iso_2', 'cn_iso_3', 'cn_short_en')
+            ->select('uid', 'cn_iso_2', 'cn_iso_3', 'cn_short_en', 'cn_short_local')
             ->from('static_countries')
             ->where(
                 $queryBuilder->expr()->eq('cn_iso_3', $queryBuilder->createNamedParameter($isoCode))
@@ -105,7 +105,7 @@ class CountryRepository
             ->fetch();
 
         $localizationService = IntlLocalizationService::getInstance();
-        $country['localizedName'] = $localizationService->getLocalizedRegionName($country['cn_iso_2']) ?: $country['cn_short_en'];
+        $country['localizedName'] = $localizationService->getLocalizedRegionName($country['cn_iso_2']) ?: $country['cn_short_local'];
 
         return $country;
     }

@@ -15,7 +15,7 @@ class LegacyCountryRepository
     public function findAll()
     {
         $countries = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-            implode(',', ['uid', 'cn_iso_2', 'cn_iso_3', 'cn_short_en']),
+            implode(',', ['uid', 'cn_iso_2', 'cn_iso_3', 'cn_short_en', 'cn_short_local']),
             'static_countries',
             'deleted = 0'
         );
@@ -23,7 +23,7 @@ class LegacyCountryRepository
         $localizationService = IntlLocalizationService::getInstance();
 
         foreach ($countries as $key => $country) {
-            $countries[$key]['localizedName'] = $localizationService->getLocalizedRegionName($country['cn_iso_2']) ?: $country['cn_short_en'];
+            $countries[$key]['localizedName'] = $localizationService->getLocalizedRegionName($country['cn_iso_2']) ?: $country['cn_short_local'];
         }
 
         return $countries;
@@ -38,7 +38,7 @@ class LegacyCountryRepository
     public function findCountriesByUids($uids = [])
     {
         $countries = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-            implode(',', ['uid', 'cn_iso_2', 'cn_iso_3', 'cn_short_en']),
+            implode(',', ['uid', 'cn_iso_2', 'cn_iso_3', 'cn_short_en', 'cn_short_local']),
             'static_countries',
             'deleted = 0 AND uid IN(' . implode(',', $uids) . ')'
         );
@@ -46,7 +46,7 @@ class LegacyCountryRepository
         $localizationService = IntlLocalizationService::getInstance();
 
         foreach ($countries as $key => $country) {
-            $countries[$key]['localizedName'] = $localizationService->getLocalizedRegionName($country['cn_iso_2']) ?: $country['cn_short_en'];
+            $countries[$key]['localizedName'] = $localizationService->getLocalizedRegionName($country['cn_iso_2']) ?: $country['cn_short_local'];
         }
 
         return $countries;
@@ -59,7 +59,7 @@ class LegacyCountryRepository
         }, $isoCodes);
 
         $countries = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-            implode(',', ['uid', 'cn_iso_2', 'cn_iso_3', 'cn_short_en']),
+            implode(',', ['uid', 'cn_iso_2', 'cn_iso_3', 'cn_short_en', 'cn_short_local']),
             'static_countries',
             'deleted = 0 AND cn_iso_3 IN(' . implode(',', $isoCodes) . ')'
         );
@@ -67,7 +67,7 @@ class LegacyCountryRepository
         $localizationService = IntlLocalizationService::getInstance();
 
         foreach ($countries as $key => $country) {
-            $countries[$key]['localizedName'] = $localizationService->getLocalizedRegionName($country['cn_iso_2']) ?: $country['cn_short_en'];
+            $countries[$key]['localizedName'] = $localizationService->getLocalizedRegionName($country['cn_iso_2']) ?: $country['cn_short_local'];
         }
 
         return $countries;
@@ -76,13 +76,13 @@ class LegacyCountryRepository
     public function findOneByIsoCodeA3($isoCode)
     {
         $country = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow(
-            implode(',', ['uid', 'cn_iso_2', 'cn_iso_3', 'cn_short_en']),
+            implode(',', ['uid', 'cn_iso_2', 'cn_iso_3', 'cn_short_en', 'cn_short_local']),
             'static_countries',
             'deleted = 0 AND uid = ' . $isoCode
         );
 
         $localizationService = IntlLocalizationService::getInstance();
-        $country['localizedName'] = $localizationService->getLocalizedRegionName($country['cn_iso_2']) ?: $country['cn_short_en'];
+        $country['localizedName'] = $localizationService->getLocalizedRegionName($country['cn_iso_2']) ?: $country['cn_short_local'];
 
         return $country;
     }
