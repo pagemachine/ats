@@ -98,6 +98,7 @@ The default configuration presets can be found inside ``Configuration/TypoScript
 You can also customize the exact behaviour for applications and their child records by creating your own preset.
 
 - **mode** defines the exact anonymization behaviour: Either *anonymize*, *anonymize_and_delete* or *delete_files* for file references.
+- **ageProperty** and **minimumAge** define the basic age condition. Read as "anonymize all applications where [ageProperty] is older than [minimumAge]".
 - Inside **properties** you can define the replacement value for each property. Default is "*".
 - If you want to keep a property or child as it is, simply remove the value or child section.
 
@@ -112,6 +113,7 @@ Inside your ``ext_typoscript_setup.txt``:
       objects {
          PAGEmachine\Ats\Domain\Model\Application {
             archived {
+               ageProperty = creationDate
                minimumAge = 90 days
                conditions {
                  status {
