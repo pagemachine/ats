@@ -48,10 +48,6 @@ class QualificationsControllerTest extends UnitTestCase
 
         $this->view = $this->prophesize(ViewInterface::class);
         $this->inject($this->controller, 'view', $this->view->reveal());
-
-        $languageRepository = $this->prophesize(LanguageRepository::class);
-        $languageRepository->findAll()->willReturn([]);
-        $this->inject($this->controller, 'languageRepository', $languageRepository->reveal());
     }
 
     /**
@@ -61,7 +57,6 @@ class QualificationsControllerTest extends UnitTestCase
     {
 
         $this->view->assign('application', $this->application->reveal())->shouldBeCalled();
-        $this->view->assign('languages', [])->shouldBeCalled();
 
         $this->controller->editQualificationsAction($this->application->reveal());
     }
