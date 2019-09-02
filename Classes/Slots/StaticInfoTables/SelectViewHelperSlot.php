@@ -49,4 +49,26 @@ class SelectViewHelperSlot
             'items' => $items,
         ];
     }
+
+    /**
+     * Filters Language Items by config
+     *
+     * @param  array  $arguments
+     * @param  array  $items
+     * @return array
+     */
+    public function filterCountryItems($arguments = [], $items = [])
+    {
+
+        if ($arguments['staticInfoTable'] == 'country') {
+            foreach ($items as $key => $item) {
+                $items[$key]->setNameLocalized(IntlLocalizationService::getInstance()->getLocalizedRegionName($items[$key]->getIsoCodeA2()));
+            }
+        }
+
+        return [
+            'arguments' => $arguments,
+            'items' => $items,
+        ];
+    }
 }

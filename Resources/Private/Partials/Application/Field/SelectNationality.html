@@ -6,10 +6,10 @@
 	<div class="col-sm-9">
 		<f:if condition="{defaultNationality}">
 			<f:then>
-				<s:form.select name="staticInfoTablesCountry" property="{fieldName}" staticInfoTable="country" optionLabelField="shortNameLocal" optionValueField="isoCodeA3" options="{}" class="form-control" defaultOptionLabel="{defaultNationality.shortNameLocal}" defaultOptionValue="{defaultNationality.isoCodeA3}"/>
+				<f:form.select property="{fieldName}" optionLabelField="localizedName" optionValueField="cn_iso_3" options="{countries}" class="form-control" prependOptionLabel="{defaultNationality.localizedName}" prependOptionValue="{defaultNationality.cn_iso_3}" />
 			</f:then>
 			<f:else>
-				<s:form.select name="staticInfoTablesCountry" property="{fieldName}" staticInfoTable="country" optionLabelField="shortNameLocal" optionValueField="isoCodeA3" options="{}" class="form-control" />
+				<f:form.select property="{fieldName}" optionLabelField="localizedName" optionValueField="cn_iso_3" options="{countries}" class="form-control" />
 			</f:else>
 		</f:if>
 	</div>

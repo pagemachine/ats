@@ -39,7 +39,6 @@ class QualificationsController extends AbstractApplicationController
         } else {
             $languages = $this->languageRepository->findAll();
         }
-
         $this->view->assign('languages', $languages);
         $this->view->assign("application", $application);
     }

@@ -35,6 +35,14 @@ class IntlLocalizationService implements SingletonInterface
         return null;
     }
 
+    public function getLocalizedRegionName($locale)
+    {
+        if (extension_loaded('intl')) {
+            return \Locale::getDisplayRegion('-' . $locale, $this->getActiveLocale());
+        }
+        return null;
+    }
+
     protected function getActiveLocale()
     {
         if (TYPO3_MODE == 'BE') {

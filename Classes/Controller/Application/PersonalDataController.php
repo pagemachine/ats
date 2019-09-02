@@ -2,7 +2,8 @@
 namespace PAGEmachine\Ats\Controller\Application;
 
 use PAGEmachine\Ats\Domain\Model\ApplicationB;
-use SJBR\StaticInfoTables\Domain\Repository\CountryRepository;
+use PAGEmachine\Ats\Domain\Repository\CountryRepository;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -22,12 +23,12 @@ class PersonalDataController extends AbstractApplicationController
     protected $repository = null;
 
     /**
-     * @var CountryRepository
+     * @var \PAGEmachine\Ats\Domain\Repository\CountryRepository
      */
-    protected $countryRepository;
+    protected $countryRepository = null;
 
     /**
-     * @param  CountryRepository $countryRepository
+     * @param CountryRepository $countryRepository
      */
     public function injectCountryRepository(CountryRepository $countryRepository)
     {
@@ -48,7 +49,9 @@ class PersonalDataController extends AbstractApplicationController
             $this->view->assign('defaultNationality', $this->countryRepository->findOneByIsoCodeA3($this->settings['defaultNationality']));
         }
 
+        $countries = $this->getStaticCountries();
 
+        $this->view->assign('countries', $countries);
         $this->view->assign("application", $application);
     }
 
@@ -61,8 +64,31 @@ class PersonalDataController extends AbstractApplicationController
      */
     public function updatePersonalDataAction(ApplicationB $application)
     {
-
         $this->repository->addOrUpdate($application);
         $this->forward("editQualifications", "Application\\Qualifications", null, ['application' => $application->getUid()]);
+    }
+
+    protected function getStaticCountries()
+    {
+        if (!empty($this->settings['allowedStaticCountries'])) {
+            return $this->countryRepository->findCountriesByUids(
+                explode(',', $this->settings['allowedStaticCountries'])
+            );
+        } elseif (!empty($this->getStaticInfoTablesSettings()['countriesAllowed'])) {
+            return $this->countryRepository->findCountriesByISO3(
+                explode(',', $this->getStaticInfoTablesSettings()['countriesAllowed'])
+            );
+        }
+        return $this->countryRepository->findAll();
+    }
+
+    protected function getStaticInfoTablesSettings()
+    {
+        $configurationManager = $this->objectManager->get(ConfigurationManagerInterface::class);
+        return $configurationManager->getConfiguration(
+            ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS,
+            'StaticInfoTables',
+            'pi1'
+        );
     }
 }
