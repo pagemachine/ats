@@ -43,6 +43,18 @@ class IntlLocalizationService implements SingletonInterface
         return null;
     }
 
+    public function orderItemsByLabel(array $items = [], $labelField)
+    {
+        if (extension_loaded('intl')) {
+            $collator = \Collator::create($this->getActiveLocale());
+
+            uasort($items, function ($a, $b) use ($collator, $labelField) {
+                return $collator->compare($a[$labelField], $b[$labelField]);
+            });
+        }
+        return $items;
+    }
+
     protected function getActiveLocale()
     {
         if (TYPO3_MODE == 'BE') {

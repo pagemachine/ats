@@ -3,6 +3,7 @@ namespace PAGEmachine\Ats\ViewHelpers\Form;
 
 use PAGEmachine\Ats\Domain\Repository\LanguageRepository;
 use PAGEmachine\Ats\Domain\Repository\LegacyLanguageRepository;
+use PAGEmachine\Ats\Service\IntlLocalizationService;
 use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
 /*
@@ -37,13 +38,18 @@ class LanguageSelectViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\SelectV
 
         $languageRepository = $this->getLanguageRepository();
 
+        /** @var array */
+        $languages = [];
+
         if ($this->arguments['languageUids'] != null && $this->arguments['languageUids'] != "") {
             $languageUids = explode(",", $this->arguments['languageUids']);
             $languages = $languageRepository->findLanguagesByUids($languageUids);
         } else {
             $languages = $languageRepository->findAll();
         }
-        $this->arguments['options'] = $languages;
+
+        $this->arguments['options'] = IntlLocalizationService::getInstance()->orderItemsByLabel($languages, $this->arguments['optionLabelField']);
+        ;
     }
 
     /**
