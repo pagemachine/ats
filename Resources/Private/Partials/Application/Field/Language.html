@@ -7,7 +7,6 @@
 				<f:render partial="Application/Field/Label" arguments="{fieldName : 'languageSkills', translationKey :
 				'tx_ats.application.languageskills'}" />
 			</div>
-
 			<div class="col-sm-9" id="languages">
 					<input type="hidden" name="tx_ats[application][languageSkills]" value="" />
 
@@ -67,7 +66,7 @@
 					<f:if condition="{settings.validation.languageSkills}">
 						<f:if condition="{application.languageSkills}">
 							<f:else>
-								<f:render section="languagerow" arguments="{languageOffset : placeholderIndex}" />
+								<f:render section="languagerow" arguments="{languageOffset : placeholderIndex, languages: languages}" />
 							</f:else>
 						</f:if>
 					</f:if>
