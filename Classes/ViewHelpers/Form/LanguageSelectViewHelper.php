@@ -1,8 +1,6 @@
 <?php
 namespace PAGEmachine\Ats\ViewHelpers\Form;
 
-use PAGEmachine\Ats\Domain\Repository\LanguageRepository;
-
 /*
  * This file is part of the PAGEmachine ATS project.
  */

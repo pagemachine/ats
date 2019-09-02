@@ -1,4 +1,4 @@
-{namespace s=SJBR\StaticInfoTables\ViewHelpers}
+{namespace ats=PAGEmachine\Ats\ViewHelpers}
 <div class="form-group">
 	<div class="col-sm-3">
 		<f:render partial="Application/Field/Label" arguments="{fieldName : fieldName, translationKey : translationKey}" />
@@ -6,10 +6,10 @@
 	<div class="col-sm-9">
 		<f:if condition="{defaultNationality}">
 			<f:then>
-				<f:form.select property="{fieldName}" optionLabelField="localizedName" optionValueField="cn_iso_3" options="{countries}" class="form-control" prependOptionLabel="{defaultNationality.localizedName}" prependOptionValue="{defaultNationality.cn_iso_3}" />
+				<ats:form.countrySelect property="{fieldName}" optionLabelField="localizedName" optionValueField="cn_iso_3" allowedStaticCountries="{settings.allowedStaticCountries}" class="form-control" prependOptionLabel="{defaultNationality.localizedName}" prependOptionValue="{defaultNationality.cn_iso_3}" />
 			</f:then>
 			<f:else>
-				<f:form.select property="{fieldName}" optionLabelField="localizedName" optionValueField="cn_iso_3" options="{countries}" class="form-control" />
+				<ats:form.countrySelect property="{fieldName}" optionLabelField="localizedName" optionValueField="cn_iso_3" allowedStaticCountries="{settings.allowedStaticCountries}" class="form-control" />
 			</f:else>
 		</f:if>
 	</div>
