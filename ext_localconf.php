@@ -89,16 +89,6 @@ $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['ats_templates'] = 'EXT:ats/Config
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerTypeConverter(PAGEmachine\Ats\Property\TypeConverter\UploadedFileReferenceConverter::class);
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerTypeConverter(PAGEmachine\Ats\Property\TypeConverter\ObjectStorageConverter::class);
 
-//Signal Slot for limiting static language select viewhelpers
-/** @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher */
-$signalSlotDispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
-$signalSlotDispatcher->connect(
-    \SJBR\StaticInfoTables\ViewHelpers\Form\SelectViewHelper::class,
-    'getItems',
-    \PAGEmachine\Ats\Slots\StaticInfoTables\SelectViewHelperSlot::class,
-    'filterLanguageItems'
-);
-
 //Load Extension Manager settings into EXTCONF for easier usage
 
 if (!empty($_EXTCONF)) {
