@@ -43,12 +43,6 @@ class ApplicationController extends AbstractBackendController
     protected $jobRepository;
 
     /**
-     * @var \PAGEmachine\Ats\Domain\Repository\LanguageRepository
-     * @inject
-     */
-    protected $languageRepository = null;
-
-    /**
      * @var \PAGEmachine\Ats\Message\MessageFactory
      * @inject
      */
@@ -230,7 +224,6 @@ class ApplicationController extends AbstractBackendController
         $this->view->assignMultiple([
             'application' => $application,
             'jobs' => $this->jobRepository->findActive(),
-            'languages' => $this->languageRepository->findAll(),
         ]);
     }
 
