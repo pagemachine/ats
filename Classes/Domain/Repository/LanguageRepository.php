@@ -1,6 +1,7 @@
 <?php
 namespace PAGEmachine\Ats\Domain\Repository;
 
+use Doctrine\DBAL\Connection;
 use PAGEmachine\Ats\Service\IntlLocalizationService;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -40,8 +41,12 @@ class LanguageRepository
      * @param array $uids
      * @return array $languages
      */
-    public function findLanguagesByUids($uids = [])
+    public function findLanguagesByUids(array $uids = [])
     {
+        if (empty($uids)) {
+            return [];
+        }
+
         /** @var QueryBuilder */
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('static_languages');
 
@@ -49,7 +54,7 @@ class LanguageRepository
             ->select('uid', 'lg_iso_2', 'lg_name_en', 'lg_name_local')
             ->from('static_languages')
             ->where(
-                $queryBuilder->expr()->in('uid', $uids)
+                $queryBuilder->expr()->in('uid', $queryBuilder->createNamedParameter($uids, Connection::PARAM_INT_ARRAY))
             )
             ->execute()
             ->fetchAll();

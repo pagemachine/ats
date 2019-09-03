@@ -35,8 +35,17 @@ class LegacyCountryRepository
      * @param array $uids
      * @return array $countries
      */
-    public function findCountriesByUids($uids = [])
+    public function findCountriesByUids(array $uids = [])
     {
+        if (empty($uids)) {
+            return [];
+        }
+
+        //enforce integer values for uids
+        $uids = array_map(function($value) {
+            return (int)$value;
+        });
+
         $countries = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
             implode(',', ['uid', 'cn_iso_2', 'cn_iso_3', 'cn_short_en', 'cn_short_local']),
             'static_countries',
@@ -52,10 +61,21 @@ class LegacyCountryRepository
         return $countries;
     }
 
-    public function findCountriesByISO3($isoCodes = [])
+    /**
+     * Finds countries by their respective isoCodes
+     *
+     * @param array $isoCodes
+     * @return array $countries
+     */
+    public function findCountriesByISO3(array $isoCodes = [])
     {
+        if (empty($isoCodes)) {
+            return [];
+        }
+
+        // clean and quote values
         $isoCodes = array_map(function ($value) {
-            return sprintf('"%s"', trim($value));
+            return sprintf('"%s"', preg_replace("/([^A-Z]+)/", "", $value));
         }, $isoCodes);
 
         $countries = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(

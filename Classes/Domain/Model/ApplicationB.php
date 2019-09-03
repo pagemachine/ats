@@ -172,9 +172,17 @@ class ApplicationB extends ApplicationA
         $this->nationality = $nationality;
     }
 
+    /**
+     * Returns the localized nationality label
+     *
+     * @return string
+     */
     public function getNationalityLabel()
     {
-        return IntlLocalizationService::getInstance()->getLocalizedRegionName($this->nationality);
+        if ($this->nationality) {
+            return IntlLocalizationService::getInstance()->getLocalizedRegionName($this->nationality);
+        }
+        return "";
     }
 
     /**
@@ -268,9 +276,17 @@ class ApplicationB extends ApplicationA
         $this->country = $country;
     }
 
+    /**
+     * Returns the localized country label
+     *
+     * @return string
+     */
     public function getCountryLabel()
     {
-        return IntlLocalizationService::getInstance()->getLocalizedRegionName($this->country->getIsoCodeA2());
+        if ($this->country) {
+            return IntlLocalizationService::getInstance()->getLocalizedRegionName($this->country->getIsoCodeA2());
+        }
+        return "";
     }
 
 

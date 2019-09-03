@@ -35,6 +35,12 @@ class IntlLocalizationService implements SingletonInterface
         return null;
     }
 
+    /**
+     * Returns a intl translation of given region/country code
+     *
+     * @param  $locale the country locale
+     * @return string|null
+     */
     public function getLocalizedRegionName($locale)
     {
         if (extension_loaded('intl')) {
@@ -43,6 +49,13 @@ class IntlLocalizationService implements SingletonInterface
         return null;
     }
 
+    /**
+     * Orders items properly from A-Z using the current collation
+     *
+     * @param  array  $items
+     * @param  string $labelField
+     * @return array
+     */
     public function orderItemsByLabel(array $items = [], $labelField = '')
     {
         if (extension_loaded('intl')) {
@@ -55,6 +68,11 @@ class IntlLocalizationService implements SingletonInterface
         return $items;
     }
 
+    /**
+     * Returns the currently active locale
+     *
+     * @return string
+     */
     protected function getActiveLocale()
     {
         if (TYPO3_MODE == 'BE') {

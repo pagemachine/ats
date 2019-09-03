@@ -1,6 +1,7 @@
 <?php
 namespace PAGEmachine\Ats\Domain\Repository;
 
+use Doctrine\DBAL\Connection;
 use PAGEmachine\Ats\Service\IntlLocalizationService;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -40,8 +41,12 @@ class CountryRepository
      * @param array $uids
      * @return array $countries
      */
-    public function findCountriesByUids($uids = [])
+    public function findCountriesByUids(array $uids = [])
     {
+        if (empty($uids)) {
+            return [];
+        }
+
         /** @var QueryBuilder */
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('static_countries');
 
@@ -49,7 +54,7 @@ class CountryRepository
             ->select('uid', 'cn_iso_2', 'cn_iso_3', 'cn_short_en', 'cn_short_local')
             ->from('static_countries')
             ->where(
-                $queryBuilder->expr()->in('uid', $uids)
+                $queryBuilder->expr()->in('uid', $queryBuilder->createNamedParameter($uids, Connection::PARAM_INT_ARRAY))
             )
             ->execute()
             ->fetchAll();
@@ -63,20 +68,30 @@ class CountryRepository
         return $countries;
     }
 
-    public function findCountriesByISO3($isoCodes = [])
+    /**
+     * Finds countries by their respective isoCodes
+     *
+     * @param array $isoCodes
+     * @return array $countries
+     */
+    public function findCountriesByISO3(array $isoCodes = [])
     {
+        if (empty($isoCodes)) {
+            return [];
+        }
+
         /** @var QueryBuilder */
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('static_countries');
 
         $isoCodes = array_map(function ($value) {
-            return sprintf('"%s"', trim($value));
+            return trim($value);
         }, $isoCodes);
 
         $countries = $queryBuilder
             ->select('uid', 'cn_iso_2', 'cn_iso_3', 'cn_short_en', 'cn_short_local')
             ->from('static_countries')
             ->where(
-                $queryBuilder->expr()->in('cn_iso_3', $isoCodes)
+                $queryBuilder->expr()->in('cn_iso_3', $queryBuilder->createNamedParameter($isoCodes, Connection::PARAM_STR_ARRAY))
             )
             ->execute()
             ->fetchAll();
@@ -89,7 +104,12 @@ class CountryRepository
 
         return $countries;
     }
-
+    /**
+     * Finds a country by its isocode
+     *
+     * @param string $isoCode
+     * @return array $country
+     */
     public function findOneByIsoCodeA3($isoCode)
     {
         /** @var QueryBuilder */

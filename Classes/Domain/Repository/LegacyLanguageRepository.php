@@ -36,8 +36,16 @@ class LegacyLanguageRepository
      * @param array $uids
      * @return array $languages
      */
-    public function findLanguagesByUids($uids = [])
+    public function findLanguagesByUids(array $uids = [])
     {
+        if (empty($uids)) {
+            return [];
+        }
+
+        //enforce integer values for uids
+        $uids = array_map(function($value) {
+            return (int)$value;
+        });
 
         $languages = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
             implode(',', ['uid', 'lg_iso_2', 'lg_name_en', 'lg_name_local']),
