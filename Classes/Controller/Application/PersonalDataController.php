@@ -2,9 +2,6 @@
 namespace PAGEmachine\Ats\Controller\Application;
 
 use PAGEmachine\Ats\Domain\Model\ApplicationB;
-use PAGEmachine\Ats\Domain\Repository\CountryRepository;
-use PAGEmachine\Ats\Domain\Repository\LegacyCountryRepository;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -24,19 +21,23 @@ class PersonalDataController extends AbstractApplicationController
     protected $repository = null;
 
     /**
+     * @var \PAGEmachine\Ats\Domain\Repository\CountryRepository
+     * @inject
+     */
+    protected $countryRepository = null;
+
+    /**
      * @param  ApplicationB $application
      * @ignorevalidation $application
      * @return void
      */
     public function editPersonalDataAction(ApplicationB $application)
     {
-        $countryRepository = $this->getCountryRepository();
-
         if (!empty($this->settings['defaultCountry'])) {
-            $this->view->assign('defaultCountry', $countryRepository->findOneByIsoCodeA3($this->settings['defaultCountry']));
+            $this->view->assign('defaultCountry', $this->countryRepository->findOneByIsoCodeA3($this->settings['defaultCountry']));
         }
         if (!empty($this->settings['defaultNationality'])) {
-            $this->view->assign('defaultNationality', $countryRepository->findOneByIsoCodeA3($this->settings['defaultNationality']));
+            $this->view->assign('defaultNationality', $this->countryRepository->findOneByIsoCodeA3($this->settings['defaultNationality']));
         }
 
         $this->view->assign("application", $application);
@@ -53,20 +54,5 @@ class PersonalDataController extends AbstractApplicationController
     {
         $this->repository->addOrUpdate($application);
         $this->forward("editQualifications", "Application\\Qualifications", null, ['application' => $application->getUid()]);
-    }
-
-    /**
-     * Legacy country repository switch for TYPO3 7
-     *
-     * @return CountryRepository|LegacyCountryRepository
-     * @todo remove this in V2
-     */
-    protected function getCountryRepository()
-    {
-        if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) < 8007000) {
-            return $this->objectManager->get(LegacyCountryRepository::class);
-        } else {
-            return $this->objectManager->get(CountryRepository::class);
-        }
     }
 }

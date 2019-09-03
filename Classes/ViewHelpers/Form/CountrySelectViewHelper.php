@@ -1,10 +1,7 @@
 <?php
 namespace PAGEmachine\Ats\ViewHelpers\Form;
 
-use PAGEmachine\Ats\Domain\Repository\CountryRepository;
-use PAGEmachine\Ats\Domain\Repository\LegacyCountryRepository;
 use PAGEmachine\Ats\Service\IntlLocalizationService;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /*
@@ -16,6 +13,12 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
  */
 class CountrySelectViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\SelectViewHelper
 {
+    /**
+     * @var \PAGEmachine\Ats\Domain\Repository\CountryRepository
+     * @inject
+     */
+    protected $countryRepository = null;
+
     /**
      * Initialize arguments.
      *
@@ -37,22 +40,20 @@ class CountrySelectViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\SelectVi
     {
         parent::initialize();
 
-        $countryRepository = $this->getCountryRepository();
-
         /** @var array */
         $countries = [];
 
         if (!empty($this->arguments['allowedStaticCountries'])) {
-            $countries = $countryRepository->findCountriesByUids(
+            $countries = $this->countryRepository->findCountriesByUids(
                 explode(',', $this->settings['allowedStaticCountries'])
             );
         //@todo drop the static info tables settings fallback in V2
         } elseif (!empty($this->getStaticInfoTablesSettings()['countriesAllowed'])) {
-            $countries =  $countryRepository->findCountriesByISO3(
+            $countries =  $this->countryRepository->findCountriesByISO3(
                 explode(',', $this->getStaticInfoTablesSettings()['countriesAllowed'])
             );
         } else {
-            $countries = $countryRepository->findAll();
+            $countries = $this->countryRepository->findAll();
         }
 
         $this->arguments['options'] = IntlLocalizationService::getInstance()->orderItemsByLabel($countries, $this->arguments['optionLabelField']);
@@ -69,14 +70,5 @@ class CountrySelectViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\SelectVi
             'StaticInfoTables',
             'pi1'
         );
-    }
-
-    protected function getCountryRepository()
-    {
-        if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) < 8007000) {
-            return $this->objectManager->get(LegacyCountryRepository::class);
-        } else {
-            return $this->objectManager->get(CountryRepository::class);
-        }
     }
 }

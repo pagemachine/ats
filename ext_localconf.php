@@ -106,6 +106,19 @@ if (!empty($_EXTCONF)) {
     }
 }
 
+// Register alternative repositories if TYPO3 is below version 8
+if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) < 8007000) {
+    $objectContainer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\Container\Container::class);
+    $objectContainer->registerImplementation(
+        \PAGEmachine\Ats\Domain\Repository\CountryRepository::class,
+        \PAGEmachine\Ats\Domain\Repository\LegacyCountryRepository::class
+    );
+    $objectContainer->registerImplementation(
+        \PAGEmachine\Ats\Domain\Repository\LanguageRepository::class,
+        \PAGEmachine\Ats\Domain\Repository\LegacyLanguageRepository::class
+    );
+}
+
 // Access configuration, if EXT:extbase_acl is available
 
 if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('extbase_acl')) {

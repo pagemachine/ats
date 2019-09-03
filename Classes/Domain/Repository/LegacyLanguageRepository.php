@@ -43,7 +43,7 @@ class LegacyLanguageRepository
         }
 
         //enforce integer values for uids
-        $uids = array_map(function($value) {
+        $uids = array_map(function ($value) {
             return (int)$value;
         });
 
