@@ -93,12 +93,18 @@ class LegacyCountryRepository
         return $countries;
     }
 
+    /**
+     * Finds one by given 3-char isocode
+     *
+     * @param  string $isoCode
+     * @return array
+     */
     public function findOneByIsoCodeA3($isoCode)
     {
         $country = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow(
             implode(',', ['uid', 'cn_iso_2', 'cn_iso_3', 'cn_short_en', 'cn_short_local']),
             'static_countries',
-            'deleted = 0 AND uid = ' . preg_replace("/([^A-Z]+)/", "", $isoCode)
+            'deleted = 0 AND cn_iso_3 = ' . sprintf('"%s"', preg_replace("/([^A-Z]+)/", "", $isoCode))
         );
 
         $localizationService = IntlLocalizationService::getInstance();
