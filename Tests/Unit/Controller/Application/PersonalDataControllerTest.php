@@ -52,17 +52,6 @@ class PersonalDataControllerTest extends UnitTestCase
     /**
      * @test
      */
-    public function showsPersonalDataForm()
-    {
-
-        $this->view->assign('application', $this->application->reveal())->shouldBeCalled();
-
-        $this->controller->editPersonalDataAction($this->application->reveal());
-    }
-
-    /**
-     * @test
-     */
     public function updatesAndForwardsToNextStep()
     {
 

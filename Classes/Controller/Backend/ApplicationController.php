@@ -42,7 +42,6 @@ class ApplicationController extends AbstractBackendController
      */
     protected $jobRepository;
 
-
     /**
      * @var \PAGEmachine\Ats\Message\MessageFactory
      * @inject

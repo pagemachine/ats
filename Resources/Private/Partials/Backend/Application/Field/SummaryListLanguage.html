@@ -7,7 +7,7 @@
 <f:for each="{languageSkills}" as="languageSkill">
 	<tr class="summary-element">
 		<td>
-			<label>{f:if(condition:languageSkill.textLanguage, then:languageSkill.textLanguage, else:languageSkill.language.nameEn)}</label>
+			<label>{languageSkill.localizedName}</label>
 		</td>
 		<td>
 			<f:translate key="tx_ats.languageskill.level.{languageSkill.level}" />

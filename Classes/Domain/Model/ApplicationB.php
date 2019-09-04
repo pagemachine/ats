@@ -1,6 +1,7 @@
 <?php
 namespace PAGEmachine\Ats\Domain\Model;
 
+use PAGEmachine\Ats\Service\IntlLocalizationService;
 use SJBR\StaticInfoTables\Domain\Model\Country;
 
 /*
@@ -172,6 +173,19 @@ class ApplicationB extends ApplicationA
     }
 
     /**
+     * Returns the localized nationality label
+     *
+     * @return string
+     */
+    public function getNationalityLabel()
+    {
+        if ($this->nationality) {
+            return IntlLocalizationService::getInstance()->getLocalizedRegionName($this->nationality);
+        }
+        return "";
+    }
+
+    /**
      * @var string $street
      */
     protected $street;
@@ -260,6 +274,19 @@ class ApplicationB extends ApplicationA
     public function setCountry(Country $country = null)
     {
         $this->country = $country;
+    }
+
+    /**
+     * Returns the localized country label
+     *
+     * @return string
+     */
+    public function getCountryLabel()
+    {
+        if ($this->country) {
+            return IntlLocalizationService::getInstance()->getLocalizedRegionName($this->country->getIsoCodeA2());
+        }
+        return "";
     }
 
 

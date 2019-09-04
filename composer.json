@@ -42,7 +42,8 @@
   },
   "suggest": {
     "typo3-ter/femanager": "for user registration and account management",
-    "pagemachine/hairu": "Frontend logins with extbase and fluid"
+    "pagemachine/hairu": "Frontend logins with extbase and fluid",
+    "ext-intl": "For automatic translation of country, nationality and language fields"
   },
   "config": {
     "bin-dir": "bin"

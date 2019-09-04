@@ -133,5 +133,14 @@ You can configure how file uploads in the application form should behave. The op
 
 Configuration options can be found in the extension manager settings (tab *Advanced*).
 
+Country & language dropdown Localization
+----------------------------------------
+
+ATS utilizes the php extension ``intl`` to provide country and language labels in the currently active locale. This happens automatically.
+
+Translation via ``static-info-tables-xx`` (the addon-extensions for static info tables) is **not** supported.
+
+
+
 
 

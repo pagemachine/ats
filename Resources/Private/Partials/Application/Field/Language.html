@@ -7,7 +7,6 @@
 				<f:render partial="Application/Field/Label" arguments="{fieldName : 'languageSkills', translationKey :
 				'tx_ats.application.languageskills'}" />
 			</div>
-
 			<div class="col-sm-9" id="languages">
 					<input type="hidden" name="tx_ats[application][languageSkills]" value="" />
 
@@ -22,7 +21,7 @@
 							<f:form.validationResults for="application.languageSkills.{key}.language">
 								<div class="col-sm-3 {f:if(condition:validationResults.flattenedErrors, then:'has-error')}">
 									<label><f:translate key="tx_ats.languageskill.language" /></label>
-									<s:form.select class="language-select form-control" property="languageSkills.{i.index}.language" staticInfoTable="language" options="{}" prependOptionLabel="{f:translate(key:'tx_ats.select.placeholder')}" prependOptionValue="" />
+									<ats:form.languageSelect class="language-select form-control" languageUids="{settings.allowedStaticLanguages}" property="languageSkills.{i.index}.language" prependOptionLabel="{f:translate(key:'tx_ats.select.placeholder')}" prependOptionValue="" />
 								</div>
 
 
@@ -67,7 +66,7 @@
 					<f:if condition="{settings.validation.languageSkills}">
 						<f:if condition="{application.languageSkills}">
 							<f:else>
-								<f:render section="languagerow" arguments="{languageOffset : placeholderIndex}" />
+								<f:render section="languagerow" arguments="{languageOffset : placeholderIndex, languages: languages}" />
 							</f:else>
 						</f:if>
 					</f:if>
@@ -87,7 +86,7 @@
 			</div>
 
 			<f:comment>Template rendering</f:comment>
-			<f:render section="languagerow" arguments="{languageOffset : newLanguageIndex, class: 'tx-ats-addlanguage'}" />
+			<f:render section="languagerow" arguments="{languageOffset : newLanguageIndex, class: 'tx-ats-addlanguage', languages : languages}" />
 
 
 		</div>
@@ -110,7 +109,7 @@
 
 			<div class="col-sm-3">
 					<label><f:translate key="tx_ats.languageskill.language" /></label>
-					<s:form.select class="language-select form-control" property="languageSkills.{languageOffset}.language" staticInfoTable="language" options="{}" prependOptionLabel="{f:translate(key:'tx_ats.select.placeholder')}" prependOptionValue="" />
+					<ats:form.languageSelect class="language-select form-control" languageUids="{settings.allowedStaticLanguages}" property="languageSkills.{languageOffset}.language" prependOptionLabel="{f:translate(key:'tx_ats.select.placeholder')}" prependOptionValue="" />
 			</div>
 
 			<div class="col-sm-3">

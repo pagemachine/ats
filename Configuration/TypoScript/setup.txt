@@ -82,6 +82,7 @@ plugin.tx_ats {
 		afterSubmitPage = {$plugin.tx_ats.settings.afterSubmitPage}
 
 		allowedStaticLanguages = {$plugin.tx_ats.settings.allowedStaticLanguages}
+		allowedStaticCountries = {$plugin.tx_ats.settings.allowedStaticCountries}
 		defaultCountry = {$plugin.tx_ats.settings.defaultCountry}
 		defaultNationality = {$plugin.tx_ats.settings.defaultNationality}
 
