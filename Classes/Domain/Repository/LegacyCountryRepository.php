@@ -98,7 +98,7 @@ class LegacyCountryRepository
         $country = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow(
             implode(',', ['uid', 'cn_iso_2', 'cn_iso_3', 'cn_short_en', 'cn_short_local']),
             'static_countries',
-            'deleted = 0 AND uid = ' . $isoCode
+            'deleted = 0 AND uid = ' . preg_replace("/([^A-Z]+)/", "", $isoCode)
         );
 
         $localizationService = IntlLocalizationService::getInstance();
