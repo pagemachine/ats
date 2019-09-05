@@ -1,4 +1,4 @@
 {namespace ats=PAGEmachine\Ats\ViewHelpers}
-<f:be.widget.paginate objects="{applications}" as="paginatedApplications" configuration="{itemsPerPage : 300, recordsLabel : 'Bewerbungen'}">
+<f:be.widget.paginate objects="{applications}" as="paginatedApplications" configuration="{itemsPerPage : settings.list.itemsPerPage, recordsLabel : 'Bewerbungen'}">
 	<f:render partial="Backend/Application/TableInner" arguments="{applications : paginatedApplications}" />
 </f:be.widget.paginate>

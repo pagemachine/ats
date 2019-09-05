@@ -114,6 +114,11 @@ plugin.tx_ats_jobs < plugin.tx_ats
 
 module.tx_ats {
     settings < plugin.tx_ats.settings
+    settings {
+      list {
+        itemsPerPage = 20
+      }
+    }
     persistence < plugin.tx_ats.persistence
     view < plugin.tx_ats.view
     features {

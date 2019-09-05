@@ -4,6 +4,10 @@ module.tx_ats {
         dateFormat = d.m.Y
         timeFormat = H:i
 
+        list {
+          itemsPerPage = 20
+        }
+
         ratingOptions {
           0 {
             name = NONE
