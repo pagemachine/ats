@@ -23,10 +23,6 @@
 	margin: 0px;
 }
 
-.tx-ats-backend .applications-list th {
-	cursor: pointer;
-}
-
 
 /* Application list ordering icons*/
 .tx-ats-backend .applications-list th:after {

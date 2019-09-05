@@ -17,8 +17,8 @@ require(
      ApplicationsModule.initializeDataTables = function() {
          $('.applications-list').DataTable({
             'searching' : false,
-            'paging' : false
-
+            'paging' : false,
+            'ordering': false
         });
      };
 
