@@ -104,6 +104,69 @@ class ApplicationFilter
         $this->searchfields = $searchfields;
     }
 
+
+    /**
+     * @var array
+     */
+    protected $possibleOrderFields = [
+        'uid' => 'uid',
+        'firstname' => 'firstname',
+        'surname' => 'surname',
+    ];
+
+    /**
+     * @return array
+     */
+    public function getPossibleOrderFields()
+    {
+        return $this->possibleOrderFields;
+    }
+
+    /**
+     * @var string
+     */
+    protected $orderBy = 'surname';
+
+    /**
+     * @return string
+     */
+    public function getOrderBy()
+    {
+        return $this->orderBy;
+    }
+
+    /**
+     * @param string $orderBy
+     * @return void
+     */
+    public function setOrderBy($orderBy)
+    {
+        $this->orderBy = $orderBy;
+    }
+
+
+    /**
+     * @var string
+     */
+    protected $orderDirection = "ASC";
+
+    /**
+     * @return string
+     */
+    public function getOrderDirection()
+    {
+        return $this->orderDirection;
+    }
+
+    /**
+     * @param string $orderDirection
+     * @return void
+     */
+    public function setOrderDirection($orderDirection)
+    {
+        $this->orderDirection = $orderDirection;
+    }
+
     /**
      * @return void
      */

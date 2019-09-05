@@ -981,10 +981,27 @@
       			<target>Alle</target>
       		</trans-unit>
 
+			<trans-unit id="be.label.filterBar.search">
+				<source>Suche</source>
+			</trans-unit>
+
       		<trans-unit id="be.label.FilterBar.Placeholder.Search">
       		  <source>Searchword</source>
-      		  <target>Suchen</target>
+      		  <target>Suchbegriff</target>
       		</trans-unit>
+
+			<trans-unit id="be.label.filterBar.orderBy">
+				<source>Order by</source>
+				<target>Sortierung</target>
+			</trans-unit>
+			<trans-unit id="be.label.filterBar.orderDirection.ASC">
+				<source>Ascending</source>
+				<target>Aufsteigend</target>
+			</trans-unit>
+			<trans-unit id="be.label.filterBar.orderDirection.DESC">
+				<source>Descending</source>
+				<target>Absteigend</target>
+			</trans-unit>
 
       		<trans-unit id="be.label.FilterBar.Filter">
       		  <source>Filter</source>

@@ -1310,6 +1310,18 @@
       <trans-unit id="be.label.FilterBar.Job">
       	<source>Job:</source>
       </trans-unit>
+      <trans-unit id="be.label.filterBar.search">
+      	<source>Suche</source>
+      </trans-unit>
+      <trans-unit id="be.label.filterBar.orderBy">
+      	<source>Order by</source>
+      </trans-unit>
+      <trans-unit id="be.label.filterBar.orderDirection.ASC">
+      	<source>Ascending</source>
+      </trans-unit>
+      <trans-unit id="be.label.filterBar.orderDirection.DESC">
+      	<source>Descending</source>
+      </trans-unit>
       <trans-unit id="be.label.ApplicationSingle.1">
       	<source>Application from </source>
       </trans-unit>

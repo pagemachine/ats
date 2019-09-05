@@ -85,6 +85,12 @@ class ApplicationRepository extends AbstractApplicationRepository
 
         $constraints = $this->getFilterConstraints($query, $constraints, $filter);
 
+        if (!empty($filter->getOrderBy()) && !empty($filter->getOrderDirection())) {
+            $query->setOrderings([
+                $filter->getOrderBy() => $filter->getOrderDirection()
+            ]);
+        }
+
         $query->matching($query->logicalAnd($constraints));
 
         return $query->execute();
@@ -115,6 +121,12 @@ class ApplicationRepository extends AbstractApplicationRepository
         }
 
         $constraints = $this->getFilterConstraints($query, $constraints, $filter);
+
+        if (!empty($filter->getOrderBy()) && !empty($filter->getOrderDirection())) {
+            $query->setOrderings([
+                $filter->getOrderBy() => $filter->getOrderDirection()
+            ]);
+        }
 
         $query->matching($query->logicalAnd($constraints));
 
@@ -148,6 +160,12 @@ class ApplicationRepository extends AbstractApplicationRepository
 
         $constraints = $this->getFilterConstraints($query, $constraints, $filter);
 
+        if (!empty($filter->getOrderBy()) && !empty($filter->getOrderDirection())) {
+            $query->setOrderings([
+                $filter->getOrderBy() => $filter->getOrderDirection()
+            ]);
+        }
+
         $query->matching($query->logicalAnd($constraints));
         return $query->execute();
     }
@@ -168,6 +186,12 @@ class ApplicationRepository extends AbstractApplicationRepository
             $query->equals('anonymized', false),
         ];
         $constraints = $this->getFilterConstraints($query, $constraints, $filter);
+
+        if (!empty($filter->getOrderBy()) && !empty($filter->getOrderDirection())) {
+            $query->setOrderings([
+                $filter->getOrderBy() => $filter->getOrderDirection()
+            ]);
+        }
 
         $query->matching(
             $query->logicalAnd($constraints)
@@ -195,6 +219,12 @@ class ApplicationRepository extends AbstractApplicationRepository
 
         $constraints = $this->getFilterConstraints($query, $constraints, $filter);
 
+        if (!empty($filter->getOrderBy()) && !empty($filter->getOrderDirection())) {
+            $query->setOrderings([
+                $filter->getOrderBy() => $filter->getOrderDirection()
+            ]);
+        }
+
         $query->matching(
             $query->logicalAnd(
                 $constraints
@@ -221,6 +251,12 @@ class ApplicationRepository extends AbstractApplicationRepository
             $query->equals('anonymized', false),
         ];
         $constraints = $this->getFilterConstraints($query, $constraints, $filter);
+
+        if (!empty($filter->getOrderBy()) && !empty($filter->getOrderDirection())) {
+            $query->setOrderings([
+                $filter->getOrderBy() => $filter->getOrderDirection()
+            ]);
+        }
 
         $query->matching(
             $query->logicalAnd($constraints)

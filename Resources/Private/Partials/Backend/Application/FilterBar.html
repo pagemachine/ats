@@ -1,25 +1,41 @@
-<div class="panel panel-default">
+{namespace ats=PAGEmachine\Ats\ViewHelpers}
+<div class="panel panel-default application-filter">
   <div class="panel-body">
-		<f:form action="{action}" class="form-inline" name="filter" object="{filter}">
+		<f:form action="{action}" name="filter" object="{filter}">
+			<div class="form-inline">
 
-			<div class="form-group">
-				<label for="job"><f:translate key="be.label.FilterBar.Job"/></label>
-				<f:form.select options="{jobs}" property="job" optionLabelField="jobNumberAndTitle" sortByOptionLabel="FALSE" prependOptionValue="" prependOptionLabel="<f:translate key='be.label.FilterBar.All'/>" class="form-control" />
+				<div class="form-group">
+					<label for="job"><f:translate key="be.label.FilterBar.Job"/></label>
+					<f:form.select options="{jobs}" property="job" optionLabelField="jobNumberAndTitle" sortByOptionLabel="FALSE" prependOptionValue="" prependOptionLabel="<f:translate key='be.label.FilterBar.All'/>" class="form-control" />
+				</div>
 			</div>
 
-			<div class="form-group">
-				<label for="searchword" class="sr-only">Search:</label>
-				<f:form.textfield property="searchword" class="form-control" placeholder="<f:translate key='be.label.FilterBar.Placeholder.Search'/>" />
+			<div class="form-inline">
+
+				<div class="form-group">
+					<label for="searchword"><f:translate key="be.label.filterBar.search">Search</f:translate>:</label>
+					<f:form.textfield property="searchword" class="form-control" placeholder="<f:translate key='be.label.FilterBar.Placeholder.Search'/>" />
+				</div>
+
+				<div class="form-group">
+					<f:for each="{filter.possibleSearchfields}" as="searchfield">
+							<label class="checkbox-inline">
+							<f:form.checkbox property="searchfields" multiple="true" value="{searchfield}" />
+								<f:translate key="tx_ats.label.{searchfield}">{searchfield}</f:translate>
+							</label>
+					</f:for>
+				</div>
 			</div>
 
-			<div class="form-group">
-				<f:for each="{filter.possibleSearchfields}" as="searchfield">
-						<label class="checkbox-inline">
-						<f:form.checkbox property="searchfields" multiple="true" value="{searchfield}" />
-							<f:translate key="tx_ats.label.{searchfield}">{searchfield}</f:translate>
-						</label>
-				</f:for>
+			<div class="form-inline">
+
+				<div class="form-group">
+					<label for="orderBy"><f:translate key="be.label.filterBar.orderBy">Order by</f:translate></label>:
+					<ats:form.translatableSelect translationPrefix="tx_ats.label." options="{filter.possibleOrderFields}" property="orderBy" class="form-control" />
+					<ats:form.translatableSelect translationPrefix="be.label.filterBar.orderDirection." options="{'ASC': 'asc', 'DESC': 'desc'}" property="orderDirection" class="form-control" />
+				</div>
 			</div>
+
 
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary"><f:translate key="be.label.FilterBar.Filter"/></button>

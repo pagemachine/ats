@@ -23,6 +23,10 @@
 	margin: 0px;
 }
 
+.tx-ats-backend .application-filter .form-inline {
+	margin-bottom: 12px;
+}
+
 
 /* Application list ordering icons*/
 .tx-ats-backend .applications-list th:after {

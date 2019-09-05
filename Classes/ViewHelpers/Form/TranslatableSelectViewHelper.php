@@ -35,7 +35,6 @@ class TranslatableSelectViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\Sel
    */
     protected function renderOptionTag($value, $label, $isSelected)
     {
-
         $output = '<option value="' . htmlspecialchars($value) . '"';
 
         if ($isSelected) {
