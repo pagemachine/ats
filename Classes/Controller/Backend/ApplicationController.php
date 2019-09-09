@@ -6,6 +6,7 @@ namespace PAGEmachine\Ats\Controller\Backend;
  */
 
 use PAGEmachine\Ats\Application\ApplicationFilter;
+use PAGEmachine\Ats\Application\ApplicationQuery;
 use PAGEmachine\Ats\Application\ApplicationStatus;
 use PAGEmachine\Ats\Application\Note\NoteSubject;
 use PAGEmachine\Ats\Domain\Model\Application;
@@ -57,6 +58,7 @@ class ApplicationController extends AbstractBackendController
     protected $menuUrls = [
         "listAll" => ["action" => "listAll", "label" => "be.label.AllApplications"],
         "listMine" => ["action" => "listMine", "label" => "be.label.MyApplications"],
+        "list" => ["action" => "list", "label" => "be.label.ListApplications"],
     ];
 
     /**
@@ -143,6 +145,35 @@ class ApplicationController extends AbstractBackendController
                     ]
                 );
         }
+    }
+
+    /**
+     * List action
+     *
+     * @return void
+     */
+    public function listAction()
+    {
+        $query = new ApplicationQuery();
+
+        $constants = WorkflowManager::getInstance()->getPlaces();
+
+        $statusArray = [];
+
+        foreach ($constants as $status) {
+            if (in_array($status, [10, 50, 60])) {
+                $statusArray[$status] = true;
+            }
+            else {
+                $statusArray[$status] = false;
+            }
+        }
+
+        $query->setStatusValues($statusArray);
+
+        $this->view->assignMultiple([
+            'query' => $query,
+        ]);
     }
 
     /**

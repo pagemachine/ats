@@ -1,0 +1,45 @@
+
+{namespace ats=PAGEmachine\Ats\ViewHelpers}
+{namespace core = TYPO3\CMS\Core\ViewHelpers}
+<f:layout name="Backend/List" />
+
+<f:section name="main">
+	<h1><f:translate key="be.label.AllApplications"/></h1>
+
+	<table class="applications-ajax-list table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th><f:translate key="be.label.MyApplications.Table.Created"/></th>
+				<th>Name</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+
+<div style="clear: both;">
+	<p>
+			<f:link.action action="new" class="btn btn-default">
+				<core:icon identifier="actions-document-new" /> <f:translate key="tx_ats.be.actions.application.new" />
+			</f:link.action>
+	</p>
+</div>
+
+</f:section>
+
+<f:section name="side">
+
+	<form action="#" id="applications-ajax-filter">
+		<h5>Status</h5>
+
+		<f:for each="{query.statusValues}" as="enabled" key="status">
+			<div class="checkbox">
+				<label>
+					<f:form.checkbox name="status" value="{status}" checked="{enabled}" /> <f:translate key="tx_ats.application.status.{status}" />
+				</label>
+			</div>
+		</f:for>
+	</form>
+
+</f:section>

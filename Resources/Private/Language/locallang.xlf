@@ -1143,6 +1143,9 @@
       </trans-unit>
 
       <!-- Backend -->
+		<trans-unit id="be.label.ListApplications">
+			<source>Dynamic List</source>
+		</trans-unit>
       <trans-unit id="be.label.MyApplications">
 				<source>My Applications</source>
 			</trans-unit>

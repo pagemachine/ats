@@ -866,6 +866,11 @@
 				<target>Alle Bewerbungen</target>
 			</trans-unit>
 
+			<trans-unit id="be.label.ListApplications">
+				<source>Dynamic List</source>
+				<target>Dynamische Bewerbungsliste</target>
+			</trans-unit>
+
 			<trans-unit id="be.label.Applications">
 				<source>Applications</source>
 				<target>Bewerbungen</target>

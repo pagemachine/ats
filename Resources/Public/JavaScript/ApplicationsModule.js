@@ -17,9 +17,35 @@ require(
      ApplicationsModule.initializeDataTables = function() {
          $('.applications-list').DataTable({
             'searching' : false,
-            'paging' : false
-
+            'paging' : false,
         });
+
+        var applicationsTable = $('.applications-ajax-list').DataTable({
+            serverSide: true,
+            ajax: {
+                url: TYPO3.settings.ajaxUrls['ats_applications_list'],
+                data: function(d) {
+                    d.statusValues = {};
+                    $("#applications-ajax-filter input:checkbox[name=status]").each(function(index){
+                        if (this.checked) {
+                            d.statusValues[this.value] = 1;
+                        }
+                        else {
+                            d.statusValues[this.value] = 0;
+                        }
+                    });
+                }
+            },
+            columns: [
+                {name: 'uid', data : 'uid'},
+                {name: 'crdate', data : 'crdate'},
+                {name: 'name', data : 'surname'},
+            ]
+        });
+
+         $("#applications-ajax-filter input").change(function(){
+            applicationsTable.ajax.reload();
+         });
      };
 
      //Initialize datepickers
