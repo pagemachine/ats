@@ -261,6 +261,11 @@
 				<target>Frau</target>
 			</trans-unit>
 
+			<trans-unit id="tx_ats.label.salutation.3">
+				<source>Diverse</source>
+				<target>Divers</target>
+			</trans-unit>
+
 			<trans-unit id="tx_ats.label.firstname">
 				<source>First name</source>
 				<target>Vorname</target>
