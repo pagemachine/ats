@@ -177,6 +177,10 @@
 		<source>Ms</source>
 	  </trans-unit>
 
+	  <trans-unit id="tx_ats.label.salutation.3">
+		<source>Diverse</source>
+	  </trans-unit>
+
 	  <trans-unit id="tx_ats.label.firstname">
 		<source>First name</source>
 	  </trans-unit>
