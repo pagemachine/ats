@@ -8,6 +8,9 @@ namespace PAGEmachine\Ats\Domain\Repository;
 use PAGEmachine\Ats\Persistence\Repository;
 use PAGEmachine\Ats\Service\ExtconfService;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
+use TYPO3\CMS\Core\Database\Connection;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * The repository for Jobs
@@ -35,6 +38,28 @@ class JobRepository extends Repository
                 $query->equals('deactivated', false)
             )
         )->execute();
+    }
+
+    /**
+     * Finds all jobs which should be show in the backend list views.
+     *
+     * @return void
+     */
+    public function findActiveRaw()
+    {
+        /** @var QueryBuilder */
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_ats_domain_model_job');
+
+        $jobs = $queryBuilder
+            ->select('uid', 'job_number', 'title')
+            ->from('tx_ats_domain_model_job')
+            ->where(
+                $queryBuilder->expr()->eq('deactivated', $queryBuilder->createNamedParameter(false, Connection::PARAM_BOOL))
+            )
+            ->execute()
+            ->fetchAll();
+
+        return $jobs;
     }
 
     /**

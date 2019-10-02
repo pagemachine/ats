@@ -72,8 +72,23 @@ class AjaxApplicationRepository
             $queryBuilder->expr()->eq('anonymized', $queryBuilder->createNamedParameter(0, Connection::PARAM_INT))
         ];
 
+        if ($query->getJob() !== null) {
+            $constraints[] = $queryBuilder->expr()->eq('job', $queryBuilder->createNamedParameter((int)$query->getJob(), Connection::PARAM_INT));
+        }
+
         if (!empty($query->getStatusValues())) {
-            $constraints[] = $queryBuilder->expr()->in('status', $query->getActiveStatusValues());
+            $constraints[] = $queryBuilder->expr()->in('status', $query->getStatusValues());
+        }
+
+        if (!empty($query->getSearch())) {
+            $searchExpression = $queryBuilder->createNamedParameter("%" . $query->getSearch() . "%", Connection::PARAM_STR);
+            $constraints[] = $queryBuilder->expr()->orX(
+                $queryBuilder->expr()->like('uid', $searchExpression),
+                $queryBuilder->expr()->like('title', $searchExpression),
+                $queryBuilder->expr()->like('firstname', $searchExpression),
+                $queryBuilder->expr()->like('surname', $searchExpression),
+                $queryBuilder->expr()->like('email', $searchExpression)
+            );
         }
 
         return $constraints;

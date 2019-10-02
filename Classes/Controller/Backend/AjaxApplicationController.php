@@ -20,8 +20,7 @@ class AjaxApplicationController
     {
         $queryParams = $request->getQueryParams();
 
-        $query = ApplicationQuery::createFromRequest($queryParams);
-
+        $query = new ApplicationQuery($queryParams['query']);
 
         $repository = GeneralUtility::makeInstance(AjaxApplicationRepository::class);
 

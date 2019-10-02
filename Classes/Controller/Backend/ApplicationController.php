@@ -156,23 +156,12 @@ class ApplicationController extends AbstractBackendController
     {
         $query = new ApplicationQuery();
 
-        $constants = WorkflowManager::getInstance()->getPlaces();
-
-        $statusArray = [];
-
-        foreach ($constants as $status) {
-            if (in_array($status, [10, 50, 60])) {
-                $statusArray[$status] = true;
-            }
-            else {
-                $statusArray[$status] = false;
-            }
-        }
-
-        $query->setStatusValues($statusArray);
+        $constants = ApplicationStatus::getConstantsForWorkflow();
 
         $this->view->assignMultiple([
-            'query' => $query,
+            'query' => json_encode($query),
+            'statusValues' => $constants,
+            'jobs' => $this->jobRepository->findActiveRaw()
         ]);
     }
 

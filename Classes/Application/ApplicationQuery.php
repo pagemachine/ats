@@ -5,7 +5,7 @@ namespace PAGEmachine\Ats\Application;
  * This file is part of the PAGEmachine ATS project.
  */
 
-class ApplicationQuery
+class ApplicationQuery implements \JsonSerializable
 {
 
     /**
@@ -57,7 +57,7 @@ class ApplicationQuery
     /**
      * @var int
      */
-    protected $limit = 10;
+    protected $limit = 20;
 
     /**
      * @return int
@@ -103,7 +103,10 @@ class ApplicationQuery
     /**
      * @var array
      */
-    protected $statusValues;
+    protected $statusValues = [
+        10,
+        50
+    ];
 
     /**
      * @return array
@@ -123,44 +126,73 @@ class ApplicationQuery
     }
 
     /**
-     * Returns active status values for querying.
-     *
-     * @return array
+     * @var int|null
      */
-    public function getActiveStatusValues()
+    protected $job = null;
+
+    /**
+     * @return int|null
+     */
+    public function getJob()
     {
-        return array_keys(array_filter($this->statusValues));
+        return $this->job;
     }
 
     /**
-     * Creates a query from given AJAX request.
-     * This is implemented to specifically fit to DataTables query strings.
-     *
-     * @param  array  $queryParams
-     * @return ApplicationQuery
+     * @param int $job
      */
-    public static function createFromRequest(array $queryParams = [])
+    public function setJob($job)
     {
-        $query = new ApplicationQuery();
+        $this->job = $job;
+    }
 
-        // Ordering
-        if ($queryParams['order'] && in_array($queryParams['order'][0]['dir'], ['asc', 'desc']))
-        {
-            $query->setOrderBy($queryParams['columns'][$queryParams['order'][0]['column']]['data']);
-            $query->setOrderDirection($queryParams['order'][0]['dir']);
-        }
 
-        // Pagination
-        if ($queryParams['start'] && $queryParams['length']) {
-            $query->setOffset((int) $queryParams['start']);
-            $query->setLimit($queryParams['length']);
-        }
+    /**
+     * @var string
+     */
+    protected $search;
 
-        // Status values
-        if ($queryParams['statusValues']) {
-            $query->setStatusValues($queryParams['statusValues']);
-        }
+    /**
+     * @return string
+     */
+    public function getSearch()
+    {
+        return $this->search;
+    }
 
+    /**
+     * @param string $search
+     * @return void
+     */
+    public function setSearch($search)
+    {
+        $this->search = $search;
+    }
+
+    public function jsonSerialize()
+    {
+        $query = [
+            'orderBy' => $this->orderBy,
+            'orderDirection' => $this->orderDirection,
+            'limit' => $this->limit,
+            'offset' => $this->offset,
+            'statusValues' => $this->statusValues,
+            'job' => $this->job,
+            'search' => $this->search,
+        ];
         return $query;
+    }
+
+    public function __construct($queryParams = [])
+    {
+        if (!empty($queryParams)) {
+            $this->orderBy = $queryParams['orderBy'] ?: $this->orderBy;
+            $this->orderDirection = $queryParams['orderDirection'] ?: $this->orderDirection;
+            $this->limit = (int)$queryParams['limit'] ?: $this->limit;
+            $this->offset = (int)$queryParams['offset'] ?: $this->offset;
+            $this->statusValues = $queryParams['statusValues'] ?: $this->statusValues;
+            $this->job = (int)$queryParams['job'] ?: $this->job;
+            $this->search = $queryParams['search'] ?: $this->search;
+        }
     }
 }

@@ -45,11 +45,16 @@ class AbstractBackendController extends ActionController
         //Add Datatables and custom JS module to view
         $pageRenderer = $view->getModuleTemplate()->getPageRenderer();
 
-        $pageRenderer->loadRequireJsModule('datatables');
-        $pageRenderer->loadRequireJsModule('TYPO3/CMS/Recordlist/Recordlist');
-        $pageRenderer->loadRequireJsModule('TYPO3/CMS/Ats/ApplicationsModule');
-
         $pageRenderer->addCssFile('EXT:ats/Resources/Public/Css/backend.css');
+
+        if ($this->actionMethodName == 'listAction') {
+            $pageRenderer->loadRequireJsModule('TYPO3/CMS/Ats/ApplicationList');
+        }
+        else {
+            $pageRenderer->loadRequireJsModule('datatables');
+            $pageRenderer->loadRequireJsModule('TYPO3/CMS/Recordlist/Recordlist');
+            $pageRenderer->loadRequireJsModule('TYPO3/CMS/Ats/ApplicationsModule');
+        }
 
         $this->buildMenu();
     }

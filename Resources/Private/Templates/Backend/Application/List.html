@@ -6,12 +6,12 @@
 <f:section name="main">
 	<h1><f:translate key="be.label.AllApplications"/></h1>
 
-	<table class="applications-ajax-list table">
+	<table class="table" id="applications-ajax-list" data-detail-uri="{f:uri.action(action:'show')}">
 		<thead>
 			<tr>
-				<th>ID</th>
-				<th><f:translate key="be.label.MyApplications.Table.Created"/></th>
-				<th>Name</th>
+				<th data-column="uid">ID</th>
+				<th data-column="crdate"><f:translate key="be.label.MyApplications.Table.Created"/></th>
+				<th data-column="surname">Name</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -30,16 +30,13 @@
 
 <f:section name="side">
 
-	<form action="#" id="applications-ajax-filter">
+	<form action="#" id="applications-ajax-filter" data-query="{query}">
 		<h5>Status</h5>
 
-		<f:for each="{query.statusValues}" as="enabled" key="status">
-			<div class="checkbox">
-				<label>
-					<f:form.checkbox name="status" value="{status}" checked="{enabled}" /> <f:translate key="tx_ats.application.status.{status}" />
-				</label>
-			</div>
-		</f:for>
+		<f:form.select options="{statusValues}" multiple="true" class="form-control" additionalAttributes="{data: {name: 'statusValues'}}"/>
+
+		<h5>Job</h5>
+		<f:form.select options="{jobs}" optionValueField="uid" optionLabelField="title" prependOptionLabel="All" prependOptionValue="" additionalAttributes="{data: {name: 'job'}}" class="form-control" />
 	</form>
 
 </f:section>
