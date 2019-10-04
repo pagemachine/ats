@@ -18,6 +18,8 @@ require(
         serverSide: true,
         processing: true,
         language: {
+            search: '',
+            searchPlaceholder: 'Nach Name, E-Mail oder ID suchen...',
             loadingRecords: '&nbsp;',
             processing: '<div style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; background-color: rgba(255, 255, 255, 0.8); text-align: center; padding-top: 25%;">...</div>'
         },
@@ -41,18 +43,18 @@ require(
         columns: [
             {name: 'uid', data : 'uid'},
             {
+                name: 'name',
+                data: 'surname',
+                render: function(data, type, row, meta) {
+                    return "<b>" + row.firstname + " " + row.surname + "</b>";
+                }
+            },
+            {
                 name: 'crdate',
                 data: 'crdate',
                 render: function(data, type, row, meta) {
                     date = new Date(data * 1000);
                     return date.toLocaleDateString('de-DE', dateOptions);
-                }
-            },
-            {
-                name: 'name',
-                data: 'surname',
-                render: function(data, type, row, meta) {
-                    return '<a href="' + detailUri + '&tx_ats[application]=' + row.uid + '">' + row.firstname + " " + row.surname + '</a>';
                 }
             },
         ],
@@ -62,6 +64,13 @@ require(
         displayStart: query.offset,
     });
 
+    // Add detail view link to the full rows
+    applicationsTable.on('click', 'tbody td', function() {
+      var rowID = applicationsTable.row({ row: this.parentNode.rowIndex}).data().uid;
+      if (rowID) {
+        window.location.href = detailUri + '&tx_ats[application]=' + rowID;
+      }
+    })
 
     // Set form input values from model
     $('#applications-ajax-filter input, #applications-ajax-filter select').each(function() {

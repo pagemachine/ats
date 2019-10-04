@@ -6,12 +6,12 @@
 <f:section name="main">
 	<h1><f:translate key="be.label.AllApplications"/></h1>
 
-	<table class="table" id="applications-ajax-list" data-detail-uri="{f:uri.action(action:'show')}">
+	<table class="stripe" id="applications-ajax-list" data-detail-uri="{f:uri.action(action:'show')}">
 		<thead>
 			<tr>
-				<th data-column="uid">ID</th>
-				<th data-column="crdate"><f:translate key="be.label.MyApplications.Table.Created"/></th>
+				<th data-column="uid" style="max-width: 20px;">ID</th>
 				<th data-column="surname">Name</th>
+				<th data-column="crdate"><f:translate key="be.label.MyApplications.Table.Created"/></th>
 			</tr>
 		</thead>
 		<tbody>
