@@ -41,7 +41,7 @@
 	<form action="#" id="applications-ajax-filter" data-query="{query}">
 		<h5>Status</h5>
 
-		<f:form.select options="{statusValues}" multiple="true" class="form-control" additionalAttributes="{data: {name: 'statusValues'}}"/>
+		<f:form.select options="{filteredStatusValues}" multiple="true" class="form-control" additionalAttributes="{data: {name: 'statusValues'}}"/>
 
 		<h5>Job</h5>
 		<f:form.select options="{jobs}" optionValueField="uid" optionLabelField="title" prependOptionLabel="All" prependOptionValue="" additionalAttributes="{data: {name: 'job'}}" class="form-control" />

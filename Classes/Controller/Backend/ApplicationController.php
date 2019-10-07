@@ -156,12 +156,18 @@ class ApplicationController extends AbstractBackendController
     {
         $query = new ApplicationQuery();
 
-        $constants = ApplicationStatus::getConstantsWithTranslation();
+        $statusOptions = ApplicationStatus::getConstantsWithTranslation();
+        list($filteredStatusOptions) = $this->signalSlotDispatcher->dispatch(__CLASS__, 'modifyListStatusOptions', [$statusOptions, $this]);
+        $query->setStatusValues(array_keys($filteredStatusOptions));
+
+        $jobs = $this->jobRepository->findActiveRaw();
+        list($jobs) = $this->signalSlotDispatcher->dispatch(__CLASS__, 'modifyListJobOptions', [$jobs, $this]);
 
         $this->view->assignMultiple([
             'query' => json_encode($query),
-            'statusValues' => $constants,
-            'jobs' => $this->jobRepository->findActiveRaw()
+            'statusValues' => $statusOptions,
+            'filteredStatusValues' => $filteredStatusOptions,
+            'jobs' => $jobs
         ]);
     }
 
