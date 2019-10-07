@@ -8,6 +8,7 @@
 
 	<script>
 		var jobs = {jobs -> f:format.json() -> f:format.raw()};
+		var statusValues = {statusValues -> f:format.json() -> f:format.raw()};
 	</script>
 
 	<table class="stripe" id="applications-ajax-list" data-detail-uri="{f:uri.action(action:'show')}">
@@ -18,6 +19,7 @@
 				<th data-column="tstamp" style="max-width: 80px;">Geändert</th>
 				<th data-column="surname">Name</th>
 				<th data-column="job">Job</th>
+				<th data-column="status">Status</th>
 			</tr>
 		</thead>
 		<tbody>

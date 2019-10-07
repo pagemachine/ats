@@ -69,10 +69,19 @@ require(
                 name: 'job',
                 data: 'job',
                 render: function(data, type, row, meta) {
+                    // Filter out the matching job from global Fluid-provided jobs list
                     var job = jobs.filter(obj => {
                       return obj.uid === row.job
                     })[0];
                     return job.job_number + " " + job.title;
+                }
+            },
+            {
+                name: 'status',
+                data: 'status',
+                render: function(data, type, row, meta) {
+                    // Filter out the matching job from global Fluid-provided jobs list
+                    return "<span class='status-" + row.status + "'>" + statusValues[row.status] + "</span>";
                 }
             },
         ],

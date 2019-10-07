@@ -156,7 +156,7 @@ class ApplicationController extends AbstractBackendController
     {
         $query = new ApplicationQuery();
 
-        $constants = ApplicationStatus::getConstantsForWorkflow();
+        $constants = ApplicationStatus::getConstantsWithTranslation();
 
         $this->view->assignMultiple([
             'query' => json_encode($query),
