@@ -40,6 +40,7 @@ class AjaxApplicationRepository
         $queryBuilder->select(
             'uid',
             'crdate',
+            'tstamp',
             'firstname',
             'surname',
             'job',

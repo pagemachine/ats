@@ -6,12 +6,18 @@
 <f:section name="main">
 	<h1><f:translate key="be.label.AllApplications"/></h1>
 
+	<script>
+		var jobs = {jobs -> f:format.json() -> f:format.raw()};
+	</script>
+
 	<table class="stripe" id="applications-ajax-list" data-detail-uri="{f:uri.action(action:'show')}">
 		<thead>
 			<tr>
 				<th data-column="uid" style="max-width: 20px;">ID</th>
+				<th data-column="crdate" style="max-width: 80px;"><f:translate key="be.label.MyApplications.Table.Created"/></th>
+				<th data-column="tstamp" style="max-width: 80px;">Geändert</th>
 				<th data-column="surname">Name</th>
-				<th data-column="crdate"><f:translate key="be.label.MyApplications.Table.Created"/></th>
+				<th data-column="job">Job</th>
 			</tr>
 		</thead>
 		<tbody>

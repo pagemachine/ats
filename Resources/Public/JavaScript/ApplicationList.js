@@ -43,6 +43,22 @@ require(
         columns: [
             {name: 'uid', data : 'uid'},
             {
+                name: 'crdate',
+                data: 'crdate',
+                render: function(data, type, row, meta) {
+                    date = new Date(data * 1000);
+                    return date.toLocaleDateString('de-DE', dateOptions);
+                }
+            },
+            {
+                name: 'tstamp',
+                data: 'tstamp',
+                render: function(data, type, row, meta) {
+                    date = new Date(data * 1000);
+                    return date.toLocaleDateString('de-DE', dateOptions);
+                }
+            },
+            {
                 name: 'name',
                 data: 'surname',
                 render: function(data, type, row, meta) {
@@ -50,11 +66,13 @@ require(
                 }
             },
             {
-                name: 'crdate',
-                data: 'crdate',
+                name: 'job',
+                data: 'job',
                 render: function(data, type, row, meta) {
-                    date = new Date(data * 1000);
-                    return date.toLocaleDateString('de-DE', dateOptions);
+                    var job = jobs.filter(obj => {
+                      return obj.uid === row.job
+                    })[0];
+                    return job.job_number + " " + job.title;
                 }
             },
         ],
