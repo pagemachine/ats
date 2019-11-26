@@ -10,7 +10,7 @@ require(
     var dateOptions = { year: 'numeric', month: 'numeric', day: 'numeric' };
 
     var query = $('#applications-ajax-filter').data('query');
-    var queryBackup = Object.assign({}, query);
+
     var orderColumn = $('#applications-ajax-list th[data-column="' + query.orderBy + '"]').first().index();
 
     var detailUri = $("#applications-ajax-list").data("detail-uri");
@@ -35,12 +35,14 @@ require(
                 query.search = d.search.value;
                 d.query = query;
 
+                top.TYPO3.Storage.Persistent.set('atsApplications.query', JSON.stringify(query));
+
                 var data = {
                     draw: d.draw,
                     query : d.query
                 };
                 d = data;
-            },
+            }
         },
         columns: [
             {name: 'uid', data : 'uid'},
@@ -91,6 +93,9 @@ require(
         order: [[orderColumn, query.orderDirection]],
         pageLength: query.limit,
         displayStart: query.offset,
+        search: {
+            search: query.search,
+        },
     });
 
     // Add detail view link to the full rows
@@ -114,14 +119,14 @@ require(
 
     //Reset button
     $('#applications-ajax-filter #reset').on('click', function(){
-        query = Object.assign({}, queryBackup);
-        // Set form input values from model
+        query = Object.assign({}, defaultQuery);
+        // Reset all form inputs
         $('#applications-ajax-filter input, #applications-ajax-filter select').each(function() {
             $(this).val(query[$(this).data("name")]);
         });
         applicationsTable.search(query.search);
         applicationsTable.page(0);
-        applicationsTable.order([orderColumn, query.orderDirection]);
+        applicationsTable.order([$('#applications-ajax-list th[data-column="' + query.orderBy + '"]').first().index(), query.orderDirection]);
         applicationsTable.ajax.reload();
     });
 });

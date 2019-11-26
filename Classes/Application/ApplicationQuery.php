@@ -103,10 +103,7 @@ class ApplicationQuery implements \JsonSerializable
     /**
      * @var array
      */
-    protected $statusValues = [
-        10,
-        50
-    ];
+    protected $statusValues = [];
 
     /**
      * @return array
@@ -247,7 +244,7 @@ class ApplicationQuery implements \JsonSerializable
             'search' => $this->search ?: '',
             'onlyDeadlineExceeded' => $this->onlyDeadlineExceeded ? 1 : 0,
             'deadlineTime' => $this->deadlineTime,
-            'onlyMyApplications' => $this->onlyMyApplications,
+            'onlyMyApplications' => $this->onlyMyApplications ? 1 : 0,
         ];
         return $query;
     }
@@ -266,5 +263,20 @@ class ApplicationQuery implements \JsonSerializable
             $this->deadlineTime = (int)$queryParams['deadlineTime'] ?: $this->deadlineTime;
             $this->onlyMyApplications = (int)$queryParams['onlyMyApplications'] == 1 ? true : false;
         }
+    }
+
+    /**
+     * Builds a list query from BE User session, if possible. Otherwise, a query with default settings is returned.
+     * @return ApplicationQuery
+     */
+    public static function buildFromSession()
+    {
+        if (!empty($GLOBALS['BE_USER']->uc['atsApplications']['query'])) {
+            $sessionQueryParams = json_decode($GLOBALS['BE_USER']->uc['atsApplications']['query'], true);
+            if (json_last_error() == JSON_ERROR_NONE) {
+                return new ApplicationQuery($sessionQueryParams);
+            }
+        }
+        return new ApplicationQuery();
     }
 }

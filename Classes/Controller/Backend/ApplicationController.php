@@ -152,19 +152,26 @@ class ApplicationController extends AbstractBackendController
      */
     public function listAction()
     {
-        $query = new ApplicationQuery();
+        $query = ApplicationQuery::buildFromSession();
+        $defaultQuery = new ApplicationQuery();
 
         $query->setDeadlineTime($this->settings['deadlineTime']);
 
         $statusOptions = ApplicationStatus::getConstantsWithTranslation();
         list($filteredStatusOptions) = $this->signalSlotDispatcher->dispatch(__CLASS__, 'modifyListStatusOptions', [$statusOptions, $this]);
-        $query->setStatusValues(array_keys($filteredStatusOptions));
+
+        // If this is a new query, apply all allowed status values by default
+        if (empty($query->getStatusValues())) {
+            $query->setStatusValues(array_keys($filteredStatusOptions));
+        }
+        $defaultQuery->setStatusValues(array_keys($filteredStatusOptions));
 
         $jobs = $this->jobRepository->findActiveRaw();
         list($jobs) = $this->signalSlotDispatcher->dispatch(__CLASS__, 'modifyListJobOptions', [$jobs, $this]);
 
         $this->view->assignMultiple([
             'query' => json_encode($query),
+            'defaultQuery' => $defaultQuery,
             'statusValues' => $statusOptions,
             'filteredStatusValues' => $filteredStatusOptions,
             'jobs' => $jobs
