@@ -100,7 +100,7 @@ require(
 
     // Add detail view link to the full rows
     applicationsTable.on('click', 'tbody td', function() {
-      var rowID = applicationsTable.row({ row: this.parentNode.rowIndex}).data().uid;
+      var rowID = parseInt(applicationsTable.cell({ row: this.parentNode.rowIndex - 1, column: 0}).data());
       if (rowID) {
         window.location.href = detailUri + '&tx_ats[application]=' + rowID;
       }
