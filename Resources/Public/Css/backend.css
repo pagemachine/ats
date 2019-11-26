@@ -103,6 +103,16 @@
 }
 
 /** Applications AJAX List */
+.tx-ats-backend .filter-bar {
+	position: fixed;
+    right: 21px;
+    top: 0;
+    bottom: 0;
+    padding: 80px 22px 22px 22px;
+    /* background-color: #EEEEEE; */
+    border-left: 3px solid #EEEEEE;
+}
+
 #applications-ajax-list tbody tr {
 	cursor: pointer;
 }

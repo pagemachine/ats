@@ -66,7 +66,7 @@ require(
                 name: 'name',
                 data: 'surname',
                 render: function(data, type, row, meta) {
-                    return "<b>" + row.firstname + " " + row.surname + "</b>";
+                    return "<b>" + row.surname + ", " + row.firstname + "</b>";
                 }
             },
             {
@@ -77,7 +77,7 @@ require(
                     var job = jobs.filter(obj => {
                       return obj.uid === row.job
                     })[0];
-                    return job.job_number + " " + job.title;
+                    return job.job_number + " - " + job.title;
                 }
             },
             {

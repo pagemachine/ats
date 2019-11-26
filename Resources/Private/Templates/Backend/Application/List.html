@@ -40,25 +40,25 @@
 <f:section name="side">
 	<form action="#" id="applications-ajax-filter" data-query="{query}">
 
-		<span class="btn btn-default btn-xs" id="reset">Reset filters</span>
+		<span class="btn btn-default btn-xs" id="reset"><f:translate key="tx_ats.be.filter.reset" /></span>
 
-		<h5>Assignment</h5>
+		<h5><f:translate key="tx_ats.be.filter.assignment" /></h5>
 		<select data-name="onlyMyApplications" class="form-control">
-			<option value="0">All</option>
-			<option value="1">My Applications</option>
+			<option value="0"><f:translate key="tx_ats.be.filter.assignment.all" /></option>
+			<option value="1"><f:translate key="tx_ats.be.filter.assignment.mine" /></option>
 		</select>
-		<h5>Status</h5>
+		<h5><f:translate key="tx_ats.be.filter.status" /></h5>
 
 		<f:form.select options="{filteredStatusValues}" multiple="true" class="form-control" additionalAttributes="{data: {name: 'statusValues'}}"/>
 
-		<h5>Job</h5>
-		<f:form.select options="{jobs}" optionValueField="uid" optionLabelField="title" prependOptionLabel="All" prependOptionValue="" additionalAttributes="{data: {name: 'job'}}" class="form-control" />
+		<h5><f:translate key="tx_ats.be.filter.job" /></h5>
+		<f:form.select options="{jobs}" optionValueField="uid" optionLabelField="job_number" prependOptionLabel="{f:translate(key:'tx_ats.be.filter.job.all')}" prependOptionValue="" additionalAttributes="{data: {name: 'job'}}" class="form-control" />
 
-		<h5>Deadline</h5>
+		<h5><f:translate key="tx_ats.be.filter.deadline" /></h5>
 
 		<select data-name="onlyDeadlineExceeded" class="form-control">
-			<option value="0">All</option>
-			<option value="1">Deadline Exceeded only</option>
+			<option value="0"><f:translate key="tx_ats.be.filter.deadline.all" /></option>
+			<option value="1"><f:translate key="tx_ats.be.filter.deadline.onlyExceeded" /></option>
 		</select>
 	</form>
 

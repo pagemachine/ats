@@ -1941,6 +1941,46 @@
 				<source>No</source>
 				<target>Nein</target>
 			</trans-unit>
+
+			<trans-unit id="tx_ats.be.filter.assignment">
+				<source>Assignment</source>
+				<target>Bearbeitet von</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.be.filter.assignment.all">
+				<source>Everyone</source>
+				<target>Alle</target>
+			</trans-unit>
+			<trans-unit id="tx_ats.be.filter.assignment.mine">
+				<source>My Applications</source>
+				<target>Nur meine</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.be.filter.job">
+				<source>Job</source>
+				<target>Stelle</target>
+			</trans-unit>
+			<trans-unit id="tx_ats.be.filter.job.all">
+				<source>All Jobs</source>
+				<target>Alle</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.be.filter.deadline">
+				<source>Deadline</source>
+				<target>Fristüberschreitung</target>
+			</trans-unit>
+			<trans-unit id="tx_ats.be.filter.deadline.all">
+				<source>Don't care</source>
+				<target>Alle</target>
+			</trans-unit>
+			<trans-unit id="tx_ats.be.filter.deadline.onlyExceeded">
+				<source>Deadline exceeded only</source>
+				<target>Frist überschritten</target>
+			</trans-unit>
+			<trans-unit id="tx_ats.be.filter.reset">
+				<source>Reset filters</source>
+				<target>Filter zurücksetzen</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
