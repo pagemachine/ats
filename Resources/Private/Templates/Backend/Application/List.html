@@ -40,6 +40,11 @@
 
 
 	<form action="#" id="applications-ajax-filter" data-query="{query}">
+		<h5>Assignment</h5>
+		<select data-name="onlyMyApplications" class="form-control">
+			<option value="0">All</option>
+			<option value="1">My Applications</option>
+		</select>
 		<h5>Status</h5>
 
 		<f:form.select options="{filteredStatusValues}" multiple="true" class="form-control" additionalAttributes="{data: {name: 'statusValues'}}"/>

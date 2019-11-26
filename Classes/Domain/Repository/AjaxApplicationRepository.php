@@ -97,6 +97,9 @@ class AjaxApplicationRepository
         if ($query->getOnlyDeadlineExceeded() == true) {
             $constraints[] = $queryBuilder->expr()->in('job', $queryBuilder->createNamedParameter($this->getExceededJobUids($query->getDeadlineTime()), Connection::PARAM_INT_ARRAY));
         }
+        if ($query->getOnlyMyApplications() == true) {
+            $constraints[] = $queryBuilder->expr()->in('job', $queryBuilder->createNamedParameter($this->getJobUidsAssignedToCurrentUser(), Connection::PARAM_INT_ARRAY));
+        }
 
         return $constraints;
     }
@@ -124,6 +127,40 @@ class AjaxApplicationRepository
             )
             ->execute()
             ->fetchAll();
+        return $jobs ? array_map(function($job){ return $job['uid'];}, $jobs) : [];
+    }
+
+    protected function getJobUidsAssignedToCurrentUser()
+    {
+        $backendUser = $GLOBALS['BE_USER'];
+
+        /** @var QueryBuilder */
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_ats_domain_model_job');
+
+        $queryBuilder->getRestrictions()
+            ->removeByType(StartTimeRestriction::class)
+            ->removeByType(EndTimeRestriction::class)
+            ->removeByType(HiddenRestriction::class);
+
+        $constraints = [];
+        $constraints[] = $queryBuilder->expr()->inSet('user_pa', $backendUser->user['uid']);
+
+        foreach ($backendUser->userGroups as $group) {
+            $constraints[] = $queryBuilder->expr()->inSet("department", $group['uid']);
+            $constraints[] = $queryBuilder->expr()->inSet("officials", $group['uid']);
+            $constraints[] = $queryBuilder->expr()->inSet("contributors", $group['uid']);
+        }
+
+        $jobs = $queryBuilder
+            ->select('uid')
+            ->from('tx_ats_domain_model_job')
+            ->where(
+                $queryBuilder->expr()->orX(...$constraints)
+            )
+            ->execute()
+            ->fetchAll();
+
+
         return $jobs ? array_map(function($job){ return $job['uid'];}, $jobs) : [];
     }
 }
