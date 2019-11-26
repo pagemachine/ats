@@ -2,9 +2,13 @@
 namespace PAGEmachine\Ats\Domain\Repository;
 
 use PAGEmachine\Ats\Application\ApplicationQuery;
+use PAGEmachine\Ats\Service\TyposcriptService;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use TYPO3\CMS\Core\Database\Query\Restriction\EndTimeRestriction;
+use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
+use TYPO3\CMS\Core\Database\Query\Restriction\StartTimeRestriction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /*
@@ -92,6 +96,39 @@ class AjaxApplicationRepository
             );
         }
 
+        if ($query->getOnlyDeadlineExceeded() == true) {
+            $constraints[] = $queryBuilder->expr()->in('job', $queryBuilder->createNamedParameter($this->getExceededJobUids(), Connection::PARAM_INT_ARRAY));
+        }
+
         return $constraints;
+    }
+
+    protected function getExceededJobUids() {
+        /** @var QueryBuilder */
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_ats_domain_model_job');
+
+        $queryBuilder->getRestrictions()
+            ->removeByType(StartTimeRestriction::class)
+            ->removeByType(EndTimeRestriction::class)
+            ->removeByType(HiddenRestriction::class);
+
+        $settings = TyposcriptService::getInstance()->getSettings();
+        $deadlineTime = $settings['deadlineTime'];
+
+        $maxEndtime = time() - $deadlineTime;
+
+        $jobs = $queryBuilder
+            ->select('uid')
+            ->from('tx_ats_domain_model_job')
+            ->where(
+                $queryBuilder->expr()->andX(
+                    $queryBuilder->expr()->eq('deactivated', $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)),
+                    $queryBuilder->expr()->gt('endtime', $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)),
+                    $queryBuilder->expr()->lt('endtime', $queryBuilder->createNamedParameter($maxEndtime, Connection::PARAM_INT))
+                )
+            )
+            ->execute()
+            ->fetchAll();
+        return $jobs ? array_map(function($job){ return $job['uid'];}, $jobs) : [];
     }
 }

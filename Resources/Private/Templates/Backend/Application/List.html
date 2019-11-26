@@ -45,6 +45,13 @@
 
 		<h5>Job</h5>
 		<f:form.select options="{jobs}" optionValueField="uid" optionLabelField="title" prependOptionLabel="All" prependOptionValue="" additionalAttributes="{data: {name: 'job'}}" class="form-control" />
+
+		<h5>Deadline</h5>
+
+		<select data-name="onlyDeadlineExceeded">
+			<option value="0">All</option>
+			<option value="1">Deadline Exceeded only</option>
+		</select>
 	</form>
 
 </f:section>
