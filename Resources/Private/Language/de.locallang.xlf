@@ -1736,7 +1736,7 @@
 				<target>Weiter</target>
 			</trans-unit>
 
-			<trans-unit id="be.label.notification.back">
+			<trans-unit id="be.label.backtolist">
 				<source>Back to list</source>
 				<target>Zurück zur Liste</target>
 			</trans-unit>

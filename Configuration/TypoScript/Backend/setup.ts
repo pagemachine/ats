@@ -3,6 +3,7 @@ module.tx_ats {
         deadlineTime = 1209600
         dateFormat = d.m.Y
         timeFormat = H:i
+        preferredListAction = listMine
 
         ratingOptions {
           0 {

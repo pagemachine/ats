@@ -1590,7 +1590,7 @@
 				<source>Continue</source>
 			</trans-unit>
 
-			<trans-unit id="be.label.notification.back">
+			<trans-unit id="be.label.backtolist">
 				<source>Back to list</source>
 			</trans-unit>
 

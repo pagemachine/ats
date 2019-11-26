@@ -68,8 +68,7 @@ class ApplicationController extends AbstractBackendController
      */
     public function initializeIndexAction()
     {
-
-        $this->forward("listMine");
+        $this->forward($this->settings['preferredListAction']);
     }
 
     /**
@@ -108,7 +107,6 @@ class ApplicationController extends AbstractBackendController
      */
     public function initializeAction()
     {
-
         if ($this->request->hasArgument('message')) {
             $this->arguments->getArgument('message')
                 ->getPropertyMappingConfiguration()
