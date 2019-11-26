@@ -169,11 +169,18 @@ class ApplicationController extends AbstractBackendController
         $jobs = $this->jobRepository->findActiveRaw();
         list($jobs) = $this->signalSlotDispatcher->dispatch(__CLASS__, 'modifyListJobOptions', [$jobs, $this]);
 
+        $assignmentOptions = [
+            0 => LocalizationUtility::translate('tx_ats.be.filter.assignment.all', 'ats'),
+            1 => LocalizationUtility::translate('tx_ats.be.filter.assignment.mine', 'ats'),
+        ];
+        list($assignmentOptions) = $this->signalSlotDispatcher->dispatch(__CLASS__, 'modifyListAssignmentOptions', [$assignmentOptions, $this]);
+
         $this->view->assignMultiple([
             'query' => json_encode($query),
             'defaultQuery' => $defaultQuery,
             'statusValues' => $statusOptions,
             'filteredStatusValues' => $filteredStatusOptions,
+            'assignmentOptions' => $assignmentOptions,
             'jobs' => $jobs,
         ]);
     }

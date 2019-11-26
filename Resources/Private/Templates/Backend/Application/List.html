@@ -43,10 +43,7 @@
 		<span class="btn btn-default btn-xs" id="reset"><f:translate key="tx_ats.be.filter.reset" /></span>
 
 		<h5><f:translate key="tx_ats.be.filter.assignment" /></h5>
-		<select data-name="onlyMyApplications" class="form-control">
-			<option value="0"><f:translate key="tx_ats.be.filter.assignment.all" /></option>
-			<option value="1"><f:translate key="tx_ats.be.filter.assignment.mine" /></option>
-		</select>
+		<f:form.select additionalAttributes="{data: {name: 'onlyMyApplications'}}" class="form-control" options="{assignmentOptions}" />
 		<h5><f:translate key="tx_ats.be.filter.status" /></h5>
 
 		<f:form.select options="{filteredStatusValues}" multiple="true" class="form-control" additionalAttributes="{data: {name: 'statusValues'}}"/>

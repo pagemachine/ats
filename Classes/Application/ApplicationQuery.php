@@ -1,6 +1,9 @@
 <?php
 namespace PAGEmachine\Ats\Application;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
+
 /*
  * This file is part of the PAGEmachine ATS project.
  */
@@ -262,6 +265,9 @@ class ApplicationQuery implements \JsonSerializable
             $this->deadlineTime = (int)$queryParams['deadlineTime'] ?: $this->deadlineTime;
             $this->onlyMyApplications = (int)$queryParams['onlyMyApplications'] == 1 ? true : false;
         }
+
+        $signalSlotDispatcher = GeneralUtility::makeInstance(Dispatcher::class);
+        $signalSlotDispatcher->dispatch(__CLASS__, 'modifyQuery', [$this]);
     }
 
     /**
