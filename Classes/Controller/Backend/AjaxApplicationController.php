@@ -18,14 +18,14 @@ class AjaxApplicationController
 {
     public function getApplications(ServerRequestInterface $request, ResponseInterface $response)
     {
-        $queryParams = $request->getQueryParams();
+        $body = $request->getParsedBody();
 
-        $query = new ApplicationQuery($queryParams['query']);
+        $query = new ApplicationQuery($body['query']);
 
         $repository = GeneralUtility::makeInstance(AjaxApplicationRepository::class);
 
         $data = [
-            'draw' => (int)$queryParams['draw'],
+            'draw' => (int)$body['draw'],
             'recordsFiltered' => $repository->getTotalResultsOfQuery($query),
             'data' => $repository->findWithQuery($query)
         ];

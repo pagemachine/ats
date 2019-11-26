@@ -26,6 +26,7 @@ require(
         },
         ajax: {
             url: TYPO3.settings.ajaxUrls['ats_applications_list'],
+            type: 'POST',
             data: function(d, settings) {
                 query.orderBy = d.columns[d.order[0].column].data;
                 query.orderDirection = d.order[0].dir;
