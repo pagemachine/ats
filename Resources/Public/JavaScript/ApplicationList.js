@@ -10,6 +10,7 @@ require(
     var dateOptions = { year: 'numeric', month: 'numeric', day: 'numeric' };
 
     var query = $('#applications-ajax-filter').data('query');
+    var queryBackup = Object.assign({}, query);
     var orderColumn = $('#applications-ajax-list th[data-column="' + query.orderBy + '"]').first().index();
 
     var detailUri = $("#applications-ajax-list").data("detail-uri");
@@ -107,6 +108,19 @@ require(
     // Bind form value changes to query model
     $('#applications-ajax-filter input, #applications-ajax-filter select').on('change', function() {
         query[$(this).data("name")] = $(this).val();
+        applicationsTable.ajax.reload();
+    });
+
+    //Reset button
+    $('#applications-ajax-filter #reset').on('click', function(){
+        query = Object.assign({}, queryBackup);
+        // Set form input values from model
+        $('#applications-ajax-filter input, #applications-ajax-filter select').each(function() {
+            $(this).val(query[$(this).data("name")]);
+        });
+        applicationsTable.search(query.search);
+        applicationsTable.page(0);
+        applicationsTable.order([orderColumn, query.orderDirection]);
         applicationsTable.ajax.reload();
     });
 });

@@ -244,7 +244,7 @@ class ApplicationQuery implements \JsonSerializable
             'offset' => $this->offset,
             'statusValues' => $this->statusValues,
             'job' => $this->job,
-            'search' => $this->search,
+            'search' => $this->search ?: '',
             'onlyDeadlineExceeded' => $this->onlyDeadlineExceeded ? 1 : 0,
             'deadlineTime' => $this->deadlineTime,
             'onlyMyApplications' => $this->onlyMyApplications,
