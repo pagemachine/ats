@@ -156,6 +156,8 @@ class ApplicationController extends AbstractBackendController
     {
         $query = new ApplicationQuery();
 
+        $query->setDeadlineTime($this->settings['deadlineTime']);
+
         $statusOptions = ApplicationStatus::getConstantsWithTranslation();
         list($filteredStatusOptions) = $this->signalSlotDispatcher->dispatch(__CLASS__, 'modifyListStatusOptions', [$statusOptions, $this]);
         $query->setStatusValues(array_keys($filteredStatusOptions));

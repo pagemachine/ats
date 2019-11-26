@@ -191,6 +191,28 @@ class ApplicationQuery implements \JsonSerializable
         $this->onlyDeadlineExceeded = $onlyDeadlineExceeded;
     }
 
+
+    /**
+     * @var string
+     */
+    protected $deadlineTime = 0;
+
+    /**
+     * @return string
+     */
+    public function getDeadlineTime()
+    {
+        return $this->deadlineTime;
+    }
+
+    /**
+     * @param string $deadlineTime
+     */
+    public function setDeadlineTime($deadlineTime)
+    {
+        $this->deadlineTime = $deadlineTime;
+    }
+
     public function jsonSerialize()
     {
         $query = [
@@ -202,6 +224,7 @@ class ApplicationQuery implements \JsonSerializable
             'job' => $this->job,
             'search' => $this->search,
             'onlyDeadlineExceeded' => $this->onlyDeadlineExceeded ? 1 : 0,
+            'deadlineTime' => $this->deadlineTime,
         ];
         return $query;
     }
@@ -217,6 +240,7 @@ class ApplicationQuery implements \JsonSerializable
             $this->job = (int)$queryParams['job'] ?: $this->job;
             $this->search = $queryParams['search'] ?: $this->search;
             $this->onlyDeadlineExceeded = (int)$queryParams['onlyDeadlineExceeded'] == 1 ? true : false;
+            $this->deadlineTime = (int)$queryParams['deadlineTime'] ?: $this->deadlineTime;
         }
     }
 }

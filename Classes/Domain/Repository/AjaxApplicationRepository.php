@@ -2,7 +2,6 @@
 namespace PAGEmachine\Ats\Domain\Repository;
 
 use PAGEmachine\Ats\Application\ApplicationQuery;
-use PAGEmachine\Ats\Service\TyposcriptService;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
@@ -95,15 +94,14 @@ class AjaxApplicationRepository
                 $queryBuilder->expr()->like('email', $searchExpression)
             );
         }
-
         if ($query->getOnlyDeadlineExceeded() == true) {
-            $constraints[] = $queryBuilder->expr()->in('job', $queryBuilder->createNamedParameter($this->getExceededJobUids(), Connection::PARAM_INT_ARRAY));
+            $constraints[] = $queryBuilder->expr()->in('job', $queryBuilder->createNamedParameter($this->getExceededJobUids($query->getDeadlineTime()), Connection::PARAM_INT_ARRAY));
         }
 
         return $constraints;
     }
 
-    protected function getExceededJobUids() {
+    protected function getExceededJobUids($deadlineTime) {
         /** @var QueryBuilder */
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_ats_domain_model_job');
 
@@ -111,9 +109,6 @@ class AjaxApplicationRepository
             ->removeByType(StartTimeRestriction::class)
             ->removeByType(EndTimeRestriction::class)
             ->removeByType(HiddenRestriction::class);
-
-        $settings = TyposcriptService::getInstance()->getSettings();
-        $deadlineTime = $settings['deadlineTime'];
 
         $maxEndtime = time() - $deadlineTime;
 
