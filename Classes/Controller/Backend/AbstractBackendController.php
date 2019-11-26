@@ -50,8 +50,7 @@ class AbstractBackendController extends ActionController
         if ($this->actionMethodName == 'listAction') {
             $pageRenderer->addCssFile('EXT:ats/Resources/Public/Css/libs/jquery.dataTables.min.css');
             $pageRenderer->loadRequireJsModule('TYPO3/CMS/Ats/ApplicationList');
-        }
-        else {
+        } else {
             $pageRenderer->loadRequireJsModule('datatables');
             $pageRenderer->loadRequireJsModule('TYPO3/CMS/Recordlist/Recordlist');
             $pageRenderer->loadRequireJsModule('TYPO3/CMS/Ats/ApplicationsModule');

@@ -174,7 +174,7 @@ class ApplicationController extends AbstractBackendController
             'defaultQuery' => $defaultQuery,
             'statusValues' => $statusOptions,
             'filteredStatusValues' => $filteredStatusOptions,
-            'jobs' => $jobs
+            'jobs' => $jobs,
         ]);
     }
 

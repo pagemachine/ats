@@ -73,7 +73,7 @@ class AjaxApplicationRepository
     protected function buildQueryConstraints(ApplicationQuery $query, QueryBuilder $queryBuilder)
     {
         $constraints = [
-            $queryBuilder->expr()->eq('anonymized', $queryBuilder->createNamedParameter(0, Connection::PARAM_INT))
+            $queryBuilder->expr()->eq('anonymized', $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)),
         ];
 
         if ($query->getJob() !== null) {
@@ -104,7 +104,8 @@ class AjaxApplicationRepository
         return $constraints;
     }
 
-    protected function getExceededJobUids($deadlineTime) {
+    protected function getExceededJobUids($deadlineTime)
+    {
         /** @var QueryBuilder */
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_ats_domain_model_job');
 
@@ -127,7 +128,9 @@ class AjaxApplicationRepository
             )
             ->execute()
             ->fetchAll();
-        return $jobs ? array_map(function($job){ return $job['uid'];}, $jobs) : [];
+        return $jobs ? array_map(function ($job) {
+            return $job['uid'];
+        }, $jobs) : [];
     }
 
     protected function getJobUidsAssignedToCurrentUser()
@@ -161,6 +164,8 @@ class AjaxApplicationRepository
             ->fetchAll();
 
 
-        return $jobs ? array_map(function($job){ return $job['uid'];}, $jobs) : [];
+        return $jobs ? array_map(function ($job) {
+            return $job['uid'];
+        }, $jobs) : [];
     }
 }

@@ -27,7 +27,7 @@ class AjaxApplicationController
         $data = [
             'draw' => (int)$body['draw'],
             'recordsFiltered' => $repository->getTotalResultsOfQuery($query),
-            'data' => $repository->findWithQuery($query)
+            'data' => $repository->findWithQuery($query),
         ];
 
         $response->getBody()->write(json_encode($data));

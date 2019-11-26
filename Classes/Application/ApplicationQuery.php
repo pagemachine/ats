@@ -7,7 +7,6 @@ namespace PAGEmachine\Ats\Application;
 
 class ApplicationQuery implements \JsonSerializable
 {
-
     /**
      * @var string
      */
