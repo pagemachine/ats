@@ -77,7 +77,10 @@ require(
                     var job = jobs.filter(function(obj) {
                       return obj.uid === row.job
                     })[0];
-                    return job.job_number + " - " + job.title;
+                    if (job) {
+                        return job.job_number + " - " + job.title;
+                    }
+                    return '';
                 }
             },
             {
