@@ -6,6 +6,7 @@ namespace PAGEmachine\Ats\Controller\Backend;
  */
 
 use PAGEmachine\Ats\Application\ApplicationFilter;
+use PAGEmachine\Ats\Application\ApplicationQuery;
 use PAGEmachine\Ats\Application\ApplicationStatus;
 use PAGEmachine\Ats\Application\Note\NoteSubject;
 use PAGEmachine\Ats\Domain\Model\Application;
@@ -57,6 +58,7 @@ class ApplicationController extends AbstractBackendController
     protected $menuUrls = [
         "listAll" => ["action" => "listAll", "label" => "be.label.AllApplications"],
         "listMine" => ["action" => "listMine", "label" => "be.label.MyApplications"],
+        "list" => ["action" => "list", "label" => "be.label.ListApplications"],
     ];
 
     /**
@@ -66,8 +68,7 @@ class ApplicationController extends AbstractBackendController
      */
     public function initializeIndexAction()
     {
-
-        $this->forward("listMine");
+        $this->forward($this->settings['preferredListAction']);
     }
 
     /**
@@ -106,7 +107,6 @@ class ApplicationController extends AbstractBackendController
      */
     public function initializeAction()
     {
-
         if ($this->request->hasArgument('message')) {
             $this->arguments->getArgument('message')
                 ->getPropertyMappingConfiguration()
@@ -143,6 +143,46 @@ class ApplicationController extends AbstractBackendController
                     ]
                 );
         }
+    }
+
+    /**
+     * List action
+     *
+     * @return void
+     */
+    public function listAction()
+    {
+        $query = ApplicationQuery::buildFromSession();
+        $defaultQuery = new ApplicationQuery();
+
+        $query->setDeadlineTime($this->settings['deadlineTime']);
+
+        $statusOptions = ApplicationStatus::getConstantsWithTranslation();
+        list($filteredStatusOptions) = $this->signalSlotDispatcher->dispatch(__CLASS__, 'modifyListStatusOptions', [$statusOptions, $this]);
+
+        // If this is a new query, apply all allowed status values by default
+        if (empty($query->getStatusValues())) {
+            $query->setStatusValues(array_keys($filteredStatusOptions));
+        }
+        $defaultQuery->setStatusValues(array_keys($filteredStatusOptions));
+
+        $jobs = $this->jobRepository->findActiveRaw();
+        list($jobs) = $this->signalSlotDispatcher->dispatch(__CLASS__, 'modifyListJobOptions', [$jobs, $this]);
+
+        $assignmentOptions = [
+            0 => LocalizationUtility::translate('tx_ats.be.filter.assignment.all', 'ats'),
+            1 => LocalizationUtility::translate('tx_ats.be.filter.assignment.mine', 'ats'),
+        ];
+        list($assignmentOptions) = $this->signalSlotDispatcher->dispatch(__CLASS__, 'modifyListAssignmentOptions', [$assignmentOptions, $this]);
+
+        $this->view->assignMultiple([
+            'query' => json_encode($query),
+            'defaultQuery' => $defaultQuery,
+            'statusValues' => $statusOptions,
+            'filteredStatusValues' => $filteredStatusOptions,
+            'assignmentOptions' => $assignmentOptions,
+            'jobs' => $jobs,
+        ]);
     }
 
     /**

@@ -2,6 +2,7 @@
 namespace PAGEmachine\Ats\Application;
 
 use TYPO3\CMS\Core\Type\Enumeration;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -123,5 +124,22 @@ class ApplicationStatus extends Enumeration
         }
 
         return $completionConstants;
+    }
+
+   /**
+    * Returns flipped constants with frontend translation
+    *
+    * @return array
+    */
+    public static function getConstantsWithTranslation()
+    {
+        $constants = static::getConstantsForWorkflow();
+
+        $translatedConstants = [];
+
+        foreach ($constants as $number => $text) {
+            $translatedConstants[$number] = LocalizationUtility::translate('tx_ats.application.status.' . $number, 'ats');
+        }
+        return $translatedConstants;
     }
 }

@@ -1143,6 +1143,9 @@
       </trans-unit>
 
       <!-- Backend -->
+		<trans-unit id="be.label.ListApplications">
+			<source>Dynamic List</source>
+		</trans-unit>
       <trans-unit id="be.label.MyApplications">
 				<source>My Applications</source>
 			</trans-unit>
@@ -1587,7 +1590,7 @@
 				<source>Continue</source>
 			</trans-unit>
 
-			<trans-unit id="be.label.notification.back">
+			<trans-unit id="be.label.backtolist">
 				<source>Back to list</source>
 			</trans-unit>
 
@@ -1696,6 +1699,40 @@
 				<source>Save</source>
 			</trans-unit>
 
+			<trans-unit id="tx_ats.be.filter.assignment">
+				<source>Assignment</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.be.filter.assignment.all">
+				<source>Everyone</source>
+			</trans-unit>
+			<trans-unit id="tx_ats.be.filter.assignment.mine">
+				<source>My Applications</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.be.filter.status">
+				<source>Status</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.be.filter.job">
+				<source>Job</source>
+			</trans-unit>
+			<trans-unit id="tx_ats.be.filter.job.all">
+				<source>All Jobs</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.be.filter.deadline">
+				<source>Deadline</source>
+			</trans-unit>
+			<trans-unit id="tx_ats.be.filter.deadline.all">
+				<source>Don't care</source>
+			</trans-unit>
+			<trans-unit id="tx_ats.be.filter.deadline.onlyExceeded">
+				<source>Deadline exceeded only</source>
+			</trans-unit>
+			<trans-unit id="tx_ats.be.filter.reset">
+				<source>Reset filters</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

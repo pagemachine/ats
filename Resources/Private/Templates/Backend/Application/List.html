@@ -1,0 +1,62 @@
+
+{namespace ats=PAGEmachine\Ats\ViewHelpers}
+{namespace core = TYPO3\CMS\Core\ViewHelpers}
+<f:layout name="Backend/List" />
+
+<f:section name="main">
+	<h1><f:translate key="be.label.AllApplications"/></h1>
+
+	<script>
+		var jobs = {jobs -> f:format.json() -> f:format.raw()};
+		var statusValues = {statusValues -> f:format.json() -> f:format.raw()};
+		var defaultQuery = {defaultQuery -> f:format.json() -> f:format.raw()};
+	</script>
+
+	<table class="stripe" id="applications-ajax-list" data-detail-uri="{f:uri.action(action:'show')}">
+		<thead>
+			<tr>
+				<th data-column="uid" style="max-width: 20px;">ID</th>
+				<th data-column="crdate" style="max-width: 80px;"><f:translate key="be.label.MyApplications.Table.Created"/></th>
+				<th data-column="tstamp" style="max-width: 80px;">Geändert</th>
+				<th data-column="surname">Name</th>
+				<th data-column="job">Job</th>
+				<th data-column="status">Status</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+
+<div style="clear: both;">
+	<p>
+			<f:link.action action="new" class="btn btn-default">
+				<core:icon identifier="actions-document-new" /> <f:translate key="tx_ats.be.actions.application.new" />
+			</f:link.action>
+	</p>
+</div>
+
+</f:section>
+
+<f:section name="side">
+	<form action="#" id="applications-ajax-filter" data-query="{query}">
+
+		<span class="btn btn-default btn-xs" id="reset"><f:translate key="tx_ats.be.filter.reset" /></span>
+
+		<h5><f:translate key="tx_ats.be.filter.assignment" /></h5>
+		<f:form.select additionalAttributes="{data: {name: 'onlyMyApplications'}}" class="form-control" options="{assignmentOptions}" />
+		<h5><f:translate key="tx_ats.be.filter.status" /></h5>
+
+		<f:form.select options="{filteredStatusValues}" multiple="true" class="form-control" additionalAttributes="{data: {name: 'statusValues'}}"/>
+
+		<h5><f:translate key="tx_ats.be.filter.job" /></h5>
+		<f:form.select options="{jobs}" optionValueField="uid" optionLabelField="job_number" prependOptionLabel="{f:translate(key:'tx_ats.be.filter.job.all')}" prependOptionValue="" additionalAttributes="{data: {name: 'job'}}" class="form-control" />
+
+		<h5><f:translate key="tx_ats.be.filter.deadline" /></h5>
+
+		<select data-name="onlyDeadlineExceeded" class="form-control">
+			<option value="0"><f:translate key="tx_ats.be.filter.deadline.all" /></option>
+			<option value="1"><f:translate key="tx_ats.be.filter.deadline.onlyExceeded" /></option>
+		</select>
+	</form>
+
+</f:section>

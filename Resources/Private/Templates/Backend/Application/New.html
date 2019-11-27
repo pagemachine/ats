@@ -2,6 +2,10 @@
 
 <f:section name="main">
 
+	<p>
+		<f:link.action action="{settings.preferredListAction}"><< <f:translate key="be.label.backtolist" /></f:link.action>
+	</p>
+
 	<f:form action="create" object="{application}" name="application" enctype="multipart/form-data" id="application-editform">
 
 		<f:render partial="Backend/Application/Form/General" arguments="{application : application, jobs : jobs}" />

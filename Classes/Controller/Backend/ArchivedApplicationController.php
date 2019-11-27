@@ -9,6 +9,7 @@ use PAGEmachine\Ats\Domain\Model\Job;
 use PAGEmachine\Ats\Domain\Model\Note;
 use PAGEmachine\Ats\Service\DuplicationService;
 use PAGEmachine\Ats\Workflow\WorkflowManager;
+use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /*
@@ -42,6 +43,14 @@ class ArchivedApplicationController extends ApplicationController
 
         $this->forward("listAll");
     }
+
+    public function initializeView(ViewInterface $view)
+    {
+        parent::initializeView($view);
+        $this->settings['preferredListAction'] = 'listAll';
+        $view->assign('settings', $this->settings);
+    }
+
 
     /**
      * Lists archived applications in backend module
