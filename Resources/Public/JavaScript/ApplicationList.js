@@ -74,7 +74,7 @@ require(
                 data: 'job',
                 render: function(data, type, row, meta) {
                     // Filter out the matching job from global Fluid-provided jobs list
-                    var job = jobs.filter(obj => {
+                    var job = jobs.filter(function(obj) {
                       return obj.uid === row.job
                     })[0];
                     return job.job_number + " - " + job.title;
@@ -119,7 +119,7 @@ require(
 
     //Reset button
     $('#applications-ajax-filter #reset').on('click', function(){
-        query = Object.assign({}, defaultQuery);
+        query = JSON.parse(JSON.stringify(defaultQuery));
         // Reset all form inputs
         $('#applications-ajax-filter input, #applications-ajax-filter select').each(function() {
             $(this).val(query[$(this).data("name")]);
