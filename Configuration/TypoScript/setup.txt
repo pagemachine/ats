@@ -219,6 +219,20 @@ config.tx_extbase {
                     }
                 }
             }
+            PAGEmachine\Ats\Domain\Model\Job {
+              mapping {
+                  columns {
+                    crdate.mapOnProperty = creationDate
+                  }
+              }
+            }
+            PAGEmachine\Ats\Domain\Model\Application {
+                mapping {
+                    columns {
+                        crdate.mapOnProperty = creationDate
+                    }
+                }
+            }
         }
     }
     objects {
