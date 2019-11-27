@@ -25,8 +25,22 @@ class AjaxApplicationRepository
         /** @var QueryBuilder */
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_ats_domain_model_application');
 
-        $count = $queryBuilder->count('uid')
-            ->from('tx_ats_domain_model_application')
+        $queryBuilder->getRestrictions()
+            ->removeByType(StartTimeRestriction::class)
+            ->removeByType(EndTimeRestriction::class)
+            ->removeByType(HiddenRestriction::class);
+
+        $count = $queryBuilder->count('application.uid')
+            ->from('tx_ats_domain_model_application', 'application')
+            ->join(
+                'application',
+                'tx_ats_domain_model_job',
+                'jobtable',
+                $queryBuilder->expr()->andX(
+                    $queryBuilder->expr()->eq('jobtable.uid', 'application.job'),
+                    $queryBuilder->expr()->eq('jobtable.deactivated', 0)
+                )
+            )
             ->where(
                 ...$this->buildQueryConstraints($query, $queryBuilder)
             )->execute()
@@ -40,18 +54,32 @@ class AjaxApplicationRepository
         /** @var QueryBuilder */
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_ats_domain_model_application');
 
+        $queryBuilder->getRestrictions()
+            ->removeByType(StartTimeRestriction::class)
+            ->removeByType(EndTimeRestriction::class)
+            ->removeByType(HiddenRestriction::class);
+
         $queryBuilder->select(
-            'uid',
-            'crdate',
-            'tstamp',
-            'firstname',
-            'surname',
-            'job',
-            'status',
-            'rating',
-            'disability',
-            'employed'
-        )->from('tx_ats_domain_model_application')
+            'application.uid AS uid',
+            'application.crdate AS crdate',
+            'application.tstamp AS tstamp',
+            'application.firstname AS firstname',
+            'application.surname AS surname',
+            'application.job AS job',
+            'application.status AS status',
+            'application.rating AS rating',
+            'application.disability AS disability',
+            'application.employed AS employed'
+        )->from('tx_ats_domain_model_application', 'application')
+        ->join(
+            'application',
+            'tx_ats_domain_model_job',
+            'jobtable',
+            $queryBuilder->expr()->andX(
+                $queryBuilder->expr()->eq('jobtable.uid', 'application.job'),
+                $queryBuilder->expr()->eq('jobtable.deactivated', 0)
+            )
+        )
         ->setFirstResult(
             $query->getOffset()
         )
