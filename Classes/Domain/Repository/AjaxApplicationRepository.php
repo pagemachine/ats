@@ -64,16 +64,16 @@ class AjaxApplicationRepository
             ->removeByType(HiddenRestriction::class);
 
         $queryBuilder->select(
-            'application.uid AS uid',
-            'application.crdate AS crdate',
-            'application.tstamp AS tstamp',
-            'application.firstname AS firstname',
-            'application.surname AS surname',
-            'application.job AS job',
-            'application.status AS status',
-            'application.rating AS rating',
-            'application.disability AS disability',
-            'application.employed AS employed'
+            'application.uid',
+            'application.crdate',
+            'application.tstamp',
+            'application.firstname',
+            'application.surname',
+            'application.job',
+            'application.status',
+            'application.rating',
+            'application.disability',
+            'application.employed'
         )->from('tx_ats_domain_model_application', 'application')
         ->join(
             'application',
@@ -105,32 +105,32 @@ class AjaxApplicationRepository
     protected function buildQueryConstraints(ApplicationQuery $query, QueryBuilder $queryBuilder)
     {
         $constraints = [
-            $queryBuilder->expr()->eq('anonymized', $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)),
+            $queryBuilder->expr()->eq('application.anonymized', $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)),
         ];
 
         if ($query->getJob() !== null) {
-            $constraints[] = $queryBuilder->expr()->eq('job', $queryBuilder->createNamedParameter((int)$query->getJob(), Connection::PARAM_INT));
+            $constraints[] = $queryBuilder->expr()->eq('application.job', $queryBuilder->createNamedParameter((int)$query->getJob(), Connection::PARAM_INT));
         }
 
         if (!empty($query->getStatusValues())) {
-            $constraints[] = $queryBuilder->expr()->in('status', $query->getStatusValues());
+            $constraints[] = $queryBuilder->expr()->in('application.status', $query->getStatusValues());
         }
 
         if (!empty($query->getSearch())) {
             $searchExpression = $queryBuilder->createNamedParameter("%" . $query->getSearch() . "%", Connection::PARAM_STR);
             $constraints[] = $queryBuilder->expr()->orX(
-                $queryBuilder->expr()->like('uid', $searchExpression),
-                $queryBuilder->expr()->like('title', $searchExpression),
-                $queryBuilder->expr()->like('firstname', $searchExpression),
-                $queryBuilder->expr()->like('surname', $searchExpression),
-                $queryBuilder->expr()->like('email', $searchExpression)
+                $queryBuilder->expr()->like('application.uid', $searchExpression),
+                $queryBuilder->expr()->like('application.title', $searchExpression),
+                $queryBuilder->expr()->like('application.firstname', $searchExpression),
+                $queryBuilder->expr()->like('application.surname', $searchExpression),
+                $queryBuilder->expr()->like('application.email', $searchExpression)
             );
         }
         if ($query->getOnlyDeadlineExceeded() == true) {
-            $constraints[] = $queryBuilder->expr()->in('job', $queryBuilder->createNamedParameter($this->getExceededJobUids($query->getDeadlineTime()), Connection::PARAM_INT_ARRAY));
+            $constraints[] = $queryBuilder->expr()->in('application.job', $queryBuilder->createNamedParameter($this->getExceededJobUids($query->getDeadlineTime()), Connection::PARAM_INT_ARRAY));
         }
         if ($query->getOnlyMyApplications() == true) {
-            $constraints[] = $queryBuilder->expr()->in('job', $queryBuilder->createNamedParameter($this->getJobUidsAssignedToCurrentUser(), Connection::PARAM_INT_ARRAY));
+            $constraints[] = $queryBuilder->expr()->in('application.job', $queryBuilder->createNamedParameter($this->getJobUidsAssignedToCurrentUser(), Connection::PARAM_INT_ARRAY));
         }
 
         return $constraints;
