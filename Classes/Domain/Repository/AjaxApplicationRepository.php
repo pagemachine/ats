@@ -25,6 +25,8 @@ class AjaxApplicationRepository
         /** @var QueryBuilder */
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_ats_domain_model_application');
 
+        // Remove restrictions to include all jobs inside join (since this method is called in BE context)
+        // For applications these are not used, but jobs of course may be hidden, time-restricted etc.
         $queryBuilder->getRestrictions()
             ->removeByType(StartTimeRestriction::class)
             ->removeByType(EndTimeRestriction::class)
@@ -54,6 +56,8 @@ class AjaxApplicationRepository
         /** @var QueryBuilder */
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_ats_domain_model_application');
 
+        // Remove restrictions to include all jobs inside join (since this method is called in BE context)
+        // For applications these are not used, but jobs of course may be hidden, time-restricted etc.
         $queryBuilder->getRestrictions()
             ->removeByType(StartTimeRestriction::class)
             ->removeByType(EndTimeRestriction::class)
