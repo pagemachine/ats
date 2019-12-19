@@ -102,6 +102,9 @@ class LanguageSkill extends AbstractEntity implements CloneableInterface
         if ($this->localizedName) {
             return $this->localizedName;
         }
-        return IntlLocalizationService::getInstance()->getLocalizedLanguageName($this->language->getIsoCodeA2()) ?: $this->language->getLocalName();
+        if ($this->language) {
+            return IntlLocalizationService::getInstance()->getLocalizedLanguageName($this->language->getIsoCodeA2()) ?: $this->language->getLocalName();
+        }
+        return '';
     }
 }
