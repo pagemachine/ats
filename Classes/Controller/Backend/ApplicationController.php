@@ -6,17 +6,15 @@ namespace PAGEmachine\Ats\Controller\Backend;
  */
 
 use PAGEmachine\Ats\Application\ApplicationFilter;
+use PAGEmachine\Ats\Application\ApplicationQuery;
 use PAGEmachine\Ats\Application\ApplicationStatus;
 use PAGEmachine\Ats\Application\Note\NoteSubject;
 use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Domain\Model\FileReference;
 use PAGEmachine\Ats\Domain\Model\Job;
 use PAGEmachine\Ats\Domain\Model\Note;
-use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
-use PAGEmachine\Ats\Domain\Repository\JobRepository;
 use PAGEmachine\Ats\Message\AcknowledgeMessage;
 use PAGEmachine\Ats\Message\InviteMessage;
-use PAGEmachine\Ats\Message\MessageFactory;
 use PAGEmachine\Ats\Message\RejectMessage;
 use PAGEmachine\Ats\Message\ReplyMessage;
 use PAGEmachine\Ats\Property\TypeConverter\UploadedFileReferenceConverter;
@@ -34,6 +32,25 @@ class ApplicationController extends AbstractBackendController
     use StaticCalling;
 
     /**
+     * @var PAGEmachine\Ats\Domain\Repository\ApplicationRepository
+     * @inject
+     */
+    protected $applicationRepository;
+
+    /**
+     * @var PAGEmachine\Ats\Domain\Repository\JobRepository
+     * @inject
+     */
+    protected $jobRepository;
+
+    /**
+     * @var \PAGEmachine\Ats\Message\MessageFactory
+     * @inject
+     */
+    protected $messageFactory;
+
+
+    /**
      * Action URLs for the action menu
      *
      * @var array
@@ -41,46 +58,8 @@ class ApplicationController extends AbstractBackendController
     protected $menuUrls = [
         "listAll" => ["action" => "listAll", "label" => "be.label.AllApplications"],
         "listMine" => ["action" => "listMine", "label" => "be.label.MyApplications"],
+        "list" => ["action" => "list", "label" => "be.label.ListApplications"],
     ];
-
-    /**
-     * @var ApplicationRepository $applicationRepository
-     */
-    protected $applicationRepository;
-
-    /**
-     * @var JobRepository $jobRepository
-     */
-    protected $jobRepository;
-
-    /**
-     * @var MessageFactory $messageFactory
-     */
-    protected $messageFactory;
-
-    /**
-     * @param ApplicationRepository $applicationRepository
-     */
-    public function injectApplicationRepository(ApplicationRepository $applicationRepository)
-    {
-        $this->applicationRepository = $applicationRepository;
-    }
-
-    /**
-     * @param JobRepository $jobRepository
-     */
-    public function injectJobRepository(JobRepository $jobRepository)
-    {
-        $this->jobRepository = $jobRepository;
-    }
-
-    /**
-     * @param MessageFactory $messageFactory
-     */
-    public function injectMessageFactory(MessageFactory $messageFactory)
-    {
-        $this->messageFactory = $messageFactory;
-    }
 
     /**
      * Forwards to the first allowed action (since some could be disallowed by role)
@@ -89,8 +68,7 @@ class ApplicationController extends AbstractBackendController
      */
     public function initializeIndexAction()
     {
-
-        $this->forward("listMine");
+        $this->forward($this->settings['preferredListAction']);
     }
 
     /**
@@ -129,7 +107,6 @@ class ApplicationController extends AbstractBackendController
      */
     public function initializeAction()
     {
-
         if ($this->request->hasArgument('message')) {
             $this->arguments->getArgument('message')
                 ->getPropertyMappingConfiguration()
@@ -169,6 +146,46 @@ class ApplicationController extends AbstractBackendController
     }
 
     /**
+     * List action
+     *
+     * @return void
+     */
+    public function listAction()
+    {
+        $query = ApplicationQuery::buildFromSession();
+        $defaultQuery = new ApplicationQuery();
+
+        $query->setDeadlineTime($this->settings['deadlineTime']);
+
+        $statusOptions = ApplicationStatus::getConstantsWithTranslation();
+        list($filteredStatusOptions) = $this->signalSlotDispatcher->dispatch(__CLASS__, 'modifyListStatusOptions', [$statusOptions, $this]);
+
+        // If this is a new query, apply all allowed status values by default
+        if (empty($query->getStatusValues())) {
+            $query->setStatusValues(array_keys($filteredStatusOptions));
+        }
+        $defaultQuery->setStatusValues(array_keys($filteredStatusOptions));
+
+        $jobs = $this->jobRepository->findActiveRaw();
+        list($jobs) = $this->signalSlotDispatcher->dispatch(__CLASS__, 'modifyListJobOptions', [$jobs, $this]);
+
+        $assignmentOptions = [
+            0 => LocalizationUtility::translate('tx_ats.be.filter.assignment.all', 'ats'),
+            1 => LocalizationUtility::translate('tx_ats.be.filter.assignment.mine', 'ats'),
+        ];
+        list($assignmentOptions) = $this->signalSlotDispatcher->dispatch(__CLASS__, 'modifyListAssignmentOptions', [$assignmentOptions, $this]);
+
+        $this->view->assignMultiple([
+            'query' => json_encode($query),
+            'defaultQuery' => $defaultQuery,
+            'statusValues' => $statusOptions,
+            'filteredStatusValues' => $filteredStatusOptions,
+            'assignmentOptions' => $assignmentOptions,
+            'jobs' => $jobs,
+        ]);
+    }
+
+    /**
      * Lists applications in backend module
      *
      * @param  ApplicationFilter $filter
@@ -186,7 +203,7 @@ class ApplicationController extends AbstractBackendController
             'exceededApplications' => $this->applicationRepository->findDeadlineExceeded($this->settings['deadlineTime'], null, $filter),
             'newApplications' => $this->applicationRepository->findNew($this->settings['deadlineTime'], null, $filter),
             'progressApplications' => $this->applicationRepository->findInProgress($this->settings['deadlineTime'], null, $filter),
-            'jobs' => $this->jobRepository->findAll(),
+            'jobs' => $this->jobRepository->findActive(),
             'filter' => $filter,
         ]);
     }
@@ -200,7 +217,6 @@ class ApplicationController extends AbstractBackendController
      */
     public function listMineAction(ApplicationFilter $filter = null, $resetFilter = false)
     {
-
         if ($filter == null | $resetFilter === true) {
             $filter = new ApplicationFilter();
         }
@@ -248,7 +264,7 @@ class ApplicationController extends AbstractBackendController
     {
         $this->view->assignMultiple([
             'application' => $application,
-            'jobs' => $this->jobRepository->findAll(),
+            'jobs' => $this->jobRepository->findActive(),
         ]);
     }
 
@@ -740,7 +756,7 @@ class ApplicationController extends AbstractBackendController
     {
 
         $this->view->assign('application', $application);
-        $this->view->assign('jobs', $this->jobRepository->findAll());
+        $this->view->assign('jobs', $this->jobRepository->findActive());
         $this->view->assign('beUser', $GLOBALS['BE_USER']->user);
     }
 
@@ -831,7 +847,7 @@ class ApplicationController extends AbstractBackendController
 
     public function newAction(Application $application = null)
     {
-        $this->view->assign('jobs', $this->jobRepository->findAll());
+        $this->view->assign('jobs', $this->jobRepository->findActive());
         $this->view->assign('application', $application);
     }
 

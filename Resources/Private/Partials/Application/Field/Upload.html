@@ -15,7 +15,7 @@
 						<a href="{file.backendUrl}" target="_blank">{file.originalResource.name} </a>
 						<ats:form.upload property="files.{i.index}" style="display: none;">
 						</ats:form.upload>
-						<f:link.action action="removeUpload" arguments="{application: application, file : file}" class="btn btn-sm btn-danger pull-right"><span class="glyphicon glyphicon-trash"></span> <f:translate key="tx_ats.upload.remove"></f:translate></f:link.action>
+						<f:link.action action="removeUpload" arguments="{application: application, file : file.originalResource.uid}" class="btn btn-sm btn-danger pull-right"><span class="glyphicon glyphicon-trash"></span> <f:translate key="tx_ats.upload.remove"></f:translate></f:link.action>
 
 					</li>
 				</f:for>

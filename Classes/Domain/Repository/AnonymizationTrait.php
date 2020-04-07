@@ -18,15 +18,17 @@ trait AnonymizationTrait
      *
      * @param \DateTime $threshold The date up to which applications are "old"
      * @param array $additionalConditions
+     * @param string $ageProperty Which property should be used for age determination. Should be of type datetime!
      * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
      */
-    public function findOldObjects(\DateTime $threshold, $additionalConditions = null)
+    public function findOldObjects(\DateTime $threshold, $additionalConditions = null, $ageProperty = 'creationDate')
     {
         $query = $this->createQuery();
 
         $constraints = [
             $query->equals('anonymized', false),
-            $query->lessThan('creationDate', $threshold),
+            $query->logicalNot($query->equals($ageProperty, 0)),
+            $query->lessThan($ageProperty, $threshold),
         ];
 
         // Add additional conditions from config

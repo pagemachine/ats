@@ -22,6 +22,7 @@ CKEDITOR.plugins.add("placeholderPresets", {
                     [lang.markers.application.firstname, 'application.firstname'],
                     [lang.markers.application.surname, 'application.surname'],
                     [lang.markers.application.job.title, 'application.job.title'],
+                    [lang.markers.application.job.jobNumber, 'application.job.jobNumber'],
                     [lang.markers.fields.date, 'fields.date'],
                     [lang.markers.fields.time, 'fields.time'],
                     [lang.markers.fields.confirmDate, 'fields.confirmDate'],
@@ -35,6 +36,7 @@ CKEDITOR.plugins.add("placeholderPresets", {
                     [lang.markers.application.firstname, 'application.firstname'],
                     [lang.markers.application.surname, 'application.surname'],
                     [lang.markers.application.job.title, 'application.job.title'],
+                    [lang.markers.application.job.jobNumber, 'application.job.jobNumber'],
                     [lang.markers.backenduser.signature, 'backenduser.signature']
                 ],
                 'invite': [
@@ -43,6 +45,7 @@ CKEDITOR.plugins.add("placeholderPresets", {
                     [lang.markers.application.firstname, 'application.firstname'],
                     [lang.markers.application.surname, 'application.surname'],
                     [lang.markers.application.job.title, 'application.job.title'],
+                    [lang.markers.application.job.jobNumber, 'application.job.jobNumber'],
                     [lang.markers.fields.date, 'fields.date'],
                     [lang.markers.fields.time, 'fields.time'],
                     [lang.markers.fields.confirmDate, 'fields.confirmDate'],
@@ -56,6 +59,7 @@ CKEDITOR.plugins.add("placeholderPresets", {
                     [lang.markers.application.firstname, 'application.firstname'],
                     [lang.markers.application.surname, 'application.surname'],
                     [lang.markers.application.job.title, 'application.job.title'],
+                    [lang.markers.application.job.jobNumber, 'application.job.jobNumber'],
                     [lang.markers.backenduser.signature, 'backenduser.signature']
                 ],
                 'reject': [
@@ -64,6 +68,7 @@ CKEDITOR.plugins.add("placeholderPresets", {
                     [lang.markers.application.firstname, 'application.firstname'],
                     [lang.markers.application.surname, 'application.surname'],
                     [lang.markers.application.job.title, 'application.job.title'],
+                    [lang.markers.application.job.jobNumber, 'application.job.jobNumber'],
                     [lang.markers.backenduser.signature, 'backenduser.signature']
                 ]
             }

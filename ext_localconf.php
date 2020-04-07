@@ -89,16 +89,6 @@ $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['ats_templates'] = 'EXT:ats/Config
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerTypeConverter(PAGEmachine\Ats\Property\TypeConverter\UploadedFileReferenceConverter::class);
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerTypeConverter(PAGEmachine\Ats\Property\TypeConverter\ObjectStorageConverter::class);
 
-//Signal Slot for limiting static language select viewhelpers
-/** @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher */
-$signalSlotDispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
-$signalSlotDispatcher->connect(
-    \SJBR\StaticInfoTables\ViewHelpers\Form\SelectViewHelper::class,
-    'getItems',
-    \PAGEmachine\Ats\Slots\StaticInfoTables\SelectViewHelperSlot::class,
-    'filterLanguageItems'
-);
-
 //Load Extension Manager settings into EXTCONF for easier usage
 
 if (!empty($_EXTCONF)) {
@@ -114,6 +104,19 @@ if (!empty($_EXTCONF)) {
             $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings'][$key] = $extensionManagementConfig[$key];
         }
     }
+}
+
+// Register alternative repositories if TYPO3 is below version 8
+if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) < 8007000) {
+    $objectContainer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\Container\Container::class);
+    $objectContainer->registerImplementation(
+        \PAGEmachine\Ats\Domain\Repository\CountryRepository::class,
+        \PAGEmachine\Ats\Domain\Repository\LegacyCountryRepository::class
+    );
+    $objectContainer->registerImplementation(
+        \PAGEmachine\Ats\Domain\Repository\LanguageRepository::class,
+        \PAGEmachine\Ats\Domain\Repository\LegacyLanguageRepository::class
+    );
 }
 
 // Access configuration, if EXT:extbase_acl is available

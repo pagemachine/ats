@@ -4,6 +4,7 @@ namespace PAGEmachine\Ats\Controller\Backend;
 use PAGEmachine\Ats\Application\ApplicationFilter;
 use PAGEmachine\Ats\Message\MessageInterface;
 use PAGEmachine\Ats\Service\PdfService;
+use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Extbase\Property\TypeConverter\ObjectConverter;
 
 /*
@@ -23,6 +24,13 @@ class NotificationApplicationController extends ApplicationController
      * @var array
      */
     protected $menuUrls = [];
+
+    public function initializeView(ViewInterface $view)
+    {
+        parent::initializeView($view);
+        $this->settings['preferredListAction'] = 'listAll';
+        $view->assign('settings', $this->settings);
+    }
 
     /**
      * Forwards to the first allowed action (since some could be disallowed by role)
@@ -50,7 +58,7 @@ class NotificationApplicationController extends ApplicationController
 
         $this->view->assignMultiple([
             'applications' => $this->applicationRepository->findNotification($filter),
-            'jobs' => $this->jobRepository->findAll(),
+            'jobs' => $this->jobRepository->findActive(),
             'filter' => $filter,
             'messageTypes' => $this->messageFactory->getMessageTypes(),
         ]);

@@ -261,6 +261,11 @@
 				<target>Frau</target>
 			</trans-unit>
 
+			<trans-unit id="tx_ats.label.salutation.3">
+				<source>Diverse</source>
+				<target>Divers</target>
+			</trans-unit>
+
 			<trans-unit id="tx_ats.label.firstname">
 				<source>First name</source>
 				<target>Vorname</target>
@@ -859,6 +864,11 @@
 			<trans-unit id="be.label.AllApplications">
 				<source>All Applications</source>
 				<target>Alle Bewerbungen</target>
+			</trans-unit>
+
+			<trans-unit id="be.label.ListApplications">
+				<source>Dynamic List</source>
+				<target>Dynamische Bewerbungsliste</target>
 			</trans-unit>
 
 			<trans-unit id="be.label.Applications">
@@ -1726,7 +1736,7 @@
 				<target>Weiter</target>
 			</trans-unit>
 
-			<trans-unit id="be.label.notification.back">
+			<trans-unit id="be.label.backtolist">
 				<source>Back to list</source>
 				<target>Zurück zur Liste</target>
 			</trans-unit>
@@ -1915,6 +1925,61 @@
 			<trans-unit id="be.label.ApplicationSingle.Form.Submit">
 				<source>Save</source>
 				<target>Speichern</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.be.label.disability">
+				<source>Disability</source>
+				<target>Schwerbehinderung / Gleichstellung</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.be.label.disability.2">
+				<source>Yes</source>
+				<target>Ja</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.be.label.disability.1">
+				<source>No</source>
+				<target>Nein</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.be.filter.assignment">
+				<source>Assignment</source>
+				<target>Bearbeitet von</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.be.filter.assignment.all">
+				<source>Everyone</source>
+				<target>Alle</target>
+			</trans-unit>
+			<trans-unit id="tx_ats.be.filter.assignment.mine">
+				<source>My Applications</source>
+				<target>Nur meine</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.be.filter.job">
+				<source>Job</source>
+				<target>Stelle</target>
+			</trans-unit>
+			<trans-unit id="tx_ats.be.filter.job.all">
+				<source>All Jobs</source>
+				<target>Alle</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.be.filter.deadline">
+				<source>Deadline</source>
+				<target>Fristüberschreitung</target>
+			</trans-unit>
+			<trans-unit id="tx_ats.be.filter.deadline.all">
+				<source>Don't care</source>
+				<target>Alle</target>
+			</trans-unit>
+			<trans-unit id="tx_ats.be.filter.deadline.onlyExceeded">
+				<source>Deadline exceeded only</source>
+				<target>Frist überschritten</target>
+			</trans-unit>
+			<trans-unit id="tx_ats.be.filter.reset">
+				<source>Reset filters</source>
+				<target>Filter zurücksetzen</target>
 			</trans-unit>
 		</body>
 	</file>

@@ -39,9 +39,9 @@
 		select: '{application.disability}'
 	}" />
 
-<f:render partial="Application/Field/SummaryList" arguments="{
+	<f:render partial="Application/Field/SummaryList" arguments="{
 		translationKey: 'tx_ats.label.nationality',
-		text: '{application.nationality}'
+		text: '{application.nationalityLabel}'
 	}" />
 
 	<f:render partial="Application/Field/SummaryList" arguments="{
@@ -61,7 +61,7 @@
 
 	<f:render partial="Application/Field/SummaryList" arguments="{
 	translationKey: 'tx_ats.label.country',
-	text: '{application.country.shortNameLocal}'
+	text: '{application.countryLabel}'
 	}" />
 
 	<f:render partial="Application/Field/SummaryList" arguments="{
@@ -135,13 +135,12 @@
 		translationKey: 'tx_ats.application.languageskills'
 	}" />
 
-	<ul class="summary-languageskills">
-		<f:for each="{application.languageSkills}" as="languageSkill">
-			<f:render partial="Application/Field/SummaryListLanguage" arguments="{
-				languageSkill : languageSkill
-			}" />
-		</f:for>
-	</ul>
+	<h4><f:translate key="tx_ats.application.languageskills" /></h4>
+	<f:for each="{application.languageSkills}" as="languageSkill">
+		<f:render partial="Application/Field/SummaryListLanguage" arguments="{
+			languageSkill : languageSkill
+		}" />
+	</f:for>
 
 	<h3><f:translate key="tx_ats.headline.additional_data">Additional Data</f:translate></h3>
 

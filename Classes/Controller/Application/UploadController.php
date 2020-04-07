@@ -50,7 +50,7 @@ class UploadController extends AbstractApplicationController
     {
 
         $this->repository->addOrUpdate($application);
-        $this->forward("editUpload", null, null, ['application' => $application->getUid()]);
+        $this->redirect("editUpload", null, null, ['application' => $application->getUid()]);
     }
 
     /**
@@ -64,7 +64,7 @@ class UploadController extends AbstractApplicationController
 
         $this->repository->addOrUpdate($application);
 
-        $this->forward("editUpload", null, null, ["application" => $application->getUid()]);
+        $this->redirect("editUpload", null, null, ["application" => $application->getUid()]);
     }
 
     /**

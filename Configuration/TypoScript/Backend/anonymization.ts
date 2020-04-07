@@ -16,7 +16,7 @@ module.tx_ats.settings.anonymization {
           phone = *
           mobile = *
           employed = 0
-          schoolQualification = *
+          schoolQualification = 0
           professionalQualification = *
           professionalQualificationFinalGrade = *
           academicDegree = *
@@ -26,7 +26,7 @@ module.tx_ats.settings.anonymization {
           previousKnowledge = *
           itKnowledge = *
           comment = *
-          referrer = *
+          referrer = 0
         }
         children {
           history {
@@ -65,6 +65,7 @@ module.tx_ats.settings.anonymization {
       archived < ._default
       archived {
         minimumAge = 90 days
+        ageProperty = creationDate
         conditions {
           status {
             property = status
@@ -84,6 +85,7 @@ module.tx_ats.settings.anonymization {
       pooled < ._default
       pooled {
         minimumAge = 1 year
+        ageProperty = creationDate
         conditions {
           status {
             property = status

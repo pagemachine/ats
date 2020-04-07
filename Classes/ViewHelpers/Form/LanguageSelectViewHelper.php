@@ -1,6 +1,8 @@
 <?php
 namespace PAGEmachine\Ats\ViewHelpers\Form;
 
+use PAGEmachine\Ats\Service\IntlLocalizationService;
+
 /*
  * This file is part of the PAGEmachine ATS project.
  */
@@ -11,6 +13,12 @@ namespace PAGEmachine\Ats\ViewHelpers\Form;
 class LanguageSelectViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\SelectViewHelper
 {
     /**
+     * @var \PAGEmachine\Ats\Domain\Repository\LanguageRepository
+     * @inject
+     */
+    protected $languageRepository = null;
+
+    /**
      * Initialize arguments.
      *
      * @return void
@@ -19,10 +27,29 @@ class LanguageSelectViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\SelectV
     public function initializeArguments()
     {
         parent::initializeArguments();
-        $this->registerArgument('multiple', 'boolean', 'If set multiple options may be selected.', false, false);
+        $this->registerArgument('languageUids', 'string', 'Comma-separated List of languages to show. If not set, all languages are shown.', false, null);
+        $this->overrideArgument('optionLabelField', 'string', 'Option label', false, 'localizedName');
+        $this->overrideArgument('optionValueField', 'string', 'Option value', false, 'uid');
     }
 
-    protected function getOptions()
+    /**
+     * @return void
+     */
+    public function initialize()
     {
+        parent::initialize();
+
+        /** @var array */
+        $languages = [];
+
+        if ($this->arguments['languageUids'] != null && $this->arguments['languageUids'] != "") {
+            $languageUids = explode(",", $this->arguments['languageUids']);
+            $languages = $this->languageRepository->findLanguagesByUids($languageUids);
+        } else {
+            $languages = $this->languageRepository->findAll();
+        }
+
+        $this->arguments['options'] = IntlLocalizationService::getInstance()->orderItemsByLabel($languages, $this->arguments['optionLabelField']);
+        ;
     }
 }

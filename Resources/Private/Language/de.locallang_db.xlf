@@ -30,7 +30,7 @@
 
 			<trans-unit id="tx_ats_domain_model_job.deactivated">
 				<source>Deactivated</source>
-				<target>Online-Bewerbung deaktivieren</target>
+				<target>Job in der Bewerbungsverwaltung ausblenden</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_job.user_pa">
@@ -250,7 +250,12 @@
 				<target>Benötigte Vorerfahrung</target>
 			</trans-unit>
 
-			<trans-unit id="tx_ats_domain_model_job.override_hiring_organization">
+			<trans-unit id="tx_ats_domain_model_job.hiring_organization.palette">
+				<source>Hiring organization</source>
+				<target>Einstellende Firma/Organisation</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.override_global_hiring_organization">
 				<source>Override company-wide hiring organization</source>
 				<target>Namen der einstellenden Firma überschreiben</target>
 			</trans-unit>
@@ -697,6 +702,51 @@
 			<trans-unit id="tx_ats_domain_model_application.language">
 			  <source>Language</source>
 			  <target>Sprache</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_texttemplate">
+				<source>Text Template</source>
+				<target>Textvorlage</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_texttemplate.title">
+				<source>Title</source>
+				<target>Vorlagentitel</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_texttemplate.type">
+				<source>Type</source>
+				<target>Typ</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_texttemplate.type.1">
+				<source>Invitation</source>
+				<target>Einladung</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_texttemplate.type.2">
+				<source>Acknowledgement</source>
+				<target>Eingangsbestätigung</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_texttemplate.type.3">
+				<source>Reply</source>
+				<target>Allgemeine Nachricht/Antwort</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_texttemplate.type.4">
+				<source>Request for Attestation</source>
+				<target>Bescheinigung anfordern</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_texttemplate.type.5">
+				<source>Rejection</source>
+				<target>Absage</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_texttemplate.subject">
+				<source>Subject</source>
+				<target>Betreff</target>
 			</trans-unit>
 		</body>
 	</file>

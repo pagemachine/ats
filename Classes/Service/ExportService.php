@@ -63,7 +63,7 @@ class ExportService implements SingletonInterface
     public function getJobOptions()
     {
         $options[''] = '';
-        $jobs = $this->jobRepository->findAll();
+        $jobs = $this->jobRepository->findActive();
         foreach ($jobs as $job) {
             $options[$job->getUid()] = $job->getJobNumber().' - '.$job->getTitle();
         }
