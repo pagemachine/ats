@@ -2,6 +2,7 @@
 namespace PAGEmachine\Ats\ViewHelpers\Form;
 
 use PAGEmachine\Ats\Service\IntlLocalizationService;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /*
@@ -64,7 +65,7 @@ class CountrySelectViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\SelectVi
      */
     protected function getStaticInfoTablesSettings()
     {
-        $configurationManager = $this->objectManager->get(ConfigurationManagerInterface::class);
+        $configurationManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManager');
         return $configurationManager->getConfiguration(
             ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS,
             'StaticInfoTables',
