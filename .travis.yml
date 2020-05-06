@@ -45,7 +45,7 @@ jobs:
       php: 5.6
       before_install: skip
       install: skip
-      before_script: skip
+      before_script: echo 'default_socket_timeout = 120' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
       script: |
         echo -e "Preparing upload of release ${TRAVIS_TAG} to TER\n"
 
