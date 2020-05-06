@@ -126,6 +126,7 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('extbase_acl'))
     // This is a temporary solution to make them accessible by the role configuration API.
     // The API runs its preparations before ext_tables.php is loaded, so no module configuration is available
     $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['extbase_acl']['protectedControllerActions'][\PAGEmachine\Ats\Controller\Backend\ApplicationController::class] = [
+        'list',
         'listAll',
         'listMine',
         'show',
