@@ -31,7 +31,6 @@
     "typo3/cms-fluid": "^7.6 || ^8.7"
   },
   "require-dev": {
-    "ergebnis/composer-normalize": "^2.3",
     "jakub-onderka/php-console-highlighter": "^0.3.2",
     "jakub-onderka/php-parallel-lint": "^0.9.2",
     "nimut/testing-framework": "^1.1 || ^4.1",
@@ -76,7 +75,6 @@
     "build": [
       "@composer validate --ansi",
       "@composer install",
-      "@composer normalize --no-update-lock --dry-run",
       "@lint",
       "@test"
     ],
