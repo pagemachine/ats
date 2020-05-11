@@ -1,15 +1,14 @@
 {
   "name": "pagemachine/ats",
-  "description": "Extension for Job Application Management",
-  "keywords": ["typo3", "application", "jobs", "recruiting"],
   "type": "typo3-cms-extension",
+  "description": "Extension for Job Application Management",
+  "keywords": [
+    "typo3",
+    "application",
+    "jobs",
+    "recruiting"
+  ],
   "license": "GPL-3.0-only",
-  "repositories": {
-    "typo3": {
-      "type": "composer",
-      "url": "https://composer.typo3.org/"
-    }
-  },
   "authors": [
     {
       "name": "Saskia Schreiber",
@@ -24,26 +23,27 @@
     "php": "^5.6 || ^7.0",
     "mpdf/mpdf": "^6.1",
     "symfony/workflow": "^3.3",
+    "typo3-ter/static-info-tables": "^6.4",
     "typo3/cms-backend": "^7.6 || ^8.7",
     "typo3/cms-beuser": "^7.6 || ^8.7",
     "typo3/cms-core": "^7.6 || ^8.7",
     "typo3/cms-extbase": "^7.6 || ^8.7",
-    "typo3/cms-fluid": "^7.6 || ^8.7",
-    "typo3-ter/static-info-tables": "^6.4"
+    "typo3/cms-fluid": "^7.6 || ^8.7"
   },
   "require-dev": {
-    "jakub-onderka/php-parallel-lint": "^0.9.2",
+    "ergebnis/composer-normalize": "^2.3",
     "jakub-onderka/php-console-highlighter": "^0.3.2",
-    "sclable/xml-lint": "^0.2.3",
-    "squizlabs/php_codesniffer": "^3.0",
-    "slevomat/coding-standard": "^3.0",
+    "jakub-onderka/php-parallel-lint": "^0.9.2",
+    "nimut/testing-framework": "^1.1 || ^4.1",
     "phpunit/phpunit": "^5.0 || ^6.0",
-    "nimut/testing-framework": "^1.1 || ^4.1"
+    "sclable/xml-lint": "^0.2.3",
+    "slevomat/coding-standard": "^3.0",
+    "squizlabs/php_codesniffer": "^3.0"
   },
   "suggest": {
-    "typo3-ter/femanager": "for user registration and account management",
+    "ext-intl": "For automatic translation of country, nationality and language fields",
     "pagemachine/hairu": "Frontend logins with extbase and fluid",
-    "ext-intl": "For automatic translation of country, nationality and language fields"
+    "typo3-ter/femanager": "for user registration and account management"
   },
   "config": {
     "bin-dir": "bin"
@@ -55,20 +55,6 @@
       "web-dir": "web"
     }
   },
-  "scripts": {
-    "lint:php": "parallel-lint --exclude bin --exclude vendor --exclude web .",
-    "lint:xml": "xmllint --pattern '*.xlf,*.svg' Resources",
-    "lint:style": "phpcs",
-    "lint": [
-      "@lint:php",
-      "@lint:style",
-      "@lint:xml"
-    ],
-    "test:unit": "phpunit",
-    "test": [
-      "@test:unit"
-    ]
-  },
   "autoload": {
     "psr-4": {
       "PAGEmachine\\Ats\\": "Classes/"
@@ -79,5 +65,32 @@
       "PAGEmachine\\Ats\\Tests\\": "Tests/",
       "TYPO3\\CMS\\Core\\Tests\\": "vendor/typo3/cms/typo3/sysext/core/Tests/"
     }
+  },
+  "repositories": {
+    "typo3": {
+      "type": "composer",
+      "url": "https://composer.typo3.org/"
+    }
+  },
+  "scripts": {
+    "build": [
+      "@composer validate --ansi",
+      "@composer install",
+      "@composer normalize --no-update-lock --dry-run",
+      "@lint",
+      "@test"
+    ],
+    "lint": [
+      "@lint:php",
+      "@lint:style",
+      "@lint:xml"
+    ],
+    "lint:php": "parallel-lint --exclude bin --exclude vendor --exclude web .",
+    "lint:style": "phpcs",
+    "lint:xml": "xmllint --pattern '*.xlf,*.svg' Resources",
+    "test": [
+      "@test:unit"
+    ],
+    "test:unit": "phpunit"
   }
 }
