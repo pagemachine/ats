@@ -1,15 +1,14 @@
 {
   "name": "pagemachine/ats",
-  "description": "Extension for Job Application Management",
-  "keywords": ["typo3", "application", "jobs", "recruiting"],
   "type": "typo3-cms-extension",
+  "description": "Extension for Job Application Management",
+  "keywords": [
+    "typo3",
+    "application",
+    "jobs",
+    "recruiting"
+  ],
   "license": "GPL-3.0-only",
-  "repositories": {
-    "typo3": {
-      "type": "composer",
-      "url": "https://composer.typo3.org/"
-    }
-  },
   "authors": [
     {
       "name": "Saskia Schreiber",
@@ -32,19 +31,20 @@
     "sjbr/static-info-tables": "^6.7"
   },
   "require-dev": {
-    "jakub-onderka/php-parallel-lint": "^0.9.2",
     "jakub-onderka/php-console-highlighter": "^0.3.2",
+    "jakub-onderka/php-parallel-lint": "^0.9.2",
+    "nimut/testing-framework": "^1.1 || ^4.1",
+    "phpunit/phpunit": "^5.0 || ^6.0",
     "sclable/xml-lint": "^0.2.3",
-    "squizlabs/php_codesniffer": "^3.0",
     "slevomat/coding-standard": "^3.0",
     "phpunit/phpunit": "^6.4",
     "nimut/testing-framework": "^4.1",
     "doppy/composer-symlink": "^1.0"
   },
   "suggest": {
-    "typo3-ter/femanager": "for user registration and account management",
+    "ext-intl": "For automatic translation of country, nationality and language fields",
     "pagemachine/hairu": "Frontend logins with extbase and fluid",
-    "ext-intl": "For automatic translation of country, nationality and language fields"
+    "typo3-ter/femanager": "for user registration and account management"
   },
   "config": {
     "bin-dir": "bin"
@@ -88,5 +88,31 @@
       "PAGEmachine\\Ats\\Tests\\": "Tests/",
       "TYPO3\\CMS\\Core\\Tests\\": "vendor/typo3/cms/typo3/sysext/core/Tests/"
     }
+  },
+  "repositories": {
+    "typo3": {
+      "type": "composer",
+      "url": "https://composer.typo3.org/"
+    }
+  },
+  "scripts": {
+    "build": [
+      "@composer validate --ansi",
+      "@composer install",
+      "@lint",
+      "@test"
+    ],
+    "lint": [
+      "@lint:php",
+      "@lint:style",
+      "@lint:xml"
+    ],
+    "lint:php": "parallel-lint --exclude bin --exclude vendor --exclude web .",
+    "lint:style": "phpcs",
+    "lint:xml": "xmllint --pattern '*.xlf,*.svg' Resources",
+    "test": [
+      "@test:unit"
+    ],
+    "test:unit": "phpunit"
   }
 }
