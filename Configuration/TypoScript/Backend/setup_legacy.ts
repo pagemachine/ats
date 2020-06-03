@@ -4,7 +4,7 @@ page.includeJSFooter {
 }
 
 # Include JQuery if activated
-[globalVar = LIT:1 = {$plugin.tx_ats.settings.includeJQuery}]
+[{$plugin.tx_ats.settings.includeJQuery} == '1']
 page.includeJSFooterlibs.jQuery = https://code.jquery.com/jquery-2.2.4.min.js
 page.includeJSFooterlibs.jQuery.external = 1
 [global]
