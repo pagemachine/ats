@@ -356,7 +356,7 @@
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_languageskill">
-				<source>Language Skill</source>
+				<source>Language skill</source>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_languageskill.text_language">

@@ -662,12 +662,12 @@
 			</trans-unit>
 
 			<trans-unit id="tx_ats.application.languageskills">
-				<source>Language Skills</source>
+				<source>Language skills</source>
 				<target>Sprachkenntnisse</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.language_skill">
-				<source>Language Skill</source>
+				<source>Language skill</source>
 				<target>Sprachkenntnisse</target>
 			</trans-unit>
 

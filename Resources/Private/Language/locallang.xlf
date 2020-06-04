@@ -567,13 +567,13 @@
 	  </trans-unit>
 
 	  <trans-unit id="tx_ats.application.languageskills">
-		<source>Language Skills</source>
+		<source>Language skills</source>
 	  </trans-unit>
 
 	  <!-- LanguageSkill labels -->
 
 	  <trans-unit id="tx_ats.languageskill">
-		<source>Language Skill</source>
+		<source>Language skill</source>
 	  </trans-unit>
 
 	  <trans-unit id="tx_ats.languageskill.language">
