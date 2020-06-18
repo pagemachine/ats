@@ -4,9 +4,10 @@
 require(
     [
         'jquery',
+        'TYPO3/CMS/Backend/Storage/Persistent',
         'datatables'
     ],
-    function($) {
+    function($, PersistentStorage) {
     var dateOptions = { year: 'numeric', month: 'numeric', day: 'numeric' };
 
     var query = $('#applications-ajax-filter').data('query');
@@ -35,7 +36,7 @@ require(
                 query.search = d.search.value;
                 d.query = query;
 
-                top.TYPO3.Storage.Persistent.set('atsApplications.query', JSON.stringify(query));
+                PersistentStorage.set('atsApplications.query', JSON.stringify(query));
 
                 var data = {
                     draw: d.draw,
