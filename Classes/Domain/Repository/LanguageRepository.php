@@ -36,6 +36,23 @@ class LanguageRepository
     }
 
     /**
+     * Finds language by uid.
+     *
+     * @param   integer  $uid
+     */
+    public function findByUid($uid)
+    {
+
+        $languages = $this->findLanguagesByUids([$uid]);
+
+        if (empty($languages)) {
+            return;
+        }
+
+        return $languages[0];
+    }
+
+    /**
      * Finds languages by their respective uids
      *
      * @param array $uids

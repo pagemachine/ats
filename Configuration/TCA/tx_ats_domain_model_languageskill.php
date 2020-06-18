@@ -3,6 +3,7 @@ return [
 	'ctrl' => [
 		'title'	=> 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_languageskill',
 		'label' => 'uid',
+        'label_userFunc' => \PAGEmachine\Ats\Userfuncs\LanguageSkill::class . '->getTitle',
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
