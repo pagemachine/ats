@@ -128,11 +128,11 @@ class MassMessageContainer
             if ($message->getSendType() == 'mail') {
                 $results[] = [
                     'mail' => $message->getApplication()->getEmail(),
-                    'name' => $message->getApplication()->getSurname(),
+                    'name' => $message->getApplication()->getSurname().', '.$message->getApplication()->getFirstname(),
                 ];
             } else {
                 $results[] = [
-                    'name' => $message->getApplication()->getSurname(),
+                    'name' => $message->getApplication()->getSurname().', '.$message->getApplication()->getFirstname(),
                     'filepath' => $message->getPdfFilePath(),
                     'filename' => $message->getFilename(),
                 ];
