@@ -38,7 +38,7 @@ class LanguageRepository
     /**
      * Finds language by uid.
      *
-     * @param   integer  $uid
+     * @param   int  $uid
      */
     public function findByUid($uid)
     {
