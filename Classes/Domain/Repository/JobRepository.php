@@ -67,6 +67,10 @@ class JobRepository extends Repository
             ->execute()
             ->fetchAll();
 
+        foreach ($jobs as $key => $value) {
+            $jobs[$key]['jobNumberAndTitle'] = $value['job_number']." - ".$value['title'];
+        }
+
         return $jobs;
     }
 
