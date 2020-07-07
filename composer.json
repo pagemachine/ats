@@ -21,7 +21,7 @@
   ],
   "require": {
     "php": "^7.0 || ^7.2",
-    "mpdf/mpdf": "^7.1",
+    "mpdf/mpdf": "^8.0",
     "symfony/workflow": "^3.3",
     "typo3/cms-core": "^8.7 || ^9.5",
     "typo3/cms-backend": "^8.7 || ^9.5",

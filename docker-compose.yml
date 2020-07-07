@@ -6,6 +6,7 @@ services:
     environment:
       typo3DatabaseHost: mysql
       typo3DatabasePassword: root
+      PHP_EXTENSION_GD: 1
     depends_on:
       - mysql
       - ssh-agent
