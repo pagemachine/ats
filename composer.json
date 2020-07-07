@@ -102,6 +102,7 @@
       "@lint",
       "@test"
     ],
+    "build:documentation": "docker-compose -f docker-compose-build-documentation.yml up",
     "lint": [
       "@lint:php",
       "@lint:style",

@@ -70,11 +70,13 @@ class FormHelper
             ->where($queryBuilder->expr()->eq('tx_ats_location', $queryBuilder->createNamedParameter($params['row']['location'])));
 
         if (ExtensionManagementUtility::isLoaded('extbase_acl') && !empty(ExtconfService::getInstance()->getJobRoleDefinitions()['department'])) {
+            print \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump( ExtconfService::getInstance()->getJobRoleDefinitions() );
             $queryBuilder->andWhere(
                 $queryBuilder->expr()->in('tx_extbaseacl_role', $queryBuilder->createNamedParameter(ExtconfService::getInstance()->getJobRoleDefinitions()['department']))
             );
         }
-
+print \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump( $queryBuilder->getSQL() );
+print \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump( $queryBuilder->getParameters() );
         $res = $queryBuilder->execute();
 
         while ($row = $res->fetch()) {
