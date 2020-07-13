@@ -18,7 +18,7 @@ Releases
 Breaking: Extconf department job configuration format change
 -------
 
-The configuration for the job department now has to be formated as array instead of an array.
+The configuration for the job department now has to be formated as array instead of a string.
 
 .. code-block:: php
 
