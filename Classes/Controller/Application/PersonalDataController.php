@@ -2,6 +2,7 @@
 namespace PAGEmachine\Ats\Controller\Application;
 
 use PAGEmachine\Ats\Domain\Model\ApplicationB;
+use PAGEmachine\Ats\Domain\Repository\ApplicationBRepository;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -20,6 +21,14 @@ class PersonalDataController extends AbstractApplicationController
      * @inject
      */
     protected $repository = null;
+
+    /**
+     * @param  ApplicationBRepository $repository
+     */
+    public function injectRepository(ApplicationBRepository $repository)
+    {
+        $this->repository = $repository;
+    }
 
     /**
      * @var \PAGEmachine\Ats\Domain\Repository\CountryRepository

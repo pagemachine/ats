@@ -63,8 +63,7 @@ class AbstractApplicationController extends ActionController
         }
 
         $groupid = !empty($this->settings['feUserGroup']) ? $this->settings['feUserGroup'] : null;
-
-        if (!$this->authenticationService->isUserAuthenticatedAndHasGroup($groupid)) {
+        if (!$this->authenticationService->isUserAuthenticatedAndHasGroup($groupid) && $this->settings['loginPage']) {
             $arguments = $this->buildArgumentsForLoginHandling();
 
             //Create url to login page and send arguments
@@ -73,7 +72,7 @@ class AbstractApplicationController extends ActionController
                 ->setArguments($arguments)
                 ->build();
 
-            $this->redirectToUri($loginUri);
+           $this->redirectToUri($loginUri);
         }
     }
 
@@ -88,6 +87,7 @@ class AbstractApplicationController extends ActionController
 
         $job = null;
 
+        print \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump( $this->request );
         if ($this->request->hasArgument("job")) {
             $job = $this->request->getArgument("job");
         } elseif ($this->request->hasArgument("application")) {

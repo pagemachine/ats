@@ -39,8 +39,7 @@ class FormController extends AbstractApplicationController
      */
     public function formAction(Job $job, ApplicationA $application = null)
     {
-
-        if ($application == null) {
+        if ($application == null  && $this->settings['loginPage']) {
             $application = $this->applicationARepository->findByUserAndJob($this->authenticationService->getAuthenticatedUser(), $job, null, ApplicationStatus::INCOMPLETE);
         }
 
