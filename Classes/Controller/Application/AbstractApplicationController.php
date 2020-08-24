@@ -72,7 +72,7 @@ class AbstractApplicationController extends ActionController
                 ->setArguments($arguments)
                 ->build();
 
-           $this->redirectToUri($loginUri);
+            $this->redirectToUri($loginUri);
         }
     }
 
@@ -87,7 +87,7 @@ class AbstractApplicationController extends ActionController
 
         $job = null;
 
-        print \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump( $this->request );
+        print \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($this->request);
         if ($this->request->hasArgument("job")) {
             $job = $this->request->getArgument("job");
         } elseif ($this->request->hasArgument("application")) {
