@@ -74,6 +74,11 @@ class AbstractApplicationController extends ActionController
 
             $this->redirectToUri($loginUri);
         }
+
+        if (!$this->settings['loginPage'] && $this->request->hasArgument("application")) {
+            $GLOBALS['TSFE']->fe_user->setKey('ses', 'Application', (int)$this->request->getArgument("application")); 
+            $GLOBALS["TSFE"]->storeSessionData();
+        }
     }
 
     /**

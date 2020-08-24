@@ -67,7 +67,7 @@ class FileDumpControllerHook implements FileDumpEIDHookInterface
                     return;
                 }
             }
-
+            
             HttpUtility::setResponseCodeAndExit(HttpUtility::HTTP_STATUS_403);
         }
     }
@@ -99,16 +99,20 @@ class FileDumpControllerHook implements FileDumpEIDHookInterface
     public function hasAccess($application, FrontendUserAuthentication $feUser = null, FrontendBackendUserAuthentication $beUser = null)
     {
         $granted = false;
-        if ($feUser->user !== null) {
+        if ($feUser->user !== null && $application['user'] !== null && $application['user'] !== 0) {
             if ($feUser->user['uid'] == $application['user']) {
                 $granted = true;
             }
+        } else {
+            if ($GLOBALS['TSFE']->fe_user->getKey('ses','Application') == $application['uid'] && $application['uid'] !== null ) {
+                $granted = true;
+            }
+
         }
 
         if ($beUser !== null) {
             $granted = true;
         }
-
         return $granted;
     }
 
