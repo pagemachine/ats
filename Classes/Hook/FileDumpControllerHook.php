@@ -103,11 +103,10 @@ class FileDumpControllerHook implements FileDumpEIDHookInterface
             if ($feUser->user['uid'] == $application['user']) {
                 $granted = true;
             }
-        } else {
-            if ($GLOBALS['TSFE']->fe_user->getKey('ses','Application') == $application['uid'] && $application['uid'] !== null ) {
+        } elseif ($feUser->user !== null) {
+            if ($feUser->getKey('ses', 'Application') == $application['uid'] && $application['uid'] !== null) {
                 $granted = true;
             }
-
         }
 
         if ($beUser !== null) {

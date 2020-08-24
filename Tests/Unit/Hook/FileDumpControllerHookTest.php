@@ -61,10 +61,11 @@ class FileDumpControllerHookTest extends TestCase
         $feUser->user = [
             'uid' => '999',
         ];
-
+        $feUser->getKey('ses', 'Application')->willReturn('999');
         return [
             'BE logged in, FE not logged in' => [[], $this->prophesize(FrontendBackendUserAuthentication::class)->reveal(), null],
             'BE not logged in, FE logged in with application connection' => [['user' => '999'], null, $feUser->reveal()],
+            'BE not logged in, no FE login needed, but session set' => [['uid'=>'999' ], null, $feUser->reveal()],
         ];
     }
 
@@ -91,10 +92,12 @@ class FileDumpControllerHookTest extends TestCase
         $feUser->user = [
             'uid' => '999',
         ];
+        $feUser->getKey('ses', 'Application')->willReturn('1');
 
         return [
             'BE not logged in, FE not logged in' => [[], null, null],
             'BE not logged in, FE logged in but no application connection' => [['user' => '123'], null, $feUser->reveal()],
+            'BE not logged in, no FE login needed, but session set' => [['uid'=>'999' ], null, $feUser->reveal()],
         ];
     }
 
