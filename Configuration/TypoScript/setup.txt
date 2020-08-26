@@ -75,7 +75,7 @@ plugin.tx_ats {
 		}
 	}
 	settings {
-		loginPage = 
+		loginPage = {$plugin.tx_ats.settings.loginPage}
 		applicationPage = {$plugin.tx_ats.settings.applicationPage}
 		feUserGroup = {$plugin.tx_ats.settings.feUserGroup}
 		policyPage = {$plugin.tx_ats.settings.policyPage}
