@@ -99,12 +99,12 @@ class FileDumpControllerHook implements FileDumpEIDHookInterface
     public function hasAccess($application, FrontendUserAuthentication $feUser = null, FrontendBackendUserAuthentication $beUser = null)
     {
         $granted = false;
-        if ($feUser->user !== null && $application['user'] !== null && $application['user'] !== 0) {
+        if ($feUser->user !== null && !empty($application['user'])) {
             if ($feUser->user['uid'] == $application['user']) {
                 $granted = true;
             }
         } elseif ($feUser->user !== null) {
-            if ($feUser->getKey('ses', 'Application') == $application['uid'] && $application['uid'] !== null) {
+            if ($feUser->getKey('ses', 'Ats/Application') == $application['uid'] && $application['uid'] !== null) {
                 $granted = true;
             }
         }
