@@ -82,6 +82,7 @@ Extension Setup
    3. Add the **ATS Jobs** plugin to the jobs page
    4. Create jobs inside the storage folder.
 
+   This extension also works without a login. For that leave the loginPage empty.
 
 That's it, now the basics are set up and applicants can register for your jobs.
 

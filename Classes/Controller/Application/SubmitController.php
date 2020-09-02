@@ -30,7 +30,7 @@ class SubmitController extends AbstractApplicationController
      */
     public function injectApplicationRepository(ApplicationRepository $applicationRepository)
     {
-        $this->applicationRepository = $applicationRepository;
+        $this->repository = $applicationRepository;
     }
 
     /**

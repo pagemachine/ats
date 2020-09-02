@@ -63,8 +63,7 @@ class AbstractApplicationController extends ActionController
         }
 
         $groupid = !empty($this->settings['feUserGroup']) ? $this->settings['feUserGroup'] : null;
-
-        if (!$this->authenticationService->isUserAuthenticatedAndHasGroup($groupid)) {
+        if (!$this->authenticationService->isUserAuthenticatedAndHasGroup($groupid) && $this->settings['loginPage']) {
             $arguments = $this->buildArgumentsForLoginHandling();
 
             //Create url to login page and send arguments
@@ -74,6 +73,10 @@ class AbstractApplicationController extends ActionController
                 ->build();
 
             $this->redirectToUri($loginUri);
+        }
+
+        if (!$this->settings['loginPage'] && $this->request->hasArgument("application")) {
+            $GLOBALS['TSFE']->fe_user->setAndSaveSessionData('Ats/Application', (int)$this->request->getArgument("application"));
         }
     }
 

@@ -60,8 +60,8 @@ Application Form
 
 The application form consists of several tabs in order to improve usability by categorizing data.
 
-Some data is mandatory, other data is optional. The upload of several documents like a CV ist possible. A login enables the applicant to complete his/her application in several sessions until it is perfect for submission.
-
+Some data is mandatory, other data is optional. The upload of several documents like a CV ist possible. The option to login is optional. This can be useful
+for when the applicant needs several sessions to complete their application.
 
 Rolling out the ats at your organization - Human Factors
 --------------------------------------------------------

@@ -9,8 +9,15 @@
 
 	<f:render partial="Application/ValidationResults" />
 
-
-  	<f:form.hidden property="user" value="{user}" />
+	<f:if condition="{settings.loginPage}">
+		<f:then>
+			 <f:form.hidden property="user" value="{user}" />
+		</f:then>
+		<f:else>
+			
+		</f:else>
+	</f:if>
+  	
   	<f:form.hidden property="job" value="{job}" />
 
 	<f:translate key="tx_ats.intro.text1" /> <br> <br>
