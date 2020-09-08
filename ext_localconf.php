@@ -11,7 +11,8 @@ defined('TYPO3_MODE') or die();
         'Application\\Qualifications' => 'editQualifications, updateQualifications',
         'Application\\AdditionalData' => 'editAdditionalData, updateAdditionalData',
         'Application\\Upload' => 'editUpload, saveUpload, updateUpload, removeUpload',
-        'Application\\Submit' => 'showSummary, submit, submitted',
+        'Application\\Submit' => 'showSummary, submit, submitted, showSimpleSummary',
+        'Application\\SimpleForm' => 'simpleForm, submit, saveUpload, updateUpload, removeUpload',
     ],
     [
         'Application\\Form' => 'form, updateForm',
@@ -19,7 +20,8 @@ defined('TYPO3_MODE') or die();
         'Application\\Qualifications' => 'editQualifications, updateQualifications',
         'Application\\AdditionalData' => 'editAdditionalData, updateAdditionalData',
         'Application\\Upload' => 'editUpload, saveUpload, updateUpload, removeUpload',
-        'Application\\Submit' => 'showSummary, submit, submitted',
+        'Application\\Submit' => 'showSummary, submit, submitted, showSimpleSummary',
+        'Application\\SimpleForm' => 'simpleForm, submit, saveUpload, updateUpload, removeUpload',
     ]
 );
 
