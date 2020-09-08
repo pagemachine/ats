@@ -34,7 +34,7 @@ class SimpleFormController extends AbstractApplicationController
      */
     public function saveUploadAction(ApplicationE $application)
     {
-        print \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump( $application );
+        print \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($application);
         $this->repository->addOrUpdate($application);
         $this->redirect("simpleForm", null, null, ['application' => $application->getUid()]);
     }
@@ -77,5 +77,5 @@ class SimpleFormController extends AbstractApplicationController
 
         $this->repository->addOrUpdate($application);
         $this->redirect("showSimpleSummary", "Application\\Submit", null, ['application' => $application->getUid()]);
-    }    
+    }
 }
