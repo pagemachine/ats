@@ -63,9 +63,6 @@ Module Constants
 ``storagePid``, see above. If the extConf option ``enableLegacyBackendTS`` is enabled, this setting is inherited from the plugin configuration.
 Otherwise you have to set it (``module.tx_ats.persistence.storagePid``).
 
-``simpleForm``, note that if you would like to use the shorter form, 
-you have to fill a 1 behind "simpleForm = " in Configuration/TypoScript/constants.txt and comment the line simpleForm in Configuration/TypoScript/setup.txt in.
-
 Module Settings
 ^^^^^^^^^^^^^^^
 
