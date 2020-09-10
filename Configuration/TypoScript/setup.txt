@@ -206,6 +206,10 @@ plugin.tx_ats {
 				}
 			}
 		}
+
+		PAGEmachine\Ats\Domain\Model\ApplicationSimple {
+			
+		}
 	}
 }
 
