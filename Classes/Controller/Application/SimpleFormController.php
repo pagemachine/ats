@@ -1,27 +1,27 @@
 <?php
 namespace PAGEmachine\Ats\Controller\Application;
 
-use PAGEmachine\Ats\Domain\Model\ApplicationE;
+use PAGEmachine\Ats\Domain\Model\ApplicationSimple;
 use PAGEmachine\Ats\Domain\Model\FileReference;
-use PAGEmachine\Ats\Domain\Repository\ApplicationERepository;
+use PAGEmachine\Ats\Domain\Repository\ApplicationSimpleRepository;
 
 class SimpleFormController extends AbstractApplicationController
 {
     /**
-     * @var ApplicationERepository
+     * @var ApplicationSimpleRepository
      */
     protected $repository = null;
 
     /**
-     * @param  ApplicationERepository
+     * @param  ApplicationSimpleRepository
      */
-    public function injectRepository(ApplicationERepository $repository)
+    public function injectRepository(ApplicationSimpleRepository $repository)
     {
         $this->repository = $repository;
     }
     /**
      *
-     * @param  ApplicationE $application
+     * @param  ApplicationSimple $application
      * @validate $application \PAGEmachine\Ats\Domain\Validator\TypoScriptValidator
      * @return void
      */
@@ -29,20 +29,20 @@ class SimpleFormController extends AbstractApplicationController
     /**
      * Saves upload and forwards back to edit
      *
-     * @param  ApplicationE $application
+     * @param  ApplicationSimple $application
      * @return void
      */
-    public function saveUploadAction(ApplicationE $application)
+    public function saveUploadAction(ApplicationSimple $application)
     {
         $this->repository->addOrUpdate($application);
         $this->redirect("simpleForm", null, null, ['application' => $application->getUid()]);
     }
 
     /**
-     * @param  ApplicationE $application
+     * @param  ApplicationSimple $application
      * @return void
      */
-    public function removeUploadAction(ApplicationE $application, FileReference $file)
+    public function removeUploadAction(ApplicationSimple $application, FileReference $file)
     {
 
         $application->removeFile($file);
@@ -54,12 +54,12 @@ class SimpleFormController extends AbstractApplicationController
 
     /**
      * @param  Job $job
-     * @param  ApplicationE $application
+     * @param  ApplicationSimple $application
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("application")
      * @ignorevalidation $application
      * @return void
      */
-    public function simpleFormAction(ApplicationE $application)
+    public function simpleFormAction(ApplicationSimple $application)
     {
 
         $this->view->assign("application", $application);
@@ -67,11 +67,11 @@ class SimpleFormController extends AbstractApplicationController
 
     /**
      *
-     * @param  ApplicationE $application
+     * @param  ApplicationSimple $application
      * @validate $application \PAGEmachine\Ats\Domain\Validator\TypoScriptValidator
      * @return void
      */
-    public function submitAction(ApplicationE $application)
+    public function submitAction(ApplicationSimple $application)
     {
 
         $this->repository->addOrUpdate($application);

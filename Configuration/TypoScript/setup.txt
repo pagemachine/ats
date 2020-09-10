@@ -208,7 +208,34 @@ plugin.tx_ats {
 		}
 
 		PAGEmachine\Ats\Domain\Model\ApplicationSimple {
-			
+			salutation {
+				1 {
+					type = Integer
+				}
+			}
+			firstname {
+				1 {
+					type = NotEmpty
+				}
+			}
+			surname {
+				1 {
+					type = NotEmpty
+				}
+			}
+			email {
+				1 {
+					type = NotEmpty
+				}
+				2 {
+					type = EmailAddress
+				}
+			}
+			files {
+				1 {
+					type = NotEmpty
+				}
+			}
 		}
 	}
 }
