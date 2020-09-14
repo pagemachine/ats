@@ -72,6 +72,10 @@ plugin.tx_ats {
 			tableName = tx_ats_domain_model_application
 			recordType = PAGEmachine\Ats\Domain\Model\AbstractApplication
 		    }
+		    PAGEmachine\Ats\Domain\Model\ApplicationSimple.mapping {
+			tableName = tx_ats_domain_model_application
+			recordType = PAGEmachine\Ats\Domain\Model\AbstractApplication
+		    }
 		}
 	}
 	settings {
@@ -80,6 +84,7 @@ plugin.tx_ats {
 		feUserGroup = {$plugin.tx_ats.settings.feUserGroup}
 		policyPage = {$plugin.tx_ats.settings.policyPage}
 		afterSubmitPage = {$plugin.tx_ats.settings.afterSubmitPage}
+		simpleForm = {$plugin.tx_ats.settings.simpleForm}
 
 		allowedStaticLanguages = {$plugin.tx_ats.settings.allowedStaticLanguages}
 		allowedStaticCountries = {$plugin.tx_ats.settings.allowedStaticCountries}
@@ -199,6 +204,37 @@ plugin.tx_ats {
 		}
 
 		PAGEmachine\Ats\Domain\Model\ApplicationE {
+			files {
+				1 {
+					type = NotEmpty
+				}
+			}
+		}
+
+		PAGEmachine\Ats\Domain\Model\ApplicationSimple {
+			salutation {
+				1 {
+					type = Integer
+				}
+			}
+			firstname {
+				1 {
+					type = NotEmpty
+				}
+			}
+			surname {
+				1 {
+					type = NotEmpty
+				}
+			}
+			email {
+				1 {
+					type = NotEmpty
+				}
+				2 {
+					type = EmailAddress
+				}
+			}
 			files {
 				1 {
 					type = NotEmpty

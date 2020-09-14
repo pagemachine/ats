@@ -88,6 +88,10 @@ module.tx_ats {
                 tableName = tx_ats_domain_model_application
                 recordType = PAGEmachine\Ats\Domain\Model\AbstractApplication
             }
+            PAGEmachine\Ats\Domain\Model\ApplicationSimple.mapping {
+                tableName = tx_ats_domain_model_application
+                recordType = PAGEmachine\Ats\Domain\Model\AbstractApplication
+            }
         }
     }
     view {

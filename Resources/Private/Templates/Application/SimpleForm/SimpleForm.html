@@ -1,0 +1,63 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+
+	<h1><f:translate key="tx_ats.headline.personal_data">Simple Form</f:translate></h1>
+
+	<f:form object="{application}" name="application" enctype="multipart/form-data" class="form-horizontal">
+       
+         <f:render partial="Application/ValidationResults" />
+
+		<f:render partial="Application/Field/TextField" arguments="{
+			translationKey: 'tx_ats.label.title',
+			fieldType: 'text',
+			fieldName: 'title',
+			fieldValue: '{f:if(condition: application.title, then: application.title, else: application.user.title)}'
+		}"/>
+
+		<f:render partial="Application/Field/SelectTranslated" arguments="{
+			translationKey: 'tx_ats.label.salutation',
+			fieldName: 'salutation',
+			options: '{1:1, 2:2, 3:3}'
+		}"/>
+
+		<f:render partial="Application/Field/TextField" arguments="{
+			translationKey: 'tx_ats.label.firstname',
+			fieldType: 'text',
+			fieldName: 'firstname',
+			fieldValue: '{f:if(condition: application.firstname, then: application.firstname, else: application.user.firstName)}'
+		}"/>
+
+		<f:render partial="Application/Field/TextField" arguments="{
+			translationKey: 'tx_ats.label.surname',
+			fieldType: 'text',
+			fieldName: 'surname',
+			fieldValue: '{f:if(condition: application.surname, then: application.surname, else: application.user.lastName)}'
+        }"/>
+        
+        <f:render partial="Application/Field/TextField" arguments="{
+			translationKey: 'tx_ats.label.email',
+			fieldType: 'email',
+			fieldName: 'email',
+			fieldValue: '{f:if(condition:application.email, then:application.email, else:application.user.email)}'
+        }"/>
+        
+        <f:render partial="Application/Field/Upload" arguments="{
+            translationKey: 'tx_ats.label.file',
+            fieldName: 'files',
+            application: application
+        }"/>
+
+
+		<div class="form-group">
+			<div class="col-sm-6">
+				<f:link.action action="form" controller="Application\\Form" arguments="{application: application, job : application.job}" class="btn btn-default pull-right"><f:translate key="tx_ats.button.prev">Back</f:translate></f:link.action>
+			</div>
+
+            <f:render partial="Application/Field/SubmitButton" arguments="{
+                translationKey: 'tx_ats.button.next',
+                action: 'submit'
+            }"/>
+	    </div>
+	</f:form>
+</f:section>

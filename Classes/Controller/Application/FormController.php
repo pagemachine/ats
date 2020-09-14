@@ -61,6 +61,10 @@ class FormController extends AbstractApplicationController
 
         $this->applicationARepository->addOrUpdate($application);
 
-        $this->forward("editPersonalData", "Application\\PersonalData", null, ['application' => $application->getUid()]);
+        if ($this->settings['simpleForm']) {
+            $this->forward("simpleForm", "Application\\SimpleForm", null, ['application' => $application->getUid()]);
+        } else {
+            $this->forward("editPersonalData", "Application\\PersonalData", null, ['application' => $application->getUid()]);
+        }
     }
 }

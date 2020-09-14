@@ -34,6 +34,8 @@ plugin.tx_ats {
 		policyPage =
 		# cat=plugin.tx_ats/pages; type=string; label=Page to redirect to after submit (if empty, default text is shown)
 		afterSubmitPage =
+		# cat=plugin.tx_ats//a; type=boolean; label=Use simple shortened application form or long application form
+		simpleForm = 1
 
 		# cat=plugin.tx_ats//enable; type=boolean; label=Render structured job definitions (JSON-LD)
 		renderStructuredJobDefinitions = 0

@@ -63,6 +63,9 @@ The application form consists of several tabs in order to improve usability by c
 Some data is mandatory, other data is optional. The upload of several documents like a CV ist possible. The option to login is optional. This can be useful
 for when the applicant needs several sessions to complete their application.
 
+There is two possible application forms: a long one, and a shorter one. By default, the shorter one is active. 
+If you want to change that, you have to change the constant ``simpleForm`` 
+
 Rolling out the ats at your organization - Human Factors
 --------------------------------------------------------
 
