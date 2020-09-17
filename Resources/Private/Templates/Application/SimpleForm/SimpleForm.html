@@ -5,6 +5,7 @@
 	<h1><f:translate key="tx_ats.headline.personal_data">Simple Form</f:translate></h1>
 
 	<f:form object="{application}" name="application" enctype="multipart/form-data" class="form-horizontal">
+		<f:form.hidden name="something" value="{hmac}"/>
        
          <f:render partial="Application/ValidationResults" />
 
