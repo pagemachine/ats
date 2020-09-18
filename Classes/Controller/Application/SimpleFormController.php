@@ -100,6 +100,9 @@ class SimpleFormController extends AbstractApplicationController
             if ($timeDiff < 3) {
                 throw new \TYPO3\CMS\Extbase\Security\Exception\InvalidHashException('Application was filled in too fast. '.$timeDiff.'s', 1600344515);
             }
+            if (!empty($application->getZipcode())) {
+                throw new \TYPO3\CMS\Extbase\Security\Exception\InvalidHashException('Honeypot field was filled out.', 1600344516);
+            }
         } catch (\TYPO3\CMS\Extbase\Security\Exception\InvalidHashException $e) {
             $this->redirect("simpleForm", null, null, ["application" => $application->getUid()]);
         }

@@ -1,0 +1,14 @@
+<f:form.validationResults for="application.{fieldName}">
+<div style="overflow:hidden; position:relative" class="form-group">
+	<div style="position:absolute; height: 100px; width: 100px; right: -50px; top: 50px" class="col-sm-3">
+		<f:render partial="Application/Field/Label" arguments="{fieldName : fieldName, translationKey : translationKey}" />
+	</div>
+	<div style="position:absolute; height: 100px; width: 100px; right: -50px; top: 50px" class="col-sm-9">
+		<f:form.textfield
+			type="{fieldType}"
+			property="{fieldName}"
+			value="{fieldValue}"
+			class="form-control" />
+	</div>
+</div>
+</f:form.validationResults>
