@@ -5,8 +5,16 @@
 	<h1><f:translate key="tx_ats.headline.personal_data">Simple Form</f:translate></h1>
 
 	<f:form object="{application}" name="application" enctype="multipart/form-data" class="form-horizontal">
+		<f:form.hidden name="something" value="{hmac}"/>
        
          <f:render partial="Application/ValidationResults" />
+
+		 <f:render partial="Application/Field/Honeypot" arguments="{
+			translationKey: 'tx_ats.label.zipcode',
+			fieldType: 'text',
+			fieldName: 'zipcode',
+			fieldValue: '{f:if(condition: application.zipcode, then: application.zipcode, else: application.user.zip)}'
+		}"/>
 
 		<f:render partial="Application/Field/TextField" arguments="{
 			translationKey: 'tx_ats.label.title',
