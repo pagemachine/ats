@@ -46,7 +46,6 @@
     "typo3-ter/femanager": "for user registration and account management"
   },
   "config": {
-    "bin-dir": "bin",
     "sort-packages": true
   },
   "extra": {
@@ -89,7 +88,7 @@
       "@lint:style",
       "@lint:xml"
     ],
-    "lint:php": "parallel-lint --exclude bin --exclude vendor --exclude web .",
+    "lint:php": "parallel-lint --exclude vendor --exclude web .",
     "lint:style": "phpcs",
     "lint:xml": "xmllint --pattern '*.xlf,*.svg' Resources",
     "test:unit": "phpunit",
