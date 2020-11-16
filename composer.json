@@ -32,6 +32,7 @@
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.9",
+        "helmich/typo3-typoscript-lint": "^2.3",
         "nimut/testing-framework": "^4.1",
         "php-parallel-lint/php-console-highlighter": "^0.5.0",
         "php-parallel-lint/php-parallel-lint": "^1.2",
@@ -104,10 +105,12 @@
         "lint": [
             "@lint:php",
             "@lint:style",
+            "@lint:typoscript",
             "@lint:xml"
         ],
         "lint:php": "parallel-lint --exclude vendor --exclude web .",
         "lint:style": "phpcs",
+        "lint:typoscript": "typoscript-lint --ansi",
         "lint:xml": "xmllint --pattern '*.xlf,*.svg' Resources",
         "test": [
             "@test:unit",
