@@ -20,6 +20,7 @@ jobs:
       matrix:
         php:
           - 7.2
+          - 7.4
         typo3:
           - ^9.5
           - ^8.7
