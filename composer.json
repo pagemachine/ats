@@ -42,8 +42,8 @@
     },
     "suggest": {
         "ext-intl": "For automatic translation of country, nationality and language fields",
-        "pagemachine/hairu": "For frontend login with Extbase and Fluid",
-        "in2code/femanager": "For user registration and account management"
+        "in2code/femanager": "For user registration and account management",
+        "pagemachine/hairu": "For frontend login with Extbase and Fluid"
     },
     "config": {
         "sort-packages": true
