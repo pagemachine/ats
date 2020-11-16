@@ -56,6 +56,7 @@
   "scripts": {
     "build": [
       "@composer require --no-progress --ansi --update-with-dependencies typo3/cms-core $TYPO3_VERSION",
+      "@composer validate --ansi",
       "@lint",
       "@test"
     ],
@@ -63,6 +64,7 @@
       "git reset --hard",
       "git clean -xfd"
     ],
+    "build:documentation": "docker-compose -f docker-compose-build-documentation.yml up",
     "build:ter:vendors": [
       "(mkdir -p /tmp/vendors && cd /tmp/vendors && composer require symfony/workflow:^3.3 mpdf/mpdf:^6.1 && composer global exec phar-composer build -v)",
       "cp /tmp/vendors/vendors.phar .",
@@ -90,7 +92,11 @@
     "lint:style": "phpcs",
     "lint:xml": "xmllint --pattern '*.xlf,*.svg' Resources",
     "test:unit": "phpunit",
-    "test:functional": "phpunit --configuration phpunit-functional.xml",
+    "test:functional": [
+      "mkdir -p web/typo3conf/ext",
+      "ln -sfn ../../.. web/typo3conf/ext/$(composer config extra.typo3/cms.extension-key)",
+      "phpunit --configuration phpunit-functional.xml --colors=always"
+    ],
     "test": [
       "@test:unit",
       "@test:functional"
@@ -112,32 +118,5 @@
       "type": "composer",
       "url": "https://composer.typo3.org/"
     }
-  },
-  "scripts": {
-    "build": [
-      "@composer validate --ansi",
-      "@composer install",
-      "@lint",
-      "@test"
-    ],
-    "build:documentation": "docker-compose -f docker-compose-build-documentation.yml up",
-    "lint": [
-      "@lint:php",
-      "@lint:style",
-      "@lint:xml"
-    ],
-    "lint:php": "parallel-lint --exclude bin --exclude vendor --exclude web .",
-    "lint:style": "phpcs",
-    "lint:xml": "xmllint --pattern '*.xlf,*.svg' Resources",
-    "test": [
-      "@test:unit",
-      "@test:functional"
-    ],
-    "test:functional": [
-      "mkdir -p web/typo3conf/ext",
-      "ln -sfn ../../.. web/typo3conf/ext/$(composer config extra.typo3/cms.extension-key)",
-      "phpunit --configuration phpunit-functional.xml --colors=always"
-    ],
-    "test:unit": "phpunit"
   }
 }
