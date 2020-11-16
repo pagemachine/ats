@@ -1,123 +1,123 @@
 {
-  "name": "pagemachine/ats",
-  "type": "typo3-cms-extension",
-  "description": "Extension for Job Application Management",
-  "keywords": [
-    "typo3",
-    "application",
-    "jobs",
-    "recruiting"
-  ],
-  "license": "GPL-3.0-only",
-  "authors": [
-    {
-      "name": "Saskia Schreiber",
-      "email": "sschreiber@pagemachine.de"
+    "name": "pagemachine/ats",
+    "type": "typo3-cms-extension",
+    "description": "Extension for Job Application Management",
+    "keywords": [
+        "typo3",
+        "application",
+        "jobs",
+        "recruiting"
+    ],
+    "license": "GPL-3.0-only",
+    "authors": [
+        {
+            "name": "Saskia Schreiber",
+            "email": "sschreiber@pagemachine.de"
+        },
+        {
+            "name": "Stefan Schütt",
+            "email": "sschuett@pagemachine.de"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "mpdf/mpdf": "^8.0",
+        "sjbr/static-info-tables": "^6.7",
+        "symfony/workflow": "^3.3",
+        "typo3/cms-backend": "^8.7 || ^9.5",
+        "typo3/cms-beuser": "^8.7 || ^9.5",
+        "typo3/cms-core": "^8.7 || ^9.5",
+        "typo3/cms-extbase": "^8.7 || ^9.5",
+        "typo3/cms-fluid": "^8.7 || ^9.5"
     },
-    {
-      "name": "Stefan Schütt",
-      "email": "sschuett@pagemachine.de"
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.9",
+        "jakub-onderka/php-console-highlighter": "^0.3.2",
+        "jakub-onderka/php-parallel-lint": "^0.9.2",
+        "nimut/testing-framework": "^4.1",
+        "phpunit/phpunit": "^6.5",
+        "sclable/xml-lint": "^0.2.3",
+        "slevomat/coding-standard": "^3.0"
+    },
+    "suggest": {
+        "ext-intl": "For automatic translation of country, nationality and language fields",
+        "pagemachine/hairu": "Frontend logins with extbase and fluid",
+        "typo3-ter/femanager": "for user registration and account management"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "ats",
+            "cms-package-dir": "{$vendor-dir}/typo3/cms",
+            "web-dir": "web"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "PAGEmachine\\Ats\\": "Classes/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PAGEmachine\\Ats\\Tests\\": "Tests/",
+            "TYPO3\\CMS\\Core\\Tests\\": "vendor/typo3/cms/typo3/sysext/core/Tests/"
+        }
+    },
+    "repositories": {
+        "typo3": {
+            "type": "composer",
+            "url": "https://composer.typo3.org/"
+        }
+    },
+    "scripts": {
+        "build": [
+            "@composer require --no-progress --ansi --update-with-dependencies typo3/cms-core $TYPO3_VERSION",
+            "@composer validate --ansi",
+            "@lint",
+            "@test"
+        ],
+        "build:cleanup": [
+            "git reset --hard",
+            "git clean -xfd"
+        ],
+        "build:documentation": "docker-compose -f docker-compose-build-documentation.yml up",
+        "build:ter:vendors": [
+            "(mkdir -p /tmp/vendors && cd /tmp/vendors && composer require symfony/workflow:^3.3 mpdf/mpdf:^6.1 && composer global exec phar-composer build -v)",
+            "cp /tmp/vendors/vendors.phar .",
+            "echo \"require 'phar://' . \\TYPO3\\CMS\\Core\\Utility\\ExtensionManagementUtility::extPath('$(composer config extra.typo3/cms.extension-key)') . 'vendors.phar/vendor/autoload.php';\" >> ext_localconf.php"
+        ],
+        "deploy:ter": [
+            "@build:cleanup",
+            "@deploy:ter:setup",
+            "@build:ter:vendors",
+            "@deploy:ter:upload"
+        ],
+        "deploy:ter:setup": [
+            "@composer global require clue/phar-composer helhum/ter-client symfony/console:^3"
+        ],
+        "deploy:ter:upload": [
+            "composer global exec -v -- ter-client upload --username $TYPO3_ORG_USERNAME --password $TYPO3_ORG_PASSWORD --upload-comment \"$(git tag -l --format='%(contents)' $TRAVIS_TAG)\" $(composer config extra.typo3/cms.extension-key) ."
+        ],
+        "fix:style": "phpcbf",
+        "lint": [
+            "@lint:php",
+            "@lint:style",
+            "@lint:xml"
+        ],
+        "lint:php": "parallel-lint --exclude vendor --exclude web .",
+        "lint:style": "phpcs",
+        "lint:xml": "xmllint --pattern '*.xlf,*.svg' Resources",
+        "test": [
+            "@test:unit",
+            "@test:functional"
+        ],
+        "test:functional": [
+            "mkdir -p web/typo3conf/ext",
+            "ln -sfn ../../.. web/typo3conf/ext/$(composer config extra.typo3/cms.extension-key)",
+            "phpunit --configuration phpunit-functional.xml --colors=always"
+        ],
+        "test:unit": "phpunit --colors=always"
     }
-  ],
-  "require": {
-    "php": "^7.2",
-    "mpdf/mpdf": "^8.0",
-    "sjbr/static-info-tables": "^6.7",
-    "symfony/workflow": "^3.3",
-    "typo3/cms-backend": "^8.7 || ^9.5",
-    "typo3/cms-beuser": "^8.7 || ^9.5",
-    "typo3/cms-core": "^8.7 || ^9.5",
-    "typo3/cms-extbase": "^8.7 || ^9.5",
-    "typo3/cms-fluid": "^8.7 || ^9.5"
-  },
-  "require-dev": {
-    "ergebnis/composer-normalize": "^2.9",
-    "jakub-onderka/php-console-highlighter": "^0.3.2",
-    "jakub-onderka/php-parallel-lint": "^0.9.2",
-    "nimut/testing-framework": "^4.1",
-    "phpunit/phpunit": "^6.5",
-    "sclable/xml-lint": "^0.2.3",
-    "slevomat/coding-standard": "^3.0"
-  },
-  "suggest": {
-    "ext-intl": "For automatic translation of country, nationality and language fields",
-    "pagemachine/hairu": "Frontend logins with extbase and fluid",
-    "typo3-ter/femanager": "for user registration and account management"
-  },
-  "config": {
-    "sort-packages": true
-  },
-  "extra": {
-    "typo3/cms": {
-      "extension-key": "ats",
-      "cms-package-dir": "{$vendor-dir}/typo3/cms",
-      "web-dir": "web"
-    }
-  },
-  "scripts": {
-    "build": [
-      "@composer require --no-progress --ansi --update-with-dependencies typo3/cms-core $TYPO3_VERSION",
-      "@composer validate --ansi",
-      "@lint",
-      "@test"
-    ],
-    "build:cleanup": [
-      "git reset --hard",
-      "git clean -xfd"
-    ],
-    "build:documentation": "docker-compose -f docker-compose-build-documentation.yml up",
-    "build:ter:vendors": [
-      "(mkdir -p /tmp/vendors && cd /tmp/vendors && composer require symfony/workflow:^3.3 mpdf/mpdf:^6.1 && composer global exec phar-composer build -v)",
-      "cp /tmp/vendors/vendors.phar .",
-      "echo \"require 'phar://' . \\TYPO3\\CMS\\Core\\Utility\\ExtensionManagementUtility::extPath('$(composer config extra.typo3/cms.extension-key)') . 'vendors.phar/vendor/autoload.php';\" >> ext_localconf.php"
-    ],
-    "deploy:ter": [
-      "@build:cleanup",
-      "@deploy:ter:setup",
-      "@build:ter:vendors",
-      "@deploy:ter:upload"
-    ],
-    "deploy:ter:setup": [
-      "@composer global require clue/phar-composer helhum/ter-client symfony/console:^3"
-    ],
-    "deploy:ter:upload": [
-      "composer global exec -v -- ter-client upload --username $TYPO3_ORG_USERNAME --password $TYPO3_ORG_PASSWORD --upload-comment \"$(git tag -l --format='%(contents)' $TRAVIS_TAG)\" $(composer config extra.typo3/cms.extension-key) ."
-    ],
-    "fix:style": "phpcbf",
-    "lint": [
-      "@lint:php",
-      "@lint:style",
-      "@lint:xml"
-    ],
-    "lint:php": "parallel-lint --exclude vendor --exclude web .",
-    "lint:style": "phpcs",
-    "lint:xml": "xmllint --pattern '*.xlf,*.svg' Resources",
-    "test:unit": "phpunit",
-    "test:functional": [
-      "mkdir -p web/typo3conf/ext",
-      "ln -sfn ../../.. web/typo3conf/ext/$(composer config extra.typo3/cms.extension-key)",
-      "phpunit --configuration phpunit-functional.xml --colors=always"
-    ],
-    "test": [
-      "@test:unit",
-      "@test:functional"
-    ]
-  },
-  "autoload": {
-    "psr-4": {
-      "PAGEmachine\\Ats\\": "Classes/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "PAGEmachine\\Ats\\Tests\\": "Tests/",
-      "TYPO3\\CMS\\Core\\Tests\\": "vendor/typo3/cms/typo3/sysext/core/Tests/"
-    }
-  },
-  "repositories": {
-    "typo3": {
-      "type": "composer",
-      "url": "https://composer.typo3.org/"
-    }
-  }
 }
