@@ -3,6 +3,7 @@
 /coverage
 /node_modules
 /vendor
+/var
 /web
 
 /Documentation/_make

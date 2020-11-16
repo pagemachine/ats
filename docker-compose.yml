@@ -4,9 +4,13 @@ services:
   app:
     image: thecodingmachine/php:7.2-v2-fpm
     environment:
+      PHP_EXTENSION_GD: 1
+      PHP_INI_PHAR__READONLY: "Off"
+      TYPO3_VERSION: ${TYPO3_VERSION:-^9.5}
+      TYPO3_ORG_PASSWORD:
+      TYPO3_ORG_USERNAME:
       typo3DatabaseHost: mysql
       typo3DatabasePassword: root
-      PHP_EXTENSION_GD: 1
     depends_on:
       - mysql
       - ssh-agent

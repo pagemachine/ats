@@ -14,3 +14,9 @@ This extension is installable from various sources:
 
 2. From the [TYPO3 Extension Repository](https://extensions.typo3.org/extension/ats/)
 3. From [Github](https://github.com/pagemachine/ats/releases)
+
+## Testing
+
+All tests can be executed with the shipped Docker Compose definition:
+
+    docker-compose run --rm app composer build
