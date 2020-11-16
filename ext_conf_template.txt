@@ -20,14 +20,14 @@ emailDefaultSenderName =
 emailDefaultSenderAddress =
 
 fileHandling {
-	# cat=advanced/file; type=string; label=Allowed upload file extensions
-	allowedFileExtensions = png,gif,jpg,tif,pdf,xls,xlsx,doc,docx,rtf,txt,zip,rar
+  # cat=advanced/file; type=string; label=Allowed upload file extensions
+  allowedFileExtensions = png,gif,jpg,tif,pdf,xls,xlsx,doc,docx,rtf,txt,zip,rar
 
-	# cat=advanced/file; type=options[rename=rename,replace=replace,cancel=cancel]; label=Upload conflict mode
-	conflictMode = rename
+  # cat=advanced/file; type=options[rename=rename,replace=replace,cancel=cancel]; label=Upload conflict mode
+  conflictMode = rename
 
-	# cat=advanced/file; type=string; label=Upload folder for application assets
-	uploadFolder = 1:/tx_ats/
+  # cat=advanced/file; type=string; label=Upload folder for application assets
+  uploadFolder = 1:/tx_ats/
 }
 
 # cat=extra/enable; type=boolean; label=Send out an automated application receipt acknowledgement E-mail to the applicant (you need to specify the template below!)
