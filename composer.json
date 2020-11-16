@@ -38,8 +38,7 @@
     "sclable/xml-lint": "^0.2.3",
     "slevomat/coding-standard": "^3.0",
     "phpunit/phpunit": "^6.4",
-    "nimut/testing-framework": "^4.1",
-    "doppy/composer-symlink": "^1.0"
+    "nimut/testing-framework": "^4.1"
   },
   "suggest": {
     "ext-intl": "For automatic translation of country, nationality and language fields",
@@ -54,28 +53,49 @@
       "extension-key": "ats",
       "cms-package-dir": "{$vendor-dir}/typo3/cms",
       "web-dir": "web"
-    },
-    "doppy-composer-symlink": {
-      "web/typo3conf/ext/ats": "../../.."
     }
   },
   "scripts": {
-    "lint:php": "parallel-lint --exclude bin --exclude vendor --exclude web .",
-    "lint:xml": "xmllint --pattern '*.xlf,*.svg' Resources",
-    "lint:style": "phpcs",
+    "build": [
+      "@composer require --no-progress --ansi --update-with-dependencies typo3/cms-core $TYPO3_VERSION",
+      "@lint",
+      "@test"
+    ],
+    "build:cleanup": [
+      "git reset --hard",
+      "git clean -xfd"
+    ],
+    "build:ter:vendors": [
+      "(mkdir -p /tmp/vendors && cd /tmp/vendors && composer require symfony/workflow:^3.3 mpdf/mpdf:^6.1 && composer global exec phar-composer build -v)",
+      "cp /tmp/vendors/vendors.phar .",
+      "echo \"require 'phar://' . \\TYPO3\\CMS\\Core\\Utility\\ExtensionManagementUtility::extPath('$(composer config extra.typo3/cms.extension-key)') . 'vendors.phar/vendor/autoload.php';\" >> ext_localconf.php"
+    ],
+    "deploy:ter": [
+      "@build:cleanup",
+      "@deploy:ter:setup",
+      "@build:ter:vendors",
+      "@deploy:ter:upload"
+    ],
+    "deploy:ter:setup": [
+      "@composer global require clue/phar-composer helhum/ter-client symfony/console:^3"
+    ],
+    "deploy:ter:upload": [
+      "composer global exec -v -- ter-client upload --username $TYPO3_ORG_USERNAME --password $TYPO3_ORG_PASSWORD --upload-comment \"$(git tag -l --format='%(contents)' $TRAVIS_TAG)\" $(composer config extra.typo3/cms.extension-key) ."
+    ],
+    "fix:style": "phpcbf",
     "lint": [
       "@lint:php",
       "@lint:style",
       "@lint:xml"
     ],
+    "lint:php": "parallel-lint --exclude bin --exclude vendor --exclude web .",
+    "lint:style": "phpcs",
+    "lint:xml": "xmllint --pattern '*.xlf,*.svg' Resources",
     "test:unit": "phpunit",
     "test:functional": "phpunit --configuration phpunit-functional.xml",
     "test": [
       "@test:unit",
       "@test:functional"
-    ],
-    "post-autoload-dump": [
-      "Doppy\\ComposerSymlink\\ComposerSymlink::apply"
     ]
   },
   "autoload": {
@@ -112,7 +132,13 @@
     "lint:style": "phpcs",
     "lint:xml": "xmllint --pattern '*.xlf,*.svg' Resources",
     "test": [
-      "@test:unit"
+      "@test:unit",
+      "@test:functional"
+    ],
+    "test:functional": [
+      "mkdir -p web/typo3conf/ext",
+      "ln -sfn ../../.. web/typo3conf/ext/$(composer config extra.typo3/cms.extension-key)",
+      "phpunit --configuration phpunit-functional.xml --colors=always"
     ],
     "test:unit": "phpunit"
   }
