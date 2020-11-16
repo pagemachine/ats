@@ -2,7 +2,7 @@ version: '3'
 
 services:
   app:
-    image: thecodingmachine/php:7.2-v2-fpm
+    image: thecodingmachine/php:7.2-v3-fpm
     environment:
       PHP_EXTENSION_GD: 1
       PHP_INI_PHAR__READONLY: "Off"
