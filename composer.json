@@ -66,12 +66,6 @@
             "TYPO3\\CMS\\Core\\Tests\\": "vendor/typo3/cms/typo3/sysext/core/Tests/"
         }
     },
-    "repositories": {
-        "typo3": {
-            "type": "composer",
-            "url": "https://composer.typo3.org/"
-        }
-    },
     "scripts": {
         "build": [
             "@composer require --no-progress --ansi --update-with-dependencies typo3/cms-core $TYPO3_VERSION",
