@@ -19,6 +19,13 @@ services:
       - ./:/var/www/html
       - ssh-agent:/.ssh-agent
 
+  t3docmake:
+    image: t3docs/render-documentation:latest
+    command: makehtml
+    volumes:
+      - ./:/PROJECT:ro
+      - ./Documentation-GENERATED-temp:/RESULT
+
   mysql:
     image: mysql:5.7
     command: ['mysqld', '--character-set-server=utf8mb4']

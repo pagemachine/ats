@@ -83,7 +83,6 @@
             "git reset --hard",
             "git clean -xfd"
         ],
-        "build:documentation": "docker-compose -f docker-compose-build-documentation.yml up",
         "build:ter:vendors": [
             "(mkdir -p /tmp/vendors && cd /tmp/vendors && composer require symfony/workflow:^3.3 mpdf/mpdf:^6.1 && composer global exec phar-composer build -v)",
             "cp /tmp/vendors/vendors.phar .",
