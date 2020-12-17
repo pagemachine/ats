@@ -50,7 +50,7 @@ if (TYPO3_MODE === 'BE') {
         ),
         array(
             'access'    => 'user,group',
-            'icon'      => 'EXT:ats/Resources/Public/Icons/module_applications.svg',
+            'icon'      => 'EXT:ats/Resources/Public/Icons/application.jpg',
             'labels'    => 'LLL:EXT:ats/Resources/Private/Language/locallang_mod_applications.xlf',
         )
     );
@@ -67,29 +67,12 @@ if (TYPO3_MODE === 'BE') {
         ),
         array(
             'access'    => 'user,group',
-            'icon'      => 'EXT:ats/Resources/Public/Icons/module_archive.svg',
+            'icon'      => 'EXT:ats/Resources/Public/Icons/archive.jpg',
             'labels'    => 'LLL:EXT:ats/Resources/Private/Language/locallang_mod_archive.xlf',
         )
     );
 
     //Third module, statistics
-
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-        'PAGEmachine.Ats',
-        'ats',
-        'statistics',
-        '',
-        array(
-            'Backend\\Statistics' => 'statistics, export, getCsv'
-        ),
-        array(
-            'access'    => 'user,group',
-            'icon'      => 'EXT:ats/Resources/Public/Icons/module_statistics.svg',
-            'labels'    => 'LLL:EXT:ats/Resources/Private/Language/locallang_mod_statistics.xlf',
-        )
-    );
-
-    //Fourth module, mass notification
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
         'PAGEmachine.Ats',
@@ -103,6 +86,23 @@ if (TYPO3_MODE === 'BE') {
             'access'    => 'user,group',
             'icon'      => 'EXT:ats/Resources/Public/Icons/module_massnotifications.svg',
             'labels'    => 'LLL:EXT:ats/Resources/Private/Language/locallang_mod_notification.xlf',
+        )
+    );
+	
+	//Fourth module, mass notification
+
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
+        'PAGEmachine.Ats',
+        'ats',
+        'statistics',
+        '',
+        array(
+            'Backend\\Statistics' => 'statistics, export, getCsv'
+        ),
+        array(
+            'access'    => 'user,group',
+            'icon'      => 'EXT:ats/Resources/Public/Icons/statistic.jpg',
+            'labels'    => 'LLL:EXT:ats/Resources/Private/Language/locallang_mod_statistics.xlf',
         )
     );
 }
