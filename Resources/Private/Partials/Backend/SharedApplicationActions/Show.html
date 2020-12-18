@@ -1,5 +1,18 @@
 {namespace core = TYPO3\CMS\Core\ViewHelpers}
 
+<div class="row">
+	<div class="col-sm-6 summary-block table-container">
+		<h3>Upload</h3>
+
+		<table class="table">
+			<f:render partial="Backend/Application/Field/SummaryListFiles" arguments="{
+				translationKey: 'tx_ats.label.file',
+				text: 'File(s)',
+				application: application
+			}" />
+		</table>
+	</div>
+</div>
 
 <div class="row">
 	<div class="col-md-6 summary-block table-container">
@@ -164,17 +177,6 @@
 			<f:render partial="Backend/Application/Field/SummaryList" arguments="{
 				translationKey: 'tx_ats.label.forward_to_departments',
 				select: '{application.forwardToDepartments}'
-			}" />
-		</table>
-	</div>
-	<div class="col-sm-6 summary-block table-container">
-		<h3>Upload</h3>
-
-		<table class="table">
-			<f:render partial="Backend/Application/Field/SummaryListFiles" arguments="{
-				translationKey: 'tx_ats.label.file',
-				text: 'File(s)',
-				application: application
 			}" />
 		</table>
 	</div>
