@@ -25,6 +25,7 @@
 
 .tx-ats-backend .applications-list th {
 	cursor: pointer;
+
 }
 
 
@@ -104,28 +105,95 @@
 
 /** Applications AJAX List */
 .tx-ats-backend .filter-bar {
-	position: fixed;
+	/* position: fixed; */
     right: 21px;
     top: 0;
     bottom: 0;
     padding: 80px 22px 22px 22px;
     /* background-color: #EEEEEE; */
-    border-left: 3px solid #EEEEEE;
+/*     border-left: 3px solid #EEEEEE; */
+}
+#buttonNewApplication {
+	position: absolute;
+    right: 20px;
+	top: 0px;
+}
+
+/* #application-summarya {
+	position: absolute;
+    right: 100px;
+	top: 100px;
+} */
+
+#application-test {
+	position: absolute;
+    right: 200px;
+	top: 100px;
+}
+
+#assignment{
+	position: absolute;
+    right: 850px;
+	top: 0px;
+}
+
+#assignmentOptions {
+	position: absolute;
+    right: 800px;
+	top: 50px;
+}
+
+#job{
+	position: absolute;
+    right: 1090px;
+	top: 0px;
+}
+
+#jobOption{
+	position: absolute;
+    right: 1000px;
+	top: 50px;
+}
+
+#status {
+	position: absolute;
+    right: 660px;
+	top: 0px;
+}
+
+#statusOption {
+	position: absolute;
+    right: 500px;
+	top: 50px;
+ 	min-width: 200px;
+}
+
+#filterReset {
+	position: absolute;
+    right: 275px;
+	top: 59px;
+}
+
+#buttonNewApplication1 {
+	text-align:right;
 }
 
 #applications-ajax-list tbody tr {
 	cursor: pointer;
 }
+
 #applications-ajax-list tbody tr:hover {
 	background-color: #daeef2;
 }
+
 #applications-ajax-list tbody td {
-	padding: 14px;
+	padding: 14px /* 110px */;
 }
 
+/** Suchfeld */
 #applications-ajax-list_filter {
 	float: none;
-	text-align:center;
+	text-align:left;
 }
 
 #applications-ajax-list_filter input {
