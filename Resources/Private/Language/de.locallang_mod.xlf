@@ -5,7 +5,7 @@
 		<body>
 			<trans-unit id="mlang_tabs_tab">
 				<source>ATS</source>
-				<target>BMS</target>
+				<target>Bewerber Administration</target>
 			</trans-unit>
 		</body>
 	</file>
