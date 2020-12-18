@@ -21,7 +21,7 @@ require(
         processing: true,
         language: {
             search: '',
-            searchPlaceholder: 'Nach Name, E-Mail oder ID suchen...',
+            searchPlaceholder: 'Suche nach Name, E-Mail, ID...',
             loadingRecords: '&nbsp;',
             processing: '<div style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; background-color: rgba(255, 255, 255, 0.8); text-align: center; padding-top: 25%;">...</div>'
         },
@@ -46,7 +46,28 @@ require(
             }
         },
         columns: [
-            {name: 'uid', data : 'uid'},
+/*             {name: 'uid', data : 'uid'}, */
+			{
+                name: 'name',
+                data: 'uid', /* statt uid surname */
+                render: function(data, type, row, meta) {
+                    return "<b>" + row.surname + ", " + row.firstname + "</b>";
+                }
+            },
+			{
+                name: 'job',
+                data: 'job',
+                render: function(data, type, row, meta) {
+                    // Filter out the matching job from global Fluid-provided jobs list
+                    var job = jobs.filter(function(obj) {
+                      return obj.uid === row.job
+                    })[0];
+                    if (job) {
+                        return job.job_number + " - " + job.title;
+                    }
+                    return '';
+                }
+            },
             {
                 name: 'crdate',
                 data: 'crdate',
@@ -61,27 +82,6 @@ require(
                 render: function(data, type, row, meta) {
                     date = new Date(data * 1000);
                     return date.toLocaleDateString('de-DE', dateOptions);
-                }
-            },
-            {
-                name: 'name',
-                data: 'surname',
-                render: function(data, type, row, meta) {
-                    return "<b>" + row.surname + ", " + row.firstname + "</b>";
-                }
-            },
-            {
-                name: 'job',
-                data: 'job',
-                render: function(data, type, row, meta) {
-                    // Filter out the matching job from global Fluid-provided jobs list
-                    var job = jobs.filter(function(obj) {
-                      return obj.uid === row.job
-                    })[0];
-                    if (job) {
-                        return job.job_number + " - " + job.title;
-                    }
-                    return '';
                 }
             },
             {

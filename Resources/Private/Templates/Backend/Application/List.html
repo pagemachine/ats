@@ -5,6 +5,14 @@
 
 <f:section name="main">
 	<h1><f:translate key="be.label.AllApplications"/></h1>
+	
+	<div id="buttonNewApplication" style="clear: both;">
+		<p>
+			<f:link.action action="new" class="btn btn-default">
+			<core:icon identifier="actions-document-new" /> <f:translate key="tx_ats.be.actions.application.new" />
+			</f:link.action>
+		</p>
+	</div>
 
 	<script>
 		var jobs = {jobs -> f:format.json() -> f:format.raw()};
@@ -15,48 +23,77 @@
 	<table class="stripe" id="applications-ajax-list" data-detail-uri="{f:uri.action(action:'show')}">
 		<thead>
 			<tr>
-				<th data-column="uid" style="max-width: 20px;">ID</th>
-				<th data-column="crdate" style="max-width: 80px;"><f:translate key="be.label.MyApplications.Table.Created"/></th>
-				<th data-column="tstamp" style="max-width: 80px;">Geändert</th>
-				<th data-column="surname">Name</th>
+				<!--<th data-column="uid" style="max-width: 20px;">ID</th> -->
+				<th data-column="uid">Name</th> <!-- statt uid surname -->
 				<th data-column="job">Job</th>
+				<th data-column="crdate" style="max-width: 140px;">Bewerbungseingang</th>
+				<th data-column="tstamp" style="max-width: 80px;">Bearbeitet</th>
 				<th data-column="status">Status</th>
 			</tr>
 		</thead>
-		<tbody>
-		</tbody>
 	</table>
 
-<div style="clear: both;">
-	<p>
+	<div id="buttonNewApplication1" style="clear: both;">
+		<p>
 			<f:link.action action="new" class="btn btn-default">
-				<core:icon identifier="actions-document-new" /> <f:translate key="tx_ats.be.actions.application.new" />
+			<core:icon identifier="actions-document-new" /> <f:translate key="tx_ats.be.actions.application.new" />
 			</f:link.action>
-	</p>
-</div>
-
+		</p>
+	</div>
 </f:section>
 
 <f:section name="side">
 	<form action="#" id="applications-ajax-filter" data-query="{query}">
-
+	
+	<div id = "filterReset">
 		<span class="btn btn-default btn-xs" id="reset"><f:translate key="tx_ats.be.filter.reset" /></span>
+	</div>
 
+	<div id ="assignment">
 		<h5><f:translate key="tx_ats.be.filter.assignment" /></h5>
+	</div>
+		
+	<div id ="assignmentOptions">
 		<f:form.select additionalAttributes="{data: {name: 'onlyMyApplications'}}" class="form-control" options="{assignmentOptions}" />
+	</div>
+
+	<div id ="status">
 		<h5><f:translate key="tx_ats.be.filter.status" /></h5>
-
-		<f:form.select options="{filteredStatusValues}" multiple="true" class="form-control" additionalAttributes="{data: {name: 'statusValues'}}"/>
-
+	</div>
+	
+<!-- 			<f:form.select options="{filteredStatusValues}" multiple="true" class="form-control" additionalAttributes="{data: {name: 'statusValues'}}"/> -->
+	
+	<div id = "statusOption">
+		<select class="form-control" data-name="statusValues" name=[] ><!-- multiple -->
+			<option value = "0">Alle</option>
+			<option value = "10">Neue Bewerbungseingang</option>
+			<option value = "20">Bescheinigung angefordert</option>
+			<option value = "30">Bschwb</option>
+			<option value = "40">Gleib</option>
+			<option value = "50">Abteilung</option>
+			<option value = "60">Perso</option>
+			<option value = "70">OPR</option>
+			<option value = "80">Perso (Final)</option>
+			<option value = "90">Eingestellt</option>
+			<option value = "100">Abgesagt (durch Arbeitgeber)</option>
+			<option value = "110">Abgesagt (durch Bewerber)</option>
+		</select>
+	</div>
+	
+	<div id ="job">
 		<h5><f:translate key="tx_ats.be.filter.job" /></h5>
+	</div>
+		
+	<div id = "jobOption">
 		<f:form.select options="{jobs}" optionValueField="uid" optionLabelField="jobNumberAndTitle" prependOptionLabel="{f:translate(key:'tx_ats.be.filter.job.all')}" prependOptionValue="" additionalAttributes="{data: {name: 'job'}}" class="form-control" />
-
-		<h5><f:translate key="tx_ats.be.filter.deadline" /></h5>
+	</div>
+		
+		<!-- <h5><f:translate key="tx_ats.be.filter.deadline" /></h5>
 
 		<select data-name="onlyDeadlineExceeded" class="form-control">
 			<option value="0"><f:translate key="tx_ats.be.filter.deadline.all" /></option>
 			<option value="1"><f:translate key="tx_ats.be.filter.deadline.onlyExceeded" /></option>
-		</select>
+		</select> -->
+		
 	</form>
-
 </f:section>
