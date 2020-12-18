@@ -1139,7 +1139,7 @@
 
 			<trans-unit id="tx_ats.be.actions.application.new">
 				<source>New Application</source>
-				<target>Neue Bewerbung</target>
+				<target>Neue Bewerbung anlegen</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.be.new.uploadInfo">
@@ -1335,7 +1335,7 @@
       </trans-unit>
       <trans-unit id="tx_ats.application.status.10">
       	<source>New Application</source>
-      	<target>Neue Bewerbung</target>
+      	<target>Neue Bewerbung </target>
       </trans-unit>
       <trans-unit id="tx_ats.application.status.20">
       	<source>Requested Attestation</source>
@@ -1494,6 +1494,26 @@
 			<trans-unit id="be.label.ApplicationSingle.Overview.print">
 			  <source>Print</source>
 			  <target>Drucken</target>
+			</trans-unit>
+			
+			<trans-unit id="be.label.ApplicationSingle.Overview.phone">
+			  <source>Phone</source>
+			  <target>Telefon</target>
+			</trans-unit>
+			
+			<trans-unit id="be.label.ApplicationSingle.Overview.mail">
+			  <source>Mail</source>
+			  <target>E-mail</target>
+			</trans-unit>
+			
+			<trans-unit id="be.label.ApplicationSingle.Overview.location">
+			  <source>Location</source>
+			  <target>Standort</target>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.Overview.contacts">
+			  <source>Contacts</source>
+			  <target>Kontakt</target>
 			</trans-unit>
 
       		<trans-unit id="be.label.ApplicationSingle.Edit.FormData">
