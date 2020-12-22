@@ -1141,6 +1141,11 @@
 				<source>New Application</source>
 				<target>Neue Bewerbung anlegen</target>
 			</trans-unit>
+			
+			<trans-unit id="tx_ats.be.actions.application.edit_application">
+				<source>Edit Application</source>
+				<target>Bewerbung bearbeiten</target>
+			</trans-unit>
 
 			<trans-unit id="tx_ats.be.new.uploadInfo">
 				<source>Uploads can be added in the next step, after submit.</source>
