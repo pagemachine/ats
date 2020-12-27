@@ -54,8 +54,25 @@ if (TYPO3_MODE === 'BE') {
             'labels'    => 'LLL:EXT:ats/Resources/Private/Language/locallang_mod_applications.xlf',
         )
     );
+	
+	//Second module, mass notification
+	
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
+        'PAGEmachine.Ats',
+        'ats',
+        'multiSend',
+        '',
+        array(
+            'Backend\\NotificationApplication' => 'index, listAll, show, edit, saveUpload, removeUpload, update, editStatus, updateStatus, notes, addNote, history, clone, confirmClone, newMassNotification, sendMassNotification, downloadPdf, result'
+        ),
+        array(
+            'access'    => 'user,group',
+            'icon'      => 'EXT:ats/Resources/Public/Icons/groupEmails.JPG',
+            'labels'    => 'LLL:EXT:ats/Resources/Private/Language/locallang_mod_notification.xlf',
+        )
+    );
 
-    //Second module, application archive
+    //Third module, application archive
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
         'PAGEmachine.Ats',
@@ -71,25 +88,8 @@ if (TYPO3_MODE === 'BE') {
             'labels'    => 'LLL:EXT:ats/Resources/Private/Language/locallang_mod_archive.xlf',
         )
     );
-
-    //Third module, statistics
-
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-        'PAGEmachine.Ats',
-        'ats',
-        'multiSend',
-        '',
-        array(
-            'Backend\\NotificationApplication' => 'index, listAll, show, edit, saveUpload, removeUpload, update, editStatus, updateStatus, notes, addNote, history, clone, confirmClone, newMassNotification, sendMassNotification, downloadPdf, result'
-        ),
-        array(
-            'access'    => 'user,group',
-            'icon'      => 'EXT:ats/Resources/Public/Icons/groupEmails.JPG',
-            'labels'    => 'LLL:EXT:ats/Resources/Private/Language/locallang_mod_notification.xlf',
-        )
-    );
 	
-	//Fourth module, mass notification
+	//Fourth module, statistics
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
         'PAGEmachine.Ats',
