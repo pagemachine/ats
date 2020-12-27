@@ -5,7 +5,7 @@
 		<body>
 			<trans-unit id="mlang_tabs_tab">
 				<source>Mass Notification</source>
-				<target>Massenbescheide</target>
+				<target>Gruppen E-Mails</target>
 			</trans-unit>
 			<trans-unit id="mlang_labels_tabdescr">
 				<source>Communicate to multiple applicants at once</source>
