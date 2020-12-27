@@ -16,3 +16,56 @@
 <f:if condition="{print}">
 	<script>window.print();</script>
 </f:if>
+
+<!------------------------------- Workflow ändern ------------------------------->
+<div class="panel panel-tab">
+	<div class = "panel-body">
+		<h2> Ablauf ändern </h2>
+		<form name = "application" action = "/typo3/index.php?route=%2FAtsAts%2FAtsApplications%2F&token=65e8b0db305652b0862fcefc8af7154f5049134f&tx_ats%5Baction%5D=updateStatus&tx_ats%5Bcontroller%5D=Backend%5CApplication" method="post">
+<!-- 			<div>
+				<input type = "hidden" name = "tx_ats[application][__identity]" value = "102">
+				<input type = "hidden" name = "tx_ats[__referrer][@extension]" value = "Ats">
+				<input type = "hidden" name = "tx_ats[__referrer][@vendor]" value = "PAGEmachine">		
+				<input type = "hidden" name = "tx_ats[__referrer][@controller]" value = "Backend\Application">		
+				<input type = "hidden" name = "tx_ats[__referrer][@action]" value = "editStatus">	
+				<input type = "hidden" name = "tx_ats[__referrer][arguments]" value = "YTozOntzOjExOiJhcHBsaWNhdGlvbiI7czozOiIxMDIiO3M6NjoiYWN0aW9uIjtzOjEwOiJlZGl0U3RhdHVzIjtzOjEwOiJjb250cm9sbGVyIjtzOjE5OiJCYWNrZW5kXEFwcGxpY2F0aW9uIjt9c858f76615b5490282395f778a90e807b3c5588e">			
+				<input type = "hidden" name = "tx_ats[__referrer][@request]" value = 'a:4:{s:10:"@extension";s:3:"Ats";s:11:"@controller";s:19:"Backend\Application";s:7:"@action";s:10:"editStatus";s:7:"@vendor";s:11:"PAGEmachine";}b12ac37fbc9e165cd4fcea4118f0b61bb046b568'>			
+				<input type = "hidden" name = "tx_ats[__trustedProperties]" value = 'a:2:{s:11:"application";a:2:{s:6:"status";i:1;s:10:"__identity";i:1;}s:4:"note";a:2:{s:4:"user";i:1;s:7:"details";i:1;}}797afe4b9b4df82384757706b5ede0777a5f5402'>	
+			</div> -->
+			<div class = "form-group">
+				<select class = "form-control" name= "tx_ats[application][status]">
+					<option value = "0"> Unvollständig </option>
+					<option value = "10"> Neue Bewerbung </option>
+					<option value = "20"> Bescheinigung angefordert </option>
+					<option value = "30"> Bschwb </option>
+					<option value = "40"> Gleib </option>
+					<option value = "50" selected = "selected"> Abteilung </option>
+					<option value = "60"> Perso </option>
+					<option value = "70"> Gleib2 </option>
+					<option value = "80"> OPR </option>
+					<option value = "90"> Perso (final) </option>
+					<option value = "100"> Eingestellt </option>
+					<option value = "110"> Abgesagt durch (durch Arbeitgeber) </option>
+					<option value = "120"> Abgesagt durch (durch Bewerber) </option>
+				</select>
+			</div>
+			<div class = "from-group">
+				<input type = "hidden" name = "tx_ats[note][user]" value = "8">
+				<label for = "details"> Anmerkung </label>
+				<textarea id = "details" class = "form-control" rows = "7" name = "tx_ats[note][details]"></textarea>
+			</div>
+			<p>
+			<div class = "from-group">
+				<input class = "btn btn-primary" type = "submit" value = "Speichern">
+			</div>
+		</form>
+	</div>
+</div>
+
+<!-- <f:form action="updateStatus" object="{application}" name="application">
+
+	<f:render partial="Backend/Application/Form/StatusChange" arguments="{statusOptions : statusOptions, beUser : beUser}" />
+
+</f:form> -->
+
+<!------------------------------- Workflow ENDE ------------------------------->
