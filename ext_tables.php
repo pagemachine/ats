@@ -50,7 +50,7 @@ if (TYPO3_MODE === 'BE') {
         ),
         array(
             'access'    => 'user,group',
-            'icon'      => 'EXT:ats/Resources/Public/Icons/application.jpg',
+            'icon'      => 'EXT:ats/Resources/Public/Icons/application.JPG',
             'labels'    => 'LLL:EXT:ats/Resources/Private/Language/locallang_mod_applications.xlf',
         )
     );
@@ -67,7 +67,7 @@ if (TYPO3_MODE === 'BE') {
         ),
         array(
             'access'    => 'user,group',
-            'icon'      => 'EXT:ats/Resources/Public/Icons/archive.jpg',
+            'icon'      => 'EXT:ats/Resources/Public/Icons/archive.JPG',
             'labels'    => 'LLL:EXT:ats/Resources/Private/Language/locallang_mod_archive.xlf',
         )
     );
@@ -84,7 +84,7 @@ if (TYPO3_MODE === 'BE') {
         ),
         array(
             'access'    => 'user,group',
-            'icon'      => 'EXT:ats/Resources/Public/Icons/module_massnotifications.svg',
+            'icon'      => 'EXT:ats/Resources/Public/Icons/groupEmails.JPG',
             'labels'    => 'LLL:EXT:ats/Resources/Private/Language/locallang_mod_notification.xlf',
         )
     );
@@ -101,7 +101,7 @@ if (TYPO3_MODE === 'BE') {
         ),
         array(
             'access'    => 'user,group',
-            'icon'      => 'EXT:ats/Resources/Public/Icons/statistic.jpg',
+            'icon'      => 'EXT:ats/Resources/Public/Icons/statistic.JPG',
             'labels'    => 'LLL:EXT:ats/Resources/Private/Language/locallang_mod_statistics.xlf',
         )
     );
