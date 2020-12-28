@@ -18,6 +18,7 @@
 </f:if>
 
 <!------------------------------- Workflow ändern ------------------------------->
+
 <div class="panel panel-tab">
 	<div class = "panel-body">
 		<h2> Ablauf ändern </h2>
@@ -69,3 +70,246 @@
 </f:form> -->
 
 <!------------------------------- Workflow ENDE ------------------------------->
+<p>
+<!--------------------------------- Anmerkung --------------------------------->
+
+<div class="panel panel-tab">
+	<h2>Neue Anmerkung</h2>
+	<form name = "note" action="/typo3/index.php?route=%2FAtsAts%2FAtsApplications%2F&token=65e8b0db305652b0862fcefc8af7154f5049134f&tx_ats%5Baction%5D=addNote&tx_ats%5Bcontroller%5D=Backend%5CApplication" method="post">
+<!-- 		<div>
+			<input type = "hidden" name = "tx_ats[__referrer][@extension]" value = "Ats">
+			<input type = "hidden" name = "tx_ats[__referrer][@vendor]" value = "PAGEmachine">		
+			<input type = "hidden" name = "tx_ats[__referrer][@controller]" value = "Backend\Application">				
+			<input type = "hidden" name = "tx_ats[__referrer][@action]" value = "notes">			
+			<input type = "hidden" name = "tx_ats[__referrer][arguments]" value = "YTozOntzOjExOiJhcHBsaWNhdGlvbiI7czozOiIxMDIiO3M6NjoiYWN0aW9uIjtzOjU6Im5vdGVzIjtzOjEwOiJjb250cm9sbGVyIjtzOjE5OiJCYWNrZW5kXEFwcGxpY2F0aW9uIjt9262795394d5573de77d4cf4e4ad80fe2cddb5fab">			
+			<input type = "hidden" name = "tx_ats[__referrer][@request]" value = 'a:4:{s:10:"@extension";s:3:"Ats";s:11:"@controller";s:19:"Backend\Application";s:7:"@action";s:5:"notes";s:7:"@vendor";s:11:"PAGEmachine";}029cdd90650b2cbfbc783a3a54a9cdd63cb8eb72'>			
+			<input type = "hidden" name = "tx_ats[__trustedProperties]" value = 'a:2:{s:11:"application";a:1:{s:10:"__identity";i:1;}s:4:"note";a:3:{s:4:"user";i:1;s:10:"isInternal";i:1;s:7:"details";i:1;}}c0d457ed03fa07e97e9d0d8bdf6a8504b12d6e37'>
+		</div>
+		<input type = "hidden" name = "tx_ats[application][__identity]" value = "uid">
+		<input type = "hidden" name = "tx_ats[note][user]" value = "8"> -->
+		<div class = "checkbox">
+			<label>
+				<input type = "hidden" name = "tx_ats[note][isInternal]" value = "">
+				<input type = "checkbox" name = "tx_ats[note][isInternal]" value = "1">
+				Intern
+			</label>
+		</div>
+		<div class = "form-group ">
+			<label for = "details"> Details </label>
+			<textarea id = "details" class = "form-control" rows = "7" name = "tx_ats[note][details]"></textarea>
+		</div>
+		<div class = "form-group ">
+			<input class = "btn btn-primary" type = "submit" value = "Speichern">
+		</div>
+	</form>
+	<h2>Alle Anmerkungen</h2>
+	<table class = "table table-striped table-hover table-vertical-top">
+		<thead>
+			<tr>
+				<th> Datum </th>
+				<th> Banutzer </th>
+				<th> Betreff </th>
+				<th> Anmerkung </th>
+			</tr>
+		</thead>
+	</table>
+</div>
+<!------------------------------- Anmerkung Ende ------------------------------->
+<p>
+<!---------------------------------- Bewertung --------------------------------->
+<div class="panel panel-tab">
+	<div class="panel-body">
+		<h2> Bewerten </h2>
+		<form name = "note" action="/typo3/index.php?route=%2FAtsAts%2FAtsApplications%2F&token=65e8b0db305652b0862fcefc8af7154f5049134f&tx_ats%5Baction%5D=addRating&tx_ats%5Bcontroller%5D=Backend%5CApplication" method="post">
+<!-- 			<div>
+				<input type = "hidden" name = "tx_ats[__referrer][@extension]" value = "Ats">
+				<input type = "hidden" name = "tx_ats[__referrer][@vendor]" value = "PAGEmachine">		
+				<input type = "hidden" name = "tx_ats[__referrer][@controller]" value = "Backend\Application">					
+				<input type = "hidden" name = "tx_ats[__referrer][@action]" value = "rating">		
+				<input type = "hidden" name = "tx_ats[__referrer][arguments]" value = "YTozOntzOjExOiJhcHBsaWNhdGlvbiI7czozOiIxMDIiO3M6NjoiYWN0aW9uIjtzOjY6InJhdGluZyI7czoxMDoiY29udHJvbGxlciI7czoxOToiQmFja2VuZFxBcHBsaWNhdGlvbiI7fQ==855abc0fb53bc52da135ef5df4985e05ad12c8c8">					
+				<input type = "hidden" name = "tx_ats[__referrer][@request]" value = 'a:4:{s:10:"@extension";s:3:"Ats";s:11:"@controller";s:19:"Backend\Application";s:7:"@action";s:6:"rating";s:7:"@vendor";s:11:"PAGEmachine";}a7cb5f93306ba4e52ba72908c4d7c5f28ddc0496'>
+				<input type = "hidden" name = "tx_ats[__trustedProperties]" value = 'a:3:{s:11:"application";a:2:{s:10:"__identity";i:1;s:6:"rating";i:1;}s:13:"forwardAction";i:1;s:4:"note";a:2:{s:4:"user";i:1;s:7:"details";i:1;}}4e262241abbeadfa064cffd93af60a536f18c006'>					
+			</div>
+			<input type = "hidden" name = "tx_ats[application][__identity]" value = "102">
+			<input type = "hidden" name = "tx_ats[forwardAction]" value = "rating">
+			<input type = "hidden" name = "tx_ats[note][user]" value = "8">		 -->		
+			<div class="form-group">
+				<select name="tx_ats[application][rating]">
+					<option value = "0" selected = "selected"> Keine </option>
+					<option value = "10"> Ungeeignet </option>
+					<option value = "20"> Ungeeignet </option>
+					<option value = "30"> Geeignet </option>
+					<option value = "40"> Engere Wahl </option>
+					<option value = "50"> Ausgewählt </option>
+					<option value = "50"> Vom Bewerber abgesagt </option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for = "details"> Details </label>
+				<textarea id = "details" class = "form-control" rows = "7" name = "tx_ats[note][details]"></textarea>
+			</div>
+			<div class="form-group">
+				<input class = "btn btn-primary" type = "submit" value = "Speichern">
+			</div>
+		</form>
+		<h2> Alle Anmerkungen </h2>
+		<table class = "table table-striped table-hover table-vertical-top">
+			<thead>
+				<tr>
+					<th> Datum </th>
+					<th> Benutzer </th>
+					<th> Betreff </th>
+					<th> Anmerkung </th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<!------------------------------- Bewertung Ende ------------------------------->
+<p>
+<!---------------------------------- Bewertung (Perso) --------------------------------->
+<div class="panel panel-tab">
+	<div class = "panel-body">
+		<h2>Bewertung (Perso)</h2>
+		<form name = "note" action = "/typo3/index.php?route=%2FAtsAts%2FAtsApplications%2F&token=65e8b0db305652b0862fcefc8af7154f5049134f&tx_ats%5Baction%5D=addRating&tx_ats%5Bcontroller%5D=Backend%5CApplication" method="post">
+<!-- 			<div>
+				<input type = "hidden" name = "tx_ats[__referrer][@extension]" value = "Ats">
+				<input type = "hidden" name = "tx_ats[__referrer][@vendor]" value = "PAGEmachine">		
+				<input type = "hidden" name = "tx_ats[__referrer][@controller]" value = "Backend\Application">					
+				<input type = "hidden" name = "tx_ats[__referrer][@action]" value = "ratingPerso">	
+				<input type = "hidden" name = "tx_ats[__referrer][arguments]" value = "YTozOntzOjExOiJhcHBsaWNhdGlvbiI7czozOiIxMDIiO3M6NjoiYWN0aW9uIjtzOjExOiJyYXRpbmdQZXJzbyI7czoxMDoiY29udHJvbGxlciI7czoxOToiQmFja2VuZFxBcHBsaWNhdGlvbiI7fQ==d3440d5248abcc29e00151c5e3380a1088798f52">	
+				<input type = "hidden" name = "tx_ats[__referrer][@request]" value = 'a:4:{s:10:"@extension";s:3:"Ats";s:11:"@controller";s:19:"Backend\Application";s:7:"@action";s:11:"ratingPerso";s:7:"@vendor";s:11:"PAGEmachine";}97af3dfe53365d1cf36a20ac821b6615e2fb7051'>	
+				<input type = "hidden" name = "tx_ats[__trustedProperties]" value = 'a:3:{s:11:"application";a:2:{s:10:"__identity";i:1;s:11:"ratingPerso";i:1;}s:13:"forwardAction";i:1;s:4:"note";a:2:{s:4:"user";i:1;s:7:"details";i:1;}}231480c6181a1f36617b72a8d53b2baf54a55b98'>
+			</div>
+			<input type = "hidden" name = "tx_ats[application][__identity]" value = "102">
+			<input type = "hidden" name = "tx_ats[forwardAction]" value = "ratingPerso">
+			<input type = "hidden" name = "tx_ats[note][user]" value = "8">	 -->
+			<div class = "form-group">
+				<select name = "tx_ats[application][ratingPerso]">
+					<option value = "0" select = "selected"> Keine </option>
+					<option value = "10"> Ungeeignet </option>			
+					<option value = "20"> Geeignet </option>				
+					<option value = "30"> Engere Wahl </option>				
+					<option value = "40"> Ausgewählt </option>				
+					<option value = "50"> Vom Bewerber abgesagt </option>				
+				</select>
+			</div>
+			<div class = "form-group">
+				<label for = "details">Details</label>
+				<textarea id = "details" class = "form-control" rows = "7" name = "tx_ats[note][details]"></textarea>
+			</div>
+			<div class = "form-group">
+				<input class = "btn btn-primary" type = "submit" value = "Speichern">
+			</div>
+		</form>
+		<h2>Alle Anmerkungen</h2>
+		<table class = "table table-striped table-hover table-vertical-top">
+			<thead>
+				<tr>
+					<th> Datum </th>
+					<th> Benutzer </th>
+					<th> Betreff </th>
+					<th> Anmerkung </th>
+				</tr>
+			</thead>
+		</table>
+	<div>
+</div>
+<!---------------------------------- Bewertung (Perso) Ende --------------------------------->
+<p>
+<!------------------------------------------ Klonen ----------------------------------------->
+<div class="panel panel-tab">
+	<div class = "panel-body">
+		<h2>Klonen</h2>
+		<form name = "application" action="/typo3/index.php?route=%2FAtsAts%2FAtsApplications%2F&token=65e8b0db305652b0862fcefc8af7154f5049134f&tx_ats%5Baction%5D=confirmClone&tx_ats%5Bcontroller%5D=Backend%5CApplication" method="post">
+<!-- 			<div>
+				<input type = "hidden" name = "tx_ats[application][__identity]" value = "102">			
+				<input type = "hidden" name = "tx_ats[__referrer][@extension]" value = "Ats">
+				<input type = "hidden" name = "tx_ats[__referrer][@vendor]" value = "PAGEmachine">		
+				<input type = "hidden" name = "tx_ats[__referrer][@controller]" value = "Backend\Application">					
+				<input type = "hidden" name = "tx_ats[__referrer][@action]" value = "clone">		
+				<input type = "hidden" name = "tx_ats[__referrer][arguments]" value = "YTozOntzOjExOiJhcHBsaWNhdGlvbiI7czozOiIxMDIiO3M6NjoiYWN0aW9uIjtzOjU6ImNsb25lIjtzOjEwOiJjb250cm9sbGVyIjtzOjE5OiJCYWNrZW5kXEFwcGxpY2F0aW9uIjt9e4228e08849937ed2e83ad30f5ee9406a7fe08f2">
+				<input type = "hidden" name = "tx_ats[__referrer][@request]" value = 'a:4:{s:10:"@extension";s:3:"Ats";s:11:"@controller";s:19:"Backend\Application";s:7:"@action";s:5:"clone";s:7:"@vendor";s:11:"PAGEmachine";}bb76897c9c27b87587320891049c7b70f75d397d'>		
+				<input type = "hidden" name = "tx_ats[__trustedProperties]" value = 'a:3:{s:3:"job";i:1;s:4:"note";a:2:{s:4:"user";i:1;s:7:"details";i:1;}s:11:"application";a:1:{s:10:"__identity";i:1;}}8c6f46b0f6b85d172096536a148c07b3102e3847'>
+			</div> -->
+			<div class = "form-group">
+				<select class = "form-control" name = "tx_ats[job]">
+					<option value = "22"> IT-3577 - IT System Administrator / IT System Engineer </option>
+					<option value = "21"> 12312312 - Fachinformatiker </option>			
+					<option value = "10"> O-3359 - Assistent/in der Geschäftsstellenleitung der Geschäftsstelle Niederrhein </option>					
+					<option value = "17"> IT-3441 - Business Analyst für digitales Personendatenmanagement in der Betriebsorganisation </option>					
+					<option value = "18"> MS-336 - Firmenkundenberater Versicherungen (w/m) im Gebiet Dinkelsbühl </option>	
+					<option value = "20"> MS-733 - Karriere für Akademiker (m/w) im Versicherungsvertrieb in der Geschäftsstelle Offenburg </option>				
+					<option value = "11"> MS-347 - Leiter einer Verkaufsregion (m/w) in der Region Kelheim </option>	
+					<option value = "25"> ATS 4711 - Master in European Studies </option>
+					<option value = "24"> Mu-12345 - Musterstelle </option>
+					<option value = "16"> P-778 - Praktikant (m/w) - Digital Services mit Schwerpunkt Customer Identity Management </option>
+					<option value = "15"> P-334 - Praktikant (m/w) für die Anwendungsentwicklung im Bereich Output Management Services (OMS-as-a-Service) </option>
+					<option value = "13"> HR-147 - Praktikant (w/m) Human Resources </option>
+					<option value = "8"> IT-3751 - Senior Enterprise Architekt (m/w) </option>
+					<option value = "12"> O-2275 - Senior Financial Accountant (m/w) </option>			
+					<option value = "23"> 125 - Servicedesk </option>			
+					<option value = "9"> IT-3770 - SQL-Datenbankentwickler Business Intelligence (w/m) </option>			
+					<option value = "19"> MS-221 - Vermittler / Kundenkontakter (m/w) im Nebenberuf in der Region Mainz </option>				
+					<option value = "14"> P-4489 - Werkstudent (m/w) oder Praktikant (m/w) im Bereich Interne Dienste, Services & Logistik </option>				
+				</select>
+			</div>
+			<div class = "form-group">
+<!-- 				<input type = "hidden" name = "tx_ats[note][user]" value = "8"> -->
+				<label for = "details">Anmerkung</label>
+				<textarea id = "details" class = "form-control" rows = "7" name = "tx_ats[note][details]"></textarea>
+			</div>
+			<div class = "form-group">		
+				<input class = "btn btn-primary" type = "submit" value = "Speichern">
+			</div>
+		</form>
+	</div>
+</div>
+<!------------------------------------------ Klonen Ende----------------------------------------->
+<p>
+<!------------------------------------- Bewerbung abschließen------------------------------------>
+<div class="panel panel-tab">
+	<div class = "panel-body">
+		<h2>Bewerbung abschließen</h2>
+		<form name = "application" action="/typo3/index.php?route=%2FAtsAts%2FAtsApplications%2F&token=65e8b0db305652b0862fcefc8af7154f5049134f&tx_ats%5Baction%5D=confirmClose&tx_ats%5Bcontroller%5D=Backend%5CApplication" method="post">
+<!-- 			<div>
+				<input type = "hidden" name = "tx_ats[application][__identity]" value = "102">
+				<input type = "hidden" name = "tx_ats[__referrer][@extension]" value = "Ats">
+				<input type = "hidden" name = "tx_ats[__referrer][@vendor]" value = "PAGEmachine">
+				<input type = "hidden" name = "tx_ats[__referrer][@controller]" value = "Backend\Application">
+				<input type = "hidden" name = "tx_ats[__referrer][@action]" value = "close">
+				<input type = "hidden" name = "tx_ats[__referrer][arguments]" value = "YTozOntzOjExOiJhcHBsaWNhdGlvbiI7czozOiIxMDIiO3M6NjoiYWN0aW9uIjtzOjU6ImNsb3NlIjtzOjEwOiJjb250cm9sbGVyIjtzOjE5OiJCYWNrZW5kXEFwcGxpY2F0aW9uIjt9988b5ba9cb977e3d5f0ffefc08bdad48324af7a7">		
+				<input type = "hidden" name = "tx_ats[__referrer][@request]" value = 'a:4:{s:10:"@extension";s:3:"Ats";s:11:"@controller";s:19:"Backend\Application";s:7:"@action";s:5:"close";s:7:"@vendor";s:11:"PAGEmachine";}807c262afc4fb085d01bb3e3b324bee241f0aebe'>			
+				<input type = "hidden" name = "tx_ats[__trustedProperties]" value = 'a:2:{s:11:"application";a:2:{s:6:"status";i:1;s:10:"__identity";i:1;}s:4:"note";a:2:{s:4:"user";i:1;s:7:"details";i:1;}}797afe4b9b4df82384757706b5ede0777a5f5402'>		
+			</div> -->
+			<div class = "form-group">
+				<select class = "form-control" name = "tx_ats[application][status]">
+					<option value = "100"> Eingestellt </option>
+					<option value = "110"> Abgesagt (durch Arbeitgeber) </option>
+					<option value = "120"> Abgesagt (durch Bewerber) </option>
+				</select>
+			</div>
+			<div class = "form-group">
+<!-- 				<input type = "hidden" name = "tx_ats[note][user]" value = "8"> -->
+				<label for = "details">Anmerkung</label>
+				<textarea id = "details" class = "form-control" rows = "7" name = "tx_ats[note][details]"></textarea>
+			</div>
+			<div class = "form-group">
+				<input class = "btn btn-primary" type = "submit" value = "Speichern">
+			</div>
+		</form>
+	</div>
+</div>	
+<!------------------------------------- Bewerbung abschließen Ende------------------------------------>	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
