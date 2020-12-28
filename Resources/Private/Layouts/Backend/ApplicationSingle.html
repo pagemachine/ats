@@ -3,9 +3,11 @@
 	<f:render partial="Backend/FlashMessages" />
 	<h6> Start > Bewerbungen > {application.job.title} {application.firstname} {application.surname}</h6>
 	<p>
+	<div id = "BackToList">
 		<button>
 			<f:link.action action="{settings.preferredListAction}"> << <f:translate key="be.label.backtolist" /></f:link.action>
 		</button>
+		</div>
 	</p>
 	<h1>{application.job.title}</h1>
 
