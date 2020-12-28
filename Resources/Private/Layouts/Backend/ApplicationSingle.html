@@ -1,27 +1,26 @@
 {namespace ats=PAGEmachine\Ats\ViewHelpers}
 <div class="tx-ats-backend">
 	<f:render partial="Backend/FlashMessages" />
-
+	<h6> Start > Bewerbungen > {application.job.title} {application.firstname} {application.surname}</h6>
 	<p>
-		<f:link.action action="{settings.preferredListAction}"><< <f:translate key="be.label.backtolist" /></f:link.action>
+		<button>
+			<f:link.action action="{settings.preferredListAction}"> << <f:translate key="be.label.backtolist" /></f:link.action>
+		</button>
 	</p>
-
-	<h1><f:translate key="be.label.ApplicationSingle.1"/>{application.firstname} {application.surname} <f:translate key="be.label.ApplicationSingle.2"/>"{application.job.title}"</h1>
+	<h1>{application.job.title}</h1>
 
 	<f:render partial="Backend/Application/Overview" arguments="{application : application}" />
 
 	<div role="tabpanel">
-
-			<ul class="nav nav-tabs t3js-tabs" role="tablist" data-store-last-tab="1">
-				<f:for each="{ats:workflow.applicationActions(application:application, controller: controller)}" as="currentAction">
-						<li role="presentation" class="t3js-tabmenu-item  {f:if(condition:'{action}=={currentAction}', then:'active')}">
-							<f:link.action action="{currentAction}" arguments="{application : application}" additionalParams="{role : 'tab'}">
-								<f:translate key="tx_ats.be.actions.application.{currentAction}">{currentAction}</f:translate>
-							</f:link.action>
-						</li>
-				</f:for>
-			</ul>
-
+		<ul class="nav nav-tabs t3js-tabs" role="tablist" data-store-last-tab="1">
+			<f:for each="{ats:workflow.applicationActions(application:application, controller: controller)}" as="currentAction">
+				<li role="presentation" class="t3js-tabmenu-item  {f:if(condition:'{action}=={currentAction}', then:'active')}">
+					<f:link.action action="{currentAction}" arguments="{application : application}" additionalParams="{role : 'tab'}">
+						<f:translate key="tx_ats.be.actions.application.{currentAction}">{currentAction}</f:translate>
+					</f:link.action>
+				</li>
+			</f:for>
+		</ul>
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active">
 				<div class="panel panel-tab">
@@ -33,4 +32,3 @@
 		</div>
 	</div>
 </div>
-
