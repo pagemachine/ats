@@ -50,8 +50,8 @@
     },
     "extra": {
         "typo3/cms": {
-            "extension-key": "ats",
             "cms-package-dir": "{$vendor-dir}/typo3/cms",
+            "extension-key": "ats",
             "web-dir": "web"
         }
     },
