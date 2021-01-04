@@ -177,9 +177,8 @@
 }
 
 #BackToList{
-	position: absolute;
-    right: 40px;
- 	top: 90px;
+	position: relative;
+    left: 1480px;
 }
 
 #applications-ajax-list tbody tr {
