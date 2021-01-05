@@ -131,39 +131,48 @@
 
 #assignment{
 	position: absolute;
-    right: 850px;
-	top: 0px;
+    right: 875px;
+	top: 10px;
 }
 
 #assignmentOptions {
 	position: absolute;
-    right: 800px;
+	border: 1px solid #000;
+	right: 690px;
 	top: 50px;
+	padding: 10px;
+	min-width: 250px;
 }
 
 #job{
 	position: absolute;
-    right: 1090px;
-	top: 0px;
+    right: 1165px;
+	top: 20px;
 }
 
 #jobOption{
 	position: absolute;
-    right: 1000px;
+	border: 1px solid #000;
+    right: 950px;
 	top: 50px;
+	padding: 10px;
+	min-width: 250px;
 }
 
 #status {
 	position: absolute;
-    right: 660px;
-	top: 0px;
+    right: 640px;
+	top: 20px;
 }
 
 #statusOption {
 	position: absolute;
-    right: 500px;
+	border: 1px solid #000;
+	right: 430px;
 	top: 50px;
  	min-width: 205px;
+	padding: 10px;
+	min-width: 250px;
 }
 
 #filterReset {
