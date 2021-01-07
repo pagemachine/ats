@@ -181,6 +181,12 @@
 	top: 59px;
 }
 
+#ApplicationEdit {
+	position: absolute;
+    right: 40px;
+	top: 110px;
+}
+
 #buttonNewApplication1 {
 	text-align:right;
 }
@@ -188,6 +194,7 @@
 #BackToList{
 	position: relative;
     left: 1480px;
+	top: 50px;
 }
 
 #applications-ajax-list tbody tr {
