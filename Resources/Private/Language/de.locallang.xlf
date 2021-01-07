@@ -1515,6 +1515,11 @@
 			  <source>Location</source>
 			  <target>Standort</target>
 			</trans-unit>
+			
+			<trans-unit id="be.label.ApplicationSingle.Overview.pen">
+			  <source>Pen</source>
+			  <target>Stift</target>
+			</trans-unit>
 
 			<trans-unit id="be.label.ApplicationSingle.Overview.contacts">
 			  <source>Contacts</source>
