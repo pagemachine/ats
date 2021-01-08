@@ -182,9 +182,9 @@
 }
 
 #ApplicationEdit {
-	position: absolute;
-    right: 40px;
-	top: 110px;
+	position: relative;
+    left: 1442px;
+	top: -350px;
 }
 
 #buttonNewApplication1 {
