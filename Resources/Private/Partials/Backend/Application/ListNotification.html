@@ -1,21 +1,28 @@
 {namespace ats=PAGEmachine\Ats\ViewHelpers}
 
-<f:render partial="Backend/Application/FilterBar" arguments="{action : 'listAll', jobs : jobs, filter : filter}" />
+<f:render partial="Backend/Application/FilterBar" arguments="{action : 'listAll', jobs : jobs, filter : filter}" /> 
 
-<div class="panel panel-default">
-	<div class="panel-body">
-		<f:form.button class="newApplications btn btn-default" /><f:translate key="tx_ats.mass.selectApplications"/></button>
-	</div>
+<div class="panel-body" id = "selectApplication">
+	<f:form.button class="newApplications btn btn-default" /><f:translate key="tx_ats.mass.selectApplications"/>
 </div>
 
 <f:form action="newMassNotification" id="newMassNotification" class="checkbox-table-form">
-
-	<f:render partial="Backend/Application/ValidationResults" arguments="{object : 'applications', errorPrefix: 'massApplication'}" />
-
-	<f:render partial="Backend/Application/TableInner" arguments="{applications : applications, checkboxes : 1}" />
-
-	<ats:form.translatableSelect translationPrefix="tx_ats.be.messageTypes." name="messageType" class="form-control form-group  messageType" options="{messageTypes}" />
-	<f:form.button name="action" value="newMassNotification" class="form-group btn btn-primary"><f:translate id="be.label.Notification.Continue"/></f:form.button>
+	<div id = "mailList">
+		<ats:form.translatableSelect translationPrefix="tx_ats.be.messageTypes." name="messageType" class="form-control form-group  messageType" options="{messageTypes}" />
+	</div>
+	
+	<div id = "nextButton">
+		<f:form.button name="action" value="newMassNotification" class="form-group btn btn-primary"><f:translate id="be.label.Notification.Continue"/></f:form.button>
+	</div>
+	
+	<div id = "applicationList">
+		<f:render partial="Backend/Application/ValidationResults" arguments="{object : 'applications', errorPrefix: 'massApplication'}" />
+		<f:render partial="Backend/Application/TableInner" arguments="{applications : applications, checkboxes : 1}" />
+	</div>
+	
+	<div id = "nextButtonDown">
+		<f:form.button name="action" value="newMassNotification" class="form-group btn btn-primary"><f:translate id="be.label.Notification.Continue"/></f:form.button>
+	</div>
 </f:form>
 
 

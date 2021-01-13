@@ -122,6 +122,33 @@
     right: 100px;
 	top: 100px;
 } */
+#selectApplication{
+	position: relative;
+    left: 1300px;
+	top: 40px;
+}
+
+#nextButton{
+	position: relative;
+    left: 1570px;
+	top: -54px;
+}
+
+#mailList{
+	position: relative;
+	top: -60px;
+}
+
+#applicationList{
+	position: relative;
+	top: -30px;
+}
+
+#nextButtonDown{
+	position: relative;
+    left: 1570px;
+	top: -34px;
+}
 
 #application-test {
 	position: absolute;
