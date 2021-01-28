@@ -20,7 +20,7 @@ class DefaultWorkflowConfiguration
         'submit' => ['from' => ApplicationStatus::INCOMPLETE, 'to' => ApplicationStatus::NEW_APPLICATION],
         'show' => ['from' => [], 'to' => []],
         'edit' => ['from' => [], 'to' => []],
-        'editStatus'=> ['from' => [], 'to' => []],
+        //'editStatus'=> ['from' => [], 'to' => []],
         'acknowledge' => ['from' => ApplicationStatus::NEW_APPLICATION, 'to' => ApplicationStatus::DEPARTMENT],
         'autoAcknowledge'=> ['from' => [], 'to' => []],
         'backToPerso' => ['from' => ApplicationStatus::DEPARTMENT, 'to' => ApplicationStatus::PERSO],

@@ -335,7 +335,7 @@ class ApplicationController extends AbstractBackendController
             ]
         );
         $this->addFlashMessage($this->callStatic(LocalizationUtility::class, 'translate', 'be.flashMessage.updateStatus.ok', 'ats'));
-        $this->redirect("editStatus", null, null, ["application" => $application]);
+        $this->redirect("show", null, null, ["application" => $application]);
     }
 
     /**
