@@ -1,39 +1,39 @@
-{namespace ats=PAGEmachine\Ats\ViewHelpers}
-<f:form action="addRating" object="{note}" name="note">
+<!-- {namespace ats=PAGEmachine\Ats\ViewHelpers} -->
+<!-- <f:form action="addRating" object="{note}" name="note"> -->
 
 
-<f:form.hidden name="application" value="{application}" />
-<f:form.hidden name="forwardAction" value="{forwardAction}" />
-<f:form.hidden property="user" value="{beUser.uid}" />
+<!-- <f:form.hidden name="application" value="{application}" /> -->
+<!-- <f:form.hidden name="forwardAction" value="{forwardAction}" /> -->
+<!-- <f:form.hidden property="user" value="{beUser.uid}" /> -->
 
-<div class="form-group">
-	<f:form.select name="application[{ratingField}]" value="{application.{ratingField}}">
-		<f:for each="{settings.ratingOptions}" as="option" key="value">
-			<f:form.select.option value="{value}"><f:translate key="{option.label}" /></f:form.select.option>
-		</f:for>
-	</f:form.select>
-</div>
+<!-- <div class="form-group"> -->
+	<!-- <f:form.select name="application[{ratingField}]" value="{application.{ratingField}}"> -->
+		<!-- <f:for each="{settings.ratingOptions}" as="option" key="value"> -->
+			<!-- <f:form.select.option value="{value}"><f:translate key="{option.label}" /></f:form.select.option> -->
+		<!-- </f:for> -->
+	<!-- </f:form.select> -->
+<!-- </div> -->
 
-<f:form.validationResults for="{note.details}">
-<div class="form-group {f:if(condition:validationResults.flattenedErrors, then:'has-error')}">
-	<label for="details">Details</label>
-	<f:form.textarea property="details" id="details" class="form-control" rows="7" />
-	<f:if condition="{validationResults.flattenedErrors}">
-	<f:for each="{validationResults.flattenedErrors}" as="errors" key="propertyPath">
-	<f:for each="{errors}" as="error">
-	<span class="help-block"><f:translate key="tx_ats.error.{propertyPath}.{error.code}">{propertyPath} : {error.code}</f:translate></span>
-</f:for>
-</f:for>
-</f:if>
-</div>
-</f:form.validationResults>
+<!-- <f:form.validationResults for="{note.details}"> -->
+<!-- <div class="form-group {f:if(condition:validationResults.flattenedErrors, then:'has-error')}"> -->
+	<!-- <label for="details">Details</label> -->
+	<!-- <f:form.textarea property="details" id="details" class="form-control" rows="7" /> -->
+	<!-- <f:if condition="{validationResults.flattenedErrors}"> -->
+	<!-- <f:for each="{validationResults.flattenedErrors}" as="errors" key="propertyPath"> -->
+	<!-- <f:for each="{errors}" as="error"> -->
+	<!-- <span class="help-block"><f:translate key="tx_ats.error.{propertyPath}.{error.code}">{propertyPath} : {error.code}</f:translate></span> -->
+<!-- </f:for> -->
+<!-- </f:for> -->
+<!-- </f:if> -->
+<!-- </div> -->
+<!-- </f:form.validationResults> -->
 
-<div class="form-group">
-	<f:form.submit value="<f:translate id='be.label.ApplicationSingle.Form.Submit' />" class="btn btn-primary" />
-</div>
+<!-- <div class="form-group"> -->
+	<!-- <f:form.submit value="<f:translate id='be.label.ApplicationSingle.Form.Submit' />" class="btn btn-primary" /> -->
+<!-- </div> -->
 
-</f:form>
+<!-- </f:form> -->
 
-<h2><f:translate id="be.label.ApplicationSingle.Rating.AllNotes"/></h2>
+<!-- <h2><f:translate id="be.label.ApplicationSingle.Rating.AllNotes"/></h2> -->
 
-<f:render partial="Backend/Application/NoteList" arguments="{notes : application.notes}" />
+<!-- <f:render partial="Backend/Application/NoteList" arguments="{notes : application.notes}" /> -->
