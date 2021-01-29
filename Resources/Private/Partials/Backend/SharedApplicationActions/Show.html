@@ -108,7 +108,6 @@
 	<h2><f:translate id="be.label.ApplicationSingle.Notes.AllNotes"/></h2>
 	<f:render partial="Backend/Application/NoteList" arguments="{notes : application.notes}" />
 </div>
-
 <!------------------------------- Anmerkung Ende ------------------------------->
 <br>
 <br>
@@ -216,13 +215,94 @@
 	</div>
 </div>
 <!---------------------------------- Bewertung (Perso) Ende --------------------------------->
-
-
-
-
-
-
-
+<br>
+<br>
+<!------------------------------------------ Klonen ----------------------------------------->
+<div class="panel panel-tab">
+	<div class = "panel-body">
+		<h2><f:translate key="be.label.ApplicationSingle.Clone"/></h2>
+		<f:form action="confirmClone" object="{application}" name="application">
+ 			<div>
+				<f:form.hidden name=" application __identity" value="{beUser.uid}" /> 
+				<f:form.hidden name=" __referrer @extension" value="{ats}"/>		
+				<f:form.hidden name="__referrer @vendor" value="{PAGEmachine}"/>					
+				<f:form.hidden name="__referrer @controller" value="{Backend\Application}"/>	
+				<f:form.hidden name="__referrer @action" value="{clone}"/>									 
+<!-- 			<f:form.hidden name="__referrer arguments" value="{YTozOntzOjExOiJhcHBsaWNhdGlvbiI7czozOiIxMDIiO3M6NjoiYWN0aW9uIjtzOjU6ImNsb25lIjtzOjEwOiJjb250cm9sbGVyIjtzOjE5OiJCYWNrZW5kXEFwcGxpY2F0aW9uIjt9e4228e08849937ed2e83ad30f5ee9406a7fe08f2}"/>	-->									 
+<!--			<f:form.hidden name="__referrer @request" value="{a:4:{s:10:"@extension";s:3:"Ats";s:11:"@controller";s:19:"Backend\Application";s:7:"@action";s:5:"clone";s:7:"@vendor";s:11:"PAGEmachine";}bb76897c9c27b87587320891049c7b70f75d397d}"/>		-->								 
+				<input type = "hidden" name = "tx_ats[__trustedProperties]" value = 'a:3:{s:3:"job";i:1;s:4:"note";a:2:{s:4:"user";i:1;s:7:"details";i:1;}s:11:"application";a:1:{s:10:"__identity";i:1;}}8c6f46b0f6b85d172096536a148c07b3102e3847'>
+			</div> 
+			<input type = "hidden" name = "tx_ats[note][user]" value = "8">
+			<div class = "form-group">
+				<f:form.select name="job" options="{jobs}" optionValueField="uid" optionLabelField="jobNumberAndTitle" class="form-control">
+					<option value = "22"> IT-3577 - IT System Administrator / IT System Engineer </option>
+					<option value = "21"> 12312312 - Fachinformatiker </option>			
+					<option value = "10"> O-3359 - Assistent/in der Geschäftsstellenleitung der Geschäftsstelle Niederrhein </option>					
+					<option value = "17"> IT-3441 - Business Analyst für digitales Personendatenmanagement in der Betriebsorganisation </option>					
+					<option value = "18"> MS-336 - Firmenkundenberater Versicherungen (w/m) im Gebiet Dinkelsbühl </option>	
+					<option value = "20"> MS-733 - Karriere für Akademiker (m/w) im Versicherungsvertrieb in der Geschäftsstelle Offenburg </option>				
+					<option value = "11"> MS-347 - Leiter einer Verkaufsregion (m/w) in der Region Kelheim </option>	
+					<option value = "25"> ATS 4711 - Master in European Studies </option>
+					<option value = "24"> Mu-12345 - Musterstelle </option>
+					<option value = "16"> P-778 - Praktikant (m/w) - Digital Services mit Schwerpunkt Customer Identity Management </option>
+					<option value = "15"> P-334 - Praktikant (m/w) für die Anwendungsentwicklung im Bereich Output Management Services (OMS-as-a-Service) </option>
+					<option value = "13"> HR-147 - Praktikant (w/m) Human Resources </option>
+					<option value = "8"> IT-3751 - Senior Enterprise Architekt (m/w) </option>
+					<option value = "12"> O-2275 - Senior Financial Accountant (m/w) </option>			
+					<option value = "23"> 125 - Servicedesk </option>			
+					<option value = "9"> IT-3770 - SQL-Datenbankentwickler Business Intelligence (w/m) </option>			
+					<option value = "19"> MS-221 - Vermittler / Kundenkontakter (m/w) im Nebenberuf in der Region Mainz </option>				
+					<option value = "14"> P-4489 - Werkstudent (m/w) oder Praktikant (m/w) im Bereich Interne Dienste, Services & Logistik </option>				
+				</f:form.select>
+			</div>
+			<div class="form-group">
+				<f:form.hidden name="note user" value="{beUser.uid}" /> 
+				<label for="details"><f:translate key="be.label.ApplicationSingle.Clone.Note"/></label>
+				<f:form.textarea name="note[details]" id="details" rows="7" class="form-control" />
+			</div>
+			<div class="form-group">
+				<f:form.submit value="<f:translate key='be.label.ApplicationSingle.Form.Submit'/>" class="btn btn-primary" />
+			</div>
+		</f:form>
+	</div>
+</div>
+<!------------------------------------------ Klonen Ende----------------------------------------->
+<br>
+<br>
+<!------------------------------------- Bewerbung abschließen------------------------------------>
+<div class="panel panel-tab">
+	<div class = "panel-body">
+		<h2><f:translate id="be.label.ApplicationSingle.Close"/></h2>
+		<f:form action="confirmClose" object="{application}" name="application">
+			<div>
+				<f:form.hidden name=" application __identity" value="{beUser.uid}" /> 
+				<f:form.hidden name=" __referrer @extension" value="{ats}"/>		
+				<f:form.hidden name="__referrer @vendor" value="{PAGEmachine}"/>					
+				<f:form.hidden name="__referrer @controller" value="{Backend\Application}"/>	
+				<f:form.hidden name="__referrer @action" value="{close}"/>	
+<!-- 			<f:form.hidden name="__referrer arguments" value="{YTozOntzOjExOiJhcHBsaWNhdGlvbiI7czozOiIxMDIiO3M6NjoiYWN0aW9uIjtzOjU6ImNsb3NlIjtzOjEwOiJjb250cm9sbGVyIjtzOjE5OiJCYWNrZW5kXEFwcGxpY2F0aW9uIjt9988b5ba9cb977e3d5f0ffefc08bdad48324af7a7}"/>	-->									 
+<!--			<f:form.hidden name="__referrer @request" value="{a:4:{s:10:"@extension";s:3:"Ats";s:11:"@controller";s:19:"Backend\Application";s:7:"@action";s:5:"close";s:7:"@vendor";s:11:"PAGEmachine";}807c262afc4fb085d01bb3e3b324bee241f0aebe}"/>		-->								 
+				<input type = "hidden" name = "tx_ats[__trustedProperties]" value = 'a:2:{s:11:"application";a:2:{s:6:"status";i:1;s:10:"__identity";i:1;}s:4:"note";a:2:{s:4:"user";i:1;s:7:"details";i:1;}}797afe4b9b4df82384757706b5ede0777a5f5402'>
+			</div>
+			<div class = "form-group">
+				<ats:form.translatableSelect property="status" options="{statusOptions}" translationPrefix="tx_ats.application.status." class="form-control" >
+					<option value = "100"> Eingestellt </option>
+					<option value = "110"> Abgesagt (durch Arbeitgeber) </option>
+					<option value = "120"> Abgesagt (durch Bewerber) </option>
+				</ats:form.translatableSelect>
+			</div>
+			<div class = "from-group">
+				<input type = "hidden" name = "tx_ats[note][user]" value = "8">
+				<label for="details"><f:translate id="be.label.ApplicationSingle.Workflow.Note"/></label>
+				<f:form.textarea name="note[details]" id="details" rows="7" class="form-control" />
+			</div>		
+			<div class="form-group">
+				<f:form.submit value="<f:translate id='be.label.ApplicationSingle.Form.Submit'/>" class="btn btn-primary" />
+			</div>
+		</f:form>
+	</div>
+</div>	
+<!------------------------------------- Bewerbung abschließen Ende------------------------------------>	
 
 
 
