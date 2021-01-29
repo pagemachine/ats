@@ -112,10 +112,10 @@
 <!------------------------------- Anmerkung Ende ------------------------------->
 <br>
 <br>
-<!--------------------------------- Anmerkung --------------------------------->
+<!--------------------------------- Bewertung --------------------------------->
 <div class="panel panel-tab">
 	<div class="panel-body">
-	<h2><f:translate id="be.label.ApplicationSingle.Rating"/></h2>
+		<h2><f:translate id="be.label.ApplicationSingle.Rating"/></h2>
 		<f:form action="addRating" object="{note}" name="note">
 			<div>				 
 				<f:form.hidden name=" application __identity" value="{beUser.uid}" /> 
@@ -162,7 +162,66 @@
 		<f:render partial="Backend/Application/NoteList" arguments="{notes : application.notes}" />
 	</div>
 </div>
-<!------------------------------- Anmerkung Ende ------------------------------->
+<!------------------------------- Bewertung Ende ------------------------------->
+<br>
+<br>
+<!---------------------------------- Bewertung (Perso) --------------------------------->
+<div class="panel panel-tab">
+	<div class="panel-body">
+		<h2><f:translate id="be.label.ApplicationSingle.RatingPerso"/></h2>
+		<f:form action="addRating" object="{note}" name="note">
+			<div>				 
+				<f:form.hidden name=" application __identity" value="{beUser.uid}" /> 
+				<f:form.hidden name="__referrer @extension" value="{ats}"/>
+				<f:form.hidden name="__referrer @vendor" value="{PAGEmachine}"/>
+				<f:form.hidden name="__referrer @controller" value="{Backend\Application}"/>
+				<f:form.hidden name="__referrer @action value="{ratingPerso}"/>
+				<!-- <f:form.hidden name="__referrer arguments value="{YTozOntzOjExOiJhcHBsaWNhdGlvbiI7czozOiIxMDIiO3M6NjoiYWN0aW9uIjtzOjY6InJhdGluZyI7czoxMDoiY29udHJvbGxlciI7czoxOToiQmFja2VuZFxBcHBsaWNhdGlvbiI7fQ==855abc0fb53bc52da135ef5df4985e05ad12c8c8}"/>		 -->
+				<!-- <f:form.hidden name="__referrer @request value="{a:4:{s:10:"@extension";s:3:"Ats";s:11:"@controller";s:19:"Backend\Application";s:7:"@action";s:6:"rating";s:7:"@vendor";s:11:"PAGEmachine";}a7cb5f93306ba4e52ba72908c4d7c5f28ddc0496}"/> -->
+				<input type = "hidden" name = "tx_ats[__trustedProperties]" value = 'a:3:{s:11:"application";a:2:{s:10:"__identity";i:1;s:6:"rating";i:1;}s:13:"forwardAction";i:1;s:4:"note";a:2:{s:4:"user";i:1;s:7:"details";i:1;}}4e262241abbeadfa064cffd93af60a536f18c006'>					
+			</div>
+			<f:form.hidden name="application" value="{application}" />
+			<input type = "hidden" name = "tx_ats[forwardAction]" value = "ratingPerso">
+			<input type = "hidden" name = "tx_ats[note][user]" value = "8">			
+			<div class="form-group">
+				<select name="tx_ats[application][rating]">
+					<option value = "0" selected = "selected"> Keine </option>
+					<option value = "10"> Ungeeignet </option>
+					<option value = "20"> Ungeeignet </option>
+					<option value = "30"> Geeignet </option>
+					<option value = "40"> Engere Wahl </option>
+					<option value = "50"> Ausgewählt </option>
+					<option value = "50"> Vom Bewerber abgesagt </option>
+				</select>
+			</div>
+			<f:form.validationResults for="{note.details}">
+				<div class="form-group {f:if(condition:validationResults.flattenedErrors, then:'has-error')}">
+					<label for="details">Details</label>
+					<f:form.textarea property="details" id="details" class="form-control" rows="7" />
+					<f:if condition="{validationResults.flattenedErrors}">
+						<f:for each="{validationResults.flattenedErrors}" as="errors" key="propertyPath">
+							<f:for each="{errors}" as="error">
+								<span class="help-block"><f:translate key="tx_ats.error.{propertyPath}.{error.code}">{propertyPath} : {error.code}</f:translate></span>
+							</f:for>
+						</f:for>
+					</f:if>
+				</div>
+			</f:form.validationResults>
+			<div class="form-group">
+				<f:form.submit value="<f:translate id='be.label.ApplicationSingle.Form.Submit' />" class="btn btn-primary" />
+			</div>
+		</f:form>
+		<h2><f:translate id="be.label.ApplicationSingle.Rating.AllNotes"/></h2>
+		<f:render partial="Backend/Application/NoteList" arguments="{notes : application.notes}" />
+	</div>
+</div>
+<!---------------------------------- Bewertung (Perso) Ende --------------------------------->
+
+
+
+
+
+
 
 
 
