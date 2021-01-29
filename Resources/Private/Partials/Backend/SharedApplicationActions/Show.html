@@ -24,14 +24,14 @@
 		<h2><f:translate id="be.label.ApplicationSingle.Workflow" /></h2>
 		<f:form action="updateStatus" object="{application}" name="application">
 			<div>
-				 <f:form.hidden name=" application __identity" value="{beUser.uid}" /> 
-				 <f:form.hidden name=" __referrer @extension" value="{ats}"/>		
-				 <f:form.hidden name="__referrer @vendor" value="{PAGEmachine}"/>					
-				 <f:form.hidden name="__referrer @controller" value="{Backend\Application}"/>	
-				 <f:form.hidden name="__referrer @action" value="{Workflow}"/>									 
-<!-- 			 <f:form.hidden name="__referrer arguments" value="{}"/>	-->									 
-<!--			 <f:form.hidden name="__referrer @request" value="{}"/>		-->								 
-<!--			 <f:form.hidden name="__trustedProperties" value="{}"/>		-->							 
+				<f:form.hidden name=" application __identity" value="{beUser.uid}" /> 
+				<f:form.hidden name=" __referrer @extension" value="{ats}"/>		
+				<f:form.hidden name="__referrer @vendor" value="{PAGEmachine}"/>					
+				<f:form.hidden name="__referrer @controller" value="{Backend\Application}"/>	
+				<f:form.hidden name="__referrer @action" value="{Workflow}"/>									 
+<!-- 			<f:form.hidden name="__referrer arguments" value="{}"/>	-->									 
+<!--			<f:form.hidden name="__referrer @request" value="{}"/>		-->								 
+				<input type = "hidden" name = "tx_ats[__trustedProperties]" value = 'a:2:{s:11:"application";a:2:{s:6:"status";i:1;s:10:"__identity";i:1;}s:4:"note";a:2:{s:4:"user";i:1;s:7:"details";i:1;}}797afe4b9b4df82384757706b5ede0777a5f5402'>					 
 			</div> 
 			<div class="form-group">
 				<ats:form.translatableSelect property="status" options="{statusOptions}" translationPrefix="tx_ats.application.status." class="form-control" >
@@ -51,7 +51,7 @@
 				</ats:form.translatableSelect>
 			</div>
 			<div class = "from-group">
-				<f:form.hidden name="note user" value="{beUser.uid}" /> 
+				<input type = "hidden" name = "tx_ats[note][user]" value = "8">
 				<label for="details"><f:translate id="be.label.ApplicationSingle.Workflow.Note"/></label>
 				<f:form.textarea name="note[details]" id="details" rows="7" class="form-control" />
 			</div>	
@@ -66,7 +66,6 @@
 <br>
 <br>
 <!--------------------------------- Anmerkung --------------------------------->
-
 <div class="panel panel-tab">
 	<h2><f:translate id="be.label.ApplicationSingle.Notes.add"/></h2>
 	<f:form action="addNote" object="{note}" name="note">
