@@ -1,38 +1,38 @@
-<h2><f:translate id="be.label.ApplicationSingle.Notes.add"/></h2>
+<!-- <h2><f:translate id="be.label.ApplicationSingle.Notes.add"/></h2> -->
 
-<f:form action="addNote" object="{note}" name="note">
-
-
-	<f:form.hidden name="application" value="{application}" />
-	<f:form.hidden property="user" value="{beUser.uid}" />
-
-	<div class="checkbox">
-  	<label>
-			<f:form.checkbox property="isInternal" value="1" checked="{f:if(condition:'{note.isInternal}', then:'checked')}" /> <f:translate id="be.label.ApplicationSingle.Notes.Internal"/>
-		</label>
-	</div>
+<!-- <f:form action="addNote" object="{note}" name="note"> -->
 
 
-	<f:form.validationResults for="{note.details}">
-		<div class="form-group {f:if(condition:validationResults.flattenedErrors, then:'has-error')}">
-			<label for="details">Details</label>
-			<f:form.textarea property="details" id="details" class="form-control" rows="7" />
-			<f:if condition="{validationResults.flattenedErrors}">
-					<f:for each="{validationResults.flattenedErrors}" as="errors" key="propertyPath">
-						<f:for each="{errors}" as="error">
-							<span class="help-block"><f:translate key="tx_ats.error.{propertyPath}.{error.code}">{propertyPath} : {error.code}</f:translate></span>
-						</f:for>
-					</f:for>
-			</f:if>
-		</div>
-	</f:form.validationResults>
+	<!-- <f:form.hidden name="application" value="{application}" /> -->
+	<!-- <f:form.hidden property="user" value="{beUser.uid}" /> -->
 
-	<div class="form-group">
-		<f:form.submit value="<f:translate id='be.label.ApplicationSingle.Form.Submit'/>" class="btn btn-primary" />
-	</div>
+	<!-- <div class="checkbox"> -->
+  	<!-- <label> -->
+			<!-- <f:form.checkbox property="isInternal" value="1" checked="{f:if(condition:'{note.isInternal}', then:'checked')}" /> <f:translate id="be.label.ApplicationSingle.Notes.Internal"/> -->
+		<!-- </label> -->
+	<!-- </div> -->
 
-</f:form>
 
-<h2><f:translate id="be.label.ApplicationSingle.Notes.AllNotes"/></h2>
+	<!-- <f:form.validationResults for="{note.details}"> -->
+		<!-- <div class="form-group {f:if(condition:validationResults.flattenedErrors, then:'has-error')}"> -->
+			<!-- <label for="details">Details</label> -->
+			<!-- <f:form.textarea property="details" id="details" class="form-control" rows="7" /> -->
+			<!-- <f:if condition="{validationResults.flattenedErrors}"> -->
+					<!-- <f:for each="{validationResults.flattenedErrors}" as="errors" key="propertyPath"> -->
+						<!-- <f:for each="{errors}" as="error"> -->
+							<!-- <span class="help-block"><f:translate key="tx_ats.error.{propertyPath}.{error.code}">{propertyPath} : {error.code}</f:translate></span> -->
+						<!-- </f:for> -->
+					<!-- </f:for> -->
+			<!-- </f:if> -->
+		<!-- </div> -->
+	<!-- </f:form.validationResults> -->
 
-<f:render partial="Backend/Application/NoteList" arguments="{notes : application.notes}" />
+	<!-- <div class="form-group"> -->
+		<!-- <f:form.submit value="<f:translate id='be.label.ApplicationSingle.Form.Submit'/>" class="btn btn-primary" /> -->
+	<!-- </div> -->
+
+<!-- </f:form> -->
+
+<!-- <h2><f:translate id="be.label.ApplicationSingle.Notes.AllNotes"/></h2> -->
+
+<!-- <f:render partial="Backend/Application/NoteList" arguments="{notes : application.notes}" /> -->

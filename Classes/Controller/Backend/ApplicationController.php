@@ -440,7 +440,7 @@ class ApplicationController extends AbstractBackendController
         );
 
         $this->addFlashMessage($this->callStatic(LocalizationUtility::class, 'translate', 'be.flashMessage.note.ok', 'ats'));
-        $this->redirect("notes", null, null, ["application" => $application]);
+        $this->redirect("show", null, null, ["application" => $application]);
     }
 
     /**

@@ -63,7 +63,55 @@
 	</div>
 </div>
 <!------------------------------- Workflow ENDE ------------------------------->
-<p>
+<br>
+<br>
+<!--------------------------------- Anmerkung --------------------------------->
+
+<div class="panel panel-tab">
+	<h2><f:translate id="be.label.ApplicationSingle.Notes.add"/></h2>
+	<f:form action="addNote" object="{note}" name="note">
+		<div>
+			<f:form.hidden name=" application __identity" value="{beUser.uid}" /> 
+			<f:form.hidden name=" __referrer @extension" value="{ats}"/>		
+			<f:form.hidden name="__referrer @vendor" value="{PAGEmachine}"/>					
+			<f:form.hidden name="__referrer @controller" value="{Backend\Application}"/>	
+			<f:form.hidden name="__referrer @action" value="{notes}"/>	
+<!-- 	 	<f:form.hidden name="__referrer arguments" value="{YTozOntzOjExOiJhcHBsaWNhdGlvbiI7czozOiIxMDIiO3M6NjoiYWN0aW9uIjtzOjU6Im5vdGVzIjtzOjEwOiJjb250cm9sbGVyIjtzOjE5OiJCYWNrZW5kXEFwcGxpY2F0aW9uIjt9262795394d5573de77d4cf4e4ad80fe2cddb5fab"}"/> -->							 
+<!--		<f:form.hidden name="__referrer @request" value="{a:4:{s:10:"@extension";s:3:"Ats";s:11:"@controller";s:19:"Backend\Application";s:7:"@action";s:5:"notes";s:7:"@vendor";s:11:"PAGEmachine";}029cdd90650b2cbfbc783a3a54a9cdd63cb8eb72}"/>	 -->							 		
+			<input type = "hidden" name = "tx_ats[__trustedProperties]" value = 'a:2:{s:11:"application";a:1:{s:10:"__identity";i:1;}s:4:"note";a:3:{s:4:"user";i:1;s:10:"isInternal";i:1;s:7:"details";i:1;}}c0d457ed03fa07e97e9d0d8bdf6a8504b12d6e37'>
+		</div>
+		<f:form.hidden name="application" value="{application}" />
+		<f:form.hidden name="user" value="{beUser.uid}" />
+		<input type = "hidden" name = "tx_ats[note][user]" value = "8">
+		<div class="checkbox">
+			<label>
+				<f:form.checkbox property="isInternal" value="1" checked="{f:if(condition:'{note.isInternal}', then:'checked')}" /> <f:translate id="be.label.ApplicationSingle.Notes.Internal"/>
+			</label>
+		</div>
+		<f:form.validationResults for="{note.details}">
+			<div class="form-group {f:if(condition:validationResults.flattenedErrors, then:'has-error')}">
+				<label for="details">Details</label>
+				<f:form.textarea property="details" id="details" class="form-control" rows="7" />
+				<f:if condition="{validationResults.flattenedErrors}">
+					<f:for each="{validationResults.flattenedErrors}" as="errors" key="propertyPath">
+						<f:for each="{errors}" as="error">
+							<span class="help-block"><f:translate key="tx_ats.error.{propertyPath}.{error.code}">{propertyPath} : {error.code}</f:translate></span>
+						</f:for>
+					</f:for>
+				</f:if>
+			</div>
+		</f:form.validationResults>
+		<div class="form-group">
+			<f:form.submit value="<f:translate id='be.label.ApplicationSingle.Form.Submit'/>" class="btn btn-primary" />
+		</div>	
+	</f:form>
+	<h2><f:translate id="be.label.ApplicationSingle.Notes.AllNotes"/></h2>
+	<f:render partial="Backend/Application/NoteList" arguments="{notes : application.notes}" />
+</div>
+
+<!------------------------------- Anmerkung Ende ------------------------------->
+<br>
+<br>
 <!--------------------------------- Anmerkung --------------------------------->
 <div class="panel panel-tab">
 	<div class="panel-body">
