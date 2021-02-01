@@ -302,6 +302,209 @@
 	</div>
 </div>	
 <!------------------------------------- Bewerbung abschließen Ende------------------------------------>	
+<br>
+<br>
+<!------------------------------- Eingangsbestätigung ------------------------------->
+
+<div class="panel panel-tab">
+	<div class = "panel-body">
+		<h2>Bewerbung bestätigen</h2>
+		<div class = "row">
+			<div class="col-sm-12">
+				<form name = "massage" action="/typo3/index.php?route=%2FAtsAts%2FAtsApplications%2F&token=4a3d17dbb374f2b2308b441fe622b065158deed6&tx_ats%5Bcontroller%5D=Backend%5CApplication" method="post">
+					<div>
+						<f:form.hidden name=" application __identity" value="{beUser.uid}" /> 
+						<f:form.hidden name=" __referrer @extension" value="{ats}"/>		
+						<f:form.hidden name="__referrer @vendor" value="{PAGEmachine}"/>					
+						<f:form.hidden name="__referrer @controller" value="{Backend\Application}"/>	
+						<f:form.hidden name="__referrer @action" value="{acknowledge}"/>						 
+					 <input type = "hidden" name = "tx_ats[__referrer][arguments]" value="YTozOntzOjExOiJhcHBsaWNhdGlvbiI7czozOiIyMDYiO3M6NjoiYWN0aW9uIjtzOjExOiJhY2tub3dsZWRnZSI7czoxMDoiY29udHJvbGxlciI7czoxOToiQmFja2VuZFxBcHBsaWNhdGlvbiI7fQ==54c177306b9c450b8231c7baaaa312ec5a99f7d2">							 
+					 <input type = "hidden" name = "tx_ats[__referrer][@request]" value='a:4:{s:10:"@extension";s:3:"Ats";s:11:"@controller";s:19:"Backend\Application";s:7:"@action";s:11:"acknowledge";s:7:"@vendor";s:11:"PAGEmachine";}f1c292535b1c32ea97a3d847d1e3127680794f36'>					 
+					 <input type = "hidden" name = "tx_ats[__trustedProperties]" value='a:2:{s:7:"message";a:7:{s:11:"application";i:1;s:8:"sendType";i:1;s:12:"textTemplate";i:1;s:7:"subject";i:1;s:2:"cc";i:1;s:3:"bcc";i:1;s:4:"body";i:1;}s:6:"action";i:1;}b28dec41cf0b43e4e99ffbb13919507991b728fe'>						 
+					</div>
+					 <input type = "hidden" name = "tx_ats[message][application]" value = "206">				
+					 <input type = "hidden" name = "tx_ats[action]" value = "acknowledge">					
+					
+					<div class = "radio">
+						<label>
+							<input id = "sendTypeMail" type = "radio" name="tx_ats[message][sendType]" value="mail" checked="checked">
+							<f:translate id="be.label.ApplicationSingle.Acknowledge.SendMailTo"/> 
+						</label>
+					</div>
+					
+					<div class = "radio">					
+						<label>
+							<input id = "sendTypePdf" type="radio" name="tx_ats[message][sendType]" value="pdf">
+							<f:translate id="be.label.ApplicationSingle.Acknowledge.CreatePdf"/>
+						</label>
+					</div>		
+					
+					<div class = "form-group">					
+						<label for = "textTemplate"> Template </label>
+						<select id = "textTemplate" class="form-control" onchange="this.form.submit()" name="tx_ats[message][textTemplate]">
+							<option value = ""> --- </option>
+							<option value = "6"> Eingangsbestätigung Briefbewerbung BEISPIEL </option>					
+							<option value = "7"> Eingangsbestätigung BEISPIEL </option>					
+						</select>
+					</div>						
+	
+					<div class = "form-group">	
+						<label for = "subject"> Betreff </label>
+						<input id = "subject" class="form-control" type="text" name="tx_ats[message][subject]">
+					</div>						
+					
+					<div class = "form-group">	
+						<label for = "cc"> CC </label>
+						<input id = "cc" class="form-control" type="text" name="tx_ats[message][cc]">
+					</div>											
+					
+					<div class = "form-group">	
+						<label for = "bcc"> Bcc </label>
+						<input id = "bcc" class="form-control" type="text" name="tx_ats[message][bcc]">
+					</div>							
+					
+					<div class = "form-group">	
+						<label for = "body"> Text </label>
+						<textarea id = "ats-ck-body" class="form-control richtext" data-placeholders="acknowledge" rows="7" name="tx_ats[message][body]" style="visibility: hidden; display: none;"> </textarea>
+						<!-- <div id="cke_ats-ck-body" class="cke_1 cke cke_reset cke_chrome cke_editor_ats-ck-body cke_ltr cke_browser_gecko" dir="ltr" role="application" aria-labelledby="cke_ats-ck-body_arialbl" lang="de"> -->
+							<!-- <span id="cke_ats-ck-body_arialbl" class="cke_voice_label">WYSIWYG-Editor, ats-ck-body</span> -->
+							<!-- <div class = "cke_inner cke_reset" role = "presentation"> -->
+								<!-- <span id = "cke_1_top" class="cke_top cke_reset_all" role="presentation" style="height: auto; user-select: none;"> -->
+									<!-- <span id = "cke_5" class="cke_voice_label" >Editor Werkzeugleisten</span> -->
+									<!-- <span id = "cke_1_toolbox" class="cke_toolbox" role="group" aria-labelledby="cke_5" onmousedown="return false;"> -->
+										<!-- <span id = "cke_6" class="cke_toolbar" aria-labelledby="cke_6_label" role="toolbar"> -->
+											<!-- <span id = "cke_6_label" class="cke_voice_label"> Grundstile </span> -->
+											<!-- <span class="cke_toolbar_start"></span> -->
+											<!-- <span class="cke_toolgroup" role="presentation">										 -->
+												<!-- <a id = "cke_7" class="cke_button cke_button__bold cke_button_off" title="Fett (Strg+B)" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_7_label" aria-describedby="cke_7_description" aria-haspopup="false" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0,event);" onfocus="return CKEDITOR.tools.callFunction(1,event);" onclick="CKEDITOR.tools.callFunction(2,this);return false;" > -->
+													<!-- <span class="cke_button_icon cke_button__bold_icon" style="background-image:url('http://ats-sample.local:8040/typo3conf/ext/ats/Resources/Public/JavaScript/ckeditor/plugins/icons.png?t=H0CG');background-position:0 -24px;background-size:auto;"></span> -->
+													<!-- <span id = "cke_7_label" class="cke_button_label cke_button__bold_label" aria-hidden="false"> Fett </span> -->
+													<!-- <span id = "cke_7_description" class="cke_button_label" aria-hidden="false">Tastaturkürzel Strg+B	</span>										 -->
+												<!-- </a> -->
+												<!-- <a id="cke_8" class="cke_button cke_button__italic cke_button_off" title="Kursiv (Strg+I)" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_8_label" aria-describedby="cke_8_description" aria-haspopup="false" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(3,event);" onfocus="return CKEDITOR.tools.callFunction(4,event);" onclick="CKEDITOR.tools.callFunction(5,this);return false;"> -->
+													<!-- <span class="cke_button_icon cke_button__italic_icon" style="background-image:url('http://ats-sample.local:8040/typo3conf/ext/ats/Resources/Public/JavaScript/ckeditor/plugins/icons.png?t=H0CG');background-position:0 -48px;background-size:auto;"></span> -->
+													<!-- <span id = "cke_8_label" class="cke_button_label cke_button__italic_label" aria-hidden="false">Kursiv</span> -->
+													<!-- <span id = "cke_8_description" class="cke_button_label" aria-hidden="false">Tastaturkürzel Strg+I</span> -->
+												<!-- </a> -->
+											<!-- </span> -->
+											<!-- <span class="cke_toolbar_end"></span> -->
+										<!-- </span> -->
+
+										<!-- <span id = "cke_9" class="cke_toolbar" aria-labelledby="cke_9_label" role="toolbar">										 -->
+											<!-- <span id = "cke_9_label" class="cke_voice_label">Absatz</span> -->
+											<!-- <span class = "cke_toolbar_start"></span> -->
+											<!-- <span class = "cke_toolgroup" role="presentation"> -->
+												<!-- <a id="cke_10" class="cke_button cke_button__numberedlist cke_button_off" title="Nummerierte Liste einfügen/entfernen" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_10_label" aria-describedby="cke_10_description" aria-haspopup="false" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(6,event);" onfocus="return CKEDITOR.tools.callFunction(7,event);" onclick="CKEDITOR.tools.callFunction(8,this);return false;"> -->
+													<!-- <span class="cke_button_icon cke_button__numberedlist_icon" style="background-image:url('http://ats-sample.local:8040/typo3conf/ext/ats/Resources/Public/JavaScript/ckeditor/plugins/icons.png?t=H0CG');background-position:0 -432px;background-size:auto;"></span> -->
+													<!-- <span id="cke_10_label" class="cke_button_label cke_button__numberedlist_label" aria-hidden="false" > Nummerierte Liste einfügen/entfernen</span> -->
+													<!-- <span id="cke_10_description" class="cke_button_label" aria-hidden="false"></span> -->
+												<!-- </a> -->
+												<!-- <a id="cke_11" class="cke_button cke_button__bulletedlist cke_button_off" title="Liste" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_11_label" aria-describedby="cke_11_description" aria-haspopup="false" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(9,event);" onfocus="return CKEDITOR.tools.callFunction(10,event);" onclick="CKEDITOR.tools.callFunction(11,this);return false;"> -->
+													<!-- <span class="cke_button_icon cke_button__bulletedlist_icon" style="background-image:url('http://ats-sample.local:8040/typo3conf/ext/ats/Resources/Public/JavaScript/ckeditor/plugins/icons.png?t=H0CG');background-position:0 -384px;background-size:auto;"></span> -->
+													<!-- <span id="cke_11_label" class="cke_button_label cke_button__bulletedlist_label" aria-hidden="false">Liste</span> -->
+													<!-- <span id="cke_11_description" class="cke_button_label" aria-hidden="false"></span> -->
+												<!-- </a> -->
+												<!-- <span class="cke_toolbar_separator" role="separator"></span> -->
+												<!-- <a id="cke_12" class="cke_button cke_button__outdent cke_button_disabled " title="Einzug verringern" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_12_label" aria-describedby="cke_12_description" aria-haspopup="false" aria-disabled="true" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(12,event);" onfocus="return CKEDITOR.tools.callFunction(13,event);" onclick="CKEDITOR.tools.callFunction(14,this);return false;"> -->
+													<!-- <span class="cke_button_icon cke_button__outdent_icon" style="background-image:url('http://ats-sample.local:8040/typo3conf/ext/ats/Resources/Public/JavaScript/ckeditor/plugins/icons.png?t=H0CG');background-position:0 -240px;background-size:auto;"></span> -->
+													<!-- <span id="cke_12_label" class="cke_button_label cke_button__outdent_label" aria-hidden="false" >Einzug verringern</span> -->
+													<!-- <span id="cke_12_description" class="cke_button_label" aria-hidden="false"></span> -->
+												<!-- </a> -->
+												<!-- <a id="cke_13" class="cke_button cke_button__indent cke_button_off" title="Einzug erhöhen" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_13_label" aria-describedby="cke_13_description" aria-haspopup="false" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(15,event);" onfocus="return CKEDITOR.tools.callFunction(16,event);" onclick="CKEDITOR.tools.callFunction(17,this);return false;"> -->
+													<!-- <span class="cke_button_icon cke_button__indent_icon" style="background-image:url('http://ats-sample.local:8040/typo3conf/ext/ats/Resources/Public/JavaScript/ckeditor/plugins/icons.png?t=H0CG');background-position:0 -192px;background-size:auto;"></span> -->
+													<!-- <span id="cke_13_label" class="cke_button_label cke_button__indent_label" aria-hidden="false">Einzug erhöhen</span> -->
+													<!-- <span id="cke_13_description" class="cke_button_label" aria-hidden="false"></span> -->
+												<!-- </a> -->
+											<!-- </span> -->
+											<!-- <span class="cke_toolbar_end"></span>	 -->
+										<!-- </span> -->
+										
+										<!-- <span id="cke_14" class="cke_toolbar" aria-labelledby="cke_14_label" role="toolbar"> -->
+											<!-- <span id="cke_14_label" class="cke_voice_label">Links</span> -->
+												<!-- <span class = "cke_toolbar_start" ></span> -->
+												<!-- <span class="cke_toolgroup" role="presentation"> -->
+														<!-- <a id="cke_15" class="cke_button cke_button__link cke_button_off" title="Link einfügen/editieren (Strg+L)" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_15_label" aria-describedby="cke_15_description" aria-haspopup="false" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(18,event);" onfocus="return CKEDITOR.tools.callFunction(19,event);" onclick="CKEDITOR.tools.callFunction(20,this);return false;"> -->
+															<!-- <span class="cke_button_icon cke_button__link_icon" style="background-image:url('http://ats-sample.local:8040/typo3conf/ext/ats/Resources/Public/JavaScript/ckeditor/plugins/icons.png?t=H0CG');background-position:0 -312px;background-size:auto;"></span> -->
+															<!-- <span id="cke_15_label" class="cke_button_label cke_button__link_label" aria-hidden="false"> Link einfügen/editieren</span> -->
+															<!-- <span id="cke_15_description" class="cke_button_label" aria-hidden="false"> Tastaturkürzel Strg+L</span>	 -->
+														<!-- </a> -->
+														<!-- <a id="cke_16" class="cke_button cke_button__unlink cke_button_disabled " title="Link entfernen" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_16_label" aria-describedby="cke_16_description" aria-haspopup="false" aria-disabled="true" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(21,event);" onfocus="return CKEDITOR.tools.callFunction(22,event);" onclick="CKEDITOR.tools.callFunction(23,this);return false;"> -->
+															<!-- <span class="cke_button_icon cke_button__unlink_icon" style="background-image:url('http://ats-sample.local:8040/typo3conf/ext/ats/Resources/Public/JavaScript/ckeditor/plugins/icons.png?t=H0CG');background-position:0 -336px;background-size:auto;"></span> -->
+															<!-- <span id="cke_16_label" class="cke_button_label cke_button__unlink_label" aria-hidden="false">Link entfernen</span> -->
+															<!-- <span id="cke_16_description" class="cke_button_label" aria-hidden="false"></span> -->
+														<!-- </a> -->
+												<!-- </span> -->
+											<!-- <span class="cke_toolbar_end"></span>											 -->
+										<!-- </span> -->
+										
+										
+										<!-- <span id="cke_17" class="cke_toolbar" aria-labelledby="cke_17_label" role="toolbar">	 -->
+											<!-- <span id="cke_17_label" class="cke_voice_label">Einfügen</span> -->
+											<!-- <span class="cke_toolbar_start"></span> -->
+											<!-- <span class = "cke_toolgroup" role="presentation"> -->
+												<!-- <a id="cke_18" class="cke_button cke_button__createplaceholder cke_button_off" title="Platzhalter" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_18_label" aria-describedby="cke_18_description" aria-haspopup="false" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(24,event);" onfocus="return CKEDITOR.tools.callFunction(25,event);" onclick="CKEDITOR.tools.callFunction(26,this);return false;" > -->
+													<!-- <span class="cke_button_icon cke_button__placeholder_icon" style="background-image:url('http://ats-sample.local:8040/typo3conf/ext/ats/Resources/Public/JavaScript/ckeditor/plugins/icons.png?t=H0CG');background-position:0 -696px;background-size:auto;"></span> -->
+													<!-- <span id="cke_18_label" class="cke_button_label cke_button__createplaceholder_label" aria-hidden="false">Platzhalter</span> -->
+													<!-- <span id="cke_18_description" class="cke_button_label" aria-hidden="false"></span> -->
+												<!-- </a> -->
+											<!-- </span> -->
+											<!-- <span class="cke_toolbar_end"></span> -->
+										<!-- </span> -->
 
 
-
+										<!-- <span id="cke_19" class="cke_toolbar cke_toolbar_last" aria-labelledby="cke_19_label" role="toolbar"> -->
+											<!-- <span id="cke_19_label" class="cke_voice_label">about</span> -->
+											<!-- <span class="cke_toolbar_start"></span> -->
+											<!-- <span class="cke_toolgroup" role="presentation"> -->
+												<!-- <a id="cke_20" class="cke_button cke_button__about cke_button_off" title="Über CKEditor" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_20_label" aria-describedby="cke_20_description" aria-haspopup="false" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(27,event);" onfocus="return CKEDITOR.tools.callFunction(28,event);" onclick="CKEDITOR.tools.callFunction(29,this);return false;" > -->
+													<!-- <span class="cke_button_icon cke_button__about_icon" style="background-image:url('http://ats-sample.local:8040/typo3conf/ext/ats/Resources/Public/JavaScript/ckeditor/plugins/icons.png?t=H0CG');background-position:0 0px;background-size:auto;"></span> -->
+													<!-- <span id="cke_20_label" class="cke_button_label cke_button__about_label" aria-hidden="false">Über CKEditor</span> -->
+													<!-- <span id="cke_20_description" class="cke_button_label" aria-hidden="false"></span> -->
+												<!-- </a> -->
+											<!-- </span> -->
+											<!-- <span class="cke_toolbar_end"></span> -->
+										<!-- </span> -->
+									<!-- </span> -->
+								<!-- </span> -->
+								<!-- <div id="cke_1_contents" class="cke_contents cke_reset" role="presentation" style="height: 200px;"> -->
+									<!-- <iframe class="cke_wysiwyg_frame cke_reset" src="" style="width: 100%; height: 100%;" title="WYSIWYG-Editor, ats-ck-body" tabindex="0" allowtransparency="true" frameborder="0"> -->
+										<!-- #document -->
+										<!-- <!DOCTYPE html> -->
+											<!-- <html dir="ltr" lang="de"> -->
+												<!-- <head> -->
+													<!-- <title data-cke-title="WYSIWYG-Editor, ats-ck-body" >WYSIWYG-Editor, ats-ck-body</title> -->
+													<!-- <style data-cke-temp="1"> -->
+														<!-- html{height:100% !important}				 -->
+														<!-- img:-moz-broken{-moz-force-broken-image-icon:1;min-width:24px;min-height:24px} -->
+														<!-- html{cursor:text;*cursor:auto} -->
+														<!-- img,input,textarea{cursor:default} -->
+													<!-- </style> -->
+													<!-- <link type="text/css" rel="stylesheet" href="http://ats-sample.local:8040/typo3conf/ext/ats/Resources/Public/JavaScript/ckeditor/contents.css?t=H0CG"> -->
+													<!-- <style data-cke-temp="1"> -->
+														<!-- .cke_editable{cursor:text}.cke_editable img,.cke_editable input,.cke_editable textarea{cursor:default} -->
+														<!-- .cke_contents_ltr a.cke_anchor,.cke_contents_ltr a.cke_anchor_empty,.cke_editable.cke_contents_ltr a[name],.cke_editable.cke_contents_ltr a[data-cke-saved-name]{background:url(http://ats-sample.local:8040/typo3conf/ext/ats/Resources/Public/JavaScript/ckeditor/plugins/link/images/anchor.png?t=H0CG) no-repeat left center;border:1px dotted #00f;background-size:16px;padding-left:18px;cursor:auto;}.cke_contents_ltr img.cke_anchor{background:url(http://ats-sample.local:8040/typo3conf/ext/ats/Resources/Public/JavaScript/ckeditor/plugins/link/images/anchor.png?t=H0CG) no-repeat left center;border:1px dotted #00f;background-size:16px;width:16px;min-height:15px;height:1.15em;vertical-align:text-bottom;}.cke_contents_rtl a.cke_anchor,.cke_contents_rtl a.cke_anchor_empty,.cke_editable.cke_contents_rtl a[name],.cke_editable.cke_contents_rtl a[data-cke-saved-name]{background:url(http://ats-sample.local:8040/typo3conf/ext/ats/Resources/Public/JavaScript/ckeditor/plugins/link/images/anchor.png?t=H0CG) no-repeat right center;border:1px dotted #00f;background-size:16px;padding-right:18px;cursor:auto;}.cke_contents_rtl img.cke_anchor{background:url(http://ats-sample.local:8040/typo3conf/ext/ats/Resources/Public/JavaScript/ckeditor/plugins/link/images/anchor.png?t=H0CG) no-repeat right center;border:1px dotted #00f;background-size:16px;width:16px;min-height:15px;height:1.15em;vertical-align:text-bottom;} -->
+														<!-- .cke_widget_wrapper{position:relative;outline:none}.cke_widget_inline{display:inline-block}.cke_widget_wrapper:hover>.cke_widget_element{outline:2px solid yellow;cursor:default}.cke_widget_wrapper:hover .cke_widget_editable{outline:2px solid yellow}.cke_widget_wrapper.cke_widget_focused>.cke_widget_element,.cke_widget_wrapper .cke_widget_editable.cke_widget_editable_focused{outline:2px solid #ace}.cke_widget_editable{cursor:text}.cke_widget_drag_handler_container{position:absolute;width:15px;height:0;display:none;opacity:0.75;transition:height 0s 0.2s;line-height:0}.cke_widget_wrapper:hover>.cke_widget_drag_handler_container{height:15px;transition:none}.cke_widget_drag_handler_container:hover{opacity:1}img.cke_widget_drag_handler{cursor:move;width:15px;height:15px;display:inline-block}.cke_widget_mask{position:absolute;top:0;left:0;width:100%;height:100%;display:block}.cke_editable.cke_widget_dragging, .cke_editable.cke_widget_dragging *{cursor:move !important} -->
+														<!-- .cke_placeholder{background-color:#ff0} -->
+													<!-- </style> -->
+												<!-- </head> -->
+												<!-- <body class="cke_editable cke_editable_themed cke_contents_ltr" spellcheck="false" contenteditable="true"> -->
+													<!-- <p> -->
+														<!-- <br> -->
+													<!-- </p> -->
+												<!-- </body> -->
+											<!-- </html> -->
+									<!-- </iframe> -->
+								<!-- </div> -->
+							<!-- </div> -->
+						<!-- </div> -->
+					</div>						
+					<div class="form-group">
+						<f:form.button name="action" value="{previewAction}" class="btn btn-primary"><f:translate id="be.label.ApplicationSingle.Acknowledge.Preview"/></f:form.button>
+						<f:form.button name="action" value="{sendAction}" class="btn btn-primary"><f:translate id="be.label.ApplicationSingle.Acknowledge.Send"/></f:form.button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!------------------------------- Ende Eingangsbestätigung ------------------------------->

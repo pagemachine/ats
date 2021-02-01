@@ -21,7 +21,7 @@ class DefaultWorkflowConfiguration
         'show' => ['from' => [], 'to' => []],
         'edit' => ['from' => [], 'to' => []],
 //        'editStatus'=> ['from' => [], 'to' => []],
-        'acknowledge' => ['from' => ApplicationStatus::NEW_APPLICATION, 'to' => ApplicationStatus::DEPARTMENT],
+//        'acknowledge' => ['from' => ApplicationStatus::NEW_APPLICATION, 'to' => ApplicationStatus::DEPARTMENT],
         'autoAcknowledge'=> ['from' => [], 'to' => []],
         'backToPerso' => ['from' => ApplicationStatus::DEPARTMENT, 'to' => ApplicationStatus::PERSO],
         'employ' => ['name' => 'close','from' => ApplicationStatus::PERSO, 'to' => ApplicationStatus::EMPLOYED],
