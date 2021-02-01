@@ -46,7 +46,6 @@ require(
             }
         },
         columns: [
-/*             {name: 'uid', data : 'uid'}, */
 			{
                 name: 'name',
                 data: 'uid', /* statt uid surname */
