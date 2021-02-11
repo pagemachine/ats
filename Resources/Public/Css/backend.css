@@ -214,6 +214,16 @@
 	top: -350px;
 }
 
+#ApplicationDetails {
+	position: relative;
+	top: -70px;
+}
+
+#ApplicationNotes {
+	position: relative;
+	top: -70px;
+}
+
 #buttonNewApplication1 {
 	text-align:right;
 }
