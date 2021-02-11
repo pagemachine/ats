@@ -1329,7 +1329,7 @@
       <trans-unit id="be.label.ApplicationSingle.Table.JobTitle">
       	<source>Jobtitle</source>
       </trans-unit>
-      <trans-unit id="be.label.ApplicationSingle.Table.ReceiptDate">
+      <trans-unit id="be.label.ApplicationSingle.Table.ApplicationDate">
       	<source>Receipt date</source>
       </trans-unit>
 

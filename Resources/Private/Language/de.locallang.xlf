@@ -1031,9 +1031,9 @@
       		  <target>Stelle</target>
       		</trans-unit>
 
-      		<trans-unit id="be.label.ApplicationSingle.Table.ReceiptDate">
+      		<trans-unit id="be.label.ApplicationSingle.Table.ApplicationDate">
       		  <source>Receipt date</source>
-      		  <target>Eingangsdatum</target>
+      		  <target>Bewerbungseingang</target>
       		</trans-unit>
 
       		<trans-unit id="be.label.ApplicationSingle.Table.ApplicationType">
