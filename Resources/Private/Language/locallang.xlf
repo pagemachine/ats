@@ -1323,7 +1323,7 @@
       <trans-unit id="be.label.ApplicationSingle.2">
       	<source>for </source>
       </trans-unit>
-      <trans-unit id="be.label.ApplicationSingle.Table.GeneralInformation">
+      <trans-unit id="be.label.ApplicationSingle.Table.GeneralDetails">
       	<source>General Information</source>
       </trans-unit>
       <trans-unit id="be.label.ApplicationSingle.Table.JobTitle">

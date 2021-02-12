@@ -1021,9 +1021,9 @@
       		  <target>als </target>
       		</trans-unit>
 
-      		<trans-unit id="be.label.ApplicationSingle.Table.GeneralInformation">
+      		<trans-unit id="be.label.ApplicationSingle.Table.GeneralDetails">
       		  <source>General Information</source>
-      		  <target>Allgemeine Angaben</target>
+      		  <target>Details</target>
       		</trans-unit>
 
       		<trans-unit id="be.label.ApplicationSingle.Table.JobTitle">
