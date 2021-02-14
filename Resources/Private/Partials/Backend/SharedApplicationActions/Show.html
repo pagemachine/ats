@@ -299,19 +299,19 @@
 		<h2>Kontaktieren</h2>
 		<div class = "row">
 			<div class="col-sm-12">
-				<form name = "massage" action="/typo3/index.php?route=%2FAtsAts%2FAtsApplications%2F&token=4a3d17dbb374f2b2308b441fe622b065158deed6&tx_ats%5Bcontroller%5D=Backend%5CApplication" method="post">
+						<f:form action="message" object="{application}" name="application">
 					<div>
 						<f:form.hidden name=" application __identity" value="{beUser.uid}" /> 
 						<f:form.hidden name=" __referrer @extension" value="{ats}"/>		
 						<f:form.hidden name="__referrer @vendor" value="{PAGEmachine}"/>					
 						<f:form.hidden name="__referrer @controller" value="{Backend\Application}"/>	
-						<f:form.hidden name="__referrer @action" value="{acknowledge}"/>						 
+						<f:form.hidden name="__referrer @action" value="{acknowledge}"/>						
 					 <input type = "hidden" name = "tx_ats[__referrer][arguments]" value="YTozOntzOjExOiJhcHBsaWNhdGlvbiI7czozOiIyMDYiO3M6NjoiYWN0aW9uIjtzOjExOiJhY2tub3dsZWRnZSI7czoxMDoiY29udHJvbGxlciI7czoxOToiQmFja2VuZFxBcHBsaWNhdGlvbiI7fQ==54c177306b9c450b8231c7baaaa312ec5a99f7d2">							 
 					 <input type = "hidden" name = "tx_ats[__referrer][@request]" value='a:4:{s:10:"@extension";s:3:"Ats";s:11:"@controller";s:19:"Backend\Application";s:7:"@action";s:11:"acknowledge";s:7:"@vendor";s:11:"PAGEmachine";}f1c292535b1c32ea97a3d847d1e3127680794f36'>					 
 					 <input type = "hidden" name = "tx_ats[__trustedProperties]" value='a:2:{s:7:"message";a:7:{s:11:"application";i:1;s:8:"sendType";i:1;s:12:"textTemplate";i:1;s:7:"subject";i:1;s:2:"cc";i:1;s:3:"bcc";i:1;s:4:"body";i:1;}s:6:"action";i:1;}b28dec41cf0b43e4e99ffbb13919507991b728fe'>						 
 					</div>
 					 <input type = "hidden" name = "tx_ats[message][application]" value = "206">				
-					 <input type = "hidden" name = "tx_ats[action]" value = "acknowledge">					
+					 <input type = "hidden" name = "tx_ats[action]" value = "acknowledge">				 
 					
 <!-- 					<div class = "radio">
 						<label>
@@ -340,8 +340,11 @@
 						<label for = "textTemplate"> Template </label>
 						<select id = "textTemplate" class="form-control" onchange="this.form.submit()" name="tx_ats[message][textTemplate]">
 							<option value = ""> --- </option>
+							<option value = "3"> E-Mail Nachricht BEISPIEL </option>		
 							<option value = "6"> Eingangsbestätigung Briefbewerbung BEISPIEL </option>					
-							<option value = "7"> Eingangsbestätigung BEISPIEL </option>					
+							<option value = "7"> Eingangsbestätigung BEISPIEL </option>
+							<option value = "2"> Absage BEISPIEL </option>		
+							<option value = "8"> Profil ungeeignet BEISPIEL </option>									
 						</select>
 					</div>						
 	
@@ -499,7 +502,7 @@
 						<f:form.button name="action" value="{previewAction}" class="btn btn-primary">Speichern + Vorschau</f:form.button>
 						<f:form.button name="action" value="{sendAction}" class="btn btn-primary"><f:translate id="be.label.ApplicationSingle.Acknowledge.Send"/></f:form.button>
 					</div>
-				</form>
+		</f:form>
 			</div>
 		</div>
 	</div>
