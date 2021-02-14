@@ -296,7 +296,7 @@
 
 <div class="panel panel-tab">
 	<div class = "panel-body">
-		<h2>Bewerbung bestätigen</h2>
+		<h2>Kontaktieren</h2>
 		<div class = "row">
 			<div class="col-sm-12">
 				<form name = "massage" action="/typo3/index.php?route=%2FAtsAts%2FAtsApplications%2F&token=4a3d17dbb374f2b2308b441fe622b065158deed6&tx_ats%5Bcontroller%5D=Backend%5CApplication" method="post">
@@ -313,19 +313,28 @@
 					 <input type = "hidden" name = "tx_ats[message][application]" value = "206">				
 					 <input type = "hidden" name = "tx_ats[action]" value = "acknowledge">					
 					
-					<div class = "radio">
+<!-- 					<div class = "radio">
 						<label>
 							<input id = "sendTypeMail" type = "radio" name="tx_ats[message][sendType]" value="mail" checked="checked">
 							<f:translate id="be.label.ApplicationSingle.Acknowledge.SendMailTo"/> 
 						</label>
-					</div>
+					</div> -->
 					
-					<div class = "radio">					
+<!-- 					<div class = "radio">					
 						<label>
 							<input id = "sendTypePdf" type="radio" name="tx_ats[message][sendType]" value="pdf">
 							<f:translate id="be.label.ApplicationSingle.Acknowledge.CreatePdf"/>
 						</label>
-					</div>		
+					</div>	 -->	
+					
+					<div class = "form-group">					
+						<select id = "textTemplate" class="form-control" onchange="this.form.submit()" name="tx_ats[message][textTemplate]">
+							<option value = ""> auswählen </option>
+							<option value = ""> Eingangsbestätigung </option>					
+							<option value = ""> E-Mail </option>
+							<option value = ""> Absage </option>								
+						</select>
+					</div>	
 					
 					<div class = "form-group">					
 						<label for = "textTemplate"> Template </label>
@@ -487,7 +496,7 @@
 						<!-- </div> -->
 					</div>						
 					<div class="form-group">
-						<f:form.button name="action" value="{previewAction}" class="btn btn-primary"><f:translate id="be.label.ApplicationSingle.Acknowledge.Preview"/></f:form.button>
+						<f:form.button name="action" value="{previewAction}" class="btn btn-primary">Speichern + Vorschau</f:form.button>
 						<f:form.button name="action" value="{sendAction}" class="btn btn-primary"><f:translate id="be.label.ApplicationSingle.Acknowledge.Send"/></f:form.button>
 					</div>
 				</form>
