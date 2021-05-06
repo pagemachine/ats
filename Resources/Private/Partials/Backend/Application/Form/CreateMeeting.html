@@ -1,0 +1,28 @@
+<fieldset class="table-container">
+	<h3><f:translate id="be.label.ApplicationSingle.VideoInterview.CreateMeeting"></f:translate></h3>
+
+	<table class="table">
+
+		<f:render partial="Backend/Application/Field/TextField" arguments="{
+		  translationKey: 'tx_ats.label.date',
+		  fieldType: 'date',
+		  fieldName: 'date',
+		  fieldValue:'{application.date -> f:format.date(format:\"Y-m-d\")}'
+		}"/>
+		
+		<f:render partial="Backend/Application/Field/TextField" arguments="{
+		  translationKey: 'tx_ats.label.date',
+		  fieldType: 'date',
+		  fieldName: 'date',
+		  fieldValue:'{application.date -> f:format.date(format:\"H:i\")}'
+		}"/>
+		
+		<f:render partial="Backend/Application/Field/TextField" arguments="{
+		  translationKey: 'tx_ats.label.date',
+		  fieldType: 'date',
+		  fieldName: 'date',
+		  fieldValue:'{application.date -> f:format.date(format:\"H:i\")}'
+		}"/>
+		
+	</table>
+</fieldset>
