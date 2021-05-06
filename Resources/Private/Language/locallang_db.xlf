@@ -502,6 +502,10 @@
 			  <source>Rating (Perso)</source>
 			</trans-unit>
 
+			<trans-unit id="tx_ats_domain_model_application.video_interview">
+				<source>Videocall</source>
+			</trans-unit>
+
 			<trans-unit id="tx_ats_domain_model_application.comment_rating_perso">
 			  <source>Rating note (Perso)</source>
 			</trans-unit>
@@ -676,6 +680,38 @@
 
 			<trans-unit id="tx_ats_domain_model_application.files">
 			  <source>Files</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.ics_file">
+				<source>ICS File</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.date">
+ 				<source>Date</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.from">
+			 	<source>From</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.to">
+			 	<source>To</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.specialistDepartment">
+			 	<source>Specialist Department</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.hrDepartment">
+			 	<source>HR Department</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.applicants">
+			 	<source>Applicants:</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_application.link">
+			 	<source>Link:</source>
 			</trans-unit>
 
 			<trans-unit id="tx_ats_domain_model_application.user">
