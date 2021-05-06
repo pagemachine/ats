@@ -1,0 +1,16 @@
+<h3><f:translate id="be.label.ApplicationSingle.VideoInterview.InvitionFields"></f:translate></h3>
+
+<f:render partial="Backend/Message/Fields/Textarea" arguments="{
+  field : 'body',
+  languagePath : 'mail',
+  placeholders : '{placeholders}'
+}"/>
+
+<f:render partial="Backend/Message/{message.name}" arguments="{
+  message : message
+}" />
+
+
+<div class="form-group">
+  <f:form.button name="action" value="{previewAction}" class="btn btn-primary"><f:translate id="be.label.ApplicationSingle.Acknowledge.Preview"/></f:form.button>
+</div>
