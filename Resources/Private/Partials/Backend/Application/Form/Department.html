@@ -1,0 +1,19 @@
+<fieldset class="table-container">
+	<h3><f:translate id="be.label.ApplicationSingle.VideoInterview.InviteDepartments"></f:translate></h3>
+
+	<table class="table">
+
+		<f:render partial="Backend/Application/Field/SelectTranslated" arguments="{
+		  translationKey: 'tx_ats.label.specialistDepartment',
+		  fieldName: 'specialistDepartment',
+		  options: '{1:1, 2:2, 3:3}'
+		}"/>
+		
+		<f:render partial="Backend/Application/Field/SelectTranslated" arguments="{
+		  translationKey: 'tx_ats.label.hrDepartment',
+		  fieldName: 'hrDepartment',
+		  options: '{1:1, 2:2, 3:3}'
+		}"/>
+		
+	</table>
+</fieldset>
