@@ -471,6 +471,47 @@
 				<target>Datei(en)</target>
 			</trans-unit>
 
+			<trans-unit id="tx_ats.label.ics_file">
+				<source>ICS File</source>
+				<target>ICS-Datei</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.label.date">
+ 				<source>Date</source>
+				<target>Datum</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.label.from">
+			 	<source>From</source>
+				<target>Von</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.label.to">
+			 	<source>To</source>
+				<target>Bis</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.label.specialistDepartment">
+			 	<source>Specialist Department</source>
+				<target>Fachabteilung</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.label.hrDepartment">
+			 	<source>HR Department</source>
+				<target>Personalabteilung</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.label.applicants">
+			 	<source>Applicants:</source>
+				<target>Bewerber:</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.label.link">
+			 	<source>Link:</source>
+				<target>Link:</target>
+			</trans-unit>
+
+
 			<trans-unit id="tx_ats.upload.back">
 				<source>Back</source>
 				<target>Zurück</target>
@@ -1116,6 +1157,11 @@
 				<target>Klonen</target>
 	  		</trans-unit>
 
+	  		<trans-unit id="tx_ats.be.actions.application.videoInterview">
+				<source>Videocall</source>
+				<target>Video-Interview</target>
+			</trans-unit>
+
 	   <trans-unit id="tx_ats.be.actions.application.backToPerso">
 		        <source>Send back to personnel department</source>
 				<target>Zurück an Perso</target>
@@ -1674,6 +1720,36 @@
 			<trans-unit id="be.label.ApplicationSingle.History.Subject">
 				<source>Subject</source>
 				<target>Thema</target>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.VideoInterview.InvitionToVideoInterview">
+ 				<source>Invite to Videocall</source>
+				<target>Einladung zum Video-Interview</target>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.VideoInterview.Applicant">
+ 				<source>Applicants:</source>
+				<target>Bewerber:</target>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.VideoInterview.LinkToVideointerview">
+ 				<source>Link to video interview:</source>
+				<target>Link zum Video-Interview:</target>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.VideoInterview.Link">
+			 	<source>Link:</source>
+				<target>Link:</target>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.VideoInterview.InviteDepartments">
+			 	<source>Invite departments</source>
+				<target>Abteilungen einladen</target>
+			</trans-unit>
+
+			<trans-unit id="be.label.ApplicationSingle.VideoInterview.IcsDownload">
+			 	<source>ICS download</source>
+				<target>ICS Download</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.history.new.subject">
