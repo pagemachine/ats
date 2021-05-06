@@ -341,6 +341,38 @@
 		<source>File(s)</source>
 	  </trans-unit>
 
+	  <trans-unit id="tx_ats.label.ics_file">
+		<source>ICS File</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.date">
+ 		<source>Date</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.from">
+	 	<source>From</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.to">
+	 	<source>To</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.specialistDepartment">
+	 	<source>Specialist Department</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.hrDepartment">
+	 	<source>HR Department</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.applicants">
+	 	<source>Applicants:</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.label.link">
+	 	<source>Link:</source>
+	  </trans-unit>
+
 	  <trans-unit id="tx_ats.upload.back">
 		<source>Back</source>
 	  </trans-unit>
@@ -744,6 +776,10 @@
 
 	   <trans-unit id="tx_ats.be.actions.application.clone">
 		<source>Clone</source>
+	  </trans-unit>
+
+	  <trans-unit id="tx_ats.be.actions.application.videoInterview">
+		<source>Videocall</source>
 	  </trans-unit>
 
 	   <trans-unit id="tx_ats.be.actions.application.moveToPool">
@@ -1392,6 +1428,30 @@
 	  	<trans-unit id="tx_ats.be.actions.application.clone">
 				<source>Clone</source>
 	  	</trans-unit>
+
+	  	<trans-unit id="be.label.ApplicationSingle.VideoInterview.InvitionToVideoInterview">
+ 			<source>Invite to Videocall</source>
+		</trans-unit>
+
+		<trans-unit id="be.label.ApplicationSingle.VideoInterview.Applicant">
+ 			<source>Applicants:</source>
+		</trans-unit>
+
+		<trans-unit id="be.label.ApplicationSingle.VideoInterview.LinkToVideointerview">
+ 			<source>Link to video interview:</source>
+		</trans-unit>
+
+		<trans-unit id="be.label.ApplicationSingle.VideoInterview.Link">
+			 <source>Link:</source>
+		</trans-unit>
+
+		<trans-unit id="be.label.ApplicationSingle.VideoInterview.InviteDepartments">
+			 <source>Invite departments</source>
+		</trans-unit>
+
+		<trans-unit id="be.label.ApplicationSingle.VideoInterview.IcsDownload">
+			 <source>ICS download</source>
+		</trans-unit>
 
       <trans-unit id="be.label.ApplicationSingle.Overview.FormData">
         <source>Form data</source>
