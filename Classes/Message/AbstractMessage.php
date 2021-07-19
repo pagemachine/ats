@@ -27,6 +27,7 @@ abstract class AbstractMessage
     const MESSAGE_REPLY = 3;
     const MESSAGE_REQUEST = 4;
     const MESSAGE_REJECT = 5;
+    const MESSAGE_VIDEOINVITATION = 1;
 
     /**
      * @var TextTemplateRepository $textTemplateRepository

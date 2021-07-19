@@ -70,6 +70,19 @@ CKEDITOR.plugins.add("placeholderPresets", {
                     [lang.markers.application.job.title, 'application.job.title'],
                     [lang.markers.application.job.jobNumber, 'application.job.jobNumber'],
                     [lang.markers.backenduser.signature, 'backenduser.signature']
+                ],
+                'videoInvitation': [
+                    [lang.markers.application.salutation, 'application.salutation'],
+                    [lang.markers.application.title, 'application.title'],
+                    [lang.markers.application.firstname, 'application.firstname'],
+                    [lang.markers.application.surname, 'application.surname'],
+                    [lang.markers.application.job.title, 'application.job.title'],
+                    [lang.markers.application.job.jobNumber, 'application.job.jobNumber'],
+                    [lang.markers.fields.date, 'fields.date'],
+                    [lang.markers.fields.appointmentFrom, 'fields.appointmentFrom'],
+                    [lang.markers.fields.appointmentUntil, 'fields.appointmentUntil'],
+                    [lang.markers.fields.url, 'fields.url'],
+                    [lang.markers.backenduser.signature, 'backenduser.signature']
                 ]
             }
         };
