@@ -1,7 +1,7 @@
 <f:form.validationResults for="message.{field}">
 	<div class="form-group {f:if(condition:validationResults.errors, then:'has-error')}">
 		<label for="{field}"><f:translate key="tx_ats.{languagePath}.{field}" default="{field}"/></label>
-		<f:form.textfield property="{field}" id="{field}" class="form-control" type="time" />
+		<f:form.textfield property="{field}" id="{field}" class="form-control" type="time" value="{value -> f:format.date(format:'H:i')}" />
 		<f:if condition="{validationResults.errors}">
 			<f:for each="{validationResults.errors}" as="error">
 				<span class="help-block"><f:translate key="tx_ats.error.{languagePath}.{field}.{error.code}">{field} : {error.message}</f:translate></span>
