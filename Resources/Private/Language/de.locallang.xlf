@@ -1157,9 +1157,9 @@
 				<target>Klonen</target>
 	  		</trans-unit>
 
-	  		<trans-unit id="tx_ats.be.actions.application.videoInterview">
+			<trans-unit id="tx_ats.be.actions.application.videoInvitation">
 				<source>Videocall</source>
-				<target>Video-Interview</target>
+				<target>Video-Einladung</target>
 			</trans-unit>
 
 	   <trans-unit id="tx_ats.be.actions.application.backToPerso">
@@ -1231,6 +1231,16 @@
 			<trans-unit id="tx_ats.history.invite.details">
 				<source>Invitation was sent</source>
 				<target>Einladung versendet</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.videoInvitation.subject">
+				<source>Video Invitation</source>
+				<target>Video-Einladung</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.videoInvitation.details">
+				<source>VideoInvitation was sent</source>
+				<target>Video-Einladung versendet</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.history.acknowledge.subject">
@@ -1510,6 +1520,25 @@
         <target>Raum</target>
       </trans-unit>
 
+      	<trans-unit id="tx_ats.mail.date">
+			<source>Date</source>
+			<target>Datum</target>
+		</trans-unit>
+
+		<trans-unit id="tx_ats.mail.appointmentFrom">
+			<source>Time from</source>
+			<target>Uhrzeit von</target>
+		</trans-unit>
+
+		<trans-unit id="tx_ats.mail.appointmentUntil">
+			<source>Time to</source>
+			<target>Uhrzeit bis</target>
+		</trans-unit>
+
+		<trans-unit id="tx_ats.mail.url">
+			<source>URL:</source>
+			<target>URL:</target>
+			</trans-unit>
 
 
       		<trans-unit id="be.label.ApplicationSingle.Overview.FormData">
@@ -1732,24 +1761,19 @@
 				<target>Bewerber:</target>
 			</trans-unit>
 
-			<trans-unit id="be.label.ApplicationSingle.VideoInterview.LinkToVideointerview">
- 				<source>Link to video interview:</source>
-				<target>Link zum Video-Interview:</target>
+			<trans-unit id="be.label.ApplicationSingle.VideoInterview.LinkToVideocall">
+				<source>URL to Videocall</source>
+				<target>URL zum Video-Interview</target>
 			</trans-unit>
 
-			<trans-unit id="be.label.ApplicationSingle.VideoInterview.Link">
-			 	<source>Link:</source>
-				<target>Link:</target>
+			<trans-unit id="be.label.ApplicationSingle.VideoInterview.CreateAppointment">
+				<source>Create appointment</source>
+				<target>Termin erstellen</target>
 			</trans-unit>
 
-			<trans-unit id="be.label.ApplicationSingle.VideoInterview.InviteDepartments">
-			 	<source>Invite departments</source>
-				<target>Abteilungen einladen</target>
-			</trans-unit>
-
-			<trans-unit id="be.label.ApplicationSingle.VideoInterview.IcsDownload">
-			 	<source>ICS download</source>
-				<target>ICS Download</target>
+			<trans-unit id="be.label.ApplicationSingle.VideoInterview.InvitationMail">
+				<source>Invitation mail</source>
+				<target>Einladungsmail</target>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.history.new.subject">
@@ -1921,6 +1945,11 @@
 			<trans-unit id='be.flashMessage.invite.ok'>
 				<source>Your invitation was sent.</source>
 				<target>Ihre Einladung wurde abgeschickt.</target>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.videoInvitation.ok'>
+				<source>Your invitation was sent.</source>
+				<target>Ihre Video-Einladung wurde abgeschickt.</target>
 			</trans-unit>
 
 			<trans-unit id='be.flashMessage.acknowledge.ok'>

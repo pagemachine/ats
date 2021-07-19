@@ -778,9 +778,9 @@
 		<source>Clone</source>
 	  </trans-unit>
 
-	  <trans-unit id="tx_ats.be.actions.application.videoInterview">
-		<source>Videocall</source>
-	  </trans-unit>
+		<trans-unit id="tx_ats.be.actions.application.videoInvitation">
+			<source>Videocall</source>
+		</trans-unit>
 
 	   <trans-unit id="tx_ats.be.actions.application.moveToPool">
 		<source>Move to pool</source>
@@ -824,6 +824,14 @@
 
 			<trans-unit id="tx_ats.history.invite.details">
 				<source>Invitation was sent</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.videoInvitation.subject">
+				<source>Video Invitation</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats.history.videoInvitation.details">
+				<source>VideoInvitation was sent</source>
 			</trans-unit>
 
 			<trans-unit id="tx_ats.history.acknowledge.subject">
@@ -1178,6 +1186,22 @@
         <source>Room</source>
       </trans-unit>
 
+      	<trans-unit id="tx_ats.mail.date">
+			<source>Date</source>
+		</trans-unit>
+
+		<trans-unit id="tx_ats.mail.appointmentFrom">
+			<source>Time from</source>
+		</trans-unit>
+
+		<trans-unit id="tx_ats.mail.appointmentUntil">
+			<source>Time to</source>
+		</trans-unit>
+
+		<trans-unit id="tx_ats.mail.url">
+			<source>URL:</source>
+		 </trans-unit>
+
       <!-- Backend -->
 		<trans-unit id="be.label.ListApplications">
 			<source>Dynamic List</source>
@@ -1433,24 +1457,16 @@
  			<source>Invite to Videocall</source>
 		</trans-unit>
 
-		<trans-unit id="be.label.ApplicationSingle.VideoInterview.Applicant">
- 			<source>Applicants:</source>
-		</trans-unit>
-
 		<trans-unit id="be.label.ApplicationSingle.VideoInterview.LinkToVideointerview">
- 			<source>Link to video interview:</source>
+ 			<source>URL to video interview:</source>
 		</trans-unit>
 
-		<trans-unit id="be.label.ApplicationSingle.VideoInterview.Link">
-			 <source>Link:</source>
+		<trans-unit id="be.label.ApplicationSingle.VideoInterview.InvitationMail">
+			<source>Invitation mail</source>
 		</trans-unit>
 
-		<trans-unit id="be.label.ApplicationSingle.VideoInterview.InviteDepartments">
-			 <source>Invite departments</source>
-		</trans-unit>
-
-		<trans-unit id="be.label.ApplicationSingle.VideoInterview.IcsDownload">
-			 <source>ICS download</source>
+		<trans-unit id="be.label.ApplicationSingle.VideoInterview.CreateAppointment">
+			<source>Create appointment</source>
 		</trans-unit>
 
       <trans-unit id="be.label.ApplicationSingle.Overview.FormData">
@@ -1688,6 +1704,10 @@
 			</trans-unit>
 
 			<trans-unit id='be.flashMessage.invite.ok'>
+				<source>Your invitation was sent.</source>
+			</trans-unit>
+
+			<trans-unit id='be.flashMessage.videoInvitation.ok'>
 				<source>Your invitation was sent.</source>
 			</trans-unit>
 
