@@ -49,6 +49,7 @@ class WorkflowManager implements SingletonInterface
         'rating',
         'ratingPerso',
         'moveToPool',
+        'videoInvitation',
     ];
 
     /**
