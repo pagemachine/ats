@@ -20,6 +20,7 @@ class MessageFactory implements SingletonInterface
         'invite' => InviteMessage::class,
         'acknowledge' => AcknowledgeMessage::class,
         'reject' => RejectMessage::class,
+        'videoInvitation' => VideoInvitationMessage::class,
     ];
 
     /**
@@ -31,6 +32,7 @@ class MessageFactory implements SingletonInterface
         AbstractMessage::MESSAGE_INVITE => 'invite',
         AbstractMessage::MESSAGE_ACKNOWLEDGE => 'acknowledge',
         AbstractMessage::MESSAGE_REJECT => 'reject',
+        AbstractMessage::MESSAGE_VIDEOINVITATION => 'videoInvitation',
     ];
 
     /**
@@ -41,6 +43,7 @@ class MessageFactory implements SingletonInterface
         AbstractMessage::MESSAGE_INVITE => 'InviteMessage',
         AbstractMessage::MESSAGE_ACKNOWLEDGE => 'AcknowledgeMessage',
         AbstractMessage::MESSAGE_REJECT => 'RejectMessage',
+        AbstractMessage::MESSAGE_VIDEOINVITATION => 'VideoInvitationMessage',
     ];
 
     /**
