@@ -17,9 +17,12 @@ use PAGEmachine\Ats\Message\AcknowledgeMessage;
 use PAGEmachine\Ats\Message\InviteMessage;
 use PAGEmachine\Ats\Message\RejectMessage;
 use PAGEmachine\Ats\Message\ReplyMessage;
+use PAGEmachine\Ats\Message\VideoInvitationMessage;
 use PAGEmachine\Ats\Property\TypeConverter\UploadedFileReferenceConverter;
 use PAGEmachine\Ats\Service\DuplicationService;
 use PAGEmachine\Ats\Service\ExtconfService;
+use PAGEmachine\Ats\Service\HashServiceUrl;
+use PAGEmachine\Ats\Service\IcsGeneratorService;
 use PAGEmachine\Ats\Traits\StaticCalling;
 use PAGEmachine\Ats\Workflow\WorkflowManager;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
@@ -49,6 +52,11 @@ class ApplicationController extends AbstractBackendController
      */
     protected $messageFactory;
 
+    /**
+     * @var \PAGEmachine\Ats\Service\HashServiceUrl
+     * @inject
+     */
+    protected $hashServiceUrl;
 
     /**
      * Action URLs for the action menu
@@ -117,6 +125,22 @@ class ApplicationController extends AbstractBackendController
                 ->getPropertyMappingConfiguration()
                 ->forProperty('confirmDate')
                 ->setTypeConverterOption(\TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::class, \TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'Y-m-d');
+
+            $this->arguments->getArgument('message')
+                ->getPropertyMappingConfiguration()
+                ->forProperty('date')
+                ->setTypeConverterOption(\TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::class, \TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'Y-m-d');
+
+            $this->arguments->getArgument('message')
+                ->getPropertyMappingConfiguration()
+                ->forProperty('appointmentFrom')
+                ->setTypeConverterOption(\TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::class, \TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'H:i');
+
+            $this->arguments->getArgument('message')
+                 ->getPropertyMappingConfiguration()
+                ->forProperty('appointmentUntil')
+                ->setTypeConverterOption(\TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::class, \TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'H:i');
+       
         }
         if ($this->request->hasArgument('application')) {
             $this->arguments->getArgument('application')
@@ -876,6 +900,57 @@ class ApplicationController extends AbstractBackendController
         $this->applicationRepository->updateAndLog($application, 'new');
         $this->addFlashMessage($this->callStatic(LocalizationUtility::class, 'translate', 'be.flashMessage.create.ok', 'ats'));
         $this->redirect("edit", null, null, ["application" => $application]);
+    }
+
+    /**
+     * Form for mail/pdf invite text creation
+     * @param  VideoInvitationMessage $message
+     * @param  Application $application
+     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("message")
+     * @ignorevalidation $message
+     * @return void
+     */
+    public function videoInvitationAction(VideoInvitationMessage $message = null, Application $application = null)
+    {
+        if ($message == null) {
+            $message = $this->messageFactory->createMessage("videoInvitation", $application);
+        }
+
+        $message->applyTextTemplate();
+        
+        $this->view->assignMultiple([
+            'message' => $message,
+            'application' => $message->getApplication(),
+        ]);
+    }
+
+
+    /**
+     * Sends the reply in the desired way (mail or pdf)
+     *
+     * @param VideoInvitationMessage $message
+     *
+     * @return void
+     */
+    public function sendVideoInvitationAction(VideoInvitationMessage $message)
+    {
+        
+        $this->applicationRepository->updateAndLog(
+            $message->getApplication(),
+            'videoInvitation',
+            [
+                'subject' => $message->getRenderedSubject(),
+                'sendType' => $message->getSendType(),
+                'cc' => $message->getCc(),
+                'bcc' => $message->getBcc(),
+                'message' => $message->getRenderedBody(),
+            ]
+        );
+
+        $message->send();
+
+        $this->addFlashMessage($this->callStatic(LocalizationUtility::class, 'translate', 'be.flashMessage.videoInvitation.ok', 'ats'));
+        $this->redirect("show", null, null, ['application' => $message->getApplication()]);
     }
 
     /**
