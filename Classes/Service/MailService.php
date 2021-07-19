@@ -57,9 +57,10 @@ class MailService implements SingletonInterface
      * @param  array|string $cc
      * @param  array|string $bcc
      * @param  bool $useBackendUserCredentials Whether the mail should use the current backend user for sender details
+     * @param  array|string $attachments
      * @return void
      */
-    public function sendReplyMail(Application $application, $subject = "", $body = "", $cc = [], $bcc = [], $useBackendUserCredentials = true)
+    public function sendReplyMail(Application $application, $subject = "", $body = "", $cc = [], $bcc = [], $useBackendUserCredentials = true, $attachments =[])
     {
         $mail = $this->callStatic(GeneralUtility::class, 'makeInstance', MailMessage::class);
 
@@ -87,6 +88,13 @@ class MailService implements SingletonInterface
             $mail->setBcc($bcc);
         }
 
+        if (!empty($attachments)) {
+            foreach ($attachments as $attachment) {
+                $mail->attach(new \Swift_Attachment($attachment,'invite.ics', 'text/calendar'));
+            }
+          
+        }
+      
         $mail->send();
     }
 
