@@ -155,6 +155,8 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('extbase_acl'))
         'clone',
         'confirmClone',
         'history',
+        'videoInvitation',
+        'sendVideoInvitation',
     ];
 
     //Copy array for archived application controller
