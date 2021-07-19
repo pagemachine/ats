@@ -1,0 +1,94 @@
+<f:form.hidden property="application" value="{message.application.uid}" />
+<f:form.hidden name="action" value="{previewAction}" />
+
+<f:translate key="be.label.ApplicationSingle.VideoInterview.Applicant" /> <b>{application.firstname} {application.surname} <f:translate key="be.label.ApplicationSingle.2"/>"{application.job.title}"<b>
+
+<h3><f:translate id="be.label.ApplicationSingle.VideoInterview.CreateAppointment"></f:translate></h3>
+
+<f:render partial="Backend/Message/Fields/Date" arguments="{
+  field : 'date',
+  languagePath : 'mail',
+  value : '{message.date}'
+}"/>
+
+<f:render partial="Backend/Message/Fields/Time" arguments="{
+  field : 'appointmentFrom',
+  languagePath : 'mail',
+  value : '{message.appointmentFrom}'
+}"/>
+
+<f:render partial="Backend/Message/Fields/Time" arguments="{
+  field : 'appointmentUntil',
+  languagePath : 'mail',
+  value : '{message.appointmentUntil}'
+}"/>
+
+<h3><f:translate id="be.label.ApplicationSingle.VideoInterview.LinkToVideocall"></f:translate></h3>
+
+<f:render partial="Backend/Message/Fields/TextfieldVideo" arguments="{
+  field : 'url',
+  languagePath : 'mail',
+  value : '{message.url}' 
+}"/>
+
+<h3><f:translate id="be.label.ApplicationSingle.VideoInterview.InvitationMail"></f:translate></h3>
+
+<f:if condition="{message.application.validEmail}">
+	<f:then>
+		<div class="radio">
+		  <label>
+			<f:form.radio property="sendType" id="sendTypeMail" value="mail" />
+			<f:translate id="be.label.ApplicationSingle.Acknowledge.SendMailTo"/> {message.application.email}
+		  </label>
+		</div>
+		<div class="radio">
+		  <label>
+			<f:form.radio property="sendType" id="sendTypePdf" value="pdf" />
+			<f:translate id="be.label.ApplicationSingle.Acknowledge.CreatePdf"/>
+		  </label>
+		</div>
+	</f:then>
+	<f:else>
+		<f:be.infobox state="1" message="{f:translate(key:'be.label.ApplicationSingle.NoEmailAddressWarning', default:'This application has no mail address. You can only create PDFs.')}" />
+
+		<div class="radio">
+		  <label>
+			<f:form.radio property="sendType" id="sendTypePdf" value="pdf" checked="1" />
+			<f:translate id="be.label.ApplicationSingle.Acknowledge.CreatePdf"/>
+		  </label>
+		</div>
+	</f:else>
+</f:if>
+
+<f:if condition="{message.textTemplateDropdownOptions -> f:count()} > 0">
+  <div class="form-group">
+	  <label for="textTemplate">Template</label>
+			  <f:form.select class="form-control" property="textTemplate" id="textTemplate" options="{message.textTemplateDropdownOptions}" additionalAttributes="{onchange: 'this.form.submit()'}" prependOptionLabel="---" prependOptionValue="" />
+  </div>
+</f:if>
+
+<f:render partial="Backend/Message/Fields/Textfield" arguments="{
+  field : 'subject',
+  languagePath : 'mail'
+}"/>
+
+<f:render partial="Backend/Message/Fields/Textfield" arguments="{
+  field : 'cc',
+  languagePath : 'mail'
+}"/>
+
+<f:render partial="Backend/Message/Fields/Textfield" arguments="{
+  field : 'bcc',
+  languagePath : 'mail'
+}"/>
+
+<f:render partial="Backend/Message/Fields/Textarea" arguments="{
+  field : 'body',
+  languagePath : 'mail',
+  placeholders : '{placeholders}'
+}"/>
+
+<div class="form-group">
+  <f:form.button name="action" value="{previewAction}" class="btn btn-primary"><f:translate id="be.label.ApplicationSingle.Acknowledge.Preview"/></f:form.button>
+  <f:form.button name="action" value="{sendAction}" class="btn btn-primary"><f:translate id="be.label.ApplicationSingle.Acknowledge.Send"/></f:form.button>
+</div>
