@@ -420,6 +420,30 @@ abstract class AbstractMessage
         $this->bcc = $bcc;
     }
 
+        /**
+     * @var array $attachments
+     */
+    protected $attachments =[];
+
+    /**
+     * @return array
+     * @codeCoverageIgnore
+     */
+    public function getAttachments()
+    {
+        return $this->attachments;
+    }
+
+    /**
+     * @param array $attachments
+     * @return void
+     * @codeCoverageIgnore
+     */
+    public function setAttachments($attachments)
+    {
+        $this->attachments = $attachments;
+    }
+
     /**
      * @var string
      */
@@ -495,7 +519,8 @@ abstract class AbstractMessage
                 $this->getRenderedBody(),
                 MailUtility::parseAddresses($this->cc),
                 MailUtility::parseAddresses($this->bcc),
-                $this->useBackendUserCredentials
+                $this->useBackendUserCredentials,
+                $this->getAttachments()
             );
         } elseif ($this->sendType == AbstractMessage::SENDTYPE_PDF) {
             PdfService::getInstance()->generateAndDownloadPdf($this->getRenderedSubject(), $this->application, $this->getRenderedBody());
