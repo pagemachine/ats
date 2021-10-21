@@ -2,7 +2,7 @@ version: '3'
 
 services:
   app:
-    image: thecodingmachine/php:7.2-v4-fpm
+    image: thecodingmachine/php:7.2-v4-cli
     environment:
       PHP_EXTENSION_GD: 1
       PHP_INI_PHAR__READONLY: "Off"
@@ -16,7 +16,7 @@ services:
       - ssh-agent
       - ssh-key
     volumes:
-      - ./:/var/www/html
+      - ./:/usr/src/app
       - ssh-agent:/.ssh-agent
 
   t3docmake:
