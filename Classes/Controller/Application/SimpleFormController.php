@@ -65,7 +65,6 @@ class SimpleFormController extends AbstractApplicationController
      * @param  Job $job
      * @param  ApplicationSimple $application
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("application")
-     * @ignorevalidation $application
      * @return void
      */
     public function simpleFormAction(ApplicationSimple $application)

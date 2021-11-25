@@ -257,7 +257,6 @@ class ApplicationController extends AbstractBackendController
      *
      * @param  Application $application
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("application")
-     * @ignorevalidation $application
      * @return void
      */
     public function editAction(Application $application)
@@ -315,7 +314,6 @@ class ApplicationController extends AbstractBackendController
      * @param  Application $application
      * @param  Note $note
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("note")
-     * @ignorevalidation $note
      * @return void
      */
     public function updateStatusAction(Application $application, Note $note)
@@ -369,7 +367,6 @@ class ApplicationController extends AbstractBackendController
      * @param  Application $application
      * @param  string $forwardAction
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("note")
-     * @ignorevalidation $note
      * @return void
      */
     public function addRatingAction(Note $note, Application $application, $forwardAction)
@@ -465,7 +462,6 @@ class ApplicationController extends AbstractBackendController
      *
      * @param  Application $application
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("note")
-     * @ignorevalidation $note
      * @param  Note        $note
      * @return void
      */
@@ -494,7 +490,6 @@ class ApplicationController extends AbstractBackendController
      * @param  ReplyMessage $message
      * @param  Application $application
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("message")
-     * @ignorevalidation $message
      * @return void
      */
     public function replyAction(ReplyMessage $message = null, Application $application = null)
@@ -545,7 +540,6 @@ class ApplicationController extends AbstractBackendController
      * @param  ReplyMessage $message
      * @param  Application $application
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("message")
-     * @ignorevalidation $message
      * @return void
      */
     public function inviteAction(InviteMessage $message = null, Application $application = null)
@@ -596,7 +590,6 @@ class ApplicationController extends AbstractBackendController
      * @param  ReplyMessage $message
      * @param  Application $application
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("message")
-     * @ignorevalidation $message
      * @return void
      */
     public function acknowledgeAction(AcknowledgeMessage $message = null, Application $application = null)
@@ -647,7 +640,6 @@ class ApplicationController extends AbstractBackendController
      * @param  RejectMessage $message
      * @param  Application $application
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("message")
-     * @ignorevalidation $message
      * @return void
      */
     public function rejectAction(RejectMessage $message = null, Application $application = null)
@@ -711,7 +703,6 @@ class ApplicationController extends AbstractBackendController
      * @param  Application $application
      * @param  Note $note
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("note")
-     * @ignorevalidation $note
      * @return void
      */
     public function sendBackToPersoAction(Application $application, Note $note)
@@ -767,7 +758,6 @@ class ApplicationController extends AbstractBackendController
      * @param  Job $job
      * @param  Note $note
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("note")
-     * @ignorevalidation $note
      * @return void
      */
     public function confirmCloneAction(Application $application, Job $job, Note $note)

@@ -34,7 +34,6 @@ class FormController extends AbstractApplicationController
      * @param  Job $job
      * @param  ApplicationA|null $application
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("application")
-     * @ignorevalidation $application
      * @return void
      */
     public function formAction(Job $job, ApplicationA $application = null)

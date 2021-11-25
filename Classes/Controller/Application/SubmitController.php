@@ -44,7 +44,6 @@ class SubmitController extends AbstractApplicationController
     /**
      * @param  Application $application
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("application")
-     * @ignorevalidation $application
      * @return void
      */
     public function showSummaryAction(Application $application)
@@ -55,7 +54,6 @@ class SubmitController extends AbstractApplicationController
     /**
      * @param  Application $application
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("application")
-     * @ignorevalidation $application
      * @return void
      */
     public function showSimpleSummaryAction(Application $application)

@@ -112,7 +112,6 @@ class ArchivedApplicationController extends ApplicationController
      * @param    Application  $application
      * @param    Note         $note
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("note")
-     * @ignorevalidation $note
      * @return   void
      */
     public function updateMoveToPoolAction(Application $application, Note $note)
@@ -158,7 +157,6 @@ class ArchivedApplicationController extends ApplicationController
      * @param  Note $note
      * @validate $applications NotEmpty
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("note")
-     * @ignorevalidation $note
      * @return void
      */
     public function setMassPoolMovingAction($applications, Job $job, $status, Note $note)
