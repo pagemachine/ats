@@ -79,7 +79,7 @@ class SimpleFormController extends AbstractApplicationController
      *
      * @param  ApplicationSimple $application
      * @param  string $something
-     * @validate $application \PAGEmachine\Ats\Domain\Validator\TypoScriptValidator
+     * @TYPO3\CMS\Extbase\Annotation\Validate("\PAGEmachine\Ats\Domain\Validator\TypoScriptValidator", param="application")
      * @return void
      */
     public function submitAction(ApplicationSimple $application, string $something)

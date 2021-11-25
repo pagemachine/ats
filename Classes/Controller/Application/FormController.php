@@ -52,7 +52,7 @@ class FormController extends AbstractApplicationController
     /**
      *
      * @param  ApplicationA $application
-     * @validate $application \PAGEmachine\Ats\Domain\Validator\TypoScriptValidator
+     * @TYPO3\CMS\Extbase\Annotation\Validate("\PAGEmachine\Ats\Domain\Validator\TypoScriptValidator", param="application")
      * @return void
      */
     public function updateFormAction(ApplicationA $application)

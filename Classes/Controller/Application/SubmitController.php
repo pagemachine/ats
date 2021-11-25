@@ -63,7 +63,7 @@ class SubmitController extends AbstractApplicationController
     
     /**
      * @param  Application $application
-     * @validate $application \PAGEmachine\Ats\Domain\Validator\TypoScriptValidator
+     * @TYPO3\CMS\Extbase\Annotation\Validate("\PAGEmachine\Ats\Domain\Validator\TypoScriptValidator", param="application")
      * @return void
      */
     public function submitAction(Application $application)

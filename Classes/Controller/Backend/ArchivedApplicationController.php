@@ -140,7 +140,7 @@ class ArchivedApplicationController extends ApplicationController
     /**
      * @param  \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\PAGEmachine\Ats\Domain\Model\Application>  $applications
      *
-     * @validate $applications NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty", param="applications")
      */
     public function newMassPoolMovingAction($applications)
     {
@@ -155,7 +155,7 @@ class ArchivedApplicationController extends ApplicationController
      * @param  Job $job
      * @param  string $status
      * @param  Note $note
-     * @validate $applications NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty", param="applications")
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("note")
      * @return void
      */

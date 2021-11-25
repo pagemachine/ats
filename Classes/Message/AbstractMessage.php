@@ -246,7 +246,7 @@ abstract class AbstractMessage
 
 
     /**
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      * @var string $subject
      */
     protected $subject;
@@ -305,7 +305,7 @@ abstract class AbstractMessage
 
     /**
      * @var string $body
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $body = null;
 

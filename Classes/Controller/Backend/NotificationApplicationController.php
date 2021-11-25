@@ -74,7 +74,7 @@ class NotificationApplicationController extends ApplicationController
      * @param  \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\PAGEmachine\Ats\Domain\Model\Application>  $applications
      * @param  \PAGEmachine\Ats\Message\MessageInterface $message
      * @param  int $messageType
-     * @validate $applications NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty", param="applications")
      * @return void
      */
     public function newMassNotificationAction($applications, MessageInterface $message = null, $messageType = null)

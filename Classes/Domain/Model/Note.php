@@ -133,7 +133,7 @@ class Note extends AbstractEntity implements CloneableInterface
 
     /**
      * @var string $details
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $details;
 
