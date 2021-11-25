@@ -76,7 +76,6 @@ class AbstractApplication extends AbstractEntity
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\PAGEmachine\Ats\Domain\Model\Note>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
-     * @lazy
      */
     protected $notes;
 
@@ -131,7 +130,6 @@ class AbstractApplication extends AbstractEntity
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\PAGEmachine\Ats\Domain\Model\History>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
-     * @lazy
      */
     protected $history;
 

@@ -92,28 +92,24 @@ class Job extends AbstractEntity implements \JsonSerializable
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\BackendUser>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
-     * @lazy
      */
     protected $userPa;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\BackendUserGroup>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
-     * @lazy
      */
     protected $department;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\BackendUserGroup>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
-     * @lazy
      */
     protected $officials;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\BackendUserGroup>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
-     * @lazy
      */
     protected $contributors;
 
@@ -157,7 +153,6 @@ class Job extends AbstractEntity implements \JsonSerializable
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
-     * @lazy
      */
     protected $categories;
 
@@ -276,7 +271,6 @@ class Job extends AbstractEntity implements \JsonSerializable
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<PAGEmachine\Ats\Domain\Model\FileReference>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
-     * @lazy
      */
     protected $media;
 
