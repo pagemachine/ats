@@ -18,7 +18,7 @@ class PersonalDataController extends AbstractApplicationController
      * applicationBRepository
      *
      * @var \PAGEmachine\Ats\Domain\Repository\ApplicationBRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $repository = null;
 
@@ -32,7 +32,7 @@ class PersonalDataController extends AbstractApplicationController
 
     /**
      * @var \PAGEmachine\Ats\Domain\Repository\CountryRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $countryRepository = null;
 

@@ -14,7 +14,7 @@ class LanguageSelectViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\SelectV
 {
     /**
      * @var \PAGEmachine\Ats\Domain\Repository\LanguageRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $languageRepository = null;
 

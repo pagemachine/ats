@@ -33,19 +33,19 @@ class ApplicationController extends AbstractBackendController
 
     /**
      * @var PAGEmachine\Ats\Domain\Repository\ApplicationRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $applicationRepository;
 
     /**
      * @var PAGEmachine\Ats\Domain\Repository\JobRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $jobRepository;
 
     /**
      * @var \PAGEmachine\Ats\Message\MessageFactory
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $messageFactory;
 

@@ -16,7 +16,7 @@ class CountrySelectViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\SelectVi
 {
     /**
      * @var \PAGEmachine\Ats\Domain\Repository\CountryRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $countryRepository = null;
 
