@@ -178,7 +178,7 @@ class UploadedFileReferenceConverter extends AbstractTypeConverter
      * @param string $targetType
      * @return bool
      */
-    public function canConvertFrom($source, $targetType)
+    public function canConvertFrom($source, $targetType): bool
     {
         return empty($source['__identity']);
     }

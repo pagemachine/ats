@@ -25,7 +25,7 @@ class ObjectStorageConverter extends \TYPO3\CMS\Extbase\Property\TypeConverter\O
      * @return array
      * @api
      */
-    public function getSourceChildPropertiesToBeConverted($source)
+    public function getSourceChildPropertiesToBeConverted($source): array
     {
         $propertiesToConvert = array();
 
