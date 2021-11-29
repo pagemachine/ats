@@ -29,12 +29,12 @@ class AbstractApplication extends AbstractEntity
     }
 
     /**
-     * @var PAGEmachine\Ats\Application\ApplicationStatus $status
+     * @var \PAGEmachine\Ats\Application\ApplicationStatus $status
      */
     protected $status;
 
     /**
-     * @return PAGEmachine\Ats\Application\ApplicationStatus
+     * @return \PAGEmachine\Ats\Application\ApplicationStatus
      */
     public function getStatus()
     {
@@ -42,7 +42,7 @@ class AbstractApplication extends AbstractEntity
     }
 
     /**
-     * @param PAGEmachine\Ats\Application\ApplicationStatus $status
+     * @param \PAGEmachine\Ats\Application\ApplicationStatus $status
      * @return void
      */
     public function setStatus(ApplicationStatus $status)

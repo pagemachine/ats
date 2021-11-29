@@ -24,7 +24,7 @@ class ApplicationE extends ApplicationD
     }
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<PAGEmachine\Ats\Domain\Model\FileReference>
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\PAGEmachine\Ats\Domain\Model\FileReference>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $files;
@@ -47,7 +47,7 @@ class ApplicationE extends ApplicationD
     }
 
     /**
-     * @param PAGEmachine\Ats\Domain\Model\FileReference $file
+     * @param \PAGEmachine\Ats\Domain\Model\FileReference $file
      * @return void
      */
     public function addFile(FileReference $file)
@@ -56,7 +56,7 @@ class ApplicationE extends ApplicationD
     }
 
     /**
-     * @param PAGEmachine\Ats\Domain\Model\FileReference $file
+     * @param \PAGEmachine\Ats\Domain\Model\FileReference $file
      * @return void
      */
     public function removeFile(FileReference $file)

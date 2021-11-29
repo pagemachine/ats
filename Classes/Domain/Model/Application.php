@@ -128,12 +128,12 @@ class Application extends ApplicationE implements CloneableInterface
 
 
     /**
-     * @var PAGEmachine\Ats\Application\ApplicationRating $rating
+     * @var \PAGEmachine\Ats\Application\ApplicationRating $rating
      */
     protected $rating;
 
     /**
-     * @return PAGEmachine\Ats\Application\ApplicationRating
+     * @return \PAGEmachine\Ats\Application\ApplicationRating
      */
     public function getRating()
     {
@@ -141,7 +141,7 @@ class Application extends ApplicationE implements CloneableInterface
     }
 
     /**
-     * @param PAGEmachine\Ats\Application\ApplicationRating $rating
+     * @param \PAGEmachine\Ats\Application\ApplicationRating $rating
      * @return void
      */
     public function setRating($rating)
@@ -151,12 +151,12 @@ class Application extends ApplicationE implements CloneableInterface
 
 
     /**
-     * @var PAGEmachine\Ats\Application\ApplicationRating $ratingPerso
+     * @var \PAGEmachine\Ats\Application\ApplicationRating $ratingPerso
      */
     protected $ratingPerso;
 
     /**
-     * @return PAGEmachine\Ats\Application\ApplicationRating
+     * @return \PAGEmachine\Ats\Application\ApplicationRating
      */
     public function getRatingPerso()
     {
@@ -164,7 +164,7 @@ class Application extends ApplicationE implements CloneableInterface
     }
 
     /**
-     * @param PAGEmachine\Ats\Application\ApplicationRating $ratingPerso
+     * @param \PAGEmachine\Ats\Application\ApplicationRating $ratingPerso
      * @return void
      */
     public function setRatingPerso($ratingPerso)

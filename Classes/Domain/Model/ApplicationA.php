@@ -16,12 +16,12 @@ use TYPO3\CMS\Extbase\Domain\Model\FrontendUser;
 class ApplicationA extends AbstractApplication
 {
     /**
-     * @var TYPO3\CMS\Extbase\Domain\Model\FrontendUser $user
+     * @var \TYPO3\CMS\Extbase\Domain\Model\FrontendUser $user
      */
     protected $user;
 
     /**
-     * @return TYPO3\CMS\Extbase\Domain\Model\FrontendUser
+     * @return \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
      */
     public function getUser()
     {
@@ -29,7 +29,7 @@ class ApplicationA extends AbstractApplication
     }
 
     /**
-     * @param TYPO3\CMS\Extbase\Domain\Model\FrontendUser $user
+     * @param \TYPO3\CMS\Extbase\Domain\Model\FrontendUser $user
      * @return void
      */
     public function setUser(FrontendUser $user)
@@ -39,7 +39,7 @@ class ApplicationA extends AbstractApplication
 
 
     /**
-     * @var PAGEmachine\Ats\Domain\Model\Job $job
+     * @var \PAGEmachine\Ats\Domain\Model\Job $job
      */
     protected $job;
 
@@ -52,7 +52,7 @@ class ApplicationA extends AbstractApplication
     }
 
     /**
-     * @param PAGEmachine\Ats\Domain\Model\Job $job
+     * @param \PAGEmachine\Ats\Domain\Model\Job $job
      * @return void
      */
     public function setJob(Job $job)

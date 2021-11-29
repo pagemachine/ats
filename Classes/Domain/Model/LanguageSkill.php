@@ -16,12 +16,12 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 class LanguageSkill extends AbstractEntity implements CloneableInterface
 {
     /**
-     * @var SJBR\StaticInfoTables\Domain\Model\Language|null $language
+     * @var \SJBR\StaticInfoTables\Domain\Model\Language|null $language
      */
     protected $language = null;
 
     /**
-     * @return SJBR\StaticInfoTables\Domain\Model\Language|null
+     * @return \SJBR\StaticInfoTables\Domain\Model\Language|null
      */
     public function getLanguage()
     {
@@ -29,7 +29,7 @@ class LanguageSkill extends AbstractEntity implements CloneableInterface
     }
 
     /**
-     * @param SJBR\StaticInfoTables\Domain\Model\Language| null $language
+     * @param \SJBR\StaticInfoTables\Domain\Model\Language| null $language
      * @return void
      */
     public function setLanguage(Language $language = null)

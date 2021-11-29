@@ -151,12 +151,12 @@ trait StructuredJobDefinitionTrait
     }
 
     /**
-     * @var SJBR\StaticInfoTables\Domain\Model\Currency $baseSalaryCurrency
+     * @var \SJBR\StaticInfoTables\Domain\Model\Currency $baseSalaryCurrency
      */
     protected $baseSalaryCurrency;
 
     /**
-     * @return SJBR\StaticInfoTables\Domain\Model\Currency
+     * @return \SJBR\StaticInfoTables\Domain\Model\Currency
      */
     public function getBaseSalaryCurrency()
     {
