@@ -3,7 +3,7 @@ namespace PAGEmachine\Ats\Workflow;
 
 use PAGEmachine\Ats\Service\ExtconfService;
 use Symfony\Component\Workflow\DefinitionBuilder;
-use Symfony\Component\Workflow\MarkingStore\SingleStateMarkingStore;
+use Symfony\Component\Workflow\MarkingStore\MethodMarkingStore;
 use Symfony\Component\Workflow\Transition;
 use Symfony\Component\Workflow\Workflow;
 use TYPO3\CMS\Core\SingletonInterface;
@@ -155,7 +155,7 @@ class WorkflowManager implements SingletonInterface
 
         $definition = $definitionBuilder->build();
 
-        $marking = new SingleStateMarkingStore($this->markingProperty);
+        $marking = new MethodMarkingStore(true, $this->markingProperty);
         $workflow = new Workflow($definition, $marking);
 
         $this->workflow = $workflow;
