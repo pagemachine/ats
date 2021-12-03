@@ -67,7 +67,7 @@ class ApplicationActionsViewHelper extends AbstractViewHelper
     public function initialize()
     {
         $configuration = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
-        $this->actions = $configuration['controllerConfiguration'][$this->arguments['controller']]['actions'];
+        $this->actions = $configuration['controllerConfiguration'][$this->getControllerClass($this->arguments['controller'])]['actions'];
     }
 
     /**
