@@ -5,7 +5,7 @@ use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Workflow\WorkflowManager;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /*
  * This file is part of the PAGEmachine ATS project.
