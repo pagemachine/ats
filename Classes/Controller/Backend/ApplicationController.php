@@ -32,13 +32,13 @@ class ApplicationController extends AbstractBackendController
     use StaticCalling;
 
     /**
-     * @var PAGEmachine\Ats\Domain\Repository\ApplicationRepository
+     * @var \PAGEmachine\Ats\Domain\Repository\ApplicationRepository
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $applicationRepository;
 
     /**
-     * @var PAGEmachine\Ats\Domain\Repository\JobRepository
+     * @var \PAGEmachine\Ats\Domain\Repository\JobRepository
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $jobRepository;
