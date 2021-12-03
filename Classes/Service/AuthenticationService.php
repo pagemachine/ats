@@ -1,6 +1,8 @@
 <?php
 namespace PAGEmachine\Ats\Service;
 
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository;
 
 /*
@@ -29,7 +31,7 @@ class AuthenticationService
      */
     public function isUserAuthenticated()
     {
-        return $this->getFrontendController()->loginUser;
+        return (bool)GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('frontend.user', 'isLoggedIn');
     }
 
     /**
