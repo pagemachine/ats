@@ -1,14 +1,14 @@
 {
     "name": "pagemachine/ats",
-    "type": "typo3-cms-extension",
     "description": "Extension for Job Application Management",
+    "license": "GPL-3.0-only",
+    "type": "typo3-cms-extension",
     "keywords": [
         "typo3",
         "application",
         "jobs",
         "recruiting"
     ],
-    "license": "GPL-3.0-only",
     "authors": [
         {
             "name": "Saskia Schreiber",
@@ -45,16 +45,6 @@
         "in2code/femanager": "For user registration and account management",
         "pagemachine/hairu": "For frontend login with Extbase and Fluid"
     },
-    "config": {
-        "sort-packages": true
-    },
-    "extra": {
-        "typo3/cms": {
-            "cms-package-dir": "{$vendor-dir}/typo3/cms",
-            "extension-key": "ats",
-            "web-dir": "web"
-        }
-    },
     "autoload": {
         "psr-4": {
             "PAGEmachine\\Ats\\": "Classes/"
@@ -64,6 +54,16 @@
         "psr-4": {
             "PAGEmachine\\Ats\\Tests\\": "Tests/",
             "TYPO3\\CMS\\Core\\Tests\\": "vendor/typo3/cms/typo3/sysext/core/Tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "typo3/cms": {
+            "cms-package-dir": "{$vendor-dir}/typo3/cms",
+            "extension-key": "ats",
+            "web-dir": "web"
         }
     },
     "scripts": {
