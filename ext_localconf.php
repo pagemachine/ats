@@ -31,9 +31,6 @@ if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['FileDumpEID.php']['checkFileAccess']['ats_protection'] = \PAGEmachine\Ats\Hook\FileDumpControllerHook::class;
 }
 
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = \PAGEmachine\Ats\Command\ApplicationsCommandController::class;
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = \PAGEmachine\Ats\Command\UsersCommandController::class;
-
 if (TYPO3_MODE === 'BE') {
     $GLOBALS ['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['ats'] = \PAGEmachine\Ats\Hook\DataHandlerJobGroups::class;
 }

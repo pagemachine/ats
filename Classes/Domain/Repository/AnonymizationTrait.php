@@ -24,6 +24,7 @@ trait AnonymizationTrait
     public function findOldObjects(\DateTime $threshold, $additionalConditions = null, $ageProperty = 'creationDate')
     {
         $query = $this->createQuery();
+        $query->getQuerySettings()->setRespectStoragePage(false);
 
         $constraints = [
             $query->equals('anonymized', false),

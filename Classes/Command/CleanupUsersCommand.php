@@ -1,12 +1,16 @@
 <?php
-namespace Pagemachine\Ats\Command;
+namespace PAGEmachine\Ats\Command;
 
 use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
 use PAGEmachine\Ats\Exception;
 use PAGEmachine\Ats\Service\Cleanup\UserCleanupService;
 use PAGEmachine\Ats\Service\TyposcriptService;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use TYPO3\CMS\Core\Utility\VersionNumberUtility;
-use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
 
 /*
  * This file is part of the Pagemachine ATS project.
@@ -15,7 +19,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
 /**
  * (FE-)User related commandcontroller
  */
-class UsersCommandController extends CommandController
+class CleanupUsersCommand extends Command
 {
     /**
      * @var ApplicationRepository
@@ -31,20 +35,35 @@ class UsersCommandController extends CommandController
         $this->applicationRepository = $applicationRepository;
     }
 
-    /**
-     * Command to remove (hard-delete) old and anonymized applications
-     *
-     * @param int $userGroup The uid of the ATS users group (plugin.tx_ats.settings.feUserGroup)
-     */
-    public function cleanupCommand($userGroup)
+    public function configure() 
     {
+        $this->setDescription('Remove (hard-delete) old frontend users')
+            ->addArgument(
+                'userGroup',
+                InputArgument::REQUIRED,
+                'The uid of the ATS users group (plugin.tx_ats.settings.feUserGroup)'
+            );
+    }
+
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int error code
+     */
+    public function execute(InputInterface $input, OutputInterface $output) 
+    {        
+        $io = new SymfonyStyle($input, $output);
+        $io->title($this->getDescription());
+
         // Limit this command to TYPO3 >= 8.7
         if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) < 8007000) {
-            $this->outputLine('You need at least TYPO3 version 8.7 to use this command.');
-            return;
+            $io->writeln('You need at least TYPO3 version 8.7 to use this command.');
+            return Command::FAILURE;
         }
 
-        $this->outputLine("Starting cleanup of frontend users...");
+        $io->writeln('Starting cleanup of frontend users...');
+
+        $userGroup = $input->getArgument('userGroup');
 
         if (!$userGroup) {
             throw new Exception("No valid usergroup for cleanup given (ID must be greater than 0). Aborting.");
@@ -55,8 +74,10 @@ class UsersCommandController extends CommandController
 
         $affectedUsers = $cleanupService->cleanupUsers($userGroup, $this->getMinimumUsersAge());
 
-        $this->outputLine();
-        $this->outputLine(sprintf("Removed %s users.", $affectedUsers));
+        $io->writeln('');
+        $io->writeln(sprintf("Removed %s users.", $affectedUsers));
+
+        return Command::SUCCESS;
     }
 
     /**

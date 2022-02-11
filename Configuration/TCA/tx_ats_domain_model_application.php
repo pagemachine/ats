@@ -27,6 +27,14 @@ return [
             ''],
     ],
     'columns' => [
+        'crdate' => [
+            'label' => 'crdate',
+            'config' => [
+                'type' => 'input',
+                'renderType' => 'inputDateTime',
+                'eval' => 'datetime',
+            ]
+        ],
         'sys_language_uid' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
