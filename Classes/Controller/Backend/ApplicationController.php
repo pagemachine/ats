@@ -13,8 +13,11 @@ use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Domain\Model\FileReference;
 use PAGEmachine\Ats\Domain\Model\Job;
 use PAGEmachine\Ats\Domain\Model\Note;
+use PAGEmachine\Ats\Domain\Repository\ApplicationRepository;
+use PAGEmachine\Ats\Domain\Repository\JobRepository;
 use PAGEmachine\Ats\Message\AcknowledgeMessage;
 use PAGEmachine\Ats\Message\InviteMessage;
+use PAGEmachine\Ats\Message\MessageFactory;
 use PAGEmachine\Ats\Message\RejectMessage;
 use PAGEmachine\Ats\Message\ReplyMessage;
 use PAGEmachine\Ats\Property\TypeConverter\UploadedFileReferenceConverter;
@@ -32,23 +35,43 @@ class ApplicationController extends AbstractBackendController
     use StaticCalling;
 
     /**
-     * @var \PAGEmachine\Ats\Domain\Repository\ApplicationRepository
-     * @TYPO3\CMS\Extbase\Annotation\Inject
+     * @var ApplicationRepository
      */
     protected $applicationRepository;
 
     /**
-     * @var \PAGEmachine\Ats\Domain\Repository\JobRepository
-     * @TYPO3\CMS\Extbase\Annotation\Inject
+     * @var JobRepository
      */
     protected $jobRepository;
 
     /**
-     * @var \PAGEmachine\Ats\Message\MessageFactory
-     * @TYPO3\CMS\Extbase\Annotation\Inject
+     * @var MessageFactory
      */
     protected $messageFactory;
 
+    /**
+     * @param ApplicationRepository $applicationRepository
+     */
+    public function injectApplicationRepository(ApplicationRepository $applicationRepository)
+    {
+        $this->applicationRepository = $applicationRepository;
+    }
+
+    /**
+     * @param JobRepository $jobRepository
+     */
+    public function injectJobRepository(JobRepository $jobRepository)
+    {
+        $this->jobRepository = $jobRepository;
+    }
+
+    /**
+     * @param MessageFactory $messageFactory
+     */
+    public function injectMessageFactory(MessageFactory $messageFactory)
+    {
+        $this->messageFactory = $messageFactory;
+    }
 
     /**
      * Action URLs for the action menu

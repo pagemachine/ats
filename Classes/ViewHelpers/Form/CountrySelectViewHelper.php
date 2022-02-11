@@ -1,6 +1,7 @@
 <?php
 namespace PAGEmachine\Ats\ViewHelpers\Form;
 
+use PAGEmachine\Ats\Domain\Repository\CountryRepository;
 use PAGEmachine\Ats\Service\IntlLocalizationService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
@@ -15,10 +16,17 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 class CountrySelectViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\SelectViewHelper
 {
     /**
-     * @var \PAGEmachine\Ats\Domain\Repository\CountryRepository
-     * @TYPO3\CMS\Extbase\Annotation\Inject
+     * @var CountryRepository
      */
     protected $countryRepository = null;
+
+    /**
+     * @param CountryRepository $countryRepository
+     */
+    public function injectCountryRepository(CountryRepository $countryRepository)
+    {
+        $this->countryRepository = $countryRepository;
+    }
 
     /**
      * Initialize arguments.

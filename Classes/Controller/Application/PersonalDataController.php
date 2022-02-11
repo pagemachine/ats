@@ -3,6 +3,7 @@ namespace PAGEmachine\Ats\Controller\Application;
 
 use PAGEmachine\Ats\Domain\Model\ApplicationB;
 use PAGEmachine\Ats\Domain\Repository\ApplicationBRepository;
+use PAGEmachine\Ats\Domain\Repository\CountryRepository;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -15,12 +16,13 @@ class PersonalDataController extends AbstractApplicationController
 {
     /**
      * @var ApplicationBRepository
-     * applicationBRepository
-     *
-     * @var \PAGEmachine\Ats\Domain\Repository\ApplicationBRepository
-     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $repository = null;
+
+    /**
+     * @var CountryRepository
+     */
+    protected $countryRepository = null;
 
     /**
      * @param  ApplicationBRepository $repository
@@ -31,10 +33,12 @@ class PersonalDataController extends AbstractApplicationController
     }
 
     /**
-     * @var \PAGEmachine\Ats\Domain\Repository\CountryRepository
-     * @TYPO3\CMS\Extbase\Annotation\Inject
+     * @param CountryRepository $countryRepository
      */
-    protected $countryRepository = null;
+    public function injectCountryRepository(CountryRepository $countryRepository)
+    {
+        $this->countryRepository = $countryRepository;
+    }
 
     /**
      * @param  ApplicationB $application

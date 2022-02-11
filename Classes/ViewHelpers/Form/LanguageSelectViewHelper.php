@@ -1,6 +1,7 @@
 <?php
 namespace PAGEmachine\Ats\ViewHelpers\Form;
 
+use \PAGEmachine\Ats\Domain\Repository\LanguageRepository;
 use PAGEmachine\Ats\Service\IntlLocalizationService;
 
 /*
@@ -13,10 +14,17 @@ use PAGEmachine\Ats\Service\IntlLocalizationService;
 class LanguageSelectViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\SelectViewHelper
 {
     /**
-     * @var \PAGEmachine\Ats\Domain\Repository\LanguageRepository
-     * @TYPO3\CMS\Extbase\Annotation\Inject
+     * @var LanguageRepository
      */
     protected $languageRepository = null;
+
+    /**
+     * @param LanguageRepository $languageRepository
+     */
+    public function injectLanguageRepository(LanguageRepository $languageRepository)
+    {
+        $this->languageRepository = $languageRepository;
+    }
 
     /**
      * Initialize arguments.
