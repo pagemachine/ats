@@ -283,16 +283,6 @@ class StatisticsService implements SingletonInterface
         ]);
     }
 
-     /**
-     *
-     * @return DatabaseConnection
-     * @codeCoverageIgnore
-     */
-    public function getDatabaseConnection()
-    {
-        return $GLOBALS['TYPO3_DB'];
-    }
-
     /**
      * Generates a Where-Clause for displaying applications in the defined time interval
      *
@@ -311,7 +301,6 @@ class StatisticsService implements SingletonInterface
 
         return $where;
     }
-
 
     /**
      * Generates a Where-Clause for displaying JOBs in the defined time interval

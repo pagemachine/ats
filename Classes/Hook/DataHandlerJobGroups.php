@@ -131,9 +131,4 @@ class DataHandlerJobGroups
             }
         }
     }
-
-    public function getDatabaseConnection()
-    {
-        return $GLOBALS['TYPO3_DB'];
-    }
 }
