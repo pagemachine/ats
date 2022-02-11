@@ -211,3 +211,6 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('extbase_acl'))
         'Backend\\Application\\ListNotification',
     ];
 }
+
+\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\Container\Container::class)->registerImplementation(\TYPO3\CMS\Extbase\Domain\Model\FileReference::class, \PAGEmachine\Ats\Domain\Model\FileReference::class);
+\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\Container\Container::class)->registerImplementation(\TYPO3\CMS\Extbase\Persistence\Generic\QueryFactoryInterface::class, \PAGEmachine\Ats\Persistence\Generic\QueryFactory::class);
