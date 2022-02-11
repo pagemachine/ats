@@ -3,7 +3,6 @@ namespace PAGEmachine\Ats\Hook;
 
 use PAGEmachine\Ats\Service\ExtconfService;
 use TYPO3\CMS\Backend\FrontendBackendUserAuthentication;
-use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Resource\AbstractFile;
 use TYPO3\CMS\Core\Resource\Hook\FileDumpEIDHookInterface;
@@ -13,6 +12,7 @@ use TYPO3\CMS\Core\Utility\HttpUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
+use TYPO3\CMS\Frontend\Utility\EidUtility;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -23,7 +23,7 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
  *
  * Protects files in ATS folders from public access
  */
-class FileDumpControllerHook implements FileDumpEIDHookInterface
+class LegacyFileDumpControllerHook implements FileDumpEIDHookInterface
 {
     /**
      * The sys_file_reference table names to linked applications
@@ -38,6 +38,7 @@ class FileDumpControllerHook implements FileDumpEIDHookInterface
      * @var string
      */
     protected $fieldName = 'files';
+
 
     /**
      * Perform custom security/access when accessing file
@@ -56,46 +57,19 @@ class FileDumpControllerHook implements FileDumpEIDHookInterface
                 HttpUtility::setResponseCodeAndExit(HttpUtility::HTTP_STATUS_403);
             }
 
-            $feUser = $this->getFeUser();
-            $beUserIsLoggedIn = $this->beUserIsLoggedIn();
+            $this->createTSFE();
+
+            $feUser = $GLOBALS['TSFE']->fe_user;
+            $beUser = $GLOBALS['TSFE']->initializeBackendUser();
 
             foreach ($this->getLinkedApplications($file->getUid()) as $application) {
-                if ($this->hasAccess($application, $feUser, $beUserIsLoggedIn)) {
+                if ($this->hasAccess($application, $feUser, $beUser)) {
                     return;
                 }
             }
             
             HttpUtility::setResponseCodeAndExit(HttpUtility::HTTP_STATUS_403);
         }
-    }
-
-    /**
-     * Get feUser
-     *
-     * @return FrontendUserAuthentication
-     */
-    public function getFeUser()
-    {
-        $feUser = $GLOBALS['ATS_USER_AUTH'];
-
-        if (!$feUser instanceof FrontendUserAuthentication) {
-            $feUser = null;
-        }
-
-        return $feUser;
-    }
-
-    /**
-     *  Returns true if beUser is logged in.
-     *
-     * @return bool
-     */
-    public function beUserIsLoggedIn()
-    {
-        $context = GeneralUtility::makeInstance(Context::class);
-        $beUserIsLoggedIn = $context->getPropertyFromAspect('backend.user', 'isLoggedIn');
-
-        return $beUserIsLoggedIn;
     }
 
     /**
@@ -119,13 +93,12 @@ class FileDumpControllerHook implements FileDumpEIDHookInterface
      *
      * @param  array  $application
      * @param  FrontendUserAuthentication $feUser
-     * @param  bool $beUser
+     * @param  FrontendBackendUserAuthentication  $beUser
      * @return bool
      */
-    public function hasAccess($application, FrontendUserAuthentication $feUser = null, bool $beUserIsLoggedIn = false)
+    public function hasAccess($application, FrontendUserAuthentication $feUser = null, FrontendBackendUserAuthentication $beUser = null)
     {
-        $granted = $beUserIsLoggedIn;
-
+        $granted = false;
         if ($feUser->user !== null && !empty($application['user'])) {
             if ($feUser->user['uid'] == $application['user']) {
                 $granted = true;
@@ -136,9 +109,9 @@ class FileDumpControllerHook implements FileDumpEIDHookInterface
             }
         }
 
-        #if ($beUserIsLoggedIn == true) {
-        #    $granted = $beUserIsLoggedIn;
-        #}
+        if ($beUser !== null) {
+            $granted = true;
+        }
         return $granted;
     }
 
@@ -175,6 +148,25 @@ class FileDumpControllerHook implements FileDumpEIDHookInterface
 
         foreach ($res as $row) {
             yield $row;
+        }
+    }
+
+    /**
+     * Initializes TSFE. This is necessary to have proper environment.
+     *
+     * @return    void
+     */
+    public function createTSFE()
+    {
+        EidUtility::initTCA();
+        if (!is_object($GLOBALS['TT'])) {
+            $GLOBALS['TT'] = new \TYPO3\CMS\Core\TimeTracker\TimeTracker();
+            $GLOBALS['TT']->start();
+        }
+        if (!is_object($GLOBALS['TSFE'])) {
+            $GLOBALS['TSFE'] = GeneralUtility::makeInstance(TypoScriptFrontendController::class, $GLOBALS['TYPO3_CONF_VARS'], 1, '');
+            $GLOBALS['TSFE']->connectToDB();
+            $GLOBALS['TSFE']->initFEuser();
         }
     }
 }
