@@ -26,6 +26,14 @@ return [
 	'palettes' => [
 	],
 	'columns' => [
+        'crdate' => [
+            'label' => 'crdate',
+            'config' => [
+                'type' => 'input',
+                'renderType' => 'inputDateTime',
+                'eval' => 'datetime',
+            ]
+        ],
         'application' => [
             'config' => [
                 'type' => 'select',
