@@ -67,7 +67,12 @@ class ApplicationActionsViewHelper extends AbstractViewHelper
     public function initialize()
     {
         $configuration = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
-        $this->actions = $configuration['controllerConfiguration'][$this->getControllerClass($this->arguments['controller'])]['actions'];
+
+        if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger('10.0') > \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch)) {
+            $this->actions = $configuration['controllerConfiguration'][$this->arguments['controller']]['actions'];
+        } else {
+            $this->actions = $configuration['controllerConfiguration'][$this->getControllerClass($this->arguments['controller'])]['actions'];
+        }
     }
 
     /**
