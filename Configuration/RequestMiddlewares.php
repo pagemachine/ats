@@ -1,5 +1,7 @@
 <?php
-if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger('10.0') > \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch)) {
+$typo3Version = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
+
+if ($typo3Version->getMajorVersion() < 10) {
     return;
 }
 

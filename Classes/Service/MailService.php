@@ -43,7 +43,7 @@ class MailService implements SingletonInterface
 
     public function __construct(BackendUserAuthentication $backendUser = null, FluidRenderingService $fluidRenderingService = null)
     {
-
+        $this->typo3Version = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
         $this->backendUser = $backendUser ?: $GLOBALS['BE_USER'];
         $this->fluidRenderingService = $fluidRenderingService ?: GeneralUtility::makeInstance(FluidRenderingService::class);
     }
@@ -78,7 +78,7 @@ class MailService implements SingletonInterface
             ->setFrom($this->fetchFrom($useBackendUserCredentials))
             ->setTo([$application->getEmail() => $application->getFirstname() . ' ' . $application->getSurname()]);
 
-        if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger('10.0') > \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch)) {
+        if ($this->typo3Version->getMajorVersion() < 10) {
             $mail->setBody($renderedBody, 'text/html');
         } else {
             $mail->html($renderedBody);

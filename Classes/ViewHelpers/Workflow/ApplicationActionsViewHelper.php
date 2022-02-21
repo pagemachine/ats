@@ -4,6 +4,7 @@ namespace PAGEmachine\Ats\ViewHelpers\Workflow;
 use PAGEmachine\Ats\Domain\Model\Application;
 use PAGEmachine\Ats\Workflow\WorkflowManager;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
@@ -66,9 +67,10 @@ class ApplicationActionsViewHelper extends AbstractViewHelper
      */
     public function initialize()
     {
+        $typo3Version = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
         $configuration = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
 
-        if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger('10.0') > \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch)) {
+        if ($typo3Version->getMajorVersion() < 10) {
             $this->actions = $configuration['controllerConfiguration'][$this->arguments['controller']]['actions'];
         } else {
             $this->actions = $configuration['controllerConfiguration'][$this->getControllerClass($this->arguments['controller'])]['actions'];
