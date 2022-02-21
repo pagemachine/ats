@@ -40,8 +40,8 @@ class FluidRenderingService implements SingletonInterface
      */
     public function __construct(StandaloneView $view = null, StandaloneView $sourceView = null)
     {
-        $this->view = $view ?: $this->generateView();
-        $this->sourceView = $sourceView ?: $this->generateView();
+        $this->view = $this->generateView();
+        $this->sourceView = $this->generateView();
     }
 
     /**
