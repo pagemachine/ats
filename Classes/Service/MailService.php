@@ -76,8 +76,13 @@ class MailService implements SingletonInterface
         $mail
             ->setSubject($subject)
             ->setFrom($this->fetchFrom($useBackendUserCredentials))
-            ->setTo([$application->getEmail() => $application->getFirstname() . ' ' . $application->getSurname()])
-            ->setBody($renderedBody, 'text/html');
+            ->setTo([$application->getEmail() => $application->getFirstname() . ' ' . $application->getSurname()]);
+
+        if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger('10.0') > \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch)) {
+            $mail->setBody($renderedBody, 'text/html');
+        } else {
+            $mail->html($renderedBody);
+        }
 
         if (!empty($cc)) {
             $mail->setCc($cc);
