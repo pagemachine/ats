@@ -161,8 +161,8 @@ return [
                 'cols' => '30',
                 'rows' => '5',
                 'eval' => 'required',
+                'enableRichtext' => true,
             ],
-            'defaultExtras' => 'richtext[]:rte_transform[mode=ts]'
         ],
          'description_after_link' => [
             'exclude' => 1,
@@ -170,9 +170,9 @@ return [
             'config' => [
                 'type' => 'text',
                 'cols' => '30',
-                'rows' => '5'
+                'rows' => '5',
+                'enableRichtext' => true,
             ],
-            'defaultExtras' => 'richtext[]:rte_transform[mode=ts]'
         ],
         'contact' => [
             'exclude' => 1,
