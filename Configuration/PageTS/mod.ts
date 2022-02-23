@@ -5,7 +5,7 @@ mod {
 
     elements {
       joblist {
-        icon = ../typo3conf/ext/ats/ext_icon.png
+        iconIdentifier = ats-joblist
         title = LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:plugin.jobs
         description = LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:plugin.jobs.description
 

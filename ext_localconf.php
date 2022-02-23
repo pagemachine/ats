@@ -215,3 +215,10 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('extbase_acl'))
 
 \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\Container\Container::class)->registerImplementation(\TYPO3\CMS\Extbase\Domain\Model\FileReference::class, \PAGEmachine\Ats\Domain\Model\FileReference::class);
 \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\Container\Container::class)->registerImplementation(\TYPO3\CMS\Extbase\Persistence\Generic\QueryFactoryInterface::class, \PAGEmachine\Ats\Persistence\Generic\QueryFactory::class);
+
+$iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
+$iconRegistry->registerIcon(
+   'ats-joblist',
+   \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
+   ['source' => 'EXT:ats/ext_icon.png']
+);
