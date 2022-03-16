@@ -43,6 +43,7 @@ return [
             'label' => 'LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_texttemplate.type',
             'config' => [
                 'type' => 'select',
+                'renderType' => 'selectSingle',
                 'items' => array(
                     array('', ''),
                     array('LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_texttemplate.type.1', '1'),
