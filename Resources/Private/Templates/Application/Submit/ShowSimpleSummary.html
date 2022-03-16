@@ -1,60 +1,64 @@
-
 <f:layout name="Default" />
 
 <f:section name="main">
 
 	<h1><f:translate key="tx_ats.headline.summary">Summary</f:translate></h1>
 
-	<f:form object="{application}" name="application"  class="form-horizontal">
+	<f:if condition="{application}">
+		<f:then>
+			<f:form object="{application}" name="application"  class="form-horizontal">
 
-	<h3><f:translate key="tx_ats.headline.personal_data">Personal Data</f:translate></h3>
+				<h3><f:translate key="tx_ats.headline.personal_data">Personal Data</f:translate></h3>
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.title',
-		text: '{application.title}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.title',
+					text: '{application.title}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.salutation',
-		select: '{application.salutation}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.salutation',
+					select: '{application.salutation}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.firstname',
-		text: '{application.firstname}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.firstname',
+					text: '{application.firstname}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.surname',
-		text: '{application.surname}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.surname',
+					text: '{application.surname}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.email',
-		text: '{application.email}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.email',
+					text: '{application.email}'
+				}" />
 
-	<h3><f:translate key="tx_ats.headline.upload">Upload</f:translate></h3>
+				<h3><f:translate key="tx_ats.headline.upload">Upload</f:translate></h3>
 
-	<f:render partial="Application/Field/SummaryListFiles" arguments="{
-		translationKey: 'tx_ats.label.file',
-		text: 'File(s)',
-		application: application
-	}" />
+				<f:render partial="Application/Field/SummaryListFiles" arguments="{
+					translationKey: 'tx_ats.label.file',
+					text: 'File(s)',
+					application: application
+				}" />
 
-	<div class="form-group">
-		<div class="col-sm-6">
-			<f:link.action action="simpleForm" controller="Application\\SimpleForm" arguments="{application: application}" class="btn btn-default pull-right"><f:translate key="tx_ats.summary.back" /></f:link.action>
-		</div>
+				<div class="form-group">
+					<div class="col-sm-6">
+						<f:link.action action="simpleForm" controller="Application\\SimpleForm" arguments="{application: application}" class="btn btn-default pull-right"><f:translate key="tx_ats.summary.back" /></f:link.action>
+					</div>
 
-		<f:render partial="Application/Field/SubmitButton" arguments="{
-			translationKey: 'tx_ats.button.submit',
-			action: 'submit'
-		}"/>
-	</div>
+					<f:render partial="Application/Field/SubmitButton" arguments="{
+						translationKey: 'tx_ats.button.submit',
+						action: 'submit'
+					}"/>
+				</div>
 
-	</f:form>
+			</f:form>
+		</f:then>
+		<f:else>
+			<f:translate key="tx_ats.application.error"/>
+		</f:else>
+	</f:if>
 
 </f:section>
-
-

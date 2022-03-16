@@ -75,9 +75,9 @@ class AbstractApplicationController extends ActionController
             $this->redirectToUri($loginUri);
         }
 
-        if (!$this->settings['loginPage'] && $this->request->hasArgument("application")) {
-            $GLOBALS['TSFE']->fe_user->setAndSaveSessionData('Ats/Application', (int)$this->request->getArgument("application"));
-        }
+        #if (!$this->settings['loginPage'] && $this->request->hasArgument("application")) {
+        #    $GLOBALS['TSFE']->fe_user->setAndSaveSessionData('Ats/Application', (int)$this->request->getArgument("application"));
+        #}
     }
 
     /**
@@ -152,5 +152,24 @@ class AbstractApplicationController extends ActionController
     protected function loadValidationSettings()
     {
         $this->settings['validation'] = TyposcriptService::getInstance()->getFrameworkConfiguration()['mvc']['validation'][$this->arguments->getArgument('application')->getDataType()];
+    }
+
+    /**
+     * @param  ApplicationA|ApplicationB|ApplicationC|ApplicationD|ApplicationE $application
+     * @return bool
+     */
+    protected function hasAccess($application)
+    {
+        if ($GLOBALS['TSFE']->fe_user->user !== null && !empty($application->getUser())) {
+            if ($GLOBALS['TSFE']->fe_user->user['uid'] == $application->getUser()) {
+                return true;
+            }
+        } elseif ($GLOBALS['TSFE']->fe_user->user !== null) {
+            if ($GLOBALS['TSFE']->fe_user->getKey('ses', 'Ats/Application') == $application->getUid() && $application->getUid() !== null) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

@@ -1733,6 +1733,10 @@
 			<trans-unit id="tx_ats.be.filter.reset">
 				<source>Reset filters</source>
 			</trans-unit>
+
+			<trans-unit id="tx_ats.application.error">
+				<source>No application available</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

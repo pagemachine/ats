@@ -47,6 +47,10 @@ class PersonalDataController extends AbstractApplicationController
      */
     public function editPersonalDataAction(ApplicationB $application)
     {
+        if (!$this->hasAccess($application)) {
+            return;
+        }
+
         if (!empty($this->settings['defaultCountry'])) {
             $this->view->assign('defaultCountry', $this->countryRepository->findOneByIsoCodeA3($this->settings['defaultCountry']));
         }

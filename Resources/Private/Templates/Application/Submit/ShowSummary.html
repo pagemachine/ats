@@ -1,185 +1,189 @@
-
 <f:layout name="Default" />
 
 <f:section name="main">
 
 	<h1><f:translate key="tx_ats.headline.summary">Summary</f:translate></h1>
 
-	<f:form object="{application}" name="application"  class="form-horizontal">
+	<f:if condition="{application}">
+		<f:then>
+			<f:form object="{application}" name="application"  class="form-horizontal">
 
-	<h3><f:translate key="tx_ats.headline.personal_data">Personal Data</f:translate></h3>
+				<h3><f:translate key="tx_ats.headline.personal_data">Personal Data</f:translate></h3>
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.title',
-		text: '{application.title}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.title',
+					text: '{application.title}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.salutation',
-		select: '{application.salutation}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.salutation',
+					select: '{application.salutation}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.firstname',
-		text: '{application.firstname}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.firstname',
+					text: '{application.firstname}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.surname',
-		text: '{application.surname}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.surname',
+					text: '{application.surname}'
+				}" />
 
-	 <f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.birthday',
-		date: '{application.birthday}'
-	}" />
+				 <f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.birthday',
+					date: '{application.birthday}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.disability',
-		select: '{application.disability}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.disability',
+					select: '{application.disability}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.nationality',
-		text: '{application.nationalityLabel}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.nationality',
+					text: '{application.nationalityLabel}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.street',
-		text: '{application.street}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.street',
+					text: '{application.street}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.zipcode',
-		text: '{application.zipcode}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.zipcode',
+					text: '{application.zipcode}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.city',
-		text: '{application.city}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.city',
+					text: '{application.city}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-	translationKey: 'tx_ats.label.country',
-	text: '{application.countryLabel}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.country',
+					text: '{application.countryLabel}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.email',
-		text: '{application.email}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.email',
+					text: '{application.email}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.phone',
-		text: '{application.phone}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.phone',
+					text: '{application.phone}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.mobile',
-		text: '{application.mobile}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.mobile',
+					text: '{application.mobile}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.employed',
-		select: '{application.employed}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.employed',
+					select: '{application.employed}'
+				}" />
 
-	<h3><f:translate key="tx_ats.headline.qualifications">Qualifications</f:translate></h3>
+				<h3><f:translate key="tx_ats.headline.qualifications">Qualifications</f:translate></h3>
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.school_qualification',
-		select: '{application.schoolQualification}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.school_qualification',
+					select: '{application.schoolQualification}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.professional_qualification',
-		text: '{application.professionalQualification}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.professional_qualification',
+					text: '{application.professionalQualification}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.professional_qualification_final_grade',
-		text: '{application.professionalQualificationFinalGrade}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.professional_qualification_final_grade',
+					text: '{application.professionalQualificationFinalGrade}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.academic_degree',
-		text: '{application.academicDegree}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.academic_degree',
+					text: '{application.academicDegree}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.academic_degree_final_grade',
-		text: '{application.academicDegreeFinalGrade}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.academic_degree_final_grade',
+					text: '{application.academicDegreeFinalGrade}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.doctoral_degree',
-		text: '{application.doctoralDegree}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.doctoral_degree',
+					text: '{application.doctoralDegree}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.doctoral_degree_final_grade',
-		text: '{application.doctoralDegreeFinalGrade}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.doctoral_degree_final_grade',
+					text: '{application.doctoralDegreeFinalGrade}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.previous_knowledge',
-		text: '{application.previousKnowledge}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.previous_knowledge',
+					text: '{application.previousKnowledge}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.it_knowledge',
-		text: '{application.itKnowledge}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.it_knowledge',
+					text: '{application.itKnowledge}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.application.languageskills'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.application.languageskills'
+				}" />
 
-	<h4><f:translate key="tx_ats.application.languageskills" /></h4>
-	<f:for each="{application.languageSkills}" as="languageSkill">
-		<f:render partial="Application/Field/SummaryListLanguage" arguments="{
-			languageSkill : languageSkill
-		}" />
-	</f:for>
+				<h4><f:translate key="tx_ats.application.languageskills" /></h4>
+				<f:for each="{application.languageSkills}" as="languageSkill">
+					<f:render partial="Application/Field/SummaryListLanguage" arguments="{
+						languageSkill : languageSkill
+					}" />
+				</f:for>
 
-	<h3><f:translate key="tx_ats.headline.additional_data">Additional Data</f:translate></h3>
+				<h3><f:translate key="tx_ats.headline.additional_data">Additional Data</f:translate></h3>
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.comment',
-		text: '{application.comment}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.comment',
+					text: '{application.comment}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.referrer',
-		select: '{application.referrer}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.referrer',
+					select: '{application.referrer}'
+				}" />
 
-	<f:render partial="Application/Field/SummaryList" arguments="{
-		translationKey: 'tx_ats.label.forward_to_departments',
-		select: '{application.forwardToDepartments}'
-	}" />
+				<f:render partial="Application/Field/SummaryList" arguments="{
+					translationKey: 'tx_ats.label.forward_to_departments',
+					select: '{application.forwardToDepartments}'
+				}" />
 
-	<h3><f:translate key="tx_ats.headline.upload">Upload</f:translate></h3>
+				<h3><f:translate key="tx_ats.headline.upload">Upload</f:translate></h3>
 
-	<f:render partial="Application/Field/SummaryListFiles" arguments="{
-		translationKey: 'tx_ats.label.file',
-		text: 'File(s)',
-		application: application
-	}" />
+				<f:render partial="Application/Field/SummaryListFiles" arguments="{
+					translationKey: 'tx_ats.label.file',
+					text: 'File(s)',
+					application: application
+				}" />
 
-	<div class="form-group">
-		<div class="col-sm-6">
-			<f:link.action action="editUpload" controller="Application\\Upload" arguments="{application: application}" class="btn btn-default pull-right"><f:translate key="tx_ats.summary.back" /></f:link.action>
-		</div>
+				<div class="form-group">
+					<div class="col-sm-6">
+						<f:link.action action="editUpload" controller="Application\\Upload" arguments="{application: application}" class="btn btn-default pull-right"><f:translate key="tx_ats.summary.back" /></f:link.action>
+					</div>
 
-		<f:render partial="Application/Field/SubmitButton" arguments="{
-			translationKey: 'tx_ats.button.submit',
-			action: 'submit'
-		}"/>
-	</div>
+					<f:render partial="Application/Field/SubmitButton" arguments="{
+						translationKey: 'tx_ats.button.submit',
+						action: 'submit'
+					}"/>
+				</div>
 
-	</f:form>
+			</f:form>
+		</f:then>
+		<f:else>
+			<f:translate key="tx_ats.application.error"/>
+		</f:else>
+	</f:if>
 
 </f:section>
-
-

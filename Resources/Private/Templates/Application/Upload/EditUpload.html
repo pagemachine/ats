@@ -2,28 +2,36 @@
 
 <f:section name="main">
 
-  <h1><f:translate key="tx_ats.headline.upload">Upload</f:translate></h1>
+	<h1><f:translate key="tx_ats.headline.upload">Upload</f:translate></h1>
 
-  <f:form object="{application}" name="application" enctype="multipart/form-data"  class="form-horizontal">
-    <f:render partial="Application/ValidationResults" />
+	<f:if condition="{application}">
+		<f:then>
+			<f:form object="{application}" name="application" enctype="multipart/form-data"  class="form-horizontal">
 
-    <f:render partial="Application/Field/Upload" arguments="{
-      translationKey: 'tx_ats.label.file',
-      fieldName: 'files',
-      application: application
-    }"/>
+				<f:render partial="Application/ValidationResults" />
 
+				<f:render partial="Application/Field/Upload" arguments="{
+					translationKey: 'tx_ats.label.file',
+					fieldName: 'files',
+					application: application
+				}"/>
 
-		<div class="form-group">
-			<div class="col-sm-6">
-    		<f:link.action action="editAdditionalData" controller="Application\\AdditionalData" arguments="{application: application}" class="btn btn-default pull-right"><f:translate key="tx_ats.upload.back" /></f:link.action>
-    	</div>
+				<div class="form-group">
+					<div class="col-sm-6">
+						<f:link.action action="editAdditionalData" controller="Application\\AdditionalData" arguments="{application: application}" class="btn btn-default pull-right"><f:translate key="tx_ats.upload.back" /></f:link.action>
+					</div>
 
-	    <f:render partial="Application/Field/SubmitButton" arguments="{
-	      translationKey: 'tx_ats.button.next',
-	      action: 'updateUpload'
-	    }"/>
-  	</div>
+					<f:render partial="Application/Field/SubmitButton" arguments="{
+						translationKey: 'tx_ats.button.next',
+						action: 'updateUpload'
+					}"/>
+				</div>
 
-  </f:form>
+			</f:form>
+		</f:then>
+		<f:else>
+			<f:translate key="tx_ats.application.error"/>
+		</f:else>
+	</f:if>
+
 </f:section>

@@ -4,122 +4,130 @@
 
 	<h1><f:translate key="tx_ats.headline.personal_data">Personal Data</f:translate></h1>
 
-	<f:form object="{application}" name="application" class="form-horizontal">
+	<f:if condition="{application}">
+		<f:then>
+			<f:form object="{application}" name="application" class="form-horizontal">
 
-		<f:render partial="Application/ValidationResults" />
+				<f:render partial="Application/ValidationResults" />
 
-		<f:render partial="Application/Field/TextField" arguments="{
-			translationKey: 'tx_ats.label.title',
-			fieldType: 'text',
-			fieldName: 'title',
-			fieldValue: '{f:if(condition: application.title, then: application.title, else: application.user.title)}'
-		}"/>
+				<f:render partial="Application/Field/TextField" arguments="{
+					translationKey: 'tx_ats.label.title',
+					fieldType: 'text',
+					fieldName: 'title',
+					fieldValue: '{f:if(condition: application.title, then: application.title, else: application.user.title)}'
+				}"/>
 
-		<f:render partial="Application/Field/SelectTranslated" arguments="{
-			translationKey: 'tx_ats.label.salutation',
-			fieldName: 'salutation',
-			options: '{1:1, 2:2, 3:3}'
-		}"/>
+				<f:render partial="Application/Field/SelectTranslated" arguments="{
+					translationKey: 'tx_ats.label.salutation',
+					fieldName: 'salutation',
+					options: '{1:1, 2:2, 3:3}'
+				}"/>
 
-		<f:render partial="Application/Field/TextField" arguments="{
-			translationKey: 'tx_ats.label.firstname',
-			fieldType: 'text',
-			fieldName: 'firstname',
-			fieldValue: '{f:if(condition: application.firstname, then: application.firstname, else: application.user.firstName)}'
-		}"/>
+				<f:render partial="Application/Field/TextField" arguments="{
+					translationKey: 'tx_ats.label.firstname',
+					fieldType: 'text',
+					fieldName: 'firstname',
+					fieldValue: '{f:if(condition: application.firstname, then: application.firstname, else: application.user.firstName)}'
+				}"/>
 
-		<f:render partial="Application/Field/TextField" arguments="{
-			translationKey: 'tx_ats.label.surname',
-			fieldType: 'text',
-			fieldName: 'surname',
-			fieldValue: '{f:if(condition: application.surname, then: application.surname, else: application.user.lastName)}'
-		}"/>
+				<f:render partial="Application/Field/TextField" arguments="{
+					translationKey: 'tx_ats.label.surname',
+					fieldType: 'text',
+					fieldName: 'surname',
+					fieldValue: '{f:if(condition: application.surname, then: application.surname, else: application.user.lastName)}'
+				}"/>
 
-		<f:render partial="Application/Field/TextField" arguments="{
-			translationKey: 'tx_ats.label.birthday',
-			fieldType: 'date',
-			fieldName: 'birthday',
-			fieldValue:'{application.birthday -> f:format.date(format:\"Y-m-d\")}'
-		}"/>
+				<f:render partial="Application/Field/TextField" arguments="{
+					translationKey: 'tx_ats.label.birthday',
+					fieldType: 'date',
+					fieldName: 'birthday',
+					fieldValue:'{application.birthday -> f:format.date(format:\"Y-m-d\")}'
+				}"/>
 
-		<f:render partial="Application/Field/SelectTranslated" arguments="{
-			translationKey: 'tx_ats.label.disability',
-			fieldName: 'disability',
-			options: '{1 :1, 2:2}'
-		}"/>
+				<f:render partial="Application/Field/SelectTranslated" arguments="{
+					translationKey: 'tx_ats.label.disability',
+					fieldName: 'disability',
+					options: '{1 :1, 2:2}'
+				}"/>
 
-		<f:render partial="Application/Field/SelectNationality" arguments="{
-			translationKey: 'tx_ats.label.nationality',
-			fieldName: 'nationality',
-			defaultNationality: defaultNationality
-		}"/>
+				<f:render partial="Application/Field/SelectNationality" arguments="{
+					translationKey: 'tx_ats.label.nationality',
+					fieldName: 'nationality',
+					defaultNationality: defaultNationality
+				}"/>
 
-		<f:render partial="Application/Field/TextField" arguments="{
-			translationKey: 'tx_ats.label.street',
-			fieldType: 'text',
-			fieldName: 'street',
-			fieldValue: '{f:if(condition: application.street, then: application.street, else: application.user.address)}'
-		}"/>
+				<f:render partial="Application/Field/TextField" arguments="{
+					translationKey: 'tx_ats.label.street',
+					fieldType: 'text',
+					fieldName: 'street',
+					fieldValue: '{f:if(condition: application.street, then: application.street, else: application.user.address)}'
+				}"/>
 
-		<f:render partial="Application/Field/TextField" arguments="{
-			translationKey: 'tx_ats.label.zipcode',
-			fieldType: 'text',
-			fieldName: 'zipcode',
-			fieldValue: '{f:if(condition: application.zipcode, then: application.zipcode, else: application.user.zip)}'
-		}"/>
+				<f:render partial="Application/Field/TextField" arguments="{
+					translationKey: 'tx_ats.label.zipcode',
+					fieldType: 'text',
+					fieldName: 'zipcode',
+					fieldValue: '{f:if(condition: application.zipcode, then: application.zipcode, else: application.user.zip)}'
+				}"/>
 
-		<f:render partial="Application/Field/TextField" arguments="{
-			translationKey: 'tx_ats.label.city',
-			fieldType: 'text',
-			fieldName: 'city',
-			fieldValue: '{f:if(condition: application.city, then: application.city, else: application.user.city)}'
-		}"/>
+				<f:render partial="Application/Field/TextField" arguments="{
+					translationKey: 'tx_ats.label.city',
+					fieldType: 'text',
+					fieldName: 'city',
+					fieldValue: '{f:if(condition: application.city, then: application.city, else: application.user.city)}'
+				}"/>
 
-		<f:render partial="Application/Field/SelectCountry" arguments="{
-			translationKey: 'tx_ats.label.country',
-			fieldName: 'country',
-			defaultCountry: defaultCountry
-		}"/>
+				<f:render partial="Application/Field/SelectCountry" arguments="{
+					translationKey: 'tx_ats.label.country',
+					fieldName: 'country',
+					defaultCountry: defaultCountry
+				}"/>
 
-		<f:render partial="Application/Field/TextField" arguments="{
-			translationKey: 'tx_ats.label.email',
-			fieldType: 'email',
-			fieldName: 'email',
-			fieldValue: '{f:if(condition:application.email, then:application.email, else:application.user.email)}'
-		}"/>
+				<f:render partial="Application/Field/TextField" arguments="{
+					translationKey: 'tx_ats.label.email',
+					fieldType: 'email',
+					fieldName: 'email',
+					fieldValue: '{f:if(condition:application.email, then:application.email, else:application.user.email)}'
+				}"/>
 
-		<f:render partial="Application/Field/TextField" arguments="{
-			translationKey: 'tx_ats.label.phone',
-			fieldType: 'phone',
-			fieldName: 'phone',
-			fieldValue: '{f:if(condition:application.phone, then:application.phone, else:application.user.telephone)}'
-		}"/>
+				<f:render partial="Application/Field/TextField" arguments="{
+					translationKey: 'tx_ats.label.phone',
+					fieldType: 'phone',
+					fieldName: 'phone',
+					fieldValue: '{f:if(condition:application.phone, then:application.phone, else:application.user.telephone)}'
+				}"/>
 
-		<f:render partial="Application/Field/TextField" arguments="{
-			translationKey: 'tx_ats.label.mobile',
-			fieldType: 'phone',
-			fieldName: 'mobile'
-		}"/>
+				<f:render partial="Application/Field/TextField" arguments="{
+					translationKey: 'tx_ats.label.mobile',
+					fieldType: 'phone',
+					fieldName: 'mobile'
+				}"/>
 
-		<f:render partial="Application/Field/RadioButton" arguments="{
-			translationKey: 'tx_ats.label.employed',
-			fieldName: 'employed',
-			fieldValue1: '2',
-			translationKeyValue1: 'tx_ats.label.employed.2',
-			fieldValue2: '1',
-			translationKeyValue2: 'tx_ats.label.employed.1'
-		}"/>
+				<f:render partial="Application/Field/RadioButton" arguments="{
+					translationKey: 'tx_ats.label.employed',
+					fieldName: 'employed',
+					fieldValue1: '2',
+					translationKeyValue1: 'tx_ats.label.employed.2',
+					fieldValue2: '1',
+					translationKeyValue2: 'tx_ats.label.employed.1'
+				}"/>
 
+				<div class="form-group">
+					<div class="col-sm-6">
+							<f:link.action action="form" controller="Application\\Form" arguments="{application: application, job : application.job}" class="btn btn-default pull-right"><f:translate key="tx_ats.button.prev">Back</f:translate></f:link.action>
+					</div>
 
-		<div class="form-group">
-			<div class="col-sm-6">
-				<f:link.action action="form" controller="Application\\Form" arguments="{application: application, job : application.job}" class="btn btn-default pull-right"><f:translate key="tx_ats.button.prev">Back</f:translate></f:link.action>
-			</div>
+					<f:render partial="Application/Field/SubmitButton" arguments="{
+						translationKey: 'tx_ats.button.next',
+						action: 'updatePersonalData'
+					}"/>
+				</div>
 
-			<f:render partial="Application/Field/SubmitButton" arguments="{
-				translationKey: 'tx_ats.button.next',
-				action: 'updatePersonalData'
-			}"/>
-		</div>
-	</f:form>
+			</f:form>
+		</f:then>
+		<f:else>
+			<f:translate key="tx_ats.application.error"/>
+		</f:else>
+	</f:if>
+
 </f:section>

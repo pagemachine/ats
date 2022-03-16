@@ -69,6 +69,10 @@ class SimpleFormController extends AbstractApplicationController
      */
     public function simpleFormAction(ApplicationSimple $application)
     {
+        if (!$this->hasAccess($application)) {
+            return;
+        }
+
         $time = new DateTime();
         $hMac = $this->hashService->appendHmac((string)$application->getUid().';'.$time->getTimestamp());
         $this->view->assign("application", $application);

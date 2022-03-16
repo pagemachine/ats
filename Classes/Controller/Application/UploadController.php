@@ -35,6 +35,9 @@ class UploadController extends AbstractApplicationController
      */
     public function editUploadAction(ApplicationE $application)
     {
+        if (!$this->hasAccess($application)) {
+            return;
+        }
 
         $this->view->assign("application", $application);
     }
@@ -74,7 +77,6 @@ class UploadController extends AbstractApplicationController
      */
     public function updateUploadAction(ApplicationE $application)
     {
-
         $this->repository->addOrUpdate($application);
         $this->forward("showSummary", "Application\\Submit", null, ['application' => $application->getUid()]);
     }

@@ -1,92 +1,100 @@
-
 <f:layout name="Default" />
+
 <f:section name="main">
 
-  <h1><f:translate key="tx_ats.headline.qualifications">Qualifications</f:translate></h1>
+	<h1><f:translate key="tx_ats.headline.qualifications">Qualifications</f:translate></h1>
 
-  <f:form object="{application}" name="application"  class="form-horizontal">
-    <f:render partial="Application/ValidationResults" />
+	<f:if condition="{application}">
+		<f:then>
+			<f:form object="{application}" name="application"  class="form-horizontal">
 
-    <f:render partial="Application/Field/SelectTranslated" arguments="{
-      fieldName: 'schoolQualification',
-      translationKey: 'tx_ats.label.school_qualification',
-      options: {
-        1 : 1,
-        2 : 2,
-        3 : 3,
-        4 : 4,
-        5 : 5
-        }
-    }" />
+				<f:render partial="Application/ValidationResults" />
 
-    <f:render partial="Application/Field/TextField" arguments="{
-      translationKey: 'tx_ats.label.professional_qualification',
-      fieldType: 'text',
-      fieldName: 'professionalQualification'
-    }" />
+				<f:render partial="Application/Field/SelectTranslated" arguments="{
+					fieldName: 'schoolQualification',
+					translationKey: 'tx_ats.label.school_qualification',
+					options: {
+						1 : 1,
+						2 : 2,
+						3 : 3,
+						4 : 4,
+						5 : 5
+						}
+				}" />
 
-    <f:render partial="Application/Field/TextField" arguments="{
-      translationKey: 'tx_ats.label.professional_qualification_final_grade',
-      fieldType: 'text',
-      fieldName: 'professionalQualificationFinalGrade'
-    }" />
+				<f:render partial="Application/Field/TextField" arguments="{
+					translationKey: 'tx_ats.label.professional_qualification',
+					fieldType: 'text',
+					fieldName: 'professionalQualification'
+				}" />
 
-    <f:render partial="Application/Field/TextField" arguments="{
-      translationKey: 'tx_ats.label.academic_degree',
-      fieldType: 'text',
-      fieldName: 'academicDegree'
-    }" />
+				<f:render partial="Application/Field/TextField" arguments="{
+					translationKey: 'tx_ats.label.professional_qualification_final_grade',
+					fieldType: 'text',
+					fieldName: 'professionalQualificationFinalGrade'
+				}" />
 
-    <f:render partial="Application/Field/TextField" arguments="{
-      translationKey: 'tx_ats.label.academic_degree_final_grade',
-      fieldType: 'text',
-      fieldName: 'academicDegreeFinalGrade'
-    }" />
+				<f:render partial="Application/Field/TextField" arguments="{
+					translationKey: 'tx_ats.label.academic_degree',
+					fieldType: 'text',
+					fieldName: 'academicDegree'
+				}" />
 
-    <f:render partial="Application/Field/TextField" arguments="{
-      translationKey: 'tx_ats.label.doctoral_degree',
-      fieldType: 'text',
-      fieldName: 'doctoralDegree'
-    }" />
+				<f:render partial="Application/Field/TextField" arguments="{
+					translationKey: 'tx_ats.label.academic_degree_final_grade',
+					fieldType: 'text',
+					fieldName: 'academicDegreeFinalGrade'
+				}" />
 
-    <f:render partial="Application/Field/TextField" arguments="{
-      translationKey: 'tx_ats.label.doctoral_degree_final_grade',
-      fieldType: 'text',
-      fieldName: 'doctoralDegreeFinalGrade'
-    }" />
+				<f:render partial="Application/Field/TextField" arguments="{
+					translationKey: 'tx_ats.label.doctoral_degree',
+					fieldType: 'text',
+					fieldName: 'doctoralDegree'
+				}" />
 
-    <f:render partial="Application/Field/Textarea" arguments="{
-      translationKey: 'tx_ats.label.previous_knowledge',
-      fieldName: 'previousKnowledge',
-      fieldRows: '4',
-      fieldCols: '53',
-      FieldAdditionalAttributes: '{maxlength:255}'
-    }" />
+				<f:render partial="Application/Field/TextField" arguments="{
+					translationKey: 'tx_ats.label.doctoral_degree_final_grade',
+					fieldType: 'text',
+					fieldName: 'doctoralDegreeFinalGrade'
+				}" />
 
-    <f:render partial="Application/Field/Textarea" arguments="{
-      translationKey: 'tx_ats.label.it_knowledge',
-      fieldName: 'itKnowledge',
-      fieldRows: '4',
-      fieldCols: '53',
-      FieldAdditionalAttributes: '{maxlength:255}'
-    }"/>
+				<f:render partial="Application/Field/Textarea" arguments="{
+					translationKey: 'tx_ats.label.previous_knowledge',
+					fieldName: 'previousKnowledge',
+					fieldRows: '4',
+					fieldCols: '53',
+					FieldAdditionalAttributes: '{maxlength:255}'
+				}" />
 
-    <f:render partial="Application/Field/Language" arguments="{
-      fieldName: 'languageSkills',
-      application: application
-    }" />
+				<f:render partial="Application/Field/Textarea" arguments="{
+					translationKey: 'tx_ats.label.it_knowledge',
+					fieldName: 'itKnowledge',
+					fieldRows: '4',
+					fieldCols: '53',
+					FieldAdditionalAttributes: '{maxlength:255}'
+				}"/>
 
+				<f:render partial="Application/Field/Language" arguments="{
+					fieldName: 'languageSkills',
+					application: application
+				}" />
 
-		<div class="form-group">
-			<div class="col-sm-6">
-    		<f:link.action action="editPersonalData" controller="Application\\PersonalData" arguments="{application: application}" class="btn btn-default pull-right"><f:translate key="tx_ats.button.prev">Back</f:translate></f:link.action>
-    	</div>
+				<div class="form-group">
+					<div class="col-sm-6">
+						<f:link.action action="editPersonalData" controller="Application\\PersonalData" arguments="{application: application}" class="btn btn-default pull-right"><f:translate key="tx_ats.button.prev">Back</f:translate></f:link.action>
+					</div>
 
-	    <f:render partial="Application/Field/SubmitButton" arguments="{
-	      translationKey: 'tx_ats.button.next',
-	      action: 'updateQualifications'
-	    }" />
-	  </div>
+					<f:render partial="Application/Field/SubmitButton" arguments="{
+						translationKey: 'tx_ats.button.next',
+						action: 'updateQualifications'
+					}" />
+				</div>
 
-    </f:form>
+			</f:form>
+		</f:then>
+		<f:else>
+			<f:translate key="tx_ats.application.error"/>
+		</f:else>
+	</f:if>
+
 </f:section>

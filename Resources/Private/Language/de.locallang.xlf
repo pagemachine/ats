@@ -1981,6 +1981,11 @@
 				<source>Reset filters</source>
 				<target>Filter zurücksetzen</target>
 			</trans-unit>
+
+			<trans-unit id="tx_ats.application.error">
+				<source>No application available</source>
+				<target>Keine Bewerbung vorhanden</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

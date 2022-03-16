@@ -33,6 +33,10 @@ class QualificationsController extends AbstractApplicationController
      */
     public function editQualificationsAction(ApplicationC $application)
     {
+        if (!$this->hasAccess($application)) {
+            return;
+        }
+
         $this->view->assign("application", $application);
     }
 

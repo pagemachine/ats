@@ -33,6 +33,9 @@ class AdditionalDataController extends AbstractApplicationController
      */
     public function editAdditionalDataAction(ApplicationD $application)
     {
+        if (!$this->hasAccess($application)) {
+            return;
+        }
 
         $this->view->assign("application", $application);
     }

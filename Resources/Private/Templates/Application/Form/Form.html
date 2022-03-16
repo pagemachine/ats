@@ -1,66 +1,62 @@
-
 <f:layout name="Default" />
 
 <f:section name="main">
 
-  <h1><f:translate key="tx_ats.headline.form">General</f:translate></h1>
+	<h1><f:translate key="tx_ats.headline.form">General</f:translate></h1>
 
-  <f:form object="{application}" name="application"  class="form-horizontal">
+	<f:form object="{application}" name="application"  class="form-horizontal">
 
-	<f:render partial="Application/ValidationResults" />
+		<f:render partial="Application/ValidationResults" />
 
-	<f:if condition="{settings.loginPage}">
-		<f:then>
-			 <f:form.hidden property="user" value="{user}" />
-		</f:then>
-		<f:else>
-			
-		</f:else>
-	</f:if>
-  	
-  	<f:form.hidden property="job" value="{job}" />
+		<f:if condition="{settings.loginPage}">
+			<f:then>
+				<f:form.hidden property="user" value="{user}" />
+			</f:then>
+			<f:else>
 
-	<f:translate key="tx_ats.intro.text1" /> <br> <br>
-	<f:translate key="tx_ats.intro.text2" /> <br> <br>
-	<f:translate key="tx_ats.intro.text3" /> <br> <br>
-	<f:translate key="tx_ats.intro.text4" /> <br> <br>
-	<f:translate key="tx_ats.intro.text5" /> <br> <br>
-
-	<label>
-	  <f:form.checkbox
-	    property="privacyPolicy"
-	    value="1"
-	    checked="{f:if(condition:'{application.privacyPolicy} == 1', then:'checked')}" />
-
-	  <f:translate key="tx_ats.label.privacy_policy.before" />
-	  <f:link.page pageUid="{settings.policyPage}">
-	  	<f:translate key="tx_ats.label.privacy_policy.linktitle" />
-	  </f:link.page>
-	  <f:translate key="tx_ats.label.privacy_policy.after" />
-	</label>
-	<br>
-
-	<f:form.validationResults for="application.privacyPolicy">
-		<f:if condition="{validationResults.flattenedErrors}">
-			<f:for each="{validationResults.errors}" as="error">
-				<f:render partial="Application/Field/ValidationError" arguments="{
-					formErrorCode: '{error.code}',
-					formErrorFieldname: 'privacyPolicy'
-				}"/>
-			</f:for>
+			</f:else>
 		</f:if>
-	</f:form.validationResults>
+			
+		<f:form.hidden property="job" value="{job}" />
 
+		<f:translate key="tx_ats.intro.text1" /> <br> <br>
+		<f:translate key="tx_ats.intro.text2" /> <br> <br>
+		<f:translate key="tx_ats.intro.text3" /> <br> <br>
+		<f:translate key="tx_ats.intro.text4" /> <br> <br>
+		<f:translate key="tx_ats.intro.text5" /> <br> <br>
 
+		<label>
+			<f:form.checkbox
+				property="privacyPolicy"
+				value="1"
+				checked="{f:if(condition:'{application.privacyPolicy} == 1', then:'checked')}" />
 
-	<div class="form-group">
-		<f:render partial="Application/Field/SubmitButton" arguments="{
-		  translationKey: 'tx_ats.button.next',
-		  action: 'updateForm'
-		}"/>
-	</div>
+			<f:translate key="tx_ats.label.privacy_policy.before" />
+			<f:link.page pageUid="{settings.policyPage}">
+				<f:translate key="tx_ats.label.privacy_policy.linktitle" />
+			</f:link.page>
+			<f:translate key="tx_ats.label.privacy_policy.after" />
+		</label>
+		<br>
 
+		<f:form.validationResults for="application.privacyPolicy">
+			<f:if condition="{validationResults.flattenedErrors}">
+				<f:for each="{validationResults.errors}" as="error">
+					<f:render partial="Application/Field/ValidationError" arguments="{
+						formErrorCode: '{error.code}',
+						formErrorFieldname: 'privacyPolicy'
+					}"/>
+				</f:for>
+			</f:if>
+		</f:form.validationResults>
 
-  </f:form>
+		<div class="form-group">
+			<f:render partial="Application/Field/SubmitButton" arguments="{
+				translationKey: 'tx_ats.button.next',
+				action: 'updateForm'
+			}"/>
+		</div>
+
+	</f:form>
 
 </f:section>

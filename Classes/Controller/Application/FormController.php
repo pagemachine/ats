@@ -38,6 +38,16 @@ class FormController extends AbstractApplicationController
      */
     public function formAction(Job $job, ApplicationA $application = null)
     {
+        if ($application != null) {
+            if (!$this->hasAccess($application)) {
+                $this->view->assignMultiple([
+                    "job" => $job,
+                    "user" => $this->authenticationService->getAuthenticatedUser(),
+                ]);
+                return;
+            }
+        }
+
         if ($application == null  && $this->settings['loginPage']) {
             $application = $this->applicationARepository->findByUserAndJob($this->authenticationService->getAuthenticatedUser(), $job, null, ApplicationStatus::INCOMPLETE);
         }
@@ -57,8 +67,15 @@ class FormController extends AbstractApplicationController
      */
     public function updateFormAction(ApplicationA $application)
     {
+        if ($application->getUid() === null) {
+            $newApplication = true;
+        }
 
         $this->applicationARepository->addOrUpdate($application);
+
+        if (!$this->settings['loginPage'] && $newApplication) {
+            $GLOBALS['TSFE']->fe_user->setAndSaveSessionData('Ats/Application', $application->getUid());
+        }
 
         if ($this->settings['simpleForm']) {
             $this->forward("simpleForm", "Application\\SimpleForm", null, ['application' => $application->getUid()]);

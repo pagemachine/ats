@@ -2,64 +2,72 @@
 
 <f:section name="main">
 
-  <h1><f:translate key="tx_ats.headline.additional_data">Additional Data</f:translate></h1>
+	<h1><f:translate key="tx_ats.headline.additional_data">Additional Data</f:translate></h1>
 
-  <f:form object="{application}" name="application"  class="form-horizontal">
+	<f:if condition="{application}">
+		<f:then>
+			<f:form object="{application}" name="application"  class="form-horizontal">
 
-    <f:render partial="Application/ValidationResults" />
+				<f:render partial="Application/ValidationResults" />
 
-    <f:render partial="Application/Field/Textarea" arguments="{
-      translationKey: 'tx_ats.label.comment',
-      fieldName: 'comment',
-      fieldRows: '4',
-      fieldCols: '53',
-      FieldAdditionalAttributes: '{maxlength:255}'
-    }"/>
+				<f:render partial="Application/Field/Textarea" arguments="{
+					translationKey: 'tx_ats.label.comment',
+					fieldName: 'comment',
+					fieldRows: '4',
+					fieldCols: '53',
+					FieldAdditionalAttributes: '{maxlength:255}'
+				}"/>
 
-     <f:render partial="Application/Field/Selectbox" arguments="{
-      translationKey: 'tx_ats.label.referrer',
-      fieldName: 'referrer',
-      fieldOptions: '{
-        1:\'{f:translate(key: \\\'tx_ats.label.referrer.1\\\', extensionName: \\\'ats\\\')}\',
-        2:\'{f:translate(key: \\\'tx_ats.label.referrer.2\\\', extensionName: \\\'ats\\\')}\',
-        3:\'{f:translate(key: \\\'tx_ats.label.referrer.3\\\', extensionName: \\\'ats\\\')}\',
-        4:\'{f:translate(key: \\\'tx_ats.label.referrer.4\\\', extensionName: \\\'ats\\\')}\',
-        5:\'{f:translate(key: \\\'tx_ats.label.referrer.5\\\', extensionName: \\\'ats\\\')}\',
-        6:\'{f:translate(key: \\\'tx_ats.label.referrer.6\\\', extensionName: \\\'ats\\\')}\',
-        7:\'{f:translate(key: \\\'tx_ats.label.referrer.7\\\', extensionName: \\\'ats\\\')}\'
-      }'
-    }"/>
+				<f:render partial="Application/Field/Selectbox" arguments="{
+					translationKey: 'tx_ats.label.referrer',
+					fieldName: 'referrer',
+					fieldOptions: '{
+						1:\'{f:translate(key: \\\'tx_ats.label.referrer.1\\\', extensionName: \\\'ats\\\')}\',
+						2:\'{f:translate(key: \\\'tx_ats.label.referrer.2\\\', extensionName: \\\'ats\\\')}\',
+						3:\'{f:translate(key: \\\'tx_ats.label.referrer.3\\\', extensionName: \\\'ats\\\')}\',
+						4:\'{f:translate(key: \\\'tx_ats.label.referrer.4\\\', extensionName: \\\'ats\\\')}\',
+						5:\'{f:translate(key: \\\'tx_ats.label.referrer.5\\\', extensionName: \\\'ats\\\')}\',
+						6:\'{f:translate(key: \\\'tx_ats.label.referrer.6\\\', extensionName: \\\'ats\\\')}\',
+						7:\'{f:translate(key: \\\'tx_ats.label.referrer.7\\\', extensionName: \\\'ats\\\')}\'
+					}'
+				}"/>
 
-    <f:render partial="Application/Field/RadioButton" arguments="{
-      translationKey: 'tx_ats.label.forward_to_departments',
-      fieldName: 'forwardToDepartments',
-      fieldValue1: '2',
-      translationKeyValue1: 'tx_ats.label.forward_to_departments.2',
-      fieldValue2: '1',
-      translationKeyValue2: 'tx_ats.label.forward_to_departments.1'
-    }"/>
-    <f:form.validationResults for="application.forwardToDepartments">
-    	<f:if condition="{validationResults.flattenedErrors}">
-    		<f:for each="{validationResults.errors}" as="error">
-        <f:render partial="Application/Field/ValidationError" arguments="{
-          formErrorCode: '{error.code}',
-          formErrorFieldname: 'forwardToDepartments'
-        }"/>
-    		</f:for>
-    	</f:if>
-    </f:form.validationResults>
+				<f:render partial="Application/Field/RadioButton" arguments="{
+					translationKey: 'tx_ats.label.forward_to_departments',
+					fieldName: 'forwardToDepartments',
+					fieldValue1: '2',
+					translationKeyValue1: 'tx_ats.label.forward_to_departments.2',
+					fieldValue2: '1',
+					translationKeyValue2: 'tx_ats.label.forward_to_departments.1'
+				}"/>
 
-		<div class="form-group">
-			<div class="col-sm-6">
-    		<f:link.action action="editQualifications" controller="Application\\Qualifications" arguments="{application: application}" class="btn btn-default pull-right"><f:translate key="tx_ats.button.prev">Back</f:translate></f:link.action>
-    	</div>
+				<f:form.validationResults for="application.forwardToDepartments">
+					<f:if condition="{validationResults.flattenedErrors}">
+						<f:for each="{validationResults.errors}" as="error">
+							<f:render partial="Application/Field/ValidationError" arguments="{
+								formErrorCode: '{error.code}',
+								formErrorFieldname: 'forwardToDepartments'
+							}"/>
+						</f:for>
+					</f:if>
+				</f:form.validationResults>
 
-	    <f:render partial="Application/Field/SubmitButton" arguments="{
-	      translationKey: 'tx_ats.button.next',
-	      action: 'updateAdditionalData'
-	    }"/>
-	  </div>
+				<div class="form-group">
+					<div class="col-sm-6">
+						<f:link.action action="editQualifications" controller="Application\\Qualifications" arguments="{application: application}" class="btn btn-default pull-right"><f:translate key="tx_ats.button.prev">Back</f:translate></f:link.action>
+					</div>
 
-  </f:form>
+					<f:render partial="Application/Field/SubmitButton" arguments="{
+						translationKey: 'tx_ats.button.next',
+						action: 'updateAdditionalData'
+					}"/>
+				</div>
+
+			</f:form>
+		</f:then>
+		<f:else>
+			<f:translate key="tx_ats.application.error"/>
+		</f:else>
+	</f:if>
 
 </f:section>

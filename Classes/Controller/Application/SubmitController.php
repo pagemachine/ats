@@ -48,6 +48,10 @@ class SubmitController extends AbstractApplicationController
      */
     public function showSummaryAction(Application $application)
     {
+        if (!$this->hasAccess($application)) {
+            return;
+        }
+
         $this->view->assign("application", $application);
     }
 
@@ -58,6 +62,10 @@ class SubmitController extends AbstractApplicationController
      */
     public function showSimpleSummaryAction(Application $application)
     {
+        if (!$this->hasAccess($application)) {
+            return;
+        }
+
         $this->view->assign("application", $application);
     }
     
@@ -110,7 +118,7 @@ class SubmitController extends AbstractApplicationController
      */
     public function submittedAction(Application $application)
     {
-
+        $GLOBALS['TSFE']->fe_user->setKey('ses', 'Ats/Application', null);
         $this->view->assign("application", $application);
     }
 }
