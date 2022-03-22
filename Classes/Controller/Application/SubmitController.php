@@ -84,6 +84,7 @@ class SubmitController extends AbstractApplicationController
             'new'
         );
 
+        // Mail to sender
         if (ExtconfService::getInstance()->getSendAutoAcknowledge()) {
             $message = $this->messageFactory->createMessage("acknowledge", $application);
             $message->setUseBackendUserCredentials(false);
@@ -92,6 +93,28 @@ class SubmitController extends AbstractApplicationController
                 $this->repository->updateAndLog(
                     $message->getApplication(),
                     'autoAcknowledge',
+                    [
+                        'subject' => $message->getRenderedSubject(),
+                        'sendType' => $message->getSendType(),
+                        'cc' => $message->getCc(),
+                        'bcc' => $message->getBcc(),
+                        'message' => $message->getRenderedBody(),
+                    ]
+                );
+
+                $message->send();
+            }
+        }
+
+        // Mail to receiver (you)
+        if (ExtconfService::getInstance()->getSendAutoInfo()) {
+            $message = $this->messageFactory->createMessage("info", $application);
+            $message->setUseBackendUserCredentials(false);
+
+            if ($message->applyAutoInfoTemplate()) {
+                $this->repository->updateAndLog(
+                    $message->getApplication(),
+                    'info',
                     [
                         'subject' => $message->getRenderedSubject(),
                         'sendType' => $message->getSendType(),

@@ -51,6 +51,7 @@ return [
                     array('LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_texttemplate.type.3', '3'),
                     array('LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_texttemplate.type.4', '4'),
                     array('LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_texttemplate.type.5', '5'),
+                    array('LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_texttemplate.type.6', '6'),
                 ),
             ],
         ],

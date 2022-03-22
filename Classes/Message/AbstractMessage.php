@@ -27,6 +27,7 @@ abstract class AbstractMessage
     const MESSAGE_REPLY = 3;
     const MESSAGE_REQUEST = 4;
     const MESSAGE_REJECT = 5;
+    const MESSAGE_INFO = 6;
 
     /**
      * @var TextTemplateRepository $textTemplateRepository
@@ -463,6 +464,16 @@ abstract class AbstractMessage
     }
 
     /**
+     * Return Mail/Html by default
+     *
+     * @return array
+     */
+    public function getTemplate()
+    {
+        return 'Mail/Html';
+    }
+
+    /**
      * Generates a pdf and returns the file path
      *
      * @param  string $fileName
@@ -486,7 +497,6 @@ abstract class AbstractMessage
      */
     public function send()
     {
-
         if ($this->sendType == AbstractMessage::SENDTYPE_MAIL) {
             MailService::getInstance()->sendReplyMail(
                 $this->application,
@@ -494,7 +504,9 @@ abstract class AbstractMessage
                 $this->getRenderedBody(),
                 MailUtility::parseAddresses($this->cc),
                 MailUtility::parseAddresses($this->bcc),
-                $this->useBackendUserCredentials
+                $this->useBackendUserCredentials,
+                $this->getTemplate(),
+                $this->type
             );
         } elseif ($this->sendType == AbstractMessage::SENDTYPE_PDF) {
             PdfService::getInstance()->generateAndDownloadPdf($this->getRenderedSubject(), $this->application, $this->getRenderedBody());

@@ -147,6 +147,26 @@ class ExtconfService implements SingletonInterface
     }
 
     /**
+     * Returns whether to send automatic info e-mails
+     *
+     * @return boolen
+     */
+    public function getSendAutoInfo()
+    {
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['sendAutoInfo'] ? true : false;
+    }
+
+    /**
+     * Returns The automatic info E-mail template UID
+     *
+     * @return boolen
+     */
+    public function getAutoInfoTemplate()
+    {
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['autoInfoTemplate'] ?: '';
+    }
+
+    /**
      * Returns whether to use backend user name and mail address in emails
      *
      * Default return value is true to enable backwards compatibility - if the value is not set, it should still resolve to true.
@@ -179,6 +199,26 @@ class ExtconfService implements SingletonInterface
     public function getEmailDefaultSenderAddress()
     {
         return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['emailDefaultSenderAddress'] ?: '';
+    }
+
+    /**
+     * Returns the info email receiver name
+     *
+     * @return string
+     */
+    public function getInfoEmailReceiverName()
+    {
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['infoEmailReceiverName'] ?: '';
+    }
+
+    /**
+     * Returns the info email receiver address
+     *
+     * @return string
+     */
+    public function getInfoEmailReceiverAddress()
+    {
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['infoEmailReceiverAddress'] ?: '';
     }
 
     /**

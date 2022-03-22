@@ -19,6 +19,12 @@ emailDefaultSenderName =
 # cat=basic/enable; type=string; label=Default email address (if empty, system settings are used)
 emailDefaultSenderAddress =
 
+# cat=basic/enable; type=string; label=Info email receiver (if empty, system settings are used)
+infoEmailReceiverName =
+
+# cat=basic/enable; type=string; label=Info email address (if empty, system settings are used)
+infoEmailReceiverAddress =
+
 fileHandling {
   # cat=advanced/file; type=string; label=Allowed upload file extensions
   allowedFileExtensions = png,gif,jpg,tif,pdf,xls,xlsx,doc,docx,rtf,txt,zip,rar
@@ -35,3 +41,9 @@ sendAutoAcknowledge = 0
 
 # cat=extra/enable; type=integer; label=E-mail Template UID for the receipt acknowledgement
 autoAcknowledgeTemplate =
+
+# cat=extra/enable; type=boolean; label=Send out an automated info E-mail (you need to specify the template below!)
+sendAutoInfo = 0
+
+# cat=extra/enable; type=integer; label=E-mail Template UID for the info E-mail
+autoInfoTemplate =
