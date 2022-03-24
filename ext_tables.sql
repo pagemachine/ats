@@ -88,9 +88,9 @@ CREATE TABLE be_groups (
 );
 
 CREATE TABLE be_users (
-    tx_ats_email_signature text NOT NULL,
-    tx_ats_pdf_signature text NOT NULL,
-    tx_ats_contact_print text NOT NULL
+    tx_ats_email_signature text,
+    tx_ats_pdf_signature text,
+    tx_ats_contact_print text
 );
 
 #
