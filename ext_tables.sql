@@ -58,6 +58,9 @@ CREATE TABLE tx_ats_domain_model_job (
 	special_commitments text NOT NULL,
 	work_hours varchar(255) DEFAULT '' NOT NULL,
 
+	meta_title varchar(255) DEFAULT '' NOT NULL,
+	meta_description text NOT NULL,
+
 	t3ver_oid int(11) DEFAULT '0' NOT NULL,
 	t3ver_id int(11) DEFAULT '0' NOT NULL,
 	t3ver_wsid int(11) DEFAULT '0' NOT NULL,

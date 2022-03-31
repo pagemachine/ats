@@ -265,3 +265,9 @@ config.tx_extbase {
 
 plugin.tx_ats_jobs < plugin.tx_ats
 
+config.pageTitleProviders {
+  ats {
+    provider = PAGEmachine\Ats\Provider\PageTitleProvider
+    before = altPageTitle,record,seo,news
+  }
+}

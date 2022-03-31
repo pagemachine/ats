@@ -285,6 +285,20 @@
 				<source>e.g. 1st shift, night shift, 8am-5pm</source>
 			</trans-unit>
 
+			<!-- Metadata fields -->
+
+			<trans-unit id="tx_ats_domain_model_job.div.metadata">
+				<source>Metadata</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.meta_title">
+				<source>Title</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ats_domain_model_job.meta_description">
+				<source>Description</source>
+			</trans-unit>
+
 
 
 			<trans-unit id="be_groups.tx_ats">

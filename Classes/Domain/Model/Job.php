@@ -115,6 +115,17 @@ class Job extends AbstractEntity implements \JsonSerializable
 
 
     /**
+     * @var string $metaTitle
+     */
+    protected $metaTitle;
+
+    /**
+     * @var string $metaDescription
+     */
+    protected $metaDescription;
+
+
+    /**
      * @var \DateTime $endtime
      */
     protected $endtime;
@@ -600,5 +611,45 @@ class Job extends AbstractEntity implements \JsonSerializable
     public function setEnableFormLink($enableFormLink)
     {
         $this->enableFormLink = $enableFormLink;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMetaTitle()
+    {
+        $metaTitle = $this->title;
+
+        if ($this->metaTitle) {
+            $metaTitle = $this->metaTitle;
+        }
+
+        return $metaTitle;
+    }
+
+    /**
+     * @param string $metaTitle
+     * @return void
+     */
+    public function setMetaTitle($metaTitle)
+    {
+        $this->metaTitle = $metaTitle;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMetaDescription()
+    {
+        return $this->metaDescription;
+    }
+
+    /**
+     * @param string $metaDescription
+     * @return void
+     */
+    public function setMetaDescription($metaDescription)
+    {
+        $this->metaDescription = $metaDescription;
     }
 }

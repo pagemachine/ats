@@ -7,7 +7,10 @@ namespace PAGEmachine\Ats\Controller;
 
 use PAGEmachine\Ats\Domain\Model\Job;
 use PAGEmachine\Ats\Domain\Repository\JobRepository;
+use PAGEmachine\Ats\Provider\PageTitleProvider;
 use PAGEmachine\Ats\Service\TyposcriptService;
+use TYPO3\CMS\Core\MetaTag\MetaTagManagerRegistry;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
@@ -58,6 +61,19 @@ class JobController extends ActionController
      */
     public function showAction(Job $job)
     {
+        // Set title tag
+        if ($job->getMetaTitle()) {
+            $titleProvider = GeneralUtility::makeInstance(PageTitleProvider::class);
+            $titleProvider->setTitle($job->getMetaTitle());
+        }
+
+        // Set meta description
+        if ($job->getMetaDescription()) {
+            $registry = GeneralUtility::makeInstance(MetaTagManagerRegistry::class);
+            $metaTagManager = $registry->getManagerForProperty('description');
+            $metaTagManager->addProperty('description', $job->getMetaDescription());
+        }
+
         $this->view->assign('job', $job);
     }
 }
