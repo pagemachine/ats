@@ -185,6 +185,49 @@ class PdfService implements SingletonInterface
     }
 
     /**
+     * Generates Pdf.
+     *
+     * @param      Application  $application    The application to pull information from
+     * @param      string       $subject
+     * @param      string       $body
+     *
+     * @return     string
+     */
+    public function generateApplicationPdf(Application $application, $subject, $body)
+    {
+        /* @var $pdf \Mpdf\Mpdf */
+        $pdf = $this->objectManager->get('Mpdf\Mpdf', [
+            'mode' => 'c',
+            'format' => 'A4',
+            'default_font_size' => '',
+            'default_font' => '',
+            'margin_left' => 15,
+            'margin_right' => 15,
+            'margin_top' => 15,
+            'margin_bottom' => 15,
+            'margin_header' => 0,
+            'margin_footer' => 0,
+            'orientation' => 'P',
+        ]);
+
+        $pdf->setAutoTopMargin = true;
+
+        $body = $this->fluidRenderingService->renderTemplate(
+            'Pdf/Application',
+            [
+                'application' => $application,
+                'subject' => $subject,
+                'body' => $body,
+            ]
+        );
+
+        $pdf->WriteHTML($body);
+
+        $content = $pdf->Output('', 'S');
+        return $content;
+    }
+
+    /**
      * Downloads the pdf file.
      *
      * @param      string  $filePath  The absolute file path

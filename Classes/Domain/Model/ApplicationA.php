@@ -44,7 +44,7 @@ class ApplicationA extends AbstractApplication
     protected $job;
 
     /**
-     * @return PAGEmachine\Ats\Domain\Model\Job
+     * @return \PAGEmachine\Ats\Domain\Model\Job
      */
     public function getJob()
     {

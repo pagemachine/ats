@@ -11,6 +11,9 @@ use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MailUtility;
 
+use PAGEmachine\Ats\Service\CsvService;
+use PAGEmachine\Ats\Service\PdfService;
+
 /*
  * This file is part of the PAGEmachine ATS project.
  */
@@ -100,10 +103,17 @@ class MailService implements SingletonInterface
             $mail->setBcc($bcc);
         }
 
-        if ($type >= 6 && $application->getFiles()) {
+        if ($type = 6 && $application->getFiles()) {
             foreach ($application->getFiles() as $file) {
                 $mail->attach($file->getOriginalResource()->getOriginalFile()->getContents(), $file->getOriginalResource()->getName(), $file->getOriginalResource()->getMimeType());
             }
+
+            $fileName = 'Application'.$application->getUid();
+            $pdf = PdfService::getInstance()->generateApplicationPdf($application, $subject, $body);
+            $mail->attach($pdf, $fileName.'.pdf', 'application/pdf');
+
+            $csv = CsvService::getInstance()->getCSV($application, $fileName);
+            $mail->attach($csv, $fileName.'.csv', 'text/x-csv');
         }
 
         $mail->send();
