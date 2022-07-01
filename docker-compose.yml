@@ -6,6 +6,7 @@ services:
     environment:
       PHP_EXTENSION_GD: 1
       PHP_INI_PHAR__READONLY: "Off"
+      STARTUP_COMMAND_1: sudo composer self-update ${COMPOSER_VERSION}
       TAG:
       TYPO3_VERSION: ${TYPO3_VERSION:-^9.5}
       TYPO3_API_PASSWORD:
