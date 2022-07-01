@@ -23,7 +23,11 @@ jobs:
           - 7.4
         typo3:
           - ^9.5
-          - ^8.7
+        include:
+          - php: 7.2
+            typo3: ^8.7
+          - php: 7.4
+            typo3: ^8.7
 
     steps:
       - uses: actions/checkout@v2
