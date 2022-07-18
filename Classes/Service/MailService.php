@@ -10,6 +10,7 @@ use PAGEmachine\Ats\Traits\StaticCalling;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Core\SingletonInterface;
+#use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MailUtility;
 
@@ -116,6 +117,31 @@ class MailService implements SingletonInterface
 
                 $csv = CsvService::getInstance()->getCSV($application, $fileName);
                 $mail->attach($csv, $fileName.'.csv', 'text/x-csv');
+
+                #$resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
+                #$storage = $resourceFactory->retrieveFileOrFolderObject($csvFolder);
+
+                #$newFile = $storage->createFile(
+                #    $fileName.'.csv',
+                #    $storage,
+                #);
+                #$newFile->setContents($csv);
+
+                try {
+                    $dir = '../ats_csv/';
+                    if(!is_dir($dir)) {
+                        mkdir($dir);
+                    }
+
+                    $f = fopen($dir.$fileName.'.csv', 'w');
+                    if ($f) {
+                        fwrite($f, $csv);
+                    }
+
+                    fclose($f);
+                } catch (\Exception $e) {
+                    // Error
+                }
             }
         }
 
