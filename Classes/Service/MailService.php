@@ -2,17 +2,16 @@
 namespace PAGEmachine\Ats\Service;
 
 use PAGEmachine\Ats\Domain\Model\Application;
+use PAGEmachine\Ats\Service\CsvService;
 use PAGEmachine\Ats\Service\ExtconfService;
 use PAGEmachine\Ats\Service\FluidRenderingService;
+use PAGEmachine\Ats\Service\PdfService;
 use PAGEmachine\Ats\Traits\StaticCalling;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MailUtility;
-
-use PAGEmachine\Ats\Service\CsvService;
-use PAGEmachine\Ats\Service\PdfService;
 
 /*
  * This file is part of the PAGEmachine ATS project.
@@ -108,12 +107,16 @@ class MailService implements SingletonInterface
                 $mail->attach($file->getOriginalResource()->getOriginalFile()->getContents(), $file->getOriginalResource()->getName(), $file->getOriginalResource()->getMimeType());
             }
 
-            $fileName = 'Application'.$application->getUid();
-            $pdf = PdfService::getInstance()->generateApplicationPdf($application, $subject, $body);
-            $mail->attach($pdf, $fileName.'.pdf', 'application/pdf');
+            $extconfService = ExtconfService::getInstance();
 
-            $csv = CsvService::getInstance()->getCSV($application, $fileName);
-            $mail->attach($csv, $fileName.'.csv', 'text/x-csv');
+            if ($extconfService->getSendInfoWithCsvAndPdf()) {
+                $fileName = 'Application'.$application->getUid();
+                $pdf = PdfService::getInstance()->generateApplicationPdf($application, $subject, $body);
+                $mail->attach($pdf, $fileName.'.pdf', 'application/pdf');
+
+                $csv = CsvService::getInstance()->getCSV($application, $fileName);
+                $mail->attach($csv, $fileName.'.csv', 'text/x-csv');
+            }
         }
 
         $mail->send();
