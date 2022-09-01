@@ -2,7 +2,6 @@
 namespace PAGEmachine\Ats\Service;
 
 use PAGEmachine\Ats\Domain\Model\Application;
-use PAGEmachine\Ats\Service\CsvService;
 use PAGEmachine\Ats\Service\ExtconfService;
 use PAGEmachine\Ats\Service\FluidRenderingService;
 use PAGEmachine\Ats\Service\PdfService;
@@ -10,7 +9,6 @@ use PAGEmachine\Ats\Traits\StaticCalling;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Core\SingletonInterface;
-#use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MailUtility;
 
@@ -110,38 +108,10 @@ class MailService implements SingletonInterface
 
             $extconfService = ExtconfService::getInstance();
 
-            if ($extconfService->getSendInfoWithCsvAndPdf()) {
+            if ($extconfService->getSendInfoWithPdf()) {
                 $fileName = 'Application'.$application->getUid();
                 $pdf = PdfService::getInstance()->generateApplicationPdf($application, $subject, $body);
                 $mail->attach($pdf, $fileName.'.pdf', 'application/pdf');
-
-                $csv = CsvService::getInstance()->getCSV($application, $fileName);
-                $mail->attach($csv, $fileName.'.csv', 'text/x-csv');
-
-                #$resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
-                #$storage = $resourceFactory->retrieveFileOrFolderObject($csvFolder);
-
-                #$newFile = $storage->createFile(
-                #    $fileName.'.csv',
-                #    $storage,
-                #);
-                #$newFile->setContents($csv);
-
-                try {
-                    $dir = '../ats_csv/';
-                    if(!is_dir($dir)) {
-                        mkdir($dir);
-                    }
-
-                    $f = fopen($dir.$fileName.'.csv', 'w');
-                    if ($f) {
-                        fwrite($f, $csv);
-                    }
-
-                    fclose($f);
-                } catch (\Exception $e) {
-                    // Error
-                }
             }
         }
 

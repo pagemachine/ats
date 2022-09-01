@@ -167,13 +167,13 @@ class ExtconfService implements SingletonInterface
     }
 
     /**
-     * Returns whether to send info mail with application attached as csv and pdf or not
+     * Returns whether to send info mail with application attached as pdf or not
      *
      * @return bool
      */
-    public function getSendInfoWithCsvAndPdf()
+    public function getSendInfoWithPdf()
     {
-        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['sendInfoWithCsvAndPdf'] ? true : false;
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ats']['emSettings']['sendInfoWithPdf'] ? true : false;
     }
 
     /**

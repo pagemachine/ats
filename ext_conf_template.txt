@@ -48,5 +48,5 @@ sendAutoInfo = 0
 # cat=extra/enable; type=integer; label=E-mail Template UID for the info E-mail
 autoInfoTemplate =
 
-# cat=extra/enable; type=boolean; label=Send info mail with application attached as csv and pdf
-sendInfoWithCsvAndPdf = 0
+# cat=extra/enable; type=boolean; label=Send info mail with application attached as pdf
+sendInfoWithPdf = 0
