@@ -24,7 +24,6 @@ return [
 		'searchFields' => 'job_number, title',
 		'default_sortby' => 'crdate DESC',
 		'iconfile' => 'EXT:ats/Resources/Public/Icons/tx_ats_domain_model_job.svg',
-        'requestUpdate' => 'career, location, override_global_hiring_organization, override_global_location'
 	],
 	'interface' => [
 		'showRecordFieldList' => 'sys_language_uid,  l10n_parent,  l10n_diffsource,  hidden,  starttime,  endtime, job_number, title, description, description_after_link, enable_form_link, media, career, internal, deactivated, location, user_pa, department, officials, contributors, contact, deadline_email_disabled, deadline_email, organization_unit, job_title, base_salary, base_salary_currency, base_salary_unit, education_requirements, employment_type, experience_requirements, override_global_hiring_organization, hiring_organization, incentive_compensation, job_benefits, industry, override_global_location, job_location_address_country, job_location_address_region, job_location_address_locality, job_location_address_postal_code, job_location_address_street_address, occupational_category, qualifications, responsibilities, skills, special_commitments, work_hours, meta_title, meta_description'
@@ -199,7 +198,8 @@ return [
                 ],
                 'minitems' => 1,
                 'maxitems' => 1,
-            ]
+            ],
+            'onChange' => 'reload',
         ],
 
         'internal' => [
@@ -416,6 +416,7 @@ return [
                     ['LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.override_global_hiring_organization', 1],
                 ]
             ],
+            'onChange' => 'reload',
         ],
         'hiring_organization' => [
             'exclude' => 1,
@@ -463,6 +464,7 @@ return [
                     ['LLL:EXT:ats/Resources/Private/Language/locallang_db.xlf:tx_ats_domain_model_job.override_global_location', 1],
                 ],
             ],
+            'onChange' => 'reload',
         ],
         'job_location_address_country' => [
             'exclude' => 1,
