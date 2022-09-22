@@ -115,7 +115,7 @@ trait StructuredJobDefinitionTrait
                 'address' => [
                     'streetAddress' => $settings['companyData']['street'],
                     'addressLocality' => $settings['companyData']['locality'],
-                    'addressRegion' => $settings['companyData']['locality'],
+                    'addressRegion' => $settings['companyData']['region'],
                     'postalCode' => $settings['companyData']['postalCode'],
                     'addressCountry' => $settings['companyData']['country'],
                 ],
