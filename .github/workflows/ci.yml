@@ -40,11 +40,11 @@ jobs:
           COMPOSER_VERSION: ${{matrix.composer}}
           PHP_VERSION: ${{matrix.php}}
           TYPO3_VERSION: ${{matrix.typo3}}
-        run: docker-compose run --rm app composer build
+        run: docker compose run --rm app composer build
 
       - name: Cleanup
         if: ${{ always() }}
-        run: docker-compose down --volumes
+        run: docker compose down --volumes
 
   release-ter:
     name: TYPO3 TER release
@@ -63,4 +63,4 @@ jobs:
           TYPO3_API_USERNAME: ${{secrets.TYPO3_API_USERNAME}}
           TYPO3_API_PASSWORD: ${{secrets.TYPO3_API_PASSWORD}}
           TAG: ${{github.ref_name}}
-        run: docker-compose run --rm app composer deploy:ter
+        run: docker compose run --rm app composer deploy:ter

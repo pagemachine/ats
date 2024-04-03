@@ -19,4 +19,4 @@ This extension is installable from various sources:
 
 All tests can be executed with the shipped Docker Compose definition:
 
-    docker-compose run --rm app composer build
+    docker compose run --rm app composer build
