@@ -1,4 +1,5 @@
 {
+    "abandoned": "itx/jobapplications",
     "name": "pagemachine/ats",
     "description": "Extension for Job Application Management",
     "license": "GPL-3.0-only",
